@@ -1,11 +1,22 @@
-CC = g++
-CFLAGS = -g -Wall
-TARGET = lab1
+CXXFLAGS=-c -Wall -Wextra -Wpedantic -Werror
+LDFLAGS=
+SOURCES=$(EXE).cpp $(subst $(EXE).cpp, , $(wildcard *.cpp))
+OBJECTS=$(SOURCES:.cpp=.o)
+EXE=lab1
 
-all: $(TARGET)
+all: $(SOURCES) $(EXE)
 
-$(TARGET): $(TARGET).cpp
-	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).cpp
+$(EXE): $(OBJECTS)
+	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) $< -o $@
 
 clean:
-	$(RM) $(TARGET)
+	$(RM) $(EXE) $(OBJECTS) $(EXE).tar $(EXE).zip output.txt
+
+tar:
+	tar -cvf $(EXE).tar $(SOURCES) $(wildcard *.h)
+
+zip:
+	zip $(EXE).zip $(SOURCES) $(wildcard *.h)

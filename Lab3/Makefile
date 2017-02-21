@@ -1,20 +1,22 @@
-CC=g++
-CFLAGS=-c -Wall
+CXXFLAGS=-c -Wall -Wextra -Wpedantic -Werror
 LDFLAGS=
-SOURCES=lab3.cpp resistors.cpp
+SOURCES=$(EXE).cpp $(subst $(EXE).cpp, , $(wildcard *.cpp))
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=lab3
+EXE=lab3
 
-all: $(SOURCES) $(EXECUTABLE)
+all: $(SOURCES) $(EXE)
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+$(EXE): $(OBJECTS)
+	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+	$(CXX) $(CXXFLAGS) $< -o $@
 
 clean:
-	$(RM) $(EXECUTABLE) $(OBJECTS) $(EXECUTABLE).zip
+	$(RM) $(EXE) $(OBJECTS) $(EXE).tar $(EXE).zip output.txt
 
-export:
-	zip lab3.zip resistors.cpp resistors.h
+tar:
+	tar -cvf $(EXE).tar $(SOURCES) $(wildcard *.h)
+
+zip:
+	zip $(EXE).zip $(SOURCES) $(wildcard *.h)
