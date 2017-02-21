@@ -1,5 +1,5 @@
 ARCHIVE = ECE1574
-SUBDIRS = $(sort $(dir $(wildcard ./*/)))
+SUBDIRS = $(subst ./, , $(sort $(dir $(wildcard ./*/))))
 
 all: compile
 
