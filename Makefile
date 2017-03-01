@@ -1,6 +1,13 @@
 ARCHIVE = ECE1574
 SUBDIRS = $(subst ./, , $(sort $(dir $(wildcard ./*/))))
 
+define clean =
+	$(RM) $(ARCHIVE).tar $(ARCHIVE).zip
+	for dir in $(SUBDIRS); do \
+		$(MAKE) clean -C $$dir; \
+	done
+endef
+
 all: compile
 
 compile:
@@ -9,15 +16,12 @@ compile:
 	done
 
 clean:
-	$(RM) $(ARCHIVE).tar $(ARCHIVE).zip
-	for dir in $(SUBDIRS); do \
-		$(MAKE) clean -C $$dir; \
-	done
+	$(clean)
 
 tar:
-	clean
+	$(clean)
 	tar -cvf $(ARCHIVE).tar $(SUBDIRS)
 
 zip:
-	clean
+	$(clean)
 	zip $(ARCHIVE).zip $(SUBDIRS)

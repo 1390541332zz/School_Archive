@@ -1,0 +1,130 @@
+Data file: test/samples/test0.info
+Command: size average
+	Sum: 150012536
+	Country count: 252
+	Average Size: 595287.84
+Command: size largest
+	ISO:			RU
+	ISO3:			RUS
+	ISO Numeric:		643
+	FIPS:			RS
+	Country:		Russia
+	Capital:		Moscow
+	Area:			17100000
+	Population:		140702000
+	Continent:		EU
+	TLD:			.ru
+	Currency Code:		RUB
+	Currency Name:		Ruble
+	Phone:			7
+	Postal Code:		######
+	Postal Code Regex:	^(\d{6})$
+	Languages:		ru,tt,xal,cau,ady,kv,ce,tyv,cv,udm,tut,mns,bua,myv,mdf,chm,ba,inh,tut,kbd,krc,ava,sah,nog
+	Geonameid:		2017370
+	Neighbors:		GE,CN,BY,UA,KZ,LV,PL,EE,LT,FI,MN,NO,AZ,KP
+	Equiv FIPS Code:
+Command: size smallest
+	ISO:			UM
+	ISO3:			UMI
+	ISO Numeric:		581
+	FIPS:
+	Country:		United States Minor Outlying Islands
+	Capital:
+	Area:			0
+	Population:		0
+	Continent:		OC
+	TLD:			.um
+	Currency Code:		USD
+	Currency Name:		Dollar
+	Phone:			1
+	Postal Code:
+	Postal Code Regex:
+	Languages:		en-UM
+	Geonameid:		5854968
+	Neighbors:
+	Equiv FIPS Code:
+Command: country US
+	ISO:			US
+	ISO3:			USA
+	ISO Numeric:		840
+	FIPS:			US
+	Country:		United States
+	Capital:		Washington
+	Area:			9629091
+	Population:		310232863
+	Continent:		NA
+	TLD:			.us
+	Currency Code:		USD
+	Currency Name:		Dollar
+	Phone:			1
+	Postal Code:		#####-####
+	Postal Code Regex:	^\d{5}(-\d{4})?$
+	Languages:		en-US,es-US,haw,fr
+	Geonameid:		6252001
+	Neighbors:		CA,MX,CU
+	Equiv FIPS Code:
+Command: neighbors US
+Neighbor 1
+	ISO:			CA
+	ISO3:			CAN
+	ISO Numeric:		124
+	FIPS:			CA
+	Country:		Canada
+	Capital:		Ottawa
+	Area:			9984670
+	Population:		33679000
+	Continent:		NA
+	TLD:			.ca
+	Currency Code:		CAD
+	Currency Name:		Dollar
+	Phone:			1
+	Postal Code:		@#@ #@#
+	Postal Code Regex:	^([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ]) ?(\d[ABCEGHJKLMNPRSTVWXYZ]\d)$
+	Languages:		en-CA,fr-CA,iu
+	Geonameid:		6251999
+	Neighbors:		US
+	Equiv FIPS Code:
+Neighbor 2
+	ISO:			CU
+	ISO3:			CUB
+	ISO Numeric:		192
+	FIPS:			CU
+	Country:		Cuba
+	Capital:		Havana
+	Area:			110860
+	Population:		11423000
+	Continent:		NA
+	TLD:			.cu
+	Currency Code:		CUP
+	Currency Name:		Peso
+	Phone:			53
+	Postal Code:		CP #####
+	Postal Code Regex:	^(?:CP)*(\d{5})$
+	Languages:		es-CU
+	Geonameid:		3562981
+	Neighbors:		US
+	Equiv FIPS Code:
+Neighbor 3
+	ISO:			MX
+	ISO3:			MEX
+	ISO Numeric:		484
+	FIPS:			MX
+	Country:		Mexico
+	Capital:		Mexico City
+	Area:			1972550
+	Population:		112468855
+	Continent:		NA
+	TLD:			.mx
+	Currency Code:		MXN
+	Currency Name:		Peso
+	Phone:			52
+	Postal Code:		#####
+	Postal Code Regex:	^(\d{5})$
+	Languages:		es-MX
+	Geonameid:		3996063
+	Neighbors:		GT,US,BZ
+	Equiv FIPS Code:
+Command: country NONE
+	Country NONE not found.
+Command: neighbors WHO
+	Country WHO has no neighbors.
