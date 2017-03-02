@@ -27,9 +27,9 @@ clean:
 
 
 test: $(EXECUTABLE)
-	@for ver in $(TESTS); do \
+	-@for ver in $(TESTS); do \
 		$(EXECUTABLE) $(TESTSAMPLES)/$$ver.in $(TESTOUT)/$$ver.out; \
-		diff -qs $(TESTOUT)/$$ver.out $(TESTSAMPLES)/$$ver.out; \
+		diff -s $(TESTOUT)/$$ver.out $(TESTSAMPLES)/$$ver.out; \
 	done
 
 

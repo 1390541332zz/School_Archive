@@ -242,7 +242,6 @@ int seekNeighbors(std::ofstream& os, std::string& inputFile, std::string& cCode)
             returnInfo(os, iso, iso3, isoNum, fips, country, capital, area,    \
                        pop, continent, tld, curCode, curName, phone, postal,   \
                        regex, lang, geoId, neighbors, altFips);
-            std::cout << "survival" << std::endl;
         }
     } else {
         os << "\tCountry " << cCode << " has no neighbors." << std::endl;
