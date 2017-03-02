@@ -1,22 +1,42 @@
-CXXFLAGS=-c -Wall -Wextra -Wpedantic -Werror
-LDFLAGS=
-SOURCES=$(EXE).cpp $(subst $(EXE).cpp, , $(wildcard *.cpp))
-OBJECTS=$(SOURCES:.cpp=.o)
-EXE=lab6
+PROJ := lab6
 
-all: $(SOURCES) $(EXE)
+CXXFLAGS := -c -Wall -Wextra -Wpedantic -Werror
+LDFLAGS :=
 
-$(EXE): $(OBJECTS)
+DIFFFLAGS := -ys --suppress-common-lines
+
+SRC := src
+BUILD := build
+TESTOUT := test/generated
+TESTSAMPLES := test/samples
+
+TESTS := $(subst .in,, $(subst $(TESTSAMPLES)/,, $(wildcard $(TESTSAMPLES)/test*.in)))
+
+SOURCES := $(SRC)/$(PROJ).cpp $(subst $(SRC)/$(PROJ).cpp,, $(wildcard $(SRC)/*.cpp))
+OBJECTS := $(subst $(SRC), $(BUILD), $(SOURCES:.cpp=.o))
+EXECUTABLE := $(BUILD)/$(PROJ)
+
+all:$(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
 
-.cpp.o:
+$(BUILD)/%.o: $(SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 clean:
-	$(RM) $(EXE) $(OBJECTS) $(EXE).tar $(EXE).zip output.txt
+	$(RM) $(BUILD)/* $(TESTOUT)/* $(PROJ).tar
 
-tar:
-	tar -cvf $(EXE).tar $(SOURCES) $(wildcard *.h)
 
-zip:
-	zip $(EXE).zip $(SOURCES) $(wildcard *.h)
+test: $(EXECUTABLE)
+	-@for ver in $(TESTS); do \
+		$(EXECUTABLE) $(TESTSAMPLES)/$$ver.in $(TESTOUT)/$$ver.out; \
+		diff $(DIFFFLAGS) $(TESTOUT)/$$ver.out $(TESTSAMPLES)/$$ver.out; \
+	done
+
+
+tar: $(PROJ).tar
+
+$(PROJ).tar:
+	tar -cvf $(PROJ).tar --xform='s,$(SRC)/,,' \
+	$(wildcard $(SRC)/*.cpp) $(wildcard $(SRC)/*.h)
