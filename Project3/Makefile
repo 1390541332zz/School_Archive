@@ -1,7 +1,9 @@
 PROJ := project3
 
-CXXFLAGS := -c -Wall -Wextra -Wpedantic -Werror
-LDFLAGS :=
+CXXFLAGS := -c -Wall -Wextra -Wpedantic -Werror -ggdb \
+		 	-fsanitize=undefined #-fsanitize=address -fsanitize=leak
+			
+LDFLAGS := -lubsan #-lasan 
 
 DIFFFLAGS := -ys --suppress-common-lines
 

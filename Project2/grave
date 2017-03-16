@@ -1,25 +1,26 @@
-// nList = neighbors;
-// 
-// for (uint8_t i = 3; i < nList.length(); i += 3) {
-//     int8_t j = i - 3;
-//     std::string iStr = nList.substr(i, 2);
-//     while (j >= 0 && nList.substr(j, 2) > iStr) {
-//         nList.replace(j+3, 2, nList.substr(j, 2));
-//         j -= 3;
-//     }
-//     nList.replace(j+3, 2, iStr);
-// }
-// if (nList != "") {
-//     size_t i = 1;
-//     for (size_t j = 0; j < nList.length(); j += 3) {
-//         std::string nCode = nList.substr(j, 2);
-//         os << "Neighbor " << i << std::endl;
-//         i++;
-// 
-//         loadData(inputFile, 0, nCode, iso, iso3, isoNum, fips, country,    \
-//                  capital, area, pop, continent, tld, curCode, curName,     \
-//                  phone, postal, regex, lang, geoId, neighbors, altFips);
-//         returnInfo(os, iso, iso3, isoNum, fips, country, capital, area,    \
-//                    pop, continent, tld, curCode, curName, phone, postal,   \
-//                    regex, lang, geoId, neighbors, altFips);
-//     }
+nList = neighbors;
+
+for (uint8_t i = 3; i < nList.length(); i += 3) {
+    int8_t j = i - 3;
+    std::string iStr = nList.substr(i, 2);
+    while (j >= 0 && nList.substr(j, 2) > iStr) {
+        nList.replace(j+3, 2, nList.substr(j, 2));
+        j -= 3;
+    }
+    nList.replace(j+3, 2, iStr);
+}
+if (nList != "") {
+    size_t i = 1;
+    for (size_t j = 0; j < nList.length(); j += 3) {
+        std::string nCode = nList.substr(j, 2);
+        os << "Neighbor " << i << std::endl;
+        i++;
+
+        loadData(inputFile, 0, nCode, iso, iso3, isoNum, fips, country,    \
+                 capital, area, pop, continent, tld, curCode, curName,     \
+                 phone, postal, regex, lang, geoId, neighbors, altFips);
+        returnInfo(os, iso, iso3, isoNum, fips, country, capital, area,    \
+                   pop, continent, tld, curCode, curName, phone, postal,   \
+                   regex, lang, geoId, neighbors, altFips);
+    }
+}
