@@ -3,7 +3,7 @@
  * route based on change in elevation program.
  *
  * Programmer: Jacob Abel
- * Date: March 06, 2017
+ * Date: March 23, 2017
  *
  * Honor Code: I have neither given nor received any unauthorized assistance
  * with this program.
@@ -22,8 +22,6 @@ int mapWalk(std::string inputFile, std::string outputFile) {
     if (cmds >> strA && strA == "File:") {
         cmds >> mapFile;
         os << std::left << "Loading: " << mapFile << std::endl;
-        int dims[2] = {0};
-        int map[ROW][COL] = {0};
         loadMap(mapFile, map, dims);
         printMap(os, map, dims, true);
     } else {
@@ -65,7 +63,6 @@ int minMaxElement(int adj[NSIDES], bool isMax) {
     int cur = 0;
     while (cur < NSIDES) {
         if (isMax ? (adj[max] < adj[cur]) : (adj[max] > adj[cur])) max = cur;
-        std::cout << cur << " " << adj[cur] << " " << max << " " << adj[max] << std::endl;
         cur++;
     }
     return max;
@@ -94,7 +91,7 @@ void loadMap(std::string inputFile, int map[ROW][COL], int dims[2]) {
                     i = ROW;
                 }
                 if (j >= dims[1]) j = COL;
-            } else if (i < dims[0] && j < dims[1]) {
+            } else if (is.fail() && i < dims[0] && j < dims[1]) {
                 std::cerr << "ERROR: Unexpected File Error!" << std::endl;
                 return;
             }
@@ -115,7 +112,7 @@ void printMap(std::ofstream& os, int map[ROW][COL], int dims[2], bool isMap) {
     }
     os << std::endl;
     for (int i = 0; i < MAXDIM(ROW, dims[0]); i++) {
-        os << '\t' << std::setw(isMap ? MAPW : PATHW) << i;
+        os << '\t' << std::setw(isMap ? MAPW : PATHW-1) << i;
         if (!isMap) os << ' ';
         for (int j = 0; j < MAXDIM(COL, dims[1]); j++) {
             if (isMap) {
@@ -142,18 +139,19 @@ void traverseMap(std::ofstream& os, int map[ROW][COL], int dims[2], int startPos
     
     int path[ROW][COL];
     fillRegion(path, 0, ROW - 1, 0, COL - 1, '-');
-    
-    if (startPos >= dims[0]) {
+
+    if (startPos >= MAXDIM(ROW, dims[0]) || startPos < 0) {
         os << std::left << "Bad starting row: " << startPos << std::endl;
         return;
     }
-    while (j < MAXDIM(COL, dims[1])) {
-        adj[0] = (i >= 0)                     ? (map[i-1][ j ] - map[i][j]) : ILLEGALVAL(cmd);
-        adj[1] = (i >= 0      && j < dims[1]) ? (map[i-1][j+1] - map[i][j]) : ILLEGALVAL(cmd);
-        adj[2] =                (j < dims[1]) ? (map[ i ][j+1] - map[i][j]) : ILLEGALVAL(cmd);
-        adj[3] = (i < dims[0] && j < dims[1]) ? (map[i+1][j+1] - map[i][j]) : ILLEGALVAL(cmd);
-        adj[4] = (i < dims[0])                ? (map[i+1][ j ] - map[i][j]) : ILLEGALVAL(cmd);
-        if (adjPos != -1) adj[NSIDES - 1 - adjPos] = ILLEGALVAL(cmd);
+    while (j < MAXDIM(COL, dims[1])-1) {
+        //std::cout << "cmd: " << cmd << " i: " << i << " j: " << j << " a: " << adjPos << " aP: " << adj[adjPos] << std::endl;
+        std::cout << "sel: " << adj[adjPos];
+        for (size_t i = 0; i < NSIDES; i++) {
+            std::cout << ' ' << i << ':' << adj[i];
+        }
+        std::cout << std::endl;
+        assignAdjacent(adj, map, dims, cmd, adjPos, i, j);
         switch (cmd) {
             case MAXUP:
                 adjPos = minMaxElement(adj, true);
@@ -169,19 +167,28 @@ void traverseMap(std::ofstream& os, int map[ROW][COL], int dims[2], int startPos
                 adjPos = minMaxElement(adjAbs, false);
                 break;
         }
-        path[i][j] = (j < MAXDIM(COL, dims[1]) - 1) ? pos[adjPos] : 'X';
+        path[i][j] = pos[adjPos];
         if (adjPos > 0 && adjPos < 4) j++;  // Moving Forward
         if (adjPos < 2) i--;                // Moving Up
         if (adjPos > 2) i++;                // Moving Down
+        if (j >= MAXDIM(COL, dims[1]) - 1) path[i][j] = 'X';
         sum += adj[adjPos];
         steps++;
-        std::cout << pos[adjPos] << std::endl;
     }
     os << std::left;
     os << '\t' << std::setw(16) << "Height change: "  << sum   << std::endl;
     os << '\t' << std::setw(16) << "Steps: "          << steps << std::endl;
     os << '\t' << std::setw(16) << "Average change: " \
-       << std::fixed << (double) sum / (double) steps << std::endl;
+       << std::fixed << static_cast<double>(sum) / static_cast<double>(steps) << std::endl;
     os << '\t' << std::setw(16) << "Starting row: "   << startPos << std::endl;
     printMap(os, path, dims, false);
+}
+
+void assignAdjacent(int adj[NSIDES], int map[ROW][COL], int dims[2], command& cmd, int& adjPos, int& i, int& j) {
+    adj[0] = (i > 1)                                                     ? (map[i-1][ j ] - map[i][j]) : ILLEGALVAL(cmd);
+    adj[1] = (i > 1                       && j < MAXDIM(COL, dims[1])-1) ? (map[i-1][j+1] - map[i][j]) : ILLEGALVAL(cmd);
+    adj[2] =                                (j < MAXDIM(COL, dims[1])-1) ? (map[ i ][j+1] - map[i][j]) : ILLEGALVAL(cmd);
+    adj[3] = (i < MAXDIM(ROW, dims[0])-1  && j < MAXDIM(COL, dims[1])-1) ? (map[i+1][j+1] - map[i][j]) : ILLEGALVAL(cmd);
+    adj[4] = (i < MAXDIM(ROW, dims[0])-1)                                ? (map[i+1][ j ] - map[i][j]) : ILLEGALVAL(cmd);
+    if(adjPos == 0 || adjPos == 4) adj[NSIDES - 1 - adjPos] = ILLEGALVAL(cmd);
 }
