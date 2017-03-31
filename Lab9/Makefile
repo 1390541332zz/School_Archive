@@ -5,9 +5,9 @@ TEST  := test
 
 JOBCOUNT := 9
 
-LDFLAGS  := -lubsan
+LDFLAGS  := #-lubsan
 CPPFLAGS := 
-CXXFLAGS := -Wall -Wextra -Wpedantic -Werror -ggdb -fsanitize=undefined
+CXXFLAGS := -Wall -Wextra -Wpedantic -Werror -ggdb #-fsanitize=undefined
 
 SOURCES    := $(SRC)/$(PROJ).cpp $(subst $(wildcard $(SRC)/*_gtest.cpp),, $(subst $(SRC)/$(PROJ).cpp,, $(wildcard $(SRC)/*.cpp)))
 HEADERS    := $(wildcard $(SRC)/*.h)
@@ -39,7 +39,7 @@ gtest:
 # Cleaning and Archiving Functions #
 #----------------------------------#
 clean:
-	$(RM) $(BUILD)/* $(TEST)/* $(PROJ).tar ./vgcore.*
+	$(RM) ./$(BUILD)/* ./$(TEST)/generated/* ./$(PROJ).tar ./vgcore.*
 
 tar: $(PROJ).tar
 

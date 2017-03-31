@@ -54,7 +54,7 @@ difftest: $(EXECUTABLE)
 # Cleaning and Archiving Functions #
 #----------------------------------#
 clean:
-	$(RM) $(BUILD)/* $(DIFFTESTOUT)/* $(PROJ).tar ./vgcore.*
+	$(RM) ./$(BUILD)/* ./$(DIFFTESTOUT)/* ./$(PROJ).tar ./vgcore.*
 
 tar: $(PROJ).tar
 

@@ -12,6 +12,6 @@ typedef struct {
     double number;
 } basicStruct;
 
-void readData(std::string& inputFile, std::string& outputFile);
+void readData(std::string inputFile, std::string outputFile);
 
 #endif /* LAB9_H */

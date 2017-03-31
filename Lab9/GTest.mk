@@ -3,17 +3,17 @@ GTEST_HEADERS := $(GTEST_DIR)/include/gtest/*.h $(GTEST_DIR)/include/gtest/inter
 GTEST_SRCS_   := $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 
 LDFLAGS  := -lpthread -lubsan
-CPPFLAGS := -isystem $(GTEST_DIR)/include -fsanitize=undefined -ggdb
-CXXFLAGS := -pthread -fpermissive
+CPPFLAGS := -isystem $(GTEST_DIR)/include -ggdb -fsanitize=undefined
+CXXFLAGS := -Wall -Wextra -Wpedantic -pthread -fpermissive
 
-SOURCES    := $(SRC)/$(PROJ).cpp $(subst $(wildcard $(SRC)/*_gtest.cpp),, $(subst $(SRC)/$(PROJ).cpp,, $(wildcard $(SRC)/*.cpp)))
+SOURCES    := $(SRC)/$(PROJ).cpp #$(subst $(wildcard $(SRC)/*_gtest.cpp),, $(subst $(SRC)/$(PROJ).cpp,, $(wildcard $(SRC)/*.cpp)))
 OBJECTS    := $(subst $(SRC), $(BUILD), $(SOURCES:.cpp=.o))
 EXECUTABLE := $(BUILD)/$(PROJ)
 
-GTESTSRC := $(subst $(SRC)/$(PROJ).cpp,, $(subst $(SRC)/$(PROJ)_gtest.cpp,, $(wildcard $(SRC)/*.cpp))) $(SRC)/$(PROJ)_gtest.cpp
+GTESTSRC := $(SRC)/$(PROJ).cpp $(SRC)/$(PROJ)_gtest.cpp
 GTESTOBJ := $(subst $(SRC), $(BUILD), $(GTESTSRC:.cpp=.o))
 
-TEST_REPETITION_AMOUNT = 1000
+TEST_REPETITION_AMOUNT = 1
 
 all: gtest
 gtest: $(EXECUTABLE)_gtest

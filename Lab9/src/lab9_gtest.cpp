@@ -10,6 +10,9 @@
 
 #include "lab9.h"
 #include <gtest/gtest.h>
+#include <string>
+#include <cstdlib>
+#include <ctime>
 
 int main(int argc, char *argv[]) {
  ::testing::InitGoogleTest(&argc, argv);
@@ -30,5 +33,7 @@ TEST(BasicStruct, VerifyContent) {
 }
 
 TEST(ReadData, Verify) {
-    
+    std::string in = "test/samples/test0.in";
+    std::string out = "test/generated/test0.out";
+    readData(in, out);
 }
