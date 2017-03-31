@@ -3,7 +3,7 @@ GTEST_HEADERS := $(GTEST_DIR)/include/gtest/*.h $(GTEST_DIR)/include/gtest/inter
 GTEST_SRCS_   := $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 
 LDFLAGS  := -lpthread -lubsan
-CPPFLAGS := -isystem $(GTEST_DIR)/include -fsanitize=undefined
+CPPFLAGS := -isystem $(GTEST_DIR)/include -fsanitize=undefined -ggdb
 CXXFLAGS := -pthread -fpermissive
 
 SOURCES    := $(SRC)/$(PROJ).cpp $(subst $(wildcard $(SRC)/*_gtest.cpp),, $(subst $(SRC)/$(PROJ).cpp,, $(wildcard $(SRC)/*.cpp)))

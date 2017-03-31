@@ -84,19 +84,19 @@ void loadMap(std::string inputFile, int map[ROW][COL], int dims[2]) {
                 is >> map[i][j];
             } else if (!is.fail()) {
                 is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                if (i >= dims[0]) {
-                    for (int k = 0; k < COL; k++) {
-                        fillRegion(map, i, ROW - 1, k, k, map[i-1][k]);
-                    }
-                    i = ROW;
-                }
                 if (j >= dims[1]) j = COL;
-            } else if (is.fail() && i < dims[0] && j < dims[1]) {
+                if (i >= dims[0]) {
+                    i = ROW;
+                    j = COL;
+                }
+            } else if (is.fail()) {
                 std::cerr << "ERROR: Unexpected File Error!" << std::endl;
                 return;
             }
+            if (is.peek() != '\n' && j >= COL-1 && dims[1] > COL) {
+                is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
         }
-        if (is.peek() != '\n') is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     is.close();
 }
@@ -118,7 +118,7 @@ void printMap(std::ofstream& os, int map[ROW][COL], int dims[2], bool isMap) {
             if (isMap) {
                 os << std::setw(MAPW) << map[i][j];
             } else {
-                os << std::setw(PATHW) << (char) map[i][j];
+                os << std::setw(PATHW) << static_cast<char>(map[i][j]);
             }
         }
         os << std::endl;
@@ -127,13 +127,11 @@ void printMap(std::ofstream& os, int map[ROW][COL], int dims[2], bool isMap) {
 }
 
 // Navigates the map and generates a path.
-void traverseMap(std::ofstream& os, int map[ROW][COL], int dims[2], int startPos, command cmd) {
-    // Up, Upper Right, Right, Lower Right, Down
-    const char pos[NSIDES] = {'^', '/', '>', '\\', 'v'};
+void traverseMap(std::ofstream& os, int map[ROW][COL], int dims[2], int startPos, command cmd) {    
     int adj[NSIDES] = {0};
-    int adjPos = -1;
     int steps = 0;
     int sum = 0;
+    int adjPos = -1;
     int i = startPos;
     int j = 0;
     
@@ -145,48 +143,48 @@ void traverseMap(std::ofstream& os, int map[ROW][COL], int dims[2], int startPos
         return;
     }
     while (j < MAXDIM(COL, dims[1])-1) {
-        //std::cout << "cmd: " << cmd << " i: " << i << " j: " << j << " a: " << adjPos << " aP: " << adj[adjPos] << std::endl;
-        std::cout << "sel: " << adj[adjPos];
-        for (size_t i = 0; i < NSIDES; i++) {
-            std::cout << ' ' << i << ':' << adj[i];
-        }
-        std::cout << std::endl;
         assignAdjacent(adj, map, dims, cmd, adjPos, i, j);
-        switch (cmd) {
-            case MAXUP:
-                adjPos = minMaxElement(adj, true);
-                break;
-            case MAXDOWN:
-                adjPos = minMaxElement(adj, false);
-                break;
-            case MINDIFF:
-                int adjAbs[NSIDES] = {0};
-                for (int i = 0; i < NSIDES; i++) {
-                    adjAbs[i] = std::abs(adj[i]);
-                }
-                adjPos = minMaxElement(adjAbs, false);
-                break;
-        }
-        path[i][j] = pos[adjPos];
-        if (adjPos > 0 && adjPos < 4) j++;  // Moving Forward
-        if (adjPos < 2) i--;                // Moving Up
-        if (adjPos > 2) i++;                // Moving Down
-        if (j >= MAXDIM(COL, dims[1]) - 1) path[i][j] = 'X';
-        sum += adj[adjPos];
-        steps++;
+        movePos(path, adj, dims, adjPos, i, j, steps, sum, cmd);
     }
     os << std::left;
     os << '\t' << std::setw(16) << "Height change: "  << sum   << std::endl;
     os << '\t' << std::setw(16) << "Steps: "          << steps << std::endl;
     os << '\t' << std::setw(16) << "Average change: " \
-       << std::fixed << static_cast<double>(sum) / static_cast<double>(steps) << std::endl;
+       << static_cast<double>(sum) / static_cast<double>(steps) << std::endl;
     os << '\t' << std::setw(16) << "Starting row: "   << startPos << std::endl;
     printMap(os, path, dims, false);
 }
 
+void movePos(int path[ROW][COL], int adj[NSIDES], int dims[2], int& adjPos, int& i, int& j, int& steps, int& sum, command cmd) {
+    // Up, Upper Right, Right, Lower Right, Down
+    const char pos[NSIDES] = {'^', '/', '>', '\\', 'v'};
+    switch (cmd) {
+        case MAXUP:
+            adjPos = minMaxElement(adj, true);
+            break;
+        case MAXDOWN:
+            adjPos = minMaxElement(adj, false);
+            break;
+        case MINDIFF:
+            int adjAbs[NSIDES] = {0};
+            for (int i = 0; i < NSIDES; i++) {
+                adjAbs[i] = std::abs(adj[i]);
+            }
+            adjPos = minMaxElement(adjAbs, false);
+            break;
+    }
+    path[i][j] = pos[adjPos];
+    if (adjPos > 0 && adjPos < 4) j++;  // Moving Forward
+    if (adjPos < 2) i--;                // Moving Up
+    if (adjPos > 2) i++;                // Moving Down
+    if (j >= MAXDIM(COL, dims[1]) - 1) path[i][j] = 'X';
+    sum += adj[adjPos];
+    steps++;
+}
+
 void assignAdjacent(int adj[NSIDES], int map[ROW][COL], int dims[2], command& cmd, int& adjPos, int& i, int& j) {
-    adj[0] = (i > 1)                                                     ? (map[i-1][ j ] - map[i][j]) : ILLEGALVAL(cmd);
-    adj[1] = (i > 1                       && j < MAXDIM(COL, dims[1])-1) ? (map[i-1][j+1] - map[i][j]) : ILLEGALVAL(cmd);
+    adj[0] = (i > 0)                                                     ? (map[i-1][ j ] - map[i][j]) : ILLEGALVAL(cmd);
+    adj[1] = (i > 0                       && j < MAXDIM(COL, dims[1])-1) ? (map[i-1][j+1] - map[i][j]) : ILLEGALVAL(cmd);
     adj[2] =                                (j < MAXDIM(COL, dims[1])-1) ? (map[ i ][j+1] - map[i][j]) : ILLEGALVAL(cmd);
     adj[3] = (i < MAXDIM(ROW, dims[0])-1  && j < MAXDIM(COL, dims[1])-1) ? (map[i+1][j+1] - map[i][j]) : ILLEGALVAL(cmd);
     adj[4] = (i < MAXDIM(ROW, dims[0])-1)                                ? (map[i+1][ j ] - map[i][j]) : ILLEGALVAL(cmd);
