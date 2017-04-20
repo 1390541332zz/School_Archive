@@ -1,5 +1,5 @@
 ARCHIVE = ECE1574
-SUBDIRS = $(subst ./, , $(sort $(dir $(wildcard ./*/))))
+SUBDIRS = $(subst ./, , $(sort $(dir $(wildcard ./Lab*/) $(wildcard ./Project*/))))
 JOBCOUNT := 9
 
 define clean =
