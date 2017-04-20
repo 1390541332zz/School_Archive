@@ -2,7 +2,7 @@ PROJ  := lab12
 SRC   := src
 BUILD := build
 
-JOBCOUNT := 9
+JOBCOUNT := 1
 
 LDFLAGS  := -lubsan
 CPPFLAGS := 
@@ -13,8 +13,8 @@ HEADERS    := $(wildcard $(SRC)/*.h)
 OBJECTS    := $(subst $(SRC), $(BUILD), $(SOURCES:.cpp=.o))
 EXECUTABLE := $(BUILD)/$(PROJ)
 
-all: build gtest difftest
-test: gtest difftest
+all: gtest
+test: gtest
 
 #-------------------#
 # Build Application #
