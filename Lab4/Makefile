@@ -13,7 +13,7 @@ $(EXE): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 clean:
-	$(RM) $(EXE) $(OBJECTS) $(EXE).tar $(EXE).zip output.txt
+	$(RM) ./$(EXE) ./$(OBJECTS) ./$(EXE).tar ./$(EXE).zip ./output.txt ./vgcore.*
 
 tar:
 	tar -cvf $(EXE).tar $(SOURCES) $(wildcard *.h)

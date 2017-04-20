@@ -1,22 +1,47 @@
-CXXFLAGS=-c -Wall -Wextra -Wpedantic -Werror
-LDFLAGS=
-SOURCES=$(EXE).cpp $(subst $(EXE).cpp, , $(wildcard *.cpp))
-OBJECTS=$(SOURCES:.cpp=.o)
-EXE=lab11
+PROJ  := lab11
+SRC   := src
+BUILD := build
+TEST  := test
 
-all: $(SOURCES) $(EXE)
+JOBCOUNT := 9
 
-$(EXE): $(OBJECTS)
+LDFLAGS  := #-lubsan
+CPPFLAGS := 
+CXXFLAGS := -Wall -Wextra -Wpedantic -Werror -ggdb #-fsanitize=undefined
+
+SOURCES    := $(SRC)/$(PROJ).cpp $(subst $(wildcard $(SRC)/*_gtest.cpp),, $(subst $(SRC)/$(PROJ).cpp,, $(wildcard $(SRC)/*.cpp)))
+HEADERS    := $(wildcard $(SRC)/*.h)
+OBJECTS    := $(subst $(SRC), $(BUILD), $(SOURCES:.cpp=.o))
+EXECUTABLE := $(BUILD)/$(PROJ)
+
+all: gtest
+test: gtest
+
+#-------------------#
+# Build Application #
+#-------------------#
+
+build: $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
 
-.cpp.o:
-	$(CXX) $(CXXFLAGS) $< -o $@
+$(BUILD)/%.o: $(SRC)/%.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
+#------------#
+# Unit Tests #
+#------------#
+gtest:
+	$(MAKE) -j$(JOBCOUNT) -f GTest.mk PROJ=$(PROJ) SRC=$(SRC) BUILD=$(BUILD)
+
+#----------------------------------#
+# Cleaning and Archiving Functions #
+#----------------------------------#
 clean:
-	$(RM) $(EXE) $(OBJECTS) $(EXE).tar $(EXE).zip output.txt
+	$(RM) ./$(BUILD)/* ./$(TEST)/generated/* ./$(PROJ).tar ./vgcore.*
 
-tar:
-	tar -cvf $(EXE).tar $(SOURCES) $(wildcard *.h)
+tar: $(PROJ).tar
 
-zip:
-	zip $(EXE).zip $(SOURCES) $(wildcard *.h)
+$(PROJ).tar:
+	tar -cvf $(PROJ).tar --xform='s,$(SRC)/,,' $(SOURCES) $(HEADERS)

@@ -26,7 +26,7 @@ $(BUILD)/%.o: $(SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 clean:
-	$(RM) $(BUILD)/* $(TESTOUT)/* $(PROJ).tar
+	$(RM) ./$(BUILD)/* ./$(TESTOUT)/* ./$(PROJ).tar ./vgcore.*
 
 
 test: $(EXECUTABLE)

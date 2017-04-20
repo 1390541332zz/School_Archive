@@ -1,10 +1,11 @@
 ARCHIVE = ECE1574
 SUBDIRS = $(subst ./, , $(sort $(dir $(wildcard ./*/))))
+JOBCOUNT := 9
 
 define clean =
-	$(RM) $(ARCHIVE).tar $(ARCHIVE).zip
+	$(RM) ./$(ARCHIVE).tar ./$(ARCHIVE).zip
 	for dir in $(SUBDIRS); do \
-		$(MAKE) clean -C $$dir; \
+		$(MAKE) -j$(JOBCOUNT) clean -C $$dir; \
 	done
 endef
 
@@ -12,7 +13,7 @@ all: compile
 
 compile:
 	for dir in $(SUBDIRS); do \
-		$(MAKE) -C $$dir; \
+		$(MAKE) -j$(JOBCOUNT) -C $$dir; \
 	done
 
 clean:
@@ -20,8 +21,8 @@ clean:
 
 tar:
 	$(clean)
-	tar -cvf $(ARCHIVE).tar $(SUBDIRS)
+	tar -cvf ./$(ARCHIVE).tar ./$(SUBDIRS)
 
 zip:
 	$(clean)
-	zip $(ARCHIVE).zip $(SUBDIRS)
+	zip ./$(ARCHIVE).zip ./$(SUBDIRS)

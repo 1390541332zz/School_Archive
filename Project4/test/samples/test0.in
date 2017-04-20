@@ -1,0 +1,31 @@
+load test/mboxes/test0.mbox
+add
+From dmcphers@vt.edu
+Date 2017/03/21
+To dmcphers@vt.edu
+Subject Get Started on P4
+Message
+Hey don't put off project 4 any more.  You'll thank me when you are done.
+ID 3630 
+
+show inbox
+remove inbox -3
+save inbox test/generated/test0.mbox
+remove inbox 1
+add
+From dmcphers@vt.edu
+Date 2017/03/21
+To dmcphers@vt.edu
+Subject Get Started on P4
+Message
+Hey don't put off project 4 any more.  You'll thank me when you are done.
+ID 3631 
+
+show hacked
+remove hacked 0
+#any line with # is a comment
+#add remove good number
+#add show inbox good number
+#add hacked message
+#add show hacked list
+#add show hacked with a number

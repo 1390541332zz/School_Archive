@@ -31,7 +31,7 @@ $(BUILD)/%.o: $(SRC)/%.cpp
 # Cleaning and Archiving Functions #
 #----------------------------------#
 clean:
-	$(RM) $(BUILD)/* $(DIFFTESTOUT)/* $(PROJ).tar
+	$(RM) ./$(BUILD)/* ./$(DIFFTESTOUT)/* ./$(PROJ).tar ./vgcore.*
 
 tar: $(PROJ).tar
 
