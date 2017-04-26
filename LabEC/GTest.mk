@@ -13,7 +13,7 @@ EXECUTABLE := $(BUILD)/$(PROJ)
 GTESTSRC := $(subst $(SRC)/$(PROJ).cpp,, $(subst $(SRC)/$(PROJ)_gtest.cpp,, $(wildcard $(SRC)/*.cpp))) $(SRC)/$(PROJ)_gtest.cpp
 GTESTOBJ := $(subst $(SRC), $(BUILD), $(GTESTSRC:.cpp=.o))
 
-TEST_REPETITION_AMOUNT = 1000
+TEST_REPETITION_AMOUNT = 1
 
 all: gtest
 gtest: $(EXECUTABLE)_gtest

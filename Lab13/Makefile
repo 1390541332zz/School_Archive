@@ -59,4 +59,4 @@ clean:
 tar: $(PROJ).tar
 
 $(PROJ).tar:
-	tar -cvf $(PROJ).tar --xform='s,$(SRC)/,,' $(SOURCES) $(HEADERS)
+	tar -cvf $(PROJ).tar --xform='s,$(SRC)/,,' $(subst $(SRC)/$(PROJ).cpp,, $(SOURCES)) $(HEADERS)
