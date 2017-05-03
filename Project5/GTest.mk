@@ -6,18 +6,22 @@ LDFLAGS  := -lpthread -lubsan
 CPPFLAGS := -isystem $(GTEST_DIR)/include -fsanitize=undefined -ggdb
 CXXFLAGS := -pthread -fpermissive
 
-SOURCES    := $(SRC)/$(PROJ).cpp $(subst $(wildcard $(SRC)/*_gtest.cpp),, $(subst $(SRC)/$(PROJ).cpp,, $(wildcard $(SRC)/*.cpp)))
+SOURCES    := $(SRC)/$(PROJ).cpp $(filter-out %_gtest.cpp $(SRC)/$(PROJ).cpp, $(wildcard $(SRC)/*.cpp))
 OBJECTS    := $(subst $(SRC), $(BUILD), $(SOURCES:.cpp=.o))
 EXECUTABLE := $(BUILD)/$(PROJ)
 
 GTESTSRC := $(subst $(SRC)/$(PROJ).cpp,, $(subst $(SRC)/$(PROJ)_gtest.cpp,, $(wildcard $(SRC)/*.cpp))) $(SRC)/$(PROJ)_gtest.cpp
 GTESTOBJ := $(subst $(SRC), $(BUILD), $(GTESTSRC:.cpp=.o))
 
-TEST_REPETITION_AMOUNT = 1000
+TEST_REPETITION_AMOUNT = 20
 
 all: gtest
 gtest: $(EXECUTABLE)_gtest
 	$(EXECUTABLE)_gtest --gtest_repeat=$(TEST_REPETITION_AMOUNT) --gtest_break_on_failure
+
+gdb: $(EXECUTABLE)_gtest
+	gdb --args $(EXECUTABLE)_gtest --gtest_repeat=$(TEST_REPETITION_AMOUNT) --gtest_break_on_failure
+
 
 $(EXECUTABLE)_gtest: $(GTESTOBJ) $(BUILD)/gtest_main.a
 	$(CXX) $(LDFLAGS) $(GTESTOBJ) $(BUILD)/gtest_main.a -o $@
