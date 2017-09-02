@@ -58,9 +58,13 @@ gdb: build
 # Cleaning and Archiving Functions #
 #----------------------------------#
 clean:
-	$(RM) ./$(BUILD)/* ./$(PROJ).tar ./vgcore.* ./.gdb_history*
+	$(RM) ./$(BUILD)/* ./$(PROJ).tar ./$(PROJ).zip ./vgcore.* ./.gdb_history*
 
 tar: $(PROJ).tar
+zip: $(PROJ).zip
 
 $(PROJ).tar:
 	tar -cvf $(PROJ).tar --xform='s,$(SRC)/,,' $(SOURCES) $(HEADERS)
+
+$(PROJ).zip:
+	7z a -tzip $(PROJ).zip ./$(SRC)/*
