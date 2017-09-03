@@ -22,8 +22,7 @@ HEADERS    := $(wildcard $(SRC)/*.hpp)
 OBJECTS    := $(subst $(SRC), $(BUILD), $(SOURCES:.cpp=.o))
 EXECUTABLE := $(BUILD)/$(PROJ)
 
-all: build test
-test: catch valgrind
+all: build
 
 prep:
 	mkdir -p ./build

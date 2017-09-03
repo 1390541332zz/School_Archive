@@ -2,6 +2,10 @@ language: cpp
 branches:
   except:
     - /pr\/.*/
+matrix:
+  include:
+  - env: TEST_SUITE=catch SANFLAG="" SANLFLAG=""
+  - env: TEST_SUITE=valgrind SANFLAG="" SANLFLAG=""
 
 addons:
   apt:
@@ -26,7 +30,7 @@ before_script:
   - cd ${TRAVIS_BUILD_DIR}/Project0
   - mkdir build
 script:
-  - make CATCH_DIR=${TRAVIS_BUILD_DIR}/deps/Catch/include SANFLAG="" LDFLAGS=""
+  - make ${TEST_SUITE} CATCH_DIR=${TRAVIS_BUILD_DIR}/deps/Catch/include ${SANFLAG} ${SANLFLAG}
 after_success:
   - #MERGE
 after_failure:
