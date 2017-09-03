@@ -1,4 +1,4 @@
-
+#include <iostream>
 #include "bitset.hpp"
 
 Bitset::Bitset() {
@@ -13,9 +13,11 @@ Bitset::Bitset(intmax_t size) {
         sz = 0;
         return;
     }
-    arr = new uint8_t[size];
+
+    size_t arr_size = std::ceil(static_cast<double>(size)/8);
+    arr = new uint8_t[arr_size];
     sz = size;
-    std::memset(arr, 0, size * sizeof(uint8_t));
+    std::memset(arr, 0, arr_size * sizeof(uint8_t));
 }
 
 Bitset::Bitset(const std::string & value) {
@@ -24,13 +26,12 @@ Bitset::Bitset(const std::string & value) {
         invalidate();
         return;
     }
-    size_t size = std::ceil(static_cast<double>(value.length())/8);
     sz = value.length();
-    arr = new uint8_t[size];
-    std::memset(arr, 0, size * sizeof(uint8_t));
-    size_t i = 0;
-    for (std::string::const_iterator it = value.cbegin(); it != value.cend(); ++it, ++i) {
-        arr[i/8] |= (*it == '1') << (i % 8);
+    size_t arr_size = std::ceil(static_cast<double>(sz)/8);
+    arr = new uint8_t[arr_size];
+    std::fill_n(arr, arr_size, 0);
+    for (size_t i = 0; i < sz; i++) {
+        arr[i/8] |= (value[i] == '1' ? 0x01 : 0x00) << (i % 8);
     }
 }
 
@@ -50,7 +51,7 @@ bool Bitset::good() const {
 
 void Bitset::set(intmax_t index) {
     if (!good()) return;
-    if (index < 0 || index > ((intmax_t)sz * 8)) {
+    if (index < 0 || index >= static_cast<intmax_t>(sz)) {
         invalidate();
         return;
     }
@@ -59,7 +60,7 @@ void Bitset::set(intmax_t index) {
 
 void Bitset::reset(intmax_t index) {
     if (!good()) return;
-    if (index < 0 || index > ((intmax_t)sz * 8)) {
+    if (index < 0 || index >= static_cast<intmax_t>(sz)) {
         invalidate();
         return;
     }
@@ -68,7 +69,7 @@ void Bitset::reset(intmax_t index) {
 
 void Bitset::toggle(intmax_t index) {
     if (!good()) return;
-    if (index < 0 || index > ((intmax_t)sz * 8)) {
+    if (index < 0 || index >= static_cast<intmax_t>(sz)) {
         invalidate();
         return;
     }
@@ -77,7 +78,7 @@ void Bitset::toggle(intmax_t index) {
 
 bool Bitset::test(intmax_t index) {
     if (!good()) return false;
-    if (index < 0 || index > ((intmax_t)sz * 8)) {
+    if (index < 0 || index >= static_cast<intmax_t>(sz)) {
         invalidate();
         return false;
     }
@@ -96,5 +97,6 @@ std::string Bitset::asString() const {
 
 void Bitset::invalidate() {
     delete [] arr;
+    arr = nullptr;
     sz = 0;
 }

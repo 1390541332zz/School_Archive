@@ -1,3 +1,8 @@
+#include <algorithm>
+#include <functional>
+#include <array>
+#include <cmath>
+
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "bitset.hpp"
@@ -25,14 +30,19 @@ static std::array<const std::string, 7> valid_string = {
     "0101010100110101010101001010101010101010110"
 };
 
-auto string_cmp = [](std::string a) {
+static auto string_cmp = [](std::string a) {
     Bitset bit(a);
     REQUIRE(bit.asString() == a);
 };
-
-auto size_cmp = [](intmax_t a) {
+static auto size_cmp = [](intmax_t a) {
     Bitset bit(a);
     REQUIRE(bit.size() == a);
+};
+
+static std::array<std::function<void(Bitset&, intmax_t)>, 3> mutators = {
+    std::mem_fn(&Bitset::set),
+    std::mem_fn(&Bitset::reset),
+    std::mem_fn(&Bitset::toggle)
 };
 
 TEST_CASE("Constructors") {
@@ -94,5 +104,49 @@ TEST_CASE("Mutators") {
         bitstr.toggle(4);
         bitstr.toggle(6);
         REQUIRE(bitstr.asString() == "01101111");
+    }
+}
+
+TEST_CASE("Bounds Checking") {
+    using namespace std::placeholders;
+    auto mutator_bounds_ = [](std::string a, enum bound b,
+                              std::function<void(Bitset&, intmax_t)> fn) {
+        Bitset bit(a);
+        INFO("String: " << a);
+        INFO("Bitset: " << bit.asString());
+        fn(bit, ((b == LOWER_BOUND) ? (-1) : (a.length())));
+        REQUIRE_FALSE(bit.good());
+    };
+    auto test_bounds = [](std::string a, enum bound b) {
+        Bitset bit(a);
+        INFO("String: " << a);
+        INFO("Bitset: " << bit.asString());
+        REQUIRE_FALSE(bit.test((b == LOWER_BOUND) ? (-1) : (a.length())));
+        REQUIRE_FALSE(bit.good());
+    };
+    auto mutator_bounds = [&](std::string a, enum bound b) {
+        std::for_each(mutators.cbegin(), mutators.cend(),
+            std::bind(mutator_bounds_, a, b, _1)
+        );
+    };
+    SECTION("Test Functions: Lower Bounds") {
+        std::for_each(valid_string.cbegin(), valid_string.cend(),
+            std::bind(test_bounds, _1, LOWER_BOUND)
+        );
+    }
+    SECTION("Test Functions: Upper Bounds") {
+        std::for_each(valid_string.cbegin(), valid_string.cend(),
+            std::bind(test_bounds, _1, UPPER_BOUND)
+        );
+    }
+    SECTION("Mutator: Lower Bounds") {
+        std::for_each(valid_string.cbegin(), valid_string.cend(),
+            std::bind(mutator_bounds, _1, LOWER_BOUND)
+        );
+    }
+    SECTION("Mutator: Upper Bounds") {
+        std::for_each(valid_string.cbegin(), valid_string.cend(),
+            std::bind(mutator_bounds, _1, UPPER_BOUND)
+        );
     }
 }

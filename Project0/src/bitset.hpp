@@ -1,6 +1,7 @@
 #include <cstdint>
 #include <cmath>
 #include <cstring>
+#include <algorithm>
 #include <sstream>
 
 class Bitset{
