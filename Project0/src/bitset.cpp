@@ -24,7 +24,7 @@ Bitset::Bitset(intmax_t size) {
     size_t arr_size = std::ceil(static_cast<double>(size)/8);
     arr = new uint8_t[arr_size];
     sz = size;
-    std::memset(arr, 0, arr_size * sizeof(uint8_t));
+    std::fill_n(arr, arr_size, 0);
 }
 
 Bitset::Bitset(const std::string & value) {
