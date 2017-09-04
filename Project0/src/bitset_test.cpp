@@ -1,3 +1,11 @@
+/*
+ * bitset_test.cpp - Test cases for the bitset class.
+ *
+ * Author: Jacob Abel
+ *
+ * This file is part of Project 0.
+ */
+
 #include <algorithm>
 #include <functional>
 #include <array>

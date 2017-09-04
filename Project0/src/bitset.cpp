@@ -1,3 +1,11 @@
+/*
+ * bitset.cpp - Implementation of the bitset class.
+ *
+ * Author: Jacob Abel
+ *
+ * This file is part of Project 0.
+ */
+
 #include "bitset.hpp"
 
 Bitset::Bitset() {

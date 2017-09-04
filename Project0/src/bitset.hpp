@@ -1,3 +1,11 @@
+/*
+ * bitset.hpp - Bitset Class.
+ *
+ * Author: Jacob Abel
+ *
+ * This file is part of Project 0.
+ */
+
 #ifndef ABELJ_BITSET_H
 #define ABELJ_BITSET_H
 
