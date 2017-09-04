@@ -120,6 +120,8 @@ private:
 
   /*
    * invalidate() - Renders the bitset invalid and unusable.
+   *
+   * Return: The return type is void.
    */
   void invalidate();
 };

@@ -72,7 +72,7 @@ void Bitset::toggle(intmax_t index) {
         invalidate();
         return;
     }
-    arr[index/8] ^= (0x01 << (index % 8));
+    arr[index/8] ^= (0x01 << index % 8);
 }
 
 bool Bitset::test(intmax_t index) {

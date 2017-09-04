@@ -91,11 +91,15 @@ TEST_CASE("Mutators") {
     SECTION("set") {
         bit0.set(0);
         bit0.set(3);
-        REQUIRE(bit0.asString() == "10010000");
+        bit0.set(4);
+        bit0.set(4);
+        REQUIRE(bit0.asString() == "10011000");
     }
     SECTION("reset") {
         bitstr.reset(0);
         bitstr.reset(3);
+        bitstr.reset(4);
+        bitstr.reset(4);
         REQUIRE(bitstr.asString() == "01100101");
     }
     SECTION("toggle") {
@@ -103,6 +107,8 @@ TEST_CASE("Mutators") {
         bitstr.toggle(3);
         bitstr.toggle(4);
         bitstr.toggle(6);
+        bitstr.toggle(1);
+        bitstr.toggle(1);
         REQUIRE(bitstr.asString() == "01101111");
     }
 }
