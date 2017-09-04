@@ -1,3 +1,6 @@
+#ifndef ABELJ_BITSET_H
+#define ABELJ_BITSET_H
+
 #include <cstdint>
 #include <cmath>
 #include <cstring>
@@ -125,3 +128,5 @@ private:
    */
   void invalidate();
 };
+
+#endif /* ABELJ_BITSET_H */
