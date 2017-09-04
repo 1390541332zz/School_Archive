@@ -30,7 +30,7 @@ before_script:
   - cd ${TRAVIS_BUILD_DIR}/Project0
   - mkdir build
 script:
-  - make ${TEST_SUITE} CATCH_DIR=${TRAVIS_BUILD_DIR}/deps/Catch/include ${SANFLAG} ${SANLFLAG}
+  - make ${TEST_SUITE} CATCH_DIR=${TRAVIS_BUILD_DIR}/deps/Catch/include SANFLAG="${SANFLAG}" SANLFLAG="${SANLFLAG}"
 after_success:
   - #MERGE
 after_failure:
