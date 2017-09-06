@@ -2,3 +2,5 @@ build/
 *.tar
 *.zip
 *.o
+.gdb_history*
+.vgcore.*
