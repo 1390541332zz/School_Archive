@@ -117,7 +117,8 @@ TEST_CASE("Mutators") {
         bitstr.toggle(6);
         bitstr.toggle(1);
         bitstr.toggle(1);
-        REQUIRE(bitstr.asString() == "01101111");
+        bitstr.toggle(7);
+        REQUIRE(bitstr.asString() == "01101110");
     }
 }
 
