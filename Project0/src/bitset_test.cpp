@@ -124,19 +124,19 @@ TEST_CASE("Mutators") {
 
 TEST_CASE("Bounds Checking") {
     using namespace std::placeholders;
+    auto test_bounds = [](std::string a, enum bound b) {
+        Bitset bit(a);
+        INFO("String: " << a);
+        INFO("Bitset: " << bit.asString());
+        REQUIRE_FALSE(bit.test((b == LOWER_BOUND) ? (-1) : (a.length())));
+        REQUIRE_FALSE(bit.good());
+    };
     auto mutator_bounds_ = [](std::string a, enum bound b,
                               std::function<void(Bitset&, intmax_t)> fn) {
         Bitset bit(a);
         INFO("String: " << a);
         INFO("Bitset: " << bit.asString());
         fn(bit, ((b == LOWER_BOUND) ? (-1) : (a.length())));
-        REQUIRE_FALSE(bit.good());
-    };
-    auto test_bounds = [](std::string a, enum bound b) {
-        Bitset bit(a);
-        INFO("String: " << a);
-        INFO("Bitset: " << bit.asString());
-        REQUIRE_FALSE(bit.test((b == LOWER_BOUND) ? (-1) : (a.length())));
         REQUIRE_FALSE(bit.good());
     };
     auto mutator_bounds = [&](std::string a, enum bound b) {
