@@ -33,12 +33,14 @@ Bitset::Bitset(const std::string & value) {
         invalidate();
         return;
     }
-    sz = value.length();
+    std::string str(value);
+    std::reverse(str.begin(), str.end());
+    sz = str.length();
     size_t arr_size = std::ceil(static_cast<double>(sz)/8);
     arr = new uint8_t[arr_size];
     std::fill_n(arr, arr_size, 0);
     for (size_t i = 0; i < sz; i++) {
-        arr[i/8] |= (value[i] == '1' ? 0x01 : 0x00) << (i % 8);
+        arr[i/8] |= (str[i] == '1' ? 0x01 : 0x00) << (i % 8);
     }
 }
 
@@ -99,7 +101,9 @@ std::string Bitset::asString() const {
         uint8_t mask = (0x01 << (i%8));
         os << ((arr[i/8] & mask) >> (i%8));
     }
-    return os.str();
+    std::string str = os.str();
+    std::reverse(str.begin(), str.end());
+    return str;
 }
 
 void Bitset::invalidate() {
