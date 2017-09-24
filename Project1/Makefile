@@ -7,7 +7,7 @@ JOBCOUNT := 9
 
 CPPFLAGS  :=
 
-SANLFLAG  := -lubsan -lasan
+SANLFLAG  := -lasan -lubsan
 LDFLAGS    = $(SANLFLAG)
 
 WARNFLAGS := -Wall -Wextra -Wpedantic -Werror -Wchkp #-Wno-sign-compare
@@ -29,13 +29,6 @@ all: build
 prep:
 	mkdir -p ./build
 	$(CXX) --version
-
-
-#-----------------------------------#
-# Makefile Config Steps Application #
-#-----------------------------------#
-
-
 
 #-------------------#
 # Build Application #
