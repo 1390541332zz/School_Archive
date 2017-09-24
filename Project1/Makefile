@@ -38,8 +38,8 @@ prep:
 #-----------------------------------#
 
 san:
-	$(eval SANLFLAG += -lasan)
-	$(eval SANFLAG  += -fsanitize=address)
+	SANLFLAG += '-lasan'
+	SANFLAG  += '-fsanitize=address'
 
 
 #-------------------#
