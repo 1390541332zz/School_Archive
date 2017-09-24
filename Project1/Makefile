@@ -7,12 +7,12 @@ JOBCOUNT := 9
 
 CPPFLAGS  :=
 
-SANLFLAG  := -lubsan
+SANLFLAG  := -lubsan -lasan
 LDFLAGS    = $(SANLFLAG)
 
 WARNFLAGS := -Wall -Wextra -Wpedantic -Werror -Wchkp #-Wno-sign-compare
 
-SANFLAG   := -fsanitize=undefined
+SANFLAG   := -fsanitize=undefined -fsanitize=address
 CXXFLAGS   = -std=c++11  -pedantic -ggdb $(WARNFLAGS) $(SANFLAG)
 
 VALGRIND  := valgrind --tool=memcheck --leak-check=full --show-reachable=yes \
@@ -23,8 +23,6 @@ HEADERS    := $(wildcard $(SRC)/*.hpp)
 OBJECTS    := $(subst $(SRC), $(BUILD), $(SOURCES:.cpp=.o))
 EXECUTABLE := $(BUILD)/$(PROJ)
 
-.PHONY: all prep clean catch valgrind gdb build san
-.NOTPARALLEL: san
 
 all: build
 
@@ -37,9 +35,6 @@ prep:
 # Makefile Config Steps Application #
 #-----------------------------------#
 
-san:
-	SANLFLAG += '-lasan'
-	SANFLAG  += '-fsanitize=address'
 
 
 #-------------------#
