@@ -27,8 +27,9 @@ private:
 	/**
         recursive findPalindrome internal method.
      */
-	void recursiveFindPalindromes(vector<std::string> currentCandidateVector,
-			   	                  vector<std::string> currentStringVector);
+	void recursiveFindPalindromes(
+            std::vector<std::string> currentCandidateVector,
+			std::vector<std::string> currentStringVector);
 
 	/**
         Determines whether the string is a palindrome.
@@ -58,7 +59,7 @@ public:
 	    FindPalindrome instance.
 	    @return  The integer number of palindromes in the instance.
      */
-	int number() const;
+	int number();
 
 	/**
         Removes all words from this instance. The internal list
@@ -117,12 +118,12 @@ public:
         number of the characters 'a' and 'b'. The count of characters
         should be case insensitive.
         See the project description for how this method is to be used.
-	    @param lstrvec  A vector of strings.
-	    @param rstrvec  A vector of strings.
+	    @param stringVector1  A vector of strings.
+	    @param stringVector2  A vector of strings.
 	    @return  True if the vector passes the test, false otherwise.
      */
-	bool cutTest2(const std::vector<std::string> & lstrvec,
-			      const std::vector<std::string> & rstrvec);
+	bool cutTest2(const std::vector<std::string> & stringVector1,
+			      const std::vector<std::string> & stringVector2);
 
 	/**
         Returns a vector of vectors containing all palindromes. Each
@@ -130,7 +131,7 @@ public:
 	    all current strings added to the FindPalindrome instance.
 	    @return  A vector containing all the items in the linked list in order.
      */
-	std::vector<std::vector<std::string>> toVector() const;
+	std::vector<std::vector<std::string>> toVector();
 
 };
 

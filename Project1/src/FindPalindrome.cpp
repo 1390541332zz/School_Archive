@@ -1,10 +1,10 @@
 #include "FindPalindrome.hpp"
 
-static const char[] legal_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+static const char legal_chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 static bool ci_cmp(char l, char r) {
     return std::tolower(l) == std::tolower(r);
-};
+}
 
 //----------------------------- STATIC FUNCTIONS -----------------------------//
 
@@ -12,7 +12,7 @@ static bool ci_cmp(char l, char r) {
     Compares the strings without case sensitivity.
  */
 static bool ci_eq(const std::string & lhs, const std::string & rhs) {
-    if (lhs.size() =! rhs.size()) return false;
+    if (lhs.size() != rhs.size()) return false;
     return std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin(), ci_cmp);
 }
 
@@ -21,7 +21,7 @@ static bool ci_eq(const std::string & lhs, const std::string & rhs) {
 bool FindPalindrome::isValid(const std::string & str) const {
     if (str.find_first_not_of(legal_chars) != std::string::npos) return false;
     if (v.size() == 0) return true;
-    for(std::string& lstr : v) {
+    for(const std::string& lstr : v) {
         if (ci_eq(lstr, str)) return false;
     }
     return true;
@@ -37,13 +37,14 @@ void FindPalindrome::recursiveFindPalindromes(
 
     if (pool.empty()) return;
     for (size_t i = 0; i < pool.size(); i++) {
-        std::string word = pool[i];
+        auto it = std::next(pool.begin(), i);
+        std::string word = *it;
         tmp.push_back(word);
-        pool.erase(i);
+        pool.erase(it);
         recursiveFindPalindromes(tmp, pool);
         if (!cutTest1(tmp)) {
             tmp.pop_back();
-            pool.insert(i, word);
+            pool.insert(it, word);
             continue;
         }
         const auto midpoint = std::next(tmp.cbegin(), tmp.size()/2);
@@ -52,7 +53,7 @@ void FindPalindrome::recursiveFindPalindromes(
         if (lhs.size() > rhs.size()) lhs.swap(rhs);
         if (!cutTest2(lhs, rhs)) {
             tmp.pop_back();
-            pool.insert(i, word);
+            pool.insert(it, word);
             continue;
         }
         std::string str = "";
@@ -61,17 +62,17 @@ void FindPalindrome::recursiveFindPalindromes(
         }
         if(isPalindrome(str)) vpal.push_back(tmp);
         tmp.pop_back();
-        pool.insert(i, word);
+        pool.insert(it, word);
     }
 }
 
 bool FindPalindrome::isPalindrome(const std::string& str) const {
-    return std::equal(lhs.cbegin(), lhs.cend(), rhs.crbegin(), ci_cmp);
+    return std::equal(str.cbegin(), str.cend(), str.crbegin(), ci_cmp);
 }
 
 void FindPalindrome::update() {
     if(!is_updated) {
-        std::string tmp = "";
+        std::vector<std::string> tmp = {};
         recursiveFindPalindromes(tmp, v);
         is_updated = true;
     }
@@ -83,7 +84,7 @@ FindPalindrome::FindPalindrome() {}
 
 FindPalindrome::~FindPalindrome() {}
 
-int FindPalindrome::number() const {
+int FindPalindrome::number() {
     update();
     return vpal.size();
 }
@@ -102,8 +103,8 @@ bool FindPalindrome::add(const std::string & value) {
 }
 
 bool FindPalindrome::add(const std::vector<std::string> & stringVector) {
-    if (std::none_of(stringVector.cbegin(), stringVector.cend(), isValid())) {
-        return false;
+    for (const std::string& str : stringVector) {
+        if (!isValid(str)) return false;
     }
     v.reserve(v.size() + stringVector.size());
     v.insert(v.end(), stringVector.cbegin(), stringVector.cend());
@@ -127,8 +128,8 @@ bool FindPalindrome::cutTest1(const std::vector<std::string> & stringVector) {
     return true;
 }
 
-bool FindPalindrome::cutTest2(const std::vector<std::string> & lstrvec,
-                              const std::vector<std::string> & rstrvec) {
+bool FindPalindrome::cutTest2(const std::vector<std::string> & stringVector1,
+                              const std::vector<std::string> & stringVector2) {
     size_t map1[ALPHA_LENGTH] = {0};
     size_t map2[ALPHA_LENGTH] = {0};
     for (const std::string& str : stringVector1) {
@@ -147,7 +148,7 @@ bool FindPalindrome::cutTest2(const std::vector<std::string> & lstrvec,
     return true;
 }
 
-std::vector<std::vector<std::string>> FindPalindrome::toVector() const {
+std::vector<std::vector<std::string>> FindPalindrome::toVector() {
     update();
     return vpal;
 }
