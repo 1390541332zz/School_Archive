@@ -8,11 +8,12 @@ JOBCOUNT := 9
 CPPFLAGS  :=
 
 SANLFLAG  := -lubsan
-LDFLAGS   := $(SANLFLAG)
+LDFLAGS    = $(SANLFLAG)
 
 WARNFLAGS := -Wall -Wextra -Wpedantic -Werror -Wchkp #-Wno-sign-compare
+
 SANFLAG   := -fsanitize=undefined
-CXXFLAGS  := -std=c++11  -pedantic -ggdb $(WARNFLAGS) $(SANFLAG)
+CXXFLAGS   = -std=c++11  -pedantic -ggdb $(WARNFLAGS) $(SANFLAG)
 
 VALGRIND  := valgrind --tool=memcheck --leak-check=full --show-reachable=yes \
 			--num-callers=20 --track-fds=yes --track-origins=yes
@@ -22,11 +23,23 @@ HEADERS    := $(wildcard $(SRC)/*.hpp)
 OBJECTS    := $(subst $(SRC), $(BUILD), $(SOURCES:.cpp=.o))
 EXECUTABLE := $(BUILD)/$(PROJ)
 
+.PHONY: all prep clean catch valgrind gdb build san
+.NOTPARALLEL: san
+
 all: build
 
 prep:
 	mkdir -p ./build
 	$(CXX) --version
+
+
+#-----------------------------------#
+# Makefile Config Steps Application #
+#-----------------------------------#
+
+san:
+	$(eval SANLFLAG = -lubsan -lasan)
+	$(eval SANFLAG += -fsanitize=address)
 
 
 #-------------------#
