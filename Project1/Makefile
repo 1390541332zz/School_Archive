@@ -1,4 +1,4 @@
-PROJ  := project0
+PROJ  := project1
 SRC   := src
 BUILD := build
 CATCH_DIR := ../../Catch/include/
