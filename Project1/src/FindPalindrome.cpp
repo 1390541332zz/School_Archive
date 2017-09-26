@@ -1,5 +1,4 @@
 #include "FindPalindrome.hpp"
-
 static const char legal_chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 
@@ -23,13 +22,14 @@ static bool ci_eq(const std::string & lhs, const std::string & rhs) {
 /**
     Returns the total number of chars in a vector of strings.
  */
-static size_t vstr_charcnt(const std::vector<std::string> v) {
+static size_t vstr_charcnt(const std::vector<std::string>& v) {
     size_t i = 0;
     for (const std::string& str : v) {
         i += str.size();
     }
     return i;
 }
+
 
 //-------------------------- PRIVATE CLASS METHODS ---------------------------//
 
@@ -52,13 +52,11 @@ void FindPalindrome::recursiveFindPalindromes(
     std::vector<std::string>& pool = currentStringVector;
 
     if (pool.empty()) return;
-    if (!cutTest1(tmp)) return;
+    if (!cutTest1(v)) return;
     if (vstr_charcnt(tmp) > vstr_charcnt(pool)) {
-        tmp.swap(pool);
-        if(!cutTest2(tmp, pool)) return;
-        tmp.swap(pool);
-    } else {
-        if(!cutTest2(tmp, pool)) return;
+        if(!cutTest2(pool,tmp)) return;
+    } else if(!cutTest2(tmp, pool)) {
+        return;
     }
 
     for (size_t i = 0; i < pool.size(); i++) {
@@ -67,10 +65,6 @@ void FindPalindrome::recursiveFindPalindromes(
         pool.erase(it);
         recursiveFindPalindromes(tmp, pool);
         if (pool.empty()) {
-            if(tmp.size() == 1 && isPalindrome(tmp[i])) {
-                vpal.push_back(tmp);
-                continue;
-            }
             std::string str = "";
             for(std::string& word : tmp) {
                 str.append(word);
@@ -130,6 +124,7 @@ bool FindPalindrome::add(const std::vector<std::string> & stringVector) {
 }
 
 bool FindPalindrome::cutTest1(const std::vector<std::string> & stringVector) {
+    if(stringVector.size() == 0) return true;
     size_t map[ALPHA_LENGTH] = {0};
     bool lone_char = false;
     for (const std::string& str : stringVector) {
@@ -149,6 +144,7 @@ bool FindPalindrome::cutTest2(const std::vector<std::string> & stringVector1,
                               const std::vector<std::string> & stringVector2) {
     size_t map1[ALPHA_LENGTH] = {0};
     size_t map2[ALPHA_LENGTH] = {0};
+
     if(stringVector1.empty()) return true;
     for (const std::string& str : stringVector1) {
         for (const char c : str) {
@@ -163,6 +159,7 @@ bool FindPalindrome::cutTest2(const std::vector<std::string> & stringVector1,
     for (size_t i = 0; i < ALPHA_LENGTH; i++) {
         if (map1[i] > map2[i]) return false;
     }
+
     return true;
 }
 

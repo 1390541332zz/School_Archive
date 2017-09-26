@@ -15,7 +15,7 @@ static bool ci_eq(const std::string & lhs, const std::string & rhs) {
     return std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin(), ci_cmp);
 }
 
-static std::vector<std::string> invalid_string = {
+static const std::vector<std::string> invalid_string = {
     "",
     "0",
     "a1",
@@ -26,29 +26,29 @@ static std::vector<std::string> invalid_string = {
     "ldlkjfdlkjlkjd;lkleiejuoijklj"
 };
 
-static std::vector<std::string> valid_string = {
+static const std::vector<std::string> valid_string = {
     "aaa", "aba", "kayak", "Asa", "a",
     "k", "y", "aa"
 };
 
-static std::vector<std::string> uc_string = {
+static const std::vector<std::string> uc_string = {
     "AAA", "ABA", "kaYAk", "aSA", "A",
     "K", "Y", "AA"
 };
 
-static std::vector<std::string> lc_string = {
+static const std::vector<std::string> lc_string = {
     "aaa", "aba", "kayak", "asa", "a",
     "k", "y", "aak"
 };
 
-static std::vector<std::string> pal_words1 = {
+static const std::vector<std::string> pal_words1 = {
     "a", "AA", "AaA"
 };
-static std::vector<std::string> pal_lc_words1 = {
+static const std::vector<std::string> pal_lc_words1 = {
     "a", "aa", "aaa"
 };
 
-static std::vector<std::vector<std::string>> pal_list1 = {
+static const std::vector<std::vector<std::string>> pal_list1 = {
     {"a", "AA", "AaA"},
     {"a", "AaA", "AA"},
     {"AA", "a", "AaA"},
@@ -57,25 +57,53 @@ static std::vector<std::vector<std::string>> pal_list1 = {
     {"AaA", "AA", "a"}
 };
 
-static std::vector<std::vector<std::vector<std::string>>> pal_split1 = {
+static const std::vector<std::vector<std::vector<std::string>>> pal_split1 = {
     {{"a"}, {"AA", "AaA"}},
     {{"a", "AaA"}, {"AAAAAA"}},
     {{"AA"}, {"a", "AaA"}},
     {{"AA"}, {"AaA", "a"}},
     {{"AaA"}, {"a", "AA"}},
-    {{"AaA"}, {"AA", "a"}}
+    {{"AaA"}, {"AA", "a"}},
+    {{"aa", "a"}, {"a", "aaa", "aaaaaaaaaaaaa"}},
+    {{"stab", "knows"}, {"kodok", "swonk", "bats"}},
+    {
+        {
+            "morbid", "animal", "ogres", "lean", "stab", "rats", "amor", "trap"
+        }, {
+            "keep", "made", "Tacocat", "deep", "denned", "peed", "Tacocat", "Edam",
+            "peek", "part", "Roma", "star", "bats", "nael", "Sergo", "lamina", "dibrom"
+        }
+    },
+    {{"a"},{"a"}}
 };
 
-static std::vector<std::vector<std::vector<std::string>>> invalid_pal_split1 = {
+static const std::vector<std::vector<std::vector<std::string>>> invalid_pal_split1 = {
     {{"al"}, {"qAA", "AaA"}},
     {{"va", "AaA"}, {"AAAAAA"}},
     {{"AqA"}, {"Ba", "AaA"}},
     {{"AhA"}, {"AaA", "a"}},
     {{"AaAR"}, {"a", "AA"}},
-    {{"AE"}, {"AA", "a"}}
+    {{"AE"}, {"AA", "a"}},
+    {{"aXa", "a"}, {"a", "aaa", "aaaaaaaaaaaaa"}},
+    {{"alXXXXone"}, {"rye", "seres", "eyr", "Enola"}}
 };
 
-static std::vector<std::vector<std::vector<std::string>>> pal_lc_split1 = {
+const std::vector<std::string> pal_words2 = {
+    "alone", "rye", "seres", "eyr", "Enola"
+};
+
+static const std::vector<std::vector<std::string>> pal_list2 = {
+    {"alone", "rye", "seres", "eyr", "Enola"},
+    {"alone", "eyr", "seres", "rye", "Enola"},
+    {"rye", "alone", "seres", "Enola", "eyr"},
+    {"rye", "Enola", "seres", "alone", "eyr"},
+    {"eyr", "alone", "seres", "Enola", "rye"},
+    {"eyr", "Enola", "seres", "alone", "rye"},
+    {"Enola", "rye", "seres", "eyr", "alone"},
+    {"Enola", "eyr", "seres", "rye", "alone"}
+};
+
+static const std::vector<std::vector<std::vector<std::string>>> pal_lc_split1 = {
     {{"kayak"}, {"aa", "kayak"}},
     {{"a", "aaa"}, {"aaaaaaaa"}},
     {{"aa"}, {"a", "aaa"}},
@@ -84,7 +112,7 @@ static std::vector<std::vector<std::vector<std::string>>> pal_lc_split1 = {
     {{"aaa"}, {"aa", "a"}}
 };
 
-static std::vector<std::vector<std::vector<std::string>>> pal_uc_split1 = {
+static const std::vector<std::vector<std::vector<std::string>>> pal_uc_split1 = {
     {{"kAyaK"}, {"aa", "kaYak"}},
     {{"a", "aaa"}, {"aaaAaAaa"}},
     {{"aa"}, {"a", "aaa"}},
@@ -93,6 +121,9 @@ static std::vector<std::vector<std::vector<std::string>>> pal_uc_split1 = {
     {{"aaA"}, {"Aa", "a"}}
 };
 
+const std::vector<std::vector<std::string>> pal_split2 = {
+    {"alone", "rye"}, {"seres", "eyr", "Enola"}
+};
 
 
 TEST_CASE("Sanitised Data", "[FindPalindrome]") {
@@ -181,8 +212,15 @@ TEST_CASE("Palindrome Detection", "[FindPalindrome]") {
                                        invalid_pal_split1[i][1]));
         }
     }
+    SECTION("Single Palindrome", "[FindPalindrome]") {
+        pal.add(pal_words2);
 
-    SECTION("Single Palindrome" "[FindPalindrome]") {
+        REQUIRE(pal.cutTest1(pal_words2));
+        REQUIRE(pal.cutTest2(pal_split2[0], pal_split2[1]));
+        REQUIRE(pal.toVector() == pal_list2);
+        REQUIRE(pal.number() == pal_list2.size());
+    }
+    SECTION("Single Word Palindrome" "[FindPalindrome]") {
         pal.add("kayak");
         const std::vector<std::vector<std::string>> v = {{"kayak"}};
         REQUIRE(pal.toVector() == v);
