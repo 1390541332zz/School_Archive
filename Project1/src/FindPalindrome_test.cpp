@@ -82,7 +82,7 @@ static const std::vector<std::vector<std::vector<std::string>>> invalid_pal_spli
     {{"va", "AaA"}, {"AAAAAA"}},
     {{"AqA"}, {"Ba", "AaA"}},
     {{"AhA"}, {"AaA", "a"}},
-    {{"AaAR"}, {"a", "AA"}},
+    {{"AR"}, {"a", "AA"}},
     {{"AE"}, {"AA", "a"}},
     {{"aXa", "a"}, {"a", "aaa", "aaaaaaaaaaaaa"}},
     {{"alXXXXone"}, {"rye", "seres", "eyr", "Enola"}}

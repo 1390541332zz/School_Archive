@@ -53,9 +53,7 @@ void FindPalindrome::recursiveFindPalindromes(
 
     if (pool.empty()) return;
     if (!cutTest1(v)) return;
-    if (vstr_charcnt(tmp) > vstr_charcnt(pool)) {
-        if(!cutTest2(pool,tmp)) return;
-    } else if(!cutTest2(tmp, pool)) {
+    if(!cutTest2(tmp, pool)) {
         return;
     }
 
@@ -144,8 +142,13 @@ bool FindPalindrome::cutTest2(const std::vector<std::string> & stringVector1,
                               const std::vector<std::string> & stringVector2) {
     size_t map1[ALPHA_LENGTH] = {0};
     size_t map2[ALPHA_LENGTH] = {0};
+    bool direction = vstr_charcnt(stringVector1) > vstr_charcnt(stringVector2);
+    if (direction) {
+        if(stringVector2.empty()) return true;
+    } else {
+        if(stringVector1.empty()) return true;
+    }
 
-    if(stringVector1.empty()) return true;
     for (const std::string& str : stringVector1) {
         for (const char c : str) {
             map1[std::tolower(c) - 'a']++;
@@ -157,7 +160,11 @@ bool FindPalindrome::cutTest2(const std::vector<std::string> & stringVector1,
         }
     }
     for (size_t i = 0; i < ALPHA_LENGTH; i++) {
-        if (map1[i] > map2[i]) return false;
+        if (direction) {
+            if (map2[i] > map1[i]) return false;
+        } else {
+            if (map1[i] > map2[i]) return false;
+        }
     }
 
     return true;
