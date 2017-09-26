@@ -38,11 +38,14 @@ static std::vector<std::string> uc_string = {
 
 static std::vector<std::string> lc_string = {
     "aaa", "aba", "kayak", "asa", "a",
-    "k", "y", "aa"
+    "k", "y", "aak"
 };
 
 static std::vector<std::string> pal_words1 = {
     "a", "AA", "AaA"
+};
+static std::vector<std::string> pal_lc_words1 = {
+    "a", "aa", "aaa"
 };
 
 static std::vector<std::vector<std::string>> pal_list1 = {
@@ -69,7 +72,7 @@ static std::vector<std::vector<std::vector<std::string>>> invalid_pal_split1 = {
     {{"AqA"}, {"Ba", "AaA"}},
     {{"AhA"}, {"AaA", "a"}},
     {{"AaAR"}, {"a", "AA"}},
-    {{"AaAE"}, {"AA", "a"}}
+    {{"AE"}, {"AA", "a"}}
 };
 
 static std::vector<std::vector<std::vector<std::string>>> pal_lc_split1 = {
@@ -121,8 +124,8 @@ TEST_CASE("Sanitised Data", "[FindPalindrome]") {
 TEST_CASE("Case Sensitivity", "[FindPalindrome]") {
     FindPalindrome pal_uc;
     FindPalindrome pal_lc;
-    pal_uc.add(uc_string);
-    pal_lc.add(lc_string);
+    pal_uc.add(pal_words1);
+    pal_lc.add(pal_lc_words1);
     SECTION("Helpers", "[FindPalindrome]") {
         REQUIRE(pal_uc.cutTest1(lc_string) == pal_uc.cutTest1(uc_string));
         for (size_t i = 0; i < pal_lc_split1.size(); i++) {
@@ -179,7 +182,7 @@ TEST_CASE("Palindrome Detection", "[FindPalindrome]") {
         }
     }
 
-    SECTION("Single Palindorme" "[FindPalindrome]") {
+    SECTION("Single Palindrome" "[FindPalindrome]") {
         pal.add("kayak");
         const std::vector<std::vector<std::string>> v = {{"kayak"}};
         REQUIRE(pal.toVector() == v);

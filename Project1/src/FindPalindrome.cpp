@@ -52,28 +52,30 @@ void FindPalindrome::recursiveFindPalindromes(
     std::vector<std::string>& pool = currentStringVector;
 
     if (pool.empty()) return;
+    if (!cutTest1(tmp)) return;
+    if (vstr_charcnt(tmp) > vstr_charcnt(pool)) {
+        tmp.swap(pool);
+        if(!cutTest2(tmp, pool)) return;
+        tmp.swap(pool);
+    } else {
+        if(!cutTest2(tmp, pool)) return;
+    }
+
     for (size_t i = 0; i < pool.size(); i++) {
         auto it = std::next(pool.begin(), i);
         tmp.push_back(*it);
         pool.erase(it);
         recursiveFindPalindromes(tmp, pool);
-        if (pool.empty() && cutTest1(tmp)) {
+        if (pool.empty()) {
             if(tmp.size() == 1 && isPalindrome(tmp[i])) {
                 vpal.push_back(tmp);
                 continue;
             }
-            auto midpoint = tmp.cbegin();
-            if(tmp.size() > 2) midpoint = std::next(tmp.cbegin(), tmp.size()/2);
-            std::vector<std::string> lhs(tmp.cbegin(), midpoint);
-            std::vector<std::string> rhs(std::next(midpoint), tmp.cend());
-            if (vstr_charcnt(lhs) > vstr_charcnt(rhs)) lhs.swap(rhs);
-            if (cutTest2(lhs, rhs)) {
-                std::string str = "";
-                for(std::string& word : tmp) {
-                    str.append(word);
-                }
-                if (isPalindrome(str)) vpal.push_back(tmp);
+            std::string str = "";
+            for(std::string& word : tmp) {
+                str.append(word);
             }
+            if (isPalindrome(str)) vpal.push_back(tmp);
         }
         pool.insert(it, tmp.back());
         tmp.pop_back();
