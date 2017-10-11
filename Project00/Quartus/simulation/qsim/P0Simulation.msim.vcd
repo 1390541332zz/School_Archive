@@ -1,0 +1,238 @@
+$comment
+	File created using the following command:
+		vcd file P0Simulation.msim.vcd -direction
+$end
+$date
+	Tue Sep 19 09:13:03 2017
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module P0Simulation_vlg_vec_tst $end
+$var reg 1 ! A $end
+$var reg 1 " B $end
+$var reg 1 # C $end
+$var reg 1 $ D $end
+$var reg 1 % E $end
+$var reg 1 & G $end
+$var reg 1 ' H $end
+$var reg 1 ( M $end
+$var reg 1 ) N $end
+$var reg 1 * P $end
+$var reg 1 + Q $end
+$var reg 1 , V $end
+$var reg 1 - W $end
+$var reg 1 . X $end
+$var wire 1 / F1 $end
+$var wire 1 0 F2 $end
+$var wire 1 1 F3 $end
+$var wire 1 2 F4 $end
+$var wire 1 3 G1 $end
+$var wire 1 4 G2 $end
+$var wire 1 5 G3 $end
+$var wire 1 6 G4 $end
+
+$scope module i1 $end
+$var wire 1 7 gnd $end
+$var wire 1 8 vcc $end
+$var wire 1 9 unknown $end
+$var tri1 1 : devclrn $end
+$var tri1 1 ; devpor $end
+$var tri1 1 < devoe $end
+$var wire 1 = F1~output_o $end
+$var wire 1 > F2~output_o $end
+$var wire 1 ? F3~output_o $end
+$var wire 1 @ F4~output_o $end
+$var wire 1 A G1~output_o $end
+$var wire 1 B G2~output_o $end
+$var wire 1 C G3~output_o $end
+$var wire 1 D G4~output_o $end
+$var wire 1 E A~input_o $end
+$var wire 1 F B~input_o $end
+$var wire 1 G inst|instC3~combout $end
+$var wire 1 H C~input_o $end
+$var wire 1 I D~input_o $end
+$var wire 1 J inst|instE7~combout $end
+$var wire 1 K G~input_o $end
+$var wire 1 L E~input_o $end
+$var wire 1 M inst|instA6~combout $end
+$var wire 1 N H~input_o $end
+$var wire 1 O M~input_o $end
+$var wire 1 P N~input_o $end
+$var wire 1 Q inst2|inst2~0_combout $end
+$var wire 1 R X~input_o $end
+$var wire 1 S P~input_o $end
+$var wire 1 T Q~input_o $end
+$var wire 1 U inst2|inst8~0_combout $end
+$var wire 1 V V~input_o $end
+$var wire 1 W W~input_o $end
+$var wire 1 X inst2|inst7~0_combout $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+0"
+0#
+0$
+0%
+0&
+0'
+0(
+0)
+0*
+0+
+0,
+0-
+0.
+0/
+10
+01
+12
+03
+04
+05
+06
+07
+18
+x9
+1:
+1;
+1<
+0=
+1>
+0?
+1@
+0A
+0B
+0C
+0D
+0E
+0F
+0G
+0H
+0I
+0J
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+0R
+0S
+0T
+0U
+0V
+0W
+0X
+$end
+#250000
+1"
+1$
+1&
+1'
+1)
+1.
+1+
+1-
+1F
+1I
+1K
+1N
+1P
+1T
+1W
+1R
+1B
+0@
+1J
+02
+14
+1M
+1Q
+1U
+1X
+1D
+1C
+1A
+1?
+0>
+00
+11
+13
+15
+16
+#500000
+1!
+1#
+1%
+1(
+1*
+1,
+0"
+0$
+0&
+0'
+0)
+0.
+0+
+0-
+1E
+1H
+1L
+1O
+1S
+1V
+0F
+0I
+0K
+0N
+0P
+0T
+0W
+0R
+0B
+1@
+12
+04
+#750000
+1"
+1$
+1&
+1'
+1)
+1.
+1+
+1-
+1F
+1I
+1K
+1N
+1P
+1T
+1W
+1R
+1B
+0@
+02
+14
+1G
+0Q
+0U
+0X
+0D
+0C
+0A
+1=
+1/
+03
+05
+06
+#1000000

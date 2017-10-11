@@ -1,0 +1,36 @@
+# do P0Implementation.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 12:00:57 on Sep 19,2017
+# vlog -work work P0Implementation.vo 
+# -- Compiling module P0Implementation
+# -- Compiling module hard_block
+# 
+# Top level modules:
+# 	P0Implementation
+# End time: 12:00:57 on Sep 19,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 12:00:57 on Sep 19,2017
+# vlog -work work Waveform1.vwf.vt 
+# -- Compiling module P0Implementation_vlg_vec_tst
+# 
+# Top level modules:
+# 	P0Implementation_vlg_vec_tst
+# End time: 12:00:57 on Sep 19,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -novopt -c -t 1ps -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.P0Implementation_vlg_vec_tst 
+# Start time: 12:00:57 on Sep 19,2017
+# Loading work.P0Implementation_vlg_vec_tst
+# Loading work.P0Implementation
+# Loading work.hard_block
+# Loading cycloneive_ver.cycloneive_io_obuf
+# Loading cycloneive_ver.cycloneive_io_ibuf
+# Loading cycloneive_ver.cycloneive_lcell_comb
+# after#26
+# ** Note: $stop    : Waveform1.vwf.vt(47)
+#    Time: 1 us  Iteration: 0  Instance: /P0Implementation_vlg_vec_tst
+# Break in Module P0Implementation_vlg_vec_tst at Waveform1.vwf.vt line 47
+# Stopped at Waveform1.vwf.vt line 47
+# End time: 12:00:57 on Sep 19,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

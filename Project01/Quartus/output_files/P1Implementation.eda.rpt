@@ -1,0 +1,116 @@
+EDA Netlist Writer report for P1Implementation
+Wed Oct 04 23:10:05 2017
+Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. EDA Netlist Writer Summary
+  3. Simulation Settings
+  4. Simulation Generated Files
+  5. EDA Netlist Writer Messages
+  6. EDA Netlist Writer Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++-------------------------------------------------------------------+
+; EDA Netlist Writer Summary                                        ;
++---------------------------+---------------------------------------+
+; EDA Netlist Writer Status ; Successful - Wed Oct 04 23:10:05 2017 ;
+; Revision Name             ; P1Implementation                      ;
+; Top-level Entity Name     ; P1Implementation                      ;
+; Family                    ; Cyclone IV E                          ;
+; Simulation Files Creation ; Successful                            ;
++---------------------------+---------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Simulation Settings                                                                                                           ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+; Option                                                                                            ; Setting                   ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+; Tool Name                                                                                         ; ModelSim-Altera (Verilog) ;
+; Generate functional simulation netlist                                                            ; Off                       ;
+; Time scale                                                                                        ; 1 ps                      ;
+; Truncate long hierarchy paths                                                                     ; Off                       ;
+; Map illegal HDL characters                                                                        ; Off                       ;
+; Flatten buses into individual nodes                                                               ; Off                       ;
+; Maintain hierarchy                                                                                ; Off                       ;
+; Bring out device-wide set/reset signals as ports                                                  ; Off                       ;
+; Enable glitch filtering                                                                           ; Off                       ;
+; Do not write top level VHDL entity                                                                ; Off                       ;
+; Disable detection of setup and hold time violations in the input registers of bi-directional pins ; Off                       ;
+; Architecture name in VHDL output netlist                                                          ; structure                 ;
+; Generate third-party EDA tool command script for RTL functional simulation                        ; Off                       ;
+; Generate third-party EDA tool command script for gate-level simulation                            ; Off                       ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                                        ;
++---------------------------------------------------------------------------------------------------+
+; Generated Files                                                                                   ;
++---------------------------------------------------------------------------------------------------+
+; D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/P1Implementation_6_1200mv_85c_slow.vo     ;
+; D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/P1Implementation_6_1200mv_0c_slow.vo      ;
+; D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/P1Implementation_min_1200mv_0c_fast.vo    ;
+; D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/P1Implementation.vo                       ;
+; D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/P1Implementation_6_1200mv_85c_v_slow.sdo  ;
+; D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/P1Implementation_6_1200mv_0c_v_slow.sdo   ;
+; D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/P1Implementation_min_1200mv_0c_v_fast.sdo ;
+; D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/P1Implementation_v.sdo                    ;
++---------------------------------------------------------------------------------------------------+
+
+
++-----------------------------+
+; EDA Netlist Writer Messages ;
++-----------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime EDA Netlist Writer
+    Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+    Info: Processing started: Wed Oct 04 23:10:04 2017
+Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off P1Implementation -c P1Implementation
+Info (204019): Generated file P1Implementation_6_1200mv_85c_slow.vo in folder "D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file P1Implementation_6_1200mv_0c_slow.vo in folder "D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file P1Implementation_min_1200mv_0c_fast.vo in folder "D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file P1Implementation.vo in folder "D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file P1Implementation_6_1200mv_85c_v_slow.sdo in folder "D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file P1Implementation_6_1200mv_0c_v_slow.sdo in folder "D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file P1Implementation_min_1200mv_0c_v_fast.sdo in folder "D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file P1Implementation_v.sdo in folder "D:/GitHub/ECE2504/Project01/Quartus/simulation/modelsim/" for EDA simulation tool
+Info (144001): Generated suppressed messages file D:/GitHub/ECE2504/Project01/Quartus/output_files/P1Implementation.eda.smsg
+Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 526 megabytes
+    Info: Processing ended: Wed Oct 04 23:10:05 2017
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+
++----------------------------------------+
+; EDA Netlist Writer Suppressed Messages ;
++----------------------------------------+
+The suppressed messages can be found in D:/GitHub/ECE2504/Project01/Quartus/output_files/P1Implementation.eda.smsg.
+
+

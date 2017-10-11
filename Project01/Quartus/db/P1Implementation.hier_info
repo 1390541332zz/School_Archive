@@ -1,0 +1,36 @@
+|P1Implementation
+SegmentT <= SevenSegmentDrivers:inst.t
+SW3 => SevenSegmentDrivers:inst.a
+SW2 => SevenSegmentDrivers:inst.b
+SW1 => SevenSegmentDrivers:inst.c
+SW0 => SevenSegmentDrivers:inst.d
+SegmentU <= SevenSegmentDrivers:inst.u
+SegmentV <= SevenSegmentDrivers:inst.v
+SegmentW <= SevenSegmentDrivers:inst.w
+SegmentX <= SevenSegmentDrivers:inst.x
+SegmentY <= SevenSegmentDrivers:inst.y
+SegmentZ <= SevenSegmentDrivers:inst.z
+
+
+|P1Implementation|SevenSegmentDrivers:inst
+t <= inst12.DB_MAX_OUTPUT_PORT_TYPE
+c => inst3.IN0
+c => inst13.IN1
+c => inst10.IN1
+c => inst22.IN1
+d => inst4.IN0
+d => inst7.IN1
+b => inst6.IN1
+b => inst2.IN0
+b => inst9.IN0
+a => inst1.IN0
+a => inst11.IN1
+a => inst22.IN0
+u <= inst.DB_MAX_OUTPUT_PORT_TYPE
+v <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+w <= inst21.DB_MAX_OUTPUT_PORT_TYPE
+x <= inst25.DB_MAX_OUTPUT_PORT_TYPE
+y <= inst24.DB_MAX_OUTPUT_PORT_TYPE
+z <= inst20.DB_MAX_OUTPUT_PORT_TYPE
+
+

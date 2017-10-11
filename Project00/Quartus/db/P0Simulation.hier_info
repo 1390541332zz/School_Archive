@@ -1,0 +1,64 @@
+|P0Simulation
+F1 <= P0Gates:inst.F1
+A => P0Gates:inst.A
+B => P0Gates:inst.B
+C => P0Gates:inst.C
+D => P0Gates:inst.D
+E => P0Gates:inst.E
+G => P0Gates:inst.G
+H => P0Gates:inst.H
+F2 <= P0Gates:inst.F2
+F3 <= P0Gates:inst.F3
+F4 <= P0Gates:inst.F4
+G1 <= P0Bubble:inst2.G1
+M => P0Bubble:inst2.M
+N => P0Bubble:inst2.N
+X => P0Bubble:inst2.X
+P => P0Bubble:inst2.P
+Q => P0Bubble:inst2.Q
+V => P0Bubble:inst2.V
+W => P0Bubble:inst2.W
+G2 <= P0Bubble:inst2.G2
+G3 <= P0Bubble:inst2.G3
+G4 <= P0Bubble:inst2.G4
+
+
+|P0Simulation|P0Gates:inst
+F4 <= instH1.DB_MAX_OUTPUT_PORT_TYPE
+H => instH1.IN0
+H => instH1.IN1
+F3 <= instA6.DB_MAX_OUTPUT_PORT_TYPE
+G => instA5.IN0
+G => instA5.IN1
+E => instA4.IN0
+E => instA4.IN1
+F2 <= instE8.DB_MAX_OUTPUT_PORT_TYPE
+D => instE6.IN0
+D => instE6.IN1
+C => instE5.IN0
+C => instE5.IN1
+F1 <= instC4.DB_MAX_OUTPUT_PORT_TYPE
+B => instC3.IN0
+A => instC3.IN1
+
+
+|P0Simulation|P0Bubble:inst2
+G2 <= instX2.DB_MAX_OUTPUT_PORT_TYPE
+X => instX1.IN0
+G1 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+N => inst.IN0
+N => instB1.IN0
+M => inst.IN1
+M => InstA1.IN0
+G3 <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+Q => inst3.IN0
+Q => instB2.IN0
+P => inst3.IN1
+P => instA2.IN0
+G4 <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+W => instB3.IN0
+W => inst5.IN0
+V => instA3.IN0
+V => inst5.IN1
+
+

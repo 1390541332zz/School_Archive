@@ -1,0 +1,317 @@
+\documentclass[12pt,letterpaper,titlepage]{report}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{enumitem}
+\setmainfont{Times New Roman}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{paracol}
+\usepackage{graphicx}
+\graphicspath{{img/}}
+\usepackage{karnaugh-map}
+\usepackage[margin=0.65in]{geometry}
+\author{Jacob Abel}
+\title{%
+	Homework 7
+	\\\large ECE2504 CRN:82729
+}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+\raggedcolumns
+\paragraph{Question 1:}
+(8 pts) Find the 1’s and 2’s complement of the following unsigned binary numbers.
+\begin{multicols}{2}
+\begin{enumerate} [label=\alph*)]
+\item \begin{align*}
+       Original:& 11001\\
+1's\;Compliment:& 00110\\
+2's\;Compliment:& 00111
+\end{align*}
+\item \begin{align*}
+       Original:& 110\\
+1's\;Compliment:& 001\\
+2's\;Compliment:& 010
+\end{align*}
+\item \begin{align*}
+       Original:& 1100101\\
+1's\;Compliment:& 0011010\\
+2's\;Compliment:& 0011011
+\end{align*}
+\item \begin{align*}
+       Original:& 1011\\
+1's\;Compliment:& 0100\\
+2's\;Compliment:& 0101
+\end{align*}
+\end{enumerate}
+\end{multicols}
+
+\paragraph{Question 2:}
+(12 pts) Perform the indicated subtraction with the following unsigned binary numbers by taking the 2’s complement of the subtrahend. Use zero‐fill to equalize the length of the operands. 
+\begin{multicols}{2}
+\begin{enumerate} [label=\alph*)]
+\item 11001 – 10101
+\begin{align*}
+  =& 011001 - 010101
+\\=& 011001 + 101010 + 1
+\\=& 011001 + 101011
+\\=& 000100
+\end{align*}
+\item 110110 – 1011
+\begin{align*}
+  =& 0110110 - 0001011
+\\=& 0110110 + 1110100 + 1
+\\=& 0110110 + 1110101
+\\=& 0001011
+\end{align*}
+\item 1011001 – 1011001
+\begin{align*}
+  =& 01011001 - 01011001
+\\=& 01011001 + 10100110 + 1
+\\=& 01011001 + 10100111
+\\=& 00000000
+\end{align*}
+\item 101101 – 100000
+\begin{align*}
+  =& 0101101 - 0100000
+\\=& 0101101 + 1011111 + 1
+\\=& 0101101 + 1100000
+\\=& 0001101
+\end{align*}
+\item 101010 – 1110
+\begin{align*}
+  =& 0101010 - 0001110
+\\=& 0101010 + 1110001 + 1
+\\=& 0101010 + 1110010
+\\=& 0011100
+\end{align*}
+\item 11001 – 01100
+\begin{align*}
+  =& 011001 - 001100
+\\=& 011001 + 110011 + 1
+\\=& 011001 + 110100
+\\=& 001101
+\end{align*}
+\end{enumerate}
+\end{multicols}
+\clearpage
+\paragraph{Question 3:}
+(8 pts) Perform the addition of the following 8‐bit (signed) 2’s complement numbers: 
+\begin{multicols}{2}
+\begin{enumerate} [label=\alph*)]
+\item 10011011 + 00101011
+\begin{align*}
+  =& 10011011 + 00101011
+\\=& 11000110
+\end{align*}
+\item 00110111 + 00100110
+\begin{align*}
+  =& 00110111 + 00100110
+\\=& 01011001
+\end{align*}
+\item 01011010 + 10110010
+\begin{align*}
+  =& 01011010 + 10110010
+\\=& 00001100
+\end{align*}
+\item 11011010 + 11111110 
+\begin{align*}
+  =& 11011010 + 11111110
+\\=& 11011000
+\end{align*}
+\end{enumerate}
+\end{multicols}
+
+\paragraph{Question 4:}
+(4 pts) Convert each result from the previous problem to signed decimal. 
+\begin{multicols}{2}
+\begin{enumerate} [label=\alph*)]
+\item 10011011 + 00101011
+\begin{align*}
+  =& 11000110
+\\=& 11000101
+\\=& 00111010
+\\=& -(32+16+8+2)
+\\=& -58
+\end{align*}
+\item 00110111 + 00100110
+\begin{align*}
+  =& 01011001
+\\=& 64+16+8+1
+\\=& 91
+\end{align*}
+\item 01011010 + 10110010
+\begin{align*}
+  =& 00001100
+\\=& 8+4
+\\=& 12
+\end{align*}
+\item 11011010 + 11111110 
+\begin{align*}
+  =& 11011000
+\\=& 11010111
+\\=& 00101000
+\\=& -(32+8)
+\\=& -40
+\end{align*}
+\end{enumerate}
+\end{multicols}
+\clearpage
+
+\paragraph{Question 5:}
+(18 pts) Repeat Problem 2, assuming the numbers are 2s complement numbers. Use sign extension to equalize the length of the operands. (Note: 2cm numbers have a sign bit, so they must be signed numbers.) 
+\begin{itemize}
+\item Indicate whether overflow occurs during the complement operation for any of the given subtrahends.   
+\item Indicate whether overflow occurs overall for any of the given subtractions. 
+\end{itemize}
+\begin{multicols}{2}
+\begin{enumerate} [label=\alph*)]
+\item 11001 – 10101
+\begin{align*}
+  =& 011001 - 10101
+\\=& 011001 + 01010 + 1
+\\=& 011001 + 01011
+\\=& 011001 + 001011
+\\=& 100100
+\\ & Integer\;Overflow
+\end{align*}
+\item 110110 – 1011
+\begin{align*}
+  =& 0110110 - 1011
+\\=& 0110110 + 0100 + 1
+\\=& 0110110 + 0101
+\\=& 0110110 + 0000101
+\\=& 0111011
+\end{align*}
+\item 1011001 – 1011001
+\begin{align*}
+  =& 01011001 - 1011001
+\\=& 01011001 + 0100110 + 1
+\\=& 01011001 + 0100111
+\\=& 01011001 + 00100111
+\\=& 10000000
+\\ & Integer\;Overflow
+\end{align*}
+\item 101101 – 100000
+\begin{align*}
+  =& 0101101 - 100000
+\\=& 0101101 + 011111 + 1
+\\=& 0101101 + 100000
+\\ & Integer\;Overflow
+\\=& 0101101 + 1100000
+\\=& 0001101
+\end{align*}
+\item 101010 – 1110
+\begin{align*}
+  =& 0101010 - 1110
+\\=& 0101010 + 0001 + 1
+\\=& 0101010 + 0010
+\\=& 0101010 + 0000010
+\\=& 0101100
+\end{align*}
+\item 11001 – 01100
+\begin{align*}
+  =& 011001 - 01100
+\\=& 011001 + 10011 + 1
+\\=& 011001 + 10100
+\\ & Integer\;Overflow
+\\=& 011001 + 110100
+\\=& 001101
+\end{align*}
+\end{enumerate}
+\end{multicols}
+\clearpage
+
+\paragraph{Question 6:}
+(6 pts) Convert each result from the previous problem to signed decimal. 
+\begin{multicols}{2}
+\begin{enumerate} [label=\alph*)]
+\item 11001 – 10101
+\begin{align*}
+  =& 011001 - 10101
+\\=& 100100
+\end{align*}
+\item 110110 – 1011
+\begin{align*}
+  =& 0110110 - 1011
+\\=& 0111011
+\\=& 32+16+8+2+1
+\\=& 59
+\end{align*}
+\item 1011001 – 1011001
+\begin{align*}
+  =& 01011001 - 1011001
+\\=& 10000000
+\\=& 10000000 - 1
+\\=& 01111111
+\\=& 10000000
+\\=& -128
+\end{align*}
+\item 101101 – 100000
+\begin{align*}
+  =& 0101101 - 100000
+\\=& 0001101
+\\=& 8+4+1
+\\=& 13
+\end{align*}
+\item 101010 – 1110
+\begin{align*}
+  =& 0101010 - 1110
+\\=& 0101100
+\\=& 32+8+4
+\\=& 44
+\end{align*}
+\item 11001 – 01100
+\begin{align*}
+  =& 011001 - 01100
+\\=& 001101
+\\=& 8+4+1
+\\=& 13
+\end{align*}
+\end{enumerate}
+
+\end{multicols}
+
+\paragraph{Question 7:}
+(4 pts) What are the maximum positive and negative numbers that can be represented in 12‐bit 2’s complement form? Find the smallest positive value expressed in this form that when added to itself, the sum causes an overflow to occur.
+\begin{multicols}{3}
+\begin{align*}
+Max \;Positive = &011111111111 
+\\= &2^{11}-1 
+\\= &2047
+\end{align*}
+
+\begin{align*}
+Max \;Negative = &100000000000
+\\= &011111111111
+\\= &100000000000
+\\= &-2^{11}
+\\= &-2048
+\end{align*}
+
+\begin{align*}
+Min\;to\;Overflow =& 2^{10}
+\\=&1024
+\end{align*}
+\end{multicols}
+
+\vspace{\fill}
+\noindent
+GRADING SCALE
+\medskip
+
+Total: 60 pts
+\bigskip
+
+\def\arraystretch{1.5} 
+\begin{tabular}{ | l | c | c | c | c | c | c | c | c | } \hline
+Pts          & 0  & 7  & 15 & 22 & 30 & 37 & 45 & 52     \\\hline
+Letter Grade & D- & D  & C- & C  & B- & B  & A- & A      \\\hline
+\end{tabular}
+\end{raggedright}
+\end{document}
