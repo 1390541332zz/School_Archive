@@ -100,6 +100,9 @@ static TokenStruct deserialise_token(const std::string& str) {
     @param token The token being checked
   */
 static bool valid_token(const TokenStruct& token) {
+    if (token.tokenString.empty() || std::isspace(token.tokenString.front())) {
+        return false;
+    }
     std::string name = token_name(token);
     auto illegal_it = std::find(illegal_first_chars.cbegin(),
                                 illegal_first_chars.cend(), name.front());
@@ -220,15 +223,20 @@ bool XMLParser::parseTokenizedInput() {
         TokenStruct top = {};
         const std::string& tok_str = token.tokenString;
         if (!parseStack->isEmpty()) top = deserialise_token(parseStack->peek());
+        auto tokv_it = tokenizedInputVector.cbegin();
         switch (token.tokenType) {
             case DECLARATION:
-                if (!valid_token(token)) {
+                if (!valid_token(token)
+                || (tokv_it->tokenType == CONTENT
+                    && tok_str == std::next(tokv_it, 1)->tokenString)
+                || tok_str != tokv_it->tokenString) {
                     clear();
                     return false;
                 }
                 break;
             case START_TAG:
-                if (!valid_token(token)) {
+                if (!valid_token(token)
+                || (parseStack->isEmpty() && !elementNameBag->isEmpty())) {
                     clear();
                     return false;
                 }
@@ -246,17 +254,16 @@ bool XMLParser::parseTokenizedInput() {
                 parseStack->pop();
                 break;
             case EMPTY_TAG:
-                if (!valid_token(token)) {
+                if (!valid_token(token)
+                || (parseStack->isEmpty())) {
                     clear();
                     return false;
                 }
                 elementNameBag->add(token_name(token));
                 break;
             case CONTENT:
-                if (std::all_of(tok_str.cbegin(), tok_str.cend(), ::isspace)) {
-                    break;
-                }
-                if (!parseStack->isEmpty() && top.tokenType != START_TAG) {
+                if (!std::all_of(tok_str.cbegin(), tok_str.cend(), ::isspace)
+                &&   top.tokenType != START_TAG) {
                     clear();
                     return false;
                 }

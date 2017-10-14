@@ -9,7 +9,7 @@
 
 std::vector<std::string> valid_xml = {
     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-    "<note/>",
+    "<note></note>",
     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
 <note>\n\
 <to>Tove</to>\n\
@@ -44,31 +44,32 @@ std::vector<std::vector<TokenStruct>> valid_xml_tokenstructs = {
     {
         {DECLARATION, "xml version=\"1.0\" encoding=\"UTF-8\""},
     }, {
-        {EMPTY_TAG, "note"}
+        {START_TAG,   "note"},
+        {END_TAG,     "note"}
     }, {
         {DECLARATION, "xml version=\"1.0\" encoding=\"UTF-8\""},
-        {CONTENT,   "\n"},
-        {START_TAG, "note"},
-        {CONTENT,   "\n"},
-        {START_TAG, "to"},
-        {CONTENT,   "Tove"},
-        {END_TAG,   "to"},
-        {CONTENT,   "\n"},
-        {START_TAG, "from name=\"test\", joe=\"teddy\" "},
-        {CONTENT,   "Jani"},
-        {END_TAG,   "from"},
-        {CONTENT,   "\n"},
-        {START_TAG, "heading"},
-        {CONTENT,   "Reminder"},
-        {END_TAG,   "heading"},
-        {CONTENT,   "\n"},
-        {EMPTY_TAG, "note"},
-        {CONTENT,   "\n"},
-        {START_TAG, "body"},
-        {CONTENT,   "Don't forget me this weekend!"},
-        {END_TAG,   "body"},
-        {CONTENT,   "\n"},
-        {END_TAG,   "note"},
+        {CONTENT,     "\n"},
+        {START_TAG,   "note"},
+        {CONTENT,     "\n"},
+        {START_TAG,   "to"},
+        {CONTENT,     "Tove"},
+        {END_TAG,     "to"},
+        {CONTENT,     "\n"},
+        {START_TAG,   "from name=\"test\", joe=\"teddy\" "},
+        {CONTENT,     "Jani"},
+        {END_TAG,     "from"},
+        {CONTENT,     "\n"},
+        {START_TAG,   "heading"},
+        {CONTENT,     "Reminder"},
+        {END_TAG,     "heading"},
+        {CONTENT,     "\n"},
+        {EMPTY_TAG,   "note"},
+        {CONTENT,     "\n"},
+        {START_TAG,   "body"},
+        {CONTENT,     "Don't forget me this weekend!"},
+        {END_TAG,     "body"},
+        {CONTENT,     "\n"},
+        {END_TAG,     "note"},
     }
 };
 
@@ -87,8 +88,35 @@ std::vector<std::string> invalid_xml_tokens = {
 std::vector<std::string> invalid_xml = {
     "",
     "<note>",
+    "< ></ >",
     "</note>",
-    "<note><note>"
+    "<note></note><note/>",
+    "<note/><note/>",
+    "</note></note>"
+    "<note><note>",
+    "<note><note></note>",
+    "<note></note></note>",
+    "<note></note><potato>",
+    "<note></note><potato></potato>",
+    "<note></NOTE>",
+    "<.note/>",
+    "<-note/>",
+    "<1note/>",
+    "<.n}te/>",
+    "fjfdjfdkh",
+    "<note/>fflkflkfjkfdjlk",
+    "dslkjdslkjdslkj<note/>",
+    "<note></flag></note>",
+    "<note></note><?xml?>",
+    "<note><sthdis><qqq/>thshewrb</sthdis></note>",
+    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
+<note>\n\
+<to>Tove</to>\n\
+<from name=\"test\", joe=\"teddy\" >Jani</from>\n\
+<heading>Reminder</heading>\n\
+<note/></note>\n\
+<body>Don't forget me this weekend!</body>\n\
+</note>",
 };
 
 static std::string serialise_tokenType(StringTokenType type) {
@@ -188,13 +216,13 @@ TEST_CASE("Parse", "[XMLParser]") {
     }
 
     SECTION("Invalid XML") {
-        for (const auto& str : invalid_xml_tokens) {
+        for (const auto& str : invalid_xml) {
             INFO("String: " + str);
-            REQUIRE_FALSE(p.tokenizeInputString(str));
-            REQUIRE_FALSE(p.parseTokenizedInput());
+            p.tokenizeInputString(str);
             std::vector<TokenStruct> v = p.returnTokenizedInput();
+            REQUIRE_FALSE(p.parseTokenizedInput());
             for (const auto& token : v) {
-                REQUIRE(p.containsElementName(token.tokenString));
+                REQUIRE_FALSE(p.containsElementName(token.tokenString));
                 REQUIRE(p.frequencyElementName(token.tokenString) == 0);
             }
         }
