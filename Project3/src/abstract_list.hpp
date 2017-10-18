@@ -3,10 +3,9 @@
 #define _ABSTRACT_LIST_HPP_
 
 template <typename T>
-class AbstractList
-{
+class AbstractList {
 public:
-  
+
   // determine if a list is empty
   virtual bool isEmpty() const noexcept = 0 ;
 
