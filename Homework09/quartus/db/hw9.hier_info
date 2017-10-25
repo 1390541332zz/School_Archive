@@ -1,0 +1,26 @@
+|hw9
+y <= comb_ckt_2:inst12.y
+a => comb_ckt_2:inst12.a
+b => comb_ckt_2:inst12.b
+c => comb_ckt_2:inst12.c
+d => comb_ckt_2:inst12.d
+e => comb_ckt_2:inst12.e
+f => comb_ckt_2:inst12.f
+
+
+|hw9|comb_ckt_2:inst12
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+a => n1.IN1
+b => n5.IN1
+c => n3.IN1
+d => Add0.IN1
+e => n2.IN0
+e => n3.IN0
+e => Add0.IN2
+e => n1.IN0
+f => n2.IN1
+f => Add1.IN1
+f => n3.IN1
+f => n1.IN1
+
+
