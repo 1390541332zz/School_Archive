@@ -92,7 +92,8 @@ valgrind: $(MAIN_EXE)
 # Ancillary Functions #
 #---------------------#
 prep:
-	mkdir -p ./build
+	mkdir -p ./$(BUILD)
+	mkdir -p ./$(DIFFTESTOUT)
 	$(CXX) --version
 
 clean:

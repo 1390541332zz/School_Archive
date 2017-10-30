@@ -32,7 +32,7 @@ SUBMISSION := $(foreach f, abstract_list.hpp, \
 all: build
 
 prep:
-	mkdir -p ./build
+	mkdir -p ./$(BUILD)
 	$(CXX) --version
 
 #-------------------#
