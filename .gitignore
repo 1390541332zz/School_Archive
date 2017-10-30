@@ -1,4 +1,5 @@
 build/
+test/generated/
 *.tar
 *.zip
 *.o
