@@ -7,67 +7,114 @@ template <typename T>
 LinkedList<T>::LinkedList() {}
 
 template <typename T>
-LinkedList<T>::~LinkedList() {}
+LinkedList<T>::LinkedList(const LinkedList& rhs) : sz(rhs.sz)
+{
+    if (rhs.isEmpty()) return;
+    head = std::unique_ptr<struct node<T>>(new struct node<T>);
+    head->item = rhs.head->item;
+    struct node<T>* tmp = head.get();
+    struct node<T>* rhs_tmp = rhs.head->next.get();
+    for (std::size_t i = 1; i < sz; i++) {
+        std::unique_ptr<struct node<T>> new_node(new struct node<T>);
+        new_node->item = rhs_tmp->item;
+        tmp->next = std::move(new_node);
+
+        rhs_tmp = rhs_tmp->next.get();
+        tmp = tmp->next.get();
+    }
+}
 
 template <typename T>
-bool LinkedList<T>::isEmpty() const noexcept {
+LinkedList<T>::~LinkedList() {}
+
+
+template <typename T>
+LinkedList<T>& LinkedList<T>::operator=(const LinkedList& rhs)
+{
+    if (head != nullptr) clear();
+    sz = rhs.sz;
+    if (rhs.isEmpty()) return *this;
+    head = std::unique_ptr<struct node<T>>(new struct node<T>);
+    head->item = rhs.head->item;
+    struct node<T>* tmp = head.get();
+    struct node<T>* rhs_tmp = rhs.head.get();
+    for (std::size_t i = 1; i < sz; i++) {
+        std::unique_ptr<struct node<T>> new_node(new struct node<T>);
+        new_node->item = rhs_tmp->item;
+        tmp = tmp->next.get();
+
+        rhs_tmp = rhs_tmp->next.get();
+        tmp->next = std::move(new_node);
+    }
+    return *this;
+}
+
+template <typename T>
+bool LinkedList<T>::isEmpty() const noexcept
+{
     return (head == nullptr);
 }
 
 template <typename T>
-std::size_t LinkedList<T>::getLength() const noexcept {
+std::size_t LinkedList<T>::getLength() const noexcept
+{
     return sz;
 }
 
 template <typename T>
-void LinkedList<T>::insert(std::size_t pos, const T& item) {
+void LinkedList<T>::insert(std::size_t pos, const T& item)
+{
     if (pos > sz) throw std::range_error("Index Out of Bounds");
     std::unique_ptr<struct node<T>> new_node(new struct node<T>);
     new_node->item = item;
-    if (head == nullptr) {
+    if (pos == 0) {
+        if (sz != 0) head.swap(new_node->next);
         head.swap(new_node);
         sz++;
         return;
     }
+    struct node<T>* tmp = head.get();
 
-    Node<T>* tmp = head.get();
     for (std::size_t i = 0; i < pos - 1; i++) {
         tmp = tmp->next.get();
     }
-    new_node->next.swap(tmp->next);
-    tmp->next = new_node;
+    new_node->next = std::move(tmp->next);
+    tmp->next = std::move(new_node);
     sz++;
 }
 
 template <typename T>
-void LinkedList<T>::remove(std::size_t pos) {
+void LinkedList<T>::remove(std::size_t pos)
+{
     if (pos >= sz) throw std::range_error("Index Out of Bounds");
-    std::unique_ptr<struct node<T>> node();
+    std::unique_ptr<struct node<T>> node(nullptr);
     if (pos == 0) {
-        node = head;
-        head = node->next;
+        node = std::move(head);
+        head = std::move(node->next);
         sz--;
         return;
     }
-    Node<T>* tmp = head.get();
+    struct node<T>* tmp = head.get();
     for (std::size_t i = 0; i < pos - 1; i++) {
         tmp = tmp->next.get();
     }
-    node = tmp->next;
-    tmp->next = node->next;
+    node = std::move(tmp->next);
+    tmp->next = std::move(node->next);
     sz--;
 }
 
 template <typename T>
-void LinkedList<T>::clear() noexcept {
+void LinkedList<T>::clear() noexcept
+{
     head.reset();
     sz = 0;
 }
 
 template <typename T>
-T LinkedList<T>::getEntry(std::size_t pos) const {
+T LinkedList<T>::getEntry(std::size_t pos) const
+{
     if (pos >= sz) throw std::range_error("Index Out of Bounds");
-    Node<T>* tmp = head.get();
+    struct node<T>* tmp = head.get();
     for (std::size_t i = 0; i < pos; i++) {
         tmp = tmp->next.get();
     }
@@ -75,23 +122,14 @@ T LinkedList<T>::getEntry(std::size_t pos) const {
 }
 
 template <typename T>
-void LinkedList<T>::setEntry(std::size_t pos, const T& val) {
+void LinkedList<T>::setEntry(std::size_t pos, const T& val)
+{
     if (pos >= sz) throw std::range_error("Index Out of Bounds");
-    Node<T>* tmp = head.get();
+    struct node<T>* tmp = head.get();
     for (std::size_t i = 0; i < pos; i++) {
         tmp = tmp->next.get();
     }
     tmp->item = val;
-}
-
-template <typename T>
-void LinkedList<T>::push_back(const T& val) {
-    insert(sz, val);
-}
-
-template <typename T>
-void LinkedList<T>::pop_back() noexcept {
-    remove(sz - 1);
 }
 
 #endif /* LINKED_LIST_T */

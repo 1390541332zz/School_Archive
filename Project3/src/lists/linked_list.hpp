@@ -21,14 +21,14 @@ private:
     std::size_t sz = 0;
 public:
     LinkedList();
+    LinkedList(const LinkedList& rhs);
 
     ~LinkedList();
 
+    LinkedList& operator=(const LinkedList& rhs);
+
     bool isEmpty() const noexcept;
     std::size_t getLength() const noexcept;
-
-    void push_back(const T& item);
-    void pop_back() noexcept;
 
     void insert(std::size_t pos, const T& item);
     void remove(std::size_t pos);
@@ -39,6 +39,6 @@ public:
     void setEntry(std::size_t pos, const T& val);
 };
 
-#include "dynamic_array_list.tpp"
+#include "linked_list.tpp"
 
 #endif /* LINKED_LIST_H */

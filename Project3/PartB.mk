@@ -6,6 +6,7 @@ SRC       := src/todo
 BUILD     := build
 TEST_DIR  := test
 UNIT_DIR  := ../../Catch/include/
+LIST_DIR  := src/lists
 
 JOBCOUNT  := 9
 
@@ -20,7 +21,7 @@ WARNFLAGS := -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare \
 
 SANFLAG   := #-fsanitize=undefined -fsanitize=address
 
-CXXFLAGS   = -std=c++11  -pedantic -ggdb $(WARNFLAGS) $(SANFLAG)
+CXXFLAGS   = -std=c++11  -pedantic -ggdb $(WARNFLAGS) $(SANFLAG) -I./$(LIST_DIR)/
 
 VALGRIND  := valgrind --tool=memcheck --leak-check=full --show-reachable=yes \
 			--num-callers=20 --track-fds=yes --track-origins=yes
@@ -33,12 +34,13 @@ SUBMISSION := $(wildcard ./$(SRC)/*)
 #--------------------------------#
 # Intermediary Working Variables #
 #--------------------------------#
-SOURCES    := $(subst ./$(SRC)/$(MAIN).cpp,,$(wildcard ./$(SRC)/*.cpp))
+SOURCES    := ./$(SRC)/$(MAIN).cpp \
+			  $(subst ./$(SRC)/$(MAIN).cpp,,$(wildcard ./$(SRC)/*.cpp))
 
 HEADERS    := $(wildcard ./$(SRC)/*.hpp) \
 			  $(wildcard ./$(SRC)/*.tpp)
 
-OBJECTS    := $(subst $(SRC), $(BUILD), $(SOURCES:.cpp=.o))
+OBJECTS    := $(subst $(SRC),$(BUILD),$(SOURCES:.cpp=.o))
 
 MAIN_EXE := ./$(BUILD)/$(MAIN)
 
@@ -54,13 +56,10 @@ all: prep build difftest valgrind
 #-------------------#
 build: prep $(MAIN_EXE)
 
-$(MAIN_EXE): $(MAIN_EXE).o $(OBJECTS)
+$(MAIN_EXE): $(OBJECTS)
 	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
 
-$(MAIN_EXE).o: $(SRC)/$(MAIN).cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
-
-$(BUILD)/%.o: $(SRC)/%.cpp
+$(BUILD)/%.o: ./$(SRC)/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 #-------------------#

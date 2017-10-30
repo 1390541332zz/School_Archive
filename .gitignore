@@ -3,4 +3,4 @@ build/
 *.zip
 *.o
 .gdb_history*
-.vgcore.*
+vgcore.*

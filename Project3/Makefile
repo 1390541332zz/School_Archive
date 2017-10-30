@@ -55,7 +55,7 @@ UNIT_EXE := ./$(BUILD)/$(UNIT_MAIN)
 #-------------------------#
 # Aggregate Make Commands #
 #-------------------------#
-all: prep unittest integrationtest
+all: unittest integrationtest
 
 integrationtest: build difftest valgrind
 

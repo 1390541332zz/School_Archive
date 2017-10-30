@@ -50,7 +50,7 @@ $(BUILD)/%.o: $(SRC)/%.cpp
 #------------#
 # Unit Tests #
 #------------#
-catch: build
+unit: build
 	$(EXECUTABLE)
 
 valgrind: build
