@@ -7,10 +7,10 @@ class AbstractList {
 public:
 
   // determine if a list is empty
-  virtual bool isEmpty() const noexcept = 0 ;
+  virtual bool isEmpty() const noexcept = 0;
 
   // return current length of the list
-  virtual std::size_t getLength() const noexcept = 0 ;
+  virtual std::size_t getLength() const noexcept = 0;
 
   // insert item at position in the list using 0-based indexing
   // throws std::range_error if position is invalid
