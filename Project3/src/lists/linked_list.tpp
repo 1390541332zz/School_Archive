@@ -31,20 +31,21 @@ LinkedList<T>::~LinkedList() {}
 template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(const LinkedList& rhs)
 {
-    if (head != nullptr) clear();
-    sz = rhs.sz;
+    if (head == rhs.head) return *this;
+    if (!isEmpty()) clear();
     if (rhs.isEmpty()) return *this;
+    sz = rhs.sz;
     head = std::unique_ptr<struct node<T>>(new struct node<T>);
     head->item = rhs.head->item;
     struct node<T>* tmp = head.get();
-    struct node<T>* rhs_tmp = rhs.head.get();
+    struct node<T>* rhs_tmp = rhs.head->next.get();
     for (std::size_t i = 1; i < sz; i++) {
         std::unique_ptr<struct node<T>> new_node(new struct node<T>);
         new_node->item = rhs_tmp->item;
-        tmp = tmp->next.get();
+        tmp->next = std::move(new_node);
 
         rhs_tmp = rhs_tmp->next.get();
-        tmp->next = std::move(new_node);
+        tmp = tmp->next.get();
     }
     return *this;
 }

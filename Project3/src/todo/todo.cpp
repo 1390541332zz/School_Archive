@@ -7,7 +7,7 @@ todo::todo(std::string storage_file)
     struct todo_item item = {};
     while (fs >> item.pending) {
         fs.ignore(std::numeric_limits<std::streamsize>::max(), ':');
-        getline(fs, item.str);
+        std::getline(fs, item.str);
         list.insert(list.getLength(), item);
     }
 }

@@ -3,15 +3,22 @@
 
 #include "dynamic_array_list.hpp"
 
+static std::size_t round_base2(std::size_t x)
+{
+    if (x < 2) return 2;
+    double i = std::log2(x);
+    return std::pow(2, std::ceil(i));
+}
+
 template <typename T>
 DynamicArrayList<T>::DynamicArrayList() {}
 
 template <typename T>
 DynamicArrayList<T>::DynamicArrayList(const DynamicArrayList& rhs)
-                                    : alloc_sz(rhs.alloc_sz),
-                                      sz(rhs.sz)
+                                    : sz(rhs.sz)
 {
     if (rhs.isEmpty()) return;
+    alloc_sz = round_base2(sz);
     arr = std::unique_ptr<T[]>(new T[alloc_sz]);
     std::copy(rhs.arr.get(), rhs.arr.get() + sz, arr.get());
 }
@@ -28,12 +35,13 @@ DynamicArrayList<T>::~DynamicArrayList()
 template <typename T>
 DynamicArrayList<T>& DynamicArrayList<T>::operator=(const DynamicArrayList& rhs)
 {
-    if (arr != nullptr) clear();
+    if (arr == rhs.arr) return *this;
+    if (!isEmpty()) clear();
     if (rhs.isEmpty()) return *this;
-    alloc_sz = rhs.alloc_sz;
     sz = rhs.sz;
+    alloc_sz = round_base2(sz);
     arr = std::unique_ptr<T[]>(new T[alloc_sz]);
-    std::copy(rhs.arr.get(), rhs.arr.get() + sz, arr.get());
+    std::copy(rhs.arr.get(), rhs.arr.get() + rhs.sz, arr.get());
     return *this;
 }
 

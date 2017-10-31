@@ -7,6 +7,19 @@
 #include "linked_list.hpp"
 
 
+TEST_CASE("Rounding", "[round_base2]")
+{
+    std::size_t arr[][2] = {
+        {1, 2},       {3, 4},       {6, 8},       {11, 16},     {24, 32},
+        {50, 64},     {78, 128},    {212, 256},   {312, 512},   {777, 1024},
+        {1078, 2048}, {3167, 4096}, {6931, 8192}
+    };
+
+    for ( auto x : arr ) {
+        REQUIRE(round_base2(x[0]) == x[1]);
+    }
+}
+
 TEST_CASE("Basic Operation", "[Lists]")
 {
     LinkedList<std::size_t> ll;
@@ -89,6 +102,23 @@ TEST_CASE("Basic Operation", "[Lists]")
             REQUIRE(lla.getEntry(i) == i);
             REQUIRE(dla.getEntry(i) == i);
         }
+
+        dlc = dlc;
+        llc = llc;
+
+        for (std::size_t i = 0; i < 100; i++) {
+            REQUIRE(llc.getEntry(i) == i);
+            REQUIRE(dlc.getEntry(i) == i);
+        }
+
+        dlc = dla;
+        llc = lla;
+
+        for (std::size_t i = 0; i < 100; i++) {
+            REQUIRE(llc.getEntry(i) == i);
+            REQUIRE(dlc.getEntry(i) == i);
+        }
+
     }
 }
 
@@ -96,10 +126,15 @@ TEST_CASE("Bounds Checking", "[Lists]")
 {
     LinkedList<std::size_t> ll;
     DynamicArrayList<std::size_t> dl;
+
+    REQUIRE_THROWS(ll.remove(0));
+    REQUIRE_THROWS(dl.remove(0));
+
     for (std::size_t i = 0; i < 50; i++) {
         ll.insert(i, i);
         dl.insert(i, i);
     }
+
     REQUIRE_THROWS(ll.insert(1000, 1000));
     REQUIRE_THROWS(dl.insert(1000, 1000));
     REQUIRE_THROWS(ll.remove(1000));
@@ -109,6 +144,9 @@ TEST_CASE("Bounds Checking", "[Lists]")
     REQUIRE_THROWS(dl.setEntry(1000, 1000));
     REQUIRE_THROWS(ll.getEntry(1000));
     REQUIRE_THROWS(dl.getEntry(1000));
+
+    REQUIRE_THROWS(ll.insert(101, 101));
+    REQUIRE_THROWS(dl.insert(101, 101));
 
     REQUIRE_THROWS(ll.remove(100));
     REQUIRE_THROWS(dl.remove(100));
