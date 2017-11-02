@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/GitHub/ECE2504/Project02/alu_quartus/simulation/qsim
+valu
+Z1 !s110 1509580462
+!i10b 1
+!s100 cE3hT3F<eAPJlH_WYmF6K1
+I=Pali7fMh<U2N8:h<bn=Y3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1509580461
+Z4 8alu.vo
+Z5 Falu.vo
+L0 32
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1509580462.000000
+Z8 !s107 alu.vo|
+Z9 !s90 -work|work|alu.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+valu_vlg_vec_tst
+R1
+!i10b 1
+!s100 =VnYA0g30Q:a0@zQGGN^h2
+IXW7AhQGN2^5If6oO;lFI62
+R2
+R0
+w1509580460
+8Waveform1.vwf.vt
+FWaveform1.vwf.vt
+L0 30
+R6
+r1
+!s85 0
+31
+R7
+!s107 Waveform1.vwf.vt|
+!s90 -work|work|Waveform1.vwf.vt|
+!i113 1
+R10
+R11
+vhard_block
+R1
+!i10b 1
+!s100 _hNR6IV8]IAIMDhJo@m6:0
+I3ZV1ZAVOXCjUQA<ElE:QR3
+R2
+R0
+R3
+R4
+R5
+L0 5771
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
