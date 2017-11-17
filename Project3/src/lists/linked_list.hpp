@@ -9,15 +9,14 @@
 #include "abstract_list.hpp"
 
 template <typename T>
-struct node {
-    std::unique_ptr<node<T>> next = nullptr;
-    T item = T();
-};
-
-template <typename T>
 class LinkedList : public AbstractList<T> {
 private:
-    std::unique_ptr<struct node<T>> head = nullptr;
+    struct node {
+        std::unique_ptr<struct node> next = nullptr;
+        T item = T();
+    };
+
+    std::unique_ptr<struct node> head = nullptr;
     std::size_t sz = 0;
 public:
     LinkedList();
