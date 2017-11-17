@@ -33,8 +33,6 @@ public:
 
     bool isEmpty() const noexcept;
 
-    void for_each(const std::function<void(const T&)>& fn);
-
     T front() const;
     T back() const;
 

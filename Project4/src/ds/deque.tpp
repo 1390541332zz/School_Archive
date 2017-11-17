@@ -9,6 +9,7 @@ Deque<T>::~Deque() {}
 template <typename T>
 Deque<T>::Deque(const Deque& rhs)
 {
+    if(tail == rhs.tail) return;
     if (rhs.tail == nullptr) return;
     for (struct node* cur = rhs.tail; cur != nullptr; cur = cur->prev) {
         std::unique_ptr<struct node> tmp(new struct node);
@@ -29,18 +30,19 @@ Deque<T>::Deque(Deque&& rhs) : head(std::move(rhs.head)), tail(rhs.tail)
 template <typename T>
 Deque<T>& Deque<T>::operator=(Deque&& rhs)
 {
-    if (this == &rhs) return *this;
     Deque tmp(rhs);
-    *this = std::move(tmp);
+    head = std::move(tmp.head);
+    tail = tmp.tail;
     return *this;
 }
 
 template <typename T>
 Deque<T>& Deque<T>::operator=(const Deque& rhs)
 {
-    if (this == &rhs) return *this;
+    if (tail == rhs.tail) return *this;
     Deque tmp(rhs);
-    *this = std::move(tmp);
+    head = std::move(tmp.head);
+    tail = tmp.tail;
     return *this;
 }
 
@@ -108,12 +110,4 @@ void Deque<T>::popBack()
     }
     tail = tail->prev;
     tail->next.reset();
-}
-
-template <typename T>
-void Deque<T>::for_each(const std::function<void(const T&)>& fn)
-{
-    for (struct node* cur = head.get(); cur != nullptr; cur = cur->next.get()) {
-        fn(cur->item);
-    }
 }

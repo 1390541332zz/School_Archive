@@ -74,6 +74,11 @@ TEST_CASE("Basic Functionality", "[Deque]")
                 d.pushFront(i);
             }
             validate(d);
+            for (size_t i = 1; i <= TEST_WIDTH; i++) {
+                d_c.pushFront(i);
+            }
+            d_c = d_c;
+            validate(d_c);
         }
     }
 }
@@ -92,4 +97,21 @@ TEST_CASE("Reverse Operators", "[Deque]")
     REQUIRE_THROWS(d.front());
     REQUIRE_THROWS(d.back());
 
+}
+
+TEST_CASE("Empty Checks", "[Deque]")
+{
+    Deque<int> d;
+    d.pushBack(1);
+    d.popFront();
+    REQUIRE(d.isEmpty());
+    d.pushFront(1);
+    d.popBack();
+    REQUIRE(d.isEmpty());
+    d.pushBack(1);
+    d.popBack();
+    REQUIRE(d.isEmpty());
+    d.pushFront(1);
+    d.popFront();
+    REQUIRE(d.isEmpty());
 }
