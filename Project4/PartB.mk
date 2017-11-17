@@ -26,6 +26,8 @@ CXXFLAGS   = -std=c++11 -pedantic -ggdb $(WARNFLAGS) $(SANFLAG) -I./$(DS_DIR)/
 VALGRIND  := valgrind --tool=memcheck --leak-check=full --show-reachable=yes \
 			--num-callers=20 --track-fds=yes --track-origins=yes
 
+CALLGRIND  := valgrind --tool=callgrind
+
 MAIN	   := pathfinder
 TESTRUNNER := bash ./$(TEST_DIR)/testrunner.sh
 
@@ -92,6 +94,12 @@ valgrind: $(MAIN_EXE)
 		$(VALGRIND) $(MAIN_EXE) ./$(DIFFTESTSAMPLES)/$$ver.in.png	\
 				  	            /dev/null;							\
 	done
+
+callgrind: $(MAIN_EXE)
+	-@for ver in $(DIFFTESTS); do									\
+		$(CALLGRIND) $(MAIN_EXE) ./$(DIFFTESTSAMPLES)/$$ver.in.png	\
+				  	            /dev/null;							\
+	done
 #---------------------#
 # Ancillary Functions #
 #---------------------#
@@ -105,7 +113,7 @@ clean:
 		  ./$(DIFFTESTOUT)/*	\
 		  ./$(PROJ).zip			\
 		  ./vgcore.*			\
-		  ./gmon.out			\
+		  ./callgrind.out.*		\
 		  ./.gdb_history*
 
 #zip: $(PROJ).zip

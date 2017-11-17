@@ -17,7 +17,6 @@ private:
     Image<Pixel> img_tmp;
     struct point start;
     Deque<struct point> unexplored;
-    Deque<struct point> explored;
 
     bool is_solution(struct point pt) {
         return ((img(pt.r, pt.c) == WHITE) &&
@@ -52,7 +51,6 @@ private:
         while (!unexplored.isEmpty()) {
             struct point cur = unexplored.back();
             unexplored.popBack();
-            explored.pushFront(cur);
             img_tmp(cur.r, cur.c) = BLACK;
             if (is_solution(cur)) {
                 img(cur.r, cur.c) = GREEN;

@@ -59,7 +59,7 @@ UNIT_EXE := ./$(BUILD)/$(UNIT_MAIN)
 #-------------------------#
 all: unittest integrationtest
 
-integrationtest: build difftest valgrind
+integrationtest: build difftest
 
 unittest: build-unit unit unit-valgrind
 
@@ -80,6 +80,9 @@ unit-gdb:
 
 valgrind:
 	make -f PartB.mk valgrind
+
+callgrind:
+	make -f PartB.mk callgrind
 
 difftest:
 	make -f PartB.mk difftest
