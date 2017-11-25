@@ -1,0 +1,152 @@
+\documentclass[12pt,letterpaper,titlepage]{report}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{enumitem}
+\setmainfont{Times New Roman}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{paracol}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tikz-timing}
+\usetikzlibrary{automata,positioning}
+\graphicspath{{img/}}
+\usepackage{karnaugh-map}
+\usepackage[margin=0.65in]{geometry}
+\usepackage{xparse}
+\author{Jacob Abel}
+\title{%
+	Homework 12
+	\\\large ECE2504 CRN:82729
+}
+
+
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+\raggedcolumns
+
+\paragraph{Question 1:}
+(5 pts) Draw the logic diagram of a 4‐bit register with function selection inputs $S_1$ and $S_0$. The register is to operate according to the following function table.
+
+\begin{center}
+\def\arraystretch{1.5} 
+\begin{tabular}{|c|c|}\hline 
+$S_1S_0$ & Register Operation \\ \hline 
+00 & Clear \\ \hline 
+01 & Increment \\ \hline 
+10 & Hold \\ \hline 
+11 & Parallel Load \\ \hline 
+\end{tabular} 
+\end{center}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth, height=0.6\textheight, keepaspectratio=true]{hw12p1a}
+  \caption{Question 1 Logic Diagram}
+\end{figure}
+
+\clearpage
+
+\paragraph{Question 2:}
+(6 pts) Implement the logic required to implement the following register transfers between three registers $R0$, $R1$, and $R2$.
+
+\begin{align*}
+C_A:& R1 \gets R0\\
+C_B:& R0 \gets R1, R2 \gets R0\\
+C_C:& R1 \gets R2, R0 \gets R2\\
+\end{align*}
+
+The control variables $C_i$ are mutually exclusive (only one can be high at a time). No transfer should occur when all control variables are equal to 0. Using registers and multiplexers, draw a detailed logic diagram of the hardware that implements a single bit of these register transfers. Include the logic required to map the control variables $C_A$, $C_B$, $C_C$ as inputs to the mux select bits and the load signals for registers.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{hw12p2a}
+  \caption{Question 2 Logic Diagram}
+\end{figure}
+
+\paragraph{Question 3:}
+(4 pts) The content of a 4‐bit register is initially 0111. The register is shifted four times to the right with the data sequence 1011 as the serial input. (The leftmost bit of the sequence is the first bit of the sequence.) What is the content of the register after each shift?
+
+\begin{center}
+\def\arraystretch{1.15} 
+\begin{tabular}{|c|c|}\hline 
+Initial Register Contents & $0111$ \\ \hline 
+Shift Right \#1 & 1011 \\ \hline 
+Shift Right \#2 & 0101 \\ \hline 
+Shift Right \#3 & 1010 \\ \hline 
+Shift Right \#4 & 1101 \\ \hline 
+\end{tabular} 
+\end{center}
+
+\clearpage
+
+\paragraph{Question 4:}
+(6 pts) Draw the block diagram for the hardware that implements the following statement.
+
+\begin{align*}
+T_3+yT_0S_1:& A \gets A \land B, B \gets 0
+\end{align*}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{hw12p4a}
+  \caption{Question 4 Logic Diagram}
+\end{figure}
+
+
+where A and B are two n‐bit registers and $y$, $T_0$, $T_3$, and $S_1$ are control variables. Include the logic gates for the control function. 
+
+Hint: Recall that the symbol + designates an OR function in the control or Boolean function and an arithmetic plus in a microoperation.
+
+\clearpage
+
+\paragraph{Question 5:}
+Consider a 2M × 16 main memory that is built using 256K × 16 RAM chips.
+
+(1 pt each)
+\begin{enumerate} [label=\alph*)]
+\item How many chips are required? \textbf{8 256K x 16 chips}
+\item How many address bits are required for each chip? \textbf{18 address bits}
+\item How many address bits are required for the entire memory? \textbf{21 address bits}
+\item What is the largest unsigned binary number that can be contained in a single word of this memory? Give your answer in decimal. \textbf{65535}
+\item What is the largest positive 2’s complement number that can be contained in a single word of this memory? Give your answer in decimal. \textbf{32767}
+\end{enumerate}
+(3 pts each)
+\begin{enumerate} [label=\alph*), resume]
+\item Configure the 256K × 16 RAM chips to form 2M 16‐bit words using high order interleaving (block diagram).
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.8\textwidth, height=\textheight, keepaspectratio=true]{hw12p5a}
+  \caption{High Order Interleaving Logic Diagram}
+\end{figure}
+
+\pagebreak
+
+\item Now assume the memory is 2M x 32. Configure eight 512K × 16 RAM chips to form 2M 32‐bit words using high order interleaving (block diagram).
+\end{enumerate}
+
+
+\vspace{\fill}
+\noindent
+GRADING SCALE
+\medskip
+
+Total: 32 pts
+\bigskip
+
+\def\arraystretch{1.5}
+\begin{tabular}{ | l | c | c | c | c | c | c | c | c | } \hline
+Pts          & 0  & 4  & 8  & 12 & 16 & 20 & 24 & 28     \\\hline
+Letter Grade & D- & D  & C- & C  & B- & B  & A- & A      \\\hline
+\end{tabular}
+\end{raggedright}
+\end{document}
