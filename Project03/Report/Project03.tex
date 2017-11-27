@@ -47,9 +47,37 @@
 
 \section{Purpose}
 
+
 \section{Problem Specification}
 
+
+\section{Disassembly and Initial Analysis}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline 
+Memory Address & Machine Code & Instruction (Values in decimal) \\ \hline 
+0 & 1400 & XOR R0, R0, R0   \\ \hline 
+1 & 2100 & LD  R0, R0, M[A] \\ \hline 
+2 & 8443 & ADI R0, 3,  R1   \\ \hline 
+3 & 0480 & ADD R0, R0, R2   \\ \hline 
+4 & 00E0 & MOV R4, R3       \\ \hline 
+5 & 0290 & INC R2, R2       \\ \hline 
+6 & 0ADA & SUB R3, R2, R3   \\ \hline 
+7 & 0C48 & DEC R1, R1       \\ \hline 
+8 & C00A & BRZ R1, R0       \\ \hline 
+9 & C1C4 & BRZ R0, R7       \\ \hline 
+A & 02D8 & INC R3, R3       \\ \hline 
+B & 0C48 & DEC R1, R1       \\ \hline 
+C & 1A41 & SR  R1, R1       \\ \hline 
+D & C20A & BRN R1, R0       \\ \hline 
+E & E000 & JMP R0           \\ \hline 
+\end{tabular} 
+\caption{Step 1: Initial Instruction Disassembly}\label{step1}
+\end{table}
+
 \section{Design Process}
+
 
 \section{Implementation}
 
@@ -57,8 +85,13 @@
 
 \section{Conclusion}
 
-%\section{Appendix A: Simulation Waveforms}
-%\includepdf[pages=-, noautoscale]{ValSheet.pdf}
+\clearpage
+
+\section{Appendix A: Simulation Waveforms}
+
+\clearpage
+
+\includepdf[pages=-, noautoscale]{ValSheet.pdf}
 
 \end{raggedright}
 \end{document}

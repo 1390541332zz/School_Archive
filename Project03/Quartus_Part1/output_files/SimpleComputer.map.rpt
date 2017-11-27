@@ -1,0 +1,890 @@
+Analysis & Elaboration report for SimpleComputer
+Mon Nov 27 09:23:44 2017
+Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Source assignments for cpu:cpu0
+  5. Parameter Settings for User Entity Instance: cpu:cpu0|instruction_rom:instr_mem
+  6. Parameter Settings for User Entity Instance: cpu:cpu0|single_port_ram:data_mem
+  7. Parameter Settings for User Entity Instance: button_fsm:button_fsm0
+  8. Analysis & Elaboration Settings
+  9. Port Connectivity Checks: "cpu:cpu0|mux:mux_b"
+ 10. Analysis & Elaboration Messages
+ 11. Analysis & Elaboration Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                                   ;
++------------------------------------+---------------------------------------------+
+; Analysis & Elaboration Status      ; Successful - Mon Nov 27 09:23:44 2017       ;
+; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
+; Revision Name                      ; SimpleComputer                              ;
+; Top-level Entity Name              ; ECE2504SimpleComputer                       ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; N/A until Partition Merge                   ;
+;     Total combinational functions  ; N/A until Partition Merge                   ;
+;     Dedicated logic registers      ; N/A until Partition Merge                   ;
+; Total registers                    ; N/A until Partition Merge                   ;
+; Total pins                         ; N/A until Partition Merge                   ;
+; Total virtual pins                 ; N/A until Partition Merge                   ;
+; Total memory bits                  ; N/A until Partition Merge                   ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
+; Total PLLs                         ; N/A until Partition Merge                   ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------+
+; Source assignments for cpu:cpu0                                     ;
++------------------------------+-------+------+-----------------------+
+; Assignment                   ; Value ; From ; To                    ;
++------------------------------+-------+------+-----------------------+
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[15]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[15]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[14]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[14]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[13]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[13]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[12]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[12]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[11]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[11]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[10]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[10]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[9]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[9]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[8]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[8]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[7]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[7]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[6]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[6]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[5]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[5]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[4]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[4]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[3]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[3]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[2]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[2]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[1]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[1]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[0]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[0]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[15]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[15]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[14]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[14]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[13]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[13]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[12]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[12]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[11]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[11]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[10]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[10]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[9]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[9]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[8]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[8]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[7]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[7]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[6]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[6]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[5]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[5]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[4]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[4]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[3]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[3]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[2]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[2]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[1]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[1]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[0]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[0]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DA[2]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DA[2]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DA[1]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DA[1]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DA[0]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DA[0]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; AA[2]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; AA[2]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; AA[1]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; AA[1]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; AA[0]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; AA[0]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; BA[2]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; BA[2]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; BA[1]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; BA[1]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; BA[0]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; BA[0]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; MB                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; MB                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; FS[3]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; FS[3]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; FS[2]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; FS[2]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; FS[1]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; FS[1]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; FS[0]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; FS[0]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; N                     ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; N                     ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; C                     ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; C                     ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; V                     ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; V                     ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; Z                     ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; Z                     ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; MD                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; MD                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; RW                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; RW                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; MW                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; MW                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PL                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PL                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; JB                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; JB                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; BC                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; BC                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[15]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[15]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[14]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[14]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[13]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[13]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[12]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[12]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[11]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[11]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[10]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[10]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[9]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[9]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[8]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[8]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[7]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[7]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[6]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[6]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[5]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[5]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[4]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[4]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[3]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[3]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[2]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[2]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[1]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[1]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[0]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[0]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[15]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[15]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[14]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[14]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[13]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[13]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[12]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[12]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[11]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[11]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[10]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[10]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[9]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[9]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[8]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[8]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[7]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[7]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[6]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[6]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[5]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[5]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[4]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[4]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[3]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[3]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[2]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[2]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[1]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[1]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[0]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[0]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[15]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[15]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[14]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[14]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[13]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[13]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[12]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[12]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[11]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[11]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[10]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[10]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[9]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[9]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[8]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[8]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[7]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[7]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[6]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[6]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[5]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[5]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[4]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[4]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[3]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[3]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[2]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[2]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[1]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[1]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[0]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[0]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[15]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[15]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[14]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[14]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[13]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[13]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[12]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[12]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[11]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[11]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[10]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[10]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[9]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[9]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[8]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[8]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[7]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[7]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[6]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[6]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[5]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[5]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[4]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[4]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[3]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[3]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[2]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[2]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[1]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[1]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[0]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[0]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[15] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[15] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[14] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[14] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[13] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[13] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[12] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[12] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[11] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[11] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[10] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[10] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[9]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[9]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[8]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[8]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[7]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[7]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[6]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[6]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[5]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[5]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[4]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[4]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[3]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[3]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[2]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[2]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[1]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[1]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[0]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[0]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[15]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[15]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[14]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[14]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[13]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[13]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[12]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[12]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[11]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[11]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[10]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[10]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[9]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[9]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[8]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[8]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[7]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[7]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[6]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[6]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[5]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[5]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[4]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[4]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[3]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[3]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[2]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[2]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[1]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[1]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[0]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[0]       ;
++------------------------------+-------+------+-----------------------+
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: cpu:cpu0|instruction_rom:instr_mem ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                                         ;
+; ADDR_WIDTH     ; 10    ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: cpu:cpu0|single_port_ram:data_mem ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                                        ;
+; ADDR_WIDTH     ; 8     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: button_fsm:button_fsm0 ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; s0             ; 0     ; Unsigned Binary                            ;
+; s1             ; 1     ; Unsigned Binary                            ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Elaboration Settings                                                                                         ;
++----------------------------------------------------------------------------+-----------------------+--------------------+
+; Option                                                                     ; Setting               ; Default Value      ;
++----------------------------------------------------------------------------+-----------------------+--------------------+
+; Device                                                                     ; EP4CE22F17C6          ;                    ;
+; Top-level entity name                                                      ; ECE2504SimpleComputer ; SimpleComputer     ;
+; Family name                                                                ; Cyclone IV E          ; Cyclone V          ;
+; Use smart compilation                                                      ; Off                   ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                    ; On                 ;
+; Enable compact report table                                                ; Off                   ; Off                ;
+; Restructure Multiplexers                                                   ; Auto                  ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                   ; Off                ;
+; Preserve fewer node names                                                  ; On                    ; On                 ;
+; OpenCore Plus hardware evaluation                                          ; Enable                ; Enable             ;
+; Verilog Version                                                            ; Verilog_2001          ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993             ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto                  ; Auto               ;
+; Safe State Machine                                                         ; Off                   ; Off                ;
+; Extract Verilog State Machines                                             ; On                    ; On                 ;
+; Extract VHDL State Machines                                                ; On                    ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                   ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000                  ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                   ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                    ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                    ; On                 ;
+; Parallel Synthesis                                                         ; On                    ; On                 ;
+; DSP Block Balancing                                                        ; Auto                  ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                    ; On                 ;
+; Power-Up Don't Care                                                        ; On                    ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                   ; Off                ;
+; Remove Duplicate Registers                                                 ; On                    ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                   ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                   ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                   ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                   ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                   ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                    ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                   ; Off                ;
+; Optimization Technique                                                     ; Balanced              ; Balanced           ;
+; Carry Chain Length                                                         ; 70                    ; 70                 ;
+; Auto Carry Chains                                                          ; On                    ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                    ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                   ; Off                ;
+; Auto ROM Replacement                                                       ; On                    ; On                 ;
+; Auto RAM Replacement                                                       ; On                    ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                    ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto                  ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto                  ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                    ; On                 ;
+; Strict RAM Replacement                                                     ; Off                   ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                    ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                   ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                    ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                   ; Off                ;
+; Auto Resource Sharing                                                      ; Off                   ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                   ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                   ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                   ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                    ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                   ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                    ; On                 ;
+; Report Parameter Settings                                                  ; On                    ; On                 ;
+; Report Source Assignments                                                  ; On                    ; On                 ;
+; Report Connectivity Checks                                                 ; On                    ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                   ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                     ; 2                  ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation    ; Normal compilation ;
+; HDL message level                                                          ; Level2                ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                   ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000                  ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000                  ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                   ; 100                ;
+; Clock MUX Protection                                                       ; On                    ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                   ; Off                ;
+; Block Design Naming                                                        ; Auto                  ; Auto               ;
+; SDC constraint protection                                                  ; Off                   ; Off                ;
+; Synthesis Effort                                                           ; Auto                  ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                    ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                   ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium                ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto                  ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                    ; On                 ;
++----------------------------------------------------------------------------+-----------------------+--------------------+
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "cpu:cpu0|mux:mux_b" ;
++--------------+-------+----------+--------------+
+; Port         ; Type  ; Severity ; Details      ;
++--------------+-------+----------+--------------+
+; din_1[15..3] ; Input ; Info     ; Stuck at GND ;
++--------------+-------+----------+--------------+
+
+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file single_port_ram.v
+    Info (12023): Found entity 1: single_port_ram File: D:/GitHub/ECE2504/Project03/Quartus_Part1/single_port_ram.v Line: 15
+Info (12021): Found 1 design units, including 1 entities, in source file pc_controller.v
+    Info (12023): Found entity 1: pc_controller File: D:/GitHub/ECE2504/Project03/Quartus_Part1/pc_controller.v Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file mux16_1_8bits.v
+    Info (12023): Found entity 1: mux16_1_8bits File: D:/GitHub/ECE2504/Project03/Quartus_Part1/mux16_1_8bits.v Line: 15
+Warning (12090): Entity "mux" obtained from "mux.v" instead of from Quartus Prime megafunction library File: D:/GitHub/ECE2504/Project03/Quartus_Part1/mux.v Line: 13
+Info (12021): Found 1 design units, including 1 entities, in source file mux.v
+    Info (12023): Found entity 1: mux File: D:/GitHub/ECE2504/Project03/Quartus_Part1/mux.v Line: 13
+Info (12021): Found 1 design units, including 1 entities, in source file instruction_rom.v
+    Info (12023): Found entity 1: instruction_rom File: D:/GitHub/ECE2504/Project03/Quartus_Part1/instruction_rom.v Line: 14
+Info (12021): Found 1 design units, including 1 entities, in source file instr_decoder.v
+    Info (12023): Found entity 1: instr_decoder File: D:/GitHub/ECE2504/Project03/Quartus_Part1/instr_decoder.v Line: 16
+Info (12021): Found 1 design units, including 1 entities, in source file function_unit.v
+    Info (12023): Found entity 1: function_unit File: D:/GitHub/ECE2504/Project03/Quartus_Part1/function_unit.v Line: 22
+Info (12021): Found 1 design units, including 1 entities, in source file ece2504simplecomputer.v
+    Info (12023): Found entity 1: ECE2504SimpleComputer File: D:/GitHub/ECE2504/Project03/Quartus_Part1/ECE2504SimpleComputer.v Line: 36
+Info (12021): Found 1 design units, including 1 entities, in source file dual_port_ram.v
+    Info (12023): Found entity 1: dual_port_ram File: D:/GitHub/ECE2504/Project03/Quartus_Part1/dual_port_ram.v Line: 14
+Info (12021): Found 1 design units, including 1 entities, in source file cpu.v
+    Info (12023): Found entity 1: cpu File: D:/GitHub/ECE2504/Project03/Quartus_Part1/cpu.v Line: 29
+Info (12021): Found 1 design units, including 1 entities, in source file button_fsm.v
+    Info (12023): Found entity 1: button_fsm File: D:/GitHub/ECE2504/Project03/Quartus_Part1/button_fsm.v Line: 16
+Info (12127): Elaborating entity "ECE2504SimpleComputer" for the top level hierarchy
+Info (12128): Elaborating entity "cpu" for hierarchy "cpu:cpu0" File: D:/GitHub/ECE2504/Project03/Quartus_Part1/ECE2504SimpleComputer.v Line: 87
+Info (12128): Elaborating entity "pc_controller" for hierarchy "cpu:cpu0|pc_controller:pc_ctrl" File: D:/GitHub/ECE2504/Project03/Quartus_Part1/cpu.v Line: 77
+Info (12128): Elaborating entity "instruction_rom" for hierarchy "cpu:cpu0|instruction_rom:instr_mem" File: D:/GitHub/ECE2504/Project03/Quartus_Part1/cpu.v Line: 85
+Warning (10030): Net "rom.data_a" at instruction_rom.v(23) has no driver or initial value, using a default initial value '0' File: D:/GitHub/ECE2504/Project03/Quartus_Part1/instruction_rom.v Line: 23
+Warning (10030): Net "rom.waddr_a" at instruction_rom.v(23) has no driver or initial value, using a default initial value '0' File: D:/GitHub/ECE2504/Project03/Quartus_Part1/instruction_rom.v Line: 23
+Warning (10030): Net "rom.we_a" at instruction_rom.v(23) has no driver or initial value, using a default initial value '0' File: D:/GitHub/ECE2504/Project03/Quartus_Part1/instruction_rom.v Line: 23
+Info (12128): Elaborating entity "instr_decoder" for hierarchy "cpu:cpu0|instr_decoder:instruction_decoder" File: D:/GitHub/ECE2504/Project03/Quartus_Part1/cpu.v Line: 102
+Info (12128): Elaborating entity "dual_port_ram" for hierarchy "cpu:cpu0|dual_port_ram:register_file" File: D:/GitHub/ECE2504/Project03/Quartus_Part1/cpu.v Line: 124
+Info (12128): Elaborating entity "mux" for hierarchy "cpu:cpu0|mux:mux_b" File: D:/GitHub/ECE2504/Project03/Quartus_Part1/cpu.v Line: 136
+Info (12128): Elaborating entity "function_unit" for hierarchy "cpu:cpu0|function_unit:func_unit" File: D:/GitHub/ECE2504/Project03/Quartus_Part1/cpu.v Line: 149
+Info (12128): Elaborating entity "single_port_ram" for hierarchy "cpu:cpu0|single_port_ram:data_mem" File: D:/GitHub/ECE2504/Project03/Quartus_Part1/cpu.v Line: 156
+Warning (10036): Verilog HDL or VHDL warning at single_port_ram.v(27): object "addr_reg" assigned a value but never read File: D:/GitHub/ECE2504/Project03/Quartus_Part1/single_port_ram.v Line: 27
+Info (12128): Elaborating entity "button_fsm" for hierarchy "button_fsm:button_fsm0" File: D:/GitHub/ECE2504/Project03/Quartus_Part1/ECE2504SimpleComputer.v Line: 100
+Info (12128): Elaborating entity "mux16_1_8bits" for hierarchy "mux16_1_8bits:LED_mux" File: D:/GitHub/ECE2504/Project03/Quartus_Part1/ECE2504SimpleComputer.v Line: 123
+Info (144001): Generated suppressed messages file D:/GitHub/ECE2504/Project03/Quartus_Part1/output_files/SimpleComputer.map.smsg
+
+
++--------------------------------------------+
+; Analysis & Elaboration Suppressed Messages ;
++--------------------------------------------+
+The suppressed messages can be found in D:/GitHub/ECE2504/Project03/Quartus_Part1/output_files/SimpleComputer.map.smsg.
+
+

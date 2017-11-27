@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at dual_port_ram.v(28): always construct contains both blocking and non-blocking assignments File: D:/GitHub/ECE2504/Project03/Quartus_Part1/dual_port_ram.v Line: 28

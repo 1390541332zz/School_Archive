@@ -1,6 +1,0 @@
-
-State Machine - |DP2_Fall2017|address_counter:inst|key_state
-Name key_state.KEY_OPEN key_state.KEY_RELEASED key_state.KEY_PUSHED 
-key_state.KEY_OPEN 0 0 0 
-key_state.KEY_PUSHED 1 0 1 
-key_state.KEY_RELEASED 1 1 0 
