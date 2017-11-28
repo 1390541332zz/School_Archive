@@ -21,10 +21,10 @@
 
 module function_unit(FS, A, B, V, C, N, Z, F);
 
-    input [3:0]   FS;				// Function Unit select code.
+    input [3:0]   FS;			// Function Unit select code.
     input [15:0]  A, B;			// Function Unit operands A and B.
     output        V, C, N, Z;	// Function Unit status bits
-    output [15:0] F;				// Function Unit result.
+    output [15:0] F;			// Function Unit result.
 
 	// This is the select line for the Function Unit's output multiplexer.
 	wire          MF;

@@ -51,6 +51,7 @@ module cpu(rst, clk, r0, r1, r2, r3, r4, r5, r6, r7, IR, PC);
 	wire [5:0]  ad;    								// Address offset.
 	wire [15:0] se_ad;								// Sign-extended address offset.
 
+    wire [15:0] return_addr_reg						/* synthesis keep */;
 	wire [15:0] data_in_bus							/* synthesis keep */;
 
 // End module declaration.
@@ -73,7 +74,8 @@ module cpu(rst, clk, r0, r1, r2, r3, r4, r5, r6, r7, IR, PC);
 		.BC(BC),
 		.PC(PC),
 		.ld_pc(se_ad),
-		.jp_addr(A)
+		.jp_addr(A),
+        .ret_pc(return_addr_reg)
 	);
 
 	// Instantiate the 1K x 16 instruction memory.
@@ -156,7 +158,7 @@ module cpu(rst, clk, r0, r1, r2, r3, r4, r5, r6, r7, IR, PC);
 	single_port_ram data_mem(.data(mux_b_out), .addr(A[7:0]), .we(MW), .clk(clk), .q(data_mem_out));
 
 	// Take the data memory out as an input to multiplexer D.
-	assign data_in_bus = data_mem_out;
+	assign data_in_bus = (JB && BC) ? return_addr_reg : data_mem_out;
 
 	// Instatiate multiplexer D.
 	mux mux_d

@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ECE 2504 Design Project 3: Data memory values
-// 
+//
 // This text file contains the initial contents of the data memory in hex. The memory is 16 bits
 // wide, which is 4 hex digits per address.
-//  
+//
 // MODIFY THE CONTENTS of the contents of this file to use the last four digits of your student ID
 // number in BCD as the starting constant for your program. Your student ID should be store in
 // location 0, where "2504" is below.
@@ -12,7 +12,7 @@
 // consecutive locations.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 @0
-2504
+6453
 3544
 4514
 0000
