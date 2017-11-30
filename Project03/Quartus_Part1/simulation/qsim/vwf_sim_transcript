@@ -26,11 +26,11 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: devices manufactured by Intel and sold by Intel or its 
     Info: authorized distributors.  Please refer to the applicable 
     Info: agreement for further details.
-    Info: Processing started: Mon Nov 27 06:22:45 2017
+    Info: Processing started: Wed Nov 29 20:28:47 2017
 Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off SimpleComputer -c SimpleComputer --vector_source=D:/GitHub/ECE2504/Project03/Quartus_Part1/Waveform.vwf --testbench_file=D:/GitHub/ECE2504/Project03/Quartus_Part1/simulation/qsim/Waveform.vwf.vt
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 
- find port "cpu:cpu0|r7[11]" in design
+find port "cpu:cpu0|register_file_in[1]" in design
 
 Completed successfully. 
 
@@ -57,13 +57,13 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: devices manufactured by Intel and sold by Intel or its 
     Info: authorized distributors.  Please refer to the applicable 
     Info: agreement for further details.
-    Info: Processing started: Mon Nov 27 06:22:46 2017
+    Info: Processing started: Wed Nov 29 20:28:50 2017
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=D:/GitHub/ECE2504/Project03/Quartus_Part1/simulation/qsim/ SimpleComputer -c SimpleComputer
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file SimpleComputer.vo in folder "D:/GitHub/ECE2504/Project03/Quartus_Part1/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 577 megabytes
-    Info: Processing ended: Mon Nov 27 06:22:48 2017
+    Info: Peak virtual memory: 585 megabytes
+    Info: Processing ended: Wed Nov 29 20:28:52 2017
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
@@ -87,29 +87,31 @@ Reading C:/intelFPGA_lite/17.0/modelsim_ase/tcl/vsim/pref.tcl
 # do SimpleComputer.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 06:22:49 on Nov 27,2017
+# Start time: 20:28:52 on Nov 29,2017
 # vlog -work work SimpleComputer.vo 
+
 # -- Compiling module ECE2504SimpleComputer
 
 # -- Compiling module hard_block
 # 
 # Top level modules:
 # 	ECE2504SimpleComputer
-# End time: 06:22:50 on Nov 27,2017, Elapsed time: 0:00:01
+# End time: 20:28:53 on Nov 29,2017, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 06:22:50 on Nov 27,2017
-# vlog -work work Waveform.vwf.vt 
 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:28:53 on Nov 29,2017
+# vlog -work work Waveform.vwf.vt 
 # -- Compiling module ECE2504SimpleComputer_vlg_vec_tst
 # 
 # Top level modules:
 # 	ECE2504SimpleComputer_vlg_vec_tst
-# End time: 06:22:50 on Nov 27,2017, Elapsed time: 0:00:00
+
+# End time: 20:28:54 on Nov 29,2017, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 
 # vsim -novopt -c -t 1ps -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.ECE2504SimpleComputer_vlg_vec_tst 
-# Start time: 06:22:50 on Nov 27,2017
+# Start time: 20:28:54 on Nov 29,2017
 # Loading work.ECE2504SimpleComputer_vlg_vec_tst
 # Loading work.ECE2504SimpleComputer
 # Loading work.hard_block
@@ -129,17 +131,9 @@ Reading C:/intelFPGA_lite/17.0/modelsim_ase/tcl/vsim/pref.tcl
 
 # Simulation time: 0 ps
 
-# Simulation time: 0 ps
-
-# Simulation time: 0 ps
-
-# Simulation time: 0 ps
-
-# Simulation time: 0 ps
-
 # ** Note: $finish    : Waveform.vwf.vt(49)
-#    Time: 5 us  Iteration: 0  Instance: /ECE2504SimpleComputer_vlg_vec_tst
-# End time: 06:23:08 on Nov 27,2017, Elapsed time: 0:00:18
+#    Time: 1200 ns  Iteration: 0  Instance: /ECE2504SimpleComputer_vlg_vec_tst
+# End time: 20:29:01 on Nov 29,2017, Elapsed time: 0:00:07
 # Errors: 0, Warnings: 1
 
 Completed successfully. 
@@ -152,7 +146,7 @@ Reading D:/GitHub/ECE2504/Project03/Quartus_Part1/simulation/qsim/SimpleComputer
 
 Processing channel transitions... 
 
-Writing the resulting VWF to D:/GitHub/ECE2504/Project03/Quartus_Part1/simulation/qsim/SimpleComputer_20171127062308.sim.vwf
+Writing the resulting VWF to D:/GitHub/ECE2504/Project03/Quartus_Part1/simulation/qsim/SimpleComputer_20171129202901.sim.vwf
 
 Finished VCD to VWF conversion.
 

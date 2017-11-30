@@ -1,0 +1,49 @@
+\begin{lstlisting}[language=diff, firstnumber=31]
+    // This is the select line for the Function Unit's output multiplexer.
+-   wire          MF;
++   wire          MF, NM;
+\end{lstlisting}
+
+\begin{lstlisting}[language=diff, firstnumber=37]
+    // These 17-bit vectors are results that include a carry-out.
+-   wire [16:0]   arith_out, logic_out, shift_out;
++   wire [16:0]   arith_out, logic_out, shift_out, nand_out;
+    wire [16:0]   temp_G, temp_F;
+\end{lstlisting}
+
+\begin{lstlisting}[language=diff, firstnumber=43]
+    // The adder operands are zero-filled to 17 bits to generate a carry-out.
+-   assign arith_A   = {1'b0, A};
++   assign arith_A   = (FS[2:0] == 3'o4 ) ? 17'h0001   : {1'b0, A};
+    assign arith_B   = (FS[2:1] == 2'b00) ? 17'b0      :
+\end{lstlisting}
+
+\begin{lstlisting}[language=diff, firstnumber=52]
+// The logic circuit uses FS[1:0] to perform (AND, OR, XOR, Complement)
+-   assign logic_out = (FS[1:0] == 2'b00) ? {1'b0, A} & {1'b0, B} :
++   assign logic_out = ( (FS[1:0] == 2'b00)
++                      ||(FS[2] == 1'b1)) ? {1'b0, A} & {1'b0, B} :
+                       (FS[1:0] == 2'b01) ? {1'b0, A} | {1'b0, B} :
+                       (FS[1:0] == 2'b10) ? {1'b0, A} ^ {1'b0, B} :
+                       (FS[1:0] == 2'b11) ? {1'b0, ~A}            : 17'bxxxxxxxxxxxxxxxxx;
+\end{lstlisting}
+
+\begin{lstlisting}[language=diff, firstnumber=60]
+    assign temp_G    = (FS[3] == 1'b0) ? arith_out : logic_out;
+
++   assign nand_out  = ~logic_out;
+
+    // The Shifter uses FS[1:0] to perform (B, sr B, sl B).
+\end{lstlisting}
+
+\begin{lstlisting}[language=diff, firstnumber=69]
+    // The mux that chooses between the ALU and shifter has a select equal to (FS[3] & FS[2]).
+    assign MF = FS[3] & FS[2];
++   // NAND Operator Mode Flag
++   assign NM = FS[1] & FS[0];
+
+    // The mux on the Function Unit output uses MF to perform (ALU, Shifter).
+-   assign temp_F = (MF == 1'b0) ? temp_G : shift_out;
++   assign temp_F = (MF == 1'b0) ? temp_G    :
++                   (NM == 1'b0) ? shift_out : nand_out;
+\end{lstlisting}

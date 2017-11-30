@@ -1,4 +1,6 @@
 \documentclass[12pt,letterpaper,titlepage]{article}
+\usepackage{solarized-light}
+
 \usepackage{fontspec}
 \defaultfontfeatures{Mapping=tex-text}
 \usepackage{xunicode}
@@ -26,10 +28,21 @@
 \usepackage{graphicx}
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
 \graphicspath{{img/}}
+
 \author{Jacob Abel}
 \title{Project 3}
 
 \setlength{\parskip}{0.5em}
+
+\newcommand{\lstbg}[3][0pt]{{\fboxsep#1\colorbox{#2}{\strut #3}}}
+\lstdefinelanguage{diff}{
+  basicstyle=\ttfamily\small,
+  morecomment=[f][\lstbg{red!20}]-,
+  morecomment=[f][\lstbg{green!20}]+,
+  morecomment=[f][\textit]{@@},
+  %morecomment=[f][\textit]{---},
+  %morecomment=[f][\textit]{+++},
+}
 
 
 \begin{document}
@@ -46,20 +59,39 @@
 \begin{raggedright}
 
 \section{Purpose}
-
+This goal of this project was to successfully disassemble CPU op-codes into assembly and implement several new instructions based on knowledge gained from the initial disassembly. This requires application of basic combinational and sequential logic design skills, knowledge of verilog syntax and style, and a comprehensive understanding of basic computer architecture and instruction formats.
 
 \section{Problem Specification}
+The final deliverables for this project include the modifications necessary to implement the instructions in table~\ref{opspec} and the disassembly of 15 instructions specified in the project specification. The disassembled instructions can be found in table~\ref{dis}. 
 
-
-\section{Disassembly and Initial Analysis}
+The newly implemented instructions in table~\ref{opspec} are implemented with minimal changes to the original source to perform the following operations. ADDINC adds the contents of R[A] and R[B], increments the sum, and stores the result in R[D]. SUBI subtracts a hard coded constant OP from R[A] and stores the result in R[D]. NEGI stores the negative of a hard coded constant OP in R[D]. NAND performs a not and operation on R[A] and R[B]. The result is stored in R[D]. The JAL operation stores the address following the current program counter address in R[B] and performs a jump to the location stored in R[A]. The JAL operation allows programs to return to the original location following a jump. One use of this operation is to provide the faculties for function calls by performing a JAL and then later a jump to the saved address at the end of the function. The specification labelled this operation as optional however it is fully implemented and functional.
 
 \begin{table}[ht]
 \centering
+\def\arraystretch{1.35}
+\begin{tabular}{|l|l|l|l|} \hline 
+Instruction        & Mnemonic &  Format    & Description                                \\ \hline \hline
+Add and Increment  & ADDINC   & RD, RA, RB & $R[DR] \gets R[SA] + R[SB] + 1           $ \\ \hline
+Subtract Immediate & SUBI     & RD, RA, OP & $R[DR] \gets R[SA]\;–\;\text{zf}\;OP     $ \\ \hline
+Negate Immediate   & NEGI     & RD, OP     & $R[DR] \gets –\;\text{zf}\;OP            $ \\ \hline
+NAND               & NAND     & RD, RA, RB & $R[DR] \gets \overline{R[SA] \land R[SB]}$ \\ \hline
+Jump and link      & JAL      & RA, RB     & $PC \gets R[SA], R[SB] \gets PC + 1      $ \\ \hline
+\end{tabular} 
+\caption[Instructions to be implemented]{\raggedright Instructions to be implemented from the Project 3 Specifications}\label{opspec}
+\end{table}
+
+\clearpage
+
+\section{Disassembly and Initial Analysis}
+
+\begin{wraptable}[23]{R}{0.75\textwidth}
+\centering
+\def\arraystretch{1.15}
 \begin{tabular}{|c|c|l|} \hline 
-Memory Address & Machine Code & Instruction (Values in decimal) \\ \hline 
+Memory Address & Machine Code & Instruction (Values in decimal) \\ \hline\hline 
 0 & 1400 & XOR R0, R0, R0   \\ \hline 
 1 & 2100 & LD  R4, R0       \\ \hline 
-2 & 8443 & ADI R1, R0, 3   \\ \hline 
+2 & 8443 & ADI R1, R0, 3    \\ \hline 
 3 & 0480 & ADD R2, R0, R0   \\ \hline 
 4 & 00E0 & MOV R3, R4       \\ \hline 
 5 & 0290 & INC R2, R2       \\ \hline 
@@ -73,26 +105,96 @@ C & 1A41 & SHR R1, R1       \\ \hline
 D & C20A & BRN R0, R1       \\ \hline 
 E & E000 & JMP R0           \\ \hline 
 \end{tabular} 
-\caption{Step 1: Initial Instruction Disassembly}\label{step1}
+\caption{Initial Instruction Disassembly}\label{dis}
+\end{wraptable}
+
+The initial stage of the project is the disassembly of a series of instructions and the analysis of pre-existing source before implementing the new instructions. The first part of disassembly was to convert all of the hexadecimal instructions to binary. After that all the operator flags(FS, MB, MD, RW, MW, PL, JB, BC) in the instructions were worked out by separating the binary based on the verilog in instr\_decoder.v and matching the instructions to their corresponding assembly op-codes based on the operator flags. Once the op-codes had been identified, the instructions were put into their specific formats and the register addresses and hard coded constants were converted from binary to decimal. At this point the instructions were fully disassembled and are available in table~\ref{dis}. Following this, simulations of the design performing the instructions were run in Quartus and recorded. The annotated simulations are available in \nameref{simwave}, table~\ref{dissim}. They were then cross-referenced against the table to verify that the disassembled instructions were valid.
+
+\pagebreak
+
+\section{Design Process and Implementation}
+Going into the design the goal was to provide as minimal changes to the source as possible. Due to this there are a number of lines where rather than introduce a new multiplexer, an existing multiplexer could have been expanded.
+
+The first step in designing the new instructions was to identify the existing capabilities of the hardware. This was largely completed in the previous section however there were some additional steps that were necessary to completely identify the full capabilities of the hardware. By working out what type of operations every FS combination performed, it was discovered that several undocumented op-codes either nearly or already completely implemented the new instructions. 
+
+ADDINC only required flipping bit 0 of FS for the ADD instruction to implement. SUBI only required flipping the MB bit of the SUB instruction. NEGI utilised an undocumented instruction that inverted the constant and therefore the only required addition was to add a 2x1 mux for the A operand that toggled between providing A or the constant 1. 
+
+NAND was determined to be more complicated as the only FS code that also performed the AND operation in the logic portion of the function unit was a undocumented shift operation. As such additional cases had to be added to the mux for toggling between the logic, arithmetic, and shift units. All that remained was to negate the logic unit output and attach the negated output to the newly added port in the function unit mux. 
+
+The JAL operation was an entirely different process to design compared to the other operations as it was a control operation rather than a function operation. This operation required a restructuring of the PC controller arguments list as it required the addition of a new output containing the saved return address. Additionally it required adding to the multiplexer logic for the register input so to connect the new PC controller output to the registers.  
+
+For reference all source code modifications are available in \nameref{srcdiff}.
+
+\begin{table}[ht]
+\centering
+\def\arraystretch{1.15}
+\begin{tabular}{|c|c|l|c|c|c|c|c|c|c|c|} \hline 
+Assembly Instruction & HEX  & Fields     & FS   & MB & MD & RW & MW & PL & JB & BC \\ \hline\hline
+ADDINC               & 04xx & RD, RA, RB & 0011 & 0  & 0  & 1  & 0  & 0  & 0  & 1  \\ \hline
+SUBI                 & 8Axx & RD, RA, OP & 0101 & 1  & 0  & 1  & 0  & 0  & 0  & 1  \\ \hline
+NEGI                 & 88xx & RD, OP     & 0100 & 1  & 0  & 1  & 0  & 0  & 0  & 0  \\ \hline
+NAND                 & 1Exx & RD, RA, RB & 1111 & 0  & 0  & 1  & 0  & 0  & 0  & 1  \\ \hline
+JAL                  & A2xx & RA, RB     & 0001 & 1  & 1  & 1  & 0  & 0  & 1  & 1  \\ \hline
+\end{tabular} 
+\caption{Implemented Operations}\label{step2}
 \end{table}
 
-\section{Design Process}
-
-
-\section{Implementation}
-
+\clearpage
 
 \section{Validation}
 
+To validate the design following completion simulations were run in Quartus and recorded. The annotated simulation is available in \nameref{simwave} table~\ref{opsim}. The simulation results were cross-referenced against the expected results of instructions and were proven correct. Additionally the instructions were tested on a development board and worked as intended.
 
 \section{Conclusion}
+This project was a good exercise in working with designing a CPU. It provides a decently complex task to be completed that doesn't take too much work to do properly. Additionally it provides experience working with pre-existing code which will be the most common situation in the industry. The documentation is clear and concise. There was nothing that was too difficult to do without reading the documentation once or twice.
 
+Given time to rework the project, I would likely try to provide more detailed breakdowns of the disassembly analysis and instruction design process. Additionally there are several lines that could be condensed from multiple muxes into one mux however this is only a minor blemish in the code. Otherwise I believe that the project was a success.
+
+\clearpage
+
+\section{Appendix A: Simulation Waveforms}\label{simwave}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{dissim}
+\caption{Initial Simulation Waveform}\label{dissim}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{opsim}
+\caption{Operator Validation Simulation Waveform}\label{opsim}
+\end{figure}
 
 \clearpage
 
-\section{Appendix A: Simulation Waveforms}
+
+\section{Appendix B: Verilog Modification Listings}\label{srcdiff}
+
+\begin{figure}[ht]
+\centering
+\input{src/pccntrl.tex}
+\caption{pc\_controller.v Changes}\label{pc}
+\end{figure}
 
 \clearpage
+
+\begin{figure}[ht]
+\centering
+\input{src/cpu.tex}
+\caption{cpu.v Changes}\label{cpu}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[ht]
+\centering
+\input{src/funit.tex}
+\caption{function\_unit.v Changes}\label{fn}
+\end{figure}
+
+\clearpage
+
 
 \includepdf[pages=-, noautoscale]{ValSheet.pdf}
 

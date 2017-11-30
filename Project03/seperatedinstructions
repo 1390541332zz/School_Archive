@@ -157,6 +157,31 @@ Function operators
 | JAL  | A2xx | 1010001 | 1  | 0001 | 1  | 1  | 0  | 0  | 1  | 1  |
 |=================================================================|
 
+
+|======================================================================|
+| OP     | HEX  | Fields     | FS   | MB | MD | RW | MW | PL | JB | BC |
+| ADDINC | 04xx | RD, RA, RB | 0011 | 0  | 0  | 1  | 0  | 0  | 0  | 1  |
+| SUBI   | 8Axx | RD, RA, OP | 0101 | 1  | 0  | 1  | 0  | 0  | 0  | 1  |
+| NEGI   | 88xx | RD, OP     | 0100 | 1  | 0  | 1  | 0  | 0  | 0  | 0  |
+| NAND   | 1Exx | RD, RA, RB | 1111 | 0  | 0  | 1  | 0  | 0  | 0  | 1  |
+| JAL    | A2xx | RA, RB     | 0001 | 1  | 1  | 1  | 0  | 0  | 1  | 1  |
+|======================================================================|
+
+OP     & HEX  & Fields     & FS   & MB & MD & RW & MW & PL & JB & BC \\ \hline
+ADDINC & 04xx & RD, RA, RB & 0011 & 0  & 0  & 1  & 0  & 0  & 0  & 1  \\ \hline
+SUBI   & 8Axx & RD, RA, OP & 0101 & 1  & 0  & 1  & 0  & 0  & 0  & 1  \\ \hline
+NEGI   & 88xx & RD, OP     & 0100 & 1  & 0  & 1  & 0  & 0  & 0  & 0  \\ \hline
+NAND   & 1Exx & RD, RA, RB & 1111 & 0  & 0  & 1  & 0  & 0  & 0  & 1  \\ \hline
+JAL    & A2xx & RA, RB     & 0001 & 1  & 1  & 1  & 0  & 0  & 1  & 1  \\ \hline
+
+
+Instruction        & Mnemonic &  Format    & Description                                \\ \hline \hline
+Add and Increment  & ADDINC   & RD, RA, RB & $R[DR] \gets R[SA] + R[SB] + 1           $ \\ \hline
+Subtract Immediate & SUBI     & RD, RA, OP & $R[DR] \gets R[SA] – zf OP               $ \\ \hline
+Negate Immediate   & NEGI     & RD, OP     & $R[DR] \gets – zf OP                     $ \\ \hline
+NAND               & NAND     & RD, RA, RB & $R[DR] \gets \overline{R[SA] \land R[SB]}$ \\ \hline
+Jump and link      & JAL      & RA, RB     & $PC \gets R[SA], R[SB] \gets PC + 1      $ \\ \hline
+
 0001 0100 0000 0000 | 1400
 0010 0000 0100 0000 | 2040
 0001 0111 0000 1000 | 1708
@@ -167,3 +192,15 @@ Function operators
 1000 1001 0100 0011 | 8943
 1010 0010 0001 0000 | A210
 0000 0000 0000 0000 | 0000
+
+PC & OP                & Predicted Result & Real Result     \\ \hline\hline
+00 & XOR    R0, R0, R0 & 0x0000           & 0x0000          \\ \hline
+01 & LD         R1, R0 & 0x6453           & 0x6453          \\ \hline
+02 & NOT    R4, R1     & 0x9BAC           & 0x9BAC          \\ \hline
+03 & SUBI   R2, R1, 5  & 0x644E           & 0x644E          \\ \hline
+04 & NAND   R3, R1, R2 & 0x9BBD           & 0x9BBD          \\ \hline
+05 & ADDINC R4, R4, R2 & 0xFFFB           & 0xFFFB          \\ \hline
+06 & SUB    R5, R1, R4 & 0x645B           & 0x645B          \\ \hline
+07 & NEGI   R5,     3  & 0xFFFD           & 0xFFFD          \\ \hline
+08 & JAL        R2, R0 & 0x0009           & 0x0009          \\ \hline
+09 & MOVA   R0, R0     & Never Executed   & Never Executed  \\ \hline
