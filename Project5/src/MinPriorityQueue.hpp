@@ -19,18 +19,18 @@ private:
         KeyT key = KeyT();
         T item = T();
         std::size_t ht = 1;
-        std::size_t sz = 1;
         node* sibling() const;
         void swap(node&);
         bool operator<(const node& rhs) const noexcept;
     };
 
+    std::size_t sz = 0;
     std::unique_ptr<node> head = nullptr;
     bool auto_rebalance = false;
 
     void update_heights(node* cur) noexcept;
     std::size_t optimal_height(std::size_t sz) const noexcept;
-    bool balance(node* cur);
+    bool balance(node* cur, std::size_t ht);
 public:
 	/**
      * MinPriorityQueue constructor

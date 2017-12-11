@@ -7,14 +7,14 @@ JOBCOUNT := 9
 
 CPPFLAGS  :=
 
-SANLFLAG  := #-lasan -lubsan
+SANLFLAG  := -lasan -lubsan
 
 LDFLAGS    = $(SANLFLAG)
 
 WARNFLAGS := -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare \
 			 -Wno-deprecated
 
-SANFLAG   := #-fsanitize=undefined -fsanitize=address
+SANFLAG   := -fsanitize=undefined -fsanitize=address
 
 CXXFLAGS   = -std=c++11  -pedantic -ggdb $(WARNFLAGS) $(SANFLAG)
 

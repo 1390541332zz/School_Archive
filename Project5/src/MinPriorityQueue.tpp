@@ -27,21 +27,18 @@ void MinPriorityQueue<KeyT, T>::update_heights(node* cur) noexcept
 {
     while (cur != nullptr) {
         std::size_t max_ht = 0;
-        cur->sz = 1;
         if (cur->lhs != nullptr && cur->rhs != nullptr) {
             if (cur->lhs->ht < cur->rhs->ht) {
                 max_ht = cur->rhs->ht;
             } else {
                 max_ht = cur->lhs->ht;
             }
-            cur->sz += cur->lhs->sz + cur->rhs->sz;
         } else if (cur->lhs != nullptr) {
             max_ht = cur->lhs->ht;
-            cur->sz += cur->lhs->sz;
         } else if (cur->rhs != nullptr) {
             max_ht = cur->rhs->ht;
-            cur->sz += cur->rhs->sz;
         }
+        if (cur->ht == max_ht + 1) return;
         cur->ht = max_ht + 1;
         cur = cur->parent;
     }
@@ -59,27 +56,28 @@ std::size_t MinPriorityQueue<KeyT, T>::optimal_height(std::size_t sz) const noex
 }
 
 template<typename KeyT, typename T>
-bool MinPriorityQueue<KeyT, T>::balance(node* cur)
+bool MinPriorityQueue<KeyT, T>::balance(node* cur, std::size_t ht)
 {
     if (cur == nullptr) return true;
+    if (cur->lhs != nullptr && cur->lhs->ht > (ht - 1)) {
+        balance(cur->lhs.get(), ht - 1);
+    }
+    if (cur->rhs != nullptr && cur->rhs->ht > (ht - 1)) {
+        balance(cur->rhs.get(), ht - 1);
+    }
     if (cur->lhs == nullptr && cur->rhs == nullptr && cur->parent != nullptr) {
         KeyT key = cur->key;
         T item = cur->item;
         node* parent = cur->parent;
-        if (parent->lhs != nullptr && parent->lhs.get() == cur) {
+        if (parent->lhs.get() == cur) {
             parent->lhs.reset();
         } else {
             parent->rhs.reset();
         }
+        --sz;
         update_heights(parent);
         insert(key, item);
         return true;
-    }
-    if (cur->lhs != nullptr && cur->lhs->ht > optimal_height(cur->lhs->sz)) {
-        balance(cur->lhs.get());
-    }
-    if (cur->rhs != nullptr && cur->rhs->ht > optimal_height(cur->rhs->sz)) {
-        balance(cur->rhs.get());
     }
 	return true;
 }
@@ -93,7 +91,7 @@ MinPriorityQueue<KeyT, T>::~MinPriorityQueue() {}
 template<typename KeyT, typename T>
 int MinPriorityQueue<KeyT, T>::size() const
 {
-    return (head != nullptr) ? head->sz : 0;
+    return sz;
 }
 
 template<typename KeyT, typename T>
@@ -126,6 +124,7 @@ template<typename KeyT, typename T>
 void MinPriorityQueue<KeyT, T>::clear()
 {
     head.reset();
+    sz = 0;
 }
 
 template<typename KeyT, typename T>
@@ -136,21 +135,17 @@ bool MinPriorityQueue<KeyT, T>::insert(const KeyT& key, const T& item)
     tmp->item = item;
 
     if (isEmpty()) {
-        ++tmp->ht;
         head = std::move(tmp);
+        sz = 1;
         return true;
     }
 
     node* cur = head.get();
-    while (true) {
-        if (cur->lhs != nullptr && cur->rhs != nullptr) {
-            if (cur->lhs->ht < cur->rhs->ht) {
-                cur = cur->lhs.get();
-            } else {
-                cur = cur->rhs.get();
-            }
+    while (cur->lhs != nullptr && cur->rhs != nullptr) {
+        if (cur->lhs->key <= cur->rhs->key) {
+            cur = cur->lhs.get();
         } else {
-            break;
+            cur = cur->rhs.get();
         }
     }
 
@@ -168,6 +163,7 @@ bool MinPriorityQueue<KeyT, T>::insert(const KeyT& key, const T& item)
         cur->swap(*(cur->parent));
         cur = cur->parent;
     }
+    ++sz;
     return true;
 }
 
@@ -175,8 +171,9 @@ template<typename KeyT, typename T>
 bool MinPriorityQueue<KeyT, T>::deleteMin() throw(std::logic_error)
 {
     if (isEmpty()) throw std::logic_error("Heap is Empty!");
-    if (head->sz == 1) {
+    if (size() == 1) {
         head.reset();
+        --sz;
         return true;
     }
     node* cur = head.get();
@@ -204,12 +201,10 @@ bool MinPriorityQueue<KeyT, T>::deleteMin() throw(std::logic_error)
     } else {
         parent->rhs.reset();
     }
-
+    --sz;
     update_heights(parent);
     if (auto_rebalance) {
-        auto_rebalance = false;
-        balance(head.get());
-        auto_rebalance = true;
+        balance(head.get(), optimal_height(sz) * 2);
     }
     return true;
 }
@@ -225,7 +220,7 @@ bool MinPriorityQueue<KeyT, T>::rebalance(int maxHeight)
 {
     if (maxHeight < optimal_height(size())) return false;
     if (height() > maxHeight) {
-        return balance(head.get());
+        return balance(head.get(), maxHeight);
     }
     return true;
 }
