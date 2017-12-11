@@ -19,26 +19,26 @@ TEST_CASE("Basic Operations", "[MinPriorityQueue]")
         REQUIRE_THROWS(q.getMinValue());
         REQUIRE_THROWS(q.deleteMin());
     }
-    //SECTION("Modification", "[MinPriorityQueue]")
-    //{
-    //    for (std::size_t i = TEST_QTY; i > 0; i--) {
-    //        REQUIRE(q.insert(i, i));
-    //        REQUIRE_NOTHROW(q.getMinItem());
-    //        REQUIRE_NOTHROW(q.getMinValue());
-    //        REQUIRE(q.getMinItem() == i);
-    //        REQUIRE(q.getMinValue() == i);
-    //        REQUIRE(q.size() == TEST_QTY - i + 1);
-    //        REQUIRE(q.height() != 0);
-    //    }
-    //    //q.printTree();
-    //    for (std::size_t i = TEST_QTY; i > 0; i--) {
-    //        REQUIRE_NOTHROW(q.getMinItem());
-    //        REQUIRE_NOTHROW(q.getMinValue());
-    //        REQUIRE(q.size() == i);
-    //        REQUIRE(q.height() != 0);
-    //        REQUIRE_NOTHROW(q.deleteMin());
-    //    }
-    //}
+    SECTION("Modification", "[MinPriorityQueue]")
+    {
+        for (std::size_t i = TEST_QTY; i > 0; i--) {
+            REQUIRE(q.insert(i, i));
+            REQUIRE_NOTHROW(q.getMinItem());
+            REQUIRE_NOTHROW(q.getMinValue());
+            REQUIRE(q.getMinItem() == i);
+            REQUIRE(q.getMinValue() == i);
+            REQUIRE(q.size() == TEST_QTY - i + 1);
+            REQUIRE(q.height() != 0);
+        }
+        q.printTree();
+        for (std::size_t i = TEST_QTY; i > 0; i--) {
+            REQUIRE_NOTHROW(q.getMinItem());
+            REQUIRE_NOTHROW(q.getMinValue());
+            REQUIRE(q.size() == i);
+            REQUIRE(q.height() != 0);
+            REQUIRE_NOTHROW(q.deleteMin());
+        }
+    }
 
     SECTION("Manual Rebalance", "[MinPriorityQueue]")
     {

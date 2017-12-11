@@ -38,7 +38,7 @@ void MinPriorityQueue<KeyT, T>::update_heights(node* cur) noexcept
         } else if (cur->rhs != nullptr) {
             max_ht = cur->rhs->ht;
         }
-        if (cur->ht == max_ht + 1) return;
+        //if (cur->ht == max_ht + 1) return;
         cur->ht = max_ht + 1;
         cur = cur->parent;
     }
@@ -142,7 +142,7 @@ bool MinPriorityQueue<KeyT, T>::insert(const KeyT& key, const T& item)
 
     node* cur = head.get();
     while (cur->lhs != nullptr && cur->rhs != nullptr) {
-        if (cur->lhs->key <= cur->rhs->key) {
+        if (cur->lhs->ht < cur->rhs->ht) {
             cur = cur->lhs.get();
         } else {
             cur = cur->rhs.get();
@@ -180,7 +180,7 @@ bool MinPriorityQueue<KeyT, T>::deleteMin() throw(std::logic_error)
     while (true) {
         node* child = nullptr;
         if (cur->lhs != nullptr && cur->rhs != nullptr) {
-            if (cur->lhs->ht < cur->rhs->ht) {
+            if (cur->lhs->key < cur->rhs->key) {
                 child = cur->lhs.get();
             } else {
                 child = cur->rhs.get();
@@ -232,10 +232,10 @@ void MinPriorityQueue<KeyT, T>::printTree()
     std::vector<std::stringstream> v(height() + 1);
     std::function<void(node*,std::size_t)> f = [&] (node* cur, std::size_t i) {
         if (cur == nullptr) {
-            v[i] << std::setw(3) << "|";
+            v[i] << std::setw(5) << "|";
             return;
         }
-        v[i] << std::setw(3) << cur->key;
+        v[i] << std::setw(5) << cur->key;
         f(cur->lhs.get(), i + 1);
         f(cur->rhs.get(), i + 1);
     };
