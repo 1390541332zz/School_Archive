@@ -6,7 +6,7 @@
 #include <functional>
 #include <sstream>
 #include <string>
-#include <vector>
+#include <list>
 #include <iomanip>
 
 template<typename KeyT, typename T>
@@ -23,7 +23,7 @@ private:
         void swap(node&);
         bool operator<(const node& rhs) const noexcept;
     };
-
+    std::size_t cnt = 0;
     std::size_t sz = 0;
     std::unique_ptr<node> head = nullptr;
     bool auto_rebalance = false;

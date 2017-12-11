@@ -130,6 +130,7 @@ void MinPriorityQueue<KeyT, T>::clear()
 template<typename KeyT, typename T>
 bool MinPriorityQueue<KeyT, T>::insert(const KeyT& key, const T& item)
 {
+    if (cnt++ >= 20000) return false;
     std::unique_ptr<node> tmp(new node);
     tmp->key  = key;
     tmp->item = item;
