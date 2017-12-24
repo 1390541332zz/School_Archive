@@ -1,0 +1,1271 @@
+TimeQuest Timing Analyzer report for SimpleComputer
+Mon Dec 11 22:21:41 2017
+Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. TimeQuest Timing Analyzer Summary
+  3. Parallel Compilation
+  4. SDC File List
+  5. Clocks
+  6. Slow 1200mV 85C Model Fmax Summary
+  7. Timing Closure Recommendations
+  8. Slow 1200mV 85C Model Setup Summary
+  9. Slow 1200mV 85C Model Hold Summary
+ 10. Slow 1200mV 85C Model Recovery Summary
+ 11. Slow 1200mV 85C Model Removal Summary
+ 12. Slow 1200mV 85C Model Minimum Pulse Width Summary
+ 13. Slow 1200mV 85C Model Setup: 'CLOCK_50'
+ 14. Slow 1200mV 85C Model Hold: 'CLOCK_50'
+ 15. Slow 1200mV 85C Model Metastability Summary
+ 16. Slow 1200mV 0C Model Fmax Summary
+ 17. Slow 1200mV 0C Model Setup Summary
+ 18. Slow 1200mV 0C Model Hold Summary
+ 19. Slow 1200mV 0C Model Recovery Summary
+ 20. Slow 1200mV 0C Model Removal Summary
+ 21. Slow 1200mV 0C Model Minimum Pulse Width Summary
+ 22. Slow 1200mV 0C Model Setup: 'CLOCK_50'
+ 23. Slow 1200mV 0C Model Hold: 'CLOCK_50'
+ 24. Slow 1200mV 0C Model Metastability Summary
+ 25. Fast 1200mV 0C Model Setup Summary
+ 26. Fast 1200mV 0C Model Hold Summary
+ 27. Fast 1200mV 0C Model Recovery Summary
+ 28. Fast 1200mV 0C Model Removal Summary
+ 29. Fast 1200mV 0C Model Minimum Pulse Width Summary
+ 30. Fast 1200mV 0C Model Setup: 'CLOCK_50'
+ 31. Fast 1200mV 0C Model Hold: 'CLOCK_50'
+ 32. Fast 1200mV 0C Model Metastability Summary
+ 33. Multicorner Timing Analysis Summary
+ 34. Board Trace Model Assignments
+ 35. Input Transition Times
+ 36. Signal Integrity Metrics (Slow 1200mv 0c Model)
+ 37. Signal Integrity Metrics (Slow 1200mv 85c Model)
+ 38. Signal Integrity Metrics (Fast 1200mv 0c Model)
+ 39. Setup Transfers
+ 40. Hold Transfers
+ 41. Report TCCS
+ 42. Report RSKM
+ 43. Unconstrained Paths Summary
+ 44. Clock Status Summary
+ 45. Unconstrained Input Ports
+ 46. Unconstrained Output Ports
+ 47. Unconstrained Input Ports
+ 48. Unconstrained Output Ports
+ 49. TimeQuest Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++-----------------------------------------------------------------------------+
+; TimeQuest Timing Analyzer Summary                                           ;
++-----------------------+-----------------------------------------------------+
+; Quartus Prime Version ; Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
+; Timing Analyzer       ; TimeQuest                                           ;
+; Revision Name         ; SimpleComputer                                      ;
+; Device Family         ; Cyclone IV E                                        ;
+; Device Name           ; EP4CE22F17C6                                        ;
+; Timing Models         ; Final                                               ;
+; Delay Model           ; Combined                                            ;
+; Rise/Fall Delays      ; Enabled                                             ;
++-----------------------+-----------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.47        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;  23.2%      ;
+;     Processor 3            ;  14.6%      ;
+;     Processor 4            ;   9.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------+
+; SDC File List                                                 ;
++---------------------------+--------+--------------------------+
+; SDC File Path             ; Status ; Read at                  ;
++---------------------------+--------+--------------------------+
+; ECE2504SimpleComputer.sdc ; OK     ; Mon Dec 11 22:21:37 2017 ;
++---------------------------+--------+--------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                               ;
++------------+------+--------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+; Clock Name ; Type ; Period ; Frequency ; Rise  ; Fall   ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets      ;
++------------+------+--------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+; CLOCK_50   ; Base ; 20.000 ; 50.0 MHz  ; 0.000 ; 10.000 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CLOCK_50 } ;
++------------+------+--------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+
+
++-------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary              ;
++-----------+-----------------+------------+------+
+; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
++-----------+-----------------+------------+------+
+; 55.92 MHz ; 55.92 MHz       ; CLOCK_50   ;      ;
++-----------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
+----------------------------------
+; Timing Closure Recommendations ;
+----------------------------------
+HTML report is unavailable in plain text report export.
+
+
++-------------------------------------+
+; Slow 1200mV 85C Model Setup Summary ;
++----------+-------+------------------+
+; Clock    ; Slack ; End Point TNS    ;
++----------+-------+------------------+
+; CLOCK_50 ; 2.116 ; 0.000            ;
++----------+-------+------------------+
+
+
++------------------------------------+
+; Slow 1200mV 85C Model Hold Summary ;
++----------+-------+-----------------+
+; Clock    ; Slack ; End Point TNS   ;
++----------+-------+-----------------+
+; CLOCK_50 ; 0.371 ; 0.000           ;
++----------+-------+-----------------+
+
+
+------------------------------------------
+; Slow 1200mV 85C Model Recovery Summary ;
+------------------------------------------
+No paths to report.
+
+
+-----------------------------------------
+; Slow 1200mV 85C Model Removal Summary ;
+-----------------------------------------
+No paths to report.
+
+
++---------------------------------------------------+
+; Slow 1200mV 85C Model Minimum Pulse Width Summary ;
++----------+-------+--------------------------------+
+; Clock    ; Slack ; End Point TNS                  ;
++----------+-------+--------------------------------+
+; CLOCK_50 ; 9.611 ; 0.000                          ;
++----------+-------+--------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Setup: 'CLOCK_50'                                                                                                                              ;
++-------+--------------------------------------+-------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                            ; To Node                                         ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------------------------+-------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 2.116 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.813     ;
+; 2.124 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.805     ;
+; 2.126 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.803     ;
+; 2.138 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.790     ;
+; 2.141 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.785     ;
+; 2.141 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.785     ;
+; 2.173 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.756     ;
+; 2.185 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.742     ;
+; 2.187 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.741     ;
+; 2.188 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.739     ;
+; 2.190 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.736     ;
+; 2.190 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.736     ;
+; 2.209 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.719     ;
+; 2.224 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.703     ;
+; 2.227 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.700     ;
+; 2.248 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.680     ;
+; 2.252 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.677     ;
+; 2.262 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.667     ;
+; 2.270 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.659     ;
+; 2.272 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.657     ;
+; 2.278 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.650     ;
+; 2.292 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.637     ;
+; 2.300 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.629     ;
+; 2.302 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.627     ;
+; 2.314 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.614     ;
+; 2.317 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.609     ;
+; 2.317 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.609     ;
+; 2.322 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.607     ;
+; 2.325 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[5][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.070     ; 17.600     ;
+; 2.327 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.601     ;
+; 2.329 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.597     ;
+; 2.333 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.070     ; 17.592     ;
+; 2.335 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.594     ;
+; 2.336 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.592     ;
+; 2.339 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.587     ;
+; 2.339 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.587     ;
+; 2.339 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.590     ;
+; 2.347 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.582     ;
+; 2.349 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.580     ;
+; 2.352 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.577     ;
+; 2.361 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.566     ;
+; 2.361 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.567     ;
+; 2.363 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.566     ;
+; 2.364 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.563     ;
+; 2.364 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.562     ;
+; 2.364 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.562     ;
+; 2.366 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.562     ;
+; 2.367 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.560     ;
+; 2.369 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.557     ;
+; 2.369 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.557     ;
+; 2.370 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.557     ;
+; 2.373 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.556     ;
+; 2.374 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.555     ;
+; 2.385 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.543     ;
+; 2.385 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.542     ;
+; 2.388 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.539     ;
+; 2.391 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.537     ;
+; 2.408 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.519     ;
+; 2.409 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.519     ;
+; 2.409 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.520     ;
+; 2.411 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.068     ; 17.516     ;
+; 2.412 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.517     ;
+; 2.414 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.515     ;
+; 2.423 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.505     ;
+; 2.426 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.500     ;
+; 2.426 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.500     ;
+; 2.429 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.500     ;
+; 2.431 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[2][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.495     ;
+; 2.432 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.496     ;
+; 2.435 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[0][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.491     ;
+; 2.438 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.491     ;
+; 2.442 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[5][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.487     ;
+; 2.446 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.483     ;
+; 2.447 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.482     ;
+; 2.448 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.481     ;
+; 2.454 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.474     ;
+; 2.457 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.472     ;
+; 2.458 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.468     ;
+; 2.461 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[5][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.070     ; 17.464     ;
+; 2.465 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.461     ;
+; 2.469 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[7][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.070     ; 17.456     ;
+; 2.476 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.452     ;
+; 2.487 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[6][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.442     ;
+; 2.488 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.441     ;
+; 2.491 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[5][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.438     ;
+; 2.493 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.436     ;
+; 2.495 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.434     ;
+; 2.497 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[4][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.429     ;
+; 2.498 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.431     ;
+; 2.501 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.428     ;
+; 2.501 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[5][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.070     ; 17.424     ;
+; 2.501 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.427     ;
+; 2.502 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[3][6]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.426     ;
+; 2.505 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.069     ; 17.421     ;
+; 2.506 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.067     ; 17.422     ;
+; 2.509 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[7][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.070     ; 17.416     ;
+; 2.511 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.418     ;
+; 2.517 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.412     ;
+; 2.517 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.412     ;
+; 2.518 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][13] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.066     ; 17.411     ;
++-------+--------------------------------------+-------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Hold: 'CLOCK_50'                                                                                                                                     ;
++-------+-------------------------------------------------+--------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                       ; To Node                                    ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-------------------------------------------------+--------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.371 ; button_fsm:button_fsm0|state                    ; cpu0_clk_en_delay0                         ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.062      ; 0.590      ;
+; 0.569 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.789      ;
+; 0.570 ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.790      ;
+; 0.570 ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.790      ;
+; 0.571 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.791      ;
+; 0.571 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.791      ;
+; 0.571 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.791      ;
+; 0.571 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.791      ;
+; 0.573 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.793      ;
+; 0.573 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.793      ;
+; 0.579 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.799      ;
+; 0.706 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.926      ;
+; 0.707 ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 0.927      ;
+; 0.843 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.063      ;
+; 0.845 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.065      ;
+; 0.845 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.065      ;
+; 0.857 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[1]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.077      ;
+; 0.859 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.079      ;
+; 0.859 ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.079      ;
+; 0.860 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.080      ;
+; 0.860 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.080      ;
+; 0.860 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.080      ;
+; 0.860 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.080      ;
+; 0.862 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.082      ;
+; 0.862 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.082      ;
+; 0.862 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.082      ;
+; 0.862 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.082      ;
+; 0.918 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.138      ;
+; 0.940 ; cpu:cpu0|dual_port_ram:register_file|ram[3][7]  ; cpu:cpu0|single_port_ram:data_mem|ram~4087 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.160      ;
+; 0.941 ; cpu:cpu0|dual_port_ram:register_file|ram[2][9]  ; cpu:cpu0|single_port_ram:data_mem|ram~4089 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.161      ;
+; 0.941 ; cpu:cpu0|dual_port_ram:register_file|ram[3][3]  ; cpu:cpu0|single_port_ram:data_mem|ram~4083 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.161      ;
+; 0.953 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.173      ;
+; 0.955 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.175      ;
+; 0.955 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.175      ;
+; 0.955 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.175      ;
+; 0.957 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.177      ;
+; 0.957 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.177      ;
+; 0.969 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.189      ;
+; 0.971 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.191      ;
+; 0.972 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.192      ;
+; 0.972 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.192      ;
+; 0.972 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.192      ;
+; 0.972 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.192      ;
+; 0.974 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.194      ;
+; 0.974 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.194      ;
+; 0.974 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.194      ;
+; 0.978 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.198      ;
+; 0.979 ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.199      ;
+; 1.043 ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; cpu:cpu0|single_port_ram:data_mem|ram~4090 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.263      ;
+; 1.065 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.285      ;
+; 1.067 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.287      ;
+; 1.067 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.287      ;
+; 1.067 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.287      ;
+; 1.069 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.289      ;
+; 1.069 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.289      ;
+; 1.081 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.301      ;
+; 1.083 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.303      ;
+; 1.084 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.304      ;
+; 1.084 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.304      ;
+; 1.084 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.304      ;
+; 1.086 ; cpu:cpu0|dual_port_ram:register_file|ram[5][13] ; cpu:cpu0|single_port_ram:data_mem|ram~4093 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.306      ;
+; 1.086 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.306      ;
+; 1.086 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.306      ;
+; 1.088 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.308      ;
+; 1.089 ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.309      ;
+; 1.090 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.310      ;
+; 1.177 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.397      ;
+; 1.179 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.399      ;
+; 1.179 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.399      ;
+; 1.179 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.399      ;
+; 1.181 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.401      ;
+; 1.193 ; cpu:cpu0|dual_port_ram:register_file|ram[2][8]  ; cpu:cpu0|single_port_ram:data_mem|ram~4088 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.413      ;
+; 1.193 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.413      ;
+; 1.195 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.415      ;
+; 1.196 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.416      ;
+; 1.196 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.416      ;
+; 1.198 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.418      ;
+; 1.200 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.420      ;
+; 1.207 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.427      ;
+; 1.209 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.429      ;
+; 1.211 ; cpu:cpu0|dual_port_ram:register_file|ram[3][6]  ; cpu:cpu0|single_port_ram:data_mem|ram~4086 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.431      ;
+; 1.220 ; cpu:cpu0|dual_port_ram:register_file|ram[2][14] ; cpu:cpu0|single_port_ram:data_mem|ram~4094 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.440      ;
+; 1.252 ; cpu:cpu0|dual_port_ram:register_file|ram[7][4]  ; cpu:cpu0|single_port_ram:data_mem|ram~4084 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.472      ;
+; 1.258 ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; cpu:cpu0|single_port_ram:data_mem|ram~4085 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.478      ;
+; 1.261 ; cpu:cpu0|pc_controller:pc_ctrl|PC[1]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[1]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.481      ;
+; 1.289 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.509      ;
+; 1.291 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.511      ;
+; 1.291 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.511      ;
+; 1.297 ; cpu:cpu0|dual_port_ram:register_file|ram[7][13] ; cpu:cpu0|single_port_ram:data_mem|ram~4093 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.517      ;
+; 1.305 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.525      ;
+; 1.307 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.527      ;
+; 1.308 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.528      ;
+; 1.310 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.530      ;
+; 1.319 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.539      ;
+; 1.321 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.541      ;
+; 1.401 ; cpu:cpu0|dual_port_ram:register_file|ram[5][11] ; cpu:cpu0|single_port_ram:data_mem|ram~4091 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.621      ;
+; 1.401 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.621      ;
+; 1.403 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.623      ;
+; 1.417 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.637      ;
+; 1.419 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.063      ; 1.639      ;
++-------+-------------------------------------------------+--------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
+-----------------------------------------------
+; Slow 1200mV 85C Model Metastability Summary ;
+-----------------------------------------------
+The design MTBF is not calculated because there are no specified synchronizers in the design.
+Number of Synchronizer Chains Found: 1
+Shortest Synchronizer Chain: 2 Registers
+Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+Worst Case Available Settling Time: 8.264 ns
+
+
+
+
++-------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary               ;
++-----------+-----------------+------------+------+
+; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
++-----------+-----------------+------------+------+
+; 62.24 MHz ; 62.24 MHz       ; CLOCK_50   ;      ;
++-----------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++------------------------------------+
+; Slow 1200mV 0C Model Setup Summary ;
++----------+-------+-----------------+
+; Clock    ; Slack ; End Point TNS   ;
++----------+-------+-----------------+
+; CLOCK_50 ; 3.933 ; 0.000           ;
++----------+-------+-----------------+
+
+
++-----------------------------------+
+; Slow 1200mV 0C Model Hold Summary ;
++----------+-------+----------------+
+; Clock    ; Slack ; End Point TNS  ;
++----------+-------+----------------+
+; CLOCK_50 ; 0.330 ; 0.000          ;
++----------+-------+----------------+
+
+
+-----------------------------------------
+; Slow 1200mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
+
+
+----------------------------------------
+; Slow 1200mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
+
+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Minimum Pulse Width Summary ;
++----------+-------+-------------------------------+
+; Clock    ; Slack ; End Point TNS                 ;
++----------+-------+-------------------------------+
+; CLOCK_50 ; 9.628 ; 0.000                         ;
++----------+-------+-------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Setup: 'CLOCK_50'                                                                                                                               ;
++-------+--------------------------------------+-------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                            ; To Node                                         ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------------------------+-------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 3.933 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 16.003     ;
+; 3.933 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 16.003     ;
+; 3.957 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.981     ;
+; 3.962 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.972     ;
+; 3.963 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.971     ;
+; 3.981 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.957     ;
+; 4.029 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.907     ;
+; 4.029 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.907     ;
+; 4.052 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.884     ;
+; 4.058 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.876     ;
+; 4.059 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.875     ;
+; 4.071 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.865     ;
+; 4.071 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.865     ;
+; 4.073 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.862     ;
+; 4.073 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.865     ;
+; 4.075 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.860     ;
+; 4.095 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.843     ;
+; 4.097 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.841     ;
+; 4.100 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.834     ;
+; 4.101 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.833     ;
+; 4.114 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.822     ;
+; 4.115 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.821     ;
+; 4.115 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.821     ;
+; 4.119 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.819     ;
+; 4.127 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.808     ;
+; 4.129 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.806     ;
+; 4.139 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.799     ;
+; 4.144 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.790     ;
+; 4.145 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.789     ;
+; 4.148 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.788     ;
+; 4.151 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.785     ;
+; 4.151 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.785     ;
+; 4.152 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[5][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.062     ; 15.781     ;
+; 4.155 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.781     ;
+; 4.155 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.779     ;
+; 4.157 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.779     ;
+; 4.163 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.775     ;
+; 4.164 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.062     ; 15.769     ;
+; 4.168 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.768     ;
+; 4.175 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.763     ;
+; 4.180 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.754     ;
+; 4.181 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.753     ;
+; 4.190 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.746     ;
+; 4.194 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.742     ;
+; 4.194 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.742     ;
+; 4.196 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.740     ;
+; 4.196 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.740     ;
+; 4.199 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.739     ;
+; 4.203 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.058     ; 15.734     ;
+; 4.207 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[5][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.058     ; 15.730     ;
+; 4.207 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.728     ;
+; 4.209 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.726     ;
+; 4.223 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.711     ;
+; 4.224 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.710     ;
+; 4.224 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.711     ;
+; 4.225 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.709     ;
+; 4.226 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.708     ;
+; 4.226 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.709     ;
+; 4.226 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.709     ;
+; 4.227 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.058     ; 15.710     ;
+; 4.228 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.707     ;
+; 4.234 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.702     ;
+; 4.236 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.702     ;
+; 4.246 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.689     ;
+; 4.248 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.687     ;
+; 4.248 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.688     ;
+; 4.260 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.678     ;
+; 4.265 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.671     ;
+; 4.267 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.669     ;
+; 4.268 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[5][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.062     ; 15.665     ;
+; 4.270 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.666     ;
+; 4.271 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.663     ;
+; 4.278 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.058     ; 15.659     ;
+; 4.279 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.655     ;
+; 4.280 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[7][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.062     ; 15.653     ;
+; 4.281 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.058     ; 15.656     ;
+; 4.287 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.649     ;
+; 4.290 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[5][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.062     ; 15.643     ;
+; 4.292 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[2][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.642     ;
+; 4.293 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.643     ;
+; 4.293 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.641     ;
+; 4.295 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[0][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.639     ;
+; 4.295 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.641     ;
+; 4.298 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.638     ;
+; 4.299 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[6][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.058     ; 15.638     ;
+; 4.300 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.636     ;
+; 4.301 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.637     ;
+; 4.302 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[7][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.062     ; 15.631     ;
+; 4.303 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[5][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.058     ; 15.634     ;
+; 4.309 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][13] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.627     ;
+; 4.313 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.623     ;
+; 4.314 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[3][6]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.622     ;
+; 4.315 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.059     ; 15.621     ;
+; 4.325 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.057     ; 15.613     ;
+; 4.326 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][12] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.609     ;
+; 4.327 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][12] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.608     ;
+; 4.329 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][13] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.606     ;
+; 4.330 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][13] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.060     ; 15.605     ;
+; 4.333 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[4][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.061     ; 15.601     ;
+; 4.334 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[5][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.062     ; 15.599     ;
++-------+--------------------------------------+-------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Hold: 'CLOCK_50'                                                                                                                                      ;
++-------+-------------------------------------------------+--------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                       ; To Node                                    ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-------------------------------------------------+--------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.330 ; button_fsm:button_fsm0|state                    ; cpu0_clk_en_delay0                         ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.529      ;
+; 0.512 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.711      ;
+; 0.513 ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.712      ;
+; 0.514 ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.713      ;
+; 0.514 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.713      ;
+; 0.514 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.713      ;
+; 0.515 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.714      ;
+; 0.515 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.714      ;
+; 0.517 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.716      ;
+; 0.517 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.716      ;
+; 0.524 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.723      ;
+; 0.641 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.840      ;
+; 0.650 ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.849      ;
+; 0.755 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.954      ;
+; 0.760 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.959      ;
+; 0.760 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.959      ;
+; 0.763 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[1]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.962      ;
+; 0.765 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.964      ;
+; 0.765 ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.964      ;
+; 0.765 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.964      ;
+; 0.766 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.965      ;
+; 0.766 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.965      ;
+; 0.770 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.969      ;
+; 0.772 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.971      ;
+; 0.772 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.971      ;
+; 0.773 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.972      ;
+; 0.773 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 0.972      ;
+; 0.841 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.040      ;
+; 0.841 ; cpu:cpu0|dual_port_ram:register_file|ram[3][7]  ; cpu:cpu0|single_port_ram:data_mem|ram~4087 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.040      ;
+; 0.843 ; cpu:cpu0|dual_port_ram:register_file|ram[2][9]  ; cpu:cpu0|single_port_ram:data_mem|ram~4089 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.042      ;
+; 0.843 ; cpu:cpu0|dual_port_ram:register_file|ram[3][3]  ; cpu:cpu0|single_port_ram:data_mem|ram~4083 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.042      ;
+; 0.844 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.043      ;
+; 0.849 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.048      ;
+; 0.849 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.048      ;
+; 0.851 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.050      ;
+; 0.856 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.055      ;
+; 0.856 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.055      ;
+; 0.859 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.058      ;
+; 0.861 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.060      ;
+; 0.861 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.060      ;
+; 0.862 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.061      ;
+; 0.862 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.061      ;
+; 0.866 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.065      ;
+; 0.868 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.067      ;
+; 0.869 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.068      ;
+; 0.869 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.068      ;
+; 0.884 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.083      ;
+; 0.893 ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.092      ;
+; 0.940 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.139      ;
+; 0.943 ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; cpu:cpu0|single_port_ram:data_mem|ram~4090 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.142      ;
+; 0.945 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.144      ;
+; 0.945 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.144      ;
+; 0.947 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.146      ;
+; 0.952 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.151      ;
+; 0.952 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.151      ;
+; 0.955 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.154      ;
+; 0.957 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.156      ;
+; 0.958 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.157      ;
+; 0.958 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.157      ;
+; 0.962 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.161      ;
+; 0.963 ; cpu:cpu0|dual_port_ram:register_file|ram[5][13] ; cpu:cpu0|single_port_ram:data_mem|ram~4093 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.162      ;
+; 0.964 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.163      ;
+; 0.965 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.164      ;
+; 0.973 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.172      ;
+; 0.980 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.179      ;
+; 0.980 ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.179      ;
+; 1.036 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.235      ;
+; 1.041 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.240      ;
+; 1.041 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.240      ;
+; 1.043 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.242      ;
+; 1.048 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.247      ;
+; 1.051 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.250      ;
+; 1.053 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.252      ;
+; 1.054 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.253      ;
+; 1.058 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.257      ;
+; 1.060 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.259      ;
+; 1.069 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.268      ;
+; 1.081 ; cpu:cpu0|dual_port_ram:register_file|ram[2][8]  ; cpu:cpu0|single_port_ram:data_mem|ram~4088 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.280      ;
+; 1.091 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.290      ;
+; 1.098 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.297      ;
+; 1.099 ; cpu:cpu0|dual_port_ram:register_file|ram[2][14] ; cpu:cpu0|single_port_ram:data_mem|ram~4094 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.298      ;
+; 1.100 ; cpu:cpu0|dual_port_ram:register_file|ram[3][6]  ; cpu:cpu0|single_port_ram:data_mem|ram~4086 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.299      ;
+; 1.132 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.331      ;
+; 1.137 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.336      ;
+; 1.137 ; cpu:cpu0|dual_port_ram:register_file|ram[7][4]  ; cpu:cpu0|single_port_ram:data_mem|ram~4084 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.336      ;
+; 1.139 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.338      ;
+; 1.141 ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; cpu:cpu0|single_port_ram:data_mem|ram~4085 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.340      ;
+; 1.147 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.346      ;
+; 1.149 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.348      ;
+; 1.154 ; cpu:cpu0|pc_controller:pc_ctrl|PC[1]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[1]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.353      ;
+; 1.154 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.353      ;
+; 1.156 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.355      ;
+; 1.181 ; cpu:cpu0|dual_port_ram:register_file|ram[7][13] ; cpu:cpu0|single_port_ram:data_mem|ram~4093 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.380      ;
+; 1.187 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.386      ;
+; 1.194 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.393      ;
+; 1.228 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.427      ;
+; 1.235 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.434      ;
+; 1.243 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.442      ;
+; 1.245 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.444      ;
+; 1.250 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.055      ; 1.449      ;
++-------+-------------------------------------------------+--------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
+----------------------------------------------
+; Slow 1200mV 0C Model Metastability Summary ;
+----------------------------------------------
+The design MTBF is not calculated because there are no specified synchronizers in the design.
+Number of Synchronizer Chains Found: 1
+Shortest Synchronizer Chain: 2 Registers
+Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+Worst Case Available Settling Time: 8.473 ns
+
+
+
+
++------------------------------------+
+; Fast 1200mV 0C Model Setup Summary ;
++----------+-------+-----------------+
+; Clock    ; Slack ; End Point TNS   ;
++----------+-------+-----------------+
+; CLOCK_50 ; 9.243 ; 0.000           ;
++----------+-------+-----------------+
+
+
++-----------------------------------+
+; Fast 1200mV 0C Model Hold Summary ;
++----------+-------+----------------+
+; Clock    ; Slack ; End Point TNS  ;
++----------+-------+----------------+
+; CLOCK_50 ; 0.197 ; 0.000          ;
++----------+-------+----------------+
+
+
+-----------------------------------------
+; Fast 1200mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
+
+
+----------------------------------------
+; Fast 1200mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
+
+
++--------------------------------------------------+
+; Fast 1200mV 0C Model Minimum Pulse Width Summary ;
++----------+-------+-------------------------------+
+; Clock    ; Slack ; End Point TNS                 ;
++----------+-------+-------------------------------+
+; CLOCK_50 ; 9.427 ; 0.000                         ;
++----------+-------+-------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Setup: 'CLOCK_50'                                                                                                                               ;
++-------+--------------------------------------+-------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                            ; To Node                                         ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------------------------+-------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 9.243 ; cpu0_clk_en_delay0                   ; cpu0_clk_en_delay1                              ; CLOCK_50     ; CLOCK_50    ; 10.000       ; -0.017     ; 0.727      ;
+; 9.441 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.508     ;
+; 9.442 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.507     ;
+; 9.453 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.497     ;
+; 9.459 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.491     ;
+; 9.460 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.487     ;
+; 9.461 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.486     ;
+; 9.493 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.455     ;
+; 9.493 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.455     ;
+; 9.504 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.445     ;
+; 9.506 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.442     ;
+; 9.551 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.397     ;
+; 9.551 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.397     ;
+; 9.558 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.391     ;
+; 9.559 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.390     ;
+; 9.563 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.386     ;
+; 9.564 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.384     ;
+; 9.569 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.380     ;
+; 9.570 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.379     ;
+; 9.574 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.375     ;
+; 9.575 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.374     ;
+; 9.577 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.370     ;
+; 9.578 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.369     ;
+; 9.580 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.370     ;
+; 9.581 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.369     ;
+; 9.585 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.362     ;
+; 9.586 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.364     ;
+; 9.587 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.363     ;
+; 9.588 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.359     ;
+; 9.589 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.358     ;
+; 9.590 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.359     ;
+; 9.591 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.358     ;
+; 9.593 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[5][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.354     ;
+; 9.595 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.352     ;
+; 9.598 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.351     ;
+; 9.599 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.350     ;
+; 9.602 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.348     ;
+; 9.608 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.342     ;
+; 9.609 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.338     ;
+; 9.610 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[4][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.340     ;
+; 9.610 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.337     ;
+; 9.616 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[6][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.334     ;
+; 9.617 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.330     ;
+; 9.618 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.329     ;
+; 9.619 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.329     ;
+; 9.619 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.329     ;
+; 9.621 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.327     ;
+; 9.621 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.327     ;
+; 9.621 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.328     ;
+; 9.621 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.328     ;
+; 9.632 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.317     ;
+; 9.632 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.316     ;
+; 9.634 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.314     ;
+; 9.637 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[7][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.312     ;
+; 9.638 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.312     ;
+; 9.642 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[5][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.037     ; 10.308     ;
+; 9.642 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.306     ;
+; 9.642 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.306     ;
+; 9.649 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.298     ;
+; 9.653 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.296     ;
+; 9.655 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.293     ;
+; 9.656 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.293     ;
+; 9.657 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.292     ;
+; 9.658 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][13] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.291     ;
+; 9.658 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.290     ;
+; 9.658 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.290     ;
+; 9.661 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.288     ;
+; 9.662 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[2][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.041     ; 10.284     ;
+; 9.666 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[0][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.041     ; 10.280     ;
+; 9.671 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.277     ;
+; 9.675 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[7][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.272     ;
+; 9.676 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[4][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.271     ;
+; 9.678 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][13] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.270     ;
+; 9.678 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][13] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.270     ;
+; 9.683 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.266     ;
+; 9.687 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[3][6]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.261     ;
+; 9.689 ; cpu:cpu0|pc_controller:pc_ctrl|PC[5] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.260     ;
+; 9.691 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.258     ;
+; 9.699 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[6][12] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.249     ;
+; 9.699 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[4][12] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.249     ;
+; 9.701 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.248     ;
+; 9.702 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.247     ;
+; 9.702 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.247     ;
+; 9.703 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.246     ;
+; 9.707 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[4][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.240     ;
+; 9.712 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[7][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.235     ;
+; 9.712 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.237     ;
+; 9.713 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2] ; cpu:cpu0|dual_port_ram:register_file|ram[1][12] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.236     ;
+; 9.713 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[7][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.234     ;
+; 9.719 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4] ; cpu:cpu0|dual_port_ram:register_file|ram[0][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.230     ;
+; 9.720 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[5][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.227     ;
+; 9.720 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[1][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.229     ;
+; 9.721 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[5][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.226     ;
+; 9.721 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8] ; cpu:cpu0|dual_port_ram:register_file|ram[3][0]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.228     ;
+; 9.722 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.225     ;
+; 9.723 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6] ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.040     ; 10.224     ;
+; 9.723 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[1][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.226     ;
+; 9.724 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3] ; cpu:cpu0|dual_port_ram:register_file|ram[6][11] ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.225     ;
+; 9.728 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7] ; cpu:cpu0|dual_port_ram:register_file|ram[6][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 10.221     ;
+; 9.730 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0] ; cpu:cpu0|dual_port_ram:register_file|ram[5][5]  ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.039     ; 10.218     ;
++-------+--------------------------------------+-------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Hold: 'CLOCK_50'                                                                                                                                      ;
++-------+-------------------------------------------------+--------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                       ; To Node                                    ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-------------------------------------------------+--------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.197 ; button_fsm:button_fsm0|state                    ; cpu0_clk_en_delay0                         ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.037      ; 0.318      ;
+; 0.305 ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.425      ;
+; 0.306 ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.426      ;
+; 0.306 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.426      ;
+; 0.306 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.426      ;
+; 0.306 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.426      ;
+; 0.307 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.427      ;
+; 0.307 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.427      ;
+; 0.307 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.427      ;
+; 0.307 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.427      ;
+; 0.311 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.431      ;
+; 0.374 ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.494      ;
+; 0.375 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.495      ;
+; 0.454 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.574      ;
+; 0.455 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.575      ;
+; 0.455 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.575      ;
+; 0.464 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[1]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.584      ;
+; 0.465 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.585      ;
+; 0.465 ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.585      ;
+; 0.465 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.585      ;
+; 0.466 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.586      ;
+; 0.466 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.586      ;
+; 0.467 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.587      ;
+; 0.468 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.588      ;
+; 0.468 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.588      ;
+; 0.469 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.589      ;
+; 0.469 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.589      ;
+; 0.481 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.601      ;
+; 0.490 ; cpu:cpu0|dual_port_ram:register_file|ram[3][7]  ; cpu:cpu0|single_port_ram:data_mem|ram~4087 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.610      ;
+; 0.491 ; cpu:cpu0|dual_port_ram:register_file|ram[2][9]  ; cpu:cpu0|single_port_ram:data_mem|ram~4089 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.037      ; 0.612      ;
+; 0.492 ; cpu:cpu0|dual_port_ram:register_file|ram[3][3]  ; cpu:cpu0|single_port_ram:data_mem|ram~4083 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.612      ;
+; 0.517 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.637      ;
+; 0.518 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.638      ;
+; 0.518 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.638      ;
+; 0.520 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.640      ;
+; 0.521 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.641      ;
+; 0.521 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.641      ;
+; 0.522 ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.642      ;
+; 0.523 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.643      ;
+; 0.530 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.650      ;
+; 0.531 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.651      ;
+; 0.531 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.651      ;
+; 0.532 ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.652      ;
+; 0.532 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.652      ;
+; 0.533 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.653      ;
+; 0.534 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.654      ;
+; 0.534 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.654      ;
+; 0.535 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.655      ;
+; 0.546 ; cpu:cpu0|dual_port_ram:register_file|ram[2][10] ; cpu:cpu0|single_port_ram:data_mem|ram~4090 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.037      ; 0.667      ;
+; 0.564 ; cpu:cpu0|dual_port_ram:register_file|ram[5][13] ; cpu:cpu0|single_port_ram:data_mem|ram~4093 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.684      ;
+; 0.583 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.703      ;
+; 0.584 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.704      ;
+; 0.584 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.704      ;
+; 0.585 ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.705      ;
+; 0.586 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.706      ;
+; 0.586 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.706      ;
+; 0.587 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.707      ;
+; 0.587 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.707      ;
+; 0.589 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.709      ;
+; 0.596 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.716      ;
+; 0.597 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.717      ;
+; 0.597 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.717      ;
+; 0.598 ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.718      ;
+; 0.599 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.719      ;
+; 0.600 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.720      ;
+; 0.600 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.720      ;
+; 0.632 ; cpu:cpu0|dual_port_ram:register_file|ram[3][6]  ; cpu:cpu0|single_port_ram:data_mem|ram~4086 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.037      ; 0.753      ;
+; 0.633 ; cpu:cpu0|dual_port_ram:register_file|ram[2][8]  ; cpu:cpu0|single_port_ram:data_mem|ram~4088 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.753      ;
+; 0.640 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.760      ;
+; 0.643 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.763      ;
+; 0.649 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.769      ;
+; 0.649 ; cpu:cpu0|dual_port_ram:register_file|ram[2][14] ; cpu:cpu0|single_port_ram:data_mem|ram~4094 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.769      ;
+; 0.650 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.770      ;
+; 0.650 ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.770      ;
+; 0.652 ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]           ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.772      ;
+; 0.652 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.772      ;
+; 0.653 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.773      ;
+; 0.659 ; cpu:cpu0|dual_port_ram:register_file|ram[7][4]  ; cpu:cpu0|single_port_ram:data_mem|ram~4084 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.779      ;
+; 0.662 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.782      ;
+; 0.663 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.783      ;
+; 0.663 ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.783      ;
+; 0.665 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.785      ;
+; 0.665 ; cpu:cpu0|dual_port_ram:register_file|ram[3][5]  ; cpu:cpu0|single_port_ram:data_mem|ram~4085 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.037      ; 0.786      ;
+; 0.666 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.786      ;
+; 0.681 ; cpu:cpu0|dual_port_ram:register_file|ram[7][13] ; cpu:cpu0|single_port_ram:data_mem|ram~4093 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.801      ;
+; 0.693 ; cpu:cpu0|pc_controller:pc_ctrl|PC[1]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[1]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.813      ;
+; 0.706 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[5]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.826      ;
+; 0.709 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.829      ;
+; 0.715 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[11]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.835      ;
+; 0.716 ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[15]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.836      ;
+; 0.718 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[12]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.838      ;
+; 0.728 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[9]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.848      ;
+; 0.729 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.849      ;
+; 0.731 ; cpu:cpu0|pc_controller:pc_ctrl|PC[0]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[10]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.851      ;
+; 0.732 ; cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[14]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.852      ;
+; 0.732 ; cpu:cpu0|dual_port_ram:register_file|ram[5][11] ; cpu:cpu0|single_port_ram:data_mem|ram~4091 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.852      ;
+; 0.772 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[7]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.892      ;
+; 0.775 ; cpu:cpu0|pc_controller:pc_ctrl|PC[2]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[8]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.895      ;
+; 0.781 ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[6]       ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.901      ;
+; 0.781 ; cpu:cpu0|pc_controller:pc_ctrl|PC[3]            ; cpu:cpu0|pc_controller:pc_ctrl|PC[13]      ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.036      ; 0.901      ;
++-------+-------------------------------------------------+--------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
+----------------------------------------------
+; Fast 1200mV 0C Model Metastability Summary ;
+----------------------------------------------
+The design MTBF is not calculated because there are no specified synchronizers in the design.
+Number of Synchronizer Chains Found: 1
+Shortest Synchronizer Chain: 2 Registers
+Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+Worst Case Available Settling Time: 9.243 ns
+
+
+
+
++-----------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                         ;
++------------------+-------+-------+----------+---------+---------------------+
+; Clock            ; Setup ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+-------+-------+----------+---------+---------------------+
+; Worst-case Slack ; 2.116 ; 0.197 ; N/A      ; N/A     ; 9.427               ;
+;  CLOCK_50        ; 2.116 ; 0.197 ; N/A      ; N/A     ; 9.427               ;
+; Design-wide TNS  ; 0.0   ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
+;  CLOCK_50        ; 0.000 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
++------------------+-------+-------+----------+---------+---------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Board Trace Model Assignments                                                                                                                                                                                                                                                                                                                                                                                    ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; Pin           ; I/O Standard ; Near Tline Length ; Near Tline L per Length ; Near Tline C per Length ; Near Series R ; Near Differential R ; Near Pull-up R ; Near Pull-down R ; Near C ; Far Tline Length ; Far Tline L per Length ; Far Tline C per Length ; Far Series R ; Far Pull-up R ; Far Pull-down R ; Far C ; Termination Voltage ; Far Differential R ; EBD File Name ; EBD Signal Name ; EBD Far-end ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; LED[0]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; LED[1]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; LED[2]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; LED[3]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; LED[4]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; LED[5]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; LED[6]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; LED[7]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+
+
++----------------------------------------------------------------------------+
+; Input Transition Times                                                     ;
++-------------------------+--------------+-----------------+-----------------+
+; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
++-------------------------+--------------+-----------------+-----------------+
+; SW[1]                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SW[0]                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SW[3]                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SW[2]                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; KEY[0]                  ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; CLOCK_50                ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; KEY[1]                  ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_FLASH_nCE_nCSO~ ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_DATA0~          ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
++-------------------------+--------------+-----------------+-----------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1200mv 0c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; LED[0]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.95e-09 V                   ; 2.38 V              ; -0.016 V            ; 0.22 V                               ; 0.025 V                              ; 3.06e-10 s                  ; 3.3e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 5.95e-09 V                  ; 2.38 V             ; -0.016 V           ; 0.22 V                              ; 0.025 V                             ; 3.06e-10 s                 ; 3.3e-10 s                  ; Yes                       ; Yes                       ;
+; LED[1]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.95e-09 V                   ; 2.38 V              ; -0.016 V            ; 0.22 V                               ; 0.025 V                              ; 3.06e-10 s                  ; 3.3e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 5.95e-09 V                  ; 2.38 V             ; -0.016 V           ; 0.22 V                              ; 0.025 V                             ; 3.06e-10 s                 ; 3.3e-10 s                  ; Yes                       ; Yes                       ;
+; LED[2]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.95e-09 V                   ; 2.38 V              ; -0.016 V            ; 0.22 V                               ; 0.025 V                              ; 3.06e-10 s                  ; 3.3e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 5.95e-09 V                  ; 2.38 V             ; -0.016 V           ; 0.22 V                              ; 0.025 V                             ; 3.06e-10 s                 ; 3.3e-10 s                  ; Yes                       ; Yes                       ;
+; LED[3]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.95e-09 V                   ; 2.38 V              ; -0.016 V            ; 0.22 V                               ; 0.025 V                              ; 3.06e-10 s                  ; 3.3e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 5.95e-09 V                  ; 2.38 V             ; -0.016 V           ; 0.22 V                              ; 0.025 V                             ; 3.06e-10 s                 ; 3.3e-10 s                  ; Yes                       ; Yes                       ;
+; LED[4]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.38 V              ; -0.0145 V           ; 0.169 V                              ; 0.026 V                              ; 4.83e-10 s                  ; 4.71e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.38 V             ; -0.0145 V          ; 0.169 V                             ; 0.026 V                             ; 4.83e-10 s                 ; 4.71e-10 s                 ; Yes                       ; Yes                       ;
+; LED[5]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.33 V              ; -0.00624 V          ; 0.185 V                              ; 0.097 V                              ; 2.82e-09 s                  ; 2.56e-09 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.33 V             ; -0.00624 V         ; 0.185 V                             ; 0.097 V                             ; 2.82e-09 s                 ; 2.56e-09 s                 ; No                        ; Yes                       ;
+; LED[6]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.39 V              ; -0.0265 V           ; 0.2 V                                ; 0.033 V                              ; 2.94e-10 s                  ; 3.12e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.39 V             ; -0.0265 V          ; 0.2 V                               ; 0.033 V                             ; 2.94e-10 s                 ; 3.12e-10 s                 ; Yes                       ; Yes                       ;
+; LED[7]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.33 V              ; -0.00624 V          ; 0.185 V                              ; 0.097 V                              ; 2.82e-09 s                  ; 2.56e-09 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.33 V             ; -0.00624 V         ; 0.185 V                             ; 0.097 V                             ; 2.82e-09 s                 ; 2.56e-09 s                 ; No                        ; Yes                       ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.45e-09 V                   ; 2.38 V              ; -0.0609 V           ; 0.148 V                              ; 0.095 V                              ; 2.82e-10 s                  ; 2.59e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 3.45e-09 V                  ; 2.38 V             ; -0.0609 V          ; 0.148 V                             ; 0.095 V                             ; 2.82e-10 s                 ; 2.59e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.61e-09 V                   ; 2.38 V              ; -0.00274 V          ; 0.141 V                              ; 0.006 V                              ; 4.7e-10 s                   ; 6.02e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 5.61e-09 V                  ; 2.38 V             ; -0.00274 V         ; 0.141 V                             ; 0.006 V                             ; 4.7e-10 s                  ; 6.02e-10 s                 ; Yes                       ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1200mv 85c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; LED[0]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.06e-06 V                   ; 2.36 V              ; -0.00724 V          ; 0.107 V                              ; 0.02 V                               ; 4.5e-10 s                   ; 4.25e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.06e-06 V                  ; 2.36 V             ; -0.00724 V         ; 0.107 V                             ; 0.02 V                              ; 4.5e-10 s                  ; 4.25e-10 s                 ; Yes                       ; Yes                       ;
+; LED[1]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.06e-06 V                   ; 2.36 V              ; -0.00724 V          ; 0.107 V                              ; 0.02 V                               ; 4.5e-10 s                   ; 4.25e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.06e-06 V                  ; 2.36 V             ; -0.00724 V         ; 0.107 V                             ; 0.02 V                              ; 4.5e-10 s                  ; 4.25e-10 s                 ; Yes                       ; Yes                       ;
+; LED[2]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.06e-06 V                   ; 2.36 V              ; -0.00724 V          ; 0.107 V                              ; 0.02 V                               ; 4.5e-10 s                   ; 4.25e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.06e-06 V                  ; 2.36 V             ; -0.00724 V         ; 0.107 V                             ; 0.02 V                              ; 4.5e-10 s                  ; 4.25e-10 s                 ; Yes                       ; Yes                       ;
+; LED[3]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.06e-06 V                   ; 2.36 V              ; -0.00724 V          ; 0.107 V                              ; 0.02 V                               ; 4.5e-10 s                   ; 4.25e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.06e-06 V                  ; 2.36 V             ; -0.00724 V         ; 0.107 V                             ; 0.02 V                              ; 4.5e-10 s                  ; 4.25e-10 s                 ; Yes                       ; Yes                       ;
+; LED[4]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.35 V              ; -0.00832 V          ; 0.101 V                              ; 0.024 V                              ; 6.39e-10 s                  ; 6e-10 s                     ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.35 V             ; -0.00832 V         ; 0.101 V                             ; 0.024 V                             ; 6.39e-10 s                 ; 6e-10 s                    ; Yes                       ; Yes                       ;
+; LED[5]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.33 V              ; -0.00349 V          ; 0.163 V                              ; 0.074 V                              ; 3.33e-09 s                  ; 3.14e-09 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.33 V             ; -0.00349 V         ; 0.163 V                             ; 0.074 V                             ; 3.33e-09 s                 ; 3.14e-09 s                 ; Yes                       ; Yes                       ;
+; LED[6]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.36 V              ; -0.00476 V          ; 0.096 V                              ; 0.013 V                              ; 4.39e-10 s                  ; 4.15e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.36 V             ; -0.00476 V         ; 0.096 V                             ; 0.013 V                             ; 4.39e-10 s                 ; 4.15e-10 s                 ; Yes                       ; Yes                       ;
+; LED[7]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.33 V              ; -0.00349 V          ; 0.163 V                              ; 0.074 V                              ; 3.33e-09 s                  ; 3.14e-09 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.33 V             ; -0.00349 V         ; 0.163 V                             ; 0.074 V                             ; 3.33e-09 s                 ; 3.14e-09 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.74e-07 V                   ; 2.36 V              ; -0.0201 V           ; 0.072 V                              ; 0.033 V                              ; 4.04e-10 s                  ; 3.29e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 5.74e-07 V                  ; 2.36 V             ; -0.0201 V          ; 0.072 V                             ; 0.033 V                             ; 4.04e-10 s                 ; 3.29e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 9.45e-07 V                   ; 2.35 V              ; -0.00643 V          ; 0.081 V                              ; 0.031 V                              ; 5.31e-10 s                  ; 7.59e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 9.45e-07 V                  ; 2.35 V             ; -0.00643 V         ; 0.081 V                             ; 0.031 V                             ; 5.31e-10 s                 ; 7.59e-10 s                 ; Yes                       ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Fast 1200mv 0c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; LED[0]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 4.05e-08 V                   ; 2.72 V              ; -0.0349 V           ; 0.173 V                              ; 0.1 V                                ; 2.72e-10 s                  ; 2.69e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 4.05e-08 V                  ; 2.72 V             ; -0.0349 V          ; 0.173 V                             ; 0.1 V                               ; 2.72e-10 s                 ; 2.69e-10 s                 ; Yes                       ; Yes                       ;
+; LED[1]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 4.05e-08 V                   ; 2.72 V              ; -0.0349 V           ; 0.173 V                              ; 0.1 V                                ; 2.72e-10 s                  ; 2.69e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 4.05e-08 V                  ; 2.72 V             ; -0.0349 V          ; 0.173 V                             ; 0.1 V                               ; 2.72e-10 s                 ; 2.69e-10 s                 ; Yes                       ; Yes                       ;
+; LED[2]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 4.05e-08 V                   ; 2.72 V              ; -0.0349 V           ; 0.173 V                              ; 0.1 V                                ; 2.72e-10 s                  ; 2.69e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 4.05e-08 V                  ; 2.72 V             ; -0.0349 V          ; 0.173 V                             ; 0.1 V                               ; 2.72e-10 s                 ; 2.69e-10 s                 ; Yes                       ; Yes                       ;
+; LED[3]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 4.05e-08 V                   ; 2.72 V              ; -0.0349 V           ; 0.173 V                              ; 0.1 V                                ; 2.72e-10 s                  ; 2.69e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 4.05e-08 V                  ; 2.72 V             ; -0.0349 V          ; 0.173 V                             ; 0.1 V                               ; 2.72e-10 s                 ; 2.69e-10 s                 ; Yes                       ; Yes                       ;
+; LED[4]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.71 V              ; -0.0317 V           ; 0.148 V                              ; 0.064 V                              ; 4.51e-10 s                  ; 4.15e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.71 V             ; -0.0317 V          ; 0.148 V                             ; 0.064 V                             ; 4.51e-10 s                 ; 4.15e-10 s                 ; No                        ; Yes                       ;
+; LED[5]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.64 V              ; -0.0117 V           ; 0.202 V                              ; 0.176 V                              ; 2.38e-09 s                  ; 2.22e-09 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.64 V             ; -0.0117 V          ; 0.202 V                             ; 0.176 V                             ; 2.38e-09 s                 ; 2.22e-09 s                 ; No                        ; Yes                       ;
+; LED[6]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.73 V              ; -0.0384 V           ; 0.169 V                              ; 0.089 V                              ; 2.7e-10 s                   ; 2.62e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.73 V             ; -0.0384 V          ; 0.169 V                             ; 0.089 V                             ; 2.7e-10 s                  ; 2.62e-10 s                 ; Yes                       ; Yes                       ;
+; LED[7]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.64 V              ; -0.0117 V           ; 0.202 V                              ; 0.176 V                              ; 2.38e-09 s                  ; 2.22e-09 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.64 V             ; -0.0117 V          ; 0.202 V                             ; 0.176 V                             ; 2.38e-09 s                 ; 2.22e-09 s                 ; No                        ; Yes                       ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.22e-08 V                   ; 2.74 V              ; -0.06 V             ; 0.158 V                              ; 0.08 V                               ; 2.68e-10 s                  ; 2.19e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 2.22e-08 V                  ; 2.74 V             ; -0.06 V            ; 0.158 V                             ; 0.08 V                              ; 2.68e-10 s                 ; 2.19e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.54e-08 V                   ; 2.7 V               ; -0.00943 V          ; 0.276 V                              ; 0.035 V                              ; 3.19e-10 s                  ; 4.99e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 3.54e-08 V                  ; 2.7 V              ; -0.00943 V         ; 0.276 V                             ; 0.035 V                             ; 3.19e-10 s                 ; 4.99e-10 s                 ; No                        ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; CLOCK_50   ; CLOCK_50 ; 67998547 ; 0        ; 1        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; CLOCK_50   ; CLOCK_50 ; 67998547 ; 0        ; 1        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No non-DPA dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths Summary                    ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 6     ; 6    ;
+; Unconstrained Input Port Paths  ; 4283  ; 4283 ;
+; Unconstrained Output Ports      ; 8     ; 8    ;
+; Unconstrained Output Port Paths ; 254   ; 254  ;
++---------------------------------+-------+------+
+
+
++------------------------------------------+
+; Clock Status Summary                     ;
++----------+----------+------+-------------+
+; Target   ; Clock    ; Type ; Status      ;
++----------+----------+------+-------------+
+; CLOCK_50 ; CLOCK_50 ; Base ; Constrained ;
++----------+----------+------+-------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; KEY[0]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; KEY[1]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[0]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[1]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[2]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[3]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; LED[0]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[1]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[2]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[3]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[4]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[5]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[6]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[7]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; KEY[0]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; KEY[1]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[0]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[1]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[2]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[3]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; LED[0]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[1]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[2]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[3]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[4]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[5]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[6]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[7]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++------------------------------------+
+; TimeQuest Timing Analyzer Messages ;
++------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime TimeQuest Timing Analyzer
+    Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+    Info: Processing started: Mon Dec 11 22:21:35 2017
+Info: Command: quartus_sta SimpleComputer -c SimpleComputer
+Info: qsta_default_script.tcl version: #1
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Info (332104): Reading SDC File: 'ECE2504SimpleComputer.sdc'
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow 1200mV 85C Model
+Info (332146): Worst-case setup slack is 2.116
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     2.116               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.371
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.371               0.000 CLOCK_50 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 9.611
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     9.611               0.000 CLOCK_50 
+Info (332114): Report Metastability: Found 1 synchronizer chains.
+    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
+    Info (332114): Number of Synchronizer Chains Found: 1
+    Info (332114): Shortest Synchronizer Chain: 2 Registers
+    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+    Info (332114): Worst Case Available Settling Time: 8.264 ns
+    Info (332114): 
+Info: Analyzing Slow 1200mV 0C Model
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info (332146): Worst-case setup slack is 3.933
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     3.933               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.330
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.330               0.000 CLOCK_50 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 9.628
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     9.628               0.000 CLOCK_50 
+Info (332114): Report Metastability: Found 1 synchronizer chains.
+    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
+    Info (332114): Number of Synchronizer Chains Found: 1
+    Info (332114): Shortest Synchronizer Chain: 2 Registers
+    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+    Info (332114): Worst Case Available Settling Time: 8.473 ns
+    Info (332114): 
+Info: Analyzing Fast 1200mV 0C Model
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info (332146): Worst-case setup slack is 9.243
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     9.243               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.197
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.197               0.000 CLOCK_50 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 9.427
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     9.427               0.000 CLOCK_50 
+Info (332114): Report Metastability: Found 1 synchronizer chains.
+    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
+    Info (332114): Number of Synchronizer Chains Found: 1
+    Info (332114): Shortest Synchronizer Chain: 2 Registers
+    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+    Info (332114): Worst Case Available Settling Time: 9.243 ns
+    Info (332114): 
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 788 megabytes
+    Info: Processing ended: Mon Dec 11 22:21:41 2017
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:06
+
+

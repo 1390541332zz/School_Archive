@@ -1,0 +1,16 @@
+Fitter Status : Successful - Mon Dec 11 22:21:30 2017
+Quartus Prime Version : 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+Revision Name : SimpleComputer
+Top-level Entity Name : ECE2504SimpleComputer
+Family : Cyclone IV E
+Device : EP4CE22F17C6
+Timing Models : Final
+Total logic elements : 5,996 / 22,320 ( 27 % )
+    Total combinational functions : 4,208 / 22,320 ( 19 % )
+    Dedicated logic registers : 4,243 / 22,320 ( 19 % )
+Total registers : 4243
+Total pins : 15 / 154 ( 10 % )
+Total virtual pins : 0
+Total memory bits : 0 / 608,256 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

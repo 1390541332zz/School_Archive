@@ -1,0 +1,203 @@
+ldi r0, 3
+shl r0, r0
+shl r0, r0
+inc r0, r0
+shl r0, r0
+jmp r0
+xor r0, r0, r0
+ld r1, r0
+ldi r0, 2
+ld r2, r0
+inc r0, r0
+ld r3, r0
+inc r0, r0
+ld r4, r0
+inc r0, r0
+ld r5, r0
+adi r0, r0, 7
+shl r0, r0
+adi r0, r0, 7
+inc r0, r0
+inc r0, r0
+ld r6, r0
+inc r0, r0
+ld r7, r0
+ldi r0, 0
+brz r0, 0
+ldi  r0, 5
+shl  r0, r0
+shl  r0, r0
+ldi  r1, 6
+shl  r1, r1
+shl  r1, r1
+inc  r1, r1
+shl  r1, r1
+shl  r1, r1
+shl  r1, r1
+shl  r1, r1
+inc  r1, r1
+shl  r1, r1
+shl  r1, r1
+inc  r1, r1
+shl  r1, r1
+shl  r1, r1
+shl  r1, r1
+inc  r1, r1
+shl  r1, r1
+inc  r1, r1
+st   r0, r1
+ldi  r4, 1
+ld   r4, r4
+ldi  r5, 0
+ld   r5, r5
+ldi  r7, 4
+shl  r7, r7
+shl  r7, r7        
+add  r6, r7, r5
+add  r7, r7, r6
+ldi  r1, 4
+shl  r1, r1
+shl  r1, r1
+shl  r1, r1
+//STOREADDR
+ldi  r0, 2
+st   r0, r5
+ldi  r0, 3
+st   r0, r6
+ldi  r0, 4
+st   r0, r7
+ldi  r0, 5
+st   r0, r4
+jmp  r1
+//LOADADDR
+ldi  r0, 2
+ld   r5, r0
+ldi  r0, 3
+ld   r6, r0
+ldi  r0, 4
+ld   r7, r0
+ldi  r0, 5
+ld   r4, r0
+jmp  r1
+//LOAD
+ld   r1, r5
+ld   r2, r6
+//VALIDATION
+mova r3, r1
+ldi  r0, VAL0
+jmp  r0
+//VALB
+mova r3, r2
+//VAL0
+ldi  r5, 4
+shl  r5, r5
+inc  r5, r5
+ldi  r6, 0
+not  r6, r6
+ldi  r0, -4
+//VAL1
+shl  r6, r6
+shl  r6, r6
+shl  r6, r6
+shl  r6, r6
+not  r6, r6
+and  r4, r6, r3
+sub  r4, r5, r4
+not  r6, r6
+shl  r5, r5
+shl  r5, r5
+shl  r5, r5
+shl  r5, r5
+brn  r4, WRITEERROR
+inc  r0, r0
+brn  r0, VAL1
+xor  r3, r3, r2
+brz  r3  ADDITION
+ldi  r5  VALB
+jmp  r5
+//WRITEERROR
+ldi  r1, 0
+not  r1, r1
+st   r1, r5
+ldi  r2, INCINDEX
+jmp  r2
+//ADDITION
+ldi  r6, 0
+not  r6, r6
+shl  r6, r6
+shl  r6, r6
+shl  r6, r6
+shl  r6, r6
+ldi  r0, -4
+//ADD0
+ldi  r7, -4
+sub  r7, r7, r0
+not  r6, r6
+and  r4, r6, r1
+and  r5, r6, r2
+add  r3, r4, r5
+and  r4, r3, r6
+ldi  r5, 4
+shl  r5, r5
+inc  r5, r5
+//ADDS
+shl  r5, r5
+shl  r5, r5
+shl  r5, r5
+shl  r5, r5
+inc  r7, r7
+brn  r7, ADDS
+sub r5, r4, r5
+brn r5 CARRYFIX
+//ADDMASK
+not  r6, r6
+shl  r6, r6
+inc  r6, r6
+shl  r6, r6
+inc  r6, r6
+shl  r6, r6
+inc  r6, r6
+shl  r6, r6
+inc  r6, r6
+not  r6, r6
+and  r5, r4, r6
+add  r2, r2, r5
+not  r6, r6
+ldi r5, ADD1
+jmp r5
+//CARRYFIX
+ldi  r7, -4
+sub  r7, r7, r0
+ldi  r5, 6
+//CARRYLOOP
+shl  r5, r5
+shl  r5, r5
+shl  r5, r5
+shl  r5, r5
+inc  r7, r7
+brn  r7, ADDS
+add  r4, r4, r5
+ldi  r7, ADDMASK
+jmp  r7
+//ADD1
+inc  r0, r0
+brn  r0, ADD0
+ldi  r7, 4
+ld   r7, r7
+st   r7, r3
+//INCINDEX
+ldi  r2 LOADADDR
+ldi  r1 INC1
+jmp  r2
+//INC1
+inc  r5, r5
+inc  r6, r6
+inc  r7, r7
+dec  r4, r4
+brz  r4 TERMINATION
+ldi  r2 STOREADDR
+ldi  r1 LOAD
+jmp  r2
+//TERMINATION
+ldi  r0, 6
+jmp  r0

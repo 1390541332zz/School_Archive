@@ -1,0 +1,1261 @@
+Analysis & Synthesis report for SimpleComputer
+Mon Dec 11 22:20:54 2017
+Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Source assignments for cpu:cpu0
+ 11. Parameter Settings for User Entity Instance: cpu:cpu0|instruction_rom:instr_mem
+ 12. Parameter Settings for User Entity Instance: cpu:cpu0|single_port_ram:data_mem
+ 13. Parameter Settings for User Entity Instance: button_fsm:button_fsm0
+ 14. Port Connectivity Checks: "cpu:cpu0|mux:mux_b"
+ 15. Post-Synthesis Netlist Statistics for Top Partition
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
+ 18. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Dec 11 22:20:54 2017       ;
+; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
+; Revision Name                      ; SimpleComputer                              ;
+; Top-level Entity Name              ; ECE2504SimpleComputer                       ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 8,210                                       ;
+;     Total combinational functions  ; 4,208                                       ;
+;     Dedicated logic registers      ; 4,243                                       ;
+; Total registers                    ; 4243                                        ;
+; Total pins                         ; 15                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                           ;
++----------------------------------------------------------------------------+-----------------------+--------------------+
+; Option                                                                     ; Setting               ; Default Value      ;
++----------------------------------------------------------------------------+-----------------------+--------------------+
+; Device                                                                     ; EP4CE22F17C6          ;                    ;
+; Top-level entity name                                                      ; ECE2504SimpleComputer ; SimpleComputer     ;
+; Family name                                                                ; Cyclone IV E          ; Cyclone V          ;
+; Use smart compilation                                                      ; Off                   ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                    ; On                 ;
+; Enable compact report table                                                ; Off                   ; Off                ;
+; Restructure Multiplexers                                                   ; Auto                  ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                   ; Off                ;
+; Preserve fewer node names                                                  ; On                    ; On                 ;
+; OpenCore Plus hardware evaluation                                          ; Enable                ; Enable             ;
+; Verilog Version                                                            ; Verilog_2001          ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993             ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto                  ; Auto               ;
+; Safe State Machine                                                         ; Off                   ; Off                ;
+; Extract Verilog State Machines                                             ; On                    ; On                 ;
+; Extract VHDL State Machines                                                ; On                    ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                   ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000                  ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                   ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                    ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                    ; On                 ;
+; Parallel Synthesis                                                         ; On                    ; On                 ;
+; DSP Block Balancing                                                        ; Auto                  ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                    ; On                 ;
+; Power-Up Don't Care                                                        ; On                    ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                   ; Off                ;
+; Remove Duplicate Registers                                                 ; On                    ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                   ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                   ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                   ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                   ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                   ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                    ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                   ; Off                ;
+; Optimization Technique                                                     ; Balanced              ; Balanced           ;
+; Carry Chain Length                                                         ; 70                    ; 70                 ;
+; Auto Carry Chains                                                          ; On                    ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                    ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                   ; Off                ;
+; Auto ROM Replacement                                                       ; On                    ; On                 ;
+; Auto RAM Replacement                                                       ; On                    ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                    ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto                  ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto                  ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                    ; On                 ;
+; Strict RAM Replacement                                                     ; Off                   ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                    ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                   ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                    ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                   ; Off                ;
+; Auto Resource Sharing                                                      ; Off                   ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                   ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                   ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                   ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                    ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                   ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                    ; On                 ;
+; Report Parameter Settings                                                  ; On                    ; On                 ;
+; Report Source Assignments                                                  ; On                    ; On                 ;
+; Report Connectivity Checks                                                 ; On                    ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                   ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                     ; 2                  ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation    ; Normal compilation ;
+; HDL message level                                                          ; Level2                ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                   ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000                  ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000                  ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                   ; 100                ;
+; Clock MUX Protection                                                       ; On                    ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                   ; Off                ;
+; Block Design Naming                                                        ; Auto                  ; Auto               ;
+; SDC constraint protection                                                  ; Off                   ; Off                ;
+; Synthesis Effort                                                           ; Auto                  ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                    ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                   ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium                ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto                  ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                    ; On                 ;
++----------------------------------------------------------------------------+-----------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.01        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.4%      ;
+;     Processor 3            ;   0.2%      ;
+;     Processor 4            ;   0.2%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                         ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                           ; Library ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------+---------+
+; instruction.txt                  ; yes             ; User File              ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/instruction.txt         ;         ;
+; data.txt                         ; yes             ; User File              ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/data.txt                ;         ;
+; single_port_ram.v                ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/single_port_ram.v       ;         ;
+; pc_controller.v                  ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/pc_controller.v         ;         ;
+; mux16_1_8bits.v                  ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/mux16_1_8bits.v         ;         ;
+; mux.v                            ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/mux.v                   ;         ;
+; instruction_rom.v                ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/instruction_rom.v       ;         ;
+; instr_decoder.v                  ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/instr_decoder.v         ;         ;
+; function_unit.v                  ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/function_unit.v         ;         ;
+; ECE2504SimpleComputer.v          ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/ECE2504SimpleComputer.v ;         ;
+; dual_port_ram.v                  ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/dual_port_ram.v         ;         ;
+; cpu.v                            ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v                   ;         ;
+; button_fsm.v                     ; yes             ; User Verilog HDL File  ; D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/button_fsm.v            ;         ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary           ;
++---------------------------------------------+---------+
+; Resource                                    ; Usage   ;
++---------------------------------------------+---------+
+; Estimated Total logic elements              ; 8,210   ;
+;                                             ;         ;
+; Total combinational functions               ; 4208    ;
+; Logic element usage by number of LUT inputs ;         ;
+;     -- 4 input functions                    ; 3379    ;
+;     -- 3 input functions                    ; 393     ;
+;     -- <=2 input functions                  ; 436     ;
+;                                             ;         ;
+; Logic elements by mode                      ;         ;
+;     -- normal mode                          ; 4177    ;
+;     -- arithmetic mode                      ; 31      ;
+;                                             ;         ;
+; Total registers                             ; 4243    ;
+;     -- Dedicated logic registers            ; 4243    ;
+;     -- I/O registers                        ; 0       ;
+;                                             ;         ;
+; I/O pins                                    ; 15      ;
+;                                             ;         ;
+; Embedded Multiplier 9-bit elements          ; 0       ;
+;                                             ;         ;
+; Maximum fan-out node                        ; cpu_clk ;
+; Maximum fan-out                             ; 4240    ;
+; Total fan-out                               ; 27964   ;
+; Average fan-out                             ; 3.30    ;
++---------------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                 ;
++-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------+-----------------------+--------------+
+; Compilation Hierarchy Node          ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                         ; Entity Name           ; Library Name ;
++-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------+-----------------------+--------------+
+; |ECE2504SimpleComputer              ; 4208 (1)            ; 4243 (2)                  ; 0           ; 0            ; 0       ; 0         ; 15   ; 0            ; |ECE2504SimpleComputer                                      ; ECE2504SimpleComputer ; work         ;
+;    |button_fsm:button_fsm0|         ; 2 (2)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ECE2504SimpleComputer|button_fsm:button_fsm0               ; button_fsm            ; work         ;
+;    |cpu:cpu0|                       ; 4099 (311)          ; 4240 (0)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ECE2504SimpleComputer|cpu:cpu0                             ; cpu                   ; work         ;
+;       |dual_port_ram:register_file| ; 159 (159)           ; 128 (128)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file ; dual_port_ram         ; work         ;
+;       |function_unit:func_unit|     ; 90 (90)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ECE2504SimpleComputer|cpu:cpu0|function_unit:func_unit     ; function_unit         ; work         ;
+;       |instruction_rom:instr_mem|   ; 330 (330)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ECE2504SimpleComputer|cpu:cpu0|instruction_rom:instr_mem   ; instruction_rom       ; work         ;
+;       |pc_controller:pc_ctrl|       ; 26 (26)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ECE2504SimpleComputer|cpu:cpu0|pc_controller:pc_ctrl       ; pc_controller         ; work         ;
+;       |single_port_ram:data_mem|    ; 3183 (3183)         ; 4096 (4096)               ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ECE2504SimpleComputer|cpu:cpu0|single_port_ram:data_mem    ; single_port_ram       ; work         ;
+;    |mux16_1_8bits:LED_mux|          ; 106 (106)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ECE2504SimpleComputer|mux16_1_8bits:LED_mux                ; mux16_1_8bits         ; work         ;
++-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------+-----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 4243  ;
+; Number of registers using Synchronous Clear  ; 16    ;
+; Number of registers using Synchronous Load   ; 16    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 4224  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file|ram[0][12] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file|ram[1][2]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file|ram[2][12] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file|ram[3][14] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file|ram[4][14] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file|ram[5][3]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file|ram[6][13] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file|ram[7][5]  ;
+; 9:1                ; 16 bits   ; 96 LEs        ; 32 LEs               ; 64 LEs                 ; Yes        ; |ECE2504SimpleComputer|cpu:cpu0|pc_controller:pc_ctrl|PC[4]            ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |ECE2504SimpleComputer|cpu:cpu0|function_unit:func_unit|arith_B[3]     ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file|Mux1       ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |ECE2504SimpleComputer|cpu:cpu0|dual_port_ram:register_file|Mux16      ;
+; 6:1                ; 16 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; No         ; |ECE2504SimpleComputer|cpu:cpu0|pc_controller:pc_ctrl|Add0             ;
+; 8:1                ; 5 bits    ; 25 LEs        ; 5 LEs                ; 20 LEs                 ; No         ; |ECE2504SimpleComputer|cpu:cpu0|pc_controller:pc_ctrl|Add0             ;
+; 8:1                ; 14 bits   ; 70 LEs        ; 70 LEs               ; 0 LEs                  ; No         ; |ECE2504SimpleComputer|cpu:cpu0|function_unit:func_unit|temp_F[14]     ;
+; 20:1               ; 8 bits    ; 104 LEs       ; 104 LEs              ; 0 LEs                  ; No         ; |ECE2504SimpleComputer|mux16_1_8bits:LED_mux|Mux4                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Source assignments for cpu:cpu0                                     ;
++------------------------------+-------+------+-----------------------+
+; Assignment                   ; Value ; From ; To                    ;
++------------------------------+-------+------+-----------------------+
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[15]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[15]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[14]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[14]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[13]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[13]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[12]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[12]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[11]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[11]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[10]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[10]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[9]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[9]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[8]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[8]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[7]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[7]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[6]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[6]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[5]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[5]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[4]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[4]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[3]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[3]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[2]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[2]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[1]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[1]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_in_bus[0]        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_in_bus[0]        ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; IR[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; IR[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r0[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r0[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r1[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r1[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r2[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r2[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r3[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r3[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r4[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r4[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r5[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r5[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r6[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r6[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; r7[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; r7[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[15]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[15]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[14]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[14]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[13]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[13]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[12]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[12]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[11]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[11]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[10]~buf0           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[10]~buf0           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[9]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[9]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[8]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[8]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[7]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[7]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[6]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[6]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[5]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[5]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[4]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[4]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[3]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[3]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[2]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[2]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[1]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[1]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PC[0]~buf0            ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PC[0]~buf0            ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[15]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[15]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[14]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[14]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[13]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[13]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[12]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[12]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[11]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[11]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[10]             ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[10]             ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[9]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[9]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[8]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[8]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[7]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[7]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[6]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[6]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[5]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[5]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[4]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[4]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[3]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[3]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[2]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[2]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[1]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[1]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; instr[0]              ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; instr[0]              ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DA[2]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DA[2]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DA[1]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DA[1]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DA[0]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DA[0]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; AA[2]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; AA[2]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; AA[1]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; AA[1]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; AA[0]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; AA[0]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; BA[2]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; BA[2]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; BA[1]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; BA[1]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; BA[0]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; BA[0]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; MB                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; MB                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; FS[3]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; FS[3]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; FS[2]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; FS[2]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; FS[1]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; FS[1]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; FS[0]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; FS[0]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; N                     ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; N                     ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; C                     ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; C                     ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; V                     ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; V                     ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; Z                     ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; Z                     ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; MD                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; MD                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; RW                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; RW                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; MW                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; MW                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; PL                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; PL                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; JB                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; JB                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; BC                    ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; BC                    ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[15]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[15]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[14]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[14]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[13]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[13]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[12]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[12]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[11]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[11]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[10]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[10]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[9]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[9]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[8]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[8]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[7]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[7]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[6]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[6]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[5]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[5]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[4]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[4]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[3]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[3]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[2]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[2]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[1]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[1]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; register_file_in[0]   ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; register_file_in[0]   ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[15]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[15]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[14]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[14]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[13]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[13]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[12]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[12]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[11]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[11]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[10]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[10]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[9]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[9]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[8]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[8]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[7]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[7]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[6]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[6]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[5]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[5]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[4]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[4]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[3]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[3]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[2]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[2]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[1]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[1]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; A[0]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; A[0]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[15]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[15]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[14]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[14]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[13]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[13]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[12]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[12]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[11]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[11]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[10]                 ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[10]                 ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[9]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[9]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[8]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[8]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[7]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[7]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[6]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[6]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[5]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[5]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[4]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[4]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[3]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[3]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[2]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[2]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[1]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[1]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; B[0]                  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; B[0]                  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[15]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[15]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[14]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[14]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[13]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[13]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[12]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[12]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[11]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[11]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[10]         ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[10]         ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[9]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[9]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[8]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[8]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[7]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[7]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[6]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[6]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[5]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[5]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[4]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[4]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[3]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[3]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[2]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[2]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[1]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[1]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; mux_b_out[0]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; mux_b_out[0]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[15] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[15] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[14] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[14] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[13] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[13] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[12] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[12] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[11] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[11] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[10] ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[10] ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[9]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[9]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[8]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[8]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[7]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[7]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[6]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[6]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[5]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[5]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[4]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[4]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[3]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[3]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[2]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[2]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[1]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[1]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; function_unit_out[0]  ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; function_unit_out[0]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[15]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[15]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[14]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[14]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[13]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[13]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[12]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[12]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[11]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[11]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[10]      ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[10]      ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[9]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[9]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[8]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[8]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[7]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[7]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[6]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[6]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[5]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[5]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[4]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[4]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[3]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[3]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[2]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[2]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[1]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[1]       ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; data_mem_out[0]       ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; data_mem_out[0]       ;
++------------------------------+-------+------+-----------------------+
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: cpu:cpu0|instruction_rom:instr_mem ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                                         ;
+; ADDR_WIDTH     ; 10    ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: cpu:cpu0|single_port_ram:data_mem ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                                        ;
+; ADDR_WIDTH     ; 8     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: button_fsm:button_fsm0 ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; s0             ; 0     ; Unsigned Binary                            ;
+; s1             ; 1     ; Unsigned Binary                            ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "cpu:cpu0|mux:mux_b" ;
++--------------+-------+----------+--------------+
+; Port         ; Type  ; Severity ; Details      ;
++--------------+-------+----------+--------------+
+; din_1[15..3] ; Input ; Info     ; Stuck at GND ;
++--------------+-------+----------+--------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 15                          ;
+; cycloneiii_ff         ; 4243                        ;
+;     ENA               ; 4224                        ;
+;     SCLR SLD          ; 16                          ;
+;     plain             ; 3                           ;
+; cycloneiii_lcell_comb ; 4208                        ;
+;     arith             ; 31                          ;
+;         2 data inputs ; 1                           ;
+;         3 data inputs ; 30                          ;
+;     normal            ; 4177                        ;
+;         1 data inputs ; 384                         ;
+;         2 data inputs ; 51                          ;
+;         3 data inputs ; 363                         ;
+;         4 data inputs ; 3379                        ;
+;                       ;                             ;
+; Max LUT depth         ; 23.00                       ;
+; Average LUT depth     ; 13.92                       ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:12     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+    Info: Processing started: Mon Dec 11 22:20:28 2017
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off SimpleComputer -c SimpleComputer
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file single_port_ram.v
+    Info (12023): Found entity 1: single_port_ram File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/single_port_ram.v Line: 15
+Info (12021): Found 1 design units, including 1 entities, in source file pc_controller.v
+    Info (12023): Found entity 1: pc_controller File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/pc_controller.v Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file mux16_1_8bits.v
+    Info (12023): Found entity 1: mux16_1_8bits File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/mux16_1_8bits.v Line: 15
+Warning (12090): Entity "mux" obtained from "mux.v" instead of from Quartus Prime megafunction library File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/mux.v Line: 13
+Info (12021): Found 1 design units, including 1 entities, in source file mux.v
+    Info (12023): Found entity 1: mux File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/mux.v Line: 13
+Info (12021): Found 1 design units, including 1 entities, in source file instruction_rom.v
+    Info (12023): Found entity 1: instruction_rom File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/instruction_rom.v Line: 14
+Info (12021): Found 1 design units, including 1 entities, in source file instr_decoder.v
+    Info (12023): Found entity 1: instr_decoder File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/instr_decoder.v Line: 16
+Info (12021): Found 1 design units, including 1 entities, in source file function_unit.v
+    Info (12023): Found entity 1: function_unit File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/function_unit.v Line: 22
+Info (12021): Found 1 design units, including 1 entities, in source file ece2504simplecomputer.v
+    Info (12023): Found entity 1: ECE2504SimpleComputer File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/ECE2504SimpleComputer.v Line: 36
+Info (12021): Found 1 design units, including 1 entities, in source file dual_port_ram.v
+    Info (12023): Found entity 1: dual_port_ram File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/dual_port_ram.v Line: 14
+Info (12021): Found 1 design units, including 1 entities, in source file cpu.v
+    Info (12023): Found entity 1: cpu File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 29
+Info (12021): Found 1 design units, including 1 entities, in source file button_fsm.v
+    Info (12023): Found entity 1: button_fsm File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/button_fsm.v Line: 16
+Info (12127): Elaborating entity "ECE2504SimpleComputer" for the top level hierarchy
+Info (12128): Elaborating entity "cpu" for hierarchy "cpu:cpu0" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/ECE2504SimpleComputer.v Line: 87
+Info (12128): Elaborating entity "pc_controller" for hierarchy "cpu:cpu0|pc_controller:pc_ctrl" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 77
+Info (12128): Elaborating entity "instruction_rom" for hierarchy "cpu:cpu0|instruction_rom:instr_mem" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 85
+Warning (10850): Verilog HDL warning at instruction_rom.v(27): number of words (1034) in memory file does not match the number of elements in the address range [0:1023] File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/instruction_rom.v Line: 27
+Warning (10030): Net "rom.data_a" at instruction_rom.v(23) has no driver or initial value, using a default initial value '0' File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/instruction_rom.v Line: 23
+Warning (10030): Net "rom.waddr_a" at instruction_rom.v(23) has no driver or initial value, using a default initial value '0' File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/instruction_rom.v Line: 23
+Warning (10030): Net "rom.we_a" at instruction_rom.v(23) has no driver or initial value, using a default initial value '0' File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/instruction_rom.v Line: 23
+Info (12128): Elaborating entity "instr_decoder" for hierarchy "cpu:cpu0|instr_decoder:instruction_decoder" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 102
+Info (12128): Elaborating entity "dual_port_ram" for hierarchy "cpu:cpu0|dual_port_ram:register_file" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 124
+Info (12128): Elaborating entity "mux" for hierarchy "cpu:cpu0|mux:mux_b" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 136
+Info (12128): Elaborating entity "function_unit" for hierarchy "cpu:cpu0|function_unit:func_unit" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 149
+Info (12128): Elaborating entity "single_port_ram" for hierarchy "cpu:cpu0|single_port_ram:data_mem" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 156
+Warning (10036): Verilog HDL or VHDL warning at single_port_ram.v(27): object "addr_reg" assigned a value but never read File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/single_port_ram.v Line: 27
+Warning (10850): Verilog HDL warning at single_port_ram.v(31): number of words (55) in memory file does not match the number of elements in the address range [0:255] File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/single_port_ram.v Line: 31
+Info (12128): Elaborating entity "button_fsm" for hierarchy "button_fsm:button_fsm0" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/ECE2504SimpleComputer.v Line: 100
+Info (12128): Elaborating entity "mux16_1_8bits" for hierarchy "mux16_1_8bits:LED_mux" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/ECE2504SimpleComputer.v Line: 123
+Info (276014): Found 2 instances of uninferred RAM logic
+    Info (276007): RAM logic "cpu:cpu0|instruction_rom:instr_mem|rom" is uninferred due to asynchronous read logic File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/instruction_rom.v Line: 23
+    Info (276007): RAM logic "cpu:cpu0|single_port_ram:data_mem|ram" is uninferred due to asynchronous read logic File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/single_port_ram.v Line: 24
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/db/SimpleComputer.ram0_single_port_ram_642a84aa.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Info (286030): Timing-Driven Synthesis is running
+Info (17016): Found the following redundant logic cells in design
+    Info (17048): Logic cell "cpu:cpu0|r5[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r6[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r6[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r1[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r7[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r7[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r3[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r3[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r6[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r6[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r5[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r7[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r7[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r3[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r3[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r6[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r6[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r1[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r7[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r7[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r3[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r3[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r6[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r6[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r5[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r7[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r7[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r3[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r3[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r6[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r6[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r1[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r7[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r7[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r3[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r3[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r6[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r6[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r5[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r7[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r7[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r3[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r3[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r6[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r6[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r1[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r7[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r7[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r3[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r3[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r6[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r6[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|PC[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 37
+    Info (17048): Logic cell "cpu:cpu0|r5[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r4[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r5[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r0[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r1[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r7[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r7[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|IR[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 171
+    Info (17048): Logic cell "cpu:cpu0|r3[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r2[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|r3[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 36
+    Info (17048): Logic cell "cpu:cpu0|DA[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 40
+    Info (17048): Logic cell "cpu:cpu0|DA[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 40
+    Info (17048): Logic cell "cpu:cpu0|DA[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 40
+    Info (17048): Logic cell "cpu:cpu0|RW" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 44
+    Info (17048): Logic cell "cpu:cpu0|BC" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 44
+    Info (17048): Logic cell "cpu:cpu0|JB" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 44
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|MD" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 44
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[8]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|FS[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 42
+    Info (17048): Logic cell "cpu:cpu0|FS[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 42
+    Info (17048): Logic cell "cpu:cpu0|FS[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 42
+    Info (17048): Logic cell "cpu:cpu0|AA[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 40
+    Info (17048): Logic cell "cpu:cpu0|AA[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 40
+    Info (17048): Logic cell "cpu:cpu0|AA[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 40
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[9]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[10]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[11]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[3]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[4]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[12]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[13]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[5]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[6]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[14]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[15]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|data_in_bus[7]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 54
+    Info (17048): Logic cell "cpu:cpu0|MB" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 41
+    Info (17048): Logic cell "cpu:cpu0|BA[0]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 40
+    Info (17048): Logic cell "cpu:cpu0|BA[1]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 40
+    Info (17048): Logic cell "cpu:cpu0|BA[2]" File: D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/cpu.v Line: 40
+Info (144001): Generated suppressed messages file D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/output_files/SimpleComputer.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 8257 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 7 input pins
+    Info (21059): Implemented 8 output pins
+    Info (21061): Implemented 8242 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 9 warnings
+    Info: Peak virtual memory: 756 megabytes
+    Info: Processing ended: Mon Dec 11 22:20:54 2017
+    Info: Elapsed time: 00:00:26
+    Info: Total CPU time (on all processors): 00:00:40
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in D:/GitHub/ECE2504/Project04/Quartus/SimpleComputer_DP4_working/output_files/SimpleComputer.map.smsg.
+
+
