@@ -5,7 +5,7 @@ The goal of this exercise is to learn how to use Vagrant to setup and use a virt
 
 Prerequisites:
 
-* You have completed ``Exercise 01: Setup`` and have a working installation of VirtualBpx and Vagrant 
+* You have completed ``Exercise 01: Setup`` and have a working installation of VirtualBox and Vagrant 
 * You have read through the [Vagrant Getting Started](https://www.vagrantup.com/docs/getting-started/) guide.
 
 Steps:
