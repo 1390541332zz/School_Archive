@@ -1,4 +1,4 @@
-# MSP432 Mistery Color Program Instructions
+# MSP432 Mystery Color Program Instructions
 
 The objective of this quiz is a dry-run to check out a project from GitHub into CCS, make some changes to it, and upload the resulting changes back to GitHub. You will use this procedure to implement labs and an occasional homework in ECE 2534. Before you start, make sure you have CCS installed.
 
