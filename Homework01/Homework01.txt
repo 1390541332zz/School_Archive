@@ -1,0 +1,17 @@
+#Question 1
+cd ~/entertainment
+mkdir ./TVShows
+cd ./TVShows
+mkdir ./watched ./favorites
+cd ./watched
+ls
+cat GoT
+
+#Question 2
+cd ~/entertainment
+mkdir ./videos
+cd ./videos
+!4
+
+#Question 3
+grep -Po '^.+? is' ~/entertainment/TVShows/watched/GoT | sed 's/ is//g'
