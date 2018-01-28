@@ -1,6 +1,10 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
+#include <string>
+#include <vector>
+#include <iterator>
+
 //Operator Address Type
 enum addr_type {
     IMMEDIATE,
@@ -12,14 +16,14 @@ enum addr_type {
 //Instruction Arguments
 struct arg {
     std::string arg = "";
-    addr_type addr_type = UNDEF;
+    enum addr_type addr_type = UNDEF;
 };
 
 //Parsed Instructions
 class instruction {
 private:    
-    std::string op;
-    std::vector<arg> args;
+    std::string opcode;
+    std::vector<arg> arguments;
 
     //Instruction Position (IAR/PC)
     std::size_t instr_addr = 0;
@@ -33,10 +37,10 @@ public:
 
     //Access Operator
     std::string& op();
-    std::string const& op();
+    std::string const& op() const;
 
     //Access Arguments
-    std::vector<arg>& args() const;
+    std::vector<arg>& args();
     std::vector<arg> const& args() const;
 };
 
