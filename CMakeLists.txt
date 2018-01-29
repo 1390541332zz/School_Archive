@@ -10,9 +10,9 @@ endif()
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if(UNIX AND STRICT)
+if(UNIX)
   message("-- Enabling strict compilation mode")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -ggdb -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare -Wno-deprecated")
 endif()
 
 set(SOURCE
