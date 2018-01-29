@@ -30,6 +30,9 @@
 
 # Eclipse artefacts
 .metadata
+.launches
+.settings
 RemoteSystemsTempFiles
 Debug
+Release
 targetConfigs
