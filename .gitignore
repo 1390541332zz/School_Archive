@@ -28,10 +28,9 @@
 *.x86_64
 *.hex
 
-# Eclipse artefacts
+# Eclipse artifacts
 .metadata
 .launches
-.settings
 RemoteSystemsTempFiles
 Debug
 Release
