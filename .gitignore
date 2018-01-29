@@ -28,8 +28,12 @@
 *.x86_64
 *.hex
 
-# Eclipse artefacts
+# Eclipse artifacts
 .metadata
+.launches
 RemoteSystemsTempFiles
 Debug
+Release
 targetConfigs
+.xdchelp
+.config/
