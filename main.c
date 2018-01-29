@@ -9,9 +9,8 @@ int main(void) {
 
     //--------------------------------------------------------------------------
     // Run the program. Extend the following comment before checking in the file
-    // My name is ...............
-    // The color I'm seeing on the tri-color LED is  CHECK ...............
-
+    // My name is Jacob Abel
+    // The color I'm seeing on the tri-color LED is YELLOW
     while (1) {
         GPIO_setOutputHighOnPin (GPIO_PORT_P2, GPIO_PIN0);
         GPIO_setOutputHighOnPin (GPIO_PORT_P2, GPIO_PIN1);
