@@ -35,6 +35,11 @@ void main(void) {
   unsigned char right_button_cur = 1;
   enum color color = RED;
 
+  //Set Initial Pinouts
+  P1OUT &= ~LED1;
+  P2OUT &= ~(LED2_RED | LED2_BLUE | LED2_GREEN);
+
+
   while(1) {
 
 
@@ -87,4 +92,8 @@ void main(void) {
       right_button_prev = right_button_cur;
   }
   
+  //Set Final Pinouts
+  P1OUT &= ~LED1;
+  P2OUT &= ~(LED2_RED | LED2_BLUE | LED2_GREEN);
+
 }
