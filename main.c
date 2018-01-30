@@ -20,17 +20,20 @@ void main(void) {
   // Configure the pin connected to left button an input with pull-up resistor
   GPIO_setAsInputPinWithPullUpResistor (GPIO_PORT_P1, GPIO_PIN1);
 
-  unsigned char left_button_prev, left_button_cur;
+  unsigned char left_button_prev, left_button_cur, left_button_pushed;
   STATES curState = WAITING_FOR_THE_FIRST_PUSH;
 
   while(1)
   {
-
+      // Read the input from left button and mask it
       left_button_cur = (P1IN & LEFT_BUTTON);
 
-      // We need to take some action only if left button is pushed
-      if ((left_button_prev == PRESSED) &&
-                (left_button_cur  != PRESSED))
+      // Based on history, check to see if the button has been pushed
+      // This happens only if the button is currently released, but it was pressed before
+      left_button_pushed = (left_button_prev == PRESSED) && (left_button_cur  != PRESSED);
+
+      // We need to take action only if left button is pushed
+      if (left_button_pushed)
       {
           switch(curState)
                 {
