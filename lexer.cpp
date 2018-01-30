@@ -120,7 +120,8 @@ TokenList tokenize(std::istream & is)
                     delim_offset = str.find_first_of(delim_chars);
                 }            
                 if (delim_offset != std::string::npos) {
-                    is.seekg(delim_offset - str.size(), std::ios_base::cur);
+                    std::ios::streampos off = delim_offset - static_cast<std::ios::streampos>(str.size());
+                    is.seekg(off, std::ios_base::cur);
                     str = str.substr(0, delim_offset);
                 }
                 toklist.emplace_back(STRING, curline, str);
