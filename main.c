@@ -2,23 +2,13 @@
 
 #define LEFT_BUTTON    BIT1
 
-// THIS MACRO HAS TO BE DEFINED BY YOU
-#define RIGHT_BUTTON   
-
 #define LED1           BIT0
 
-// THIS MACRO HAS TO BE DEFINED BY YOU
-#define LED2_RED       
-
-// THIS MACRO HAS TO BE DEFINED BY YOU
-#define LED2_GREEN     
-
-// THIS MACRO HAS TO BE DEFINED BY YOU
-#define LED2_BLUE      
 
 #define PRESSED 0
 
-enum {RED, BLUE, GREEN, PURPLE} color = RED;
+
+typedef enum  {WAITING_FOR_THE_FIRST_PUSH, WAITING_FOR_THE_SECOND_PUSH} STATES;
 
 void main(void) {
 
@@ -31,21 +21,35 @@ void main(void) {
   GPIO_setAsInputPinWithPullUpResistor (GPIO_PORT_P1, GPIO_PIN1);
 
   unsigned char left_button_prev, left_button_cur;
+  STATES curState = WAITING_FOR_THE_FIRST_PUSH;
 
+  while(1)
+  {
 
-  while(1) {
-
-
-      // P1IN contains all the pins on port1
-      // When we mask it with LEFT_BUTTON, all the port bits become 0 except for the one representing left button
-      // When this masked value becomes 0, it means this button is pressed (grouneded).
       left_button_cur = (P1IN & LEFT_BUTTON);
 
-      // We recall that "pushing a button" consists of pressing and then releasing it.
-      // If the button "was" pressed, but now it "is not" pressed, it means the user has finished "pushing the button"
+      // We need to take some action only if left button is pushed
       if ((left_button_prev == PRESSED) &&
-          (left_button_cur  != PRESSED)) {
-          P1OUT ^= LED1; //toggle the LED
+                (left_button_cur  != PRESSED))
+      {
+          switch(curState)
+                {
+                    case WAITING_FOR_THE_FIRST_PUSH:
+                        // update the state
+                        curState = WAITING_FOR_THE_SECOND_PUSH;
+
+                        // show reaction
+                        // In this state, the application has no reaction
+
+                        break;
+                    case WAITING_FOR_THE_SECOND_PUSH:
+                        // update the state
+                        curState = WAITING_FOR_THE_FIRST_PUSH;
+
+                        // show reaction
+                        P1OUT ^= LED1; //toggle the LED
+                        break;
+                }
       }
 
       // Keep the history of this button
