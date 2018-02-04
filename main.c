@@ -1,6 +1,11 @@
-// This application uses left button and left LED
-// It toggles the status of LED1 after two pushes to the button1
+// This application uses the following:
+//      1) Buttons on launchpad (and corresponding GPIOs)
+//      2) LEDs on launchpad (and corresponding GPIOs)
+//      3) Timer module inside MCU
 
+// This application implements the following functionality
+//      1) Pushing the left button toggles the status of the left LED
+//      2) LED2 periodically changes color between green and red
 
 
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
@@ -21,26 +26,32 @@ void InitTimer() {
 
 }
 
-void InitButtonsLEDs() {
-        GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN0);
-        GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN0);
-        GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN1);
-        GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN2);
+void InitButtons() {
+    GPIO_setAsInputPinWithPullUpResistor (GPIO_PORT_P1, GPIO_PIN1);
+    GPIO_setAsInputPinWithPullUpResistor (GPIO_PORT_P1, GPIO_PIN4);
 
-        GPIO_setAsInputPinWithPullUpResistor (GPIO_PORT_P1, GPIO_PIN1);
-        GPIO_setAsInputPinWithPullUpResistor (GPIO_PORT_P1, GPIO_PIN4);
+}
 
-        P2OUT &= ~LED2_RED;
-        P2OUT &= ~LED2_GREEN;
-        P2OUT &= ~LED2_BLUE;
-        P1OUT &= ~LED1;
+void InitLEDs() {
+
+    GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN0);
+    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN0);
+    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN1);
+    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN2);
+
+
+    P2OUT &= ~LED2_RED;
+    P2OUT &= ~LED2_GREEN;
+    P2OUT &= ~LED2_BLUE;
+    P1OUT &= ~LED1;
 }
 
 void main(void) {
 
   WDT_A_hold(WDT_A_BASE);
 
-  InitButtonsLEDs();
+  InitLEDs();
+  InitButtons();
   InitTimer();
 
   unsigned char left_button_prev, left_button_cur, left_button_pushed;
