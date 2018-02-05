@@ -114,10 +114,10 @@ int main(void) {
         b       = ButtonS1Pressed();
         bd      = BounceFSM(b);
 
-        if (bd & !prev_b)
+        if (UPEDGE(b,prev_b))
             MainColorLEDToggle();
 
-        if (bd & !prev_bd)
+        if (UPEDGE(bd,prev_bd))
             SensorColorLEDToggle();
     }
 }
