@@ -99,7 +99,7 @@ bool Debounce(bool rawBtn) {
             // Update outputs, if different from default
             startTimer = 1;
         }
-
+        break;
 
      case trans1To0:
          debouncedBtn = 1;
