@@ -140,7 +140,7 @@ int main(void) {
         bd      = Debounce(b);
 
         // The non-debounced button toggles the Launchpad LED. This is to give us an idea of how the not debounced button would have behaved.
-        if (bd & !prev_b)
+        if (b & !prev_b)
             Toggle_Launchpad_LED();
 
         // The debounced button toggles the Booster board LED.
