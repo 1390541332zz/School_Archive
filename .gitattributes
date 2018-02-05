@@ -5,4 +5,4 @@ tests/fail/unix/*.asm text eol=lf
 tests/fail/win/*.asm text eol=crlf
 
 # preserve line ending on bash script
-scripts/coverage.sh
+scripts/coverage.sh eol=lf
