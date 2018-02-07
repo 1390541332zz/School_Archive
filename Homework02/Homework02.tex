@@ -1,0 +1,354 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+\usepackage{arev}
+
+
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{allwithdot}
+\usepackage[bottom]{footmisc}
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 2
+	\\\large MATH2534 CRN:15708
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+
+\begin{raggedright}
+
+\begin{enumerate}
+\item Define: H: We go hiking. P: We finish the project. Put each of the following statements in symbolic form and determine which of them is equivalent to the statement "If we don't finish the project, then we won't go hiking".
+\begin{enumerate}[label=(\alph*)]
+\item Finishing the project is a necessary condition for us to go hiking.
+
+$\neg P \implies \neg H$ 
+
+Matches initial statement
+\item Finishing the project guarantees that we go hiking.
+
+$P \implies H$ 
+
+Does not match initial statement
+\item We go hiking implies that we finish the project.
+
+$H \implies P \equiv \neg P \implies \neg H$ 
+
+Matches initial statement
+\item Without finishing the project, we won’t go hiking.
+
+$\neg P \implies \neg H$ 
+
+Matches initial statement
+\item We go hiking only if we finish the project.
+
+$\neg P \implies \neg H$ 
+
+Matches initial statement
+\item In order for us to go hiking it is sufficient to finish the project.
+
+$P \implies H$ 
+
+Does not match initial statement
+\item We go hiking or we don’t finish the project.
+
+$H \lor \neg P$
+
+Does not match initial statement
+\end{enumerate}
+
+\pagebreak
+
+\item Determine if the following arguments are valid. Justify your conclusion.
+\begin{enumerate}[label=(\alph*)]
+\item If Amy passes the exam, she is eligible for the position.
+
+Amy is not eligible for the position.
+
+$\therefore$ Amy did not pass the exam.
+
+\underline{Valid By Modus Tollens}
+
+\item Don't fail this class or transfer to another school.
+
+You did not transfer to another school.
+
+$\therefore$ You did not fail this class.
+
+\underline{Valid By Elimination}
+
+\item If Jenny does not go to the movie, Bob will go to the movie. 
+
+Jenny went to the movie.
+
+$\therefore$ Bob did not go to the movie.
+
+\underline{Invalid by Modus Tollens}
+
+\item I will buy a new car only if I get a bonus.
+
+I did not buy a new car.
+
+$\therefore$ I did not get a bonus.
+
+\underline{Invalid by Modus Tollens}
+
+\item The card you picked is not both a Queen and a King.
+
+The card you picked is a King.
+
+$\therefore$ The card you picked is not a Queen.
+
+\underline{Valid by Elimination}
+
+\item Sam is a musician.
+
+$\therefore$ Sam is a musician or a student.
+
+\underline{Valid by Generalisation}
+
+\end{enumerate}
+
+\item Determine whether the following argument form is valid using a truth table. Make sure to clearly mark the premises and conclusion.
+
+\columnratio{0.19}
+\begin{paracol}{2}
+\begin{align*}
+  (&p\lor q)\implies r
+\\&p \lor \neg q
+\\&r \implies q
+\\\therefore &q \implies p
+\end{align*}
+\switchcolumn
+\begin{tabular}{|ccc|c|c|c|c|}
+\hline 
+\multicolumn{3}{|c|}{} & \multicolumn{3}{|c|}{Premises} & Conclusion \\ 
+\hline 
+$p$ & $q$ & $r$ & $(p\lor q)\implies r$ & $p \lor \neg q$ & $r \implies q$ & $q \implies p$ \\ 
+\hline 
+F & F & F & T & T & T & T \\ 
+\hline 
+F & F & T & T & T & F & T \\ 
+\hline 
+F & T & F & T & F & T & F \\ 
+\hline
+F & T & T & T & F & T & F \\ 
+\hline 
+T & F & F & T & T & T & T \\ 
+\hline 
+T & F & T & T & T & F & T \\ 
+\hline 
+T & T & F & F & T & T & T \\ 
+\hline 
+T & T & T & T & T & T & T \\ 
+\hline 
+\end{tabular} 
+\end{paracol}
+\begin{center}
+\underline{The argument is valid}
+\end{center}
+
+\pagebreak
+
+\item Kids are trying to figure out the location of the treasure that is hidden somewhere on the property. They are given the following true statements:
+\begin{enumerate}[label=(\alph*)]
+\item The statement, "if this house is not next to a lake, then this house has grey walls or the treasure is in the kitchen." is false.
+\item If the treasure is in the garage or the treasure is not in the kitchen, then this house has a pet.
+\item If this house has a pet and the treasure is not in the backyard, then this house is next to a lake or this house has grey walls.
+\item If this house doesn’t have grey walls, then the treasure is not in both the garage and the backyard.
+\end{enumerate}
+
+Where is the treasure hidden? Explain how you make your conclusion.
+
+$L$: The house is next to the lake. $W$: The house has grey walls. \\
+$K$: The treasure is in the kitchen. $G$: The treasure is in the garage.\\
+$P$: The house has a pet. $B$: The treasure is in the backyard.
+\begin{align*}
+   \neg(\neg L &\implies (W \lor K))
+\\ (G \lor \neg K)&\implies P
+\\ (P\land \neg B) &\implies (L \lor W)
+\\ \neg W &\implies \neg (G \land B)
+\\\neg(\neg L &\implies (W \lor K))
+\\\therefore &\neg L
+\\\therefore &\neg W
+\\\therefore &\neg K
+%\begin{align*}
+%\neg W &\implies \neg (G \land B)
+%\\&\neg W
+%\\\therefore &\neg (G \land B)
+%end{align*}
+\\(G \lor \neg K)&\implies P
+\\&\neg K
+\\&\therefore P
+\\(P\land \neg B) &\implies (L \lor W)
+\\&P
+\\\therefore\neg B &\implies (L \lor W)
+\end{align*}
+By Contradiction Rule
+\begin{align*}
+&\neg B \implies (L \lor W)
+\\&\neg L
+\\&\neg W
+\\&\therefore B
+\end{align*}
+The Treasure is located in the backyard.
+\pagebreak
+
+\item Let $C$, $E$, $H$, $M$, $R$, and $S$ represent the following statements: 
+
+$C$: It is cold. $E$: We eat out. $H$: It is hot. 
+
+$M$: We go to the movie. $R$: It is raining $S$: It is sunny. 
+
+Put the following premises and conclusion into symbolic logic forms and determine if the following argument is valid. Show all work and justify your reasoning.
+\begin{enumerate}[label=(\alph*)]
+\item If it is not hot, then it is raining and cold.
+
+$\neg H \implies (R \land C)$
+
+\item It is not sunny.
+
+$\neg S$
+
+\item If we eat out, then it is sunny or it is not hot.
+
+$E \implies (S \lor \neg H)$
+
+\item If it is not sunny, then it is not raining.
+
+$\neg S \implies \neg R$
+
+\item If it is hot, then we don’t go the movie or we eat out. 
+
+$\therefore$ We don’t go to the movie.
+
+$H \implies (\neg M \lor E)$
+
+$\therefore \neg M$
+
+\end{enumerate}
+
+$\neg S \implies \neg R$ 
+
+$\neg S$
+
+$\therefore \neg R$\qquad By Modus Ponens
+
+$E \implies (S \lor \neg H)$
+
+$\neg S$
+
+$\therefore H \implies \neg E$\qquad By Elimination and Contrapositive
+
+$\neg H \implies (R \land C)$
+
+$\neg R$
+
+$\therefore H$ \qquad By Contradiction Rule 
+
+$H \implies (\neg M \lor E)$
+
+$H \implies \neg E$
+
+$\neg M$ \qquad By Elimination
+
+The argument is valid.
+
+\pagebreak
+
+\item Put the following sentences into symbolic logic using single quantifiers. Define your variables, the domain and the predicate.
+\begin{enumerate}[label=(\alph*)]
+\item Not every child loves candies.
+
+$K$: Children : Domain
+
+$C$: People who like candles
+
+$x$: Variable
+
+$x \notin C$: Predicate
+
+$[\exists x \in K, x \notin C]$
+
+\item Some of rational numbers are integers.
+
+$\mathbb{Q}$: Rational Number : Domain
+
+$\mathbb{Z}$: Integers
+
+$x$: Variable
+
+$x \in \mathbb{Z}$: Predicate
+
+$[ \exists x \in \mathbb{Q}, x \in \mathbb{Z} ]$
+\item No baseball player wears glasses.
+
+$B$: Baseball players : Domain
+
+$G$: People who wear glasses
+
+$x$: Variable
+
+$x \notin G$ : Predicate
+
+$[ \forall x \in B, x \notin G ]$
+
+\end{enumerate}
+
+
+\item Translate the following formal statements into informal statements.
+\begin{enumerate}[label=(\alph*)]
+\item $\forall x \in \mathbb{R}, x^2 > 2x$
+
+All real numbers have squares that are larger than their doubles.
+\item $\exists \varclub, \varheart \in \mathbb{Z}$ such that $\varclub\neq\varheart$ and $\varclub\times\varheart = 100$.
+
+There is a pair of integers which are not equal and have a product of 100.
+\end{enumerate}
+
+\item Find the truth set of the predicate $P(x) : x^2 \geq 36$ for each of the following domains:
+\begin{enumerate}[label=(\alph*)]
+\item $ \mathbb{Z}$
+
+The truth set is all integers with an absolute value greater than or equal to 6.
+
+$\{x|x \in \mathbb{Z}, |x| \geq 6 \}$
+\item $ \mathbb{R}$
+
+The truth set is all real numbers with an absolute value greater than or equal to 6.
+
+$\{x|x \in \mathbb{R}, |x| \geq 6\}$
+\item $D=\{-10, -6, -4, 0, 3, 5, 7\}$
+
+The truth set is $\{-10, -6, 7\}$.
+\end{enumerate}
+
+\end{enumerate}
+\end{raggedright}
+\end{document}
