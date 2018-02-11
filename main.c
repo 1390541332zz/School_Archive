@@ -152,6 +152,13 @@ int main(void) {
     LCDDrawChar(7, 14, 'U');
     LCDDrawChar(7, 15, '?');
 
+    UARTPutChar('H');
+    UARTPutChar('e');
+    UARTPutChar('l');
+    UARTPutChar('l');
+    UARTPutChar('o');
+    UARTPutChar('!');
+
     while (1) {
         if (UARTHasChar()) {
             c = UARTGetChar();
