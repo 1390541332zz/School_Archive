@@ -2,6 +2,9 @@
 #define LEXER_HPP
 
 #include <istream>
+#include <string>
+#include <stack>
+#include <limits>
 
 #include "token.hpp"
 
@@ -9,6 +12,6 @@
 On error, the last token is of type ERROR and the value is the
 error message.
  */
-TokenList tokenize(std::istream & ins);
+TokenList tokenize(std::istream & is);
 
-#endif
+#endif /* LEXER_HPP */

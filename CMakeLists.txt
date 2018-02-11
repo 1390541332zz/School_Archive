@@ -15,6 +15,9 @@ set(TEST_SOURCE
 # add source for simmips program here
 set(SIMMIPS_SOURCE simmips.cpp)
 
+#Force Strict Mode
+set(STRICT ON)
+
 # You should not need to edit below this line
 #-----------------------------------------------------------------------
 #-----------------------------------------------------------------------
@@ -31,7 +34,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # optional strict mode
 if(UNIX AND STRICT)
   message("-- Enabling strict compilation mode")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -ggdb -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare -Wno-deprecated")
 endif()
 
 # setup testing

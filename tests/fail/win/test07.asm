@@ -9,6 +9,7 @@ sumOfSquares:	.word 0
 
 	#---------------------------------------------------------------
 	# the program
+	.text
 main:
 	lw $t0,n
 	li $t1,1
