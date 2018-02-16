@@ -1,6 +1,6 @@
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
-//-- ColorLED API
+//-- UART API
 
 eUSCI_UART_Config uartConfig = {
      EUSCI_A_UART_CLOCKSOURCE_SMCLK,                // SMCLK Clock Source = 3MHz
@@ -24,7 +24,8 @@ void InitUART() {
 }
 
 bool UARTHasChar() {
-    return (UART_getInterruptStatus (EUSCI_A0_BASE, EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG)
+    return (UART_getInterruptStatus (EUSCI_A0_BASE,
+                                     EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG)
                 == EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG);
 }
 
@@ -36,7 +37,8 @@ uint8_t UARTGetChar() {
 }
 
 bool UARTCanSend() {
-    return (UART_getInterruptStatus (EUSCI_A0_BASE, EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG)
+    return (UART_getInterruptStatus (EUSCI_A0_BASE,
+                                     EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG)
                 == EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG);
 }
 
