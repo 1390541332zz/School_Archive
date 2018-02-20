@@ -65,16 +65,18 @@ int TimerDebounceExpiredOneShot() {
 //
 
 bool BounceFSM(bool b) {
-    typedef enum {OFF, RUNNING} state_t;
-    static state_t state = OFF;
+    static bool started = false;
+    static bool lastb = false;
 
-    if (b && state == OFF) {
+    if (b && !started) {
         Timer200msStartOneShot();
-        state = RUNNING;
-    } else if (b && Timer200msExpiredOneShot()) {
+        started = true;
+    } else if (!b && lastb && Timer200msExpiredOneShot()) {
         Timer200msStartOneShot();
+        lastb = b;
         return true;
     }
+    lastb = b;
     return false;
 }
 
