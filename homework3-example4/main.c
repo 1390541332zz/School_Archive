@@ -36,53 +36,28 @@ void RedLEDToggle() {
 //
 
 void InitTimer() {
-
-    //--- COPY THIS FUNCTION FROM EXAMPLE 3
-
-
-
-    //----------
-
+    MAP_Timer32_initModule(TIMER32_0_BASE, TIMER32_PRESCALER_1,
+            TIMER32_32BIT, TIMER32_FREE_RUN_MODE);
+    MAP_Timer32_initModule(TIMER32_1_BASE, TIMER32_PRESCALER_1,
+            TIMER32_32BIT, TIMER32_FREE_RUN_MODE);
 }
 
 void Timer200msStartOneShot() {
-
-    //--- COPY THIS FUNCTION FROM EXAMPLE 3
-
-
-
-    //----------
-
+    Timer32_startTimer(TIMER32_0_BASE, true);
+    Timer32_setCount(TIMER32_0_BASE, 600000);
 }
 
 int Timer200msExpiredOneShot() {
-
-    //--- COPY THIS FUNCTION FROM EXAMPLE 3
-
-
-
-    //----------
-
+    return Timer32_getValue(TIMER32_0_BASE) == 0;
 }
 
 void TimerDebounceStartOneShot() {
-
-    //--- COPY THIS FUNCTION FROM EXAMPLE 3
-
-
-
-    //----------
-
+    Timer32_startTimer(TIMER32_1_BASE, true);
+    Timer32_setCount(TIMER32_1_BASE, 300000);
 }
 
 int TimerDebounceExpiredOneShot() {
-
-    //--- COPY THIS FUNCTION FROM EXAMPLE 3
-
-
-
-    //----------
-
+    return Timer32_getValue(TIMER32_1_BASE) == 0;
 }
 
 //------------------------------------------
@@ -90,11 +65,17 @@ int TimerDebounceExpiredOneShot() {
 //
 
 bool BounceFSM(bool b) {
+    typedef enum {OFF, RUNNING} state_t;
+    static state_t state = OFF;
 
-    // --- YOU HAVE TO WRITE THIS FUNCTION BODY
-
-    // ---
-
+    if (state == OFF) {
+        Timer200msStartOneShot();
+        state = RUNNING;
+    } else if (b && Timer200msExpiredOneShot()) {
+        Timer200msStartOneShot();
+        return true;
+    }
+    return false;
 }
 
 
