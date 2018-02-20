@@ -81,43 +81,28 @@ void RedLEDOff() {
 //
 
 void InitTimer() {
-
-    // --- YOU HAVE TO WRITE THIS FUNCTION BODY
-
-    // ---
-
+    MAP_Timer32_initModule(TIMER32_0_BASE, TIMER32_PRESCALER_1,
+            TIMER32_32BIT, TIMER32_FREE_RUN_MODE);
+    MAP_Timer32_initModule(TIMER32_1_BASE, TIMER32_PRESCALER_1,
+            TIMER32_32BIT, TIMER32_FREE_RUN_MODE);
 }
 
 void Timer200msStartOneShot() {
-
-    // --- YOU HAVE TO WRITE THIS FUNCTION BODY
-
-    // ---
-
+    Timer32_startTimer(TIMER32_0_BASE, true);
+    Timer32_setCount(TIMER32_0_BASE, 600000);
 }
 
 int Timer200msExpiredOneShot() {
-
-    // --- YOU HAVE TO WRITE THIS FUNCTION BODY
-
-    // ---
-
+    return Timer32_getValue(TIMER32_0_BASE) == 0;
 }
 
 void TimerDebounceStartOneShot() {
-
-    // --- YOU HAVE TO WRITE THIS FUNCTION BODY
-
-    // ---
-
+    Timer32_startTimer(TIMER32_1_BASE, true);
+    Timer32_setCount(TIMER32_1_BASE, 300000);
 }
 
 int TimerDebounceExpiredOneShot() {
-
-    // --- YOU HAVE TO WRITE THIS FUNCTION BODY
-
-    // ---
-
+    return Timer32_getValue(TIMER32_1_BASE) == 0;
 }
 
 int main(void) {
