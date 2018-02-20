@@ -1,9 +1,10 @@
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
+#define CLKSPD 3000000
+
 // Global parameters with current application settings
 
 typedef enum {baud9600, baud19200, baud38400, baud57600} UARTBaudRate_t;
-
 
 //------------------------------------------
 // UART API
@@ -68,10 +69,29 @@ void UARTPutChar(uint8_t t) {
 
 void UARTSetBaud(UARTBaudRate_t t) {
 
-    // --- YOU HAVE TO WRITE THIS FUNCTION BODY
-
-    // ---
-
+    uint_fast16_t baud = 0;
+    switch(t) {
+    case baud9600:
+        baud = 9600;
+        uartConfig.secondModReg = 0xAA;
+        break;
+    case baud19200:
+        baud = 19200;
+        uartConfig.secondModReg = 0xDD;
+        break;
+    case baud38400:
+        baud = 38400;
+        uartConfig.secondModReg = 0xF7;
+        break;
+    case baud57600:
+        baud = 57600;
+        uartConfig.secondModReg = 0x44;
+        break;
+    }
+    uartConfig.clockPrescalar = (CLKSPD / baud) / 16;
+    uartConfig.firstModReg  = (CLKSPD / baud) % 16;
+    UART_initModule(EUSCI_A0_BASE, &uartConfig);
+    UART_enableModule(EUSCI_A0_BASE);
 }
 //-----------------------------------------------------------------------
 
