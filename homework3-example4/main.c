@@ -68,7 +68,7 @@ bool BounceFSM(bool b) {
     typedef enum {OFF, RUNNING} state_t;
     static state_t state = OFF;
 
-    if (state == OFF) {
+    if (b && state == OFF) {
         Timer200msStartOneShot();
         state = RUNNING;
     } else if (b && Timer200msExpiredOneShot()) {
