@@ -23,6 +23,36 @@ typedef enum {black, red, green, yellow, blue, magenta, cyan, white} color_t;
 //                   |
 //                font data        (this project, fonts directory)
 
+
+#define CONV_COLOR(c_color_t, c_int32_t) do {                                  \
+    switch(c_color_t) {                                                        \
+        case black:                                                            \
+            c_int32_t = GRAPHICS_COLOR_BLACK;                                  \
+            break;                                                             \
+        case red:                                                              \
+            c_int32_t = GRAPHICS_COLOR_RED;                                    \
+            break;                                                             \
+        case green:                                                            \
+            c_int32_t = GRAPHICS_COLOR_GREEN;                                  \
+            break;                                                             \
+        case yellow:                                                           \
+            c_int32_t = GRAPHICS_COLOR_YELLOW;                                 \
+            break;                                                             \
+        case blue:                                                             \
+            c_int32_t = GRAPHICS_COLOR_BLUE;                                   \
+            break;                                                             \
+        case magenta:                                                          \
+            c_int32_t = GRAPHICS_COLOR_MAGENTA;                                \
+            break;                                                             \
+        case cyan:                                                             \
+            c_int32_t = GRAPHICS_COLOR_CYAN;                                   \
+            break;                                                             \
+        case white:                                                            \
+            c_int32_t = GRAPHICS_COLOR_WHITE;                                  \
+            break;                                                             \
+    }                                                                          \
+} while (0);
+
 Graphics_Context g_sContext;
 
 void InitGraphics() {
@@ -51,19 +81,15 @@ void LCDDrawChar(unsigned row, unsigned col, int8_t c) {
 }
 
 void LCDSetFgColor(color_t c) {
-
-    // --- YOU HAVE TO WRITE THIS FUNCTION BODY
-
-    // ---
-
+    int32_t color;
+    CONV_COLOR(c, color);
+    Graphics_setForegroundColor(&g_sContext, color);
 }
 
 void LCDSetBgColor(color_t c) {
-
-    // --- YOU HAVE TO WRITE THIS FUNCTION BODY
-
-    // ---
-
+    int32_t color;
+    CONV_COLOR(c, color);
+    Graphics_setBackgroundColor(&g_sContext, color);
 }
 
 //-----------------------------------------------------------------------
