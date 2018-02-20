@@ -51,7 +51,7 @@ void ComplexWidget::update_vals()
     }
 
     mag_label->setText("Magnitude: " + QString::number(mag,   'f', 2));
-    phase_label->setText("Phase: "   + QString::number(phase, 'f', 2));
+    phase_label->setText("Phase: "   + QString::number(phase, 'f', 2) + " radians");
 }
 
 double ComplexWidget::getRealPart() const noexcept
