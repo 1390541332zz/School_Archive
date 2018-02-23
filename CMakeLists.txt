@@ -37,6 +37,12 @@ if(UNIX AND STRICT)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -ggdb -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare -Wno-deprecated")
 endif()
 
+# enable Sanatisers
+if (SAN)
+  message("-- Enabling UBSan and ASan")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined -fsanitize=address -lubsan -lasan")
+endif()
+
 # setup testing
 set(TEST_FILE_DIR "${CMAKE_SOURCE_DIR}/tests")
 configure_file(${CMAKE_SOURCE_DIR}/test_config.hpp.in 

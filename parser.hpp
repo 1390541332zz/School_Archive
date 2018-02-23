@@ -1,6 +1,5 @@
-#ifndef PARSER_HPP
-#define PARSER_HPP
+#ifndef SIMMIPS_PARSER_HPP
+#define SIMMIPS_PARSER_HPP
 
-// define the parser module here
 
-#endif
+#endif /* SIMMIPS_PARSER_HPP  */

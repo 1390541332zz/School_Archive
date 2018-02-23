@@ -1,5 +1,5 @@
-#ifndef LEXER_HPP
-#define LEXER_HPP
+#ifndef SIMMIPS_LEXER_HPP
+#define SIMMIPS_LEXER_HPP
 
 #include <istream>
 #include <string>
@@ -14,4 +14,4 @@ error message.
  */
 TokenList tokenize(std::istream & is);
 
-#endif /* LEXER_HPP */
+#endif /* SIMMIPS_LEXER_HPP */
