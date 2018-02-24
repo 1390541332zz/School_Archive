@@ -13,14 +13,6 @@
 #include "parser.hpp"
 #include "instr.hpp"
 
-struct constant 
-{
-    bool sign = false;
-    union {
-        signed;
-        unsigned;
-    };
-}
 
 class program
 {
@@ -29,7 +21,7 @@ private:
     std::vector<std::uint8_t> mem = {0};
     std::vector<instr> instr = {};
     std::map<std::string, std::size_t> label = {};
-    std::map<std::string, constant> constant = {};
+    std::map<std::string, std::intmax_t> constant = {};
 
     std::uint32_t & zero = reg[0];
     std::uint32_t & at   = reg[1];
@@ -37,11 +29,18 @@ private:
     std::uint32_t & sp   = reg[29];
     std::uint32_t & fp   = reg[30];
     std::uint32_t & ra   = reg[31];
+    
+    bool valid = false;
+
+    std::ostream & os = std::cout;
 
     friend class parser;
 public:
-    program(std::istream & is; std::ostream & os);
+    program();
+    program(std::istream & is; std::ostream & log);
     ~program();
+    bool init(std::istream & is);
+    bool isValid();
 }
 
 #endif /* SIMMIPS_PROGRAM_H */

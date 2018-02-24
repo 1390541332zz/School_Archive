@@ -1,11 +1,25 @@
 #include "program.hpp"
 
-program::program(std::istream & is, std::ostream & os = std::cout) 
+program::program() {}
+
+program::program(std::istream & is, std::ostream & log = std::cout) : os(log) 
+{
+    init(is);
+}
+
+program::~program() {}
+
+bool program::init(std::istream & is)
 {
     parser parser;
    
     TokenList toklist = tokenize(is);
-    parser.parse(*this, toklist.cbegin(), toklist.cend(), os);
+    valid = parser.parse(*this, toklist.cbegin(), toklist.cend(), os);
+
+    return valid;
 }
 
-program::~program() {}
+bool program::isValid()
+{
+   return valid; 
+}
