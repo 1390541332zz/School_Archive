@@ -26,7 +26,7 @@ static enum data_type conv_data_type(std::string const & str)
     if (str == ".space")  return SPACE;
     if (str == ".ascii")  return ASCII;
     if (str == ".asciiz") return ASCIIZ;
-    return INVALID;
+    return ERR;
 }
 
 
@@ -36,7 +36,7 @@ static enum reg_val conv_reg_val(std::string const & str)
     if ((str ==  "$0") || (str == "$zero")) return ZERO;
     if ((str ==  "$1") || (str == "$at"))   return AT;
     
-    if ((str ==  "$2") || (str == "$v0"))   return VO;
+    if ((str ==  "$2") || (str == "$v0"))   return V0;
     if ((str ==  "$3") || (str == "$v1"))   return V1;
     
     if ((str ==  "$4") || (str == "$a0"))   return A0;
@@ -97,10 +97,10 @@ static enum instr_type conv_instr_type(std::string const & str)
     if (str == "mthi")  return MOVE_TO_HI;
     if (str == "mtlo")  return MOVE_TO_LO;
 
-    if (str == "add")   return ADD;
+    if (str == "add")   return ADD_S;
     if (str == "addu")  return ADD_U;
     
-    if (str == "sub")   return SUB;
+    if (str == "sub")   return SUB_S;
     if (str == "subu")  return SUB_U;
     
     if (str == "mul")   return MUL;
@@ -135,7 +135,7 @@ static enum instr_type conv_instr_type(std::string const & str)
     if (str == "bgt")   return BRANCH_GT;
     if (str == "bge")   return BRANCH_GE;
 
-    return INVALID;
+    return INVAL;
 }
 
 // validate_int(): Bounds checks integer values. 
@@ -147,7 +147,7 @@ static bool validate_int(num i, enum data_type type)
             return false;
     }
     if (  (i.x >= std::exp2(sz))
-       || ((i.sign) && (i >= std::exp2(sz - 1)) && (i < std::exp2(sz - 1)))) {
+       || ((i.sign) && (i.x >= std::exp2(sz - 1)) && (i.x < std::exp2(sz - 1)))) {
         //TODO: ERROR Object value is out of bounds.
         return false;
     }

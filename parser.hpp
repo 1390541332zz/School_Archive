@@ -3,21 +3,26 @@
 
 #include <iostream>
 #include <iterator>
+#include <cmath>
 
-#include "token.hpp"
-#include "instr.hpp"
 #include "program.hpp"
+#include "instr.hpp"
+#include "token.hpp"
 
 class program;
+struct arg;
+class instr;
+enum arg_type : std::uint8_t;
+
 
 enum data_type {
    WORD = 4,
    HALF = 2,
    BYTE = 1,
-   SPACE,
-   ASCII,
-   ASCIIZ,
-   ERR 
+   SPACE = 3,
+   ASCII = 5,
+   ASCIIZ = 6,
+   ERR = 7
 };
 
 class parser
@@ -26,7 +31,7 @@ private:
     program & prog;
     TokenList::const_iterator it;
     TokenList::const_iterator it_end;
-    std::ostream & os;
+    std::ostream & os = std::cout;
     
     bool parse_data();
     bool parse_text();
@@ -35,9 +40,9 @@ private:
     bool parse_var();
     bool parse_ints(enum data_type type);
     bool parse_str(enum data_type type);
-    bool parse_instr(); //TODO
-    bool parse_sep(); //TODO
-    bool parse_arg(arg & a, enum arg_type type); //TODO
+    bool parse_instr();
+    bool parse_sep(); 
+    bool parse_arg(arg & a, enum arg_type type);
 
     bool parse_tag(arg & a);
     bool parse_reg(arg & a);

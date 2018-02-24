@@ -5,7 +5,10 @@ project(M1 CXX)
 set(LIB_SOURCE
   token.hpp token.cpp
   lexer.hpp lexer.cpp
-  parser.hpp parser.cpp)
+  parser.hpp parser.cpp
+  program.hpp program.cpp
+  instr.hpp instr.cpp
+  )
 
 # add source for any additional unit tests here
 set(TEST_SOURCE

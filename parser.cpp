@@ -153,7 +153,7 @@ bool parser::parse_label()
         //TODO: ERROR Label already exists.
         return false;
     }
-    prog.label[label] = ops.size();
+    prog.label[label] = prog.ops.size();
     std::advance(it, 1);
     if (it == it_end) {
         //TODO: ERROR Unexpectedly reached the end of file.
@@ -182,7 +182,7 @@ bool parser::parse_var()
         //TODO: ERROR Variable label already exists.
         return false;
     }
-    prog.var_label[var] = mem.size();
+    prog.var_label[var] = prog.mem.size();
     std::advance(it, 1);
     while (it != it_end) {
         if (it->type() == EOL) {
@@ -197,7 +197,7 @@ bool parser::parse_var()
             break;
         }
         std::advance(it, 1);
-        auto type = conv_data_type(type);
+        auto type = conv_data_type(it->value());
         std::size_t sz = 0;
         switch(type) {
             case SPACE:
@@ -211,7 +211,7 @@ bool parser::parse_var()
                     return false;
                 }
                 for (std::size_t i = 0; i < sz; ++i) {
-                    mem.push_back(0);
+                    prog.mem.push_back(0);
                 }
                 break;
             case WORD: case HALF: case BYTE:
@@ -277,7 +277,7 @@ bool parser::parse_ints(enum data_type type)
             return false;
         }
         for (std::size_t j = 0; j > sz; ++j) {
-            mem.push_back(std::reinterpret_cast<std::uint8_t>(&(i.x))[j]);
+            prog.mem.push_back(reinterpret_cast<std::uint8_t*>(&(i.x))[j]);
         }
         std::advance(it, 1);
         ++obj_count;
@@ -304,7 +304,7 @@ bool parser::parse_str(enum data_type type)
        || (std::next(it, 2) == it_end)) {
         //TODO: ERROR Unexpectedly reached end of file.
         return false;
-    } else if ((it->type != STRING_DELIM) || (std::next(it, 2) != STRING_DELIM)) {
+    } else if ((it->type() != STRING_DELIM) || (std::next(it, 2)->type() != STRING_DELIM)) {
         //TODO: ERROR Mismatched Quotes.
         return false;
     }
@@ -317,10 +317,10 @@ bool parser::parse_str(enum data_type type)
         return false;
     }
     for (std::size_t i = 0; i < it->value().length(); ++i) {
-        mem.push_back(it->value()[i]);
+        prog.mem.push_back(it->value()[i]);
     }
     if (type == ASCIIZ) {
-        mem.push_back('\0');
+        prog.mem.push_back('\0');
     }
     std::advance(it, 2);
     return true;
@@ -339,13 +339,12 @@ bool parser::parse_instr()
     if (it == it_end) {
         //TODO: ERROR Unexpectedly reached the end of file.
         return false;
-    } else (it != STRING) {
+    } else if (it->type() != STRING) {
         //TODO: ERROR Unexpected token.
         return false;
     }
     auto op = conv_instr_type(it->value());
     std::array<arg, 3> args; 
-    std::size_t arg_count = 0;
 
     std::advance(it, 1);
     switch(op) {
@@ -412,20 +411,20 @@ bool parser::parse_instr()
             }
             break; 
         case JUMP:
-            if (!parse_arg(args[0], LABEL) {
+            if (!parse_arg(args[0], LABEL)) {
                 return false;
             }
             break;
         case NOP:
             break;
         case DIV_S_IND: case DIV_U_IND:
-            
+            //TODO: WRITE DIVISION CASES
             break;
         default:
             //TODO: ERROR This can't happen. Something is wrong with the parser.
             return false;
     }
-    ops.emplace_back(op, args[0], args[1], args[2]);
+    prog.ops.emplace_back(op, args[0], args[1], args[2]);
     if (it == it_end) {
         //TODO: ERROR Unexpectedly reached the end of file.
         return false;
@@ -477,15 +476,22 @@ bool parser::parse_arg(arg & a, enum arg_type type)
     switch (type) {
         case LABEL:
             if (!parse_tag(a)) return false;
+            break;
         case REG:
             if (!parse_reg(a)) return false;
+            break;
         case MEM:
             if (!parse_mem(a)) return false;
+            break;
         case IMMEDIATE:
             if (!parse_imm(a)) return false;
+            break;
         case SOURCE:          
             if (!parse_source(a)) return false;
-            }
+            break;
+        default:
+            //TODO: ERROR This can't happen.
+            break;
     }
     if (a.type == UNDEF) {
         //TODO: ERROR Missing Argument
@@ -571,7 +577,7 @@ bool parser::parse_mem(arg & a)
     }
     std::ptrdiff_t offset = 0;
     if (is_num(it->value())) {
-        offset = std::stoll(it->value);
+        offset = std::stoll(it->value());
         std::advance(it, 1);
     }
     if (  (it->type() == OPEN_PAREN) 
@@ -628,7 +634,7 @@ bool parser::parse_imm(arg & a)
     if (is_num(it->value())) {
         a.imm = std::stoll(it->value());
     } else if (prog.constant.count(it->value()) != 0) {
-        a.imm = prog.constant[it->value];
+        a.imm = prog.constant[it->value()];
     } else {
         //TODO: ERROR Invalid Constant.
         return false;
@@ -661,9 +667,12 @@ bool parser::parse_source(arg & a)
             } else if (prog.var_label.count(it->value()) != 0) {
                 return (parse_mem(a));
             } else if (prog.label.count(it->value()) != 0) {
-                return (parse_label(a));
+                return (parse_tag(a));
             } else if (prog.constant.count(it->value()) != 0) {
                 return (parse_imm(a));
+            } else {
+                //TODO: ERROR This can't happen.
+                return false;
             }
         case OPEN_PAREN:
             return (parse_mem(a));

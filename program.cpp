@@ -11,11 +11,9 @@ program::~program() {}
 
 bool program::init(std::istream & is)
 {
-    parser parser;
-   
     TokenList toklist = tokenize(is);
-    valid = parser.parse(*this, toklist.cbegin(), toklist.cend(), os);
-
+    parser parser(*this, toklist.cbegin(), toklist.cend(), os); 
+    valid = parser.parse();
     return valid;
 }
 
