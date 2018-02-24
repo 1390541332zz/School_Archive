@@ -19,7 +19,7 @@ enum reg_val {
     INVALID
 };
 
-enum arg_type {
+enum arg_type : std::uint8_t {
     LABEL,
     REG,
     MEM,
@@ -45,7 +45,7 @@ struct arg
 enum instr_type {
     LOAD_WORD,  LOAD_HALF,    LOAD_BYTE,    LOAD_IMM,   LOAD_ADD,
     STORE_WORD, STORE_HALF,   STORE_BYTE,   STORE_IMM,
-    MOVE,       MOVE_FROM_HI, MOVE_FROM_LO, MOVE_TO_HI, MOVE_TO_LOW,
+    MOVE,       MOVE_FROM_HI, MOVE_FROM_LO, MOVE_TO_HI, MOVE_TO_LO,
     ADD_S,      ADD_U,        SUB_S,        SUB_U,
     MUL,        MUL_LO,       MUL_LOU,
     MULT_S,     MULT_U,       

@@ -10,8 +10,8 @@
 #include <map>
 
 #include "lexer.hpp"
-#include "parser.hpp"
 #include "instr.hpp"
+#include "parser.hpp"
 
 class program
 {
@@ -20,6 +20,7 @@ private:
     std::vector<std::uint8_t> mem = {0};
     std::vector<instr> ops = {};
     std::map<std::string, std::size_t> label = {};
+    std::map<std::string, std::size_t> var_label = {};
     std::map<std::string, std::intmax_t> constant = {};
 
     bool valid = false;
