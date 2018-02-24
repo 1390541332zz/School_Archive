@@ -13,23 +13,15 @@
 #include "parser.hpp"
 #include "instr.hpp"
 
-
 class program
 {
 private:
     std::array<std::uint32_t, 32> reg = {0};
     std::vector<std::uint8_t> mem = {0};
-    std::vector<instr> instr = {};
+    std::vector<instr> ops = {};
     std::map<std::string, std::size_t> label = {};
     std::map<std::string, std::intmax_t> constant = {};
 
-    std::uint32_t & zero = reg[0];
-    std::uint32_t & at   = reg[1];
-    std::uint32_t & gp   = reg[28];
-    std::uint32_t & sp   = reg[29];
-    std::uint32_t & fp   = reg[30];
-    std::uint32_t & ra   = reg[31];
-    
     bool valid = false;
 
     std::ostream & os = std::cout;
@@ -37,10 +29,10 @@ private:
     friend class parser;
 public:
     program();
-    program(std::istream & is; std::ostream & log);
+    program(std::istream & is, std::ostream & log);
     ~program();
     bool init(std::istream & is);
     bool isValid();
-}
+};
 
 #endif /* SIMMIPS_PROGRAM_H */
