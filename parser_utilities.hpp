@@ -13,8 +13,9 @@ static std::string const digit = "0123456789";
 // is_num(): Determines if the string is a valid integer.
 static bool is_num(std::string const & str)
 {
-    return (  (str.find_first_not_of(digit + "+-") == std::string::npos)
-           || (str.substr(1).find_first_not_of(digit) == std::string::npos));
+    return (  (!str.empty())
+           && (str.find_first_not_of(digit + "+-") == std::string::npos)
+           && (str.substr(1).find_first_not_of(digit) == std::string::npos));
 }
 
 // conv_data_type(): Converts a string into a data enum.
@@ -141,8 +142,8 @@ static enum instr_type conv_instr_type(std::string const & str)
 // validate_int(): Bounds checks integer values. 
 static bool validate_int(num i, enum data_type type)
 {
-    std::size_t sz = type;
-    if ((type != WORD) || (type != HALF) || (type != BYTE)) {
+    std::size_t sz = type*8;
+    if ((type != WORD) && (type != HALF) && (type != BYTE)) {
             //TODO: ERROR This can't happen. Something is broken in the parser.
             return false;
     }

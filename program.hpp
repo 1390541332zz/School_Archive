@@ -16,7 +16,7 @@
 class program
 {
 private:
-    std::array<std::uint32_t, 32> reg = {0};
+    std::array<std::uint32_t, 32> reg;
     std::vector<std::uint8_t> mem = {0};
     std::vector<instr> ops = {};
     std::map<std::string, std::size_t> label = {};

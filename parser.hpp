@@ -33,6 +33,7 @@ private:
     TokenList::const_iterator it_end;
     std::ostream & os = std::cout;
     
+public:
     bool parse_data();
     bool parse_text();
     bool parse_constant();
@@ -49,7 +50,7 @@ private:
     bool parse_mem(arg & a);
     bool parse_imm(arg & a);
     bool parse_source(arg & a);
-public:
+
     parser(program & program, TokenList::const_iterator iter, 
            TokenList::const_iterator iter_end, std::ostream & log);
     ~parser();

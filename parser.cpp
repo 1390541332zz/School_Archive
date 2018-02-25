@@ -2,10 +2,10 @@
 #include "parser_utilities.hpp"
 
 // Constructor(): Initialises the parser with the following
-//     program: The MIPS program being initialised.
-//        iter: The start of the token stream to be parsed.
-//    iter_end: The end of the token stream to be parsed.
-//         log: The OStream to print log output to.
+//     program: The MIPS program being initialised.\n";
+//        iter: The start of the token stream to be parsed.\n";
+//    iter_end: The end of the token stream to be parsed.\n";
+//         log: The OStream to print log output to.\n";
 parser::parser(program & program, TokenList::const_iterator iter,
                TokenList::const_iterator iter_end, std::ostream & log)
   : prog(program)
@@ -14,11 +14,11 @@ parser::parser(program & program, TokenList::const_iterator iter,
   , os(log)
 {}
 
-// Destructor(): All memory handled by RAII.
+// Destructor(): All memory handled by RAII.\n";
 parser::~parser() {}
 
-// parse(): Parses the token stream and initialises the program.
-//     return: If the parse was successful.
+// parse(): Parses the token stream and initialises the program.\n";
+//     return: If the parse was successful.\n";
 bool parser::parse()
 {
     while (it != it_end) {
@@ -31,20 +31,20 @@ bool parser::parse()
             std::advance(it, 1);
             if(!parse_text()) return false;
         } else {
-            //TODO: ERROR Illegal token on line.
+            std::cerr << "ERROR Illegal token on line.\n";
             return false;
         }
     }
     return true;
 }
 
-// parse_data(): Parses the data section of the token stream.
-//     return: If the parse was successful.
+// parse_data(): Parses the data section of the token stream.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token after
-//                  the data header.
+//                  the data header.\n";
 //      Exit State: The iterator should be on the next token after the data
-//                  header or the token at which it failed.
+//                  header or the token at which it failed.\n";
 bool parser::parse_data()
 {
     while (it != it_end) {
@@ -58,20 +58,20 @@ bool parser::parse_data()
         } else if ((next != it_end) && (next->type() == EQUAL)) {
             if(!parse_constant()) return false;
         } else {
-            //TODO: ERROR Illegal token on line.
+            std::cerr << "ERROR: Illegal token on line |"<<it->value() <<"|.\n";
             return false;
         }
     }
     return true;
 }
 
-// parse_text(): Parses the text section of the token stream.
-//     return: If the parse was successful.
+// parse_text(): Parses the text section of the token stream.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token after
-//                  the text header.
+//                  the text header.\n";
 //      Exit State: The iterator should be on the next token after the text
-//                  header or the token at which it failed.
+//                  header or the token at which it failed.\n";
 bool parser::parse_text()
 {
     while (it != it_end) {
@@ -84,102 +84,102 @@ bool parser::parse_text()
         } else if (it->type() == STRING) {
             if(!parse_instr()) return false;
         } else {
-            //TODO: ERROR Illegal token on line.
+            std::cerr << "ERROR Illegal token on line.\n";
             return false;
         }
     }
     return true;
 }
 
-// parse_constant(): Parses a single constant and initialises it.
-//     return: If the parse was successful.
+// parse_constant(): Parses a single constant and initialises it.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of
-//                  the constant declaration.
+//                  the constant declaration.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  constant ends or the token at which it failed.
-//   Program State: Each constant is inserted into the constant map.
+//                  constant ends or the token at which it failed.\n";
+//   Program State: Each constant is inserted into the constant map.\n";
 bool parser::parse_constant()
 {
     if (  (it == it_end)
        || (std::next(it, 1) == it_end)
        || (std::next(it, 2) == it_end)) {
-        //TODO: ERROR Unexpected end of file.
+        std::cerr << "ERROR Unexpected end of file.\n";
     }
 
     if (  (std::next(it, 1)->type() != EQUAL)
        || (!is_num(std::next(it, 2)->value()))) {
-        //TODO: ERROR Invalid constant declaration.
+        std::cerr << "ERROR Invalid constant declaration.\n";
         return false;
     }
     std::string label = it->value();
     std::advance(it, 2);
     std::intmax_t num = std::stoll(it->value());
     if (prog.constant.count(label) != 0) {
-        //TODO: ERROR Constant label already exists.
+        std::cerr << "ERROR Constant label already exists.\n";
         return false;
     }
     prog.constant[label] = num;
     std::advance(it, 1);
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     } else if (it->type() != EOL) {
-        //TODO: ERROR Statements must be terminated by a new line.
+        std::cerr << "ERROR Statements must be terminated by a new line.\n";
         return false;
     }
     return true;
 }
 
-// parse_label(): Parses a single label and initialises it.
-//     return: If the parse was successful.
+// parse_label(): Parses a single label and initialises it.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of 
-//                  the label declaration.
+//                  the label declaration.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  label ends or the token at which it failed.
-//   Program State: Each label is inserted into the label map.
+//                  label ends or the token at which it failed.\n";
+//   Program State: Each label is inserted into the label map.\n";
 bool parser::parse_label()
 {
     if (it == it_end) {
-        //TODO: ERROR Unexpected end of file.
+        std::cerr << "ERROR Unexpected end of file.\n";
         return false;
     } else if (it->value().back() != ':') {
-         //TODO: ERROR expected a label.
+         std::cerr << "ERROR expected a label.\n";
          return false;
     }
     auto label = it->value().substr(0, it->value().length() - 1);
     if (prog.label.count(label) != 0) {
-        //TODO: ERROR Label already exists.
+        std::cerr << "ERROR Label already exists.\n";
         return false;
     }
     prog.label[label] = prog.ops.size();
     std::advance(it, 1);
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     } else if (it->type() != EOL) {
-        //TODO: ERROR Statements must be terminated by a new line.
+        std::cerr << "ERROR Statements must be terminated by a new line.\n";
         return false;
     }
     return true;
 }
 
 // parse_var(): Parses a single variable and initialises its memory
-//     return: If the parse was successful.
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of
-//                  the variable declaration.
+//                  the variable declaration.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  variable ends or the token at which it failed.
+//                  variable ends or the token at which it failed.\n";
 //   Program State: Each variable is appended to the end of the memory
-//                  section and its label is inserted into the label map.
+//                  section and its label is inserted into the label map.\n";
 bool parser::parse_var()
 {
     std::size_t obj_count = 0;
     std::string var = it->value().substr(0, it->value().length() - 1);
     if (prog.var_label.count(var) != 0) {
-        //TODO: ERROR Variable label already exists.
+        std::cerr << "ERROR Variable label already exists.\n";
         return false;
     }
     prog.var_label[var] = prog.mem.size();
@@ -191,23 +191,23 @@ bool parser::parse_var()
         }
         auto str = it->value();
         if ((obj_count == 0) && (str.front() != '.')) {
-            //TODO: ERROR Unexpected token. Expected data type declaration.
+            std::cerr << "ERROR Unexpected token. Expected data type declaration.\n";
             return false;
         } else if (str.front() != '.') {
             break;
         }
         std::advance(it, 1);
-        auto type = conv_data_type(it->value());
+        auto type = conv_data_type(str);
         std::size_t sz = 0;
         switch(type) {
             case SPACE:
                 if (!is_num(it->value())) {
-                    //TODO: ERROR Expected a size specifier.
+                    std::cerr << "ERROR Expected a size specifier.\n";
                     return false;
                 }
                 sz = std::stoll(it->value());
                 if (sz > 4 || sz != 0) {
-                    //TODO: ERROR .space object has an illegal size.
+                    std::cerr << "ERROR .space object has an illegal size.\n";
                     return false;
                 }
                 for (std::size_t i = 0; i < sz; ++i) {
@@ -221,47 +221,49 @@ bool parser::parse_var()
                 if(!parse_str(type)) return false;
                 break;
             case ERR:
-                //TODO: ERROR Invalid data type.
+                std::cerr << "ERROR Invalid data type. Got |" << it->value() <<"|\n";
                 return false;
         }
-        std::advance(it, 1);
         ++obj_count;
     }
     if (obj_count == 0) {
-        //TODO: ERROR Unexpectedly reached the end of the variable declaration.
+        std::cerr << "ERROR Unexpectedly reached the end of the variable declaration.\n";
         return false;
     } else if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     } else if (it->type() != EOL) {
-        //TODO: ERROR Statements must be terminated by a new line.
+        std::cerr << "ERROR Statements must be terminated by a new line.\n";
         return false;
     }
     std::advance(it, 1);
     return true;
 }
 
-// parse_ints(): Parses and initialises all ints following a data type declaration.
-//     return: If the parse was successful.
+// parse_ints(): Parses and initialises all ints following a data type declaration.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of
-//                  the set of integers.
+//                  the set of integers.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  integers end or the token at which it failed.
-//   Program State: Each integer is inserted at the end of the mem vector.
+//                  integers end or the token at which it failed.\n";
+//   Program State: Each integer is inserted at the end of the mem vector.\n";
 bool parser::parse_ints(enum data_type type)
 {
     std::size_t obj_count = 0;
     std::size_t sz = type;
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached end of file.
+        std::cerr << "ERROR Unexpectedly reached end of file.\n";
         return false;
     }
     while (it != it_end) {
+        if (it->type() == SEP && !parse_sep()) {
+            return false;
+        }
         if (it->type() == EOL) {
             break;
         } else if (!is_num(it->value())) {
-            //TODO: ERROR Expected an integer value.
+            std::cerr << "ERROR Expected an integer value. Got |"<<it->value() << "| With type" << it->type() << "\n";
             return false;
         }
         auto str = it->value();
@@ -283,37 +285,37 @@ bool parser::parse_ints(enum data_type type)
         ++obj_count;
     }
     if (obj_count == 0) {
-        //TODO: ERROR Unexpectedly reached the end of the object declaration.
+        std::cerr << "ERROR Unexpectedly reached the end of the object declaration.\n";
         return false;
     }
     return true;
 }
 
-// parse_str(): Parses and intialises a string.
-//     return: If the parse was successful.
+// parse_str(): Parses and intialises a string.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of
-//                  the string construct (The quote).
+//                  the string construct (The quote).\n";
 //      Exit State: The iterator should be on the next token after the
-//                  string ends or the token at which it failed.
-//   Program State: The string is inserted at the end of the mem vector.
+//                  string ends or the token at which it failed.\n";
+//   Program State: The string is inserted at the end of the mem vector.\n";
 bool parser::parse_str(enum data_type type)
 {
     if (  (it == it_end)
        || (std::next(it, 1) == it_end)
        || (std::next(it, 2) == it_end)) {
-        //TODO: ERROR Unexpectedly reached end of file.
+        std::cerr << "ERROR Unexpectedly reached end of file.\n";
         return false;
     } else if ((it->type() != STRING_DELIM) || (std::next(it, 2)->type() != STRING_DELIM)) {
-        //TODO: ERROR Mismatched Quotes.
+        std::cerr << "ERROR Mismatched Quotes.\n";
         return false;
     }
     std::advance(it, 1);
     if (it->type() != STRING) {
-        //TODO: ERROR Expected String.
+        std::cerr << "ERROR Expected String.\n";
         return false;
     } else if (it->value().length() == 0) {
-        //TODO: ERROR Zero Length String.
+        std::cerr << "ERROR Zero Length String.\n";
         return false;
     }
     for (std::size_t i = 0; i < it->value().length(); ++i) {
@@ -326,21 +328,21 @@ bool parser::parse_str(enum data_type type)
     return true;
 }
 
-// parse_instr(): Parses and initialises an instruction.
-//     return: If the parse was successful.
+// parse_instr(): Parses and initialises an instruction.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of
-//                  the instruction declaration.
+//                  the instruction declaration.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  instruction ends or the token at which it failed.
-//   Program State: The instruction is inserted at the end of the instr vector.
+//                  instruction ends or the token at which it failed.\n";
+//   Program State: The instruction is inserted at the end of the instr vector.\n";
 bool parser::parse_instr()
 {
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     } else if (it->type() != STRING) {
-        //TODO: ERROR Unexpected token.
+        std::cerr << "ERROR Unexpected token.\n";
         return false;
     }
     auto op = conv_instr_type(it->value());
@@ -421,35 +423,35 @@ bool parser::parse_instr()
             //TODO: WRITE DIVISION CASES
             break;
         default:
-            //TODO: ERROR This can't happen. Something is wrong with the parser.
+            std::cerr << "ERROR This can't happen. Something is wrong with the parser.\n";
             return false;
     }
     prog.ops.emplace_back(op, args[0], args[1], args[2]);
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     } else if (it->type() != EOL) {
-        //TODO: ERROR Statements must be terminated by a new line.
+        std::cerr << "ERROR Statements must be terminated by a new line.\n";
         return false;
     }
     return true;
 }
 
 
-// parse_sep(): Parses separators.
-//     return: If the parse was successful.
+// parse_sep(): Parses separators.\n";
+//     return: If the parse was successful.\n";
 //
-//     Entry State: The iterator should be on the separator token.
+//     Entry State: The iterator should be on the separator token.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  separator or the token at which it failed.
-//   Program State: Nothing changes with the program state.
+//                  separator or the token at which it failed.\n";
+//   Program State: Nothing changes with the program state.\n";
 bool parser::parse_sep()
 { 
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     } else if (it->type() != SEP) {
-        //TODO: ERROR Unexpected token. Was expecting a separator.
+        std::cerr << "ERROR Unexpected token. Was expecting a separator.\n";
         return false;
     }
     std::advance(it, 1);
@@ -457,20 +459,20 @@ bool parser::parse_sep()
 }
 
 
-// parse_arg(): Parses an argument.
-//     return: If the parse was successful.
+// parse_arg(): Parses an argument.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of the
-//                  argument construct.
+//                  argument construct.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  argument or the token at which it failed.
+//                  argument or the token at which it failed.\n";
 //   Program State: Nothing changes with the program state however the 
 //                  referenced argument a is modified to contain 
-//                  the newly parsed argument.
+//                  the newly parsed argument.\n";
 bool parser::parse_arg(arg & a, enum arg_type type)
 {
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     }
     switch (type) {
@@ -490,89 +492,89 @@ bool parser::parse_arg(arg & a, enum arg_type type)
             if (!parse_source(a)) return false;
             break;
         default:
-            //TODO: ERROR This can't happen.
+            std::cerr << "ERROR This can't happen.\n";
             break;
     }
     if (a.type == UNDEF) {
-        //TODO: ERROR Missing Argument
+        std::cerr << "ERROR Missing Argument\n";
         return false;
     }
     return true;
 }
 
 
-// parse_tag(): Parses an label argument.
-//     return: If the parse was successful.
+// parse_tag(): Parses an label argument.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of the
-//                  label argument construct.
+//                  label argument construct.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  label argument or the token at which it failed.
+//                  label argument or the token at which it failed.\n";
 //   Program State: Nothing changes with the program state however the 
 //                  referenced argument a is modified to contain 
-//                  the newly parsed argument.
+//                  the newly parsed argument.\n";
 bool parser::parse_tag(arg & a)
 {
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     } else if (prog.label.count(it->value()) == 0) {
-        //TODO: ERROR Label not recognised.
+        std::cerr << "ERROR Label not recognised.\n";
         return false;
     }
     a.type = LABEL;
     a.label = prog.label[it->value()]; 
     std::advance(it, 1);
     if ((it == it_end) || (!(it->type() == EOL) && !(it->type() == SEP))) {
-        //TODO: ERROR Invalid argument.
+        std::cerr << "ERROR Invalid argument.\n";
         return false;
     }
     return true;
 }
 
-// parse_reg(): Parses a register argument.
-//     return: If the parse was successful.
+// parse_reg(): Parses a register argument.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of the
-//                  register argument construct.
+//                  register argument construct.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  register argument or the token at which it failed.
+//                  register argument or the token at which it failed.\n";
 //   Program State: Nothing changes with the program state however the 
 //                  referenced argument a is modified to contain 
-//                  the newly parsed argument.
+//                  the newly parsed argument.\n";
 bool parser::parse_reg(arg & a)
 {
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     } else if (conv_reg_val(it->value()) == INVALID) {
-        //TODO: ERROR Invalid Register.
+        std::cerr << "ERROR Invalid Register.\n";
         return false;
     }
     a.type = REG;
     a.reg = conv_reg_val(it->value());
     std::advance(it, 1);
     if ((it == it_end) || (!(it->type() == EOL) && !(it->type() == SEP))) {
-        //TODO: ERROR Invalid argument.
+        std::cerr << "ERROR Invalid argument.\n";
         return false;
     }
     return true;
 }
 
-// parse_mem(): Parses a memory argument.
-//     return: If the parse was successful.
+// parse_mem(): Parses a memory argument.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of the
-//                  memory argument construct.
+//                  memory argument construct.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  memory argument or the token at which it failed.
+//                  memory argument or the token at which it failed.\n";
 //   Program State: Nothing changes with the program state however the 
 //                  referenced argument a is modified to contain 
-//                  the newly parsed argument.
+//                  the newly parsed argument.\n";
 bool parser::parse_mem(arg & a)
 { 
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     }
     std::ptrdiff_t offset = 0;
@@ -586,13 +588,13 @@ bool parser::parse_mem(arg & a)
         a.type = MEM_INDIRECT;
         std::advance(it, 1);
     } else if (offset != 0) {
-        //TODO: ERROR Invalid memory argument.
+        std::cerr << "ERROR Invalid memory argument.\n";
         return false;
     } else {
         a.type = MEM_DIRECT;
     }
     if ((a.type == MEM_INDIRECT) && (conv_reg_val(it->value()) == INVALID)) {
-        //TODO: ERROR Invalid register.
+        std::cerr << "ERROR Invalid register.\n";
         return false;
     } else if (a.type == MEM_INDIRECT) {
         a.reg = conv_reg_val(it->value());
@@ -602,32 +604,32 @@ bool parser::parse_mem(arg & a)
             a.mem = prog.var_label[it->value()]; 
         }
     } else {
-        //TODO: ERROR This can't happen.
+        std::cerr << "ERROR This can't happen.\n";
         return false;
     }
     std::advance(it, 1);
     if (a.type == MEM_INDIRECT) std::advance(it, 1);
     if ((it == it_end) || (!(it->type() == EOL) && !(it->type() == SEP))) {
-        //TODO: ERROR Invalid argument.
+        std::cerr << "ERROR Invalid argument.\n";
         return false;
     }
     return true;
 }
 
-// parse_imm(): Parses a immediate argument.
-//     return: If the parse was successful.
+// parse_imm(): Parses a immediate argument.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of the
-//                  immediate argument construct.
+//                  immediate argument construct.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  immediate argument or the token at which it failed.
+//                  immediate argument or the token at which it failed.\n";
 //   Program State: Nothing changes with the program state however the 
 //                  referenced argument a is modified to contain 
-//                  the newly parsed argument.
+//                  the newly parsed argument.\n";
 bool parser::parse_imm(arg & a)
 { 
     if (it == it_end) {
-        //TODO: ERROR Unexpectedly reached the end of file.
+        std::cerr << "ERROR Unexpectedly reached the end of file.\n";
         return false;
     } 
     a.type = IMMEDIATE;
@@ -636,48 +638,50 @@ bool parser::parse_imm(arg & a)
     } else if (prog.constant.count(it->value()) != 0) {
         a.imm = prog.constant[it->value()];
     } else {
-        //TODO: ERROR Invalid Constant.
+        std::cerr << "ERROR Invalid Constant.\n";
         return false;
     }
     std::advance(it, 1);
     if ((it == it_end) || (!(it->type() == EOL) && !(it->type() == SEP))) {
-        //TODO: ERROR Invalid argument.
+        std::cerr << "ERROR Invalid argument.\n";
         return false;
     }
     return true;
 }
 
 
-// parse_source(): Parses a source argument.
-//     return: If the parse was successful.
+// parse_source(): Parses a source argument.\n";
+//     return: If the parse was successful.\n";
 //
 //     Entry State: The iterator should be on the first token of the
-//                  source argument construct.
+//                  source argument construct.\n";
 //      Exit State: The iterator should be on the next token after the
-//                  source argument or the token at which it failed.
+//                  source argument or the token at which it failed.\n";
 //   Program State: Nothing changes with the program state however the 
 //                  referenced argument a is modified to contain 
-//                  the newly parsed argument.
+//                  the newly parsed argument.\n";
 bool parser::parse_source(arg & a)
 {
     switch (it->type()) {
         case STRING:
             if (conv_reg_val(it->value()) != INVALID) {
                return (parse_reg(a));
-            } else if (prog.var_label.count(it->value()) != 0) {
+            } else if (prog.var_label.count(it->value()) != 0
+                      || ((std::next(it, 1) != it_end) 
+                          && (std::next(it, 1)->type() == OPEN_PAREN))) {
                 return (parse_mem(a));
             } else if (prog.label.count(it->value()) != 0) {
                 return (parse_tag(a));
             } else if (prog.constant.count(it->value()) != 0) {
                 return (parse_imm(a));
             } else {
-                //TODO: ERROR This can't happen.
+                std::cerr << "ERROR This can't happen.\n";
                 return false;
             }
         case OPEN_PAREN:
             return (parse_mem(a));
         default:
-            //TODO: ERROR Invalid argument.
+            std::cerr << "ERROR Invalid argument.\n";
             return false;
     }
 }
