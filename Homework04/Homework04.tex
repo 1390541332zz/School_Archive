@@ -1,0 +1,85 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 4
+	\\\large ECE2004 CRN:12898
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+
+\paragraph{Question 1: }
+
+Find the Thevenin equivalent voltage and resistance at terminals $a-b$.
+
+\begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{hw4q1}
+\end{center}
+
+
+\clearpage
+
+\paragraph{Question 2: }
+
+Find the Norton equivalent current and resistance at terminals $a-b$.
+
+\begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{hw4q2}
+\end{center}
+
+
+\clearpage
+
+\paragraph{Question 3: }
+
+What is the maximum power that can be delivered to $R_L$?
+
+\begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{hw4q3}
+\end{center}
+
+
+\clearpage
+
+\paragraph{Question 4: }
+
+\begin{center}
+\includegraphics[width=0.9\textwidth, height=\textheight, keepaspectratio=true]{hw4q4}
+\end{center}
+
+\begin{enumerate}[label=\Alph*)]
+\item Use superposition to find $V_x$.
+\item Analyse the full circuit with mesh current or nodal analysis to find $V_x$.
+\end{enumerate}
+
+\end{raggedright}
+\end{document}
