@@ -12,15 +12,17 @@ int main(void) {
                      TIMER32_PERIODIC_MODE);
   Timer32_setCount(TIMER32_0_BASE, 1500000);   // 2 Hz
 
-  // Configuring P1.0 as output
-  GPIO_setAsOutputPin   (GPIO_PORT_P1, GPIO_PIN0);
-  GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN0);
+  // RED LED
+  GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN0);
+  GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN0);
 
-  // Enabling interrupts and starting the timer
-  Interrupt_enableInterrupt(INT_TA0_0);
+  // BUTTON S1
+  GPIO_setAsInputPin (GPIO_PORT_P5, GPIO_PIN1);
+
+  // Enable interrupts from Timer32 INT1 and start the timer
+  Interrupt_enableInterrupt(INT_T32_INT1);
   Timer32_startTimer(TIMER32_0_BASE, false);
 
-  Interrupt_enableInterrupt(INT_T32_INT1);
 
   // Enabling MASTER interrupts
   Interrupt_enableMaster();
@@ -30,6 +32,8 @@ int main(void) {
 }
 
 void T32_INT1_IRQHandler() {
-    GPIO_toggleOutputOnPin(GPIO_PORT_P1, GPIO_PIN0);
-    Timer32_clearInterruptFlag(TIMER32_0_BASE);
+    GPIO_toggleOutputOnPin(GPIO_PORT_P2, GPIO_PIN0);
+    if (GPIO_getInputPinValue(GPIO_PORT_P5, GPIO_PIN1) != 0)
+        // clear interrupt only when button is not pressed
+        Timer32_clearInterruptFlag(TIMER32_0_BASE);
 }
