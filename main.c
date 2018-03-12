@@ -6,18 +6,7 @@
 
 int counterWhenTimeHasPassed(int time_in_microseconds)
 {
-    int ticks_needed = time_in_microseconds * 3 / 256;
-
-    if (ticks_needed > UINT16_MAX)
-        return -1;
-
-    int curCounter = Timer32_getValue(TIMER32_0_BASE);
-
-
-    int nextCounter = curCounter - ticks_needed;
-
-    if (nextCounter < 0)
-        nextCounter += (UINT16_MAX + 1);
+    int nextCounter;
 
     return nextCounter;
 }
