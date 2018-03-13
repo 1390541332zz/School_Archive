@@ -12,14 +12,19 @@
 #define FAST 100000
 #define SLOW 1000000
 
-int main(void) {
+
+
+/* This main shows a demo where each LED blinks at different speeds.
+ * Different LEDs blink at once every 0.05, 0.5 or 5 seconds
+ */
+// Comment out this main and uncomment the other main below to see the other demo
+int main(void)
+{
     WDT_A_hold(WDT_A_BASE);
     InitButtons();
     InitLEDs();
     InitHWTimers();
 
-    /* This while (1) shows a demo where each LED blinks at different speeds.
-    // * Comment the other while loop and test this one
 
 
     OneShotSWTimer_t OST1, OST2, OST3;
@@ -48,12 +53,14 @@ int main(void) {
 
      while (1)
      {
-       if (OneShotSWTimerExpired(&OST1)) {
+       if (OneShotSWTimerExpired(&OST1))
+       {
             Toggle_Launchpad_Left_LED();
             StartOneShotSWTimer(&OST1);
-        }
+       }
 
-       if (OneShotSWTimerExpired(&OST2)) {
+       if (OneShotSWTimerExpired(&OST2))
+       {
            Toggle_Launchpad_Right_Green_LED();
            StartOneShotSWTimer(&OST2);
        }
@@ -65,17 +72,28 @@ int main(void) {
        }
 
      }
-    */
+ }
 
 
-    /* This section shows a demo where the beginning status is as follows
-     * 1) The red LED on the booster is dark.
-     * 2) The left LED on the launchpad blinks once per second
-     * The application responds to two stimuli:
-     * 1) Pushing the top button of the booster toggles the booster red LED
-     * 2) Pushing the bottom button of the booster toggles the blinking speed of the left Launchpad LED between fast and slow.
-     */
-    // In order to check the other demo on top, comment out this region starting from her to the end of while(1) loop
+
+
+/* This main shows a demo where the beginning status is as follows
+ * 1) The red LED on the booster is dark.
+ * 2) The left LED on the launchpad blinks once per second
+ * The application responds to two stimuli:
+ * 1) Pushing the top button of the booster toggles the booster red LED
+ * 2) Pushing the bottom button of the booster toggles the blinking speed of the left Launchpad LED between fast and slow.
+ */
+
+// In order to check the other demo on top, uncomment the below function and comment the above main
+
+/*
+int main(void) {
+    WDT_A_hold(WDT_A_BASE);
+    InitButtons();
+    InitLEDs();
+    InitHWTimers();
+
 
     int speed = 0;
     OneShotSWTimer_t OST;
@@ -114,3 +132,4 @@ int main(void) {
         }
     }
 }
+*/
