@@ -18,7 +18,9 @@ int main(void) {
     InitLEDs();
     InitHWTimers();
 
-    /* This while (1) shows a demo where each LED blinks at different speeds. Comment the other while loop and test this one
+    /* This while (1) shows a demo where each LED blinks at different speeds.
+    // * Comment the other while loop and test this one
+
 
     OneShotSWTimer_t OST1, OST2, OST3;
     uint64_t waitCycles;
@@ -66,6 +68,14 @@ int main(void) {
     */
 
 
+    /* This section shows a demo where the beginning status is as follows
+     * 1) The red LED on the booster is dark.
+     * 2) The left LED on the launchpad blinks once per second
+     * The application responds to two stimuli:
+     * 1) Pushing the top button of the booster toggles the booster red LED
+     * 2) Pushing the bottom button of the booster toggles the blinking speed of the left Launchpad LED between fast and slow.
+     */
+    // In order to check the other demo on top, comment out this region starting from her to the end of while(1) loop
 
     int speed = 0;
     OneShotSWTimer_t OST;
