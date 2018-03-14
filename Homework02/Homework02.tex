@@ -1,0 +1,118 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{allwithdot}
+\usepackage[bottom]{footmisc}
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 2
+	\\\large ECE2524 CRN:12923
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+
+\begin{raggedright}
+
+\section*{Part 1: }
+
+Fill in the blanks in the following sentence. For this task, please copy \& paste the sentence to the file that you will turn in, and either underline or write in bold the words you put into the blanks. (6 pts) 
+
+”On a UNIX system, everything is a file; if something is not a file, it is a process. This statement also holds true for Linux.” 
+
+What is the absolute path of the directory that contains most of the system-wide configuration files? Write its absolute path down. (3 pts) 
+
+/etc
+
+What is the absolute path of the directory that contains most of the system-wide log files? Write its absolute path down. (3 pts)
+
+/var/log
+
+What does fstab file contain? Where is it located? Write a short description of its contents and write down its absolute path.(3 pts)
+
+The fstab is the file system table. It maintains a list of file systems that are to be mounted at startup.
+
+/etc/fstab
+
+What’s the name of the file system that Fedora use? What is it good for? (3 pts)
+
+In Fedora 27 the default file system is XFS. XFS is useful for high performance storage systems that need to be able to deliver a lot of bandwidth and span multiple storage devices. 
+
+
+What is journaling? Explain briefly.(3 pts)
+
+Journaling is the temporary logging of file operations that have not been committed to the hard drive. This improves resistance to data corruption during system failures and reduces time offline.
+
+What is the command used to find out the partitions on your Linux system, their total sizes and available space on those partitions? Just write down the name of the command. (3 pts)
+
+df
+
+\clearpage
+\section*{Part 2: Task 1}
+
+/->VT->course\_2524->HW2->task1
+
+Assume that you’re in folder task1. Write down the commands for the following actions using relative paths. Use special characters (\textasciitilde/, . 2 (dot), .. (dot dot), - (hypen)) whenever possible to get credits. You cannot use more than 1 command for a bullet below (o/w no credits will be given).
+\begin{itemize}
+\item You’re in folder task1. Go to folder VT
+
+cd ../../..
+
+\item Now you’re in folder VT. Go to folder HW2 
+
+cd ./VT/course\_2524/HW2
+
+\item Now you’re in folder HW2. Go to your home directory 
+
+cd \textasciitilde
+
+\item Now you’re in your home folder. Go back to folder HW2
+
+cd -
+\end{itemize} 
+
+\clearpage
+\section*{Part 2: Task 2}
+
+/->VT->course\_2524->HW2->task1
+
+For this part first issue the touch command as shown below and create an empty file called example with the default permissions. your task is twofold: 
+
+Use chown command to change the ownership of the file given to root for both the user and the group. 
+
+sudo chown root:root ./example
+
+On this same file called example, use chmod command to give the user execute permission, and write permission to group. You are allowed to use either the octal numbers or the letters as we have seen in the class today. 
+
+sudo chmod u+x,g+w ./example
+
+Note: For these are 2 separate tasks, so if you fail to use chown command correctly, this won’t affect the credits gained from using chmod command for the second task. This note is here because second tasks uses the file example with ownership changed to root both for the user and the group.
+
+\end{raggedright}
+\end{document}
