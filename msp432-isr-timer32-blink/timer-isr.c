@@ -31,9 +31,9 @@ int main(void) {
   while (1) ;
 }
 
-//void T32_INT1_IRQHandler() {
-//    GPIO_toggleOutputOnPin(GPIO_PORT_P2, GPIO_PIN6);
-//    if (GPIO_getInputPinValue(GPIO_PORT_P5, GPIO_PIN1) != 0)
-//        // clear interrupt only when button is not pressed
-//        Timer32_clearInterruptFlag(TIMER32_0_BASE);
-//}
+void T32_INT1_IRQHandler() {
+    GPIO_toggleOutputOnPin(GPIO_PORT_P2, GPIO_PIN6);
+    if (GPIO_getInputPinValue(GPIO_PORT_P5, GPIO_PIN1) != 0)
+        // clear interrupt only when button is not pressed
+        Timer32_clearInterruptFlag(TIMER32_0_BASE);
+}
