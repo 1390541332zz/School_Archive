@@ -23,12 +23,16 @@ void InitGraphics() {
 
 
 void moveCircle() {
-    unsigned i;
     static unsigned x = 0, y = 63;
-
+    if (x >= 127) {
+        x = 0;
+    } else {
+        Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_BLUE);
+        Graphics_drawCircle(&g_sContext, x, y, 5);
+        Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_YELLOW);
+        ++x;
+    }
     Graphics_drawCircle(&g_sContext, x, y, 5);
-
-
 }
 
 int main(void) {
