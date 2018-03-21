@@ -5,9 +5,7 @@
 #include <LED_HAL.h>
 #include <Buttons_HAL.h>
 #include <Timer_HAL.h>
-
-
-
+#include <ADC_HAL.h>
 
 
 Graphics_Context g_sContext;
@@ -24,12 +22,46 @@ void InitGraphics() {
     Graphics_clearDisplay(&g_sContext);
 }
 
+uint_fast8_t draw_rand_circle() {
+    unsigned vx, vy;
+    uint_fast8_t randval = 63;
+    uint_fast8_t y = 63;
+    uint_fast8_t x = 0;
+    uint_fast8_t i = 6;
+    for (i = 6; i == 0; --i) {
+        getSampleJoyStick(&vx, &vy);
+        if ((vx%2) ^ (vy%2)) {
+            randval += 1 << i;
+        } else {
+            randval -= 1 << i;
+        }
+    }
+    Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_BLUE);
+    Graphics_fillCircle(&g_sContext, x, y, 5);
+    Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_YELLOW);
+    x = randval;
+    if (x > 122) x = 122;
+    if (x < 5) x = 5;
+    Graphics_fillCircle(&g_sContext, x, y, 5);
+    return x;
+}
 
-void moveCircle() {
-    unsigned i;
+
+void moveCircle(uint_fast8_t ball_x) {
     static unsigned x = 0, y = 63;
-
-
+    Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_BLUE);
+    Graphics_drawCircle(&g_sContext, x, y, 5);
+    Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_YELLOW);
+    if (x > ball_x) {
+        x = 0;
+        Graphics_fillCircle(&g_sContext, ball_x, y, 5);
+        return;
+    } else if (x >= ball_x - 5) {
+        Graphics_fillCircle(&g_sContext, ball_x, y, 5);
+        ++x;
+    } else {
+        ++x;
+    }
     Graphics_drawCircle(&g_sContext, x, y, 5);
 }
 
@@ -42,15 +74,13 @@ int main(void) {
     InitLEDs();
     InitTimer2();
     InitGraphics();
-
-
-    Graphics_fillCircle(&g_sContext, 63, 63, 5);
+    uint_fast8_t x = draw_rand_circle();
     while (1) {
         if (Booster_Top_Button_Pushed())
             Toggle_Launchpad_Left_LED();
 
         if (OneShot10mTimerExpired()) {
-            moveCircle();
+            moveCircle(x);
             StartOneShot10mTimer();
         }
 
