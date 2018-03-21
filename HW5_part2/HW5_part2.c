@@ -32,7 +32,29 @@ void LCDDrawChar(unsigned row, unsigned col, int8_t c) {
                         OPAQUE_TEXT);
 }
 
-
+void draw_rand_circle(int seed) {
+    static uint_fast8_t i = 0;
+    static uint_fast8_t x = 0;
+    static uint_fast8_t y = 63;
+    static uint_fast8_t randval = 0;
+    if (i == 0 && OneShot1sTimerExpired()) {
+        i = ENTR_DELAY;
+        Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_BLUE);
+        Graphics_fillCircle(&g_sContext, x, y, 5);
+        Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_YELLOW);
+        x = randval;
+        randval = 64;
+        Graphics_fillCircle(&g_sContext, x, y, 5);
+        StartOneShot1sTimer();
+    } else if (i == 0) {
+    } else if (seed) {
+        randval += 1 << i;
+        --i;
+    } else {
+        randval -= 1 << i;
+        --i;
+    }
+}
 
 int main(void) {
     WDT_A_hold(WDT_A_BASE);
@@ -49,10 +71,6 @@ int main(void) {
     StartOneShot1sTimer();
     startADC();
 
-    uint_fast8_t i = 0;
-    uint_fast8_t x = 0;
-    uint_fast8_t y = 63;
-    uint_fast8_t randval = 0;
     while (1) {
         if (Booster_Top_Button_Pushed())
             Toggle_Launchpad_Left_LED();
@@ -60,24 +78,6 @@ int main(void) {
         getSampleJoyStick(&vx, &vy);
 
         int randBit = (vx%2) ^ (vy%2);
-
-        if (i == 0 && OneShot1sTimerExpired()) {
-            i = ENTR_DELAY;
-            Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_BLUE);
-            Graphics_fillCircle(&g_sContext, x, y, 5);
-            Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_YELLOW);
-            x = randval;
-            randval = 64;
-            Graphics_fillCircle(&g_sContext, x, y, 5);
-            StartOneShot1sTimer();
-        } else if (i == 0) {
-        } else if (randBit) {
-            randval += 1 << i;
-            --i;
-        } else {
-            randval -= 1 << i;
-            --i;
-        }
+        draw_rand_circle(randBit);
     }
-
 }
