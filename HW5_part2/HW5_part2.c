@@ -34,14 +34,20 @@ void LCDDrawChar(unsigned row, unsigned col, int8_t c) {
 
 void draw_rand_circle() {
     static uint_fast8_t i = 0;
+    static uint_fast8_t j = 0;
     static uint_fast8_t x = 0;
     static uint_fast8_t y = 63;
     static uint_fast8_t randval = 0;
     unsigned vx, vy;
     getSampleJoyStick(&vx, &vy);
 
-    if (i == 0 && OneShot1sTimerExpired()) {
+    if (OneShot1sTimerExpired()) {
+        ++j;
+        StartOneShot1sTimer();
+    }
+    if (i == 0 && j == 3) {
         i = ENTR_DELAY;
+        j = 0;
         Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_BLUE);
         Graphics_fillCircle(&g_sContext, x, y, 5);
         Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_YELLOW);
@@ -49,7 +55,6 @@ void draw_rand_circle() {
         if (x > 127) x = 127;
         randval = 63;
         Graphics_fillCircle(&g_sContext, x, y, 5);
-        StartOneShot1sTimer();
     } else if (i == 0) {
     } else if ((vx%2) ^ (vy%2)) {
         randval += 1 << i;
