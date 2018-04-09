@@ -1,0 +1,52 @@
+LOAD_WORD    ::= 'lw'    <register> SEP <memref>
+LOAD_HALF    ::= 'lh'    <register> SEP <memref>
+LOAD_BYTE    ::= 'lb'    <register> SEP <memref>
+LOAD_ADD     ::= 'la'    <register> SEP <memref>
+STORE_WORD   ::= 'sw'    <register> SEP <memref>
+STORE_HALF   ::= 'sh'    <register> SEP <memref>
+STORE_BYTE   ::= 'sb'    <register> SEP <memref>
+
+MOVE_FROM_HI ::= 'mfhi'  <register>
+MOVE_FROM_LO ::= 'mflo'  <register>
+MOVE_TO_HI   ::= 'mthi'  <register>
+MOVE_TO_LO   ::= 'mtlo'  <register>
+
+ADD_S        ::= 'add'   <register> SEP <register> SEP <source> 
+ADD_U        ::= 'addu'  <register> SEP <register> SEP <source>
+SUB_S        ::= 'sub'   <register> SEP <register> SEP <source>
+SUB_U        ::= 'subu'  <register> SEP <register> SEP <source>
+MUL          ::= 'mul'   <register> SEP <register> SEP <source>
+MUL_LO       ::= 'mulo'  <register> SEP <register> SEP <source>
+MUL_LOU      ::= 'mulou' <register> SEP <register> SEP <source>
+DIV3_S       ::= 'div'   <register> SEP <register> SEP <source>
+DIV3_U       ::= 'divu'  <register> SEP <register> SEP <source>
+REM_S        ::= 'rem'   <register> SEP <register> SEP <source>
+REM_U        ::= 'remu'  <register> SEP <register> SEP <source>
+AND          ::= 'and'   <register> SEP <register> SEP <source>
+NOR          ::= 'nor'   <register> SEP <register> SEP <source>
+OR           ::= 'or'    <register> SEP <register> SEP <source>
+XOR          ::= 'xor'   <register> SEP <register> SEP <source>
+
+MULT_S       ::= 'mult'  <register> SEP <register>
+MULT_U       ::= 'multu' <register> SEP <register>
+DIV2_S       ::= 'div'   <register> SEP <register>
+DIV2_U       ::= 'divu'  <register> SEP <register>
+ABS          ::= 'abs'   <register> SEP <register>
+NEG_S        ::= 'neg'   <register> SEP <register>
+NEG_U        ::= 'negu'  <register> SEP <register>
+
+BRANCH_EQ    ::= 'beq'   <register> SEP <source>   SEP <label>
+BRANCH_NE    ::= 'bne'   <register> SEP <source>   SEP <label>
+BRANCH_LT    ::= 'blt'   <register> SEP <source>   SEP <label>
+BRANCH_LE    ::= 'ble'   <register> SEP <source>   SEP <label>
+BRANCH_GT    ::= 'bgt'   <register> SEP <source>   SEP <label>
+BRANCH_GE    ::= 'bge'   <register> SEP <source>   SEP <label>
+
+LOAD_IMM     ::= 'li'    <register> SEP <immediate>
+
+MOVE         ::= 'move'  <register> SEP <register>
+
+NOT          ::= 'not'   <register> SEP <source>
+
+JUMP         ::= 'j' <label>
+
