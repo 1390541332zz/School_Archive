@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/milestone0.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:10 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index-2.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="milestone-0">Milestone 0</h1>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 27%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Assigned:
+</td>
+<td style="text-align: left;">
+1/16
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Due:
+</td>
+<td style="text-align: left;">
+2/5 by 11:59 pm
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://classroom.github.com/a/oMiT0s3y">GitHub Invitation Link</a></p>
+<h2 id="introduction">Introduction</h2>
+<p>Each semester I develop one or more projects that require you to implement many of the design patterns and APIs discussed in class. The project for this semester is an instruction-level simulator of a common CPU instruction set architecture called <a href="https://en.wikipedia.org/wiki/MIPS_architecture">MIPS</a>.</p>
+<p>MIPS is a <a href="https://en.wikipedia.org/wiki/Reduced_instruction_set_computer">RISC</a> (reduced-instruction set computer) architecture adaptable to a wide-variety of applications, ranging from embedded systems (e.g. PIC32) and game consoles (e.g. PlayStation), to high-end servers (e.g. ARMv8). We will be simulating the first version, MIPS Release I, without co-processors. This CPU is ideally suited to our purposes since there are (relatively) few instructions with only three instruction formats and two addressing modes. It uses a 32-bit word size and has 32 general-purpose registers.</p>
+<p>Our simulator, which we will call <code>simmips</code>, will read a defined subset of MIPS assembly source code and simulate program execution, similar, but not identical to, <a href="http://spimsimulator.sourceforge.net/">SPIM</a> and <a href="http://courses.missouristate.edu/KenVollmar/mars/">MARS</a>. The code and tests will be developed over the first part of the semester in milestones 0-2. We will then write a graphical debugger and visualization tool in milestones 3-4 during the last part of the semester.</p>
+<p>The milestones will be used for grading and thus are motivation to not procrastinate. They correspond closely to the schedule of material that we will be covering in class. Your progress will be tracked through a series of private git repositories on GitHub.</p>
+<p>The goal of this first milestone is to develop the lexer for our simulator. This will allow you to get accustomed to the course workflow, gain experience reading specifications, and refresh your programming skills. You will write a lexer for MIPS assembly source files, producing a sequence of tokens.</p>
+<p>This assignment requires very little C++ experience beyond basic data structures. If you struggle with this assignment you are woefully ill-prepared for this course. This means you should devote additional time to it and seek advice from the TAs and myself, or as a last resort drop.</p>
+<h2 id="recommended-background-reading">Recommended Background Reading</h2>
+<ul>
+<li>Section 4 of &quot;<a href="MIPStextSMv11.pdf">MIPS Assembly Language Programming using QtSpim</a>&quot;, by Ed Jorgensen, 2016.</li>
+<li><a href="lexing.html">Lexing</a></l>
+<li><a href="https://filebox.ece.vt.edu/~ECE2574/videos/Workflow2574-Windows/">CMake Workflow on Windows</a></li>
+</ul>
+<h2 id="basics-of-mips-assembly">Basics of MIPS Assembly</h2>
+<p>The role of a compiler is to translate from a higher-level representation of a computation, called the source language, to a lower one, called the target language. Traditionally, when you are programming in a high-level language like C or C++, the target language is assembly. Individual files, or <em>modules</em>, are then passed through another compiler, called an assembler to produce object (machine) code. Multiple module object code is combined (usually with pre-compiled library code) by the linker to produce the final executable machine code. Modern compilers typically subsume high-level compilation and assembly into a single program, although they can emit intermediate languages. Some high-level languages (e.g. Java, C#, Lua, PLT scheme) compile to a portable intermediate language called bytecode, which is then compiled to machine code as needed (so-called just-in-time or JIT).</p>
+<p>At each level of the compilation stage, the code moves from syntax that is more human understandable to less, while becoming more efficient for hardware execution. Assembly is the last language in this process that is symbolic enough that humans can interpret it without serious effort (one can decode and write/understand machine code, but it is a lot of work). Assembly language is expressed in plain text files called assembly source files. Like all languages it has a specific syntax, what constitutes a well-formed sequence of characters, and semantics, what the program does (it's side effects).</p>
+<p>Our simulator will only simulate execution of a single module of code; thus, we will have no need for a linker. It will also not handle conditional assembly or macros.</p>
+<p>It will be helpful to see an example first before diving into the details of the assembler source format in later milestones. So what follows is a simple program with some C-like translations.</p>
+<div class="sourceCode"><table class="sourceCode mips numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="sourceCode"><pre><code class="sourceCode mips"><span class="co"># this is a comment, any characters after # up to newline are ignored</span>
+
+    <span class="kw">.data</span> <span class="co"># start the data section, where variables are declared</span>
+
+<span class="ot">var1:</span>   <span class="dt">.byte</span> <span class="dv">1</span>      <span class="co"># char var1 = 1;</span>
+<span class="ot">var2:</span>   <span class="dt">.half</span> <span class="dv">65526</span>  <span class="co"># short var2 = 65526;</span>
+<span class="ot">var3:</span>   <span class="dt">.word</span> <span class="dv">1</span>      <span class="co"># int var3 = 1;</span>
+<span class="ot">var4:</span>   <span class="dt">.word</span> <span class="dv">2</span>      <span class="co"># int var4 = 2;</span>
+<span class="ot">var5:</span>   <span class="dt">.word</span> <span class="dv">0</span>      <span class="co"># int var5 = 0;</span>
+
+    <span class="kw">.text</span> <span class="co"># start the code section, a sequence of instructions</span>
+    
+<span class="ot">main:</span> <span class="co"># compute var5 = var3 + var4;</span>
+
+        <span class="kw">lw</span>  <span class="dt">$t0</span>, var3
+        <span class="kw">lw</span>  <span class="dt">$t1</span>, var4
+        <span class="kw">add</span> <span class="dt">$t3</span>, <span class="dt">$t0</span>, <span class="dt">$t1</span>
+        <span class="kw">sw</span>  <span class="dt">$t3</span>, var5</code></pre></td></tr></table></div>
+<p>Some initial things of note. Comments begin with the <code>#</code> character and are not semantically important to the execution of the program. The program contains several <em>directives</em> to the compiler. These begin with a <code>.</code> character. The most prominent are <code>.data</code> and <code>.text</code> which control if the assembler is laying out or initializing memory, or processing computations as instructions. Also notable are <em>labels</em>, strings that end in the character <code>:</code>.</p>
+<h1 id="lexing-the-assembly-source">Lexing the Assembly Source</h1>
+<p>MIPS assembly programs, like that above, are written in plain ASCII text. In the assembly file format there are several syntactically meaningful tokens:</p>
+<ul>
+<li><code>EOL</code> (LF or ASCII code point 0x0a) indicates the end of a source line has been reached (no value)</li>
+<li><code>SEP</code> (a comma or ASCII code point 0x2c) is the separator for lists (no value)</li>
+<li><code>OPEN_PAREN</code> (an open parenthesis or ASCII code point 0x28) indicates the start of an indirect address (no value)</li>
+<li><code>CLOSE_PAREN</code> (a close parenthesis or ASCII code point 0x29) indicates the end of an indirect address (no value)</li>
+<li><code>STRING_DELIM</code> (double quote or ASCII code point 0x22) is used to wrap literal strings (no value)</li>
+<li><code>EQUAL</code> (an equal sign or ASCII code point 0x3d) is used in a constant assignment (no value)</li>
+<li><code>STRING</code> is any other white-space (ASCII code points 0x020, 0x0d, 0x09, 0x0b, or 0x0c) separated string (value is the string)</li>
+</ul>
+<p>The job of the lexer is to convert the input text to a sequence of these tokens. It should discard any comments during this process by ignoring any input from the character <code>#</code> up to a newline. It should also record the line number from the file the token appeared on.</p>
+<p>The interface is a C++ free function with the signature:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">/* Function to convert an input text stream </span>
+<span class="co">   into a sequence of tokens.</span>
+<span class="co">*/</span>
+TokenSequence lexer(<span class="bu">std::</span>istream &amp;);</code></pre></div>
+<p>This function is declared in the file <code>lexer.hpp</code> and should be implemented in the file <code>lexer.cpp</code>. A <code>TokenSequence</code> is a list of type Token</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">typedef</span> <span class="bu">std::</span>list&lt;Token&gt; TokenList;</code></pre></div>
+<p>where a Token is a type, a line number where the token originated, and the string value</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">enum</span> TokenType {
+  EOL,
+  SEP,
+  EQUAL,
+  OPEN_PAREN,
+  CLOSE_PAREN,
+  STRING_DELIM,
+  STRING,
+  ERROR
+};
+
+<span class="kw">class</span> Token {
+<span class="kw">public</span>:
+  <span class="co">// construct a token type on line with empty value</span>
+  Token(TokenType type, <span class="bu">std::</span>size_t line);
+
+  <span class="co">// construct a token type on line  with value</span>
+  Token(TokenType type, <span class="bu">std::</span>size_t line, <span class="at">const</span> <span class="bu">std::</span>string &amp;value);
+
+  <span class="co">// return the token type</span>
+  TokenType type() <span class="at">const</span>;
+
+  <span class="co">// return the token&#39;s originating source line</span>
+  <span class="bu">std::</span>size_t line() <span class="at">const</span>;
+
+  <span class="co">// return the token&#39;s value</span>
+  <span class="bu">std::</span>string value() <span class="at">const</span>;
+}</code></pre></div>
+<p>The <code>Token</code> and <code>TokenSequence</code> types are defined and implemented in the module <code>token.hpp</code>/<code>token.cpp</code>.</p>
+<h2 id="example">Example</h2>
+<p>Consider the following contrived example of an assembly source file.</p>
+<pre><code>        .data
+        LENGTH = 10
+array:  .space LENGTH
+str:    .asciiz &quot;the (end)&quot;
+        .text
+main:  lw $t0, array
+       lw $t1, ($t0)</code></pre>
+<p>Would produce the following sequence of tokens, written as (type, value), where the line breaks are not significant.</p>
+<pre><code>(STRING,&quot;.data&quot;) (EOL,&quot;&quot;) (STRING,&quot;LENGTH&quot;) (EQUAL,&quot;&quot;) (STRING,&quot;10&quot;) (EOL,&quot;&quot;) (STRING,&quot;array:&quot;) (STRING,&quot;.space&quot;) (STRING,&quot;LENGTH&quot;) (EOL,&quot;&quot;) (STRING,&quot;str:&quot;) (STRING,&quot;.asciiz&quot;) (STRING_DELIMETER,&quot;&quot;) (STRING,&quot;the (end)&quot;) (STRING_DELIMETER,&quot;&quot;) (EOL,&quot;&quot;) (STRING,&quot;.text&quot;) (EOL,&quot;&quot;) (STRING,&quot;main:&quot;) (STRING,&quot;lw&quot;) (STRING,&quot;$t0&quot;) (SEP,&quot;&quot;) (STRING, &quot;array&quot;) (EOL,&quot;&quot;) (STRING,&quot;lw&quot;) (STRING,&quot;$t1&quot;) (SEP,&quot;&quot;) (OPEN_PAREN,&quot;&quot;) (STRING, &quot;$t0&quot;) (CLOSE_PAREN,&quot;&quot;) (EOL,&quot;&quot;)</code></pre>
+<p>Note in particular that any text other than ASCII code 0xa in between pairs of <code>&quot;</code> are treated literally (not as potential tokens).</p>
+<p>The lexer should detect the following errors (only):</p>
+<ul>
+<li>A string must consist of matching <code>&quot;</code> and cannot span multiple lines.</li>
+<li>A pair of <code>(</code> and <code>)</code> must match and cannot span multiple lines.</li>
+</ul>
+<p>For example the following inputs would produce lexing errors.</p>
+<pre><code>.data
+var: .ascii &quot;this is
+a string&quot;</code></pre>
+<pre><code>.text
+    lw $t0, ($t1
+    )</code></pre>
+<p>On the first error detected the last token in the returned sequence should have the type <code>ERROR</code> and the value should be an informative error message that starts with the string <code>Error:</code>. For example the token sequence resulting from the second error case above might be</p>
+<pre><code>(STRING,&quot;.text&quot;) (EOL,&quot;&quot;) (STRING,&quot;var:&quot;) (STRING,&quot;lw&quot;) (STRING,&quot;$t0&quot;) (SEP,&quot;&quot;) (OPEN_PAREN,&quot;&quot;) (ERROR,&quot;Error: unmatched paren on line 2&quot;)</code></pre>
+<h2 id="instructions">Instructions</h2>
+<p>Accept the GitHub invitation above and then clone the git repository to your local machine. The initial git repository contains several files. The types for <code>TokenSequence</code> are defined for you in the header <code>lexer.hpp</code>. Your task in this milestone is to implement the function <code>lexer</code> in the file <code>lexer.cpp</code>. You can define additional units of code (classes, helper functions) in <code>lexer.cpp</code>, but do not change the provided type definitions, nor the <code>lexer</code> function signature.</p>
+<p>Unit tests for your function are provided in the file test_lexer.cpp using the Catch testing framework (see meeting 7). Do not modify them (other than to perhaps add temporary debugging output). The included CMakeLists.txt file sets up building these tests for you. Just configure the build, run the build, and then run the tests. You should use git to commit versions of your program source (only) as you go along, demonstrating good incremental programming technique.</p>
+<p>Steps to build and run the tests in the reference environment (after vagrant ssh).</p>
+<ul>
+<li><p>To configure the build</p>
+<pre><code>cmake /vagrant</code></pre></li>
+<li><p>To run the build</p>
+<pre><code>make</code></pre>
+<p>or</p>
+<pre><code>cmake --build .</code></pre></li>
+<li><p>To run the unit tests</p>
+<pre><code>make test</code></pre>
+<p>or</p>
+<pre><code>cmake --build . --target test</code></pre>
+<p>The test output is placed in ``Testng/Temporary/LastTest.log. You can also just run the tests directly:</p>
+<pre><code>./unit_tests</code></pre></li>
+<li><p>To configure and run the build in strict mode (increased warnings, warnings become errors)</p>
+<pre><code>cmake -DSTRICT=True /vagrant
+make clean; make</code></pre></li>
+</ul>
+<h2 id="submission">Submission</h2>
+<p>To submit your assignment:</p>
+<ol type="1">
+<li><p>Tag the git commit that you wish to be considered for grading as &quot;final&quot;.</p>
+<pre><code>git tag final</code></pre></li>
+<li><p>Push this change to GitHub</p>
+<pre><code>git push origin final</code></pre></li>
+</ol>
+<p>If you need to tag a different version of your code as final (before the due date) simply create and push a new tag appending a monotonically increasing number to final, e.g. final2, final3, etc.</p>
+<p>Be sure you have committed all the changes you intend to. It is a good idea to re-clone your repository into a separate directory and double check it is what you intend to submit. <strong>Failure to complete these steps by the due date will result in a failed submission.</strong></p>
+<h2 id="grading">Grading</h2>
+<p>There are 20 points allocated to this assignment.</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Code Compiles in the reference environment
+</td>
+<td style="text-align: left;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Correctness
+</td>
+<td style="text-align: left;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Code Quality
+</td>
+<td style="text-align: left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Good Development Practices
+</td>
+<td style="text-align: left;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note, if your code does not build in the reference environment you will receive <strong>no points</strong>. Correctness is determined by the proportion of instructor unit tests that pass. Code quality will be assessed in this assignment by ensuring your code compiles cleanly, with no warnings, using the strict mode specified above. Good development practices will be assessed by ensuring you have made more than 2 commits to your repository before submission.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2017 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/milestone0.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:11 GMT -->
+</html>

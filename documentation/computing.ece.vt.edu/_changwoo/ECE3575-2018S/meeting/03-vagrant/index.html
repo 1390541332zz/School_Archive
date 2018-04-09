@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/meeting/03-vagrant/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:11 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../../index-2.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="meeting-3-using-the-reference-environment">Meeting 3: Using the Reference Environment</h1>
+<p>One of the most frustrating aspects of programming is just setting up the development environment. When you want to share your code, as in a team, and make sure it runs on other computers, this becomes even more of a problem. One solution that has become popular in the profession is virtualization, running a program that simulates a computer that runs software, usually another operating system. This simulation is called a virtual machine.</p>
+<p>This concerns you as a student since you want to be sure the code you turn in can be graded fairly. As an instructor, I have the same concern, but I also want to get feedback and grades back to you as soon as possible with minimal back-and-forth. To solve this we will use a virtual machine so that you can verify that your code works on the exact same (virtual) system we will grade it in.</p>
+<p>We will use two tools for this (that you should have installed during Exercise 01), VirtualBox, which runs the virtual machine, and Vagrant which automates creating and provisioning (installing all the software for) a virtual machine. The virtual machine we will use is based on a minimal Linux environment so there are no licensing issues.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="slides.pdf">slides</a></li>
+</ul>
+<h2 id="exercise-03-vagrant">Exercise 03: vagrant</h2>
+<p>The goal of this exercise is to learn how to use Vagrant to setup and use a virtual environment.</p>
+<p>GitHub Invitation URL: <a href="https://classroom.github.com/a/2S-BOz4c">exercise3</a></p>
+<p>Prerequisites:</p>
+<ul>
+<li>You have completed <code>Exercise 01: Setup</code> and have a working installation of VirtualBox and Vagrant</li>
+<li>You have read through the <a href="https://www.vagrantup.com/docs/getting-started/">Vagrant Getting Started</a> guide.</li>
+</ul>
+<p>Steps:</p>
+<ol type="1">
+<li>Create a working directory somewhere on your computer. Open your command line terminal and make a working directory. Then change to that directory.</li>
+<li><p>Clone the assignment for today after accepting the GitHub invitation at the link above.</p>
+<pre><code>git clone https://github.com/VTECE3574/exercise03-USER.git</code></pre>
+<p>where USER is your GitHub username. You may have to enter your GitHub username and password.</p></li>
+<li><p>Change to the repository directory and look at the contents of the <code>Vagrantfile</code>. Write a simple C++ hello world program in <code>hello.cpp</code>. Add it to the git index and commit it as in exercise 02.</p></li>
+<li><p>Run vagrant to setup the virtual machine.</p>
+<pre><code>vagrant up</code></pre>
+<p>This will take a few minutes to complete.</p></li>
+<li><p>Login to the machine.</p>
+<pre><code>vagrant ssh</code></pre>
+You are now at the command line inside the Linux virtual machine.</li>
+<li><p>See what directory you are in</p>
+<pre><code>pwd</code></pre>
+<p>You are in the /home/ubuntu directory. This is the home directory for the default user setup by Vagrant.</p></li>
+<li><p>List the files in the host operating system shared with the machine.</p>
+<pre><code>ls /vagrant</code></pre>
+<p>You should see the files <code>Vagrantfile</code> and <code>hello.cpp</code>, and a log file created by Vagrant.</p></li>
+<li><p>Compile the hello file using the g++ compiler installed by Vagrant when it setup the machine</p>
+<pre><code>g++ -o hello.exe /vagrant/hello.cpp</code></pre></li>
+<li><p>Run the executable you just built.</p>
+<pre><code>./hello.exe</code></pre>
+<p>It should print a familiar message.</p></li>
+<li><p>Logout of the machine</p>
+<pre><code>logout</code></pre>
+<p>You are now back in your host terminal, but the machine is still running!</p></li>
+<li>Edit the <code>hello.cpp</code> file using for favorite editor to change the message printed. Log back into the machine, compile, and run as above. Then logout.</li>
+<li><p>Now, halt the machine.</p>
+<pre><code>vagrant halt</code></pre></li>
+<li><p>Since we no longer need the machine we can destroy it.</p>
+<pre><code>vagrant destroy</code></pre>
+<p>It prompts you to be sure.</p></li>
+<li><p>Now, use git to commit the source file you changed to the local repository.</p>
+<pre><code>git add hello.cpp
+git commit -m &quot;Changed the message printed&quot;</code></pre></li>
+<li><p>Finally, use git push to synchronize the repository with that on GitHub</p>
+<pre><code>git push</code></pre>
+<p>You may have to enter your GitHub username and password.</p></li>
+</ol>
+<p>You have completed the Exercise.</p>
+<p><strong>This is the basic process for verifying your code works as you expect in the grading environment.</strong></p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2017 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/meeting/03-vagrant/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:12 GMT -->
+</html>

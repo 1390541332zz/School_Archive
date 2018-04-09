@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/milestone3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:20 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index-2.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="milestone-3">Milestone 3</h1>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 60%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Assigned:
+</td>
+<td style="text-align: left;">
+3/27
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Due:
+</td>
+<td style="text-align: left;">
+4/9 by 11:59 pm
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://classroom.github.com/a/DVhxX3J5">GitHub Invitation Link</a></p>
+<h2 id="introduction">Introduction</h2>
+<p>The goal of this milestone is to develop a graphical user interface (GUI) for our MIPS simulator. You will develop a Qt widget to visualize the state of your virtual machine and connect it to your existing simulator code. You will also use a button to step through instructions. This will be combined with the earlier <code>simmips</code> REPL-based program to produce an executable that can run in either text or graphical mode using a command-line flag.</p>
+<p>This continues to build upon previous milestones. You can use any of <em>your</em> code from previous milestones as a starting point. You may need to modify and/or extend it as you work. If you were unable to complete milestone 2, you should do so fully <em>before</em> attempting this milestone.</p>
+<h2 id="recommended-background-reading">Recommended Background Reading</h2>
+<ul>
+<li><a href="http://doc.qt.io/qt-5/qplaintextedit.html">QPlainTextEdit Class</a></li>
+<li><a href="http://doc.qt.io/qt-5/qtableview.html">QTableView Class</a> and the <a href="http://doc.qt.io/qt-5/qabstracttablemodel.html">QAbstractTableModel Class</a></li>
+<li><a href="http://doc.qt.io/qt-5/qpushbutton.html">QPushButton Class</a></li>
+<li><a href="http://doc.qt.io/qt-5/qlineedit.html">QLineEdit Class</a></li>
+</ul>
+<h2 id="the-final-simmips-architecture">The Final simmips Architecture</h2>
+<p>Through the previous milestones we have developed a series of modules and version of the <code>simmips</code> program. In this milestone we reach the final architecture of the simmips program</p>
+<center>
+<img 
+    src="m3-1.svg" 
+    alt="Milestone 3 final architecture"
+/>
+</center>
+<h2 id="the-text-interface">The Text Interface</h2>
+<p>The text interface to the simulator in this milestone is the same as in milestone 2. The command-line arguments are the same, a single filename to be treated as a MIPS assembly file. The program should attempt to parse the file into the data representing the virtual machine. If the input file cannot be parsed the program should print an error message and return <code>EXIT_FAILURE</code> as in milestone 1. If the input file can be parsed then the program should enter a read-eval-print loop using standard output and standard input for communication with the user. The loop should print the prompt <code>simmips&gt;</code> and wait for one of the following command strings to be entered:</p>
+<ul>
+<li><code>print $r</code> - print the register contents, either a register number, alias, or one of pc, hi, or lo in hex format</li>
+<li><code>print &amp;a</code> - print the byte at memory address <code>a</code>, in hex format</li>
+<li><code>step</code> - execute the current instruction and print the new program counter, or if an error has occurred the error message</li>
+<li><code>status</code> - print the error status as a message, print nothing if no error has been encountered</li>
+<li><code>quit</code> - quit the program, return <code>EXIT_SUCCESS</code></li>
+</ul>
+<p>Lets look at an example. Suppose the file <code>myprog.asm</code> contains the following:</p>
+<pre><code>       .data
+var:   .word 1
+       .text
+main:
+       lw $t0, var
+
+end:
+       j end</code></pre>
+<p>The following is an example session (assume $ is the command-line prompt):</p>
+<pre><code>$ simmips.exe myprog.asm
+simmips&gt; print $pc
+0x00000000
+simmips&gt; print &amp;0x00000000 
+0x01
+simmips&gt; print &amp;0x00000001 
+0x00
+simmips&gt; print &amp;0x00000002 
+0x00
+simmips&gt; print &amp;0x00000003 
+0x00
+simmips&gt; print $t0
+0x00000000
+simmips&gt; step
+0x00000001
+simmips&gt; print $t0
+0x00000001
+simmips&gt; step
+0x00000001
+simmips&gt; step
+0x00000001
+simmips&gt; typo
+Error: unknown command.
+simmips&gt; status
+simmips&gt; quit
+$</code></pre>
+<h2 id="the-graphical-interface">The Graphical Interface</h2>
+<p>In this milestone we will extend the <code>simmips</code> program to have an additional, optional, GUI. If the program is invoked with a command line option <code>--gui</code> before or after the filename, then the graphical version of the program should be used. Otherwise the text mode above should be used. For example to start the program in GUI mode with the file <code>myprog.asm</code> in the same directory one would run:</p>
+<pre><code>$ simmips.exe --gui myprog.asm</code></pre>
+<p>We will use Qt 5.10 as the GUI library. You should develop a custom Qt widget called <code>VirtualMachineGUI</code> that contains sub-widgets laid out as shown in the annotated screenshot below and with the specified object names.</p>
+<center>
+<img 
+    src="simmips_gui_annot.png" 
+    width="95%"
+    alt="simmips graphical interface (annotated)"
+/>
+</center>
+<p><b>Widgets:</b></p>
+<ul>
+<li>A is a <code>QPlainTextEdit</code> widget with object name &quot;text&quot;</li>
+<li>B is a <code>QTableView</code> widget with object name &quot;registers&quot;</li>
+<li>C is a <code>QTableView</code> widget with object name &quot;memory&quot;</li>
+<li>D is a <code>QLineEdit</code> widget with object name &quot;status&quot;</li>
+<li>E is a <code>QPushButton</code> widget with object name &quot;step&quot;</li>
+</ul>
+<p>In addition the class should have a public member function to parse and load the specified assembly file.</p>
+<pre><code>void VirtualMachineGUI::load(QString filename);</code></pre>
+<p>If the file cannot be opened and parsed an appropriate error message should be displayed in the status widget (D) that starts with &quot;Error:&quot;. Otherwise the text of the assembly file should be placed in widget A (read-only) and the next instruction to be executed highlighted in yellow. The contents of the virtual machine registers and memory displayed in widgets B and C. Widget B should be a table with three columns, the register number if it has one, the register alias, and the register value in hex. The registers should be laid out with the $pc first, followed by $hi, $lo, and $0-$31 (as shown above). Widget C should be a table with two columns, the memory address in hex and the memory locations value in hex. Unless there was an error loading and parsing the file the status widget should display &quot;Ok&quot;.</p>
+<p>Each time the user presses the step button the VM should be stepped in a fashion identical to in the text-mode version of the program. The text view, register table, and memory table should update accordingly. That is the highlighted line (likely) changes and the table shows the updated content of the registers and memory. If the step results in an error the same error message as would be printed in the text-mode version should be displayed in widget D.</p>
+<h2 id="testing">Testing</h2>
+<p>Each non-Qt module of your code, generally a pair of files <code>module.hpp</code>/<code>module.cpp</code>, should have a corresponding set of unit tests in <code>test_module.cpp</code>. These should use the Catch testing framework (<code>catch.hpp</code> and main test driver <code>unit_tests.cpp</code> is provided).</p>
+<p>Testing in this milestone will focus on using the QTest framework. The starter code includes a skeleton Qt test for the <code>VirtualMachineGUI</code> module that verifies the widgets expected by the grader tests exist with the correct object names, and that the load member function can be invoked. The building of this test is setup via the provided <code>CMakeLists.txt</code>. <strong>You should write additional tests within this file to fully test your GUI.</strong></p>
+<p>Several input test files are provided in the <code>tests</code> sub-directory of the repository. Do not modify these test input files. These are a large subset of the tests that we will run when grading.</p>
+<p>Functional tests are not provided for this milestone as writing them is a focus of this milestone, however the GUI version of the program should behave functionally identical to the text-mode version as tested by <code>integration_test.py</code> using in milestone 2.</p>
+<p>The quality of your tests is determined by code coverage which should exceed <strong>95% of lines</strong> across all files.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>Accept the GitHub invitation above and then clone the git repository to your local machine. The initial git repository contains several files. Your task in this milestone is to implement the GUI functionality described above. You will need to define additional units of code (classes, functions) and tests as additional files. Be sure to add them to the <code>CMakeLists.txt</code> files in the indicated place near the top.</p>
+<p>The GUI tests should use the QTest testing framework (see meeting 14). The included CMakeLists.txt file sets up building these tests for you. Just configure the build, run the build, and then run the tests. You should use git to commit versions of your program source (only) as you go along, demonstrating good incremental programming technique.</p>
+<p>The initial repository includes a Vagrantfile that sets up a virtual machine with minimal graphical interaction enabled. As in earlier projects this is a duplicate of the environment used for grading. This environment adds the ability to interact with graphical applications in a separate window from the shell. After initializing the environment with <code>vagrant up</code> you will need to reboot the machine, e.g. <code>vagrant halt</code>, followed by <code>vagrant up</code> again. This need be done only once (and after any vagrant destroy).</p>
+<p>After starting the reference environment you login to it the same way as before, using vagrant ssh. When you start a graphical application, like simmips, it will appear in the VirtualBox GUI window, where you can interact with it. You can also start a terminal within the graphical environment by right clicking and selecting &quot;Terminal emulator&quot;.</p>
+<p>Note, the version of Qt installed in the reference environment is slightly older than that installed on your host, but there are no relevant differences for this assignment.</p>
+<p>Steps to build and run the tests in the reference environment (after vagrant ssh).</p>
+<ul>
+<li><p>To configure the build</p>
+<pre><code>cmake /vagrant</code></pre></li>
+<li><p>To run the build</p>
+<pre><code>make</code></pre>
+<p>or</p>
+<pre><code>cmake --build .</code></pre></li>
+<li><p>To run unit tests and gui tests</p>
+<pre><code>make test</code></pre>
+<p>or</p>
+<pre><code>cmake --build . --target test</code></pre>
+<p>The test output is placed in ``Testing/Temporary/LastTest.log. You can also just run the unit tests directly:</p>
+<pre><code>./unit_tests</code></pre>
+<p>and the GUI tests:</p>
+<pre><code>./virtual_machine_gui_test</code></pre></li>
+<li><p>To run your tests and check code coverage.</p>
+<pre><code>make coverage</code></pre>
+<p>or</p>
+<pre><code>cmake --build . --target coverage</code></pre>
+<p>This will create a directory called <code>Coverage_Report</code> in the build directory. You can copy it back to your host by doing <code>cp -r Coverage_Report /vagrant</code>. Open the <code>index.html</code> file inside it to examine the detailed report.</p></li>
+<li><p>To run the text-mode functional tests (from milestone 2) provided in the python script <code>integration_test.py</code></p>
+<pre><code>cd ~
+python3 /vagrant/scripts/integration_test.py</code></pre>
+<p>This will report which tests fail. You can examine the script to see exactly what operations were being performed and what the expected output was.</p></li>
+</ul>
+<h2 id="to-do">To Do</h2>
+<p>Since this module has several pieces, below is a list of suggested &quot;todos&quot; in order of priority:</p>
+<ol type="1">
+<li>Implement the classes to adapt your VM object to the required QAbstractTableModels for use with QTableView.</li>
+<li>Implement the <code>VirtualMachineGUI</code> class.</li>
+<li>Add testing code to <code>virtual_machine_gui_test.cpp</code> to fully test your GUI.</li>
+</ol>
+<h2 id="submission">Submission</h2>
+<p>To submit your assignment:</p>
+<ol type="1">
+<li><p>Tag the git commit that you wish to be considered for grading as &quot;final&quot;.</p>
+<pre><code>git tag final</code></pre></li>
+<li><p>Push this change to GitHub</p>
+<pre><code>git push origin final</code></pre></li>
+</ol>
+<p>If you need to tag a different version of your code as final (before the due date) simply create and push a new tag, appending a monotonically increasing number to final, e.g. final2, final3, etc.</p>
+<p>Be sure you have committed all the changes you intend to. It is a good idea to re-clone your repository into a separate directory and double check it is what you intend to submit. <strong>Failure to complete these steps by the due date will result in a failed submission.</strong></p>
+<h2 id="grading">Grading</h2>
+<p>There are 92 points allocated to this assignment. All requirements are evaluated with respect to the course reference environment.</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Correct files submitted (cmake configure)
+</td>
+<td style="text-align: left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Code Compiles
+</td>
+<td style="text-align: left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Functional Tests
+</td>
+<td style="text-align: left;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Your Test Quality
+</td>
+<td style="text-align: left;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Development Practices
+</td>
+<td style="text-align: left;">
+10
+</td>
+</tr>
+</tbody>
+</table>
+<p>Configuration and Compilation are all-or-nothing. Functional Tests and Test Quality portions of the grade are proportional (you can receive partial points). Good development practices will be assessed by ensuring you have a <strong>regular</strong> commit history in your repository starting soon after the milestone was released.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/milestone3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:20 GMT -->
+</html>

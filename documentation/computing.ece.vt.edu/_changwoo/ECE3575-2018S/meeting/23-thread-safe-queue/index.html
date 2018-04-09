@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/meeting/23-thread-safe-queue/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:22 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../../index-2.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="meeting-23-detailed-example-a-thread-safe-queue-in-c11">Meeting 23: Detailed Example: A thread-safe queue in C++11</h1>
+<p>Today we are going to look in detail at how to make a data structure thread-safe.</p>
+<ul>
+<li>Review of std::queue</li>
+<li>push</li>
+<li>empty</li>
+<li>try_pop</li>
+<li>wait_and_pop</li>
+<li>Message Queues</li>
+<li>Exercise</li>
+</ul>
+<p>Links:</p>
+<ul>
+<li><a href="slides.pdf">Slides</a></li>
+</ul>
+<h2 id="exercise-23-thread-safe-vector">Exercise 23: Thread-Safe Vector</h2>
+<p>GitHub Invitation URL: <a href="https://classroom.github.com/a/v7XEKBnm">exercise23</a></p>
+<p>Steps:</p>
+<ol type="1">
+<li>Clone the assignment for today <strong>after</strong> accepting the GitHub invitation at the link above. The repository contains three files:</li>
+</ol>
+<ul>
+<li><code>vector.hpp</code> empty file, implement your thread-safe generic vector here</li>
+<li><code>test_vector.cpp</code> empty file, write some tests for `<code>vector.hpp</code> here</li>
+</ul>
+<ol start="2" type="1">
+<li><p>Implement a generic vector that is thread-safe in <code>vector.hpp</code> using C++11 synchronization primitives similar the the thread-safe queue.</p></li>
+<li><p>Write some tests for your vector in <code>test_vector.cpp</code> using C++11 threads.</p></li>
+<li><p>Verify your code compiles and your tests work.</p></li>
+<li><p>Now, use git to commit the source files changed to the local repository.</p></li>
+<li><p>Finally, use git push to synchronize the repository with that on GitHub.</p></li>
+</ol>
+<p>You have completed the Exercise.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/meeting/23-thread-safe-queue/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:22 GMT -->
+</html>

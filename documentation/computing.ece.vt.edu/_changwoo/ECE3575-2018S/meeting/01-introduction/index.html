@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/meeting/01-introduction/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:09 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="../../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <script src='../../../../../cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJaxb198.js?config=TeX-MML-AM_CHTML'></script>
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../../index-2.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="meeting-01-course-introduction">Meeting 01: Course Introduction</h1>
+<p>The goal today is to give you a sense of what the course is about, how I teach, and what is expected of you. We will also go through the setup of the software needed for the course as our &quot;Exercise&quot; of the day.</p>
+<p>Be sure to read the main <a href="../../index-2.html">syllabus page</a>! There is important information there about course administration.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="slides.pdf">slides</a></li>
+<li><a href="https://canvas.vt.edu/courses/66470/quizzes/95585">Readiness Exercise on Canvas</a></li>
+<li><a href="../../projects/milestone0.html">Project Milestone 0</a></li>
+</ul>
+<h2 id="about-the-course">About the course</h2>
+<p>This course is the third in the software sequence for computer engineering students. It is a technical course, meaning there is very little theory and a lot of technique. It is also a grab-bag of topics, so there is little unification across the course. About half of the material is a collection of things we think you need to know but not covered uniformly in previous courses, while the remaining half is concurrency, which you need for ECE 4534 (Embedded System Design).</p>
+<p>We will be covering the following core topics.</p>
+<ul>
+<li>Generics and containers</li>
+<li>Inheritance and polymorphism</li>
+<li>Unit and integration testing</li>
+<li>Design patterns</li>
+<li>Using class-based software libraries (APIs)</li>
+<li>Concurrency: processes and threads</li>
+<li>Communication using shared memory versus messages</li>
+<li>Event-driven programming</li>
+</ul>
+<p>Like most courses there is a hidden agenda as well. You will gain experience writing larger programs that require non-trivial design, get exposure to tools other than the compiler, and learn how to use third-party API documentation.</p>
+<h1 id="exercise-01-setup">Exercise-01: Setup</h1>
+<p>In this exercise you will install the required software for the course and setup the development environment assumed by these exercises.</p>
+<p>The exercises assume you have a favorite text editor and know how to use it, and that you know how to use the command line for your system, powershell on Windows and bash on Linux or Mac OSX. If this is not the case then you should go through <a href="https://learnpythonthehardway.org/book/appendixa.html">this crash course</a> first.</p>
+<h2 id="github-account-all-platforms">GitHub Account (all platforms)</h2>
+<p>In this part of the exercise you will create a GitHub user account. GitHub is a collaborative coding website that is based on git, the version control tool we will use this semester. GitHub is how all assignments will be distributed and how we will obtain your code for grading. More details will be provided in meeting 2. For now we need to ensure you have a GitHub account and can map your Canvas ID to your GitHub username.</p>
+<ol type="1">
+<li><p>Visit <a href="https://github.com/">github.com</a> and signup for a free account on the landing page. If you already have a GitHub account you can skip this step.</p></li>
+<li><p>Go to <a href="https://canvas.vt.edu/courses/66470/assignments/370486">Exercise 1: GitHub Account</a> on Canvas. Enter your GitHub username in the text entry box that appears after you select Submit Assignment. Enter just the username with no other text or spaces.</p></li>
+</ol>
+<p>The remainder of this exercise depends on which platform you will be using.</p>
+<h2 id="windows-7810">Windows (7,8,10)</h2>
+<p>First, turn off both &quot;hidden files and folders&quot; and &quot;hiding extensions&quot; -- These settings are meant for novice users.</p>
+<ol type="1">
+<li>Install VS2015. If you already have it installed, skip this step.</li>
+</ol>
+<ul>
+<li>As an engineering student you have access to Visual Studio via <a href="http://www.eng.vt.edu/it/dreamspark">Microsoft Imagine (Dreamspark)</a>. Follow the instructions there to download Visual Studio 2015. You will need to have all your &quot;important&quot; updates applied.</li>
+<li>When installing be sure to check Visual C++ under languages, as it is not installed by default.</li>
+<li>Use your HokieID username/password to register the product.</li>
+<li>You can also use the free Community Edition.</li>
+</ul>
+<ol start="2" type="1">
+<li>Install git.</li>
+</ol>
+<ul>
+<li>Visit <a href="https://git-scm.com/">www.git-scm.com</a>. Download and install the latest version for Windows.</li>
+<li>During the install, check the box &quot;Use Git and optional Unix tools from the Windows Command Prompt&quot;. All this does is add a directory to your path. Despite the scary warning this can be corrected by just removing the directory from your PATH variable if necessary.</li>
+</ul>
+<ol start="3" type="1">
+<li>Install cmake. Visit <a href="https://cmake.org/download/">www.cmake.org</a>.</li>
+</ol>
+<ul>
+<li>Download and install the Binary distribution for Windows win64-x64.</li>
+<li>During the install, be sure to select &quot;Add CMake to the system PATH for the current user&quot;.</li>
+</ul>
+<ol start="4" type="1">
+<li>Install VirtualBox. Visit <a href="https://www.virtualbox.org/wiki/Downloads">www.virtualbox.org</a>.</li>
+</ol>
+<ul>
+<li>Download and install VirtualBox 5.1.12 platform packages for Windows hosts.</li>
+</ul>
+<ol start="5" type="1">
+<li>Install Vagrant. Visit <a href="https://www.vagrantup.com/">www.vagrantup.com</a>. Click Download. Download and install the Windows version.</li>
+</ol>
+<p>To verify everthing is setup properly, open up Powershell and type</p>
+<pre><code>git --version
+ssh
+cmake --version
+VBoxManage --version
+vagrant --version</code></pre>
+<p>You should see something similar to the following with slight differences in version numbers (your command line prompt will be different):</p>
+<figure>
+<img src="powershell_check.png" />
+</figure>
+<h2 id="mac-osx">Mac OSX</h2>
+<ol type="1">
+<li>Install XCode. Visit <a href="https://developer.apple.com/xcode/">developer.apple.com/xcode</a>. Click Download. You will have to create an Apple ID if you do not have one.</li>
+<li>Install git. Visit <a href="https://git-scm.com/">www.git-scm.com</a>. Download and install the latest version for Mac.</li>
+<li>Install cmake. Visit <a href="https://cmake.org/download/">www.cmake.org/download</a>. Download and install the Binary distribution for Mac OSX 10.6 or later.</li>
+<li>Install VirtualBox. Visit <a href="https://www.virtualbox.org/wiki/Downloads">www.virtualbox.org</a>. Download and install VirtualBox 5.1.12 platform packages for OS X hosts.</li>
+<li>Install Vagrant. Visit <a href="https://www.vagrantup.com/">www.vagrantup.com</a>. Click Download. Download and install the Mac OSX version.</li>
+</ol>
+<p>To verify everthing is setup properly, open up Terminal.app and type</p>
+<pre><code>clang++ --version
+git --version
+cmake --version
+VBoxManage --version
+vagrant --version</code></pre>
+<p>You should see something similar to the following with slight differences in version numbers.</p>
+<figure>
+<img src="macosx_check.png" />
+</figure>
+<h2 id="linux">Linux</h2>
+<p>If you are using Linux then I will assume you know how to install software for your specific distribution. You might need to install a newer version than that provided by your package manager.</p>
+<ol type="1">
+<li>Install a compiler (g++ version &gt;= 4.8 or clang++ version &gt;= 3.3)</li>
+<li>Install git version &gt;= 2.8</li>
+<li>Install cmake version &gt;= 3.5</li>
+<li>Install VirtualBox version &gt;= 5.1</li>
+<li>Install Vagrant version &gt;= 1.9</li>
+</ol>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2017 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/meeting/01-introduction/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:10 GMT -->
+</html>

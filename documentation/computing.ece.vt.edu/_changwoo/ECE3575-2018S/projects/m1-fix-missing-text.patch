@@ -1,0 +1,48 @@
+diff --git a/tests/fail/unix/test07.asm b/tests/fail/unix/test07.asm
+index f806401..b4a908c 100644
+--- a/tests/fail/unix/test07.asm
++++ b/tests/fail/unix/test07.asm
+@@ -9,6 +9,7 @@ sumOfSquares:	.word 0
+ 
+ 	#---------------------------------------------------------------
+ 	# the program
++	.text
+ main:
+ 	lw $t0,n
+ 	li $t1,1
+diff --git a/tests/fail/win/test07.asm b/tests/fail/win/test07.asm
+index f806401..b4a908c 100644
+--- a/tests/fail/win/test07.asm
++++ b/tests/fail/win/test07.asm
+@@ -9,6 +9,7 @@ sumOfSquares:	.word 0
+ 
+ 	#---------------------------------------------------------------
+ 	# the program
++	.text
+ main:
+ 	lw $t0,n
+ 	li $t1,1
+diff --git a/tests/pass/unix/test06.asm b/tests/pass/unix/test06.asm
+index cd7a024..57ff62d 100644
+--- a/tests/pass/unix/test06.asm
++++ b/tests/pass/unix/test06.asm
+@@ -9,6 +9,7 @@ sumOfSquares:	.word 0
+ 
+ 	#---------------------------------------------------------------
+ 	# the program
++	.text
+ main:
+ 	lw $t0,n
+ 	li $t1,1
+diff --git a/tests/pass/win/test06.asm b/tests/pass/win/test06.asm
+index cd7a024..57ff62d 100644
+--- a/tests/pass/win/test06.asm
++++ b/tests/pass/win/test06.asm
+@@ -9,6 +9,7 @@ sumOfSquares:	.word 0
+ 
+ 	#---------------------------------------------------------------
+ 	# the program
++	.text
+ main:
+ 	lw $t0,n
+ 	li $t1,1

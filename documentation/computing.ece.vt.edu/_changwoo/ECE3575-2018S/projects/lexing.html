@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/lexing.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:25 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="https://computing.ece.vt.edu/~changwoo/ECE3575-2018S-2018S/index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="lexing">Lexing</h1>
+<p><strong>Suggested Readings and Resources:</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Lexical_analysis">Wikipedia Background</a></li>
+<li><a href="http://stlab.cc/legacy/how-to-write-a-simple-lexical-analyzer-or-parser.html">A manual lexing tutorial</a></li>
+<li>A <a href="http://llvm.org/docs/tutorial/LangImpl01.html">similar tutorial</a></li>
+<li><a href="https://www.youtube.com/watch?v=HxaD_trXwRE">A nice talk on lexing</a> from Rob Pike (not in C++ but clear)</li>
+</ul>
+<p>Lexing is the process of taking the raw input source, usually ASCII text, and converting it to a sequence of <em>tokens</em>. It is the first step in any parsing task as it separates the concerns of recognizing the combination of characters that are meaningful (the tokens) from their syntax, the organization of the tokens or <em>parsing</em>. Writing and testing the lexer as a standalone module is a good example of separation of concerns and abstraction.</p>
+<p>Lexers are an example of the finite-state machine (aka finite automota) design pattern/algorithm. This concept should be familiar to you as it is the core of digital hardware. Here we are using it as a code design tool. We can consider the input to be a sequence of characters, which we consider one at a time (in some cases you might need to look ahead or behind, but not in our case). The state-machine is in some initial state and the input is the first character. Depending on the initial state and the input the state machine transitions to a new (or the same ) state, possibly emitting outputs. This proceeds until there is no more input.</p>
+<h2 id="example-csv-files">Example: CSV files</h2>
+<p>Consider the task of reading a comma-separated-value, or CSV, file format. You likely have encountered these before in a programming course as they are an easy way to create a persistent sequence of structured row/columns (e.g. a file). For example, consider a plain text file with these contents:</p>
+<pre><code>Last, First, email, user id
+Min, Changwoo, changwoo@vt.edu, changwoo
+Kent, Clark, ckent@gmail.com, superman
+Lane, Lois, llane@mail.com, lany
+</code></pre>
+<p>We can consider this file as a representing a sequence of tokens:</p>
+<pre><code>STRING DELIMETER STRING DELIMETER STRING DELIMETER STRING EOL ... </code></pre>
+<p><code>DELIMETER</code> is defined as a single character, in the above case <code>,</code>, and <code>EOL</code> is defined as the line-feed character (ASCII code 10). <code>STRING</code> is defined as any sequence of characters not including <code>DELIMETER</code> or <code>EOL</code>, Given these definitions the job of the lexer is to convert the raw character stream from the file to a sequence of tokens with a type, <code>STRING</code> or <code>DELIMETER</code>, and a value, usually a <code>std::string</code>. We might define the appropriate data types in C++ as:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">enum</span> TokenType {STRING, DELIMETER, EOL};
+
+<span class="kw">struct</span> Token{
+  TokenType type;
+  <span class="bu">std::</span>string value;
+  Token(TokenType t): type(t) {};
+  Token(TokenType t, <span class="at">const</span> <span class="bu">std::</span>string &amp; v): type(t), value(v) {};
+};
+
+<span class="kw">typedef</span> <span class="bu">std::</span>list&lt;Token&gt; TokenSequence;</code></pre></div>
+<p>The lexer then takes in a stream of characters, e.g. from a file, and produces a token sequence. This function will read each character from the stream, toggling in between three states.</p>
+<ul>
+<li>if the input is a delimiter, then it transitions to a state where any previously accumulated string is added to the token list, the string is cleared, and a delimiter token is added to the list</li>
+<li>if the input is a newline, then it transitions to a state where any previously accumulated string is added to the token list, the string is cleared, and an end-of-line token is added to the list</li>
+<li>otherwise it adds the character to the accumulator string</li>
+</ul>
+<p>Here is a function in C++ to perform the lexing.</p>
+<div class="sourceCode"><table class="sourceCode cpp numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="sourceCode"><pre><code class="sourceCode cpp">TokenSequence lexer(<span class="bu">std::</span>istream &amp; input){
+
+  TokenSequence tokens;
+
+  <span class="dt">char</span> c;
+  <span class="bu">std::</span>string temp;
+  <span class="cf">while</span>(input.get(c)){
+    
+    <span class="cf">switch</span>(c){
+    <span class="cf">case</span> <span class="st">&#39;,&#39;</span>:
+      <span class="cf">if</span>(!temp.empty()){
+        tokens.emplace_back(STRING, temp);
+        temp.clear();
+      }
+      tokens.emplace_back(DELIMETER);
+      <span class="cf">break</span>;
+    <span class="cf">case</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>:
+      <span class="cf">if</span>(!temp.empty()){
+        tokens.emplace_back(STRING, temp);
+        temp.clear();
+      }
+      tokens.emplace_back(EOL);
+      <span class="cf">break</span>;
+    <span class="cf">default</span>:
+      temp.push_back(c);
+    }
+  }
+
+  <span class="cf">return</span> tokens;
+}</code></pre></td></tr></table></div>
+<p>Note that the lexer stores all values as strings, with no further processing. For example all whitespace between the delimiters is preserved. This is a consequence of the way the string token was defined (any character other than ',' and ''). In most lexing tasks whitespace such as spaces, tabs, and carriage-returns are treated as implicit string delimiters. Note also that there is no attempt to convert numbers, check the number of columns is the same as the first line, nor any other processing. Such tasks are generally left to the parser.</p>
+<h2 id="example-ini-format">Example: INI format</h2>
+<p>Consider another common format, often used for configuration files, the <a href="https://en.wikipedia.org/wiki/INI_file">INI</a> format. Let's look at a simplified version.</p>
+<pre><code>; a comment
+[section]
+
+key1 = value ;another comment
+key2 = &quot;a value with space&quot;</code></pre>
+<p>As far as the lexer is concerned the ini format differs from the csv format in just a few ways: comments must be stripped, delimited strings must be handled, and the token are different. Let's deal with these in order.</p>
+<p>First, lets write a lexer that just strips the comments the returns the rest of the file contents as a string.</p>
+<div class="sourceCode"><table class="sourceCode cpp numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="sourceCode"><pre><code class="sourceCode cpp"><span class="co">// simple function to strip comments</span>
+<span class="bu">std::</span>string strip_comments(<span class="bu">std::</span>istream &amp; input){
+
+  <span class="dt">char</span> c;
+  <span class="bu">std::</span>string result;
+  <span class="cf">while</span>(input.get(c)){
+    
+    <span class="cf">if</span>(c == <span class="st">&#39;;&#39;</span>){
+      <span class="cf">do</span>{
+        input.get(c);
+      } <span class="cf">while</span>((c != <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>) &amp;&amp; input.good());
+    }
+    <span class="cf">else</span>{
+      result.push_back(c);
+    }
+  }
+
+  <span class="cf">return</span> result;
+}</code></pre></td></tr></table></div>
+<p>Most of the work is done on lines 9-11, where the characters after the comment delimiter (<code>;</code> in INI files) are just discarded. Note in particular this includes the newline at the end of a comment. Thus if we run the above example file through this function we get the string</p>
+<pre><code>[section]
+
+key1 = value key2 = &quot;a value with space&quot;</code></pre>
+<p>We can modify <code>strip_comments</code> to add a state to track when we are inside a pair of string delimiters (<code>&quot;</code>). When in that state lexing other than comment processing is suspended.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// simple function to print all delimited strings</span>
+<span class="co">// ignore all comments</span>
+<span class="dt">void</span> print_strings(<span class="bu">std::</span>istream &amp; input){
+
+  <span class="dt">bool</span> instring = <span class="kw">false</span>;
+  
+  <span class="dt">char</span> c;
+  <span class="bu">std::</span>string result;
+  <span class="cf">while</span>(input.get(c)){
+    
+    <span class="cf">if</span>(c == <span class="st">&#39;;&#39;</span> &amp;&amp; !instring){
+      <span class="cf">do</span>{
+    input.get(c);
+      } <span class="cf">while</span>((c != <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>) &amp;&amp; input.good());
+    }
+    <span class="cf">else</span> <span class="cf">if</span>(c == <span class="st">&#39;&quot;&#39;</span> &amp;&amp; !instring){
+      instring = <span class="kw">true</span>;
+    }
+    <span class="cf">else</span> <span class="cf">if</span>(c == <span class="st">&#39;&quot;&#39;</span> &amp;&amp; instring){
+      instring = <span class="kw">false</span>;
+      <span class="bu">std::</span>cout &lt;&lt; result &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;
+      result.clear();
+    }
+    <span class="cf">else</span>{
+      <span class="cf">if</span>(instring){
+    result.push_back(c);
+      }
+    }
+  }
+}</code></pre></div>
+<p>The state is tracked through a boolean variable <code>instring</code>, which is toggled when encountering the <code>&quot;</code> character. Notice this code moves from a switch-based to if-else decisions since we need more complex expressions. To test this works properly lets run the following through the function</p>
+<pre><code>; a comment &quot;this should be ignored&quot;
+[section]
+
+key1 = value ;another comment
+key2 = &quot;a value with space and a delimeter;&quot;</code></pre>
+<p>which prints</p>
+<pre><code>a value with space and a delimeter;</code></pre>
+<p>Finally we can create our relevant token types <code>OPEN_BRACKET</code>, <code>CLOSE_BRACKET</code>, <code>EQUAL</code>, and <code>STRING</code>.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">enum</span> TokenType {OPEN_BRACKET, CLOSE_BRACKET, EQUAL, STRING};
+
+<span class="kw">struct</span> Token{
+    TokenType type;
+    <span class="bu">std::</span>string value;
+};
+
+<span class="kw">typedef</span> <span class="bu">std::</span>list&lt;Token&gt; TokenSequence;</code></pre></div>
+<p>If the string delimiters were syntactically important (say we treated those strings differently somehow) then we might add an additional token for them.</p>
+<p>Now we can modify the <code>print_strings</code> and <code>strip_comments</code> into a complete lexer for our simplified INI files:</p>
+<div class="sourceCode"><table class="sourceCode cpp numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+</pre></td><td class="sourceCode"><pre><code class="sourceCode cpp">TokenSequence lexer(<span class="bu">std::</span>istream &amp; input){
+
+  TokenSequence tokens;
+
+  <span class="dt">bool</span> instring = <span class="kw">false</span>;
+  
+  <span class="dt">char</span> c;
+  <span class="bu">std::</span>string temp;
+  <span class="cf">while</span>(input.get(c)){
+
+    <span class="cf">if</span>(c == <span class="st">&#39;;&#39;</span> &amp;&amp; !instring){
+      <span class="cf">do</span>{
+    input.get(c);
+      } <span class="cf">while</span>((c != <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>) &amp;&amp; input.good());
+    }
+    <span class="cf">else</span> <span class="cf">if</span>(c == <span class="st">&#39;&quot;&#39;</span> &amp;&amp; !instring){
+      instring = <span class="kw">true</span>;
+    }
+    <span class="cf">else</span> <span class="cf">if</span>(c == <span class="st">&#39;&quot;&#39;</span> &amp;&amp; instring){
+      instring = <span class="kw">false</span>;
+      <span class="cf">if</span>(!temp.empty()){
+    tokens.emplace_back(STRING, temp);
+    temp.clear();
+      }
+    }
+    <span class="cf">else</span> <span class="cf">if</span>((c ==<span class="st">&#39;[&#39;</span>) &amp;&amp; !instring){
+      <span class="cf">if</span>(!temp.empty()){
+    tokens.emplace_back(STRING, temp);
+    temp.clear();
+      }
+      tokens.emplace_back(OPEN_BRACKET);
+    }
+    <span class="cf">else</span> <span class="cf">if</span>((c ==<span class="st">&#39;=&#39;</span>) &amp;&amp; !instring){
+      <span class="cf">if</span>(!temp.empty()){
+    tokens.emplace_back(STRING, temp);
+    temp.clear();
+      }
+      tokens.emplace_back(EQUAL);
+    }
+    <span class="cf">else</span> <span class="cf">if</span>((c ==<span class="st">&#39;]&#39;</span>) &amp;&amp; !instring){
+      <span class="cf">if</span>(!temp.empty()){
+    tokens.emplace_back(STRING, temp);
+    temp.clear();
+      }
+      tokens.emplace_back(CLOSE_BRACKET);
+    }
+    <span class="cf">else</span> <span class="cf">if</span>( <span class="bu">std::</span>isspace(c) &amp;&amp; !instring ){
+      <span class="cf">if</span>(!temp.empty()){
+    tokens.emplace_back(STRING, temp);
+    temp.clear();
+      }
+    }
+    <span class="cf">else</span>{
+      temp.push_back(c);
+    }
+  }  
+
+  <span class="cf">return</span> tokens;
+}</code></pre></td></tr></table></div>
+<p>Note while this code is straightforward, it gets messy as the number of tokens increases. One could easily re-factor the common code into free functions to improve readability, and we will look at various techniques in lectures 15-16 to improve this further. The solution above also does no error checking, for example reaching a newline when <code>instring</code> is true would be considered an error. However these are relatively easy checks to add.</p>
+<h2 id="summary">Summary</h2>
+<p>These examples were meant to show you the basic techniques of lexing. Now that you have a basic idea what a lexer is and how to write one, you can apply these same techniques to milestone 0.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2017 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/lexing.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:25 GMT -->
+</html>
