@@ -1,0 +1,128 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+\usepackage{pgfplots}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Final Project
+	\\\large ECE2004 CRN:12898
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+
+\section{Project Description}
+
+A digital to analogue converter was designed, analysed, and constructed using solely operational amplifiers and resistors. All analysis was done using methods learned in class. The circuit was drawn and digital simulations were conducted in LT-Spice. 
+
+The specifications of the digital to analogue converter are as follows. 
+
+For the digital input: The input is a 5-bit unsigned integer with a logical one represented by $5V$ and a logical zero represented by $0V$.
+
+For the analogue output: The maximum output is $3.1V$ and the minimum output is $0V$. The spacing between all possible consecutive output values is equidistant.
+\clearpage
+\section{Circuit Design}
+
+Let the digital input have 5 bits (bits 0 to 4) and the analogue output have a minimum output of 0V and a maximum output of 3.1V. 
+\begin{align*}
+   \text{Int}_{max} &= 2^5 - 1 = 31 = 11111
+\\ \text{Int}_{min} &= 0 = 00000
+\\ V_{max} &= 3.1V
+\\ V_{min} &= 0V
+\\ V_{range} &= (3.1V - 0V) = 3.1V
+\\ V_{step} &= \frac{V_{range}}{\text{Int}_{max}} = \frac{3.1V}{31} = 0.1V
+\end{align*}
+
+To simplify the design process, the circuit will be split into two stages: the digital-to-analogue conversion and the voltage scaling. The first stage
+ will have a $V_{max}$ of $5V$ and after the second stage, $V_{max}$ will be the intended final value $3.1V$.
+
+\subsection*{Stage 1: Digital-To-Analogue Converter}
+ 
+To develop the first stage each bit needs to be converted into a voltage and added into the circuit output. Each bit is a power of 2 starting from $2^0$ up to $2^4$. Therefore from bits 4 towards 0, each resistor value will be doubled (i.e. 1, 2, 4, 8, 16) as $2^0$ is only a single step wide while $2^4$ is half of the entire voltage range.
+
+Assuming that all inputs are digital bits with a high of $5V$ and a low of $0V$, we can use nodal analysis to demonstrate that $V_{dac}$ will output the correct value.
+
+\begin{align*}
+0 &= \frac{V_{dac} - X_4}{1k\Omega}
+   + \frac{V_{dac} - X_3}{2k\Omega}
+   + \frac{V_{dac} - X_2}{4k\Omega}
+   + \frac{V_{dac} - X_1}{8k\Omega}
+   + \frac{V_{dac} - X_0}{16k\Omega}
+\\0 &= V_{dac} - X_4
+   + 2V_{dac} - 2X_3
+   + 4V_{dac} - 4X_2
+   + 8V_{dac} - 8X_1
+   + 16V_{dac} - 16X_0
+\\V_{dac} &= \frac{X_4 + 2X_3 + 4X_2 + 8X_1 + 16X_0}{31}
+\end{align*}
+
+Given $X = 0_{10} = 00000_{2}$ we see that $V_{dac} = 0$ and given $X = 31_{10} = 11111_{2}$ we see that $V_{dac} = 5V$. 
+
+\clearpage
+
+\subsection*{Stage 2: 5V-to-3.1V Voltage Conversion}
+
+Developing the second stage is essentially just configuring two inverting op-amps. While either op-amp can do the conversion from $5V$ to $3.1V$, having the first op-amp do the conversion tends to work better as cheap real world op-amps such as the LF356n are not particularly linear as they approach the rail voltages and in some cases struggle to output values close to the rail voltages. This is only a problem when conversion is done on the second op-amp as in this case the output range goes all the way to $5V$. When conversion is done on the first op-amp however the voltage will only approach $-3.1V$ which is well within the bounds of most cheap op-amps.
+
+Using Nodal Analysis at the op-amp's inverting input we can we can work out the values of R6 and R7 which are the $R_f$ and $R_i$ for this inverter. 
+
+\begin{align*}
+   V_{out} &= -3.1V\qquad V_{in} = 5V\qquad V_{-} = 0
+\\ 0 &= \frac{V_{-} - V_{in}}{R7} + \frac{V_{-} - V_{out}}{R6}
+\\ 0 &= \frac{0V - 5V}{R7} + \frac{0V + 3.1V}{R6}
+\\ \frac{5V}{R7} &= \frac{3.1V}{R6}
+\\ \frac{R6}{R7} &= \frac{3.1V}{5V} = \frac{62}{100}
+\\ \implies R6 &= 62k\Omega\qquad R7 = 100k\Omega
+\end{align*}
+
+As the output is negative, now it must be corrected using a second inverting amplifier with a gain of 1. Because the gain is 1, we know that $R_f = R_i$ and we can just pick a value for them. Therefore $R_f = R_i = 100k\Omega$
+
+At this point, the circuit is complete. The completed circuit diagram is on page 4 and simulation results demonstrating proper functionality are on page 5.
+\section*{Verification}
+
+As was determined at the start of the project, $V_{min} = 0$, $V_{max} = 3.1V$, and the interval between consecutive integers $V_{step} = 0.1V$. Upon Visual Inspection of Figure 2 on page 5, $V_{dac}$  scales cleanly from $0V$ to $5V$ at every 10 second interval, $V_{conv}$ mirrors and transforms $V_{dac}$ on the voltage axis to have a min of $-3.1V$ and a max of $0V$. Finally, $V_{out}$, the final circuit output scales cleanly from $0V$ to $3.1V$ on every 10 second interval with an approximate spacing of $0.1V$ between every increment.
+
+\clearpage
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{fp1}
+\end{center}
+\caption{Final Digital-To-Analogue Circuit}
+\end{figure}
+\clearpage
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{fp2}
+\end{center}
+\caption{DAC output with input integer incrementing every 10s}
+\end{figure}
+
+\end{raggedright}
+\end{document}
