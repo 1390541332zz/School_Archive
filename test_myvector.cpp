@@ -2,7 +2,7 @@
 #define CATCH_CONFIG_COLOUR_NONE
 #include "catch.hpp"
 
-#include "MyVector.h"
+#include "MyVector.hpp"
 
 #include <stdexcept>
 
