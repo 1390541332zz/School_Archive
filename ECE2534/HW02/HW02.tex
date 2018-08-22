@@ -1,0 +1,186 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+\usepackage{solarized-light}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{allwithdot}
+\usepackage[bottom]{footmisc}
+
+\usepackage{karnaugh-map}
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+\lstset{language=c}
+
+\author{Jacob Abel}
+\title{	Homework 2
+	\\\large ECE2534 CRN:12927
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+
+\begin{raggedright}
+
+\paragraph{Problem 1: }
+To answer this problem make the following assumptions:
+\begin{itemize}
+\item You are developing code in the C language for a 32-bit CPU such as MSP432.
+\item Bit 0 is the rightmost bit, which is also the least significant bit (LSB).
+\item k is declared as int k;
+\item The following definitions are provided at the beginning of the code.
+\begin{lstlisting}
+#define BIT0 1
+#define BIT1 (1<<1)
+#define BIT2 (1<<2)
+...
+#define BIT31 (1<<31)
+\end{lstlisting}
+\end{itemize}
+Write the following snippets of codes. You should use the above definitions for your operations. Using numbers is not allowed. Each part carries 8 points.
+
+\begin{enumerate}[label=\Alph*.]
+\item Write a snippet of code that will cause the bits 6 and 7 of k to be set to 1, without affecting any other bits of k.
+\begin{lstlisting}
+k |= (BIT6 | BIT7);
+\end{lstlisting}
+\item Write a snippet of code that will cause bit 0 and bit 3 of k to be reset to 0, without affecting any other bits of k.
+\begin{lstlisting}
+k &= ~(BIT0 | BIT3);
+\end{lstlisting}
+\item Write snippet of code that will cause the least-significant byte of k to contain the bit pattern 10101010, without affecting any other bits of k.
+\begin{lstlisting}
+k |= (BIT1|BIT3|BIT5|BIT7);
+k &= ~(BIT0|BIT2|BIT4|BIT6);
+\end{lstlisting}
+\item Write snippet of code that toggles bit 0, sets bit 5 to 1, and resets bit 7 to 0.
+\begin{lstlisting}
+k ^= BIT0;
+k |= BIT5;
+k &= ~BIT7;
+\end{lstlisting}
+\item Write the expression that computes the Boolean value that is true if bit 4 of k is 1 and bit 6 of k is 0, and false otherwise.
+\begin{lstlisting}
+#include <stdbool.h>
+...
+bool res = ((k & BIT4) && !(k & BIT6));
+\end{lstlisting}
+\end{enumerate}
+
+\clearpage
+
+\paragraph{Problem 2: }
+Consider a light system that is controlled by an 8-bit register, which carries a command to the light system. We call this register Light System Command or LSC. Here are the specifications of this register:
+
+\begin{itemize}
+\item Bit 0-1 control the light intensity: 00 off, 01 low, 10 medium, 11 high.
+\item Bit 2-4 control the color: blue 000, green 001, red 010, yellow 011, white 100.
+\item Bit 5-7 control the lamps. There are total of 8 lamps numbered from 0 to 7.
+\end{itemize}
+
+Example: If we assign 0xC3 to LSC, the light system will interpret it as "It should turn on lamp number \#6 with highest intensity in blue color."
+
+\begin{enumerate}[label=\Alph*.]
+\item Show the hex value of an LSC that programs light \#0 with green color and high intensity. 3 points 
+\begin{align*}
+Light\#0:000\quad Green:001\quad High:11 \implies 0x07
+\end{align*}
+
+\item Translate what it means if the value of the LSC is 0xAD. 3 points 
+\begin{align*}
+0xAB \implies Light\#5:101\quad Red:010\quad High:11
+\end{align*}
+\item Define the masks for three different parts of LSC. Use the following template: 6 points 
+\begin{lstlisting}
+//Assuming Standard C. 
+//BITx macro equivalents are available in the comments.
+#define INTENSITY_MASK (0x03) // (BIT0 | BIT1)
+#define COLOR_MASK (0x1C) // (BIT2 | BIT3 | BIT4)
+#define LAMP_MASK (0xE0) // (BIT5 | BIT6 | BIT7)
+\end{lstlisting}
+
+\pagebreak
+
+\item Use typedef and enum keywords to define two new types called INTENSITY and COLOR.They will enumerate different color/intensity possibilities. 10 points
+\begin{lstlisting}
+//Using Octal Codes.
+typedef enum INTENSITY {
+	OFF = (00),
+	LOW = (01),
+	MEDIUM = (02),
+	HIGH = (03)
+} INTENSITY;
+
+typedef enum COLOR {
+	BLUE = (00 << 2),
+	GREEN = (01 << 2),
+	RED = (02 << 2),
+	YELLOW = (03 << 2),
+	WHITE = (04 << 2)
+} COLOR;
+\end{lstlisting}
+\item Writes a function that receives an integer representing an LSC and returns the color associated with that command. 10 points
+\begin{lstlisting}
+// Example:extractColor(0xC3) returns BLUE 
+COLOR extractColor(int LSC)
+{
+    return (LSC & COLOR_MASK);
+}
+\end{lstlisting}
+\item Write the function that receives three integers representing lamp number, color and intensity and returns the LSC value that sends a command with such characteristics to the light system. 12 points 
+\begin{lstlisting}
+// Example:makeLSC(6, BLUE, HIGH_INTENSITY) returns 0xC3
+int makeLSC(int lampNumber, COLOR newColor, INTENSITY newIntensity)
+{
+	return (((lampNumber<<5) & LAMP_MASK)
+            | newIntensity 
+            | newColor);
+}
+\end{lstlisting}
+
+\pagebreak
+
+\item Write a snippet of code, part of the main function, that increases the intensity of all the lights by one nudge. If a light is off, it will be turned on with the lowest intensity. The lights with highest intensity will remain unchanged. You can use the functions from part E and F, if you like. Assume LSC is given to you as the location of light system command register (a memory-mapped i/o). 16 points
+\begin{lstlisting}
+for (uint8_t i = 0; i < 8; ++i) {
+	if (currentIntensity[i] != HIGH) ++currentIntensity[i];
+	LSC = makeLSC(i, currentColor[i], currentIntensity[i]);
+}
+\end{lstlisting}
+\end{enumerate}
+
+
+\paragraph{Hint 1: }
+Two arrays, namely currentIntensity and currentColor keep the current status of each lamp. These two arrays are declared at the beginning of main function. Write the declaration of these two arrays as part of your code. 
+
+\paragraph{Hint 2: }
+In essence, you will have to write a code that writes to LSC several times. Note that if LSC was an ordinary storage such as a register in registerfile or a variable on the stack, it would have made no sense to overwrite it. In that case, the first value would have been wiped off and writing to it would have been a wasted effort. However, since LSC is not an ordinary storage, but a register that sends a command to the light system, subsequent “write”s to it, means sending multiple commands. For example, the following two lines send two back to back commands to the light system. The second command does not affect the first command, as the light system has already read the first command and is taking action in response. 
+\begin{lstlisting}
+LSC = 0xC3; // This sends the “turn lamp #6 to high blue” command
+LSC = 0x11; // This sends the “turn lamp #0 to low white” command
+\end{lstlisting}
+
+
+\end{raggedright}
+\end{document}

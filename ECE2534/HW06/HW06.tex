@@ -1,0 +1,178 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+\usepackage{solarized-light}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{pgfplots}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{allwithdot}
+\usepackage[bottom]{footmisc}
+\pgfplotsset{compat=1.15}
+\usepackage{karnaugh-map}
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+\lstset{language=c}
+
+\author{Jacob Abel}
+\title{	Homework 6
+	\\\large ECE2534 CRN:12927
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+
+\begin{raggedright}
+
+\paragraph{Problem 1. }
+\begin{enumerate}
+\item In an A/D, assume $Vref- = 2V$ and $Vref+ = 6V$ and $n = 8$.
+\begin{enumerate}[label=\alph*.]
+\item What is the digital resolution? 
+
+8
+\item What is the analog resolution? 
+
+$6V-2V=4V$
+\item What is the digital value (unsigned binary) corresponding to 3V?
+
+$floor(\frac{3V-2V}{\frac{4V}{2^8-1}}+0.5)=64=01000000$
+\end{enumerate}
+
+\item In a D/A, with $n = 4$ and $Vref- = -1V$, and $Vref+ = +1V$,
+\begin{enumerate}[label=\alph*.]
+\item What is the digital resolution? 
+
+4
+\item What is the analog resolution? 
+
+$1V-(-1V)=2V$
+\item What is the analog value corresponding to 1000 (unsigned binary)?
+
+$1000=8\implies -1V  + 8 \frac{2V}{2^4-1} = 0.067V$
+\end{enumerate}
+\end{enumerate}
+
+\clearpage
+\paragraph{Problem 2. }
+In a SAR A/D , $n = 5$, $Vref- = 0V$ and $Vref+ = 4V$. The below table represents the process of SAR algorithm. The first row shows the round number starting at 1 and ending at 5, for $n = 5$. The second column shows the digital guess for that round. The third row shows the output of the DAC of the SAR. The fourth and fifth column show the result of the comparator in two forms. Fill the table with proper values for $Vin = 2.5$.
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|l|l|l|c|}
+\hline 
+Round & $DG$: Digital Guess & $AG$: Analog Guess & $Vin \geq AG$ & Bit \\\hline 
+1     & 16                  & ~2.06              & Yes           & 1   \\\hline 
+2     & 17                  & ~2.19              & Yes           & 1   \\\hline 
+3     & 19                  & ~2.45              & Yes           & 1   \\\hline 
+4     & 23                  & ~2.98              & No            & 0   \\\hline 
+5     & 15                  & ~1.94              & Yes           & 1   \\\hline 
+\end{tabular} 
+\end{table}
+
+\paragraph{Problem 3. }
+Draw a figure of a 4-bit R-2R ladder with $Vref+ = 4V$ and $Vref- = 0V$. Show the switches in the right place for the conversion of 1100. Calculate the amount of current passing through all 2R resistors as well as the feedback resistor for $R = 10 k\Omega$.
+\begin{center}
+\includegraphics[width=.75\textwidth, height=\textheight, keepaspectratio=true]{hw6q3}
+\end{center}
+
+$I_{ref} = \frac{V_{ref}}{R} = \frac{4V}{10k\Omega} = 400\mu A$
+
+$I_3 = \frac{I_{ref}}{2} = 200\mu A$
+
+$I_2 = \frac{I_{ref}}{4} = 100\mu A$
+
+$I_1 = \frac{I_{ref}}{8} = 50\mu A$
+
+$I_0 = \frac{I_{ref}}{16} = 25\mu A$
+
+
+
+\clearpage
+\paragraph{Problem 4. }
+Here are some information about a given SAR ADC:
+\begin{itemize}
+\item $Vref- = -5V$, $Vref+ = +5V$
+\item In S/H circuitry: $R = 100 k\Omega$, $C = 10 pF$
+\item Each SAR round latency $= 5 \mu s$
+\end{itemize}
+\begin{enumerate}[label=\alph*.]
+\item Fill the below table for $n = 3$ and $n = 12$. You can use the below graph which shows the voltage over the resistance in S/H circuitry to find the acquisition time. You have to show your work or show the time on the graph with a short description. You can use the formula. (+/-1 microseconds error is acceptable.)
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline 
+\# bits & Acquisition Time                      & SAR Time & Conversions per second \\\hline 
+3        & $3\times\ln(2)\times 100k\Omega\times 10pF= 2.079\mu s$ & $3\times 5\mu s = 15\mu s$  & $\frac{1}{15\mu s + 2.079\mu s} \approx 58.5kHz$ \\\hline 
+12       & $12\times\ln(2)\times 100k\Omega\times 10pF=8.318\mu s$ & $12\times 5\mu s = 60\mu s$ & $\frac{1}{60\mu s + 8.318\mu s} \approx 14.6kHz$ \\\hline 
+\end{tabular} 
+\end{table}
+
+\begin{center}
+\includegraphics[width=.75\textwidth, height=\textheight, keepaspectratio=true]{hw6q4b}
+\end{center}
+
+\item What is the effect of increasing the parameters in the left column on the other two columns. Choose between increases, decreases, and does not change.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline 
+              & Acquisition Time & SAR Time        & Conversions per second \\\hline 
+S/H Resistor  & increases        & does not change & decreases              \\\hline 
+S/H Capacitor & increases        & does not change & decreases              \\\hline 
+n             & increases        & increases       & decreases              \\\hline 
+\end{tabular} 
+\end{table}
+\end{enumerate}
+
+\clearpage
+\paragraph{Problem 5. }
+Using Timer\_A, we are measuring the reflex time of a person. Here are the configuration setup of the Timer\_A:
+
+source clock frequency = 1 MHz
+
+clock divider = 1000
+
+The push button is connected to IC/OC pin that is configured as IC.
+
+The application works as follows: An LED lights up and the Timer\_A is started. The value of the IC register after the push button is pressed is $X$. What is the reflex delay of that person in terms of $X$?
+
+Reflex Time $= \frac{1000X}{1MHz} = X \times 1ms$
+
+\paragraph{Problem 6. }
+Using the driverlib functions for Timer\_A, show the configuration for a pwm with frequency of 10 KHz and duty cycle of 20\% that uses a 5 MHz clock as its source clock.
+
+\begin{lstlisting}
+Timer_A_PWMConfig pwmConfig = { 
+        TIMER_A_CLOCKSOURCE_SMCLK,         // 5MHz Clock
+        TIMER_A_CLOCKSOURCE_DIVIDER_1,     // 1x Prescalar
+        (int) (5000000 / 10000),           // 10KHz Signal
+        TIMER_A_CAPTURECOMPARE_REGISTER_3, // Channel
+        TIMER_A_OUTPUTMODE_SET_RESET,      // Output Mode
+        (int) (5000000 / 50000)            // Duty Cycle           
+}; 
+
+Timer_A_generatePWM(TIMER_A0_BASE, &pwmConfig); 
+\end{lstlisting}
+\end{raggedright}
+\end{document}

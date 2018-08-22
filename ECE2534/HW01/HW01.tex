@@ -1,0 +1,129 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+\usepackage{solarized-light}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{allwithdot}
+\usepackage[bottom]{footmisc}
+
+\usepackage{karnaugh-map}
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+\lstset{language=c}
+
+\author{Jacob Abel}
+\title{	Homework 1
+	\\\large ECE2534 CRN:12927
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+\item What is the lowest and highest number that can be stored in an 8-bit register in two’s complement format? (6 points)
+
+Lowest: $-128$, Highest: $127$
+
+\item What is the lowest and highest number that can be stored in an 8-bit register in unsigned format? (4 points)
+
+Lowest: $0$, Highest: $255$
+
+\item In two’s complement format for 8-bit numbers, order the below numbers from low to high. (5 points)
+
+  \begin{itemize}[noitemsep]
+  \item 11111110 : -2
+  \item 11111111 : -1
+  \item 01111110 : 126
+  \item 01111111 : 127
+  \end{itemize}
+
+\item If we have 6 items that we need to assign a number to (e.g 0, 1, 2 ..), how many bits we need in order to address them? (5 points)
+
+$log_2(6) \approx 2.5 \implies 3\;\text{bits}$
+
+\item Perform the following additions in 2's complement format for 4-bit binaries. Determine if an overflow happens or not. (20 points)
+
+\begin{enumerate}[noitemsep, label=\Alph*]
+\item 1111 + 1110 = 1101 : Overflow
+\item 0111 + 0110 = 1101 : No Overflow
+\item 1111 + 0111 = 0110 : Overflow
+\end{enumerate}
+
+\item What is the difference between a general-purpose computer and an embedded system? Which ones are more prevalent? (10 points)
+
+General purpose computers are designed for running full operating systems, lack a specific specialised task to perform, tend to be more powerful, and are often designed primarily for user interaction. Embedded Systems are often specialised systems designed to perform a series of tasks within a constrained environment. These systems are often real time systems and lack an operating system running on top of them. 
+
+General purpose computers are definitely the most well known type of computers however there are definitively more embedded systems in the world than there are general purpose computers.
+
+\clearpage
+
+\item What is the difference between a microcontroller and a microprocessor? Which ones are more prevalent? (10 points)
+
+Microcontrollers are integrated circuits that combine various different elements of a computing system such as the CPU, RAM, and peripheral interfaces. Microprocessors specifically contain only the CPU on their IC. Microcontrollers tend to fit into smaller form factors and use less power due to being integrated completely on one chip while microprocessors tend to be more powerful as the entire die is dedicated to just the CPU. 
+
+While microprocessors are common, most notably found in many X86 computers, microcontrollers are far more prevalent as they are found in many embedded devices and System-on-chips or SoCs which are a form of microcontroller are found in nearly every mobile phone or tablet currently on the market.
+
+\item Write a function in C which will find the maximum of an array of 10 numbers. For the assignment below, we would expect max(numbers, 10) to return 98. (20 points)
+\begin{lstlisting}
+#include <limits.h>
+int numbers[10] = {23, 4, 5, 67, 11, 30, 98, -4, -28, 10};
+int max(int* numbers, int len) 
+{
+	int max = INT_MIN;
+	for (int i = 0; i < len; i++) {
+		if (numbers[i] > max) max = numbers[i];
+	}
+	return max;
+}
+\end{lstlisting}
+
+\item Write a function in C which will find the second-largest maximum of an array of 10 numbers. For the assignment below, we would expects secondmax(numbers, 10) to return 67. (20 points)
+
+\begin{lstlisting}
+#include <limits.h>
+int numbers[10] = {23, 4, 5, 67, 11, 30, 98, -4, -28, 10};
+int max(int* numbers, int len) 
+{
+	int max = INT_MIN;
+	int secmax = INT_MIN;
+	for (int i = 0; i < len; i++) {
+		if (numbers[i] > max) {
+		    secmax = max;
+		    max = numbers[i];
+		}
+	}
+	return secmax;
+}
+\end{lstlisting}
+
+\end{enumerate}
+
+
+\begin{raggedright}
+
+
+
+\end{raggedright}
+\end{document}
