@@ -1,0 +1,352 @@
+//  Name: Jacob Abel
+//  ID: 6453
+//  Date: Monday, 2017-12-11
+//
+//  Starter source code program for ECE 2504
+//  Project 4
+//
+//  The on-line assembler is experimental and minimal.
+//  No guarantees are made about its correctness.
+//
+//
+//  Do not change the following segment of code from here
+//  to the comment "CHANGE HERE" below.
+ldi r0, 3
+shl r0, r0
+shl r0, r0
+inc r0, r0
+shl r0, r0
+jmp r0
+// The following set of load instructions read the final values of the variables in
+// memory locations into r1-r7 so that we can see them on the LEDs.
+// Your code must jump to this point after it has stored the results in data memory.
+// You should jump to location 6.
+// address 0x06
+xor r0, r0, r0
+ld r1, r0  //r1<-M[0x00]
+ldi r0, 2
+ld r2, r0  //r2<-M[0x02]
+inc r0, r0
+ld r3, r0  //r3<-M[0x03]
+inc r0, r0
+ld r4, r0  //r4<-M[0x04]
+inc r0, r0
+ld r5, r0  //r5<-M[0x05]
+adi r0, r0, 7
+shl r0, r0
+adi r0, r0, 7
+inc r0, r0
+inc r0, r0
+ld r6, r0  //r6<-M[0x21]
+inc r0, r0
+ld r7, r0  //r7<-M[0x22]
+// Now loop forever
+ldi r0, 0
+// The address of this brz is the one used in validation: Address 0x19.
+brz r0, 0
+// You are permitted to add code after this point
+// CHANGE HERE and beyond
+// Your last instruction should be a jump to location 6
+// in order to read the variables into registers r1-r7.
+// address 0x1A
+
+// Register Uses
+// r0: General Purpose
+// r1: Data A (Input)
+// r2: Data B (Input)
+// r3: Data C (Output)
+// r4: General Purpose
+// r5: General Purpose
+// r6: General Purpose
+// r7: Output Address
+
+// Memory Uses
+// 0x00: Initial Address A
+// 0x01: BCD Pair Count
+// 0x02: Address A
+// 0x03: Address B
+// 0x04: Address C
+// 0x05: BCD Pair Count Current
+
+//INITIALISATION  26
+ldi  r0, 5          //
+shl  r0, r0         //
+shl  r0, r0         // 0x14
+ldi  r1, 6          //
+shl  r1, r1         //
+shl  r1, r1         //
+inc  r1, r1         //
+shl  r1, r1         //
+shl  r1, r1         //
+shl  r1, r1         //
+shl  r1, r1         //
+inc  r1, r1         //
+shl  r1, r1         //
+shl  r1, r1         //
+inc  r1, r1         //
+shl  r1, r1         //
+shl  r1, r1         //
+shl  r1, r1         //
+inc  r1, r1         //
+shl  r1, r1         //
+inc  r1, r1         // 0x6453
+st   r0, r1         // ID saved to Memory Address 0x14
+ldi  r4, 1          //
+ld   r4, r4         // Initialise BCD Pair Counter
+ldi  r5, 0          //
+ld   r5, r5         // Initialise Address A
+ldi  r7, 4          // 04 | Prime Offset
+shl  r7, r7         // 08 |
+shl  r7, r7         // 10 |
+add  r6, r7, r5     // Initialise Address B
+add  r7, r7, r6     // Initialise Address C
+
+ldi  r1, 5          // Prime Jump Value: LOAD
+shl  r1, r1
+shl  r1, r1
+shl  r1, r1
+shl  r1, r1
+
+
+//STOREADDR 62
+ldi  r0, 2          //
+st   r0, r5         // Address A
+ldi  r0, 3          //
+st   r0, r6         // Address B
+ldi  r0, 4          //
+st   r0, r7         // Address C
+ldi  r0, 5          //
+st   r0, r4         // BCD Count
+jmp  r1             // Return
+
+//LOADADDR  71
+ldi  r0, 2          //
+ld   r5, r0         // Address A
+ldi  r0, 3          //
+ld   r6, r0         // Address B
+ldi  r0, 4          //
+ld   r7, r0         // Address C
+ldi  r0, 5          //
+ld   r4, r0         // BCD Count
+jmp  r1             // Return
+
+//LOAD 80
+ld   r1, r5         // Load Data A
+ld   r2, r6         // Load Data B
+
+//============================================================================//
+
+//VALIDATION 82
+mova r3, r1         // Evaluate A
+ldi  r0, 0          // Skip B Evaluation: VAL0
+brz  r0, 2          //
+//VALB 85
+mova r3, r2         //
+//VAL0 86
+ldi  r5, 4          // 4 |
+shl  r5, r5         // 8 |
+inc  r5, r5         // 9 |
+ldi  r6, 0          //
+not  r6, r6         // Mask Established
+
+ldi  r0, 3          // Start Counter
+not  r0, r0         //
+
+//VAL1 93
+shl  r6, r6         // Shifts Mask 1 Character
+shl  r6, r6         //
+shl  r6, r6         //
+shl  r6, r6         //
+not  r6, r6         //
+and  r4, r6, r3     // Masks BCD
+sub  r4, r5, r4     // Negative if illegal characters are present
+not  r6, r6         //
+shl  r5, r5         // Shift 1 BCD Character
+shl  r5, r5         //
+shl  r5, r5         //
+shl  r5, r5         //
+brn  r4, 13         // WRITEERROR
+
+inc  r0, r0         //
+brn  r0, -14        // VAL1
+
+xor  r3, r3, r2
+brz  r3  21         // Branch to addition: ADDITION
+ldi  r5  5          // Evaluate B: VALB
+shl  r5, r5         //
+shl  r5, r5         //
+inc  r5, r5         //
+shl  r5, r5         //
+shl  r5, r5         //
+inc  r5, r5         //
+jmp  r5             //
+
+//============================================================================//
+
+//WRITEERROR 118
+ldi  r1, 0          // Prime 0xFFFF
+not  r1, r1         //
+st   r1, r5         // Write 0xFFFF to Memory
+
+ldi  r2, 3          //
+shl  r2, r2         //
+shl  r2, r2         //
+shl  r2, r2         //
+inc  r2, r2         //
+shl  r2, r2         //
+shl  r2, r2         //
+shl  r2, r2         //
+jmp  r2             // Prime Jump: INCINDEX
+
+//============================================================================//
+
+//ADDITION 130
+ldi  r6, 0          //
+not  r6, r6         // Mask Established
+shl  r6, r6         // Shifts Mask 1 Character
+shl  r6, r6         //
+shl  r6, r6         //
+shl  r6, r6         //
+
+ldi  r0, 4          // Character Counter
+not  r0, r0         //
+//ADD0 138
+ldi  r7, 4          // Character Counter
+not  r7, r7         //
+sub  r7, r7, r0     // Set count to current position
+not  r6, r6         //
+and  r4, r6, r1     // Masks BCD A
+and  r5, r6, r2     // Masks BCD B
+
+add  r3, r4, r5     // Adds the masks
+and  r4, r3, r6     // Masks the Output
+
+ldi  r5, 4          // 4 |
+shl  r5, r5         // 8 |
+inc  r5, r5         // 9 |
+//ADDS 149
+shl  r5, r5         //
+shl  r5, r5         //
+shl  r5, r5         //
+shl  r5, r5         //
+inc  r7, r7         //
+brn  r7, -5         // Loops to ADDS
+
+sub r5, r4, r5      // Negative in presence of invalid Values
+brn r5, 16          // if negative goto CARRYFIX
+
+//ADDMASK 157
+not  r6, r6         //
+shl  r6, r6         // Shifts Mask 1 Character
+inc  r6, r6         //
+shl  r6, r6         //
+inc  r6, r6         //
+shl  r6, r6         //
+inc  r6, r6         //
+shl  r6, r6         //
+inc  r6, r6         //
+not  r6, r6         //
+and  r5, r4, r6     // Masks around carry bit
+add  r2, r2, r5     // Merge carry bit into addition
+not  r6, r6         //
+
+ldi r5, 0           // goto ADD1
+brz r5, 14          //
+//CARRYFIX 172
+ldi  r7, 4          //
+not  r7, r7         //
+sub  r7, r7, r0     // Reset counter
+ldi  r5, 6          //
+//CARRYLOOP 176
+shl  r5, r5         //
+shl  r5, r5         //
+shl  r5, r5         //
+shl  r5, r5         //
+inc  r7, r7         //
+brn  r7, -5         // Loops to CARRYLOOP
+add  r4, r4, r5     // Add 6 to character
+ldi  r7, 0          //
+brz  r7, -27        // goto ADDMASK
+
+//ADD1 185
+inc  r0, r0         //
+brn  r0, 3          //
+ldi  r4, 0          //
+brz  r4, 9          //
+ldi  r4, 7          //
+shl  r4, r4         //
+inc  r4, r4         //
+shl  r4, r4         //
+shl  r4, r4         //
+shl  r4, r4         //
+shl  r4, r4         //
+jmp  r4             // goto THE_LINKAGE
+
+ldi  r7, 4          //
+ld   r7, r7         //
+st   r7, r3         // Store Output Values
+
+//============================================================================//
+
+//INCINDEX 200
+ldi  r2 4           // Prime Jump LOADADDR
+shl  r2, r2         //
+shl  r2, r2         //
+inc  r2, r2         //
+shl  r2, r2         //
+inc  r2, r2         //
+shl  r2, r2         //
+inc  r2, r2         //
+
+ldi  r1 6           // Prime Return INC1
+shl  r1, r1         //
+inc  r1, r1         //
+shl  r1, r1         //
+shl  r1, r1         //
+inc  r1, r1         //
+shl  r1, r1         //
+inc  r1, r1         //
+shl  r1, r1         //
+jmp  r2             //
+
+//INC1 218
+inc  r5, r5         // Address A
+inc  r6, r6         // Address B
+inc  r7, r7         // Address C
+dec  r4, r4         // BCD Pair Count
+brz  r4 13          // TERMINATION
+
+ldi  r2, 7          // Prime Jump: STOREADDR
+shl  r2, r2         //
+inc  r2, r2         //
+shl  r2, r2         //
+inc  r2, r2         //
+shl  r2, r2         //
+
+ldi  r1, 5          // Prime Loop: LOAD
+shl  r1, r1         //
+shl  r1, r1         //
+shl  r1, r1         //
+shl  r1, r1         //
+jmp  r2             //
+
+
+//TERMINATION 235
+ldi  r0, 6          //
+jmp  r0             //
+
+//THE_BUFFER 237
+mova r0, r0         // Killing space
+mova r0, r0         // to fix a type earlier in the design.
+mova r0, r0         //
+
+//THE_LINKAGE
+ldi  r4, 4          //
+shl  r4, r4         //
+shl  r4, r4         //
+inc  r4, r4         //
+shl  r4, r4         //
+shl  r4, r4         //
+inc  r4, r4         //
+shl  r4, r4         //
+jmp  r4             // goto ADD0

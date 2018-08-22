@@ -1,0 +1,75 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/GitHub/ECE2504/Project00/Quartus/simulation/qsim
+vhard_block
+Z1 !s110 1505826782
+!i10b 1
+!s100 nJ]4Kk]^DDozezQ^?bcmT0
+I<IKoM7fJ76hljaXC_IJI`2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1505826780
+Z4 8P0Simulation.vo
+Z5 FP0Simulation.vo
+L0 513
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1505826782.000000
+Z8 !s107 P0Simulation.vo|
+Z9 !s90 -work|work|P0Simulation.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vP0Simulation
+R1
+!i10b 1
+!s100 M3Z@jmI3EFl?o8zdkVT9m0
+I^1oQA@i6WWDo8FhT6]BLB1
+R2
+R0
+R3
+R4
+R5
+L0 32
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@p0@simulation
+vP0Simulation_vlg_vec_tst
+R1
+!i10b 1
+!s100 eM3[JGUKmCzk?J]A1[WB12
+IF@>iO3jL`bmRf8GH3L79B0
+R2
+R0
+w1505826779
+8Waveform1.vwf.vt
+FWaveform1.vwf.vt
+L0 30
+R6
+r1
+!s85 0
+31
+R7
+!s107 Waveform1.vwf.vt|
+!s90 -work|work|Waveform1.vwf.vt|
+!i113 1
+R10
+R11
+n@p0@simulation_vlg_vec_tst

@@ -1,0 +1,237 @@
+\documentclass[12pt,letterpaper,titlepage]{report}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{enumitem}
+\setmainfont{Times New Roman}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{paracol}
+\usepackage{karnaugh-map}
+\usepackage[margin=0.65in]{geometry}
+\author{Jacob Abel}
+\title{%
+	Homework 4
+	\\\large ECE2504 CRN:82729
+}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+\paragraph{Question 1:}
+(24 pts) Determine the minimal SOP and POS forms for the following Boolean expressions using Karnaugh maps.
+\begin{multicols*}{2}\raggedcolumns
+\begin{enumerate}[noitemsep, label=\alph*)]
+\item \begin{align*}
+	      f(a,b,c) = a’b’c + ab’c’ + ab’c + abc’
+	  \end{align*}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}\hline
+a\textbackslash bc
+  & 00 & 01 & 11 & 10 \\\hline\hline
+0 &  0 &  1 &  0 &  0 \\\hline
+1 &  1 &  1 &  0 &  1 \\\hline 
+\end{tabular}
+\end{center}
+\begin{align*}
+f(a,b,c) =& \Sigma m(1,4,5,6)\\
+ SoP\; f =&  b'c+ac'\\
+f(a,b,c) =& \Pi m(0,2, 3, 7) \\
+ PoS\; f =&  (a+c)(b'+c')
+\end{align*}
+\item \begin{align*}
+	      g(a,b,c,d) =& abc’d’ + ab’c’d + a’bc’d’ 
+	      		   \\+& abc’d + a’bcd’ 
+	  \end{align*}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}\hline
+ab\textbackslash cd
+   & 00 & 01 & 11 & 10 \\\hline\hline
+00 &  0 &  0 &  0 &  0 \\\hline
+01 &  1 &  0 &  0 &  1 \\\hline 
+11 &  1 &  1 &  0 &  0 \\\hline
+10 &  0 &  1 &  0 &  0 \\\hline
+\end{tabular}
+\end{center}
+\begin{align*}
+g(a,b,c,d) =& \Sigma m(4, 6, 9, 12, 13)\\
+   PoS\; g =& bc'd'+ac'd+a'bd'\\
+g(a,b,c,d) =& \Pi m(0, 1, 2, 3, 5, 7, 8, 10, 11, 14, 15)\\
+   SoP\; g =& (a+d')(a'+c')(b+d)\\
+\end{align*}
+\columnbreak
+\item \begin{align*}
+	   h(w,x,y,z) =  &(w'+x+y+z)  (w+x+y'+z')
+				   \\&(w'+x+y'+z) (w'+x'+y+z)
+				   \\&(w'+x+y'+z')(w+x+y+z)
+      \end{align*}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}\hline
+wx\textbackslash yz
+   & 00 & 01 & 11 & 10 \\\hline\hline
+00 &  0 &  1 &  0 &  1 \\\hline
+01 &  1 &  1 &  1 &  1 \\\hline 
+11 &  0 &  1 &  1 &  1 \\\hline
+10 &  0 &  1 &  0 &  0 \\\hline
+\end{tabular}
+\end{center}
+\begin{align*}
+h(w,x,y,z) =& \Sigma m(1,2,4,5,6,7,9,13,14,15)\\
+   PoS\; h =& xy+y'z+w'xz'+w'yz'\\
+h(w,x,y,z) =& \Pi m(0,3,8,10,11,12)\\
+   SoP\; h =& (w'+y+z)(w'+x+y')
+ 		  \\& (x+y+z)(x+y'+z')
+\end{align*}
+\item \begin{align*}
+ j(w,x,y,z) =& xyz' + w'xz' + wxyz 
+	      \\+& wx'yz' + w'x'yz' + w'x'y'
+	  \end{align*}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}\hline
+wx\textbackslash yz
+   & 00 & 01 & 11 & 10 \\\hline\hline
+00 &  1 &  1 &  0 &  1 \\\hline
+01 &  1 &  0 &  0 &  1 \\\hline 
+11 &  0 &  0 &  1 &  1 \\\hline
+10 &  0 &  0 &  0 &  1 \\\hline
+\end{tabular}
+\end{center}
+\begin{align*}
+j(w,x,y,z) =& \Sigma m(0, 1, 2, 4, 6, 10, 14, 15)\\
+   PoS\; j =& w'z'+w'x'y'+wxy+yz'\\
+j(w,x,y,z) =& \Pi m(3, 5, 7, 8, 9, 11, 12, 13)\\
+   SoP\; j =& (w+y'+z')(w'+x+z')(w'+y)\\
+\end{align*}
+\end{enumerate}
+\end{multicols*}
+\pagebreak
+
+\paragraph{Question 2:} 
+(18 pts) Determine a minimal SOP and POS expression for the following Boolean functions together with the don’t care conditions d using a four variable map. Note that don’t care conditions can be set to one value for the SOP solution and the other for the POS solution
+\begin{multicols*}{2}\raggedcolumns
+\begin{enumerate}[noitemsep, label=\alph*)]
+\item \begin{align*}
+		F(w,x,y,z) =& \Sigma(1,9,10,11,12,13,14,15)\\
+		d(w,x,y,z) =& \Sigma(3,5,8)
+	  \end{align*}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}\hline
+wx\textbackslash yz
+   & 00 & 01 & 11 & 10 \\\hline\hline
+00 &  0 &  1 &  x &  0 \\\hline
+01 &  0 &  x &  0 &  0 \\\hline 
+11 &  1 &  1 &  1 &  1 \\\hline
+10 &  x &  1 &  1 &  1 \\\hline
+\end{tabular}
+\end{center}
+\begin{align*}
+ PoS\; F =& y'z+w\\
+ SoP\; F =& (w+x')(w+z)\\
+\end{align*}
+\item \begin{align*}
+		G(w,x,y,z) =& \Pi(0,2,5,8,10,13,15)\\
+		d(w,x,y,z) =& \Sigma(4,11,14)
+	  \end{align*}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}\hline
+wx\textbackslash yz
+   & 00 & 01 & 11 & 10 \\\hline\hline
+00 &  0 &  1 &  1 &  0 \\\hline
+01 &  x &  0 &  1 &  1 \\\hline 
+11 &  1 &  0 &  0 &  x \\\hline
+10 &  0 &  1 &  x &  0 \\\hline
+\end{tabular}
+\end{center}
+\begin{align*}
+   PoS\; G =& x'y+xz'+w'yz\\
+   SoP\; G =& (x+z)(w'+y')(x'+y+z')\\
+\end{align*}
+\columnbreak
+\item \begin{align*}
+		H(w,x,y,z) =& \Sigma(1,2,4,6,7,8,10)\\
+		d(w,x,y,z) =& \Sigma(0,5,12,14)
+	  \end{align*}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}\hline
+wx\textbackslash yz
+   & 00 & 01 & 11 & 10 \\\hline\hline
+00 &  x &  1 &  0 &  1 \\\hline
+01 &  1 &  x &  1 &  1 \\\hline 
+11 &  x &  0 &  0 &  x \\\hline
+10 &  1 &  0 &  0 &  1 \\\hline
+\end{tabular}
+\end{center}
+\begin{align*}
+   PoS\; H =& z'+w'x+w'y'\\
+   SoP\; H =& (w'+z')(x+y'z')\\
+\end{align*}
+\end{enumerate}
+\end{multicols*}
+\pagebreak
+
+\paragraph{Question 3:} 
+(5 pts) Design and solve a problem to help other students better understand K‐map simplification. 
+
+An encoder is attached to the wheel of a rover. The encoder outputs a 3-bit grey code representing the amount the wheel has turned with every integer wraparound representing one full rotation. The rover naturally veers to the right and must course correct left twice a rotation on level terrain and 4 times a rotation on steep terrain. The rover also provides one digital pin that represents whether the rover is currently navigating level or steep terrain.
+
+The grey code counter is provided by the pins ABC with pin A being the most significant bit. The terrain flag is provided by pin D with a high value indicating steep terrain. The course correction is performed when the output pin F goes high. Course correction should be issued starting with one pulse when the grey code counter is at 0.
+
+Find the simplified sum of products and product of sums for the circuit.
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|}\hline
+  Decimal  & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\\hline
+ Grey Code &000&001&011&010&110&111&101&100\\\hline
+\end{tabular}
+\end{center}
+
+\begin{align*}
+	Level\;Terrain \;ABC =& 000+110\\
+	Steep\;Terrain \;ABC =& 000+011+110+101
+\end{align*} 
+
+\begin{paracol}{2}
+  \begin{karnaugh-map}[4][4][1][$CD$][$AB$]
+    \minterms{0, 1, 7, 11, 12, 13}
+    \maxterms{2,3,4,5,6,8,9,10,14,15}
+    \implicant{0}{1}
+    \implicant{12}{13}
+    \implicant{7}{7}
+    \implicant{11}{11}
+  \end{karnaugh-map}
+  \begin{align*}
+  SoP\;F =& A'B'C'+ABC'+A'BCD+AB'CD
+  \end{align*}
+  \switchcolumn
+  \begin{karnaugh-map}[4][4][1][$CD$][$AB$]
+    \minterms{0, 1, 7, 11, 12, 13}
+    \maxterms{2,3,4,5,6,8,9,10,14,15}
+    \implicant{2}{10}
+    \implicant{3}{2}
+    \implicant{15}{14}
+    \implicant{4}{5}
+    \implicant{8}{9}
+  \end{karnaugh-map}
+  \begin{align*}
+  PoS\;F =& (C'+D)(A+B+C')(A'+B'+C')
+        \\& (A+B'+C)(A'+B+C)
+  \end{align*}
+\end{paracol}
+
+\bigskip
+\noindent
+GRADING SCALE
+\medskip
+
+Total: 47 pts
+\bigskip
+
+\def\arraystretch{1.5} 
+\begin{tabular}{ | l | c | c | c | c | c | c | c | c | } \hline
+Pts          & 0  & 6  & 12 & 18 & 24 & 30 & 36 & 42     \\\hline
+Letter Grade & D- & D  & C- & C  & B- & B  & A- & A      \\\hline
+\end{tabular}
+\end{raggedright}
+\end{document}

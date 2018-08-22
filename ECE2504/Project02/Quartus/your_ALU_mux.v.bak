@@ -1,0 +1,70 @@
+//  ECE 2504 Design project 2
+//  Template created by Tom Martin on 15 October 2012
+//  Last modified: KLC, 1/19/2017
+//  **************************************************
+//  This file is the only Verilog file that you should modify.
+//  It should be properly commented and formatted.
+//  **************************************************
+//  
+//
+//
+//
+
+//  The module your_ALU_mux should take the operands A, B and opcode 
+//  from the memory in the top level entity, and apply them to the inputs of your ALU
+//
+//  It should also take the switches as input to control a 16-to-1 8-bit wide mux that
+//  drives the LEDs.  
+//  
+//  Do not change the module declaration (next four lines)
+module your_ALU_mux(your_out, operandA, operandB, opcode, switches, address);
+	input [7:0] operandA, operandB, address;
+	input [3:0] opcode, switches;
+	output [7:0] your_out;
+// Do not change the module declaration (from keyword module above to here)
+	
+	wire [15:0] last_four_ID_digits;
+//  *******************************************************
+//  You MUST change the assignment to last_four_ID_digits 
+//  to the last four digits of your student ID in BCD.
+	assign last_four_ID_digits = 16'h1234;
+//  *******************************************************
+	
+// Declare any wires that you need here.
+
+
+
+// Instantiate your ALU and mux.  Use wires to connect them together. 
+
+
+
+// The output of the mux is connected to the LEDs in the top-level entity
+// The LED values as a function of the switches is defined in the project specification.
+// This instantiation of the mux is just an example--it does NOT meet the project specification. 
+// You will have to change the port connections to meet the specification.  But this example
+// shows how to connect to constant values (i5 through i15), input ports of various bit 
+//  widths (i1 through i4--opcode is only 4 bits wide, so it is padded with 0's), and internal wires (i0)
+// Look at the file mux16_1_8bits.v for the port definition of the mux.
+// 
+//        ports:      output   select     i15    i14    i13    i12    i11   i10      i9    i8      i7    i6     i5     i4             i3             i2           i1           i0
+ mux16_1_8bits MY_MUX(your_out, switches, 8'hF0, 8'hE1, 8'hD2, 8'hC3, 8'hB4, 8'hA5, 8'h96, 8'h87, 8'h78, 8'h69, 8'h5A, address, {4'b0, opcode},   operandB,    operandA, last_four_ID_digits[7:0]);
+
+//	assign your_out = 8'b11111111;
+
+endmodule
+// end of your_ALU_mux
+
+
+
+// This is the declaration for your ALU module
+// The operation of the ALU is defined in the project specification.
+module ALU();
+// Declare your ports
+
+// Declare any wires 
+
+endmodule
+// end of ALU
+
+
+// Add any other modules that you need after this point.

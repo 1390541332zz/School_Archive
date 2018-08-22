@@ -1,0 +1,333 @@
+\documentclass[12pt,letterpaper,titlepage]{report}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{enumitem}
+\setmainfont{Times New Roman}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{paracol}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tikz-timing}
+\usetikzlibrary{automata,positioning}
+\graphicspath{{img/}}
+\usepackage{karnaugh-map}
+\usepackage[margin=0.65in]{geometry}
+\usepackage{xparse}
+\author{Jacob Abel}
+\title{%
+	Homework 11
+	\\\large ECE2504 CRN:82729
+}
+
+
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+\raggedcolumns
+
+\paragraph{Question 1:}
+(2 pts) How many flip flop values are complemented in an 6‐bit binary ripple counter to reach the next count value after
+
+\begin{enumerate} [noitemsep, label=\alph*)]
+\item 111111 : 6 Flip flops
+\item 010101 : 2 Flip flops
+\end{enumerate}
+
+\paragraph{Question 2:}
+(3 pts) Use D type flip flops and gates to design a counter with the following repeated sequence: 00, 01, 10
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][2][1][$Q_0$][$Q_1$]
+    \minterms{0}
+    \indeterminants{3}
+    \autoterms[0]
+    \implicant{0}{0}
+  \end{karnaugh-map}
+  \caption{$D_0$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][2][1][$Q_0$][$Q_1$]
+     \minterms{1}
+    \indeterminants{3}
+    \autoterms[0]
+    \implicant{1}{3}
+  \end{karnaugh-map}
+  \caption{$D_1$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{align*}
+	D_0&=Q_1'Q_0'\\
+	D_1&=Q_0
+  \end{align*}
+  \caption{Required Combination Logic}
+\end{subfigure}
+\begin{subfigure}[b]{\textwidth}
+  \centering
+  \includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{hw11p2}
+  \caption{Circuit Diagram}
+\end{subfigure}
+
+\caption{Question 2 Counter Design}
+\end{figure}
+  
+  
+\clearpage
+  
+\paragraph{Question 3:}
+(6 pts) Use SR type flip flops and gates to design a counter with each of the following repeated sequences:
+
+\begin{enumerate} [noitemsep, label=\alph*)]
+\item 000, 001, 010, 011, 100, 101, 110, 111
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.6\textwidth}
+  \centering
+  \begin{tabular}{|c|c|c|c|c|}\hline 
+	Current State & Next State & $SR_2$ & $SR_1$ & $SR_0$ \\ \hline 
+	000 & 001 & 00 & 00 & 10 \\ \hline 
+	001 & 010 & 00 & 10 & 01 \\ \hline 
+	010 & 011 & 00 & 00 & 10 \\ \hline 
+	011 & 100 & 10 & 01 & 01 \\ \hline 
+	100 & 101 & 00 & 00 & 10 \\ \hline 
+	101 & 110 & 00 & 10 & 01 \\ \hline 	
+	110 & 111 & 00 & 00 & 10 \\ \hline 
+	111 & 000 & 01 & 01 & 01 \\ \hline 
+  \end{tabular} 
+  \caption{State Table}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{align*}
+	S_0&=Q_0'\\
+	R_0&=Q_0\\
+	S_1&=Q_1'Q_0\\
+	R_1&=Q_1Q_0\\
+	S_2&=Q_2'Q_1Q_0\\
+	R_2&=Q_2Q_1Q_0\\
+  \end{align*}
+  \caption{Required Combination Logic}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{0,2,4,6}
+    \autoterms[0]
+    \implicant{0}{4}
+  \end{karnaugh-map}
+  \caption{$S_0$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{1,5}
+    \autoterms[0]
+    \implicantedge{1}{1}{5}{5}
+  \end{karnaugh-map}
+  \caption{$S_1$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{3}
+    \autoterms[0]
+    \implicant{3}{3}
+  \end{karnaugh-map}
+  \caption{$S_2$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{1,3,5,7}
+    \autoterms[0]
+    \implicant{1}{5}
+  \end{karnaugh-map}
+  \caption{$R_0$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{3,7}
+    \autoterms[0]
+    \implicant{3}{7}
+  \end{karnaugh-map}
+  \caption{$R_1$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{7}
+    \autoterms[0]
+    \implicant{7}{7}
+  \end{karnaugh-map}
+  \caption{$R_2$ Karnaugh Map}
+\end{subfigure}
+\caption{Question 3a Counter Design}
+\end{figure}
+\pagebreak
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{hw11p3a}
+  \caption{Question 3a Circuit Diagram}
+\end{figure}
+
+\pagebreak
+
+\item 000, 001, 010, 011, 100
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.6\textwidth}
+  \centering
+  \begin{tabular}{|c|c|c|c|c|}\hline 
+	Current State & Next State & $SR_2$ & $SR_1$ & $SR_0$ \\ \hline 
+	000 & 001 & 00 & 00 & 10 \\ \hline 
+	001 & 010 & 00 & 10 & 01 \\ \hline 
+	010 & 011 & 00 & 00 & 10 \\ \hline 
+	011 & 100 & 10 & 01 & 01 \\ \hline 
+	100 & 000 & 01 & 00 & 10 \\ \hline 
+  \end{tabular} 
+  \caption{State Table}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{align*}
+	S_0&=Q_2'Q_0'+Q_1'Q_0'\\
+	R_0&=Q_2'Q_0\\
+	S_1&=Q_2'Q_1'Q_0\\
+	R_1&=Q_2'Q_1Q_0\\
+	S_2&=Q_2'Q_1Q_0\\
+	R_2&=Q_2Q_1'Q_0'\\
+  \end{align*}
+  \caption{Required Combination Logic}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{0,2,4}
+    \autoterms[0]
+    \implicantedge{0}{0}{4}{4}
+    \implicant{0}{2}
+  \end{karnaugh-map}
+  \caption{$S_0$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{1}
+    \autoterms[0]
+    \implicant{1}{1}
+  \end{karnaugh-map}
+  \caption{$S_1$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{3}
+    \autoterms[0]
+    \implicant{3}{3}
+  \end{karnaugh-map}
+  \caption{$S_2$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{1,3}
+    \autoterms[0]
+    \implicant{1}{3}
+  \end{karnaugh-map}
+  \caption{$R_0$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{3}
+    \autoterms[0]
+    \implicant{3}{3}
+  \end{karnaugh-map}
+  \caption{$R_1$ Karnaugh Map}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+  \begin{karnaugh-map}[2][4][1][$Q_0$][$Q_2Q_1$]
+    \minterms{4}
+    \autoterms[0]
+    \implicant{4}{4}
+  \end{karnaugh-map}
+  \caption{$R_2$ Karnaugh Map}
+\end{subfigure}
+\caption{Question 3b Counter Design}
+\end{figure}
+\pagebreak
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{hw11p3b}
+  \caption{Question 3b Circuit Diagram}
+\end{figure}
+
+\end{enumerate}
+\clearpage
+
+\paragraph{Question 4:}
+(5 pts) Draw the state diagram for the following electronic vending machine specification. The vending machine sells Squirrel Nut Zippers for 25\textcent. The machine accepts N (nickels = 5\textcent), D (dimes = 10\textcent), and Q (quarters = 25\textcent). When the sum of the coins inserted in sequence is 25\textcent or more, the machine dispenses one Squirrel Nut Zipper by making V = 1 and returns to its initial state. If less than 25\textcent is inserted and the coin return button CR is pressed, then the coins deposited are returned by making C = 1. Change is not returned if more than 25\textcent is deposited.
+
+\paragraph{Question 5:}
+A communication link requires a circuit that produces the sequence 01111110. Design a synchronous sequential circuit that starts producing this sequence when the input E=1. Once the sequence starts, it completes. If E=1 during the last output in the sequence, the sequence repeats. Otherwise (if E=0) the output remains constant at 1.
+
+\begin{enumerate} [noitemsep, label=\alph*)]
+\item (3 pts) Draw the state diagram.
+\item (4 pts) Draw the state table and make a state assignment.
+\item (3 pts) Design the circuit using SR flip flops and logic gates.
+\end{enumerate}
+
+\paragraph{Question 6:}
+(5 pts) A sequential circuit is described in HW10, Problem 4. Assume the timing parameters for the gates and flip flops are as follows:
+
+\begin{description}[noitemsep]
+\item[Inverter:] $t_{pd}$ = 0.05 ns
+\item[AND gate:] $t_{pd}$ = 0.1 ns
+\item[OR gate:] $t_{pd}$ = 0.1 ns
+\item[Flip flop:] $t_{pd}$ = 0.2 ns, $t_{s}$ = 0.02 ns, $t_{h}$ = 0.01 ns
+\item[Note:] $t_{pd}$ = propagation delay, $t_{s}$ = setup time, $t_{h}$ = hold time
+\end{description}
+
+\begin{enumerate} [noitemsep, label=\alph*)]
+\item Find the longest path delay from an external circuit input passing through gates only to an external circuit output.
+\item Find the longest path delay from an external circuit input to positive clock edge.
+\item Find the longest path delay from a positive clock edge to output.
+\item Find the longest path delay from positive clock edge to positive clock edge.
+\item Determine the maximum frequency of operation of the circuit in GHz.
+\end{enumerate}
+
+\vspace{\fill}
+\noindent
+GRADING SCALE
+\medskip
+
+Total: 31 pts
+\bigskip
+
+\def\arraystretch{1.5}
+\begin{tabular}{ | l | c | c | c | c | c | c | c | c | } \hline
+Pts          & 0  & 4  & 8  & 12 & 16 & 19 & 23 & 27     \\\hline
+Letter Grade & D- & D  & C- & C  & B- & B  & A- & A      \\\hline
+\end{tabular}
+\end{raggedright}
+\end{document}

@@ -1,0 +1,63 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+\usepackage{solarized-light}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{allwithdot}
+\usepackage[bottom]{footmisc}
+
+\usepackage{karnaugh-map}
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{Project 4}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+
+
+\tableofcontents
+\pagebreak
+
+
+\pagebreak
+\begin{raggedright}
+
+
+\section{Source Code}
+\lstinputlisting{startup.txt}
+
+\clearpage
+\section{Appendix A: Simulation Waveforms}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{sim1}
+
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{sim2}
+
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{sim3}
+
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{sim4}
+
+\end{raggedright}
+\end{document}

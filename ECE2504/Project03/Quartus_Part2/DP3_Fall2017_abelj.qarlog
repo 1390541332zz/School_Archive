@@ -1,0 +1,31 @@
+Quartus Prime Archive log --	D:/GitHub/ECE2504/Project03/Quartus_Part2/DP3_Fall2017_abelj.qarlog
+
+Archive:	D:/GitHub/ECE2504/Project03/Quartus_Part2/DP3_Fall2017_abelj.qar
+Date:		Wed Nov 29 23:32:35 2017
+Quartus Prime		17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+	=========== Files Selected: ===========
+D:/GitHub/ECE2504/Project03/Quartus_Part2/ECE2504SimpleComputer.sdc
+D:/GitHub/ECE2504/Project03/Quartus_Part2/ECE2504SimpleComputer.v
+D:/GitHub/ECE2504/Project03/Quartus_Part2/SimpleComputer.qpf
+D:/GitHub/ECE2504/Project03/Quartus_Part2/SimpleComputer.qsf
+D:/GitHub/ECE2504/Project03/Quartus_Part2/SimpleComputer_assignment_defaults.qdf
+D:/GitHub/ECE2504/Project03/Quartus_Part2/Waveform.vwf
+D:/GitHub/ECE2504/Project03/Quartus_Part2/assignment_defaults.qdf
+D:/GitHub/ECE2504/Project03/Quartus_Part2/button_fsm.v
+D:/GitHub/ECE2504/Project03/Quartus_Part2/cpu-start-waveform-longer-5us.vwf
+D:/GitHub/ECE2504/Project03/Quartus_Part2/cpu.v
+D:/GitHub/ECE2504/Project03/Quartus_Part2/data.txt
+D:/GitHub/ECE2504/Project03/Quartus_Part2/dual_port_ram.v
+D:/GitHub/ECE2504/Project03/Quartus_Part2/function_unit.v
+D:/GitHub/ECE2504/Project03/Quartus_Part2/instr_decoder.v
+D:/GitHub/ECE2504/Project03/Quartus_Part2/instruction.txt
+D:/GitHub/ECE2504/Project03/Quartus_Part2/instruction_rom.v
+D:/GitHub/ECE2504/Project03/Quartus_Part2/mux.v
+D:/GitHub/ECE2504/Project03/Quartus_Part2/mux16_1_8bits.v
+D:/GitHub/ECE2504/Project03/Quartus_Part2/pc_controller.v
+D:/GitHub/ECE2504/Project03/Quartus_Part2/single_port_ram.v
+	======= Total: 20 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

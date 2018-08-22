@@ -1,0 +1,25 @@
+Quartus Prime Archive log --	D:/GitHub/ECE2504/Project01/Quartus/P1Implementation.qarlog
+
+Archive:	D:/GitHub/ECE2504/Project01/Quartus/P1Implementation.qar
+Date:		Wed Oct 04 23:14:20 2017
+Quartus Prime		17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+	=========== Files Selected: ===========
+D:/GitHub/ECE2504/Project01/Quartus/P1Implementation.bdf
+D:/GitHub/ECE2504/Project01/Quartus/P1Implementation.qpf
+D:/GitHub/ECE2504/Project01/Quartus/P1Implementation.qsf
+D:/GitHub/ECE2504/Project01/Quartus/P1Implementation_assignment_defaults.qdf
+D:/GitHub/ECE2504/Project01/Quartus/SevenSegmentDrivers.bdf
+D:/GitHub/ECE2504/Project01/Quartus/SevenSegmentDrivers.bsf
+D:/GitHub/ECE2504/Project01/Quartus/Waveform1.vwf
+D:/GitHub/ECE2504/Project01/Quartus/assignment_defaults.qdf
+	======= Total: 8 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
+
+
+******* Archived project restoration attempt on Wed Oct 04 23:15:37 2017
+Source archive file:	D:/GitHub/ECE2504/Project01/Quartus/P1Implementation.qar
+Archive was extracted into	D:/tmp/P1Implementation_restored/
+		 - successfully.

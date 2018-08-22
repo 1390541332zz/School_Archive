@@ -1,0 +1,24 @@
+Quartus Prime Archive log --	D:/GitHub/ECE2504/Project02/Quartus/DP2_Fall2017.qarlog
+
+Archive:	D:/GitHub/ECE2504/Project02/Quartus/DP2_Fall2017.qar
+Date:		Wed Nov 01 23:18:45 2017
+Quartus Prime		17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+	=========== Files Selected: ===========
+D:/GitHub/ECE2504/Project02/Quartus/DP2_Fall2017.SDC
+D:/GitHub/ECE2504/Project02/Quartus/DP2_Fall2017.bdf
+D:/GitHub/ECE2504/Project02/Quartus/DP2_Fall2017.qpf
+D:/GitHub/ECE2504/Project02/Quartus/DP2_Fall2017.qsf
+D:/GitHub/ECE2504/Project02/Quartus/DP2_Fall2017.sdc
+D:/GitHub/ECE2504/Project02/Quartus/DP2_Fall2017_assignment_defaults.qdf
+D:/GitHub/ECE2504/Project02/Quartus/Waveform.vwf
+D:/GitHub/ECE2504/Project02/Quartus/address_counter.v
+D:/GitHub/ECE2504/Project02/Quartus/dp2_input_waveform_example.vwf
+D:/GitHub/ECE2504/Project02/Quartus/mux16_1_8bits.v
+D:/GitHub/ECE2504/Project02/Quartus/rom.txt
+D:/GitHub/ECE2504/Project02/Quartus/single_port_rom.v
+D:/GitHub/ECE2504/Project02/Quartus/your_ALU_mux.v
+	======= Total: 13 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

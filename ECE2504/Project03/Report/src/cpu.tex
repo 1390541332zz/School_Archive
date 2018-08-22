@@ -1,0 +1,48 @@
+\begin{lstlisting}[language=diff, firstnumber=50]
+    wire [15:0] data_mem_out         /* synthesis keep */;
+    wire [5:0]  ad;                  // Address offset.
+    wire [15:0] se_ad;               // Sign-extended address offset.
+
++   wire [15:0] return_addr_reg      /* synthesis keep */;
+    wire [15:0] data_in_bus          /* synthesis keep */;
+\end{lstlisting}
+
+\begin{lstlisting}[language=diff, firstnumber=62]
+    //Instantiate the PC controller.
+    pc_controller pc_ctrl
+    (
+        .rst(rst),
+        .clk(clk),
+        .N(N),
+        .C(C),
+        .V(V),
+        .Z(Z),
+        .PL(PL),
+        .JB(JB),
+        .BC(BC),
+        .PC(PC),
+        .ld_pc(se_ad),
+-       .jp_addr(A)
++       .jp_addr(A),
++       .ret_pc(return_addr_reg)
+    );
+\end{lstlisting}
+
+\begin{lstlisting}[language=diff, firstnumber=154]
+    defparam data_mem.DATA_WIDTH = 16;
+    defparam data_mem.ADDR_WIDTH = 8;
+    single_port_ram data_mem(.data(mux_b_out), .addr(A[7:0]), .we(MW), .clk(clk), .q(data_mem_out));
+
+    // Take the data memory out as an input to multiplexer D.
+-   assign data_in_bus = data_mem_out;
++   assign data_in_bus = (JB && BC) ? return_addr_reg : data_mem_out;
+
+    // Instatiate multiplexer D.
+    mux mux_d
+    (
+        .din_1(data_in_bus),
+        .din_0(function_unit_out),
+        .sel(MD),
+        .q(register_file_in)
+    );
+\end{lstlisting}

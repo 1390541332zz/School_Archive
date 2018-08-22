@@ -1,0 +1,43 @@
+# do SimpleComputer.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:28:52 on Nov 29,2017
+# vlog -work work SimpleComputer.vo 
+# -- Compiling module ECE2504SimpleComputer
+# -- Compiling module hard_block
+# 
+# Top level modules:
+# 	ECE2504SimpleComputer
+# End time: 20:28:53 on Nov 29,2017, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:28:53 on Nov 29,2017
+# vlog -work work Waveform.vwf.vt 
+# -- Compiling module ECE2504SimpleComputer_vlg_vec_tst
+# 
+# Top level modules:
+# 	ECE2504SimpleComputer_vlg_vec_tst
+# End time: 20:28:54 on Nov 29,2017, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -novopt -c -t 1ps -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.ECE2504SimpleComputer_vlg_vec_tst 
+# Start time: 20:28:54 on Nov 29,2017
+# Loading work.ECE2504SimpleComputer_vlg_vec_tst
+# Loading work.ECE2504SimpleComputer
+# Loading work.hard_block
+# Loading cycloneive_ver.cycloneive_io_obuf
+# Loading cycloneive_ver.cycloneive_io_ibuf
+# Loading cycloneive_ver.cycloneive_clkctrl
+# Loading cycloneive_ver.cycloneive_mux41
+# Loading cycloneive_ver.cycloneive_ena_reg
+# Loading cycloneive_ver.cycloneive_lcell_comb
+# Loading altera_ver.dffeas
+# Loading altera_ver.PRIM_GDFF_LOW
+# ** Warning: Design size of 20268 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# after#26
+# Simulation time: 0 ps
+# Simulation time: 0 ps
+# ** Note: $finish    : Waveform.vwf.vt(49)
+#    Time: 1200 ns  Iteration: 0  Instance: /ECE2504SimpleComputer_vlg_vec_tst
+# End time: 20:29:01 on Nov 29,2017, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 1

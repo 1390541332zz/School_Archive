@@ -1,0 +1,115 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/GitHub/ECE2504/Homework09/quartus/simulation/qsim
+vhard_block
+Z1 !s110 1508901787
+!i10b 1
+!s100 9kiLLne?EgkThi7kCoD8Z2
+ICKV<YadnW9mCGd<?R3W5i1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1508901786
+Z4 8hw9.vo
+Z5 Fhw9.vo
+L0 214
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1508901787.000000
+Z8 !s107 hw9.vo|
+Z9 !s90 -work|work|hw9.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vhw9
+R1
+!i10b 1
+!s100 1lIk8Xj5z2HZZJ85=;mk>0
+IS7mbcX3a^TngQ[FJU6@aH1
+R2
+R0
+R3
+R4
+R5
+Z12 L0 32
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vhw9_vlg_vec_tst
+R1
+!i10b 1
+!s100 2eoI:mfUZ32KH3YCWlFAn1
+I<O]lOAU4o@<P;PKa]^=Sa0
+R2
+R0
+w1508901785
+8Waveform5.vwf.vt
+FWaveform5.vwf.vt
+Z13 L0 30
+R6
+r1
+!s85 0
+31
+R7
+!s107 Waveform5.vwf.vt|
+!s90 -work|work|Waveform5.vwf.vt|
+!i113 1
+R10
+R11
+vhw9p3
+Z14 !s110 1508897328
+!i10b 1
+!s100 VCcE<hL_N5>1VO85<bK^:0
+IOjX<93Pd]OM^^F8?i]JKZ0
+R2
+R0
+w1508897327
+R4
+R5
+R12
+R6
+r1
+!s85 0
+31
+Z15 !s108 1508897328.000000
+R8
+R9
+!i113 1
+R10
+R11
+vhw9p3_vlg_vec_tst
+R14
+!i10b 1
+!s100 5<^iCZ9T2:6hHC``fnB^b0
+Ic:8DOXYDi@=g4Q8P1G?J82
+R2
+R0
+w1508897326
+8Waveform1.vwf.vt
+FWaveform1.vwf.vt
+R13
+R6
+r1
+!s85 0
+31
+R15
+!s107 Waveform1.vwf.vt|
+!s90 -work|work|Waveform1.vwf.vt|
+!i113 1
+R10
+R11

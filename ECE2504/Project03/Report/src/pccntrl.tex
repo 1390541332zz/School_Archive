@@ -1,0 +1,25 @@
+\begin{lstlisting}[language=diff, firstnumber=24]
+-module pc_controller(rst,clk,N,C,V,Z,PL,JB,BC,PC,ld_pc,jp_addr);
++module pc_controller(rst,clk,N,C,V,Z,PL,JB,BC,PC,ld_pc,jp_addr,ret_pc);
+     input             rst;
+     input             clk;
+     input             N, Z, V, C, PL, JB, BC;
+     input [15:0]      ld_pc, jp_addr;
+     output reg [15:0] PC;
++    output [15:0]     ret_pc;
+     wire [3:0]        status;
+     wire [3:0]        ctrl_pc;
+     reg  [15:0]       next_pc;
+
+     assign ctrl_pc = {rst, PL, JB, BC};  // Concatenate the PC control bits
++    assign ret_pc = PC + 1;
+\end{lstlisting}
+
+\begin{lstlisting}[language=diff, firstnumber=47]
+always@(ctrl_pc or jp_addr or N or Z or PC or ld_pc) begin
+    casex(ctrl_pc)
+        4'b1xxx: next_pc = 16'h0000;  // PC = 0 on reset.
+        4'b011x: next_pc = jp_addr;   // For the JUMP instruction, PC = jp_addr.
++       4'b0011: next_pc = jp_addr;   // For the JAL instruction, PC = jp_addr. ret_pc = PC + 1
+        4'b0101: begin                // For Branch instructions, look at the status bits.
+\end{lstlisting}

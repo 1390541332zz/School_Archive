@@ -1,0 +1,75 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/GitHub/ECE2504/Project03/Quartus_Part1/simulation/qsim
+vECE2504SimpleComputer
+Z1 !s110 1512005333
+!i10b 1
+!s100 ;oSVf`PEYPHd2aRjz62YG2
+Im@SW7THco^QOd494H]A1m2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1512005331
+Z4 8SimpleComputer.vo
+Z5 FSimpleComputer.vo
+L0 32
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1512005332.000000
+Z8 !s107 SimpleComputer.vo|
+Z9 !s90 -work|work|SimpleComputer.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+n@e@c@e2504@simple@computer
+vECE2504SimpleComputer_vlg_vec_tst
+!s110 1512005334
+!i10b 1
+!s100 n8]7;ZoTB3:zAJ8[;dATE2
+IB^`nCF2Fd3X4jDVBU;?`k3
+R2
+R0
+w1512005329
+8Waveform.vwf.vt
+FWaveform.vwf.vt
+L0 30
+R6
+r1
+!s85 0
+31
+!s108 1512005333.000000
+!s107 Waveform.vwf.vt|
+!s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R10
+R11
+n@e@c@e2504@simple@computer_vlg_vec_tst
+vhard_block
+R1
+!i10b 1
+!s100 nlVXVA@3?igA0NFBM:@:a2
+In9=6hn5d[8J?Il7W9fKK62
+R2
+R0
+R3
+R4
+R5
+L0 188846
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11

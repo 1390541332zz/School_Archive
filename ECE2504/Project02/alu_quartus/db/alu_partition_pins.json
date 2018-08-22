@@ -1,0 +1,265 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "r0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r2[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r2[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r2[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r2[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r2[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN2[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VZCN2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "b[6]",
+					"strict" : false
+				},
+				{
+					"name" : "a[7]",
+					"strict" : false
+				},
+				{
+					"name" : "b[7]",
+					"strict" : false
+				},
+				{
+					"name" : "op0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "op0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "b[4]",
+					"strict" : false
+				},
+				{
+					"name" : "op0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "op0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "a[6]",
+					"strict" : false
+				},
+				{
+					"name" : "a[5]",
+					"strict" : false
+				},
+				{
+					"name" : "b[5]",
+					"strict" : false
+				},
+				{
+					"name" : "a[4]",
+					"strict" : false
+				},
+				{
+					"name" : "a[3]",
+					"strict" : false
+				},
+				{
+					"name" : "b[3]",
+					"strict" : false
+				},
+				{
+					"name" : "a[2]",
+					"strict" : false
+				},
+				{
+					"name" : "b[2]",
+					"strict" : false
+				},
+				{
+					"name" : "a[1]",
+					"strict" : false
+				},
+				{
+					"name" : "b[1]",
+					"strict" : false
+				},
+				{
+					"name" : "a[0]",
+					"strict" : false
+				},
+				{
+					"name" : "b[0]",
+					"strict" : false
+				},
+				{
+					"name" : "op1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "op1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "op1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "op1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "op2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "op2[1]",
+					"strict" : false
+				},
+				{
+					"name" : "op2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "op2[2]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

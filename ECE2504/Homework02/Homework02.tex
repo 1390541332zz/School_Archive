@@ -1,0 +1,147 @@
+\documentclass[12pt,letterpaper,notitlepage]{report}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{enumitem}
+\setmainfont{Times New Roman}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[margin=0.65in]{geometry}
+\author{Jacob Abel}
+\title{%
+	Homework 2
+	\\\large ECE2504 CRN:82729
+}
+
+\begin{document}
+\maketitle
+\paragraph{Question 1:}
+(4 pts) Represent the decimal number 5293 in BCD, excess‐3 code, ASCII, and hex.
+\begin{description}[noitemsep]
+\item[Hex:] $5293 = (1\times16^3)+(4\times16^2)+(10\times16^1)+(13\times16^0) = 14AD$
+\item[BCD:] $5293 = (5)0101 \;(2)0010 \;(9)1001 \;(3)0011 = 0101 \;0010\; 1001\; 0011$
+\item[Excess-3:] $5293 = 1000\; 0101\; 1100 \;0110$
+\begin{align*}
+5293 &= (5+3)\; (2+3) \;(9+3)\; (3+3) \\
+	  &= (8)1000\; (5)0101 \;(12)1100\; (6)0110 \\
+	  &= 1000 \;0101 \;1100\; 0110
+\end{align*}
+\item[ASCII:] $5293=0110101 \;0110010 \;0111001 \;0110011$
+\begin{align*}
+5293 &= (5)011\;0101 \;(2)011\;0010 \;(9)011\;1001 \;(3)011\;0011\\ 
+	 &= 0110101\; 0110010 \;0111001 \;0110011
+\end{align*}
+\end{description}
+
+\paragraph{Question 2:}
+(8 pts) Write your name in ASCII using an 8‐bit code. Use uppercase and lowercase letters appropriately. Include a space between names. Give your final answers in hex.
+
+\begin{enumerate}[noitemsep, label=\alph*)]
+\item With the leftmost bit always 0. 
+\begin{align*}
+Jacob\; Abel =\; &(J)(a)(c)(o)(b)(\;)(A)(b)(e)(l)\\ 
+		     =\; &(10_{10}+40_{16})(1_{10}+60_{16})(3_{10}+60_{16})(15_{10}+60_{16})(2_{10}+60_{16})\\
+		         &(20_{16})(1_{10}+40_{16})(2_{10}+60_{16})(_{10}+60_{16})(12_{10}+60_{16})\\
+		     =\; &4A\;61\;63\;6F\;62\;20\;41\;62\;65\;6C\\
+\end{align*}
+
+\item With the leftmost bit assigned to produce odd parity
+\begin{align*}
+Jacob\; Abel =\; &(J)(a)(c)(o)(b)(\;)(A)(b)(e)(l)\\ 
+	 	   =\; &(4A)01001010 \;(61)01100001\;(63)01100011\;(6F)01101111\;(62)01100010\\
+	 		   &(20)00100000\;(41)01000001\;(62)01100010\;(65)01100101\;(6C)01101100\\ 
+	 	   =\; &(03)01001010\;(03)01100001\;(04)01100011\;(06)01101111\;(03)01100010\\
+	 		   &(01)00100000\;(02)01000001\;(03)01100010\;(04)01100101\;(04)01101100\\
+	 	   =\; &(03)01001010\;(03)01100001\;(04)11100011\;(06)11101111\;(03)01100010\\
+	 		   &(01)00100000\;(02)11000001\;(03)01100010\;(04)11100101\;(04)11101100\\
+	 	   =\; &(4A)01001010\;(61)01100001\;(73)11100011\;(7F)11101111\;(62)01100010\\
+	 		   &(20)00100000\;(51)11000001\;(62)01100010\;(75)11100101\;(7C)11101100\\
+	 	   =\; &4A\;61\;73\;7F\;62\;20\;51\;62\;75\;7C
+\end{align*}
+
+\end{enumerate}
+
+\paragraph{Question 3:}
+(6 pts) Internally in the computer, with few exceptions, all numerical computation is done using binary numbers. Input, however, often uses ASCII, which is formed by appending 011 to the left of a BCD code. Thus, an algorithm that directly converts a BCD integer to a binary integer is very useful. Here is one such algorithm:\medskip
+
+\fbox{\begin{minipage}{0.9\textwidth}
+	\begin{enumerate}[noitemsep]
+	\item Draw lines between the 4‐bit decades in the BCD number.
+	\item Move the BCD number one bit to the right.
+	\item Subtract 011 from each BCD decade containing a binary value > 0111.
+	\item Repeat Steps 2‐3 until the leftmost 1 in the BCD number has been moved out of the least significant decade position. 
+	\item Read the binary result to the right of the least significant decade position.
+	\end{enumerate}
+\end{minipage}}
+\begin{enumerate}[label=\alph*)]
+\item Execute the algorithm for the BCD number 0111 0101.
+\\\begin{tabular}{ l || r | r || l }
+   Start & 0111 & 0101 &
+\\ >> 1  & 0011 & 1010 & 1
+\\       &      & -011 & 
+\\       & 0011 & 0111 & 1
+\\ >> 1  & 0001 & 1011 & 11
+\\	     &      & -011 &
+\\       & 0001 & 1000 & 11
+\\ >> 1  & 0000 & 1100 & 011
+\\       &      & -011 &
+\\       & 0000 & 1001 & 011
+\\ >> 1  & 0000 & 0100 & 1011
+\\ >> 3  & 0000 & 0000 & 1001011
+\end{tabular}
+
+
+\item Execute the algorithm for the BCD number 0011 0110 1000.
+\\\begin{tabular}{ l || r | r | r || l }
+   Start & 0011 & 0110 & 1000 &
+\\ >> 1  & 0001 & 1011 & 0100 & 0
+\\       &      & -011 &      & 
+\\       & 0001 & 1000 & 0100 & 0
+\\ >> 1  & 0000 & 1100 & 0010 & 00
+\\ 		 &      & -011 &      & 
+\\       & 0000 & 1001 & 0010 & 00
+\\ >> 1  & 0000 & 0100 & 1001 & 000
+\\       &      &      & -011 & 
+\\       & 0000 & 0100 & 0110 & 000
+\\ >> 1  & 0000 & 0010 & 0011 & 0000
+\\ >> 2  & 0000 & 0000 & 1000 & 110000
+\\       &      &      & -011 & 
+\\       & 0000 & 0000 & 0101 & 110000
+\\ >> 3  & 0000 & 0000 & 0000 & 101110000
+\end{tabular}
+
+\end{enumerate}
+
+\paragraph{Question 4:}
+(8 pts) Encode the following Unicode code points in UTF‐8. Show both the binary and hex value for each encoding. 
+Hint: Table 1‐6 in the textbook will be useful.
+\begin{enumerate}[label=\alph*)]
+\item U+0042  \\= 0xxxxxxx \\= 01000010 \\= 0x42
+\item U+00C6  \\= 110xxxxx 10xxxxxx \\= 11000011 10000110 \\= 0xC286
+\item U+429B  \\= 1110xxxx 10xxxxxx 10xxxxxx \\= 11100100 10001010 10011011 \\= 0xE48A9B
+\item U+1C5F3 \\= 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx \\= 11110000 10011100 10010111 10110011 \\= 0xF09C97B3
+\end{enumerate}
+
+\paragraph{Question 5: Textbook Problem 1-30:}
+What is the percentage of power consumed for continuous counting (either up or down but not both) at the outputs of a binary Gray code counter (with all $2^{n}$ code words used) compared to a binary counter as a function of the number of bits, n, in the two counters?
+
+\begin{align*}
+\\ efficiency(n)     &= \frac{\Delta gray(n)}{ \Delta binary(n)}\times 100\% 
+\\ efficiency(3)     &= \frac{8}{14}\times 100\% = 57\%
+\end{align*}
+\\\bigskip
+
+\noindent
+GRADING SCALE\\\medskip
+Total: 31 pts\bigskip
+\begin{flushleft}
+\def\arraystretch{1.5} 
+\begin{tabular}{ | l | c | c | c | c | c | c | c | c | } \hline
+Pts          & 0  & 4  & 8  & 11 & 15 & 19 & 23 & 27     \\\hline
+Letter Grade & D- & D  & C- & C  & B- & B  & A- & A      \\\hline
+\end{tabular}
+\end{flushleft}
+
+\end{document}

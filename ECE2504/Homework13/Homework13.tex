@@ -1,0 +1,253 @@
+\documentclass[12pt,letterpaper,titlepage]{report}
+\usepackage{solarized-light}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{enumitem}
+\setmainfont{Times New Roman}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{paracol}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{wrapfig}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tikz-timing}
+\usetikzlibrary{automata,positioning}
+\graphicspath{{img/}}
+\usepackage{karnaugh-map}
+\usepackage[margin=0.65in]{geometry}
+\usepackage{xparse}
+\author{Jacob Abel}
+\title{%
+	Homework 13
+	\\\large ECE2504 CRN:82729
+}
+
+%\def\arraystretch{1.5}
+
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+\raggedcolumns
+
+\paragraph{Question 1:}
+(8 pts) Specify the 20‐bit control word that must be applied to the datapath of the single‐cycle simple computer in Chapter 8 of your textbook (See Fig 8‐16) to implement each of the following microoperations. Use the control word fields shown in Figure 8‐16. Present your answers in table form.
+\begin{center}
+\def\arraystretch{1.5}
+\begin{tabular}{|ll|c|c|c|c|c|c|c|c|c|c|c|}\hline
+\multicolumn{2}{|c|}{Operation}            &$DA$&$AA$&$BA$&$MB$&$FS$&$MD$&$RW$&$MW$&$PL$&$JB$&$BC$\\ \hline\hline
+a) & $R2 \gets \text{sr Constant in}$      &010 &xxx &cnst& 1  &1101& 0  & 1  & 0  & 0  & 0  & 1  \\ \hline
+b) & $M[R4] \gets R2$                      &xxx &100 &010 & 0  &0000& 1  & 0  & 1  & 0  & 0  & 0  \\ \hline
+c) & $R1 \gets R3 \lor \text{Constant in}$ &001 &011 &cnst& 1  &1001& 0  & 1  & 0  & 0  & 0  & 1  \\ \hline
+d) & $R4 \gets R3 - 1$                     &100 &011 &001 & 0  &0110& 0  & 1  & 0  & 0  & 0  & 0  \\ \hline
+\end{tabular}
+\end{center}
+
+\clearpage
+
+\paragraph{Question 2:}
+(8 pts) Given the following 16‐bit control words for the Simple Computer datapath shown in Fig. 8‐11, determine
+\begin{itemize}[noitemsep]
+\item the microoperation sequence that is executed (in RTL),
+\item the change in register contents
+\end{itemize}
+
+Consider each control word separately, i.e. this is not a sequence. Assume the initial register contents shown is the starting point for each of these microoperations. Assume that Constant = 6 and Data\_in = 0x1B
+
+
+\begin{center}
+\begin{tabular}{|c|c|}\hline 
+\multicolumn{2}{|c|}{Initial Register Contents}\\ \hline\hline
+$R0$ & 00000000 \\ \hline
+$R1$ & 00100000 \\ \hline
+$R2$ & 01000100 \\ \hline
+$R3$ & 01000111 \\ \hline
+$R4$ & 01010100 \\ \hline
+$R5$ & 01001100 \\ \hline
+$R6$ & 01000001 \\ \hline
+$R7$ & 01001001 \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{multicols}{2}
+
+\begin{enumerate}[noitemsep, label=\alph*)]
+\item 101 100 101 0 1000 0 1
+\begin{align*}
+R5 \gets R5
+\end{align*}
+\begin{center}
+\begin{tabular}{|c|c|}\hline 
+\multicolumn{2}{|c|}{Updated Register Contents}\\ \hline\hline
+$R0$ & 00000000 \\ \hline
+$R1$ & 00100000 \\ \hline
+$R2$ & 01000100 \\ \hline
+$R3$ & 01000111 \\ \hline
+$R4$ & 01010100 \\ \hline
+$R5$ & 01000100 \\ \hline
+$R6$ & 01000001 \\ \hline
+$R7$ & 01001001 \\ \hline
+\end{tabular}
+\end{center}
+
+\item 110 010 100 0 0101 0 1
+\begin{align*}
+R6 \gets R2 - R4
+\end{align*}
+\begin{center}
+\begin{tabular}{|c|c|}\hline 
+\multicolumn{2}{|c|}{Updated Register Contents}\\ \hline\hline
+$R0$ & 00000000 \\ \hline
+$R1$ & 00100000 \\ \hline
+$R2$ & 01000100 \\ \hline
+$R3$ & 01000111 \\ \hline
+$R4$ & 01010100 \\ \hline
+$R5$ & 01001100 \\ \hline
+$R6$ & 11110000 \\ \hline
+$R7$ & 01001001 \\ \hline
+\end{tabular}
+\end{center}
+
+\item 101 110 000 0 1100 0 1
+\begin{align*}
+R5 \gets R4 \land R5
+\end{align*}
+\begin{center}
+\begin{tabular}{|c|c|}\hline 
+\multicolumn{2}{|c|}{Updated Register Contents}\\ \hline\hline
+$R0$ & 00000000 \\ \hline
+$R1$ & 00100000 \\ \hline
+$R2$ & 01000100 \\ \hline
+$R3$ & 01000111 \\ \hline
+$R4$ & 01010100 \\ \hline
+$R5$ & 01001100 \\ \hline
+$R6$ & 01000001 \\ \hline
+$R7$ & 01001001 \\ \hline
+\end{tabular}
+\end{center}
+
+\item 101 000 000 0 0000 0 1
+\begin{align*}
+R5 \gets R0
+\end{align*}
+\begin{center}
+\begin{tabular}{|c|c|}\hline 
+\multicolumn{2}{|c|}{Updated Register Contents}\\ \hline\hline
+$R0$ & 00000000 \\ \hline
+$R1$ & 00100000 \\ \hline
+$R2$ & 01000100 \\ \hline
+$R3$ & 01000111 \\ \hline
+$R4$ & 01010100 \\ \hline
+$R5$ & 00000000 \\ \hline
+$R6$ & 01000001 \\ \hline
+$R7$ & 01001001 \\ \hline
+\end{tabular}
+\end{center}
+
+\end{enumerate}
+\end{multicols}
+\clearpage
+
+\paragraph{Question 3:}
+(4 pts) A 32‐bit computer has a memory unit and a register file with 64 registers. The instruction set consists of 68 different operations. There is only one instruction format with an opcode, a register operand, and an immediate operand. Each instruction is stored in a single word of memory.
+
+\begin{enumerate}[noitemsep, label=\alph*)]
+\item How many bits are required for the opcode? 7
+\item How many bits are left for the immediate operand? 19
+\item If the immediate operand is used as an unsigned address to memory, what is the maximum number of words that can be addressed in memory? 524288
+\item What is the range of signed immediate operands that can be accommodated? -262144 : 262143
+\end{enumerate}
+
+\paragraph{Question 4:}
+(4 pts) Give an instruction for the single cycle computer that resets register $R4$ to 0 \underline{and updates the $Z$ and $N$ status bits} based on the value 0 loaded into $R4$. By examining the ALU logic provided in Chapter 8, determine the values of the $V$ and $C$ status bits.
+
+\begin{center}
+\begin{tabular}{|l|l|c|c|c|}\hline
+Instruction  & Operation             & Opcode           & V & C \\ \hline\hline
+ANDI R5 R5 0 & $R5 \gets R5 \land 0$ & 1001000101101000 & 0 & 0 \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{wraptable}[23]{R}{0.35\textwidth}
+\centering
+\def\arraystretch{1.5}
+
+\begin{tabular}{|l|l|}\hline
+add r0, r1, r2 & 0x040A          \\ \hline
+\multicolumn{2}{|l|}{$R0 = 3$}   \\ \hline
+sub r3, r4, r5 & 0x0AE5          \\ \hline
+\multicolumn{2}{|l|}{$R3 = -1$}  \\ \hline
+sub r6, r7, r0 & 0x0BB8          \\ \hline
+\multicolumn{2}{|l|}{$R6 = 10$}  \\ \hline
+add r0, r0, r3 & 0x0403          \\ \hline
+\multicolumn{2}{|l|}{$R0 = 2$}   \\ \hline
+sub r0, r0, r6 & 0x0A06          \\ \hline
+\multicolumn{2}{|l|}{$R0 = -4$}  \\ \hline
+st r7, r0      & 0x4038          \\ \hline
+\multicolumn{2}{|l|}{$M7 = -4$}  \\ \hline
+ld r7, r6      & 0x21F0          \\ \hline
+\multicolumn{2}{|l|}{$R7 = M10$} \\ \hline
+adi r0, r6, 2  & 0x8432          \\ \hline
+\multicolumn{2}{|l|}{$R0 = 12$}  \\ \hline
+adi r3, r6, 3  & 0x84F3          \\ \hline
+\multicolumn{2}{|l|}{$R3 = 15$}  \\ \hline
+\end{tabular}
+\end{wraptable}
+
+\paragraph{Question 5:}
+(18 pts) Consider the following sequence of assembly language instructions for the Single Cycle Computer show in section 8‐8 of your textbook. Assume that the initial register contents are equal to each register’s index (i.e. $R0$ contains 0, $R1$ contains 1, $R2$ contains 2, etc). Provide your results in table form.
+
+\begin{enumerate}[nolistsep, noitemsep, label=\alph*)]
+\item Give the machine instructions in hex \underline{in the same row of the table as the assembly instruction.}
+\item Give the contents of any register changed by the instruction, or the location and contents of any memory location changed by the instruction, \underline{in the next row of the table.}
+\end{enumerate}
+Note: the information is positioned in this way because new values (due to the execution of an instruction) do not appear in registers or memory until after a positive clock edge has occurred.
+\clearpage
+
+\begin{wrapfigure}[23]{R}{0.75\textwidth}
+\centering
+\includegraphics[width=0.75\textwidth, height=\textheight, keepaspectratio=true]{hw13p6a}
+\caption{8x6 ROM}
+\end{wrapfigure}
+
+\paragraph{Question 6:}
+(8 pts) Design a 8x6 ROM with the following content
+
+\begin{tabular}{|c|c|}\hline
+Address & Data \\ \hline
+000 & 111000 \\ \hline
+001 & 000001 \\ \hline
+010 & 000000 \\ \hline
+011 & 100000 \\ \hline
+100 & 001110 \\ \hline
+101 & 111111 \\ \hline
+110 & 010011 \\ \hline
+111 & 110110 \\ \hline
+\end{tabular}
+
+
+
+\vspace{\fill}
+\noindent
+GRADING SCALE
+\medskip
+
+Total: 50 pts
+\bigskip
+
+\def\arraystretch{1.5}
+\begin{tabular}{ | l | c | c | c | c | c | c | c | c | } \hline
+Pts          & 0  & 6  & 12 & 18 & 25 & 31 & 37 & 43     \\\hline
+Letter Grade & D- & D  & C- & C  & B- & B  & A- & A      \\\hline
+\end{tabular}
+\end{raggedright}
+\end{document}
