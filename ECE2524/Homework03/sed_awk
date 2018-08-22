@@ -1,0 +1,112 @@
+#===========#
+# Variables #
+#===========#
+iris='./iris.data'
+sedout='./sepal_length_7_sed'
+awkout='./sepal_length_7_awk'
+
+#=============#
+# Sed Scripts #
+#=============#
+
+#Part 1
+echo -e '\nPart 1-1'
+
+sed -n '/.*Iris-setosa/p' $iris
+#Part 2
+echo -e '\nPart 1-2'
+
+sed -n -e '/.*Iris-setosa/p' -e '/.*Iris-versicolor/p' $iris
+#Part 3
+echo -e '\nPart 1-3'
+
+sed -E -n '/.*,(([2-9]\.\digit)|(1\.[5-9])),Iris-virginica/p' $iris
+#Part 4
+echo -e '\nPart 1-4'
+
+sed -E -n '/.*,([4-5]\..),.*,Iris-virginica/p' $iris
+#Part 5
+echo -e '\nPart 1-5'
+
+sed -E -n -e '/([7]\..),.*,/p' -e '1i\sepal length greater than or equal to 7' $iris > $sedout
+
+echo -e "Check $sedout"
+
+#=============#
+# Awk Scripts #
+#=============#
+
+#Part 1
+echo -e '\nPart 2-1'
+
+awk '
+    BEGIN {
+        FS=",";
+        ORS = "\n";
+    }
+    {
+        if ($5 == "Iris-setosa") print $0;
+    }
+' $iris
+
+#Part 2
+echo -e '\nPart 2-2'
+
+awk '
+    BEGIN {
+        FS=",";
+        ORS = "\n";
+    }
+    {
+        if (($3 >= 4) && ($3 < 6)) print $0;
+    }
+' $iris
+
+#Part 3
+echo -e '\nPart 2-3'
+
+awk -v awkout="$awkout" '
+    BEGIN {
+        FS=",";
+        ORS = "\n";
+        print "sepal length greater than or equal to 7" > awkout;
+    }
+    {
+        if (($1 >= 7) && ($1 < 8)) print $0 > awkout;
+    }
+' $iris
+
+echo -e "Check $awkout"
+
+#Part 4
+echo -e '\nPart 2-4'
+
+awk -v awkout="$awkout" '
+    BEGIN {
+        FS=",";
+        ORS = "\n";
+        count = 0;
+        sepal_l_sum = 0; 
+        sepal_w_sum = 0; 
+        petal_l_sum = 0; 
+        petal_w_sum = 0; 
+    }
+    {
+        if ($0 == $NF) next;
+        print $0;
+        ++count;
+        sepal_l_sum += $1; 
+        sepal_w_sum += $2; 
+        petal_l_sum += $3; 
+        petal_w_sum += $4;  
+    }
+    END {
+        sepal_l_avg = sepal_l_sum / count;
+        sepal_w_avg = sepal_w_sum / count;
+        petal_l_avg = petal_l_sum / count;
+        petal_w_avg = petal_w_sum / count;
+
+        printf "avg_s_length: %f, avg_s_width: %f, avg_p_length: %f, avg_p_width: %f\n",
+            sepal_l_avg, sepal_w_avg, petal_l_avg, petal_w_avg;
+    }
+' $iris

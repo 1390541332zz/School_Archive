@@ -1,0 +1,83 @@
+#======================================================================================================================#
+# Part 1
+#======================================================================================================================#
+vim
+
+# Lord of The Rings
+:e ./movies/LOTR.txt
+i
+Shift-Insert
+ESC
+:w
+
+# American Horror Story
+:e ./TVShows/American_Horror_Story.txt
+i
+Shift-Insert
+ESC
+:w
+
+# The Walking Dead
+:e ./TVShows/The_Walking_Dead.txt
+i
+Shift-Insert
+ESC
+:w
+
+# Blade Runner 2049
+:e ./movies/Blade_Runner_2049.txt
+i
+Shift-Insert
+ESC
+:wq
+
+#======================================================================================================================#
+# Part 2
+#======================================================================================================================#
+# Print on the screen the names of all Sci-Fi movies
+grep -lr ./movies/ -e 'Sci-Fi' | sed -e 's|.*/||' -e 's|\.txt||'
+
+# Print on the screen all Sci-Fi movies and TVShows
+grep -lr ./ -e 'Sci-Fi' | sed -e 's|.*/||' -e 's|\.txt.*||'
+
+# Print on the screen genres of GoT seperated by spaces
+grep -h ./TVShows/GoT.txt -e 'Genre:.*' | sed -e 's|.*:||' -e's|,| |'
+
+# Print on the screen how many movies or TVShows are there with the genre Comedy
+grep -r ./ -e 'Comedy' | wc -l
+
+# Copy all movies with genre Drama to movies/favorites
+grep -lr ./movies/ -e 'Drama' | xargs -I{} cp "{}" './movies/favorites/'
+
+# Print on the screen the names of all Sci-Fi movies released in 2017
+grep -lr ./movies/ -e 'Drama' | xargs -I{} grep -xl "{}" -e 'Release Year:\s*2017' \
+                              | sed -e 's|.*/||' -e 's|.txt||'
+
+# Sort all TV Shows with genre Drama in ascending order according to their Ratings and print the result on the screen.
+grep -Hr ./TVShows/ -e 'Rating:' | sed -e 's|\(.*\.txt\):Rating:\(.*\)|\2:\1|' \
+                                 | sort \
+                                 | sed -e 's|.*:||' \
+                                 | xargs -I{} grep "{}" -l -e 'Drama' \
+                                 | sed -e 's|.*/||' -e 's|.txt||'
+
+#======================================================================================================================#
+# Part 3
+#======================================================================================================================#
+
+# Change all occurrences of ":" to "=>" and "," to ";" in GhostInTheShell.txt and save it into GITS.txt
+vim ./movies/GhostInTheShell.txt
+:%s/:/=>/g
+:%s/,/;/g
+:w ./movies/GITS.txt
+
+# Create stats.txt containing the number of TVShows beloning to various genres in the form below
+#
+# Genres
+# Sci-Fi:1
+# Action:2
+# Drama:4
+echo 'Genres'  >  ./stats.txt
+grep -r ./TVShows/ -e 'Sci-Fi' | wc -l | xargs -I{} echo "Sci-Fi:{}" >> ./stats.txt
+grep -r ./TVShows/ -e 'Action' | wc -l | xargs -I{} echo "Action:{}" >> ./stats.txt
+grep -r ./TVShows/ -e 'Drama'  | wc -l | xargs -I{} echo "Drama:{}"  >> ./stats.txt
+
