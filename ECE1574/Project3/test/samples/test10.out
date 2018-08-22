@@ -1,0 +1,63 @@
+Loading: test/maps/christiansburg_small.asc
+Number of rows: 4
+Number of columns: 10
+	         0    1    2    3    4    5    6    7    8    9
+	    0  620  623  627  592  544  555  538  559  572  552
+	    1  599  617  635  626  604  614  613  606  610  585
+	    2  632  633  637  646  656  660  646  620  617  592
+	    3  660  667  665  668  668  654  633  616  566  548
+	
+Command: Least Elevation
+	Height change:  -7
+	Steps:          14
+	Average change: -0.5
+	Starting row:   1
+Number of rows: 4
+Number of columns: 10
+	     0  1  2  3  4  5  6  7  8  9
+	 0   -  >  \  -  -  -  -  -  -  -
+	 1   >  ^  -  v  -  -  -  -  \  -
+	 2   -  -  -  >  \  >  v  >  ^  X
+	 3   -  -  -  -  -  ^  /  -  -  -
+	
+Command: Least Elevation
+Bad starting row: 4
+Command: Greatest Declination
+	Height change:  -47
+	Steps:          10
+	Average change: -4.7
+	Starting row:   1
+Number of rows: 4
+Number of columns: 10
+	     0  1  2  3  4  5  6  7  8  9
+	 0   -  >  >  >  >  >  >  >  >  X
+	 1   >  ^  -  -  -  -  -  -  -  -
+	 2   -  -  -  -  -  -  -  -  -  -
+	 3   -  -  -  -  -  -  -  -  -  -
+	
+Command: Least Elevation
+	Height change:  -40
+	Steps:          13
+	Average change: -3.07692
+	Starting row:   2
+Number of rows: 4
+Number of columns: 10
+	     0  1  2  3  4  5  6  7  8  9
+	 0   -  -  -  -  -  -  -  -  -  -
+	 1   -  -  v  -  -  -  -  -  \  -
+	 2   >  /  >  >  \  >  v  >  ^  X
+	 3   -  -  -  -  -  ^  /  -  -  -
+	
+Command: Greatest Declination
+	Height change:  -108
+	Steps:          12
+	Average change: -9
+	Starting row:   3
+Number of rows: 4
+Number of columns: 10
+	     0  1  2  3  4  5  6  7  8  9
+	 0   -  >  >  >  >  >  >  >  >  X
+	 1   >  ^  -  -  -  -  -  -  -  -
+	 2   ^  -  -  -  -  -  -  -  -  -
+	 3   ^  -  -  -  -  -  -  -  -  -
+	
