@@ -1,0 +1,163 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 4
+	\\\large ECE2004 CRN:12898
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+
+\paragraph{Question 1: }
+
+Find the Thevenin equivalent voltage and resistance at terminals $a-b$.
+
+\begin{center}
+\includegraphics[width=.75\textwidth, height=\textheight, keepaspectratio=true]{hw4q1}
+\end{center}
+
+\begin{paracol}{2}
+\begin{center}Closed\end{center}
+\begin{align*}
+    R_{5V}    &= 4k\Omega + 1k\Omega + 2.5k\Omega\parallel 5k\Omega = 6670\Omega
+\\  I_{ab5V}  &= \frac{5V}{2.5k\Omega}
+				 \times
+				 \frac{2.5k\Omega\parallel 5k\Omega}{6670\Omega} = 0.5mA
+\\  R_{2mA}   &= (4k\Omega + 1k\Omega)\parallel 5k\Omega \parallel 2.5k\Omega = 1250\Omega
+\\  V_{ab2mA} &= 2mA \times 1250\Omega = 2.5V
+\\  I_{ab2mA} &= \frac{2.5V}{2.5k\Omega} = 1mA
+\\  I_{ab}    &= 1mA -0.5mA = 0.5mA
+\end{align*}
+\switchcolumn
+\begin{center}Open\end{center}
+\begin{align*}
+    V_{ab5V}  &= V_{5k\Omega5V}
+\\  V_{5k\Omega5V}  &= 5V\frac{5k\Omega}{5k\Omega + 4k\Omega + 1k\Omega} = 2.5V
+\\  V_{ab2mA} &= V_{5k\Omega2mA}
+\\  V_{5k\Omega2mA} &= 2mA\frac{1}{\frac{1}{5k\Omega}+\frac{1}{4k\Omega+1k\Omega}} = 5V
+\\  V_{ab} &= 5V - 2.5V = 2.5V
+\end{align*}
+\end{paracol}
+\begin{align*}
+    V_{Th} &= 2.5V
+\\  R_{Th} &= \frac{V_{ab}}{I_{ab}} = \frac{2.5V}{0.5mA} = 5k\Omega
+\end{align*}
+\clearpage
+
+\paragraph{Question 2: }
+
+Find the Norton equivalent current and resistance at terminals $a-b$.
+
+\begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{hw4q2}
+\end{center}
+
+
+\clearpage
+
+\paragraph{Question 3: }
+
+What is the maximum power that can be delivered to $R_L$?
+
+\begin{center}
+\includegraphics[width=.75\textwidth, height=\textheight, keepaspectratio=true]{hw4q3}
+\end{center}
+
+\begin{paracol}{2}
+\begin{center}Open\end{center}
+\begin{align*}
+    R_{12V}    &= 10\Omega + 5\Omega + 10\Omega = 25\Omega
+\\  V_{R_L12V} &= V_{10\Omega12V}
+\\  V_{10\Omega12V} &= 12V \frac{10\Omega}{25\Omega} = 4.8V
+\\  R_{5A} &= 10\Omega\parallel(5\Omega + 10\Omega) = 6\Omega
+\\  V_{R_L5A} &= V_{10\Omega5A}
+\\  V_{10\Omega5A} &= 5A \times 6\Omega \frac{10\Omega}{5\Omega+10\Omega} = 20V
+\\  V_{R_L} &= 20V + 4.8V = 24.8V
+\end{align*}
+\switchcolumn
+\begin{center}Closed\end{center}
+\begin{align*}
+    R_{12V} &= 10\Omega + 5\Omega = 15\Omega
+\\  I_{R_L12V} &= \frac{12V}{15\Omega} = 0.8A
+\\  R_{5A} &= 10\Omega\parallel 5\Omega = \frac{10}{3}\Omega
+\\  I_{R_L5A} &= 5A \frac{10\Omega}{15\Omega} = \frac{10}{3}A
+\\  I_{R_L} &= 0.8A + \frac{10}{3}A = \frac{62}{15}A \approx 4.13A
+\end{align*}
+\end{paracol}
+\begin{align*}
+    V_{Th} &= 24.8V
+\\  R_{Th} &= \frac{V_{ab}}{I_{ab}} = \frac{24.8V}{\frac{62}{15}A} = 6\Omega
+\end{align*}
+
+\clearpage
+
+\paragraph{Question 4: }
+
+\begin{center}
+\includegraphics[width=0.75\textwidth, height=\textheight, keepaspectratio=true]{hw4q4}
+\end{center}
+
+\begin{enumerate}[label=\Alph*)]
+\item Use superposition to find $V_x$.
+\begin{paracol}{3}
+\begin{align*}
+    R_{20V}      &= 10\Omega  + 10\Omega = 20\Omega
+\\  V_{x}        &= 20V \frac{10\Omega}{20\Omega} = 10V
+\\  V_{10\Omega} &= 20V - 10V = 10V
+\\  V_{20\Omega} &= 0V
+\end{align*}
+\switchcolumn
+\begin{align*}
+    R_{10V}      &= \frac{1}{\frac{1}{20\Omega} + \frac{1}{10\Omega + 10\Omega}} = 10\Omega
+\\  V_{20\Omega} &= 10V
+\\  V_{x}        &= 10V \frac{10\Omega}{20\Omega} = 5V
+\\  V_{10\Omega} &= 10V - 5V = 5V
+\end{align*}
+\switchcolumn
+\begin{align*}
+    R_{3A}       &= \frac{1}{\frac{1}{10\Omega} + \frac{1}{10\Omega}} = 5\Omega
+\\  V_{20\Omega} &= 0V
+\\  V_{x}        &= 10\Omega\times3A\times\frac{1}{2} = 15V
+\\  V_{10\Omega} &= 15V
+\end{align*}
+\end{paracol}
+\begin{align*}
+V_{x} &= 10V - 5V + 15V = 20V
+\end{align*}
+\item Analyse the full circuit with mesh current or nodal analysis to find $V_x$.
+
+
+
+\end{enumerate}
+
+\end{raggedright}
+\end{document}
