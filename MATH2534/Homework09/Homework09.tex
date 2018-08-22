@@ -1,0 +1,230 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{allwithdot}
+\usepackage[bottom]{footmisc}
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 9
+	\\\large MATH2534 CRN:15708
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+
+\begin{enumerate}
+
+\item Prove by set identities (or by element method) or disprove the following:
+
+\begin{enumerate}[label=(\alph*)]
+\item If $B\subseteq C$, then $(A-B)\subseteq (A-C)$
+
+$A=\{1, 2, 3, 4\}, B=\{2, 3\}, C=\{2,3,4\}$
+
+$A-B = \{1, 4\}$
+
+$A-C = \{1\}$
+
+$\{1, 4\} \not\subseteq \{1\}$
+
+\item $(A\cup B)-B = A$
+
+$A=\{1, 2, 3, 4\}, B=\{4, 5, 6\}$
+
+$A\cup B = \{1, 2, 3, 4, 5, 6\}$
+
+$(A\cup B) - B = \{1, 2, 3\}$
+
+$(A\cup B) - B \neq A$
+
+\item $A\cup(B-C)=(A\cup B)-(A\cup C)$
+
+$A=\{1, 2, 3\}, B=\{2, 3, 4\}, C=\{2,3\}$
+
+$B-C = \{4\}$
+
+$A\cup(B-C) = \{1, 2, 3, 4\}$
+
+$A\cup B = \{1, 2, 3, 4\}$
+
+$A\cup C = \{1, 2, 3\}$
+
+$(A\cup B)-(A\cup C) = \{4\}$
+
+$A\cup(B-C) \neq (A\cup B)-(A\cup C)$
+
+\end{enumerate}
+
+\item Simplify $(A\cap(B\cup C))\cap(A-B)\cap(B\cup C^\mathcal{C})$
+
+$(A\cap(B\cup C))\cap(A-B)\cap(B\cup C^\mathcal{C}) = A\cap(B\cup C)\cap A\cap B^\mathcal{C}\cap (B\cup C^\mathcal{C})$
+
+By set difference definition and associative laws
+
+$A\cap(B\cup C)\cap A\cap B^\mathcal{C}\cap (B\cup C^\mathcal{C}) = (B\cup C)\cap A\cap B^\mathcal{C}\cap (B\cup C^\mathcal{C})$
+
+By idempotent laws
+
+$(B\cup C)\cap A\cap B^\mathcal{C}\cap (B\cup C^\mathcal{C}) = A\cap B^\mathcal{C}\cap (B\cup(C\cap C^\mathcal{C}))$
+
+by distributive laws
+
+$A\cap B^\mathcal{C}\cap (B\cup(C\cap C^\mathcal{C})) = A\cap B^\mathcal{C}\cap B$
+
+by complement laws and universal bounds laws
+
+$A\cap B^\mathcal{C}\cap B = A\cap \emptyset$
+
+by complement laws
+
+$A\cap \emptyset = \emptyset$
+
+by universal bounds laws
+
+ $(A\cap(B\cup C))\cap(A-B)\cap(B\cup C^\mathcal{C}) = \emptyset$
+
+\clearpage
+
+\item Prove that for all sets $A$ and $B$, $\mathcal{P}(A)\cap \mathcal{P}(B) = \mathcal{P}(A\cap B)$.
+
+Suppose that $\forall x$ if $x\in \mathcal{P}(A\cap B)$, then $x\in \mathcal{P}(A)\cap \mathcal{P}(B)$
+
+$x \subseteq A\cap B$ by definition of a power set
+
+$x \subseteq A, x\subseteq B$ by definition of an intersection
+
+$x\in \mathcal{P}(A), x\in\mathcal{P}(B)$ by definition of a power set
+
+$x\in \mathcal{P}(A)\cap \mathcal{P}(B)$ by definition of an interesection
+
+Suppose that $\forall x$ if $\mathcal{P}(A)\cap \mathcal{P}(B)$, then $x\in \mathcal{P}(A\cap B)$
+
+$x\in \mathcal{P}(A), x\in\mathcal{P}(B)$ by definition of an intersection
+
+$x \subseteq A, x\subseteq B$ by definition of a power set
+
+$x \subseteq A\cap B$ by definition of an intersection
+
+$x\in \mathcal{P}(A\cap B)$ by definition of a power set
+
+Therefore as $x\in \mathcal{P}(A\cap B)$ and $x\in \mathcal{P}(A)\cap \mathcal{P}(B)$, $\mathcal{P}(A)\cap \mathcal{P}(B) = \mathcal{P}(A\cap B)$.
+
+
+\item Let $A$, $B$, and $C$ be sets. Prove that $(A-B)-(B-C)=A-B$ with double set inclusion.
+
+Let $\exists x \in U$
+
+Suppose that $\forall x$ if $x\in (A-B)-(B-C)$, then $x \in A - B$.
+
+$x\in A, x\not\in B, x\not in (B - C)$ by set difference definition
+
+$x\in A, x\not\in B$ by absorption rule
+
+$x\in (A - B)$ by set difference definition
+
+Suppose that $\forall x$ if $x \in A - B$, then $x\in (A-B)-(B-C)$.
+
+$x\in A, x\not\in B$ by set difference definition
+
+$x\in A, x\not\in B, x\not\in (B - C)$ by absorption rule
+
+$x\in (A - B), x\not\in (B-C)$ by set difference definition
+
+$x\in (A - B) - (B-C)$ by set difference definition
+
+Therefore as $x\in (A - B)$ and $x\in (A - B) - (B-C)$, $(A-B)-(B-C)=A-B$.
+
+\clearpage
+
+\item Consider the set $A$ of all divisors of 70, $A = \{1, 2, 5, 7, 10, 14, 35, 70\}$, with the operations defined as follows: $a + b = \text{GCD}(a, b)$, $a \cdot b = \text{LCM}(a, b)$ and the complement is defined to be $a = 70 / a$. Assume that $A$ is a Boolean algebra with operations $+$ and $\cdot$.
+
+\begin{enumerate}[label=(\alph*)]
+\item Evaluate $14\cdot 35$, $5+\overline{5}$, and $14\cdot\overline{14}$
+
+$14\cdot 35 = \text{LCM}(14, 35) = 70$
+
+$5+\overline{5} = 5 + 70 / 5 = 5 + 14 = \text{GCD}(5, 14) = 1$
+
+$14\cdot\overline{14} = 14\cdot 70/14 = 14\cdot 5  = \text{LCM}(14, 5) = 70$
+
+\item Show $2+(7\cdot 14)=(2+7)\cdot(2+14)$
+
+$2+(7\cdot 14)=2+\text{LCM}(7, 14)= 2 + 14 = \text{GCD}(2, 14) = 2$
+
+$(2+7)\cdot(2+14) = \text{GCD}(2, 7)\cdot\text{GCD}(2, 14) = \text{LCM}(1, 2) = 2$
+
+$2 = 2$
+
+$2+(7\cdot 14)=(2+7)\cdot(2+14)$
+
+\item Show $\overline{10+35}=\overline{10}\cdot\overline{35}$
+
+$\overline{10+35} = 70 / \text{GCD}(10, 35) = 70 / 5 = 14$
+
+$\overline{10}\cdot\overline{35} = 70 / 10 \cdot 70 / 35 = 7 \cdot 2 = \text{LCM}(7, 2) = 14$
+
+$14 = 14$
+
+$\overline{10+35}=\overline{10}\cdot\overline{35}$
+
+\item Find the identities 0 and 1 for operations $+$ and $\cdot$, respectively. Justify your answer.
+
+$a + 0 = \text{GCD}(a, 0) = a$ 0 is divisible by all integers
+
+$a + 1 = \text{GCD}(a, 1) = 1$ 1 is only divisible by 1
+
+$a \cdot 0 = \text{LCM}(a, 0) = 0$ 0 multiplied by anything is 0
+
+$a \cdot 1 = \text{LCM}(a, 1) = a$ The GCD of any number, $a$ and one is $a$.
+
+\item Verify $a+\overline{a}=1$ and $a\cdot\overline{a}=0$ for all $a$ in $A$.
+
+$a + \overline{a} = a + 70 / a = \text{GCD}(a, 70 / a) = 1$ $70 / a$ will never be divisible by $a$ and either a or $\overline{a}$ will be prime.
+
+$a\cdot\overline{a}= \text{LCM}(a, 70 / a) = 70$ The LCM of $a$ and $70 / a$ will always be 70 as the $\frac{1}{a}$ must always be canceled out first.
+
+\end{enumerate}
+
+\item Assume that $B$ is a Boolean algebra with operations $+$ and $\cdot$. For all $a$ and $b$ in $B$, prove the absorption law $(a + b) \cdot a = a$.
+
+$(a + b) \cdot a = (a+T)\cdot(a+b)$ by identity law
+
+$(a+T)\cdot(a+b) = a \cdot (1+b)$ by distributive law
+
+$a \cdot (1+b) = a \cdot 1$ by universal bounds law
+
+$a \cdot 1 = a$ by identity law
+
+$(a + b) \cdot a = a$
+
+\end{enumerate}
+\end{raggedright}
+\end{document}

@@ -1,0 +1,129 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{allwithdot}
+\usepackage[bottom]{footmisc}
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 5
+	\\\large MATH2534 CRN:15708
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+Prove the following using definitions given in class.
+\begin{enumerate}
+
+%==============================================================%
+
+\item Prove by contradiction:
+\begin{enumerate}[label=(\alph*)]
+\item For all integers $n$, if $5n^2 − 7$ is odd, then $n$ is even.
+
+Let $\forall n \exists k \in\mathbb{Z}$
+
+Suppose for the sake of contradiction that it is not true that if $5n^2 − 7$ is odd, $n$ is even. Therefore if $5n^2-7$ is odd, $n$ is odd.
+
+\begin{equation*}
+n = 2k + 1 \implies 5n^2-7 = 5 (2k+1)^2 - 7 = 5(4k^2+4k+1) - 7 = 20k^2+20k-2
+\end{equation*}
+
+Every term in the expression $20k^2+20k-2$ is divisible by $2$. This implies that the entire expression is divisible by 2.
+
+$5n^2-7$ is even when $n$ is odd.
+
+Because $5n^2-7$ is even in all cases where $n$ is odd, the statement if $5n^2-7$ is odd, $n$ is odd is a contradiction. This implies that the original proposition, that if $5n^2 − 7$ is odd, $n$ is even is true.
+
+\item For all real numbers $x$ and $y$, if $x$ is any rational number and $y$ is any irrational number, then $3x−2y$ is irrational.
+
+Suppose for the sake of contradiction that the proposition is false. That is that there exists some rational number $x$ and some irrational number $y$ where $3x-2y$ is rational.
+
+Let $\exists x \in \mathbb{Q}, \exists y \in \mathbb{R\backslash Q}, \exists a,b,c,d \in \mathbb{Z}, b \neq 0, d\neq 0$
+
+\begin{align*}
+       x &= \frac{a}{b}
+\\ 3x - 2y &= \frac{c}{d}
+\\ -2y &= \frac{c}{d} - 3x = \frac{c}{d} - \frac{3a}{b} = \frac{bc}{bd} - \frac{3ad}{bd}
+\\ -2y &= \frac{bc - 3ad}{bd}
+\\   y &= \frac{bc - 3ad}{-2bd}
+\\   y &= \frac{3ad - bc}{2bd} 
+\end{align*}
+
+In the case that the sum of $x$ and $y$ is a rational number, $y$ must always be rational.
+
+Therefore, if $x$ is a rational number and $y$ is an irrational number, then $3x-2y$ must always be irrational. 
+\end{enumerate}
+
+\clearpage
+\item Prove by contrapositive:
+\begin{enumerate}[label=(\alph*)]
+\item For all integers $m$ and $n$, if $n^2 (m − 3)$ is even, then $m$ is odd or $n$ is even.
+
+Let $\forall m, n, j, k \in \mathbb{Z}$
+
+Suppose that $m$ is even and $n$ is odd.
+
+\begin{align*}
+   m &= 2j
+\\ n &= 2k+1
+\\ n^2 &= 4k^2 + 4k + 1
+\\ m - 3 &= 2j - 3
+\\ n^2 (m-3) &= (4k^2+4k+1)(2j-3) = 8 j k^2 - 12 k^2 + 8 j k - 12 k + 2 j - 3
+\end{align*}
+
+All except the terms of the expression $8 j k^2 - 12 k^2 + 8 j k - 12 k + 2 j - 3$ are even. This means that the sum of all the terms except the last term is even. As the last term is not even and is the only term that is odd, the entire expression $n^2(m-3)$ is odd.
+
+The case that $m$ is even and $n$ is odd resulting in $n^2(m-3)$ being odd is the contrapositive of the original statement. 
+
+Therefore if $n^2 (m − 3)$ is even, then $m$ is odd or $n$ is even.
+
+\item For all natural numbers $a$, $b$, and $c$, if $a \nmid 3b − c$, then $a \nmid b$ or $a \nmid c$. 
+
+Note that $a \nmid b$ means "$a$ does not divide $b$."
+
+Let $\forall a, b, c, x, y \in \mathbb{N}$
+
+Suppose that $a | b$ and $a | c$
+
+\begin{align*}
+   b &= ax
+\\ c &= ay
+\\ \frac{3b-c}{a} &= \frac{3ax-ay}{a} = \frac{(a)(3x-y)}{a} = 3x-y
+\end{align*}
+
+In the case that $a | b$ and $a | c$, then $a | 3b-c$. This statement is a valid contrapositive of the original statement.
+
+Therefore if $a \nmid 3b − c$, then $a \nmid b$ or $a \nmid c$.
+
+\end{enumerate}
+\end{enumerate}
+\end{raggedright}
+\end{document}

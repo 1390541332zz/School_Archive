@@ -1,0 +1,151 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{allwithdot}
+\usepackage[bottom]{footmisc}
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 10
+	\\\large MATH2534 CRN:15708
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+
+\begin{enumerate}
+
+\item Let $X = \{1, 2, 3, 4\}$ and $Y = \{a, b, c, d, e\}$. Define $f : X \mapsto Y$ as follows:
+\begin{equation*}
+f(1) = c,\;f(2) = a,\;f(3) = e,\;\text{and}\;f(4) = d
+\end{equation*}
+\begin{enumerate}[label=(\alph*)]
+\item Draw an arrow diagram and determine if $f$ is a function.
+\begin{center}
+\includegraphics[width=.30\textwidth, height=\textheight, keepaspectratio=true]{hw10q1a}
+\end{center}
+
+\item Find the domain, codomain and range of $f$.
+
+Domain: $X$, Codomain: $Y$, Range: $\{a, c, d, e\}$
+\item Let $A = \{b\}$, $B = \{a, d\}$, and $C = \{b, e\}$. The inverse image of a set $S$ is the set of all preimages of each element of $S$. Find the inverse images of $A$, $B$, and $C$.
+$f^{-1}(A)=\emptyset$, $f^{-1}(B)=\{2, 4\}$, $f^{-1}(C)=\{3\}$
+\end{enumerate}
+
+\item Let $f : \mathbb{Q} \mapsto \mathbb{Q}$ be given by $f(\frac{m}{n}) = m + n$ for all integers $m$ and $n$ with $n \neq 0$. Is $f$ well-defined? Why or why not?
+
+For $n = 0$, $f$ is undefined. $n = 0$ is outside of the defined boundaries of $f$. Therefore $f$ is well defined for all integers $m$ and $n$ with $n \neq 0$.
+
+\item Let $A = \{1, 2, 3, 4, 5\}$ and define $S : \mathcal{P}(A) \mapsto Z$ as follows: For all sets $X$ in $\mathcal{P}(A)$,
+
+\begin{equation*}
+S(X) = \begin{cases} 
+      1 & \text{if}\, A − X\, \text{has an even number of elements} \\
+      0 & \text{if}\, A − X\, \text{has an odd number of elements}
+   \end{cases}
+\end{equation*}
+
+\begin{enumerate}[label=(\alph*)]
+\item Find $S(\emptyset)$, $S(\{1, 4\})$, and $S(\{1, 2, 3, 4, 5\})$.
+
+$S(\emptyset) = 1$
+
+$S(\{1, 4\}) = 1$
+
+$S(\{1, 2, 3, 4, 5\}) = 0$
+\item Is $S$ a function? Why or why not?
+
+$S$ is a function as it always cleanly maps from any $X$ into some value $Z$.
+\end{enumerate}
+
+\clearpage
+
+\item Let $A = \{a_1, a_2, a_3\}$ and $\{0, 1\}^3 = \{0, 1\} \times \{0, 1\} \times \{0, 1\}$ be the set of all ordered 3-tuples of 0’s and 1’s. Define a function $f : P(A) \mapsto \{0, 1\}^3$ by $f(X) = (s_1, s_2, s_3)$ for $X \in P(A)$ where
+
+\begin{equation*}
+s_i = \begin{cases} 
+      1 & \text{if}\, a_i\in X \\
+      0 & \text{if}\, a_i\not\in X
+   \end{cases}
+\end{equation*}
+Draw an arrow diagram for $f$.
+
+\underline{Ran out of time. Did not complete.}
+
+\item Determine whether the relation given is one-to-one, onto. If not, explain why not.
+
+\begin{enumerate}[label=(\alph*)]
+\item Let $f : R \mapsto Z$ be defined by $f(x) = \ceil[\big]{x}$.
+
+It is onto as every rational number can be rounded up to some integer. 
+
+It is not one-to-one as multiple rational numbers can round up to an integer.
+
+\item Let $Y = \{0, 1, 2, 3, 4, 5\}$ where $f : Z^+\mapsto Y$ is defined by $f(x) = 5x \text{mod} 6$.
+
+It is onto as every positive integer $x$ mod 6 will map onto some value in $Y$. This is not changed what that integer $x$ is multiplied by 5.
+
+It is not one-to-one as every 1 out of 6 positive integers maps to each value in $Y$.
+
+\item Let $M : Z^+ \times Z^+ \mapsto Z^+$ be given by $M(m, n) = m + n$.
+
+It is onto as any addition between 2 positive integers will always result in another positive integer.
+
+It is not one-to-one as a variety of different integers can be added together to get the same output integer. i.e. $1+3 = 4, 2+2 = 4$
+
+\end{enumerate}
+
+\item Determine whether the following mapping is one-to-one, onto, bijective? Find an inverse function if it exists. Justify your answer.
+
+\begin{enumerate}[label=(\alph*)]
+\item Let $f : R \mapsto R$ be defined by $f(x) = −2x + 6$.
+
+The function is bijective as every input has 1 and only 1 output and vice versa. (1 Variable, Linear function)
+
+The inverse,  $f^{-1} : R \mapsto R$ is defined as $f^{-1}(x) = 3 - \frac{y}{2}$
+
+\item Let $f : R − \{3\} \mapsto R$ be defined by $f(x) = \frac{2x}{x − 3}$.
+
+This function is bijective as every value in $R-\{3\}$ maps directly and individually onto some value in $R$ and vice versa.
+
+The inverse, $f^{-1} : R − \{2\} \mapsto R$ is defined as $f^{-1}(x) = \frac{3y}{y-2}$.
+
+\end{enumerate}
+
+\item Prove the statement:
+
+If $f : X \mapsto Y$ and $g : Y \mapsto Z$, are both one-to-one functions, then $g \circ f : X \mapsto Z$ is one-to-one.
+
+\underline{Ran out of time. Did not complete.}
+\end{enumerate}
+\end{raggedright}
+\end{document}

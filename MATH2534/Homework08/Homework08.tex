@@ -1,0 +1,209 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{allwithdot}
+\usepackage[bottom]{footmisc}
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 8
+	\\\large MATH2534 CRN:15708
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+
+\begin{enumerate}
+\item Determine whether the following are partitions of $\mathbb{Z}$. Explain why or why not.
+\begin{enumerate}[label=(\alph*)]
+\item $\{A_0, A_1, A_2\}$, where
+\begin{align*}
+   A_0 &= \{n\in\mathbb{Z}\mid n = 3k   \, \text{for some}\, k\in\mathbb{Z}\}
+\\ A_1 &= \{n\in\mathbb{Z}\mid n = 3k+1 \, \text{for some}\, k\in\mathbb{Z}\}
+\\ A_2 &= \{n\in\mathbb{Z}\mid n = 3k+2 \, \text{for some}\, k\in\mathbb{Z}\}
+\end{align*}
+By the quotient remainder theorem, as $A_0, A_1, A_2$ have a common multiplier 3 and each have an offset $[0, 3)$, the sets are all unique. i.e. there is no intersection between $A_0, A_1,$ and $A_2$. This implies that they are all mutually disjoint.
+
+As $A_0$ contains all multiples of 3, the only other values are values that are not divisible by 3. As all integers that do not divide by 3 have a remainder (0,3), all other integers are covered by ${x \in A_0 \mid x+1}$ and ${x \in A_0 \mid x+2}$ which so happen to correspond to $A_1$ and $A_2$ respectively. As a result, $\mathbb{Z} = A_0\cup A_1\cup A_2$.
+
+Therefore, as the sets are all subsets of $\mathbb{Z}$ and mutually disjoint, they are partitions.
+
+\item $\{A_0, A_1, A_2, \cdots\}$, where $A_i = \{i, -i\}$ for non-negative integers $i$.
+
+Every $A_i$ is the set of the positive and negative variants of $i$ for all non negative integers $i$. In the same way that no integers in $i$ overlap, the negative variants never overlap other negative $i$s. Similarly no negative integer will ever overlap a positive integer. Therefore all $A_i$ are mutually disjoint.
+
+Similarly, as for all $A_i$, $i$ is consecutive for all non-negative integers, the set $\{A_0, A_1, A_2, \cdots\}$ contains and only contains all integers $\mathbb{Z}$ and $\mathbb{Z}$ is therefore a union of all $A_i$.
+
+Therefore, as $\{A_0, A_1, A_2, \cdots\}$ is mutually disjoint and $\mathbb{Z}$ is a union of all subsets $A_i$, they are partitions.
+
+
+\item $\{A_0, A_1, A_2\}$, where $A_0 = \{n\in\mathbb{Z}\mid n < -5\}$, $A_1 = \{n\in\mathbb{Z}\mid -5 < n < 0\}$, and $A_2 = \{n\in\mathbb{Z}\mid n \geq 1\}$.
+
+They cannot be partitions of $\mathbb{Z}$ as -5 is never included in any set and therefore $\mathbb{Z} \neq A_0\cup A_1\cup A_2$.
+
+\end{enumerate}
+
+\item For each $n\in I = {1,2,3,\cdots, 100}$, define $A_n = [-n, 2n]\cap\mathbb{Z}$ Evaluate
+\begin{equation}
+\bigcap_{n\in I} A_n\quad\text{and}\quad\bigcup_{n\in I} A_n
+\end{equation}
+
+\begin{description}
+\item[$\bigcap_{n\in I} A_n$] $= \{2, 4, 6, \cdots, 100\}$
+\item[$\bigcup_{n\in I} A_n$] $= \{x, y \in \mathbb{Z}\mid x=-n, y=2n\, \text{for all}\, n\in\mathbb{Z}\}\cup \{1,2,3,\cdots,100\}$
+\end{description}
+
+\clearpage
+
+\item Blacksburg’s music store conducts a customer survey to determine the preferences of its customers. 100 customers are asked to choose what type of music they like from the following categories:
+\begin{center}
+Pop ($P$), Jazz ($J$), Classical ($C$), and none of the above ($N$).
+\end{center}
+
+40 customers like Classical, 25 like all three, 13 like only Pop, 8 like Jazz and Classical, but not Pop, 85 like Jazz or Pop, (or possibly both). 10 do not like any of above, 12 like Jazz and Pop, but not classical. Let $n(X)= \text{the number of customers who like}\, X$.
+
+\begin{enumerate}[label=(\alph*)]
+\item How many like Classical but not Jazz? $40-8=32$
+\item How many like only Jazz? $85-13-8-12 = 52$
+\item How many like Pop and Classical, but not Jazz? $40-25-8=7$
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{Problems 4-6:} Let $A$, $B$ and $C$ be $\subseteq$ of a universal set $U$.
+
+\begin{enumerate}[resume]
+\item Prove the following.
+\begin{enumerate}[label=(\alph*)]
+\item (by double set inclusion) $A\cup(A\cap B) = A$.
+
+Let $\exists x \in U$. 
+
+
+Suppose that $\forall x$ if $x \in A$, then $x \in A\cup(A\cap B)$.
+
+$x\in A$
+
+In the case that $x\in A$, $x \in A\cup(A\cap B)$ as $x\in A$ or ($x\in A$ and $x\in B$). Therefore whenever $x\in A$, the whole case is true.
+
+Suppose that $\forall x$ if $x \in A\cup(A\cap B)$, then $x \in A$.
+
+$x\in A$ or $(x\in A$ and $x\in B)$ 
+
+$x$ is in $A$ or ($A$ and $B$). Therefore $x$ must be in $A$ as it is never true when $x$ is only in $B$ Therefore $x\in A$.
+
+Therefore $A\cup(A\cap B) = A$.
+
+\item (by Element method) If $B\subseteq C$, then $(A-C)\subseteq (A-B)$.
+
+Assume that some element $x$ satisfies $(A-C)$.
+
+$x\in A \land x\notin C$ by definition of difference.
+
+$x\in A \land x\notin B$ as $B \subseteq C$.
+
+Therefore $(A-C)\subseteq (A-B)$.
+
+\clearpage
+
+\item (by contradiction) If $C\subseteq B-A$, then $A\cap C=\emptyset$.
+
+Assume that $C\not\subseteq B-A$.
+
+$C\not\subseteq B-A = C\subseteq (B-A)^\mathcal{C}$
+
+$C\subseteq (B-A)^\mathcal{C} = C\subseteq (B\cap A^\mathcal{C})^\mathcal{C} = C\subseteq (B^\mathcal{C}\cup A)$
+
+$C\subseteq (B^\mathcal{C}\cup A)\implies C\subseteq A$
+
+$C\subseteq A\implies A\cap C \neq \emptyset$
+
+$A\cap C \neq \emptyset$ and $A\cap C = \emptyset$ are direct contradictions. As the assumption that $C\not\subseteq B-A$ is false, therefore the original supposition that if $C\subseteq B-A$, then $A\cap C=\emptyset$ must be true.
+
+\end{enumerate}
+
+
+\item Prove
+\begin{equation*}
+(A-B)-C=A-(B\cup C)
+\end{equation*}
+\begin{enumerate}[label=(\alph*)]
+\item by double set inclusion
+
+Let $\exists x \in U$
+
+Suppose that $\forall x$ if $x\in (A-B)-C$ then $x\in A-(B\cup C)$.
+
+$x\in A, x\notin B, x\notin C$ by set difference definition
+
+$x\in A, x\notin (B\cup C)$ by union definition
+
+$x\in A - (B\cup C)$ by set difference definition
+
+Suppose that $\forall x$ if $x\in A-(B\cup C)$ then $x\in (A-B)-C$.
+
+$x\in A, x\notin (B\cup C)$ by set difference definition
+
+$x\in A, x\notin B, x\notin C$ by union definition
+
+$x\in (A - B) - C$ by set difference definition
+
+Therefore as both sets are subsets of each other, then $\forall x$ if $x\in (A-B)-C$ then $x\in A-(B\cup C)$.
+
+\item by Set Identities.
+
+$(A-B)-C = (A\cap B^\mathcal{C})\cap C^\mathcal{C}$  by set difference law
+
+$(A\cap B^\mathcal{C})\cap C^\mathcal{C} = A\cap (B^\mathcal{C}\cap C^\mathcal{C})$ by associative law
+
+$A\cap (B^\mathcal{C}\cap C^\mathcal{C}) = A\cap (B\cup C)^\mathcal{C}$ by De Morgan's Laws
+
+$A - (B\cup C)$ by set difference law
+
+
+\end{enumerate}
+
+\item Use Set Identities to prove $[(A-B)-(B-C)]^\mathcal{C}=A^\mathcal{C}\cup B$
+
+$[(A-B)-(B-C)]^\mathcal{C}] = [(A\cap B^\mathcal{C})\cap(B\cap C^\mathcal{C})^\mathcal{C}]^\mathcal{C}$ by set difference definition
+
+$[(A\cap B^\mathcal{C})\cap(B\cap C^\mathcal{C})^\mathcal{C}]^\mathcal{C} = [(A\cap B^\mathcal{C})^\mathcal{C}\cup(B\cap C^\mathcal{C})]$ by De Morgan's law
+
+$[(A\cap B^\mathcal{C})^\mathcal{C}\cup(B\cap C^\mathcal{C})] = [(A^\mathcal{C}\cup B)\cup(B\cap C^\mathcal{C})]$ by De Morgan's law
+
+$[(A^\mathcal{C}\cup B)\cup(B\cap C^\mathcal{C})] = [A^\mathcal{C}\cup B\cup(B\cap C^\mathcal{C})]$ by associative law
+
+$[A^\mathcal{C}\cup B\cup(B\cap C^\mathcal{C})] = [A^\mathcal{C}\cup B]$ by absorption law
+
+Therefore $[(A-B)-(B-C)]^\mathcal{C}=A^\mathcal{C}\cup B$.
+
+\end{enumerate}
+
+\end{raggedright}
+\end{document}
