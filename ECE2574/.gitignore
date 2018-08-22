@@ -1,0 +1,7 @@
+build/
+test/generated/
+*.tar
+*.zip
+*.o
+.gdb_history*
+vgcore.*

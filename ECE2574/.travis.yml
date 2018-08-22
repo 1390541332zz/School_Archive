@@ -1,0 +1,37 @@
+language: cpp
+branches:
+  except:
+    - /pr\/.*/
+matrix:
+  include:
+  - env: TEST_SUITE=catch SANFLAG="" SANLFLAG=""
+  - env: TEST_SUITE=valgrind SANFLAG="" SANLFLAG=""
+
+addons:
+  apt:
+    sources: &sources
+      - ubuntu-toolchain-r-test
+    packages:
+      - valgrind
+      - gcc-7
+      - g++-7
+      - binutils
+
+before_install:
+  - sudo apt-get update
+
+install:
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+  - export CC=gcc
+  - export CXX=g++
+  - gcc --version
+  - git clone https://github.com/philsquared/Catch.git ${TRAVIS_BUILD_DIR}/deps/Catch
+before_script:
+  - cd ${TRAVIS_BUILD_DIR}/Project0
+  - mkdir build
+script:
+  - make ${TEST_SUITE} CATCH_DIR=${TRAVIS_BUILD_DIR}/deps/Catch/include SANFLAG="${SANFLAG}" SANLFLAG="${SANLFLAG}"
+after_success:
+  - #MERGE
+after_failure:
+  - #logging
