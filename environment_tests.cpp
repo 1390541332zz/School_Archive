@@ -9,16 +9,24 @@ TEST_CASE( "Test default constructor", "[environment]" ) {
 
   Environment env;
 
-  REQUIRE(env.is_known(Atom("pi")));
-  REQUIRE(env.is_exp(Atom("pi")));
+  std::vector<std::string> constants = {"pi", "e"};
+  std::vector<std::string> functions = {"+", "-", "*", "/"};
 
+  for (auto x : constants) {  
+      CAPTURE(x);
+      REQUIRE(env.is_known(Atom(x)));
+      REQUIRE(env.is_exp(Atom(x)));
+  }
+ 
   REQUIRE(!env.is_known(Atom("hi")));
   REQUIRE(!env.is_exp(Atom("hi")));
 
-  REQUIRE(env.is_proc(Atom("+")));
-  REQUIRE(env.is_proc(Atom("-")));
-  REQUIRE(env.is_proc(Atom("*")));
-  REQUIRE(env.is_proc(Atom("/")));
+  for (auto x : functions) {  
+      CAPTURE(x);
+      REQUIRE(env.is_known(Atom(x)));
+      REQUIRE(env.is_proc(Atom(x)));
+  }
+  
   REQUIRE(!env.is_proc(Atom("op")));
 }
 

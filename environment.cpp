@@ -20,6 +20,9 @@ Each of the functions below have the signature that corresponds to the
 typedef'd Procedure function pointer.
 **********************************************************************/
 
+double const PI = std::atan2(0, -1);
+double const EXP = std::exp(1);
+
 // the default procedure always returns an expresison of type None
 Expression default_proc(const std::vector<Expression> & args){
   args.size(); // make compiler happy we used this parameter
@@ -104,9 +107,6 @@ Expression div(const std::vector<Expression> & args){
   return Expression(result);
 }
 
-const double PI = std::atan2(0, -1);
-const double EXP = std::exp(1);
-
 Environment::Environment(){
 
   reset();
@@ -184,6 +184,9 @@ void Environment::reset(){
   
   // Built-In value of pi
   envmap.emplace("pi", EnvResult(ExpressionType, Expression(PI)));
+
+  // Built-In value of pi
+  envmap.emplace("e", EnvResult(ExpressionType, Expression(EXP)));
 
   // Procedure: add;
   envmap.emplace("+", EnvResult(ProcedureType, add)); 
