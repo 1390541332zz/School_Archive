@@ -42,10 +42,13 @@ public:
   /// predicate to determine if an Atom is of type None
   bool isNone() const noexcept;
 
+  /// predicate to determine if an Atom is of type Number or Complex
+  bool isNum() const  noexcept;
+
   /// predicate to determine if an Atom is of type Number
   bool isNumber() const  noexcept;
 
-  /// predicate to determine if an Atom is of type Number and Complex
+  /// predicate to determine if an Atom is of type Complex
   bool isComplex() const  noexcept;
 
   /// predicate to determine if an Atom is of type Symbol
@@ -66,7 +69,7 @@ public:
 private:
 
   // internal enum of known types
-  enum Type {NoneKind, NumberKind, SymbolKind};
+  enum Type {NoneKind, ComplexKind, NumberKind, SymbolKind};
 
   // track the type
   Type m_type;

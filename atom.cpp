@@ -7,11 +7,11 @@
 
 Atom::Atom(): m_type(NoneKind) {}
 
-Atom::Atom(std::complex<double> value){
+Atom::Atom(std::complex<double> value) {
   setNumber(value);
 }
 
-Atom::Atom(double value){
+Atom::Atom(double value) {
   setNumber(value);
 }
 
@@ -57,6 +57,9 @@ Atom & Atom::operator=(const Atom & x){
     else if(x.m_type == NumberKind){
       setNumber(x.numberValue);
     }
+    else if(x.m_type == ComplexKind){
+      setNumber(x.numberValue);
+    }
     else if(x.m_type == SymbolKind){
       setSymbol(x.stringValue);
     }
@@ -77,11 +80,11 @@ bool Atom::isNone() const noexcept{
 }
 
 bool Atom::isNumber() const noexcept{
-  return m_type == NumberKind;
+  return (m_type == NumberKind);
 }
 
 bool Atom::isComplex() const noexcept{
-  return (numberValue.imag() != 0);
+  return (m_type == ComplexKind) || (numberValue.imag() != 0);
 }
 
 bool Atom::isSymbol() const noexcept{
