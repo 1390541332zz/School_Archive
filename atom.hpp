@@ -4,6 +4,7 @@ Defines the Atom type and associated functions.
 #ifndef ATOM_HPP
 #define ATOM_HPP
 
+#include <complex>
 #include "token.hpp"
 
 /*! \class Atom
@@ -19,6 +20,9 @@ public:
 
   /// Construct an Atom of type Number with value
   Atom(double value);
+
+  /// Construct an Atom of type Number with value
+  Atom(std::complex<double> value);
 
   /// Construct an Atom of type Symbol named value
   Atom(const std::string & value);
@@ -44,8 +48,11 @@ public:
   /// predicate to determine if an Atom is of type Symbol
   bool isSymbol() const noexcept;
 
-  /// value of Atom as a number, return 0 if not a Number
-  double asNumber() const noexcept;
+  /// value of Atom as a real number, return 0 if not a Number
+  double asReal() const noexcept;
+  
+  /// value of Atom as a complex number, return 0 if not a Number
+  std::complex<double> asNumber() const noexcept;
 
   /// value of Atom as a number, returns empty-string if not a Symbol
   std::string asSymbol() const noexcept;
@@ -64,13 +71,16 @@ private:
   // values for the known types. Note the use of a union requires care
   // when setting non POD values (see setSymbol)
   union {
-    double numberValue;
+    std::complex<double> numberValue;
     std::string stringValue;
   };
 
   // helper to set type and value of Number
-  void setNumber(double value);
+  void setNumber(std::complex<double> value);
 
+  // helper to set type and value of Number
+  void setNumber(double value);
+  
   // helper to set type and value of Symbol
   void setSymbol(const std::string & value);
 };

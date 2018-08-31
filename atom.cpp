@@ -7,8 +7,11 @@
 
 Atom::Atom(): m_type(NoneKind) {}
 
-Atom::Atom(double value){
+Atom::Atom(std::complex<double> value){
+  setNumber(value);
+}
 
+Atom::Atom(double value){
   setNumber(value);
 }
 
@@ -81,11 +84,14 @@ bool Atom::isSymbol() const noexcept{
   return m_type == SymbolKind;
 }  
 
-
-void Atom::setNumber(double value){
-
+void Atom::setNumber(std::complex<double> value){
   m_type = NumberKind;
   numberValue = value;
+}
+
+void Atom::setNumber(double value){
+  m_type = NumberKind;
+  numberValue = std::complex<double>(value, 0);
 }
 
 void Atom::setSymbol(const std::string & value){
@@ -101,11 +107,13 @@ void Atom::setSymbol(const std::string & value){
   new (&stringValue) std::string(value);
 }
 
-double Atom::asNumber() const noexcept{
-
-  return (m_type == NumberKind) ? numberValue : 0.0;  
+std::complex<double> Atom::asNumber() const noexcept{
+  return (m_type == NumberKind) ? numberValue : std::complex<double>(0.0, 0.0);  
 }
 
+double Atom::asReal() const noexcept {
+  return (m_type == NumberKind) ? numberValue.real() : 0.0;  
+}
 
 std::string Atom::asSymbol() const noexcept{
 
@@ -129,11 +137,20 @@ bool Atom::operator==(const Atom & right) const noexcept{
   case NumberKind:
     {
       if(right.m_type != NumberKind) return false;
-      double dleft = numberValue;
-      double dright = right.numberValue;
-      double diff = fabs(dleft - dright);
-      if(std::isnan(diff) ||
-	 (diff > std::numeric_limits<double>::epsilon())) return false;
+      
+      double lr = numberValue.real();
+      double rr = right.numberValue.real();
+      double dr = std::fabs(lr - rr);
+
+      double li = numberValue.imag();
+      double ri = right.numberValue.imag();
+      double di = std::fabs(li - ri);
+
+      if(  std::isnan(dr) 
+        || std::isnan(di) 
+	    || (dr > std::numeric_limits<double>::epsilon())
+	    || (di > std::numeric_limits<double>::epsilon())
+        ) return false;
     }
     break;
   case SymbolKind:

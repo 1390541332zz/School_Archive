@@ -1,5 +1,6 @@
 #include <cassert>
 #include <cmath>
+#include <complex>
 
 #include "environment.hpp"
 #include "semantic_error.hpp"
@@ -18,8 +19,8 @@ Each of the functions below have the signature that corresponds to the
 typedef'd Procedure function pointer.
 **********************************************************************/
 
-double const PI = std::atan2(0, -1);
-double const EXP = std::exp(1);
+std::complex<double> const PI(std::atan2(0, -1), 0);
+std::complex<double> const EXP(std::exp(1), 0);
 
 // the default procedure always returns an expresison of type None
 Expression default_proc(const std::vector<Expression> & args){
@@ -30,7 +31,7 @@ Expression default_proc(const std::vector<Expression> & args){
 Expression add(const std::vector<Expression> & args){
 
   // check all aruments are numbers, while adding
-  double result = 0;
+  std::complex<double> result(0, 0);
   for( auto & a :args) {
     if(!a.isHeadNumber()) {
       throw SemanticError("Error in call to add, argument not a number");
@@ -43,7 +44,7 @@ Expression add(const std::vector<Expression> & args){
 
 Expression mul(const std::vector<Expression> & args) { 
   // check all aruments are numbers, while multiplying
-  double result = 1;
+  std::complex<double> result(1, 0);
   for( auto & a :args) {
     if (!a.isHeadNumber()) {
       throw SemanticError("Error in call to mul, argument not a number");
@@ -56,7 +57,7 @@ Expression mul(const std::vector<Expression> & args) {
 
 Expression subneg(const std::vector<Expression> & args){
 
-  double result = 0;
+  std::complex<double> result(0, 0);
 
   // preconditions
   if ( nargs_equal(args,1) ) {
@@ -86,7 +87,7 @@ Expression div(const std::vector<Expression> & args) {
     throw SemanticError("Error in call to division: invalid argument.");
   }
   
-  double result = args[0].head().asNumber() / args[1].head().asNumber();
+  std::complex<double> result = args[0].head().asNumber() / args[1].head().asNumber();
   return Expression(result);
 }
 
@@ -98,7 +99,7 @@ Expression pow(const std::vector<Expression> & args){
     throw SemanticError("Error in call to power: invalid argument.");
   }
   
-  double result = std::pow(args[0].head().asNumber(), args[1].head().asNumber());
+  std::complex<double> result = std::pow(args[0].head().asNumber(), args[1].head().asNumber());
   return Expression(result);
 }
 
@@ -106,11 +107,11 @@ Expression sqrt(const std::vector<Expression> & args){
   if (!nargs_equal(args,1)) {
     throw SemanticError("Error in call to square root: invalid number of arguments.");
   }
-  if (!(args[0].isHeadNumber()) || (args[0].head().asNumber() < 0)) {
+  if (!(args[0].isHeadNumber())) {
     throw SemanticError("Error in call to square root: invalid argument.");
   }
   
-  double result = std::sqrt(args[0].head().asNumber());
+  std::complex<double> result = std::sqrt(args[0].head().asNumber());
   return Expression(result);
 }
 
@@ -118,11 +119,11 @@ Expression natlog(const std::vector<Expression> & args){
   if (!nargs_equal(args,1)) {
     throw SemanticError("Error in call to natural log: invalid number of arguments.");
   }
-  if (!(args[0].isHeadNumber()) || (args[0].head().asNumber() <= 0)) {
+  if (!(args[0].isHeadNumber()) || (std::abs(args[0].head().asNumber()) == 0)) {
     throw SemanticError("Error in call to natural log: invalid argument.");
   }
   
-  double result = std::log(args[0].head().asNumber());
+  std::complex<double> result = std::log(args[0].head().asNumber());
   return Expression(result);
 }
 
@@ -134,7 +135,7 @@ Expression sin(const std::vector<Expression> & args){
     throw SemanticError("Error in call to sin: invalid argument.");
   }
   
-  double result = std::sin(args[0].head().asNumber());
+  std::complex<double> result = std::sin(args[0].head().asNumber());
   return Expression(result);
 }
 
@@ -146,7 +147,7 @@ Expression cos(const std::vector<Expression> & args){
     throw SemanticError("Error in call to cos: invalid argument.");
   }
   
-  double result = std::cos(args[0].head().asNumber());
+  std::complex<double> result = std::cos(args[0].head().asNumber());
   return Expression(result);
 }
 
@@ -158,7 +159,7 @@ Expression tan(const std::vector<Expression> & args){
     throw SemanticError("Error in call to tan: invalid argument.");
   }
   
-  double result = std::tan(args[0].head().asNumber());
+  std::complex<double> result = std::tan(args[0].head().asNumber());
   return Expression(result);
 }
 
