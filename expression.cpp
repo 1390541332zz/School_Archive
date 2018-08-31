@@ -45,6 +45,10 @@ const Atom & Expression::head() const{
   return m_head;
 }
 
+bool Expression::isHeadComplex() const noexcept{
+  return m_head.isComplex();
+}
+
 bool Expression::isHeadNumber() const noexcept{
   return m_head.isNumber();
 }

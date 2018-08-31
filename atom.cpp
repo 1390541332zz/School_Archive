@@ -80,6 +80,10 @@ bool Atom::isNumber() const noexcept{
   return m_type == NumberKind;
 }
 
+bool Atom::isComplex() const noexcept{
+  return (numberValue.imag() != 0);
+}
+
 bool Atom::isSymbol() const noexcept{
   return m_type == SymbolKind;
 }  
@@ -107,11 +111,11 @@ void Atom::setSymbol(const std::string & value){
   new (&stringValue) std::string(value);
 }
 
-std::complex<double> Atom::asNumber() const noexcept{
+std::complex<double> Atom::asComplex() const noexcept{
   return (m_type == NumberKind) ? numberValue : std::complex<double>(0.0, 0.0);  
 }
 
-double Atom::asReal() const noexcept {
+double Atom::asNumber() const noexcept {
   return (m_type == NumberKind) ? numberValue.real() : 0.0;  
 }
 

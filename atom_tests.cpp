@@ -97,7 +97,7 @@ TEST_CASE( "Test assignment", "[atom]" ) {
     Atom b;
     b = a;
     REQUIRE(b.isNumber());
-    REQUIRE(b.asReal() == 1.0);
+    REQUIRE(b.asNumber() == 1.0);
   }
 
   {
@@ -106,7 +106,7 @@ TEST_CASE( "Test assignment", "[atom]" ) {
     Atom b(2.0);
     b = a;
     REQUIRE(b.isNumber());
-    REQUIRE(b.asReal() == 1.0);
+    REQUIRE(b.asNumber() == 1.0);
   }
 
   {

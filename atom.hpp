@@ -45,15 +45,18 @@ public:
   /// predicate to determine if an Atom is of type Number
   bool isNumber() const  noexcept;
 
+  /// predicate to determine if an Atom is of type Number and Complex
+  bool isComplex() const  noexcept;
+
   /// predicate to determine if an Atom is of type Symbol
   bool isSymbol() const noexcept;
 
   /// value of Atom as a real number, return 0 if not a Number
-  double asReal() const noexcept;
+  double asNumber() const noexcept;
   
   /// value of Atom as a complex number, return 0 if not a Number
-  std::complex<double> asNumber() const noexcept;
-
+  std::complex<double> asComplex() const noexcept;
+  
   /// value of Atom as a number, returns empty-string if not a Symbol
   std::string asSymbol() const noexcept;
 
