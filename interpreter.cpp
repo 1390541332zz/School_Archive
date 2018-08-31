@@ -17,7 +17,7 @@ bool Interpreter::parseStream(std::istream & expression) noexcept{
   ast = parse(tokens);
 
   return (ast != Expression());
-};
+}
 				     
 
 Expression Interpreter::evaluate(){

@@ -86,4 +86,4 @@ Expression parse(const TokenSequenceType &tokens) noexcept {
   }
 
   return Expression();
-};
+}

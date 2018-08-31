@@ -24,7 +24,7 @@ typedef'd Procedure function pointer.
 Expression default_proc(const std::vector<Expression> & args){
   args.size(); // make compiler happy we used this parameter
   return Expression();
-};
+}
 
 Expression add(const std::vector<Expression> & args){
 
@@ -40,7 +40,7 @@ Expression add(const std::vector<Expression> & args){
   }
 
   return Expression(result);
-};
+}
 
 Expression mul(const std::vector<Expression> & args){
  
@@ -56,7 +56,7 @@ Expression mul(const std::vector<Expression> & args){
   }
 
   return Expression(result);
-};
+}
 
 Expression subneg(const std::vector<Expression> & args){
 
@@ -84,7 +84,7 @@ Expression subneg(const std::vector<Expression> & args){
   }
 
   return Expression(result);
-};
+}
 
 Expression div(const std::vector<Expression> & args){
 
@@ -102,7 +102,7 @@ Expression div(const std::vector<Expression> & args){
     throw SemanticError("Error in call to division: invalid number of arguments.");
   }
   return Expression(result);
-};
+}
 
 const double PI = std::atan2(0, -1);
 const double EXP = std::exp(1);

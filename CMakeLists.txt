@@ -77,7 +77,7 @@ endif()
 # optional strict mode
 if(UNIX AND STRICT)
   message("-- Enabling strict compilation mode")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare -Wno-deprecated")
 endif()
 
 # build interpreter library
