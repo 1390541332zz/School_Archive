@@ -179,10 +179,11 @@ bool operator!=(const Atom & left, const Atom & right) noexcept{
 
 std::ostream & operator<<(std::ostream & out, const Atom & a){
 
-  if(a.isNumber()){
+  if (a.isComplex()) {
+      out << a.asComplex().real() << ',' << a.asComplex().imag();
+  } else if(a.isNumber()) {
     out << a.asNumber();
-  }
-  if(a.isSymbol()){
+  } else if(a.isSymbol()) {
     out << a.asSymbol();
   }
   return out;
