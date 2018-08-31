@@ -114,6 +114,18 @@ Expression sqrt(const std::vector<Expression> & args){
   return Expression(result);
 }
 
+Expression natlog(const std::vector<Expression> & args){
+  if (!nargs_equal(args,1)) {
+    throw SemanticError("Error in call to natural log: invalid number of arguments.");
+  }
+  if (!(args[0].isHeadNumber()) || !(args[0].head().asNumber() < 0)) {
+    throw SemanticError("Error in call to natural log: invalid argument.");
+  }
+  
+  double result = std::log(args[0].head().asNumber());
+  return Expression(result);
+}
+
 Expression sin(const std::vector<Expression> & args){
   if (!nargs_equal(args,1)) {
     throw SemanticError("Error in call to sin: invalid number of arguments.");
@@ -249,6 +261,9 @@ void Environment::reset(){
   
   // Procedure: square root;
   envmap.emplace("sqrt", EnvResult(ProcedureType, sqrt)); 
+  
+  // Procedure: natura log;
+  envmap.emplace("ln", EnvResult(ProcedureType, natlog)); 
   
   // Procedure: sin;
   envmap.emplace("sin", EnvResult(ProcedureType, sin)); 
