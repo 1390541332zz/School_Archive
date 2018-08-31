@@ -1,5 +1,3 @@
-#include "environment.hpp"
-
 #include <cassert>
 #include <cmath>
 
@@ -33,29 +31,24 @@ Expression add(const std::vector<Expression> & args){
 
   // check all aruments are numbers, while adding
   double result = 0;
-  for( auto & a :args){
-    if(a.isHeadNumber()){
-      result += a.head().asNumber();      
-    }
-    else{
+  for( auto & a :args) {
+    if(!a.isHeadNumber()) {
       throw SemanticError("Error in call to add, argument not a number");
     }
+    result += a.head().asNumber();
   }
 
   return Expression(result);
 }
 
-Expression mul(const std::vector<Expression> & args){
- 
+Expression mul(const std::vector<Expression> & args) { 
   // check all aruments are numbers, while multiplying
   double result = 1;
-  for( auto & a :args){
-    if(a.isHeadNumber()){
-      result *= a.head().asNumber();      
-    }
-    else{
+  for( auto & a :args) {
+    if (!a.isHeadNumber()) {
       throw SemanticError("Error in call to mul, argument not a number");
     }
+    result *= a.head().asNumber();
   }
 
   return Expression(result);
@@ -66,44 +59,46 @@ Expression subneg(const std::vector<Expression> & args){
   double result = 0;
 
   // preconditions
-  if(nargs_equal(args,1)){
-    if(args[0].isHeadNumber()){
-      result = -args[0].head().asNumber();
-    }
-    else{
+  if ( nargs_equal(args,1) ) {
+    if (!args[0].isHeadNumber()) {
       throw SemanticError("Error in call to negate: invalid argument.");
     }
+    result = -args[0].head().asNumber();
   }
-  else if(nargs_equal(args,2)){
-    if( (args[0].isHeadNumber()) && (args[1].isHeadNumber()) ){
-      result = args[0].head().asNumber() - args[1].head().asNumber();
-    }
-    else{      
+  else if (nargs_equal(args,2)){
+    if( !(args[0].isHeadNumber()) || !(args[1].isHeadNumber()) ){
       throw SemanticError("Error in call to subtraction: invalid argument.");
     }
+    result = args[0].head().asNumber() - args[1].head().asNumber();
   }
-  else{
+  else {
     throw SemanticError("Error in call to subtraction or negation: invalid number of arguments.");
   }
 
   return Expression(result);
 }
 
-Expression div(const std::vector<Expression> & args){
-
-  double result = 0;  
-
-  if(nargs_equal(args,2)){
-    if( (args[0].isHeadNumber()) && (args[1].isHeadNumber()) ){
-      result = args[0].head().asNumber() / args[1].head().asNumber();
-    }
-    else{      
-      throw SemanticError("Error in call to division: invalid argument.");
-    }
-  }
-  else{
+Expression div(const std::vector<Expression> & args) {
+  if (!nargs_equal(args,2)) {
     throw SemanticError("Error in call to division: invalid number of arguments.");
   }
+  if (!(args[0].isHeadNumber()) || !(args[1].isHeadNumber())) {
+    throw SemanticError("Error in call to division: invalid argument.");
+  }
+  
+  double result = args[0].head().asNumber() / args[1].head().asNumber();
+  return Expression(result);
+}
+
+Expression sqrt(const std::vector<Expression> & args){
+  if (!nargs_equal(args,1)) {
+    throw SemanticError("Error in call to square root: invalid number of arguments.");
+  }
+  if (!(args[0].isHeadNumber()) || !(args[0].head().asNumber() < 0)) {
+    throw SemanticError("Error in call to square root: invalid argument.");
+  }
+  
+  double result = std::sqrt(args[0].head().asNumber());
   return Expression(result);
 }
 
@@ -199,4 +194,7 @@ void Environment::reset(){
 
   // Procedure: div;
   envmap.emplace("/", EnvResult(ProcedureType, div)); 
+  
+  // Procedure: square root;
+  envmap.emplace("sqrt", EnvResult(ProcedureType, sqrt)); 
 }

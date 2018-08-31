@@ -10,7 +10,7 @@ TEST_CASE( "Test default constructor", "[environment]" ) {
   Environment env;
 
   std::vector<std::string> constants = {"pi", "e"};
-  std::vector<std::string> functions = {"+", "-", "*", "/"};
+  std::vector<std::string> functions = {"+", "-", "*", "/", "sqrt"};
 
   for (auto x : constants) {  
       CAPTURE(x);
