@@ -306,7 +306,7 @@ void Environment::reset(){
   envmap.emplace("e", EnvResult(ExpressionType, Expression(EXP)));
 
   // Built-In value of imaginary i
-  envmap.emplace("i", EnvResult(ExpressionType, Expression(IMAG)));
+  envmap.emplace("I", EnvResult(ExpressionType, Expression(IMAG)));
 
   // Procedure: add;
   envmap.emplace("+", EnvResult(ProcedureType, add)); 
