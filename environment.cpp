@@ -21,6 +21,7 @@ typedef'd Procedure function pointer.
 
 std::complex<double> const PI(std::atan2(0, -1), 0);
 std::complex<double> const EXP(std::exp(1), 0);
+std::complex<double> const IMAG(0, 1);
 
 // the default procedure always returns an expresison of type None
 Expression default_proc(const std::vector<Expression> & args){
@@ -242,8 +243,11 @@ void Environment::reset(){
   // Built-In value of pi
   envmap.emplace("pi", EnvResult(ExpressionType, Expression(PI)));
 
-  // Built-In value of pi
+  // Built-In value of exp
   envmap.emplace("e", EnvResult(ExpressionType, Expression(EXP)));
+
+  // Built-In value of imaginary i
+  envmap.emplace("i", EnvResult(ExpressionType, Expression(IMAG)));
 
   // Procedure: add;
   envmap.emplace("+", EnvResult(ProcedureType, add)); 

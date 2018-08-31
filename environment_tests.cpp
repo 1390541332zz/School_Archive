@@ -11,7 +11,7 @@ TEST_CASE( "Test default constructor", "[environment]" ) {
 
   Environment env;
 
-  std::vector<std::string> constants = {"pi", "e"};
+  std::vector<std::string> constants = {"pi", "e", "i"};
   std::vector<std::string> functions = {
       "+", "-", "*", "/", "^", "sqrt", "ln", "sin", "cos", "tan"
   };
