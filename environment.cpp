@@ -106,7 +106,7 @@ Expression sqrt(const std::vector<Expression> & args){
   if (!nargs_equal(args,1)) {
     throw SemanticError("Error in call to square root: invalid number of arguments.");
   }
-  if (!(args[0].isHeadNumber()) || !(args[0].head().asNumber() < 0)) {
+  if (!(args[0].isHeadNumber()) || (args[0].head().asNumber() < 0)) {
     throw SemanticError("Error in call to square root: invalid argument.");
   }
   
@@ -118,7 +118,7 @@ Expression natlog(const std::vector<Expression> & args){
   if (!nargs_equal(args,1)) {
     throw SemanticError("Error in call to natural log: invalid number of arguments.");
   }
-  if (!(args[0].isHeadNumber()) || !(args[0].head().asNumber() < 0)) {
+  if (!(args[0].isHeadNumber()) || (args[0].head().asNumber() <= 0)) {
     throw SemanticError("Error in call to natural log: invalid argument.");
   }
   
@@ -272,5 +272,5 @@ void Environment::reset(){
   envmap.emplace("cos", EnvResult(ProcedureType, cos)); 
   
   // Procedure: tan;
-  envmap.emplace("tan", EnvResult(ProcedureType, cos)); 
+  envmap.emplace("tan", EnvResult(ProcedureType, tan)); 
 }
