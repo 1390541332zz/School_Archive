@@ -13,7 +13,7 @@ TEST_CASE( "Test default constructor", "[environment]" ) {
 
   std::vector<std::string> constants = {"pi", "e"};
   std::vector<std::string> functions = {
-      "+", "-", "*", "/", "^", "sqrt", "sin", "cos"
+      "+", "-", "*", "/", "^", "sqrt", "sin", "cos", "tan"
   };
 
   for (auto x : constants) {  

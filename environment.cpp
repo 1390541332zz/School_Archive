@@ -138,6 +138,18 @@ Expression cos(const std::vector<Expression> & args){
   return Expression(result);
 }
 
+Expression tan(const std::vector<Expression> & args){
+  if (!nargs_equal(args,1)) {
+    throw SemanticError("Error in call to tan: invalid number of arguments.");
+  }
+  if (!(args[0].isHeadNumber())) {
+    throw SemanticError("Error in call to tan: invalid argument.");
+  }
+  
+  double result = std::tan(args[0].head().asNumber());
+  return Expression(result);
+}
+
 
 Environment::Environment(){
 
@@ -243,4 +255,7 @@ void Environment::reset(){
   
   // Procedure: cos;
   envmap.emplace("cos", EnvResult(ProcedureType, cos)); 
+  
+  // Procedure: tan;
+  envmap.emplace("tan", EnvResult(ProcedureType, cos)); 
 }
