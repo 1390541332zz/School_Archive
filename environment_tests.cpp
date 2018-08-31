@@ -5,12 +5,14 @@
 
 #include <cmath>
 
+//enum test_state { SUCCEED, FAIL };
+
 TEST_CASE( "Test default constructor", "[environment]" ) {
 
   Environment env;
 
   std::vector<std::string> constants = {"pi", "e"};
-  std::vector<std::string> functions = {"+", "-", "*", "/", "sqrt"};
+  std::vector<std::string> functions = {"+", "-", "*", "/", "^", "sqrt"};
 
   for (auto x : constants) {  
       CAPTURE(x);
@@ -101,3 +103,43 @@ TEST_CASE( "Test semeantic errors", "[environment]" ) {
   }
 }
 
+
+//TEST_CASE( "Test Default Functions", "[environment]" ) {
+//
+//  Environment env;
+//
+//  std::vector<std::pair<enum test_state, std::vector<Atom>> test_cases = {
+//  // test state,           op,        x,        y,     result,      test case 
+//    { SUCCEED, { Atom(   "+"), Atom( 3), Atom(  5), Atom(  8) }}, // Add Succeed
+//    {    FAIL, { Atom(   "+"), Atom( 3), Atom(   ),           }}, // Add Invalid Arg
+//    { SUCCEED, { Atom(   "-"), Atom( 5), Atom(  3), Atom(  2) }}, // Sub Succeed 
+//    { SUCCESS, { Atom(   "-"), Atom( 4),            Atom( -4) }}, // Neg Succeed
+//    {    FAIL, { Atom(   "-"), Atom( 3), Atom(   ),           }}, // Sub Invalid Arg
+//    {    FAIL, { Atom(   "-"), Atom( 3),                      }}, // Sub Invalid Arg
+//    { SUCCEED, { Atom(   "*"), Atom( 2), Atom(  5), Atom( 10) }}, // Mul Succeed
+//    {    FAIL, { Atom(   "*"), Atom( 3), Atom("q"),           }}, // Mul Invalid Arg
+//    {    FAIL, { Atom(   "*"), Atom( 3),                      }}, // Mul Invalid # of Arg
+//    { SUCCEED, { Atom(   "/"), Atom( 1), Atom(  1), Atom(  2) }}, // Div Succeed
+//    {    FAIL, { Atom(   "/"), Atom( 3), Atom(  0),           }}, // Div Invalid Arg
+//    {    FAIL, { Atom(   "/"), Atom( 3),                      }}, // Div Invalid # of Arg
+//    { SUCCESS, { Atom("sqrt"), Atom( 4),            Atom(  2) }}, // Sqrt Succeed
+//    { SUCCESS, { Atom("sqrt"), Atom(-1),                      }}, // Sqrt Negative
+//    {    FAIL, { Atom("sqrt"), Atom( 4), Atom(  2)            }}, // Sqrt Invalid $ of Arg
+//  };
+//
+//  for (auto & t : test_cases) {
+//    if (t.first == SUCCEED) {
+//        switch (t.second.size())
+//          case 3:
+//            env.add_exp();
+//            break;
+//          case 4:
+//            
+//            break;
+//          default:
+//            break;
+//    } else if (t.first == FAIL) {
+//        
+//    }
+//  }
+//}
