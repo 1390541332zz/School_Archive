@@ -114,6 +114,19 @@ Expression sqrt(const std::vector<Expression> & args){
   return Expression(result);
 }
 
+Expression sin(const std::vector<Expression> & args){
+  if (!nargs_equal(args,1)) {
+    throw SemanticError("Error in call to sin: invalid number of arguments.");
+  }
+  if (!(args[0].isHeadNumber())) {
+    throw SemanticError("Error in call to sin: invalid argument.");
+  }
+  
+  double result = std::sin(args[0].head().asNumber());
+  return Expression(result);
+}
+
+
 Environment::Environment(){
 
   reset();
@@ -212,4 +225,7 @@ void Environment::reset(){
   
   // Procedure: square root;
   envmap.emplace("sqrt", EnvResult(ProcedureType, sqrt)); 
+  
+  // Procedure: sin;
+  envmap.emplace("sin", EnvResult(ProcedureType, sin)); 
 }
