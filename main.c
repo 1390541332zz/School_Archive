@@ -5,7 +5,7 @@ int main(void) {
 
     // Stop watchdog timer
     WDT_A_hold(WDT_A_BASE);
-    //these are the changes I will push to master
+   
 
     GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN0);
 
