@@ -80,12 +80,11 @@ bool Atom::isNone() const noexcept{
 }
 
 bool Atom::isNumber() const noexcept{
-  return (m_type == NumberKind) || (m_type == ComplexKind);
+  return (m_type == NumberKind);
 }
 
 bool Atom::isComplex() const noexcept{
-  return (m_type == ComplexKind) 
-      || (std::abs(numberValue.imag()) > std::numeric_limits<double>::epsilon());
+  return (m_type == ComplexKind) || (numberValue.imag() != 0);
 }
 
 bool Atom::isSymbol() const noexcept{
@@ -93,11 +92,7 @@ bool Atom::isSymbol() const noexcept{
 }  
 
 void Atom::setNumber(std::complex<double> value){
-  if (std::abs(numberValue.imag()) > std::numeric_limits<double>::epsilon()) {
-    m_type = ComplexKind;
-  } else {
-    m_type = NumberKind;
-  }
+  m_type = NumberKind;
   numberValue = value;
 }
 
@@ -120,8 +115,7 @@ void Atom::setSymbol(const std::string & value){
 }
 
 std::complex<double> Atom::asComplex() const noexcept{
-  return ((m_type == NumberKind) || (m_type == ComplexKind)) 
-         ? numberValue : std::complex<double>(0.0, 0.0);  
+  return (m_type == NumberKind) ? numberValue : std::complex<double>(0.0, 0.0);  
 }
 
 double Atom::asNumber() const noexcept {
