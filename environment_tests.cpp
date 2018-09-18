@@ -146,34 +146,38 @@ TEST_CASE( "Test Default Functions", "[environment]" ) {
 
   std::vector<std::string> fail_cases {
   // input,                          test case 
-    "( * 2 qr )"                , // Mul Invalid Arg
-    "( / 2 rq )"                , // Div Invalid Arg
-    "( + 2 rq )"                , // Add Invalid Arg
-    "( - 2 qr )"                , // Sub Invalid Arg
-    "( - q )"                   , // Neg Invalid Arg
-    "( / q q )"                 , // Div Invalid Arg
-    "( / q q )"                 , // Div Invalid Arg
     "( / 3 )"                   , // Div Invalid # of Arg
     "( ^ 1 )"                   , // Pow Invalid # of Arg
     "( - 3 2 2 )"               , // Sub Invalid # of Arg
     "( sqrt 4 2 )"              , // Sqrt Invalid # of Arg
+    "( ln 4 2 )"                , // Log Invalid # of Arg
+    "( sin 4 2 )"               , // Sin Invalid # of Arg
+    "( cos 4 2 )"               , // Cos Invalid # of Arg
+    "( tan 4 2 )"               , // Tan Invalid # of Arg
+    "( real I 2 )"              , // Real Invalid # of Arg
+    "( imag I 2 )"              , // Imag Invalid # of Arg
+    "( mag I 2 )"               , // Mag Invalid # of Arg
+    "( arg I 2 )"               , // Arg Invalid # of Arg
+    "( conj I 2 )"              , // Conj Invalid # of Arg
+    "( ln 0 )"                  , // Log Invalid Arg
+    "( real 1 )"                , // Real Non-complex Arg
+    "( imag 1 )"                , // Imag Non-complex Arg
+    "( mag 1 )"                 , // Mag  Non-complex Arg
+    "( arg 1 )"                 , // Arg  Non-complex Arg
+    "( conj 1 )"                , // Conj Non-complex Arg
   };
 
   for (auto const & p : pass_cases) {
-    //SECTION("Pass Case", "[Environment]") {
       Expression test;
       Expression result = test_pls(std::get<1>(p));
       CAPTURE(std::get<0>(p));
       CAPTURE(std::get<1>(p));
       REQUIRE_NOTHROW(test = test_pls(std::get<0>(p)));
       REQUIRE(test == result);
-  //  }
   }
 
   for (auto const & p : fail_cases) {
-    SECTION("Fail Case", "[Environment]") {
       CAPTURE(p);
       REQUIRE_THROWS_AS(test_pls(p), SemanticError);
-    }
   }
 }
