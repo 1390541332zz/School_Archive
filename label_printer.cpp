@@ -5,5 +5,5 @@
 LabelPrinter::LabelPrinter(const char * labelstr): QLabel(labelstr) {};
 
 void LabelPrinter::keyPressEvent(QKeyEvent *ev){
-  QDebug() << "Hello World!";
+  qDebug() << "Hello World!";
 }
