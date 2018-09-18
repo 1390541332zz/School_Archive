@@ -3,9 +3,10 @@
 #include "environment.hpp"
 #include "semantic_error.hpp"
 
+#include "interpreter.hpp"
+
 #include <cmath>
 
-//enum test_state { SUCCEED, FAIL };
 
 TEST_CASE( "Test default constructor", "[environment]" ) {
 
@@ -109,42 +110,70 @@ TEST_CASE( "Test semeantic errors", "[environment]" ) {
 }
 
 
-//TEST_CASE( "Test Default Functions", "[environment]" ) {
-//
-//  Environment env;
-//
-//  std::vector<std::pair<enum test_state, std::vector<Atom>> test_cases = {
-//  // test state,           op,        x,        y,     result,      test case 
-//    { SUCCEED, { Atom(   "+"), Atom( 3), Atom(  5), Atom(  8) }}, // Add Succeed
-//    {    FAIL, { Atom(   "+"), Atom( 3), Atom(   ),           }}, // Add Invalid Arg
-//    { SUCCEED, { Atom(   "-"), Atom( 5), Atom(  3), Atom(  2) }}, // Sub Succeed 
-//    { SUCCESS, { Atom(   "-"), Atom( 4),            Atom( -4) }}, // Neg Succeed
-//    {    FAIL, { Atom(   "-"), Atom( 3), Atom(   ),           }}, // Sub Invalid Arg
-//    {    FAIL, { Atom(   "-"), Atom( 3),                      }}, // Sub Invalid Arg
-//    { SUCCEED, { Atom(   "*"), Atom( 2), Atom(  5), Atom( 10) }}, // Mul Succeed
-//    {    FAIL, { Atom(   "*"), Atom( 3), Atom("q"),           }}, // Mul Invalid Arg
-//    {    FAIL, { Atom(   "*"), Atom( 3),                      }}, // Mul Invalid # of Arg
-//    { SUCCEED, { Atom(   "/"), Atom( 1), Atom(  1), Atom(  2) }}, // Div Succeed
-//    {    FAIL, { Atom(   "/"), Atom( 3), Atom(  0),           }}, // Div Invalid Arg
-//    {    FAIL, { Atom(   "/"), Atom( 3),                      }}, // Div Invalid # of Arg
-//    { SUCCESS, { Atom("sqrt"), Atom( 4),            Atom(  2) }}, // Sqrt Succeed
-//    { SUCCESS, { Atom("sqrt"), Atom(-1),                      }}, // Sqrt Negative
-//    {    FAIL, { Atom("sqrt"), Atom( 4), Atom(  2)            }}, // Sqrt Invalid $ of Arg
-//  };
-//
-//  for (auto & t : test_cases) {
-//    if (t.first == SUCCEED) {
-//        switch (t.second.size())
-//          case 3:
-//            env.add_exp();
-//            break;
-//          case 4:
-//            
-//            break;
-//          default:
-//            break;
-//    } else if (t.first == FAIL) {
-//        
-//    }
-//  }
-//}
+TEST_CASE( "Test Default Functions", "[environment]" ) {
+ auto test_pls = [] (std::string const & pls) {
+      std::istringstream ss(pls);
+      Interpreter intr;
+      intr.parseStream(ss);
+      return intr.evaluate();
+  };
+
+  std::vector<std::pair<std::string, std::string>> pass_cases {
+  // input,                         result,               test case 
+    { "( + 3 )"                 , "( 3 )"           }, // Add 1 Arg
+    { "( + 3 5 )"               , "( 8 )"           }, // Add 2 Arg
+    { "( + 3 5 2 )"             , "( 10 )"          }, // Add 3 Arg
+    { "( * 2 )"                 , "( 2 )"           }, // Mul 1 Arg 
+    { "( * 2 5 )"               , "( 10 )"          }, // Mul 2 Arg 
+    { "( * 2 5 3 )"             , "( 30 )"          }, // Mul 3 Arg
+    { "( - 5 3 )"               , "( 2 )"           }, // Sub  
+    { "( - 4   )"               , "( -4 )"          }, // Neg 
+    { "( / 1 1 )"               , "( 1 )"           }, // Div 
+    { "( ^ 5 2 )"               , "( 25 )"          }, // Pow
+    { "( ^ (+ 4 I) 2 )"         , "(+ 15 (* 8 I))"  }, // Pow
+    { "( ^ I 2 )"               , "(+  -1 (* 0 I))" }, // Pow
+    { "( sqrt 4 )"              , "( 2 )"           }, // Sqrt 
+    { "( ln e )"                , "( 1 )"           }, // Log 
+    { "( sin (/ pi 2) )"        , "( 1 )"           }, // Sin 
+    { "( cos pi )"              , "( -1 )"          }, // Cos 
+    { "( tan pi )"              , "( 0 )"           }, // Tan 
+    { "( real (+ 2 I ))"        , "( 2 )"           }, // Real
+    { "( imag (+ 2 I ))"        , "( 1 )"           }, // Imag
+    { "( mag  (+ 3 (* 4 I)))"   , "( 5 )"           }, // Mag
+    { "( arg  (+ 1 I ))"        , "(/ pi 4)"        }, // Arg
+    { "( conj (+ 3 ( * 4 I)))" , "(- 3 (* 4 I))"    }, // Conj
+  };
+
+  std::vector<std::string> fail_cases {
+  // input,                          test case 
+    "( * 2 qr )"                , // Mul Invalid Arg
+    "( / 2 rq )"                , // Div Invalid Arg
+    "( + 2 rq )"                , // Add Invalid Arg
+    "( - 2 qr )"                , // Sub Invalid Arg
+    "( - q )"                   , // Neg Invalid Arg
+    "( / q q )"                 , // Div Invalid Arg
+    "( / q q )"                 , // Div Invalid Arg
+    "( / 3 )"                   , // Div Invalid # of Arg
+    "( ^ 1 )"                   , // Pow Invalid # of Arg
+    "( - 3 2 2 )"               , // Sub Invalid # of Arg
+    "( sqrt 4 2 )"              , // Sqrt Invalid # of Arg
+  };
+
+  for (auto const & p : pass_cases) {
+    SECTION("Pass Case", "[Environment]") {
+      Expression test;
+      Expression result = test_pls(std::get<1>(p));
+      CAPTURE(std::get<0>(p));
+      CAPTURE(std::get<1>(p));
+      REQUIRE_NOTHROW(test = test_pls(std::get<0>(p)));
+      REQUIRE(test == result);
+    }
+  }
+
+  for (auto const & p : fail_cases) {
+    SECTION("Fail Case", "[Environment]") {
+      CAPTURE(p);
+      REQUIRE_THROWS_AS(test_pls(p), SemanticError);
+    }
+  }
+}

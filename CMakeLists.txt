@@ -75,7 +75,7 @@ if (Qt5Widgets_FOUND AND Qt5Test_FOUND)
 endif()
 
 # optional strict mode
-if(UNIX AND STRICT)
+if(UNIX)
   message("-- Enabling strict compilation mode")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare -Wno-deprecated")
 endif()
@@ -95,7 +95,7 @@ enable_testing()
 add_test(unit_tests unit_tests)
 
 # In the reference environment enable coverage on tests
-if(DEFINED ENV{ECE3574_REFERENCE_ENV})
+if(DEFINED ENV{ECE3574_REFERENCE_ENV} OR UNIX)
   message("-- Enabling test coverage")
   set(GCC_COVERAGE_COMPILE_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
   set_target_properties(interpreter PROPERTIES COMPILE_FLAGS ${GCC_COVERAGE_COMPILE_FLAGS} )
@@ -108,7 +108,7 @@ if(DEFINED ENV{ECE3574_REFERENCE_ENV})
 endif()
 
 # In the reference environment enable memory checking on tests
-if(DEFINED ENV{ECE3574_REFERENCE_ENV})
+if(DEFINED ENV{ECE3574_REFERENCE_ENV} OR UNIX)
   message("-- Enabling memory checks")
   add_custom_target(memtest
     COMMAND valgrind ${CMAKE_BINARY_DIR}/unit_tests)

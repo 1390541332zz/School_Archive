@@ -19,12 +19,9 @@ Token::TokenType Token::type() const{
 
 std::string Token::asString() const{
   switch(m_type){
-  case OPEN:
-    return "(";
-  case CLOSE:
-    return ")";
-  case STRING:
-    return value;
+    case OPEN:    return "(";
+    case CLOSE:   return ")";
+    case STRING:  return value;
   }
   return "";
 }

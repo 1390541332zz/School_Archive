@@ -1,3 +1,4 @@
+#include <sstream>
 #include "catch.hpp"
 
 #include "atom.hpp"
@@ -46,16 +47,28 @@ TEST_CASE( "Test constructors", "[atom]" ) {
     INFO("Copy Constructor");
     Atom a("hi");
     Atom b(1.0);
-    
-    Atom c = a;
-    REQUIRE(!a.isNone());
-    REQUIRE(!c.isNumber());
-    REQUIRE(c.isSymbol());
+    Atom c;
+    Atom d(std::complex<double>(1,1));
 
-    Atom d = b;
+    Atom e(a);
     REQUIRE(!a.isNone());
-    REQUIRE(d.isNumber());
-    REQUIRE(!d.isSymbol());
+    REQUIRE(!e.isNumber());
+    REQUIRE(e.isSymbol());
+
+    Atom f(b);
+    REQUIRE(!b.isNone());
+    REQUIRE(f.isNumber());
+    REQUIRE(!f.isSymbol());
+    
+    Atom g(c);
+    REQUIRE(c.isNone());
+    REQUIRE(g.isNone());
+    REQUIRE(!g.isSymbol());
+    
+    Atom h(d);
+    REQUIRE(d.isComplex());
+    REQUIRE(h.isComplex());
+    REQUIRE(!h.isNumber());
   }
 }
 
@@ -217,7 +230,17 @@ TEST_CASE( "test comparison", "[atom]" ) {
 
 }
 
+TEST_CASE( "test output", "[atom]" ) {
+  Atom a(std::complex<double>(1,1));
+  Atom b("str");
 
-
-
-
+  std::ostringstream ss;
+  SECTION("complex output", "[atom]") {
+    ss << a;
+    REQUIRE(ss.str() == "1,1");
+  }
+  SECTION("string invalid output", "[atom]") {
+    ss << b.asNumber() << ' ' << b.asComplex();
+    REQUIRE(ss.str() == "0 (0,0)");
+  }
+}

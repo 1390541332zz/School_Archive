@@ -205,7 +205,6 @@ std::ostream & operator<<(std::ostream & out, const Expression & exp){
   }
 
   out << ")";
-
   return out;
 }
 
