@@ -160,14 +160,14 @@ TEST_CASE( "Test Default Functions", "[environment]" ) {
   };
 
   for (auto const & p : pass_cases) {
-    SECTION("Pass Case", "[Environment]") {
+    //SECTION("Pass Case", "[Environment]") {
       Expression test;
       Expression result = test_pls(std::get<1>(p));
       CAPTURE(std::get<0>(p));
       CAPTURE(std::get<1>(p));
       REQUIRE_NOTHROW(test = test_pls(std::get<0>(p)));
       REQUIRE(test == result);
-    }
+  //  }
   }
 
   for (auto const & p : fail_cases) {

@@ -25,7 +25,7 @@ bool anyargs_complex(const std::vector<Expression> & args) {
 bool isComplex(std::complex<double> x) {
   double absi = std::abs(x.imag());
   return (  !std::isnan(absi) 
-         && (absi >= std::numeric_limits<double>::epsilon())
+         && (absi >= std::numeric_limits<float>::epsilon())
          );
 }
 

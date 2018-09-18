@@ -166,8 +166,8 @@ bool Atom::operator==(const Atom & right) const noexcept{
 
       return (  !std::isnan(dr) 
              && !std::isnan(di) 
-	         && (dr <= std::numeric_limits<double>::epsilon())
-	         && (di <= std::numeric_limits<double>::epsilon())
+	         && (dr <= std::numeric_limits<float>::epsilon())
+	         && (di <= std::numeric_limits<float>::epsilon())
              ); 
     }
     break;
