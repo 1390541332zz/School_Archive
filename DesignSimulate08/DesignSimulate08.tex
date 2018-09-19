@@ -41,30 +41,46 @@
 
 \section{Problem 8.2-11.a.1: } The circuit was a random circuit I threw together in LTSpice.
 \subsection{Design}
-Using the circuit displayed below, determine the current flowing through $D_1$, $D_2$, $D_3$ and the voltage at points A, B, C, and D.
+Using the circuit displayed below, determine the current flowing through $D_1$, $D_2$, $D_3$ and the voltage at points A, B, C, and D. Assume $V_\gamma = 0.5V$.
 
 \begin{center}
 \includegraphics[width=\textwidth, height=9\baselineskip, keepaspectratio=true]{ds1}
 \end{center}
 
-$V(A0) = 10V, V(B0) = V(C0) = 0, V(D0) = -20V, 
-Vf(D_1) = 10V, Vf(D_2) = 20V, Vf(D_3) = 20V$
+Assume all diodes are on.
 
-$D_3$ is on.
+$V_D = -0.5$ $V_A = 10V$, and $V_B = V_C = 0$.
 
-$V(A1) = 10V, V(B1) = V(C1) = 0, V(D1) = -0.5V, 
-Vf(D_1) = 10V, Vf(D_2) = 20V$
+$\frac{10V-0.5V-C}{10k\Omega} = I_{D2} + \frac{-20V - V_C}{5k\Omega}$
 
+As $V_C$ is assumed to be 0. $I_{D2} = 4.95mA$
 
-$V(A2) = 10V, V(B2) = V(C2) = 0, V(D2) = -0.5V, 
-Vf(D_1) = 10V, Vf(D_2) = 20V, Vf(D_3) = 20V$
+$V_B = 9.5V\frac{20k\Omega}{10k\Omega} = 3.16V$
 
+$V_A = V_B + 0.5V = 3.66V$
+
+$I_{D1} = \frac{10V-3.66V}{20k\Omega} = 0.317mA$
+
+$I_{D1} = \frac{0-V_C}{100\Omega} + I_{D2}$
+
+$I_{D2} = 0.317mA$
+
+$I_{D2} + I_{D3} = \frac{V_D + 20V}{5k\Omega}$
+
+$I_{D3} = 3.583mA$
+
+$V_A = 3.66V, V_B = 3.16V, V_C = 0V, V_D = -0.5V, I_{D1} = 0.317mA, I_{D2} = 0.317mA, I_{D3} = 3.583A$
+
+\clearpage
 \subsection{Validation}
 
 \begin{center}
-LTSpice Implementation (accurate with $< 1\%$ deviation from design result)
-\includegraphics[width=.3\textwidth, height=\textheight, keepaspectratio=true]{ds1b}
-    \begin{tabular}{|l|l|c|}
+LTSpice Implementation (values within $<1\%$)
+\columnratio{0.52}
+\begin{paracol}{2}
+\includegraphics[width=.5\textwidth, height=\textheight, keepaspectratio=true]{ds1b}
+\switchcolumn
+\begin{tabular}{|l|l|c|}
   \hline  V(a):   &   3.66666        &  voltage
 \\\hline  V(v1):  &   10             &  voltage
 \\\hline  V(d):   &   -0.500004      &  voltage
@@ -81,16 +97,7 @@ LTSpice Implementation (accurate with $< 1\%$ deviation from design result)
 \\\hline  I(V2):  &   0.0039         &  device\_current
 \\\hline  I(V1):  &   -0.000316667   &  device\_current
 \\\hline
-    \end{tabular} 
-\columnratio{0.5}
-\begin{paracol}{2}
-$Err_{V_R} = \frac{|17-16.966|}{17} = 0.002 = 0.2\%$
-\switchcolumn
-$Err_{i_D(\text{peak})} = \frac{|31.35-31.30|}{31.35} = 0.0015 = 0.15\%$
-\switchcolumn
-$Err_{\%t} = \frac{|0.3416-\frac{151.7-27.9}{360}|}{34.16} = 0.000007 = 0.00\%$
-\switchcolumn
-$Err_{Avg} = \frac{0.20 + 0.15 + 0.00}{3} = 0.12\%$
+\end{tabular}
 \end{paracol}
 \end{center}
 
