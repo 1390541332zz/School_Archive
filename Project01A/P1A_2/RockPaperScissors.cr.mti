@@ -1,0 +1,8 @@
+D:/GitHub/ECE3544/Project01A/P1A_2/rock_paper_scissors.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project01A/P1A_2/rock_paper_scissors.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module rock_paper_scissors
+
+Top level modules:
+	rock_paper_scissors
+
+} {} {}}
