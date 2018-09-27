@@ -1,22 +1,21 @@
 cmake_minimum_required(VERSION 3.5)
 project(PLOTSCRIPT CXX)
 
-# EDIT
-# add any files you create related to the interpreter here
-# excluding unit tests
+set(CMAKE_MODULE_PATH 
+    ${CMAKE_MODULE_PATH} 
+    ${PROJECT_SOURCE_DIR}/cmake_modules
+   )
+
 set(interpreter_src
-  token.hpp token.cpp
-  atom.hpp atom.cpp
+  token.hpp       token.cpp
+  atom.hpp        atom.cpp
   environment.hpp environment.cpp
-  expression.hpp expression.cpp
-  parse.hpp parse.cpp
+  expression.hpp  expression.cpp
+  parse.hpp       parse.cpp
   interpreter.hpp interpreter.cpp
   )
 
-# EDIT
-# add any files you create related to interpreter unit testing here
 set(unittest_src
-  catch.hpp
   atom_tests.cpp
   environment_tests.cpp
   expression_tests.cpp
@@ -27,36 +26,33 @@ set(unittest_src
   unit_tests.cpp
   )
 
-# EDIT
-# add source for any TUI modules here
 set(tui_src
   )
 
-# EDIT
-# add source for any GUI modules here
 set(gui_src
   )
 
-# EDIT
-# add source for any GUI tests here
 set(gui_test_src
   notebook_test.cpp
 )
 
-
-# ------------------------------------------------
-# You should not need to edit any files below here
-# ------------------------------------------------
-
-# main entry point for TUI interface
 set(tui_main
   plotscript.cpp
 )
 
-# main entry point for GUI interface
 set(gui_main
   notebook.cpp
 )
+
+set(all_srcs
+   ${interpreter_src}
+   ${unittest_src}
+   ${tui_src}
+   ${gui_src}
+   ${gui_tesr_src}
+   ${tui_main}
+   ${gui_main}
+   )
 
 # try to prevent accidental in-source builds, these cause lots of problems
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
@@ -75,7 +71,9 @@ if (Qt5Widgets_FOUND AND Qt5Test_FOUND)
 endif()
 
 # optional strict mode
-if(UNIX)
+if(  DEFINED ENV{PERSONAL_DEV_ENV} 
+  OR UNIX
+  )
   message("-- Enabling strict compilation mode")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare -Wno-deprecated")
 endif()
@@ -88,14 +86,17 @@ add_executable(plotscript ${tui_main} ${tui_src})
 target_link_libraries(plotscript interpreter)
 
 # create the unit_tests executable
-add_executable(unit_tests ${unittest_src})
+add_executable(unit_tests catch.hpp ${unittest_src})
 target_link_libraries(unit_tests interpreter)
 
 enable_testing()
 add_test(unit_tests unit_tests)
 
 # In the reference environment enable coverage on tests
-if(DEFINED ENV{ECE3574_REFERENCE_ENV} OR UNIX)
+if(  DEFINED ENV{ECE3574_REFERENCE_ENV} 
+  OR DEFINED ENV{PERSONAL_DEV_ENV} 
+  OR UNIX
+  )
   message("-- Enabling test coverage")
   set(GCC_COVERAGE_COMPILE_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
   set_target_properties(interpreter PROPERTIES COMPILE_FLAGS ${GCC_COVERAGE_COMPILE_FLAGS} )
@@ -108,7 +109,10 @@ if(DEFINED ENV{ECE3574_REFERENCE_ENV} OR UNIX)
 endif()
 
 # In the reference environment enable memory checking on tests
-if(DEFINED ENV{ECE3574_REFERENCE_ENV} OR UNIX)
+if(  DEFINED ENV{ECE3574_REFERENCE_ENV} 
+  OR DEFINED ENV{PERSONAL_DEV_ENV} 
+  OR UNIX
+  )
   message("-- Enabling memory checks")
   add_custom_target(memtest
     COMMAND valgrind ${CMAKE_BINARY_DIR}/unit_tests)
@@ -119,9 +123,21 @@ if(DEFINED ENV{ECE3574_REFERENCE_ENV})
   add_test(plotscript_test python3 ${CMAKE_SOURCE_DIR}/scripts/integration_test.py)
 endif()
 
-# --------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Run Clang Format if installed and enabled
+# -----------------------------------------------------------------------------
+
+if(DEFINED ENV{PERSONAL_DEV_ENV})
+  message("-- Running clang-format")
+  include(ClangFormat)
+  set(clangformat_srcs ${all_srcs})
+  clangformat_setup("${clangformat_srcs}")
+endif()
+
+
+# -----------------------------------------------------------------------------
 # Build the notebook executable and tests if Qt is available
-# --------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 if (Qt5Widgets_FOUND AND Qt5Test_FOUND)
   
@@ -146,9 +162,9 @@ else (Qt5Widgets_FOUND AND Qt5Test_FOUND)
 endif (Qt5Widgets_FOUND AND Qt5Test_FOUND)
 
 
-# --------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Build the Documentation if possible
-# --------------------------------------------------------
+# -----------------------------------------------------------------------------
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
     # set input and output files
