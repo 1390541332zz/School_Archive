@@ -1,6 +1,7 @@
 #include <cassert>
 #include <cmath>
 #include <complex>
+#include <iterator>
 #include <limits>
 #include <tuple>
 
@@ -24,7 +25,15 @@ void Environment::reset()
         = {
               // clang-format off
               // operator,       procedure
+              // - list operators - 
               { "list",          list           },
+              { "first",         first          },
+              { "rest",          rest           },
+              { "length",        length         },
+              { "append",        append         },
+              { "join",          join           },
+              { "range",         range          },
+              // - arithmetic operators - 
               { "+",             add            },
               { "-",             subneg         },
               { "*",             mul            },
@@ -73,7 +82,11 @@ bool Environment::is_exp(const Atom& sym) const
         return false;
 
     auto result = envmap.find(sym.asSymbol());
-    return (result != envmap.end()) && (result->second.type == ExpressionType);
+    return (  (result != envmap.end()) 
+           && (  (result->second.type == ExpressionType) 
+              || (sym.asSymbol() == LIST_KEYWORD)
+              )
+           );
 }
 
 Expression Environment::get_exp(const Atom& sym) const

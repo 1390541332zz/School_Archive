@@ -125,52 +125,87 @@ TEST_CASE("Test Default Functions", "[environment]")
 
     // clang-format off
     std::vector<std::pair<std::string, std::string>> pass_cases{
-        // input,                         result,               test case
-        { "( + 3 )",                    "( 3 )"                 }, // Add 1 Arg
-        { "( + 3 5 )",                  "( 8 )"                 }, // Add 2 Arg
-        { "( + 3 5 2 )",                "( 10 )"                }, // Add 3 Arg
-        { "( * 2 )",                    "( 2 )"                 }, // Mul 1 Arg
-        { "( * 2 5 )",                  "( 10 )"                }, // Mul 2 Arg
-        { "( * 2 5 3 )",                "( 30 )"                }, // Mul 3 Arg
-        { "( - 5 3 )",                  "( 2 )"                 }, // Sub
-        { "( - 4   )",                  "( -4 )"                }, // Neg
-        { "( / 1 1 )",                  "( 1 )"                 }, // Div
-        { "( ^ 5 2 )",                  "( 25 )"                }, // Pow
-        { "( ^ (+ 4 I) 2 )",            "(+ 15 (* 8 I))"        }, // Pow
-        { "( ^ I 2 )",                  "(+  -1 (* 0 I))"       }, // Pow
-        { "( sqrt 4 )",                 "( 2 )"                 }, // Sqrt
-        { "( ln e )",                   "( 1 )"                 }, // Log
-        { "( sin (/ pi 2) )",           "( 1 )"                 }, // Sin
-        { "( cos pi )",                 "( -1 )"                }, // Cos
-        { "( tan pi )",                 "( 0 )"                 }, // Tan
-        { "( real (+ 2 I ))",           "( 2 )"                 }, // Real
-        { "( imag (+ 2 I ))",           "( 1 )"                 }, // Imag
-        { "( mag  (+ 3 (* 4 I)))",      "( 5 )"                 }, // Mag
-        { "( arg  (+ 1 I ))",           "(/ pi 4)"              }, // Arg
-        { "( conj (+ 3 ( * 4 I)))",     "(- 3 (* 4 I))"         }, // Conj
+        // input,                                result,                       test case
+        // - Arithmetic Procedure Cases -
+        { "( + 3 )",                           "( 3 )"                         }, // Add 1 Arg
+        { "( + 3 5 )",                         "( 8 )"                         }, // Add 2 Arg
+        { "( + 3 5 2 )",                       "( 10 )"                        }, // Add 3 Arg
+        { "( * 2 )",                           "( 2 )"                         }, // Mul 1 Arg
+        { "( * 2 5 )",                         "( 10 )"                        }, // Mul 2 Arg
+        { "( * 2 5 3 )",                       "( 30 )"                        }, // Mul 3 Arg
+        { "( - 5 3 )",                         "( 2 )"                         }, // Sub
+        { "( - 4   )",                         "( -4 )"                        }, // Neg
+        { "( / 1 1 )",                         "( 1 )"                         }, // Div
+        { "( ^ 5 2 )",                         "( 25 )"                        }, // Pow
+        { "( ^ (+ 4 I) 2 )",                   "(+ 15 (* 8 I))"                }, // Pow
+        { "( ^ I 2 )",                         "(+  -1 (* 0 I))"               }, // Pow
+        { "( sqrt 4 )",                        "( 2 )"                         }, // Sqrt
+        { "( ln e )",                          "( 1 )"                         }, // Log
+        { "( sin (/ pi 2) )",                  "( 1 )"                         }, // Sin
+        { "( cos pi )",                        "( -1 )"                        }, // Cos
+        { "( tan pi )",                        "( 0 )"                         }, // Tan
+        { "( real (+ 2 I ))",                  "( 2 )"                         }, // Real
+        { "( imag (+ 2 I ))",                  "( 1 )"                         }, // Imag
+        { "( mag  (+ 3 (* 4 I)))",             "( 5 )"                         }, // Mag
+        { "( arg  (+ 1 I ))",                  "(/ pi 4)"                      }, // Arg
+        { "( conj (+ 3 ( * 4 I)))",            "(- 3 (* 4 I))"                 }, // Conj
+        // - List Procedure Cases - 
+        { "(first (list 7 2 3))",              "(7)"                           }, // First
+        { "(rest  (list 7 2 3))",              "(list 2 3)"                    }, // Rest
+        { "(rest  (list 7))",                  "(rest (list 2))"               }, // Rest
+        { "(rest  (list 7))",                  "(list)"                        }, // Rest
+        { "(length (list))",                   "(0)"                           }, // Length
+        { "(length (list 7 2 5))",             "(3)"                           }, // Length
+        { "(append (list 7 2 3) 9)",           "(list 7 2 3 9)"                }, // Append
+        { "(join (list 7 2 3) (list 1 5))",    "(list 7 2 3 1 5)"              }, // Join
+        { "(range -3 3 1.4)",                  "(list -3 -1.6 -0.2 1.2 2.6)"   }, // Range
+        { "(range 0 5 1)",                     "(list 0 1 2 3 4 5)"            }, // Range
+
     };
 
     std::vector<std::string> fail_cases{
-        // input,                          test case
-        "( / 3 )",                      // Div Invalid # of Arg
-        "( ^ 1 )",                      // Pow Invalid # of Arg
-        "( - 3 2 2 )",                  // Sub Invalid # of Arg
-        "( sqrt 4 2 )",                 // Sqrt Invalid # of Arg
-        "( ln 4 2 )",                   // Log Invalid # of Arg
-        "( sin 4 2 )",                  // Sin Invalid # of Arg
-        "( cos 4 2 )",                  // Cos Invalid # of Arg
-        "( tan 4 2 )",                  // Tan Invalid # of Arg
-        "( real I 2 )",                 // Real Invalid # of Arg
-        "( imag I 2 )",                 // Imag Invalid # of Arg
-        "( mag I 2 )",                  // Mag Invalid # of Arg
-        "( arg I 2 )",                  // Arg Invalid # of Arg
-        "( conj I 2 )",                 // Conj Invalid # of Arg
-        "( ln 0 )",                     // Log Invalid Arg
-        "( real 1 )",                   // Real Non-complex Arg
-        "( imag 1 )",                   // Imag Non-complex Arg
-        "( mag 1 )",                    // Mag  Non-complex Arg
-        "( arg 1 )",                    // Arg  Non-complex Arg
-        "( conj 1 )",                   // Conj Non-complex Arg
+        // input,                                  test case
+        // - Arithmetic Procedure Cases -    
+        "( / 3 )",                              // Div Invalid # of Arg
+        "( ^ 1 )",                              // Pow Invalid # of Arg
+        "( - 3 2 2 )",                          // Sub Invalid # of Arg
+        "( sqrt 4 2 )",                         // Sqrt Invalid # of Arg
+        "( ln 4 2 )",                           // Log Invalid # of Arg
+        "( sin 4 2 )",                          // Sin Invalid # of Arg
+        "( cos 4 2 )",                          // Cos Invalid # of Arg
+        "( tan 4 2 )",                          // Tan Invalid # of Arg
+        "( real I 2 )",                         // Real Invalid # of Arg
+        "( imag I 2 )",                         // Imag Invalid # of Arg
+        "( mag I 2 )",                          // Mag Invalid # of Arg
+        "( arg I 2 )",                          // Arg Invalid # of Arg
+        "( conj I 2 )",                         // Conj Invalid # of Arg
+        "( ln 0 )",                             // Log Invalid Arg
+        "( real 1 )",                           // Real Non-complex Arg
+        "( imag 1 )",                           // Imag Non-complex Arg
+        "( mag 1 )",                            // Mag  Non-complex Arg
+        "( arg 1 )",                            // Arg  Non-complex Arg
+        "( conj 1 )",                           // Conj Non-complex Arg
+        // - List Procedure Cases - 
+        "(first (list 7 2 3) 2)",               // First # of Args
+        "(first 1)",                            // First Not List
+        "(first (list))",                       // First Empty List
+        "(rest  (list 7 2 3) 2)",               // Rest # of Args
+        "(rest  1)",                            // Rest Not List
+        "(rest  (list))",                       // Rest Empty List
+        "(length (list 7 2 5) 2)",              // Length # of Args
+        "(length 2)",                           // Length Not List
+        "(append (list 7 2 3) 9 7)",            // Append # of Args
+        "(append 9 (list 7 2 3))",              // Append Not List
+        "(join (list 7 2 3))",                  // Join # of Args
+        "(join (list 7) (list 2) (list 3))",    // Join # of Args
+        "(join (list 7 2 3) 9)",                // Join Not List
+        "(join 9 (list 7 2 3))",                // Join Not List
+        "(range 1 5 )",                         // Range # of Args
+        "(range 1 5 7 7)",                      // Range # of Args
+        "(range (list 1 2) 4 3)",               // Range Not Number
+        "(range 7 1 2)",                        // Range Beg > End
+        "(range 1 6 0)",                        // Range Neg Rate
+        "(range 1 6 -4)",                       // Range Neg Rate
     };
     //clang-format on
 

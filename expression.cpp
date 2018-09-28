@@ -13,14 +13,12 @@ Expression::Expression() {}
 
 Expression::Expression(const Atom& a)
 {
-
     m_head = a;
 }
 
 // recursive copy
 Expression::Expression(const Expression& a)
 {
-
     m_head = a.m_head;
     for (auto e : a.m_tail) {
         m_tail.push_back(e);
@@ -29,16 +27,13 @@ Expression::Expression(const Expression& a)
 
 Expression& Expression::operator=(const Expression& a)
 {
-
-    // prevent self-assignment
-    if (this != &a) {
-        m_head = a.m_head;
-        m_tail.clear();
-        for (auto e : a.m_tail) {
-            m_tail.push_back(e);
-        }
+    if (this == &a)
+        return *this;
+    m_head = a.m_head;
+    m_tail.clear();
+    for (auto e : a.m_tail) {
+        m_tail.push_back(e);
     }
-
     return *this;
 }
 
@@ -51,10 +46,6 @@ const Atom& Expression::head() const
 {
     return m_head;
 }
-
-//bool Expression::isList() const noexcept{
-//  return m_head.asSymbol() == "list";
-//}
 
 bool Expression::isHeadComplex() const noexcept
 {
@@ -76,9 +67,19 @@ bool Expression::isList() const noexcept
     return (m_head.asSymbol() == LIST_KEYWORD);
 }
 
+std::size_t Expression::arg_length() const noexcept
+{
+    return m_tail.size();
+}
+
 void Expression::append(const Atom& a)
 {
     m_tail.emplace_back(a);
+}
+
+void Expression::append(const Expression& e)
+{
+    m_tail.emplace_back(e);
 }
 
 Expression* Expression::tail()
@@ -125,7 +126,7 @@ Expression apply(const Atom& op, const std::vector<Expression>& args, const Envi
 Expression Expression::handle_lookup(const Atom& head, const Environment& env)
 {
     if (head.isSymbol()) { // if symbol is in env return value
-        if ((!env.is_exp(head)) && (head.asSymbol() != LIST_KEYWORD)) {
+        if (!env.is_exp(head)) {
             throw SemanticError("Error during evaluation: unknown symbol");
         }
         return env.get_exp(head);
@@ -193,8 +194,7 @@ Expression Expression::handle_define(Environment& env)
 // this limits the practical depth of our AST
 Expression Expression::eval(Environment& env)
 {
-
-    if (m_tail.empty()) {
+    if (m_tail.empty() && (m_head.asSymbol() != LIST_KEYWORD)) {
         return handle_lookup(m_head, env);
     }
     // handle begin special-form
@@ -218,34 +218,33 @@ Expression Expression::eval(Environment& env)
 std::ostream& operator<<(std::ostream& out, const Expression& exp)
 {
 
-    out << "(";
+    out << '(';
     if (!exp.isList()) {
         out << exp.head();
     }
     for (auto e = exp.tailConstBegin(); e != exp.tailConstEnd(); ++e) {
+        if (exp.isList() && (e != exp.tailConstBegin()))
+            out << ' ';
         out << *e;
     }
 
-    out << ")";
+    out << ')';
     return out;
 }
 
 bool Expression::operator==(const Expression& exp) const noexcept
 {
-
-    bool result = (m_head == exp.m_head);
-
-    result = result && (m_tail.size() == exp.m_tail.size());
-
-    if (result) {
-        for (auto lefte = m_tail.begin(), righte = exp.m_tail.begin();
-             (lefte != m_tail.end()) && (righte != exp.m_tail.end());
-             ++lefte, ++righte) {
-            result = result && (*lefte == *righte);
-        }
+    if ((m_head != exp.m_head) || (m_tail.size() != exp.m_tail.size())) {
+        return false;
     }
 
-    return result;
+    for (auto l = m_tail.begin(), r = exp.m_tail.begin();
+         (l != m_tail.end()) && (r != exp.m_tail.end());
+         ++l, ++r) {
+        if (*l != *r)
+            return false;
+    }
+    return true;
 }
 
 bool operator!=(const Expression& left, const Expression& right) noexcept
