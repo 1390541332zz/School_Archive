@@ -161,6 +161,7 @@ TEST_CASE("Test Default Functions", "[environment]")
         { "(join (list 7 2 3) (list 1 5))",    "(list 7 2 3 1 5)"              }, // Join
         { "(range -3 3 1.4)",                  "(list -3 -1.6 -0.2 1.2 2.6)"   }, // Range
         { "(range 0 5 1)",                     "(list 0 1 2 3 4 5)"            }, // Range
+<<<<<<< HEAD
         // - Lambda Procedure Cases - 
         { "(begin                           \
              (define f                      \
@@ -203,6 +204,9 @@ TEST_CASE("Test Default Functions", "[environment]")
              (lambda (x y) (* 2 (+ x y)))   \
              (list 2 3)                     \
            )",                                "(10)"                          }, // Apply
+=======
+
+>>>>>>> parent of eef9d9c... Lambda
     };
 
     std::vector<std::string> fail_cases{

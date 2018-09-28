@@ -111,21 +111,6 @@ Expression Environment::get_exp(const Atom& sym) const
     return exp;
 }
 
-void Environment::add_exp_force(const Atom& sym, const Expression& exp)
-{
-
-    if (!sym.isSymbol()) {
-        throw SemanticError("Attempt to add non-symbol to environment");
-    }
-
-    auto it = envmap.find(sym.asSymbol());
-    if (it != envmap.end()) {
-        envmap.erase(it);
-    }
-
-    envmap.emplace(sym.asSymbol(), EnvResult(ExpressionType, exp));
-}
-
 void Environment::add_exp(const Atom& sym, const Expression& exp)
 {
 
