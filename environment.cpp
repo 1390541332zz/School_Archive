@@ -4,6 +4,7 @@
 #include <iterator>
 #include <limits>
 #include <tuple>
+#include <functional>
 
 #include "environment.hpp"
 
@@ -21,6 +22,8 @@ Environment::Environment()
 // Reset the environment to the default state.
 void Environment::reset()
 {
+    Procedure apply_comb_env = std::bind(apply_comb, std::placeholders::_1, *this);
+
     static std::vector<std::tuple<std::string, Procedure>> const procedures
         = {
               // clang-format off
@@ -33,9 +36,9 @@ void Environment::reset()
               { "append",        append         },
               { "join",          join           },
               { "range",         range          },
-              // - functional operators - 
+              // - functional operators  
               { LAMBDA_KEYWORD,  lambda         },
-              // - arithmetic operators - 
+              // - arithmetic operators  
               { "+",             add            },
               { "-",             subneg         },
               { "*",             mul            },
@@ -99,6 +102,9 @@ Expression Environment::get_exp(const Atom& sym) const
         auto result = envmap.find(sym.asSymbol());
         if ((result != envmap.end()) && (result->second.type == ExpressionType)) {
             exp = result->second.exp;
+        }
+        if ((result != envmap.end()) && (result->second.type == ProcedureType)) {
+            exp.makeFun();
         }
     }
 

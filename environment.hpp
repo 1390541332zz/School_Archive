@@ -11,6 +11,7 @@ needed.
 #define ENVIRONMENT_HPP
 
 #include <map>
+#include <functional>
 
 #include "atom.hpp"
 #include "expression.hpp"
@@ -20,6 +21,7 @@ needed.
 \brief A Procedure is a C++ function pointer taking a vector of 
        Expressions as arguments and returning an Expression.
 */
+
 typedef Expression (*Procedure)(const std::vector<Expression>& args);
 
 /*! \class Environment

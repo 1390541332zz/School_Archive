@@ -89,6 +89,12 @@ public:
     /// convienience member to determine if expression is a lambda
     bool isLambda() const noexcept;
 
+    /// convienience member to determine if expression is a procedure
+    bool isFun() const noexcept;
+
+    /// enables procedure mode
+    void makeFun() noexcept;
+    
     /// convienience member to determine length of arguments
     std::size_t arg_length() const noexcept;
 
@@ -99,6 +105,7 @@ public:
     bool operator==(const Expression& exp) const noexcept;
 
 private:
+    bool is_fun;
     // the head of the expression
     Atom m_head;
 
