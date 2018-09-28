@@ -4,23 +4,24 @@
 #include <stdexcept>
 
 // module includes
-#include "token.hpp"
-#include "parse.hpp"
-#include "expression.hpp"
 #include "environment.hpp"
+#include "expression.hpp"
+#include "parse.hpp"
 #include "semantic_error.hpp"
+#include "token.hpp"
 
-bool Interpreter::parseStream(std::istream & expression) noexcept{
+bool Interpreter::parseStream(std::istream& expression) noexcept
+{
 
-  TokenSequenceType tokens = tokenize(expression);
+    TokenSequenceType tokens = tokenize(expression);
 
-  ast = parse(tokens);
+    ast = parse(tokens);
 
-  return (ast != Expression());
+    return (ast != Expression());
 }
-				     
 
-Expression Interpreter::evaluate(){
+Expression Interpreter::evaluate()
+{
 
-  return ast.eval(env);
+    return ast.eval(env);
 }

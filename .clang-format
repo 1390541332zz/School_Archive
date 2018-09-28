@@ -70,7 +70,7 @@ AllowShortBlocksOnASingleLine: true
 # IncludeIsMainRegex: '(Test)?$'
 # IndentCaseLabels: false
 # IndentPPDirectives: None
-# IndentWidth:     4
+IndentWidth: 4
 # IndentWrappedFunctionNames: false
 # JavaScriptQuotes: Leave
 # JavaScriptWrapImports: true
@@ -108,7 +108,7 @@ AllowShortBlocksOnASingleLine: true
 # SpacesInCStyleCastParentheses: false
 # SpacesInParentheses: false
 # SpacesInSquareBrackets: false
-# Standard:        Cpp11
+Standard:        Cpp11
 TabWidth: 4
 # UseTab:          Never
 ...

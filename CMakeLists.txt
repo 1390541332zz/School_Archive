@@ -3,13 +3,15 @@ project(PLOTSCRIPT CXX)
 
 set(CMAKE_MODULE_PATH 
     ${CMAKE_MODULE_PATH} 
-    ${PROJECT_SOURCE_DIR}/cmake_modules
+    "${PROJECT_SOURCE_DIR}/cmake_modules"
    )
 
 set(interpreter_src
   token.hpp       token.cpp
   atom.hpp        atom.cpp
   environment.hpp environment.cpp
+  env_helper.hpp  env_arithmetic.hpp
+  env_list.hpp    env_functional.hpp
   expression.hpp  expression.cpp
   parse.hpp       parse.cpp
   interpreter.hpp interpreter.cpp
@@ -128,8 +130,8 @@ endif()
 # -----------------------------------------------------------------------------
 
 if(DEFINED ENV{PERSONAL_DEV_ENV})
-  message("-- Running clang-format")
-  include(ClangFormat)
+    message("-- Enabling clang-format")
+  include(clang-format)
   set(clangformat_srcs ${all_srcs})
   clangformat_setup("${clangformat_srcs}")
 endif()

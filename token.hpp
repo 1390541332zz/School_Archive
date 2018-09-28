@@ -14,30 +14,29 @@ Defines the Token and TokenSequence types, and associated functions.
 */
 class Token {
 public:
-
-  /*! \enum TokenType
+    /*! \enum TokenType
     \brief a public enum defining the possible token types. 
    */
-  enum TokenType { OPEN,  //< open tag, aka '('
-		   CLOSE, //< close tag, aka ')'
-		   STRING //< string tag
-  };
+    enum TokenType { OPEN, //< open tag, aka '('
+        CLOSE, //< close tag, aka ')'
+        STRING //< string tag
+    };
 
-  /// construct a token of type t (if string default to empty value)
-  Token(TokenType t);
+    /// construct a token of type t (if string default to empty value)
+    Token(TokenType t);
 
-  /// contruct a token of type String with value
-  Token(const std::string & str);
+    /// contruct a token of type String with value
+    Token(const std::string& str);
 
-  /// return the type of the token
-  TokenType type() const;
+    /// return the type of the token
+    TokenType type() const;
 
-  /// return the token rendered as a string
-  std::string asString() const;
+    /// return the token rendered as a string
+    std::string asString() const;
 
 private:
-  TokenType m_type;
-  std::string value;
+    TokenType m_type;
+    std::string value;
 };
 
 /*! \typedef TokenSequenceType
@@ -57,6 +56,6 @@ OPEN or CLOSE or any space-delimited string
 
 Ignores any whitespace and comments (from any ";" to end-of-line).
 */
-TokenSequenceType tokenize(std::istream & seq);
+TokenSequenceType tokenize(std::istream& seq);
 
 #endif
