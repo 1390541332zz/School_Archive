@@ -1,13 +1,16 @@
 #include "expression.hpp"
 
 #include <list>
+#include <iostream>
 #include <sstream>
 #include <type_traits>
+#include <algorithm>
 
 #include "environment.hpp"
 #include "semantic_error.hpp"
 
 extern std::string const LIST_KEYWORD = "list";
+extern std::string const LAMBDA_KEYWORD = "lambda";
 
 Expression::Expression() {}
 
@@ -67,6 +70,11 @@ bool Expression::isList() const noexcept
     return (m_head.asSymbol() == LIST_KEYWORD);
 }
 
+bool Expression::isLambda() const noexcept
+{
+    return (m_head.asSymbol() == LAMBDA_KEYWORD);
+}
+
 std::size_t Expression::arg_length() const noexcept
 {
     return m_tail.size();
@@ -112,22 +120,38 @@ Expression apply(const Atom& op, const std::vector<Expression>& args, const Envi
     }
 
     // must map to a proc
-    if (!env.is_proc(op)) {
+    if (!env.is_proc(op) && !(env.get_exp(op).isLambda())) {
         throw SemanticError("Error during evaluation: symbol does not name a procedure");
     }
 
-    // map from symbol to proc
-    Procedure proc = env.get_proc(op);
+    if (env.is_proc(op)) {
+        // map from symbol to proc
+        Procedure proc = env.get_proc(op);
+        // call proc with args
+        return proc(args);
+    } else {
+        auto lambda_env = env;
+        auto lambda_expr = env.get_exp(op);
+        auto exp = *std::next(lambda_expr.tailConstBegin());
+        Expression arg_expr;
+        auto val = args.cbegin();
+        for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin(); 
+             arg != lambda_expr.tailConstBegin()->tailConstEnd();
+             ++arg, ++val) 
+        {
+            lambda_env.add_exp(arg->head(), *val);
+        }
+        
+        return exp.eval(lambda_env);
+    }
 
-    // call proc with args
-    return proc(args);
 }
 
 Expression Expression::handle_lookup(const Atom& head, const Environment& env)
 {
     if (head.isSymbol()) { // if symbol is in env return value
         if (!env.is_exp(head)) {
-            throw SemanticError("Error during evaluation: unknown symbol");
+            throw SemanticError(head.asSymbol() + "Error during evaluation: unknown symbol");
         }
         return env.get_exp(head);
     } else if (head.isNumber()) {
@@ -189,6 +213,39 @@ Expression Expression::handle_define(Environment& env)
     return result;
 }
 
+Expression Expression::handle_lambda(Environment& env)
+{
+    if (m_tail.size() != 2) {
+        throw SemanticError("Error during evaluation: invalid number of arguments to lambda");
+    }
+
+    // tail[0] must be a list of arguments
+    if (std::any_of(m_tail[0].tailConstBegin(), 
+                    m_tail[0].tailConstEnd(), 
+                    [&env] (Expression const & e) {
+              return (   !e.isHeadSymbol() 
+                      || e.isList()
+                      || (e.head().asSymbol() == "begin")
+                      || (e.head().asSymbol() == "define")
+                      || env.is_proc(e.head())
+                     );
+          })
+    ) {
+        throw SemanticError("Error during evaluation: the first argument must be a list of function arguments.");
+    }
+    Expression expr(LAMBDA_KEYWORD);
+    if (m_tail[0].arg_length() <= 1) {
+        Expression e;
+        e.append(m_tail[0]);
+        expr.append(e);
+    } else {
+        expr.append(m_tail[0]);
+    }
+    expr.append(m_tail[1]);
+    return expr;
+
+}
+
 // this is a simple recursive version. the iterative version is more
 // difficult with the ast data structure used (no parent pointer).
 // this limits the practical depth of our AST
@@ -198,21 +255,24 @@ Expression Expression::eval(Environment& env)
         return handle_lookup(m_head, env);
     }
     // handle begin special-form
-    else if (m_head.isSymbol() && m_head.asSymbol() == "begin") {
+    if (m_head.isSymbol() && m_head.asSymbol() == "begin") {
         return handle_begin(env);
     }
     // handle define special-form
-    else if (m_head.isSymbol() && m_head.asSymbol() == "define") {
+    if (m_head.isSymbol() && m_head.asSymbol() == "define") {
         return handle_define(env);
     }
-    // else attempt to treat as procedure
-    else {
-        std::vector<Expression> results;
-        for (Expression::IteratorType it = m_tail.begin(); it != m_tail.end(); ++it) {
-            results.push_back(it->eval(env));
-        }
-        return apply(m_head, results, env);
+    // handle lambda special-form
+    if (m_head.isSymbol() && m_head.asSymbol() == LAMBDA_KEYWORD) {
+        return handle_lambda(env);
     }
+    // else attempt to treat as procedure
+    std::vector<Expression> results;
+    for (Expression::IteratorType it = m_tail.begin(); it != m_tail.end(); ++it) {
+        results.push_back(it->eval(env));
+    }
+    return apply(m_head, results, env);
+
 }
 
 std::ostream& operator<<(std::ostream& out, const Expression& exp)

@@ -26,13 +26,15 @@ void Environment::reset()
               // clang-format off
               // operator,       procedure
               // - list operators - 
-              { "list",          list           },
+              { LIST_KEYWORD,    list           },
               { "first",         first          },
               { "rest",          rest           },
               { "length",        length         },
               { "append",        append         },
               { "join",          join           },
               { "range",         range          },
+              // - functional operators - 
+              { LAMBDA_KEYWORD,  lambda         },
               // - arithmetic operators - 
               { "+",             add            },
               { "-",             subneg         },

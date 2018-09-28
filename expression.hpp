@@ -14,6 +14,7 @@ Defines the Expression type and assiciated functions.
 class Environment;
 
 extern std::string const LIST_KEYWORD;
+extern std::string const LAMBDA_KEYWORD;
 
 /*! \class Expression
 \brief An expression is a tree of Atoms.
@@ -85,7 +86,10 @@ public:
     /// convienience member to determine if expression is a list
     bool isList() const noexcept;
 
-    /// convienience member to determine if expression is a list
+    /// convienience member to determine if expression is a lambda
+    bool isLambda() const noexcept;
+
+    /// convienience member to determine length of arguments
     std::size_t arg_length() const noexcept;
 
     /// Evaluate expression using a post-order traversal (recursive)
@@ -109,6 +113,7 @@ private:
     Expression handle_lookup(const Atom& head, const Environment& env);
     Expression handle_define(Environment& env);
     Expression handle_begin(Environment& env);
+    Expression handle_lambda(Environment& env);
 };
 
 /// Render expression to output stream
