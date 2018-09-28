@@ -160,7 +160,44 @@ TEST_CASE("Test Default Functions", "[environment]")
         { "(join (list 7 2 3) (list 1 5))",    "(list 7 2 3 1 5)"              }, // Join
         { "(range -3 3 1.4)",                  "(list -3 -1.6 -0.2 1.2 2.6)"   }, // Range
         { "(range 0 5 1)",                     "(list 0 1 2 3 4 5)"            }, // Range
-
+        // - Lambda Procedure Cases - 
+        { "(begin                           \
+             (define f                      \
+               (lambda (x) (* 2 x))         \
+             )                              \
+             (f 2)                          \
+           )",                                 "(4)"                           }, // Lambda
+        { "(begin                           \
+             (define f                      \
+               (lambda (x) (* 2 x))         \
+             )                              \
+             (define y 3)                   \
+             (f y)                          \
+           )",                                 "(6)"                           }, // Lambda
+        { "(begin                           \
+             (define f                      \
+               (lambda (x y) (* 2 (+ x y))) \
+             )                              \
+             (define a 3)                   \
+             (define b 4)                   \
+             (f a b)                        \
+           )",                                "(14)"                          }, // Lambda
+        { "(begin                           \
+             (define f                      \
+               (lambda (x y) (* y (+ x b))) \
+             )                              \
+             (define a 3)                   \
+             (define b 4)                   \
+             (f a 2)                        \
+           )",                                "(14)"                          }, // Capture
+        { "(begin                           \
+             (define f                      \
+               (lambda (x y) (* 2 (+ x y))) \
+             )                              \
+             (define x 3)                   \
+             (define y 4)                   \
+             (f 2 4)                        \
+           )",                                "(12)"                          }, // Shadow
     };
 
     std::vector<std::string> fail_cases{

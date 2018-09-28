@@ -136,10 +136,10 @@ Expression apply(const Atom& op, const std::vector<Expression>& args, const Envi
         Expression arg_expr;
         auto val = args.cbegin();
         for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin(); 
-             arg != lambda_expr.tailConstBegin()->tailConstEnd();
+                 arg != lambda_expr.tailConstBegin()->tailConstEnd();
              ++arg, ++val) 
         {
-            lambda_env.add_exp(arg->head(), *val);
+            lambda_env.add_exp_force(arg->head(), *val);
         }
         
         return exp.eval(lambda_env);
@@ -234,12 +234,19 @@ Expression Expression::handle_lambda(Environment& env)
         throw SemanticError("Error during evaluation: the first argument must be a list of function arguments.");
     }
     Expression expr(LAMBDA_KEYWORD);
-    if (m_tail[0].arg_length() <= 1) {
-        Expression e;
-        e.append(m_tail[0]);
+    Expression e;
+    if (m_tail[0].arg_length() > 0) {
+        e.append(Expression(m_tail[0].head()));
+        for (auto it = m_tail[0].tailConstBegin(); 
+                 it != m_tail[0].tailConstEnd();
+             ++it) 
+        {
+            e.append(it->head());
+        }
         expr.append(e);
     } else {
-        expr.append(m_tail[0]);
+        e.append(m_tail[0]);
+        expr.append(e);
     }
     expr.append(m_tail[1]);
     return expr;
