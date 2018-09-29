@@ -73,14 +73,10 @@ Expression subneg(const std::vector<Expression>& args)
 
 Expression div(const std::vector<Expression>& args)
 {
-    std::complex<double> result(0, 0);
-    if (nargs_equal(args, 1)) {
-        result = std::complex<double>(1,0) / args[0].head().asComplex();
-    } else if (nargs_equal(args, 2)) {
-        result = args[0].head().asComplex() / args[1].head().asComplex();
-    } else {
+    if (!nargs_equal(args, 2)) {
         throw SemanticError("Error in call to division: invalid number of arguments.");
     }
+    auto result = args[0].head().asComplex() / args[1].head().asComplex();
     if (anyargs_complex(args))
         return Expression(result);
     return Expression(result.real());

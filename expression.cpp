@@ -16,14 +16,12 @@ Expression::Expression() {}
 
 Expression::Expression(const Atom& a)
 {
-    is_fun = false;
     m_head = a;
 }
 
 // recursive copy
 Expression::Expression(const Expression& a)
 {
-    is_fun = a.is_fun;
     m_head = a.m_head;
     for (auto e : a.m_tail) {
         m_tail.push_back(e);
@@ -34,7 +32,6 @@ Expression& Expression::operator=(const Expression& a)
 {
     if (this == &a)
         return *this;
-    is_fun = a.is_fun;
     m_head = a.m_head;
     m_tail.clear();
     for (auto e : a.m_tail) {
@@ -76,16 +73,6 @@ bool Expression::isList() const noexcept
 bool Expression::isLambda() const noexcept
 {
     return (m_head.asSymbol() == LAMBDA_KEYWORD);
-}
-
-bool Expression::isFun() const noexcept
-{
-    return is_fun;
-}
-
-void Expression::makeFun() noexcept
-{
-    is_fun = true;
 }
 
 std::size_t Expression::arg_length() const noexcept
@@ -246,7 +233,6 @@ Expression Expression::handle_lambda(Environment& env)
     ) {
         throw SemanticError("Error during evaluation: the first argument must be a list of function arguments.");
     }
-
     Expression expr(LAMBDA_KEYWORD);
     Expression e;
     if (m_tail[0].arg_length() > 0) {
