@@ -1,0 +1,99 @@
+D:/GitHub/ECE3544/Project02/P2_0/counter_4bit.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/counter_4bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module counter_4bit
+
+Top level modules:
+	counter_4bit
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/system_tb1.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/system_tb1.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module system_tb1
+
+Top level modules:
+	system_tb1
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/reg10_tb.v {1 {vlog -work work -stats=none {D:\GitHub\ECE3544\Project02\P2_0\reg10_tb.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module reg10_tb
+
+Top level modules:
+	reg10_tb
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/register_10bit.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/register_10bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module register_10bit
+
+Top level modules:
+	register_10bit
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/system_tb2.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/system_tb2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module system_tb2
+
+Top level modules:
+	system_tb2
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/hc85_ut_tb.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/hc85_ut_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hc85_ut_tb
+
+Top level modules:
+	hc85_ut_tb
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/clk_tb.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/clk_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module clk_tb
+
+Top level modules:
+	clk_tb
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/ctr11_tb.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/ctr11_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ctr11_tb
+
+Top level modules:
+	ctr11_tb
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/counter_11bit.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/counter_11bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module counter_11bit
+
+Top level modules:
+	counter_11bit
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/hc85_ut.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/hc85_ut.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hc85_ut
+
+Top level modules:
+	hc85_ut
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/clk.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/clk.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module clk
+
+Top level modules:
+	clk
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/hc85_tb.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/hc85_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hc85_tb
+
+Top level modules:
+	hc85_tb
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/ctr_tb.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/ctr_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ctr_tb
+
+Top level modules:
+	ctr_tb
+
+} {} {}} D:/GitHub/ECE3544/Project02/P2_0/hc85.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project02/P2_0/hc85.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hc85
+
+Top level modules:
+	hc85
+
+} {} {}}
