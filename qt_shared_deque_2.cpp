@@ -3,16 +3,14 @@
 
 #include "shared_ring_buffer.h"
 
-std::size_t const buf_sz = 100;
-
 int main(int argc, char *argv[])
 {
   SharedRingBuffer<int> buffer;
 
-  buffer.create(buf_sz);
+  buffer.create(BUF_SZ);
 
   while(true){
-    if(buffer.getCount() >= buf_sz) break;
+    if(buffer.getCount() >= BUF_SZ) continue;
     int val = 0;
     std::cout << "Integer to enque: ";
     std::cin >> val;

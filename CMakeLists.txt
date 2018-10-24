@@ -8,7 +8,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # configure Qt
 find_package(Qt5 COMPONENTS Core REQUIRED)
-  
+
+# define shared constants
+add_definitions(-DBUF_SZ=100)
+
 ADD_EXECUTABLE(qt_shared_deque_1 qt_shared_deque_1.cpp shared_ring_buffer.h shared_ring_buffer.tpp )
 TARGET_LINK_LIBRARIES(qt_shared_deque_1 Qt5::Core)
 
