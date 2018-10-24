@@ -1,4 +1,5 @@
 #include <QFile>
+#include <QList>
 #include <QDataStream>
 #include <QDebug>
 
@@ -32,10 +33,17 @@ int main(int argc, char *argv[])
   in.setVersion(QDataStream::Qt_5_0);
 
   // Read the data
-  QString msg;
-  in >> msg;
+  QList<QString> msgs;
+  in >> msgs;
 
-  qDebug() << "Read: " << msg;
-  
+  qDebug() << "Read: {";
+
+  std::size_t i = 0;
+  for (QString const & str : msgs) {
+    qDebug() << i++ << ": " << str;
+  }
+ 
+  qDebug() << "}";
+
   return 0;
 }
