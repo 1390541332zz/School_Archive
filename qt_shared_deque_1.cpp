@@ -3,11 +3,13 @@
 
 #include "shared_ring_buffer.h"
 
+std::size_t const buf_sz = 100;
+
 int main(int argc, char *argv[])
 {
   SharedRingBuffer<int> buffer;
 
-  buffer.create(100);
+  buffer.create(buf_sz);
 
   while(true){
     if(buffer.getCount() > 0){

@@ -3,19 +3,22 @@
 
 #include "shared_ring_buffer.h"
 
+std::size_t const buf_sz = 100;
+
 int main(int argc, char *argv[])
 {
   SharedRingBuffer<int> buffer;
 
-  buffer.create(100);
+  buffer.create(buf_sz);
 
   while(true){
-    if(buffer.getCount() == 0){
-      int value = 3;
-      buffer.enqueue(value);
-      std::cout << "Enqueued: " << value << std::endl;
-      break;
-    }
+    if(buffer.getCount() >= buf_sz) break;
+    int val = 0;
+    std::cout << "Integer to enque: ";
+    std::cin >> val;
+    if(!std::cin.good()) break;
+    buffer.enqueue(val);
+    std::cout << "Enqueued: " << val << std::endl;
   }
 
   return 0;
