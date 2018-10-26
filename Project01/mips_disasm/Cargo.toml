@@ -1,0 +1,11 @@
+[package]
+name = "mips_disasm"
+version = "0.1.0"
+authors = ["Jacob Abel <jacobabel@live.com>"]
+
+[dependencies]
+nom = "4.1.1"
+
+[[bin]]
+name = "myDisassembler"
+path = "src/main.rs"
