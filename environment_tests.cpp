@@ -211,6 +211,9 @@ TEST_CASE("Test Default Functions", "[environment]")
         { "(apply + (list 1 2 3)            \
            )",                                "(6)"                           }, // Apply 
         { "(map / (list 1 2 4 8))",           "(list 1 0.5 0.25 0.125)"       }, // Map 
+        { "(map (lambda (x) (- x))          \
+            (list 1 2 3 4)                  \
+           )",                                "(list -1 -2 -3 -4)"            }, // Map 
     };
 
     std::vector<std::string> fail_cases{

@@ -84,7 +84,7 @@ Expression map_comb(const std::vector<Expression>& args)
         }
         auto lambda_expr = args[0];
         auto exp = *std::next(lambda_expr.tailConstBegin());
-        auto arg = args[0].tailConstBegin();
+        auto arg = args[0].tailConstBegin()->tailConstBegin();
         Environment lambda_env;
         lambda_env.parent = lambda_expr.scope;
         lambda_env.reset();

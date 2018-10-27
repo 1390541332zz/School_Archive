@@ -288,11 +288,11 @@ std::ostream& operator<<(std::ostream& out, const Expression& exp)
 {
 
     out << '(';
-    if (!exp.isList()) {
+    if (!exp.isList() && !exp.isLambda()) {
         out << exp.head();
     }
     for (auto e = exp.tailConstBegin(); e != exp.tailConstEnd(); ++e) {
-        if (!exp.isList() || (e != exp.tailConstBegin())) {
+        if ((!exp.isList() && !exp.isLambda()) || (e != exp.tailConstBegin())) {
             out << ' ';
         }
         out << *e;
