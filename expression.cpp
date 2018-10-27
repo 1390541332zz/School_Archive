@@ -234,19 +234,19 @@ Expression Expression::handle_lambda(Environment& env)
     }
     std::string const s = "lambda";
     Expression expr(s);
-    Expression e;
+    Expression args = Atom("list");
     if (m_tail[0].arg_length() > 0) {
-        e.append(Expression(m_tail[0].head()));
+        args.append(Expression(m_tail[0].head()));
         for (auto it = m_tail[0].tailConstBegin(); 
                  it != m_tail[0].tailConstEnd();
              ++it) 
         {
-            e.append(it->head());
+            args.append(it->head());
         }
-        expr.append(e);
+        expr.append(args);
     } else {
-        e.append(m_tail[0]);
-        expr.append(e);
+        args.append(m_tail[0]);
+        expr.append(args);
     }
     expr.append(m_tail[1]);
     return expr;
@@ -292,7 +292,7 @@ std::ostream& operator<<(std::ostream& out, const Expression& exp)
         out << exp.head();
     }
     for (auto e = exp.tailConstBegin(); e != exp.tailConstEnd(); ++e) {
-        if (exp.isList() && (e != exp.tailConstBegin())) {
+        if (!exp.isList() || (e != exp.tailConstBegin())) {
             out << ' ';
         }
         out << *e;
