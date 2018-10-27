@@ -17,8 +17,10 @@ public:
     /*! \enum TokenType
     \brief a public enum defining the possible token types. 
    */
-    enum TokenType { OPEN, //< open tag, aka '('
+    enum TokenType { 
+        OPEN, //< open tag, aka '('
         CLOSE, //< close tag, aka ')'
+        QUOTE, //< quote tag, aka ')'
         STRING //< string tag
     };
 

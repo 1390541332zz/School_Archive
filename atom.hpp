@@ -47,6 +47,9 @@ public:
     /// predicate to determine if an Atom is of type Number and Complex
     bool isComplex() const noexcept;
 
+    /// predicate to determine if an Atom is of type String
+    bool isString() const noexcept;
+
     /// predicate to determine if an Atom is of type Symbol
     bool isSymbol() const noexcept;
 
@@ -64,10 +67,13 @@ public:
 
 private:
     // internal enum of known types
-    enum Type { NoneType,
+    enum Type { 
+        NoneType,
         DoubleType,
+        StringType,
         SymbolType,
-        ComplexType };
+        ComplexType 
+    };
 
     // track the type
     Type m_type;
@@ -87,6 +93,9 @@ private:
 
     // helper to set type and value of Symbol
     void setSymbol(const std::string& value);
+    
+    // helper to set type and value of String
+    void setString(const std::string& value);
 };
 
 /// inequality comparison for Atom

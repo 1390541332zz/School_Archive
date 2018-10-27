@@ -80,6 +80,9 @@ public:
     /// convienience member to determine if head atom is a symbol
     bool isHeadSymbol() const noexcept;
 
+    /// convienience member to determine if head atom is a string
+    bool isHeadString() const noexcept;
+
     /// convienience member to determine if expression is a list
     bool isList() const noexcept;
 

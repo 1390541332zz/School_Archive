@@ -64,6 +64,11 @@ bool Expression::isHeadSymbol() const noexcept
     return m_head.isSymbol();
 }
 
+bool Expression::isHeadString() const noexcept
+{
+    return m_head.isString();
+}
+
 bool Expression::isList() const noexcept
 {
     return (m_head.asSymbol() == "list");
@@ -145,7 +150,9 @@ Expression apply(const Atom& op, const std::vector<Expression>& args, const Envi
 
 Expression Expression::handle_lookup(const Atom& head, const Environment& env)
 {
-    if (head.isSymbol()) { // if symbol is in env return value
+    if (head.isString()) { // if string is in env return value
+        return Expression(head);
+    } else if (head.isSymbol()) { // if symbol is in env return value
         if (!env.is_exp(head) && !env.is_proc(head)) {
             throw SemanticError("Error during evaluation: unknown symbol");
         }
