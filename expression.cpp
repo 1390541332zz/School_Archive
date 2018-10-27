@@ -20,6 +20,7 @@ Expression::Expression(const Atom& a)
 Expression::Expression(const Expression& a)
 {
     m_head = a.m_head;
+    scope = a.scope;
     for (auto e : a.m_tail) {
         m_tail.push_back(e);
     }
@@ -30,6 +31,7 @@ Expression& Expression::operator=(const Expression& a)
     if (this == &a)
         return *this;
     m_head = a.m_head;
+    scope = a.scope;
     m_tail.clear();
     for (auto e : a.m_tail) {
         m_tail.push_back(e);
@@ -108,41 +110,6 @@ Expression::ConstIteratorType Expression::tailConstEnd() const noexcept
     return m_tail.cend();
 }
 
-//Expression apply(const Atom& op, const std::vector<Expression>& args, const Environment& env)
-//{
-//
-//    // head must be a symbol
-//    if (!op.isSymbol()) {
-//        throw SemanticError("Error during evaluation: procedure name not symbol");
-//    }
-//
-//    // must map to a proc
-//    if (!env.is_proc(op) && !(env.get_exp(op).isLambda())) {
-//        throw SemanticError("Error during evaluation: symbol does not name a procedure");
-//    }
-//
-//    if (env.is_proc(op)) {
-//        // map from symbol to proc
-//        Procedure proc = env.get_proc(op);
-//        // call proc with args
-//        return proc(args);
-//    } else {
-//        auto lambda_env = env;
-//        auto lambda_expr = env.get_exp(op);
-//        auto exp = *std::next(lambda_expr.tailConstBegin());
-//        Expression arg_expr;
-//        auto val = args.cbegin();
-//        for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin(); 
-//                 arg != lambda_expr.tailConstBegin()->tailConstEnd();
-//             ++arg, ++val) 
-//        {
-//            lambda_env.add_exp_force(arg->head(), *val);
-//        }
-//        
-//        return exp.eval(lambda_env);
-//    }
-//
-//}
 Expression apply(const Atom& op, const std::vector<Expression>& args, const Environment& env)
 {
     // head must be a symbol
@@ -179,9 +146,12 @@ Expression apply(const Atom& op, const std::vector<Expression>& args, const Envi
 Expression Expression::handle_lookup(const Atom& head, const Environment& env)
 {
     if (head.isSymbol()) { // if symbol is in env return value
-        if (!env.is_exp(head)) {
-            throw SemanticError(head.asSymbol() + "Error during evaluation: unknown symbol");
+        if (!env.is_exp(head) && !env.is_proc(head)) {
+            throw SemanticError("Error during evaluation: unknown symbol");
         }
+        if (!env.is_exp(head)) {
+            return Expression(head);
+        } 
         return env.get_exp(head);
     } else if (head.isNumber()) {
         return Expression(head);
@@ -306,6 +276,9 @@ Expression Expression::eval(Environment& env)
     std::vector<Expression> results;
     for (Expression::IteratorType it = m_tail.begin(); it != m_tail.end(); ++it) {
         results.push_back(it->eval(env));
+    }
+    for (auto & x : results) {
+        x.scope = &env;
     }
     return apply(m_head, results, env);
 

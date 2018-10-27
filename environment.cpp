@@ -38,6 +38,7 @@ void Environment::reset()
               { "range",         range          },
               // - functional operators - 
               { "lambda",        lambda         },
+              { "apply",         apply_comb     },
               // - arithmetic operators - 
               { "+",             add            },
               { "-",             subneg         },

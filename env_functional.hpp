@@ -9,4 +9,53 @@ Expression lambda(const std::vector<Expression>& args)
 }
 
 
+Expression apply_comb(const std::vector<Expression>& args)
+{
+    if (!nargs_equal(args, 2)) {
+        throw SemanticError("Error: Incorrect number of arguments");
+    }
+    if (args[0].scope == nullptr) {
+        throw SemanticError("Error: Detached Scope Pointer");
+    }
+    auto & env = *(args[0].scope);
+    if (!env.is_proc(args[0].head()) && !args[0].isLambda()) {
+        throw SemanticError("Error: first argument to apply is not a procedure.");
+    }
+    if (!args[1].isList()) {
+        throw SemanticError("Error: second argument to apply is not a list.");
+    }
+    if (env.is_proc(args[0].head()) && !args[0].isLambda()) {
+        auto exp = Expression(args[1].tailConstBegin(), args[1].tailConstEnd());
+        exp.head() = args[0].head();
+        try {
+            return exp.eval(env);
+        } catch (SemanticError const & e) {
+            std::string ex = "Error: during apply: " + std::string(e.what());
+            throw SemanticError(ex);
+        }
+    }
+    Environment lambda_env;
+    auto lambda_expr = args[0];
+    auto exp = *std::next(lambda_expr.tailConstBegin());
+    auto val = args[1].tailConstBegin();
+    lambda_env.parent = lambda_expr.scope;
+    lambda_env.reset();
+    for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin(); 
+             arg != lambda_expr.tailConstBegin()->tailConstEnd();
+         ++arg, ++val) 
+    {
+        lambda_env.add_exp(arg->head(), *val);
+    }
+    try {
+        return exp.eval(lambda_env);
+    } catch (SemanticError const & e) {
+        std::string ex = "Error: during apply: " + std::string(e.what());
+        throw SemanticError(ex);
+    }
+}
+Expression map_comb(const std::vector<Expression>& args)
+{
+    return Expression(args.cbegin(), args.cend());
+} 
+
 #endif /* ENVIRONMENT_FUNCTIONAL_H */

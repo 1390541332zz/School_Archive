@@ -95,6 +95,9 @@ public:
     /// equality comparison for two expressions (recursive)
     bool operator==(const Expression& exp) const noexcept;
 
+    // Scope pointer for combinators
+    Environment* scope = nullptr;
+
 private:
     // the head of the expression
     Atom m_head;

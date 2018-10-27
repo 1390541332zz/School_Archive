@@ -135,6 +135,7 @@ TEST_CASE("Test Default Functions", "[environment]")
         { "( * 2 5 3 )",                       "( 30 )"                        }, // Mul 3 Arg
         { "( - 5 3 )",                         "( 2 )"                         }, // Sub
         { "( - 4   )",                         "( -4 )"                        }, // Neg
+        { "( / 2 )",                           "( 0.5 )"                       }, // Inverse 
         { "( / 1 1 )",                         "( 1 )"                         }, // Div
         { "( ^ 5 2 )",                         "( 25 )"                        }, // Pow
         { "( ^ (+ 4 I) 2 )",                   "(+ 15 (* 8 I))"                }, // Pow
@@ -203,12 +204,18 @@ TEST_CASE("Test Default Functions", "[environment]")
              (define y 4)                   \
              (f 2 4)                        \
            )",                                "(12)"                          }, // Shadow
+        { "(apply                           \
+             (lambda (x y) (* 2 (+ x y)))   \
+             (list 2 3)                     \
+           )",                                "(10)"                          }, // Apply 
+        { "(apply + (list 1 2 3)            \
+           )",                                "(6)"                           }, // Apply 
     };
 
     std::vector<std::string> fail_cases{
         // input,                                  test case
         // - Arithmetic Procedure Cases -    
-        "( / 3 )",                              // Div Invalid # of Arg
+        "( / 3 2 1)",                           // Div Invalid # of Arg
         "( ^ 1 )",                              // Pow Invalid # of Arg
         "( - 3 2 2 )",                          // Sub Invalid # of Arg
         "( sqrt 4 2 )",                         // Sqrt Invalid # of Arg
