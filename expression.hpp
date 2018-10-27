@@ -13,9 +13,6 @@ Defines the Expression type and assiciated functions.
 // forward declare Environment
 class Environment;
 
-extern std::string const LIST_KEYWORD;
-extern std::string const LAMBDA_KEYWORD;
-
 /*! \class Expression
 \brief An expression is a tree of Atoms.
 
@@ -45,7 +42,7 @@ public:
                 Expression>::value>::type>
     Expression(it const& begin, it const& end)
     {
-        m_head = Atom(LIST_KEYWORD);
+        m_head = Atom("list");
         for (auto e = begin; e != end; ++e) {
             m_tail.push_back(*e);
         }
@@ -108,6 +105,7 @@ private:
 
     // convenience typedef
     typedef std::vector<Expression>::iterator IteratorType;
+
 
     // internal helper methods
     Expression handle_lookup(const Atom& head, const Environment& env);

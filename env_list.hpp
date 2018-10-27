@@ -95,8 +95,8 @@ Expression range(const std::vector<Expression>& args)
     if (rate <= 0) {
         throw SemanticError("Error: negative or zero increment in range.");
     }
-
-    auto exp = Expression(LIST_KEYWORD);
+    std::string const s = "list";
+    auto exp = Expression(s);
     for (auto i = lbound; i <= ubound; i += rate) {
         exp.append(Atom(i));
     }

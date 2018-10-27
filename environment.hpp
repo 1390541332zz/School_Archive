@@ -92,6 +92,9 @@ public:
     /*! Reset the environment to its default state. */
     void reset();
 
+    /*! parent scope environment */
+    // Would use plain getters and setters anyways so might as well be public
+    Environment const * parent = nullptr;
 private:
     // Environment is a mapping from symbols to expressions or procedures
     enum EnvResultType { ExpressionType,
@@ -111,7 +114,6 @@ private:
             : type(t)
             , proc(p){};
     };
-
     // the environment map
     std::map<std::string, EnvResult> envmap;
 };

@@ -282,7 +282,7 @@ TEST_CASE("Test some semantically invalid expresions", "[interpreter]")
         Interpreter interp;
 
         std::istringstream iss(s);
-
+        CAPTURE(s);
         bool ok = interp.parseStream(iss);
         REQUIRE(ok == true);
 

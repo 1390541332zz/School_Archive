@@ -9,9 +9,6 @@
 #include "environment.hpp"
 #include "semantic_error.hpp"
 
-extern std::string const LIST_KEYWORD = "list";
-extern std::string const LAMBDA_KEYWORD = "lambda";
-
 Expression::Expression() {}
 
 Expression::Expression(const Atom& a)
@@ -67,12 +64,12 @@ bool Expression::isHeadSymbol() const noexcept
 
 bool Expression::isList() const noexcept
 {
-    return (m_head.asSymbol() == LIST_KEYWORD);
+    return (m_head.asSymbol() == "list");
 }
 
 bool Expression::isLambda() const noexcept
 {
-    return (m_head.asSymbol() == LAMBDA_KEYWORD);
+    return (m_head.asSymbol() == "lambda");
 }
 
 std::size_t Expression::arg_length() const noexcept
@@ -111,9 +108,43 @@ Expression::ConstIteratorType Expression::tailConstEnd() const noexcept
     return m_tail.cend();
 }
 
+//Expression apply(const Atom& op, const std::vector<Expression>& args, const Environment& env)
+//{
+//
+//    // head must be a symbol
+//    if (!op.isSymbol()) {
+//        throw SemanticError("Error during evaluation: procedure name not symbol");
+//    }
+//
+//    // must map to a proc
+//    if (!env.is_proc(op) && !(env.get_exp(op).isLambda())) {
+//        throw SemanticError("Error during evaluation: symbol does not name a procedure");
+//    }
+//
+//    if (env.is_proc(op)) {
+//        // map from symbol to proc
+//        Procedure proc = env.get_proc(op);
+//        // call proc with args
+//        return proc(args);
+//    } else {
+//        auto lambda_env = env;
+//        auto lambda_expr = env.get_exp(op);
+//        auto exp = *std::next(lambda_expr.tailConstBegin());
+//        Expression arg_expr;
+//        auto val = args.cbegin();
+//        for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin(); 
+//                 arg != lambda_expr.tailConstBegin()->tailConstEnd();
+//             ++arg, ++val) 
+//        {
+//            lambda_env.add_exp_force(arg->head(), *val);
+//        }
+//        
+//        return exp.eval(lambda_env);
+//    }
+//
+//}
 Expression apply(const Atom& op, const std::vector<Expression>& args, const Environment& env)
 {
-
     // head must be a symbol
     if (!op.isSymbol()) {
         throw SemanticError("Error during evaluation: procedure name not symbol");
@@ -129,22 +160,20 @@ Expression apply(const Atom& op, const std::vector<Expression>& args, const Envi
         Procedure proc = env.get_proc(op);
         // call proc with args
         return proc(args);
-    } else {
-        auto lambda_env = env;
-        auto lambda_expr = env.get_exp(op);
-        auto exp = *std::next(lambda_expr.tailConstBegin());
-        Expression arg_expr;
-        auto val = args.cbegin();
-        for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin(); 
-                 arg != lambda_expr.tailConstBegin()->tailConstEnd();
-             ++arg, ++val) 
-        {
-            lambda_env.add_exp_force(arg->head(), *val);
-        }
-        
-        return exp.eval(lambda_env);
     }
-
+    Environment lambda_env;
+    auto lambda_expr = env.get_exp(op);
+    auto exp = *std::next(lambda_expr.tailConstBegin());
+    auto val = args.cbegin();
+    lambda_env.parent = &env;
+    lambda_env.reset();
+    for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin(); 
+             arg != lambda_expr.tailConstBegin()->tailConstEnd();
+         ++arg, ++val) 
+    {
+        lambda_env.add_exp(arg->head(), *val);
+    }
+    return exp.eval(lambda_env);
 }
 
 Expression Expression::handle_lookup(const Atom& head, const Environment& env)
@@ -233,7 +262,8 @@ Expression Expression::handle_lambda(Environment& env)
     ) {
         throw SemanticError("Error during evaluation: the first argument must be a list of function arguments.");
     }
-    Expression expr(LAMBDA_KEYWORD);
+    std::string const s = "lambda";
+    Expression expr(s);
     Expression e;
     if (m_tail[0].arg_length() > 0) {
         e.append(Expression(m_tail[0].head()));
@@ -250,7 +280,6 @@ Expression Expression::handle_lambda(Environment& env)
     }
     expr.append(m_tail[1]);
     return expr;
-
 }
 
 // this is a simple recursive version. the iterative version is more
@@ -258,7 +287,7 @@ Expression Expression::handle_lambda(Environment& env)
 // this limits the practical depth of our AST
 Expression Expression::eval(Environment& env)
 {
-    if (m_tail.empty() && (m_head.asSymbol() != LIST_KEYWORD)) {
+    if (m_tail.empty() && (m_head.asSymbol() != "list")) {
         return handle_lookup(m_head, env);
     }
     // handle begin special-form
@@ -270,7 +299,7 @@ Expression Expression::eval(Environment& env)
         return handle_define(env);
     }
     // handle lambda special-form
-    if (m_head.isSymbol() && m_head.asSymbol() == LAMBDA_KEYWORD) {
+    if (m_head.isSymbol() && m_head.asSymbol() == "lambda") {
         return handle_lambda(env);
     }
     // else attempt to treat as procedure
@@ -290,8 +319,9 @@ std::ostream& operator<<(std::ostream& out, const Expression& exp)
         out << exp.head();
     }
     for (auto e = exp.tailConstBegin(); e != exp.tailConstEnd(); ++e) {
-        if (exp.isList() && (e != exp.tailConstBegin()))
+        if (exp.isList() && (e != exp.tailConstBegin())) {
             out << ' ';
+        }
         out << *e;
     }
 

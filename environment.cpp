@@ -7,11 +7,14 @@
 
 #include "environment.hpp"
 
+static Environment const default_env;
+
 // Static Class Files
 #include "env_arithmetic.hpp"
 #include "env_functional.hpp"
 #include "env_helper.hpp"
 #include "env_list.hpp"
+
 
 Environment::Environment()
 {
@@ -26,7 +29,7 @@ void Environment::reset()
               // clang-format off
               // operator,       procedure
               // - list operators - 
-              { LIST_KEYWORD,    list           },
+              { "list",          list           },
               { "first",         first          },
               { "rest",          rest           },
               { "length",        length         },
@@ -34,7 +37,7 @@ void Environment::reset()
               { "join",          join           },
               { "range",         range          },
               // - functional operators - 
-              { LAMBDA_KEYWORD,  lambda         },
+              { "lambda",        lambda         },
               // - arithmetic operators - 
               { "+",             add            },
               { "-",             subneg         },
@@ -53,8 +56,10 @@ void Environment::reset()
               { "conj",          conj           },
               //clang-format on
           };
-
+    
     envmap.clear();
+
+    if (parent != nullptr) return;
 
     // Built-In value of pi
     envmap.emplace("pi", EnvResult(ExpressionType, Expression(PI)));
@@ -74,8 +79,13 @@ bool Environment::is_known(const Atom& sym) const
 {
     if (!sym.isSymbol())
         return false;
-
-    return envmap.find(sym.asSymbol()) != envmap.end();
+    auto result = envmap.find(sym.asSymbol());
+    return (  (result != envmap.end())
+           || (  (parent != nullptr) 
+              && (result == envmap.end()) 
+              && parent->is_known(sym)
+              )
+           );
 }
 
 bool Environment::is_exp(const Atom& sym) const
@@ -84,40 +94,29 @@ bool Environment::is_exp(const Atom& sym) const
         return false;
 
     auto result = envmap.find(sym.asSymbol());
-    return (  (result != envmap.end()) 
-           && (  (result->second.type == ExpressionType) 
-              || (sym.asSymbol() == LIST_KEYWORD)
+    return (  (  (result != envmap.end()) 
+              && (  (result->second.type == ExpressionType) 
+                 || (sym.asSymbol() == "list") 
+                 )
+              )
+           || (  (parent != nullptr) 
+              && (result == envmap.end()) 
+              && parent->is_exp(sym)
               )
            );
 }
 
 Expression Environment::get_exp(const Atom& sym) const
 {
-    Expression exp;
-
-    if (sym.isSymbol()) {
-        auto result = envmap.find(sym.asSymbol());
-        if ((result != envmap.end()) && (result->second.type == ExpressionType)) {
-            exp = result->second.exp;
-        }
+    if (!sym.isSymbol()) return Expression();
+    auto result = envmap.find(sym.asSymbol());
+    if ((result != envmap.end()) && (result->second.type == ExpressionType)) {
+        return result->second.exp;
     }
-
-    return exp;
-}
-
-void Environment::add_exp_force(const Atom& sym, const Expression& exp)
-{
-
-    if (!sym.isSymbol()) {
-        throw SemanticError("Attempt to add non-symbol to environment");
+    if ((parent != nullptr) && (result == envmap.end())) {
+        return parent->get_exp(sym);
     }
-
-    auto it = envmap.find(sym.asSymbol());
-    if (it != envmap.end()) {
-        envmap.erase(it);
-    }
-
-    envmap.emplace(sym.asSymbol(), EnvResult(ExpressionType, exp));
+    return Expression();
 }
 
 void Environment::add_exp(const Atom& sym, const Expression& exp)
@@ -126,10 +125,12 @@ void Environment::add_exp(const Atom& sym, const Expression& exp)
     if (!sym.isSymbol()) {
         throw SemanticError("Attempt to add non-symbol to environment");
     }
-
-    // error if overwriting symbol map
-    if (envmap.find(sym.asSymbol()) != envmap.end()) {
-        throw SemanticError("Attempt to overwrite symbol in environemnt");
+    if (default_env.is_known(sym)) {
+        throw SemanticError("Attempt to override default symbol");
+    }
+    auto it = envmap.find(sym.asSymbol());
+    if (it != envmap.end()) {
+        envmap.erase(it);
     }
 
     envmap.emplace(sym.asSymbol(), EnvResult(ExpressionType, exp));
@@ -141,7 +142,14 @@ bool Environment::is_proc(const Atom& sym) const
         return false;
 
     auto result = envmap.find(sym.asSymbol());
-    return (result != envmap.end()) && (result->second.type == ProcedureType);
+    return (  (  (result != envmap.end()) 
+              && (result->second.type == ProcedureType)
+              )
+           || (  (parent != nullptr) 
+              && (result == envmap.end()) 
+              && parent->is_proc(sym)
+              )
+           );
 }
 
 Procedure Environment::get_proc(const Atom& sym) const
@@ -149,11 +157,14 @@ Procedure Environment::get_proc(const Atom& sym) const
 
     //Procedure proc = default_proc;
 
-    if (sym.isSymbol()) {
-        auto result = envmap.find(sym.asSymbol());
-        if ((result != envmap.end()) && (result->second.type == ProcedureType)) {
-            return result->second.proc;
-        }
+    if (!sym.isSymbol()) return default_proc;
+
+    auto result = envmap.find(sym.asSymbol());
+    if ((result != envmap.end()) && (result->second.type == ProcedureType)) {
+        return result->second.proc;
+    }
+    if ((parent != nullptr) && (result == envmap.end())) {
+        return parent->get_proc(sym);
     }
 
     return default_proc;
