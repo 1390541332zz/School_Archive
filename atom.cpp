@@ -250,6 +250,8 @@ std::ostream& operator<<(std::ostream& out, const Atom& a)
         out << a.asSymbol();
     } else if (a.isString()) {
         out << '"' << a.asSymbol() << '"';
+    } else if (a.isNone()) {
+        out << "NONE";
     }
     return out;
 }

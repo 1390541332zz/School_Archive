@@ -21,6 +21,7 @@ Expression::Expression(const Expression& a)
 {
     m_head = a.m_head;
     scope = a.scope;
+    pmap = a.pmap;
     for (auto e : a.m_tail) {
         m_tail.push_back(e);
     }
@@ -32,6 +33,7 @@ Expression& Expression::operator=(const Expression& a)
         return *this;
     m_head = a.m_head;
     scope = a.scope;
+    pmap = a.pmap;
     m_tail.clear();
     for (auto e : a.m_tail) {
         m_tail.push_back(e);
@@ -67,6 +69,11 @@ bool Expression::isHeadSymbol() const noexcept
 bool Expression::isHeadString() const noexcept
 {
     return m_head.isString();
+}
+
+bool Expression::isNone() const noexcept
+{
+    return (m_head.isNone());
 }
 
 bool Expression::isList() const noexcept
@@ -208,7 +215,6 @@ Expression Expression::handle_define(Environment& env)
 
     // eval tail[1]
     Expression result = m_tail[1].eval(env);
-
     if (env.is_exp(m_head)) {
         throw SemanticError("Error during evaluation: attempt to redefine a previously defined symbol");
     }
@@ -259,6 +265,36 @@ Expression Expression::handle_lambda(Environment& env)
     return expr;
 }
 
+Expression Expression::handle_setprop(Environment& env)
+{
+    if (m_tail.size() != 3) {
+        throw SemanticError("Error during evaluation: invalid number of arguments to set-property");
+    }
+    if (!m_tail[0].isHeadString()) {
+        throw SemanticError("Error: first argument to set-property not a string");
+    }
+    auto exp = m_tail[2];
+    auto e = exp.eval(env);
+    e.pmap[m_tail[0].head().asSymbol()] = m_tail[1];
+    return e;
+}
+
+Expression Expression::handle_getprop(Environment& env)
+{
+    if (m_tail.size() != 2) {
+        throw SemanticError("Error during evaluation: invalid number of arguments to get-property");
+    }
+    if (!m_tail[0].isHeadString()) {
+        throw SemanticError("Error: first argument to get-property not a string");
+    }
+    auto exp = m_tail[1];
+    auto f = exp.pmap.find(m_tail[0].head().asSymbol());
+    if (f != exp.pmap.end()) {
+        return f->second.eval(env);
+    }
+    return Expression(Atom());
+}
+
 // this is a simple recursive version. the iterative version is more
 // difficult with the ast data structure used (no parent pointer).
 // this limits the practical depth of our AST
@@ -279,6 +315,13 @@ Expression Expression::eval(Environment& env)
     if (m_head.isSymbol() && m_head.asSymbol() == "lambda") {
         return handle_lambda(env);
     }
+    // handle property special-forms
+    if (m_head.isSymbol() && m_head.asSymbol() == "get-property") {
+        return handle_getprop(env);
+    }
+    if (m_head.isSymbol() && m_head.asSymbol() == "set-property") {
+        return handle_setprop(env);
+    }
     // else attempt to treat as procedure
     std::vector<Expression> results;
     for (Expression::IteratorType it = m_tail.begin(); it != m_tail.end(); ++it) {
@@ -294,6 +337,10 @@ Expression Expression::eval(Environment& env)
 std::ostream& operator<<(std::ostream& out, const Expression& exp)
 {
 
+    if (exp.isNone()) {
+        out << exp.head();
+        return out;
+    }
     out << '(';
     if (!exp.isList() && !exp.isLambda()) {
         out << exp.head();

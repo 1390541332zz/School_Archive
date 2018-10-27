@@ -6,6 +6,7 @@ Defines the Expression type and assiciated functions.
 
 #include <string>
 #include <vector>
+#include <map>
 
 #include "atom.hpp"
 #include "token.hpp"
@@ -89,6 +90,9 @@ public:
     /// convienience member to determine if expression is a lambda
     bool isLambda() const noexcept;
 
+    /// convienience member to determine if expression is a NONE
+    bool isNone() const noexcept;
+
     /// convienience member to determine length of arguments
     std::size_t arg_length() const noexcept;
 
@@ -109,6 +113,9 @@ private:
     // and cache coherence, at the cost of wasted memory.
     std::vector<Expression> m_tail;
 
+    // property map
+    std::map<std::string, Expression> pmap;
+
     // convenience typedef
     typedef std::vector<Expression>::iterator IteratorType;
 
@@ -118,6 +125,8 @@ private:
     Expression handle_define(Environment& env);
     Expression handle_begin(Environment& env);
     Expression handle_lambda(Environment& env);
+    Expression handle_getprop(Environment& env);
+    Expression handle_setprop(Environment& env);
 };
 
 /// Render expression to output stream
