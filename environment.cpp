@@ -39,6 +39,7 @@ void Environment::reset()
               // - functional operators - 
               { "lambda",        lambda         },
               { "apply",         apply_comb     },
+              { "map",           map_comb       },
               // - arithmetic operators - 
               { "+",             add            },
               { "-",             subneg         },
