@@ -6,6 +6,10 @@ set(CMAKE_MODULE_PATH
     "${PROJECT_SOURCE_DIR}/cmake_modules"
    )
 
+set(STARTUP_FILE ${CMAKE_SOURCE_DIR}/startup.pls)
+configure_file(${CMAKE_SOURCE_DIR}/startup_config.hpp.in ${CMAKE_BINARY_DIR}/startup_config.hpp)
+include_directories(${CMAKE_BINARY_DIR})
+
 set(interpreter_src
   token.hpp       token.cpp
   atom.hpp        atom.cpp

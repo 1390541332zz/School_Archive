@@ -287,7 +287,7 @@ Expression Expression::handle_getprop(Environment& env)
     if (!m_tail[0].isHeadString()) {
         throw SemanticError("Error: first argument to get-property not a string");
     }
-    auto exp = m_tail[1];
+    auto exp = m_tail[1].eval(env);
     auto f = exp.pmap.find(m_tail[0].head().asSymbol());
     if (f != exp.pmap.end()) {
         return f->second.eval(env);
