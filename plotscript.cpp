@@ -5,6 +5,7 @@
 
 #include "interpreter.hpp"
 #include "semantic_error.hpp"
+#include "startup_config.hpp"
 
 void prompt()
 {
@@ -33,7 +34,19 @@ int eval_from_stream(std::istream& stream)
 {
 
     Interpreter interp;
-
+    
+    std::ifstream setupifs(STARTUP_FILE);
+    if (!interp.parseStream(setupifs)) {
+        error("Invalid Startup Program. Could not parse.");
+        return EXIT_FAILURE;
+    } else {
+        try {
+            Expression exp = interp.evaluate();
+        } catch (const SemanticError& ex) {
+            std::cerr << ex.what() << std::endl;
+            return EXIT_FAILURE;
+        }
+    }
     if (!interp.parseStream(stream)) {
         error("Invalid Program. Could not parse.");
         return EXIT_FAILURE;
@@ -72,10 +85,22 @@ int eval_from_command(std::string argexp)
 }
 
 // A REPL is a repeated read-eval-print loop
-void repl()
+int repl()
 {
     Interpreter interp;
-
+    std::ifstream setupifs(STARTUP_FILE);
+    if (!interp.parseStream(setupifs)) {
+        error("Invalid Startup Program. Could not parse.");
+        return EXIT_FAILURE;
+    } else {
+        try {
+            Expression exp = interp.evaluate();
+        } catch (const SemanticError& ex) {
+            std::cerr << ex.what() << std::endl;
+            return EXIT_FAILURE;
+        }
+    }
+    
     while (!std::cin.eof()) {
 
         prompt();
@@ -97,10 +122,12 @@ void repl()
             }
         }
     }
+    return EXIT_SUCCESS;
 }
 
 int main(int argc, char* argv[])
 {
+     
     if (argc == 2) {
         return eval_from_file(argv[1]);
     } else if (argc == 3) {
@@ -110,7 +137,7 @@ int main(int argc, char* argv[])
             error("Incorrect number of command line arguments.");
         }
     } else {
-        repl();
+        return repl();
     }
 
     return EXIT_SUCCESS;
