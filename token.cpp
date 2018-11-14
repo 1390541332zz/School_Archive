@@ -67,15 +67,15 @@ TokenSequenceType tokenize(std::istream& seq)
             }
             if (seq.eof())
                 break;
-        } else if ((c == QUOTECHAR) && (tokens.empty() || ((!tokens.empty()) && (tokens.back().type() != Token::TokenType::QUOTE)))) { 
+        } else if ((c == QUOTECHAR) && (tokens.empty() || ((!tokens.empty()) && (tokens.back().type() != Token::TokenType::QUOTE)))) {
             store_ifnot_empty(token, tokens);
             tokens.push_back(Token::TokenType::QUOTE);
             token.push_back(QUOTECHAR);
-        } else if ((c == QUOTECHAR) && (!tokens.empty()) && (tokens.back().type() == Token::TokenType::QUOTE)) { 
+        } else if ((c == QUOTECHAR) && (!tokens.empty()) && (tokens.back().type() == Token::TokenType::QUOTE)) {
             tokens.pop_back();
             token.push_back(QUOTECHAR);
             store_ifnot_empty(token, tokens);
-        } else if ((!tokens.empty()) && (tokens.back().type() == Token::TokenType::QUOTE)) { 
+        } else if ((!tokens.empty()) && (tokens.back().type() == Token::TokenType::QUOTE)) {
             token.push_back(c);
         } else if (c == OPENCHAR) {
             store_ifnot_empty(token, tokens);

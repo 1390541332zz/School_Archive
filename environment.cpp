@@ -15,7 +15,6 @@ static Environment const default_env;
 #include "env_helper.hpp"
 #include "env_list.hpp"
 
-
 Environment::Environment()
 {
     reset();

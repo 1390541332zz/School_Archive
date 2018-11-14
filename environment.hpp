@@ -94,7 +94,8 @@ public:
 
     /*! parent scope environment */
     // Would use plain getters and setters anyways so might as well be public
-    Environment const * parent = nullptr;
+    Environment const* parent = nullptr;
+
 private:
     // Environment is a mapping from symbols to expressions or procedures
     enum EnvResultType { ExpressionType,

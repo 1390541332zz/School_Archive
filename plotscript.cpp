@@ -34,7 +34,7 @@ int eval_from_stream(std::istream& stream)
 {
 
     Interpreter interp;
-    
+
     std::ifstream setupifs(STARTUP_FILE);
     if (!interp.parseStream(setupifs)) {
         error("Invalid Startup Program. Could not parse.");
@@ -100,7 +100,7 @@ int repl()
             return EXIT_FAILURE;
         }
     }
-    
+
     while (!std::cin.eof()) {
 
         prompt();
@@ -127,7 +127,7 @@ int repl()
 
 int main(int argc, char* argv[])
 {
-     
+
     if (argc == 2) {
         return eval_from_file(argv[1]);
     } else if (argc == 3) {

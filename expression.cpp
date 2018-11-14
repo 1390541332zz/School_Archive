@@ -1,10 +1,10 @@
 #include "expression.hpp"
 
-#include <list>
+#include <algorithm>
 #include <iostream>
+#include <list>
 #include <sstream>
 #include <type_traits>
-#include <algorithm>
 
 #include "environment.hpp"
 #include "semantic_error.hpp"
@@ -85,6 +85,14 @@ bool Expression::isLambda() const noexcept
 {
     return (m_head.asSymbol() == "lambda");
 }
+    
+bool Expression::is(std::string const & str) const noexcept
+{
+    auto it = pmap.find(str);
+    if (it == pmap.cend()) 
+        return false;
+    return (it->second.head().asSymbol() == str);
+}
 
 std::size_t Expression::arg_length() const noexcept
 {
@@ -146,10 +154,9 @@ Expression apply(const Atom& op, const std::vector<Expression>& args, const Envi
     auto val = args.cbegin();
     lambda_env.parent = &env;
     lambda_env.reset();
-    for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin(); 
-             arg != lambda_expr.tailConstBegin()->tailConstEnd();
-         ++arg, ++val) 
-    {
+    for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin();
+         arg != lambda_expr.tailConstBegin()->tailConstEnd();
+         ++arg, ++val) {
         lambda_env.add_exp(arg->head(), *val);
     }
     return exp.eval(lambda_env);
@@ -165,7 +172,7 @@ Expression Expression::handle_lookup(const Atom& head, const Environment& env)
         }
         if (!env.is_exp(head)) {
             return Expression(head);
-        } 
+        }
         return env.get_exp(head);
     } else if (head.isNumber()) {
         return Expression(head);
@@ -232,17 +239,15 @@ Expression Expression::handle_lambda(Environment& env)
     }
 
     // tail[0] must be a list of arguments
-    if (std::any_of(m_tail[0].tailConstBegin(), 
-                    m_tail[0].tailConstEnd(), 
-                    [&env] (Expression const & e) {
-              return (   !e.isHeadSymbol() 
-                      || e.isList()
-                      || (e.head().asSymbol() == "begin")
-                      || (e.head().asSymbol() == "define")
-                      || env.is_proc(e.head())
-                     );
-          })
-    ) {
+    if (std::any_of(m_tail[0].tailConstBegin(),
+            m_tail[0].tailConstEnd(),
+            [&env](Expression const& e) {
+                return (!e.isHeadSymbol()
+                    || e.isList()
+                    || (e.head().asSymbol() == "begin")
+                    || (e.head().asSymbol() == "define")
+                    || env.is_proc(e.head()));
+            })) {
         throw SemanticError("Error during evaluation: the first argument must be a list of function arguments.");
     }
     std::string const s = "lambda";
@@ -250,10 +255,9 @@ Expression Expression::handle_lambda(Environment& env)
     Expression args = Atom("list");
     if (m_tail[0].arg_length() > 0) {
         args.append(Expression(m_tail[0].head()));
-        for (auto it = m_tail[0].tailConstBegin(); 
-                 it != m_tail[0].tailConstEnd();
-             ++it) 
-        {
+        for (auto it = m_tail[0].tailConstBegin();
+             it != m_tail[0].tailConstEnd();
+             ++it) {
             args.append(it->head());
         }
         expr.append(args);
@@ -327,11 +331,10 @@ Expression Expression::eval(Environment& env)
     for (Expression::IteratorType it = m_tail.begin(); it != m_tail.end(); ++it) {
         results.push_back(it->eval(env));
     }
-    for (auto & x : results) {
+    for (auto& x : results) {
         x.scope = &env;
     }
     return apply(m_head, results, env);
-
 }
 
 std::ostream& operator<<(std::ostream& out, const Expression& exp)

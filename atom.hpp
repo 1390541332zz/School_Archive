@@ -67,12 +67,12 @@ public:
 
 private:
     // internal enum of known types
-    enum Type { 
+    enum Type {
         NoneType,
         DoubleType,
         StringType,
         SymbolType,
-        ComplexType 
+        ComplexType
     };
 
     // track the type
@@ -93,7 +93,7 @@ private:
 
     // helper to set type and value of Symbol
     void setSymbol(const std::string& value);
-    
+
     // helper to set type and value of String
     void setString(const std::string& value);
 };

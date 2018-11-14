@@ -1,4 +1,9 @@
-cmake_minimum_required(VERSION 3.5)
+#if(DEFINED ENV{PERSONAL_DEV_ENV}) 
+#    cmake_minimum_required(VERSION 3.6)
+#else()
+    cmake_minimum_required(VERSION 3.5)
+#endif()
+
 project(PLOTSCRIPT CXX)
 
 set(CMAKE_MODULE_PATH 
@@ -36,7 +41,10 @@ set(tui_src
   )
 
 set(gui_src
-  )
+   notebook_app.cpp  notebook_app.hpp
+   input_widget.cpp  input_widget.hpp
+   output_widget.cpp output_widget.hpp
+   )
 
 set(gui_test_src
   notebook_test.cpp
@@ -60,6 +68,11 @@ set(all_srcs
    ${gui_main}
    )
 
+#SET(CLANG_TIDY_CHECKS
+#    "-checks=-*,bugprone-*,cert-*,cppcoreguidelines-*,clang-analyzer-*,hicpp-*,misc-*,modernize-*,performance-*,portability-*,readability-*"
+#   )
+
+
 # try to prevent accidental in-source builds, these cause lots of problems
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
   message(FATAL_ERROR "In-source builds not allowed. Remove any files created thus far and use a different directory for the build.")
@@ -77,9 +90,7 @@ if (Qt5Widgets_FOUND AND Qt5Test_FOUND)
 endif()
 
 # optional strict mode
-if(  DEFINED ENV{PERSONAL_DEV_ENV} 
-  OR UNIX
-  )
+if(DEFINED ENV{PERSONAL_DEV_ENV} OR UNIX)
   message("-- Enabling strict compilation mode")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare -Wno-deprecated")
 endif()
@@ -130,24 +141,12 @@ if(DEFINED ENV{ECE3574_REFERENCE_ENV})
 endif()
 
 # -----------------------------------------------------------------------------
-# Run Clang Format if installed and enabled
-# -----------------------------------------------------------------------------
-
-if(DEFINED ENV{PERSONAL_DEV_ENV})
-    message("-- Enabling clang-format")
-  include(clang-format)
-  set(clangformat_srcs ${all_srcs})
-  clangformat_setup("${clangformat_srcs}")
-endif()
-
-
-# -----------------------------------------------------------------------------
 # Build the notebook executable and tests if Qt is available
 # -----------------------------------------------------------------------------
 
 if (Qt5Widgets_FOUND AND Qt5Test_FOUND)
   
-  add_executable(notebook ${gui_main} ${gui_src})
+add_executable(notebook ${gui_main} ${gui_src})
   if(UNIX AND NOT APPLE AND CMAKE_COMPILER_IS_GNUCXX)
     target_link_libraries(notebook interpreter Qt5::Widgets pthread gcov)
   else(UNIX AND NOT APPLE AND CMAKE_COMPILER_IS_GNUCXX)
@@ -189,3 +188,39 @@ else (DOXYGEN_FOUND)
   message("Doxygen need to be installed to generate the doxygen documentation")
 endif (DOXYGEN_FOUND)
 
+# -----------------------------------------------------------------------------
+# Run Clang Format if installed and enabled
+# -----------------------------------------------------------------------------
+
+if(DEFINED ENV{PERSONAL_DEV_ENV})
+    message("-- Enabling clang-format")
+  include(clang-format)
+  set(clangformat_srcs ${all_srcs})
+  clangformat_setup("${clangformat_srcs}")
+endif()
+
+# -----------------------------------------------------------------------------
+# Run Clang Tidy if installed and enabled
+# -----------------------------------------------------------------------------
+
+#if(DEFINED ENV{PERSONAL_DEV_ENV})
+#    message("-- Enabling clang-tidy")
+#    find_program(
+#      CLANG_TIDY_EXE
+#      NAMES "clang-tidy"
+#      DOC "Path to clang-tidy executable"
+#      )
+#    if(NOT CLANG_TIDY_EXE)
+#      message(STATUS "clang-tidy not found.")
+#    endif()
+#    if(CLANG_TIDY_EXE)
+#        set(clangtidy_srcs ${all_srcs})
+#        message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
+#        add_custom_target(
+#            clang-tidy
+#            COMMAND ${CLANG_TIDY_EXE}
+#            ${CLANG_TIDY_CHECKS}
+#            ${clangtidy_srcs}
+#        )
+#    endif()
+#endif()

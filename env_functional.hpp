@@ -8,7 +8,6 @@ Expression lambda(const std::vector<Expression>& args)
     return Expression(args.cbegin(), args.cend());
 }
 
-
 Expression apply_comb(const std::vector<Expression>& args)
 {
     if (!nargs_equal(args, 2)) {
@@ -17,7 +16,7 @@ Expression apply_comb(const std::vector<Expression>& args)
     if (args[0].scope == nullptr) {
         throw SemanticError("Error: Detached Scope Pointer");
     }
-    auto & env = *(args[0].scope);
+    auto& env = *(args[0].scope);
     if (!env.is_proc(args[0].head()) && !args[0].isLambda()) {
         throw SemanticError("Error: first argument to apply is not a procedure.");
     }
@@ -29,7 +28,7 @@ Expression apply_comb(const std::vector<Expression>& args)
         exp.head() = args[0].head();
         try {
             return exp.eval(env);
-        } catch (SemanticError const & e) {
+        } catch (SemanticError const& e) {
             std::string ex = "Error: during apply: " + std::string(e.what());
             throw SemanticError(ex);
         }
@@ -40,15 +39,14 @@ Expression apply_comb(const std::vector<Expression>& args)
     auto val = args[1].tailConstBegin();
     lambda_env.parent = lambda_expr.scope;
     lambda_env.reset();
-    for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin(); 
-             arg != lambda_expr.tailConstBegin()->tailConstEnd();
-         ++arg, ++val) 
-    {
+    for (auto arg = lambda_expr.tailConstBegin()->tailConstBegin();
+         arg != lambda_expr.tailConstBegin()->tailConstEnd();
+         ++arg, ++val) {
         lambda_env.add_exp(arg->head(), *val);
     }
     try {
         return exp.eval(lambda_env);
-    } catch (SemanticError const & e) {
+    } catch (SemanticError const& e) {
         std::string ex = "Error: during apply: " + std::string(e.what());
         throw SemanticError(ex);
     }
@@ -61,23 +59,22 @@ Expression map_comb(const std::vector<Expression>& args)
     if (args[0].scope == nullptr) {
         throw SemanticError("Error: Detached Scope Pointer");
     }
-    auto & env = *(args[0].scope);
+    auto& env = *(args[0].scope);
     if (!env.is_proc(args[0].head()) && !args[0].isLambda()) {
         throw SemanticError("Error: first argument to map is not a procedure.");
     }
     if (!args[1].isList()) {
         throw SemanticError("Error: second argument to map is not a list.");
     }
-    Expression result = Atom("list"); 
-    for (auto val = args[1].tailConstBegin(); val != args[1].tailConstEnd(); ++val) 
-    {
+    Expression result = Atom("list");
+    for (auto val = args[1].tailConstBegin(); val != args[1].tailConstEnd(); ++val) {
         if (env.is_proc(args[0].head()) && !args[0].isLambda()) {
             Expression exp = args[0].head();
             exp.append(*val);
             try {
                 result.append(exp.eval(env));
                 continue;
-            } catch (SemanticError const & e) {
+            } catch (SemanticError const& e) {
                 std::string ex = "Error: during map: " + std::string(e.what());
                 throw SemanticError(ex);
             }
@@ -91,12 +88,12 @@ Expression map_comb(const std::vector<Expression>& args)
         lambda_env.add_exp(arg->head(), *val);
         try {
             result.append(exp.eval(lambda_env));
-        } catch (SemanticError const & e) {
+        } catch (SemanticError const& e) {
             std::string ex = "Error: during map: " + std::string(e.what());
             throw SemanticError(ex);
         }
     }
     return result;
-} 
+}
 
 #endif /* ENVIRONMENT_FUNCTIONAL_H */

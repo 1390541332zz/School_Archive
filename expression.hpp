@@ -4,15 +4,16 @@ Defines the Expression type and assiciated functions.
 #ifndef EXPRESSION_HPP
 #define EXPRESSION_HPP
 
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
 #include "atom.hpp"
 #include "token.hpp"
 
 // forward declare Environment
 class Environment;
+class OutputWidget;
 
 /*! \class Expression
 \brief An expression is a tree of Atoms.
@@ -21,6 +22,7 @@ An expression is an atom called the head followed by a (possibly empty)
 list of expressions called the tail.
  */
 class Expression {
+    friend OutputWidget;
 public:
     typedef std::vector<Expression>::const_iterator ConstIteratorType;
 
@@ -89,6 +91,9 @@ public:
 
     /// convienience member to determine if expression is a lambda
     bool isLambda() const noexcept;
+    
+    /// convienience member to determine if expression is the type defined by 'str'
+    bool is(std::string const & str) const noexcept;
 
     /// convienience member to determine if expression is a NONE
     bool isNone() const noexcept;
@@ -118,7 +123,6 @@ private:
 
     // convenience typedef
     typedef std::vector<Expression>::iterator IteratorType;
-
 
     // internal helper methods
     Expression handle_lookup(const Atom& head, const Environment& env);
