@@ -68,7 +68,7 @@ OutputWidget::OutputWidget(QWidget* parent)
 {
     layout->addWidget(view);
     setLayout(layout);
-    setObjectName("Output");
+    setObjectName("output");
 }
 
 OutputWidget::~OutputWidget() {}

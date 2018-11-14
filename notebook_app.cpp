@@ -14,7 +14,6 @@ NotebookApp::NotebookApp(QWidget* parent)
 
     connect(evalKey, &QShortcut::activated, this,
                 [this] () {
-                    qDebug() << "fuckkkk";
                     this->ow->eval_plotscript(this->iw->toPlainText());
                 }
            );

@@ -2,7 +2,7 @@
 
 InputWidget::InputWidget(QWidget* parent) : QPlainTextEdit(parent) 
 {
-    setObjectName("Input");
+    setObjectName("input");
 }
 
 InputWidget::~InputWidget() {}
