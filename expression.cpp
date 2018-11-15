@@ -88,7 +88,7 @@ bool Expression::isLambda() const noexcept
     
 bool Expression::is(std::string const & str) const noexcept
 {
-    auto it = pmap.find(str);
+    auto it = pmap.find("object-name");
     if (it == pmap.cend()) 
         return false;
     return (it->second.head().asSymbol() == str);

@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <utility>
+#include <QDebug>
 
 #include "output_widget.hpp"
 #include "interpreter.hpp"
@@ -48,6 +49,9 @@ std::pair<enum ps_state, struct ps_res> eval_ps(QString const & str)
             try {
                 Expression exp = interp.evaluate();
                 os << exp << std::endl;
+                struct ps_res r;
+                r.exp = exp;
+                return std::make_pair(SUCCESS, r);
             } catch (const SemanticError& ex) {
                 eos << ex.what() << std::endl;
                 struct ps_res r;
@@ -55,9 +59,6 @@ std::pair<enum ps_state, struct ps_res> eval_ps(QString const & str)
                 return std::make_pair(EXCEPTION, r);
             }
         }
-    struct ps_res r;
-    r.str = QString::fromStdString(os.str());
-    return std::make_pair(SUCCESS, r);
 }
 
 OutputWidget::OutputWidget(QWidget* parent) 
@@ -75,6 +76,7 @@ OutputWidget::~OutputWidget() {}
 
 void OutputWidget::eval_plotscript(QString const & str) 
 {
+    scene->clear();
     auto res = eval_ps(str);
     switch (res.first) {
         case PARSE_ERROR:
@@ -89,19 +91,19 @@ void OutputWidget::eval_plotscript(QString const & str)
 
 void OutputWidget::eval_exp(Expression const & exp)
 {
-    if (exp.isList()) {
-        plot_listexp(exp);
-    } else if (exp.isLambda()) {
-    } else if (  exp.isNone()      || exp.isHeadNumber() || exp.isHeadComplex() 
-              || exp.isHeadSymbol() || exp.isHeadString()
-              ) 
-    {
-        plot_textexp(exp);
+    if (exp.isLambda()) {
     } else if (exp.is("point")) {
         plot_pointexp(exp);
     } else if (exp.is("line")) {
         plot_lineexp(exp);
     } else if (exp.is("text")) {
+        plot_textexp(exp);
+    } else if (exp.isList()) {
+        plot_listexp(exp);
+    } else if (  exp.isNone()       || exp.isHeadNumber() || exp.isHeadComplex() 
+              || exp.isHeadSymbol() || exp.isHeadString()
+              ) 
+    {
         plot_textexp(exp);
     } else {
         plot_text("ERROR: Unknown Datatype found in OutputWidget::eval_exp");
@@ -117,14 +119,17 @@ void OutputWidget::plot_textexp(Expression const & exp)
 {
     std::ostringstream os;
     os << exp;
+    qDebug() << QString::fromStdString(os.str());
     auto t = scene->addText(QString::fromStdString(os.str()));
-    t->setPos(find_point(exp.pmap.find("position")->second));
+    if (exp.pmap.find("position") != exp.pmap.cend()) {
+        t->setPos(find_point(exp.pmap.find("position")->second));
+    }
 }
 
 void OutputWidget::plot_listexp(Expression const & exp)
 {
     for (auto it = exp.tailConstBegin(); it != exp.tailConstEnd(); ++it) {
-        eval_exp(exp);
+        eval_exp(*it);
     }
 }
 
@@ -155,9 +160,6 @@ void OutputWidget::plot_pointexp(Expression const & exp)
 
 QPointF OutputWidget::find_point(Expression const & exp)
 {
-    if (exp.head().asSymbol() != "list") {
-        plot_text("ERROR: Ill formed point passed to OutputWidget::find_point");
-    }
     auto x = exp.m_tail[0].head().asNumber();
     auto y = exp.m_tail[1].head().asNumber();
     return QPointF(x, y);
