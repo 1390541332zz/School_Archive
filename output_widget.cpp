@@ -153,8 +153,8 @@ void OutputWidget::plot_pointexp(Expression const & exp)
     }
     qreal x = p.x() - sz;
     qreal y = p.y() + sz;
-    qreal w = p.x() + sz;
-    qreal h = p.y() - sz;
+    qreal w = sz;
+    qreal h = sz;
     scene->addEllipse(x, y, w, h, QPen(Qt::black), QBrush(Qt::black));
 }
 
