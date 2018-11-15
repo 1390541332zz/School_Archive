@@ -2,7 +2,7 @@
 #include <sstream>
 #include <string>
 #include <utility>
-#include <QDebug>
+#include <QtMath>
 
 #include "output_widget.hpp"
 #include "interpreter.hpp"
@@ -15,6 +15,11 @@ struct ps_res {
     QString str;
     Expression exp;
 };
+
+QPointF find_center(QGraphicsItem const & i)
+{
+    return i.boundingRect().center() - i.boundingRect().topLeft();
+}
 
 std::pair<enum ps_state, struct ps_res> eval_ps(QString const & str)
 {
@@ -74,6 +79,11 @@ OutputWidget::OutputWidget(QWidget* parent)
 
 OutputWidget::~OutputWidget() {}
 
+void OutputWidget::resizeEvent(QResizeEvent*)
+{
+    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+}
+
 void OutputWidget::eval_plotscript(QString const & str) 
 {
     scene->clear();
@@ -82,11 +92,12 @@ void OutputWidget::eval_plotscript(QString const & str)
         case PARSE_ERROR:
         case EXCEPTION:
             plot_text(res.second.str);
-            return;
+            break;
         case SUCCESS:
             eval_exp(res.second.exp);
             break;
     }
+    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 }
 
 void OutputWidget::eval_exp(Expression const & exp)
@@ -112,17 +123,38 @@ void OutputWidget::eval_exp(Expression const & exp)
 
 void OutputWidget::plot_text(QString const & str)
 {
-    scene->addText(str);
+    auto t = scene->addText(str, QFont("Courier", 1));
+    t->setPos(find_center(*t));
 }
 
 void OutputWidget::plot_textexp(Expression const & exp)
 {
     std::ostringstream os;
     os << exp;
-    qDebug() << QString::fromStdString(os.str());
-    auto t = scene->addText(QString::fromStdString(os.str()));
+    auto s = QString::fromStdString(os.str());
+    if (exp.is("text")) {
+        auto start = s.indexOf('"') + 1;
+        auto off = s.lastIndexOf('"') - start;
+        s = s.mid(start, off);
+        
+    }
+    auto t = scene->addText(s, QFont("Courier", 1));
+    auto p = find_center(*t);
     if (exp.pmap.find("position") != exp.pmap.cend()) {
-        t->setPos(find_point(exp.pmap.find("position")->second));
+        p += find_point(exp.pmap.find("position")->second);
+    }
+    t->setPos(p);
+    if (exp.pmap.find("text-rotation") != exp.pmap.cend()) {
+        auto e = exp.pmap.find("text-rotation")->second;
+        if (e.isHeadNumber()) {
+            t->setRotation(qRadiansToDegrees(e.head().asNumber()));
+        }
+    }
+    if (exp.pmap.find("text-scale") != exp.pmap.cend()) {
+        auto e = exp.pmap.find("text-scale")->second;
+        if (e.isHeadNumber() && (e.head().asNumber() >= 0)) {
+            t->setScale(e.head().asNumber());
+        }
     }
 }
 

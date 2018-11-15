@@ -19,6 +19,8 @@ public:
     ~OutputWidget();
 
     void eval_plotscript(QString const & str);
+protected:
+    virtual void resizeEvent(QResizeEvent*);
 private:
     QPointer<QVBoxLayout> layout;
     QPointer<QGraphicsScene> scene;
