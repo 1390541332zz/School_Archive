@@ -1,8 +1,8 @@
-#if(DEFINED ENV{PERSONAL_DEV_ENV}) 
-#    cmake_minimum_required(VERSION 3.6)
-#else()
+if(DEFINED ENV{PERSONAL_DEV_ENV}) 
+    cmake_minimum_required(VERSION 3.6)
+else()
     cmake_minimum_required(VERSION 3.5)
-#endif()
+endif()
 
 project(PLOTSCRIPT CXX)
 
@@ -68,9 +68,9 @@ set(all_srcs
    ${gui_main}
    )
 
-#SET(CLANG_TIDY_CHECKS
-#    "-checks=-*,bugprone-*,cert-*,cppcoreguidelines-*,clang-analyzer-*,hicpp-*,misc-*,modernize-*,performance-*,portability-*,readability-*"
-#   )
+SET(CLANG_TIDY_CHECKS
+    "-checks=-*,bugprone-*,cert-*,cppcoreguidelines-*,clang-analyzer-*,hicpp-*,misc-*,modernize-*,performance-*,portability-*,readability-*"
+   )
 
 
 # try to prevent accidental in-source builds, these cause lots of problems
@@ -203,24 +203,26 @@ endif()
 # Run Clang Tidy if installed and enabled
 # -----------------------------------------------------------------------------
 
-#if(DEFINED ENV{PERSONAL_DEV_ENV})
-#    message("-- Enabling clang-tidy")
-#    find_program(
-#      CLANG_TIDY_EXE
-#      NAMES "clang-tidy"
-#      DOC "Path to clang-tidy executable"
-#      )
-#    if(NOT CLANG_TIDY_EXE)
-#      message(STATUS "clang-tidy not found.")
-#    endif()
-#    if(CLANG_TIDY_EXE)
-#        set(clangtidy_srcs ${all_srcs})
-#        message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
-#        add_custom_target(
-#            clang-tidy
-#            COMMAND ${CLANG_TIDY_EXE}
-#            ${CLANG_TIDY_CHECKS}
-#            ${clangtidy_srcs}
-#        )
-#    endif()
-#endif()
+if(DEFINED ENV{PERSONAL_DEV_ENV} AND DEFINED ENV{PERSONAL_DEV_ENV_CTIDY})
+    message("-- Enabling clang-tidy")
+    find_program(
+      CLANG_TIDY_EXE
+      NAMES "clang-tidy"
+      DOC "Path to clang-tidy executable"
+      )
+    if(NOT CLANG_TIDY_EXE)
+      message(STATUS "clang-tidy not found.")
+    endif()
+    if(CLANG_TIDY_EXE)
+        set(clangtidy_srcs ${all_srcs})
+        message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
+        add_custom_target(
+            clang-tidy
+            COMMAND ${CLANG_TIDY_EXE}
+            ${clangtidy_srcs}
+            ${CLANG_TIDY_CHECKS}
+            --
+            ${INCLUDE_DIRECTORIES}
+        )
+    endif()
+endif()

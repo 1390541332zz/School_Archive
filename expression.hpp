@@ -23,6 +23,7 @@ list of expressions called the tail.
  */
 class Expression {
     friend OutputWidget;
+
 public:
     typedef std::vector<Expression>::const_iterator ConstIteratorType;
 
@@ -91,9 +92,9 @@ public:
 
     /// convienience member to determine if expression is a lambda
     bool isLambda() const noexcept;
-    
+
     /// convienience member to determine if expression is the type defined by 'str'
-    bool is(std::string const & str) const noexcept;
+    bool is(std::string const& str) const noexcept;
 
     /// convienience member to determine if expression is a NONE
     bool isNone() const noexcept;

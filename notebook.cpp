@@ -1,5 +1,5 @@
-#include <QApplication>
 #include "notebook_app.hpp"
+#include <QApplication>
 
 int main(int argc, char* argv[])
 {
