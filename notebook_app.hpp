@@ -4,7 +4,6 @@
 #include <QWidget>
 #include <QPointer>
 #include <QVBoxLayout>
-#include <QShortcut>
 #include "input_widget.hpp"
 #include "output_widget.hpp"
 
@@ -17,7 +16,6 @@ private:
     QPointer<QVBoxLayout> layout;
     QPointer<InputWidget> iw;
     QPointer<OutputWidget> ow;
-    QPointer<QShortcut> evalKey;
 };
 
 
