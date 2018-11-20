@@ -254,7 +254,11 @@ Expression Expression::handle_setprop(Environment & env)
     }
     auto exp = m_tail[2];
     auto e = exp.eval(env);
-    e.pmap[m_tail[0].head().asSymbol()] = m_tail[1];
+    auto prop = m_tail[1];
+    if (!prop.isLambda()) {
+        prop = prop.eval(env);
+    }
+    e.pmap[m_tail[0].head().asSymbol()] = prop;
     return e;
 }
 
