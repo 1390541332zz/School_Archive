@@ -28,7 +28,7 @@ public:
     Token(TokenType t);
 
     /// contruct a token of type String with value
-    Token(const std::string& str);
+    Token(std::string const & str);
 
     /// return the type of the token
     TokenType type() const;
@@ -45,7 +45,7 @@ private:
 Define the token sequence using a std container. Any supporting 
 sequential access should do.
  */
-typedef std::deque<Token> TokenSequenceType;
+using TokenSequenceType = std::deque<Token>;
 
 /*! \fn TokenSequenceType tokenize(std::istream & seq)
 \brief Split a stream into a sequnce of tokens
@@ -58,6 +58,6 @@ OPEN or CLOSE or any space-delimited string
 
 Ignores any whitespace and comments (from any ";" to end-of-line).
 */
-TokenSequenceType tokenize(std::istream& seq);
+TokenSequenceType tokenize(std::istream & seq);
 
 #endif

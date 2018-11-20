@@ -8,13 +8,13 @@ Helper Functions
 **********************************************************************/
 
 // predicate, the number of args is nargs
-bool nargs_equal(const std::vector<Expression>& args, unsigned nargs)
+bool nargs_equal(std::vector<Expression> const & args, unsigned nargs)
 {
     return args.size() == nargs;
 }
 
 // the default procedure always returns an expresison of type None
-Expression default_proc(const std::vector<Expression>& args)
+Expression default_proc(std::vector<Expression> const & args)
 {
     args.size(); // make compiler happy we used this parameter
     return Expression();

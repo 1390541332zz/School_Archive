@@ -83,6 +83,10 @@ TEST_CASE("Test assignment", "[atom]")
         REQUIRE(b.isNone());
         REQUIRE(!b.isNumber());
         REQUIRE(!b.isSymbol());
+        b = std::move(a);
+        REQUIRE(b.isNone());
+        REQUIRE(!b.isNumber());
+        REQUIRE(!b.isSymbol());
     }
 
     {
@@ -90,6 +94,10 @@ TEST_CASE("Test assignment", "[atom]")
         Atom a;
         Atom b(1.0);
         b = a;
+        REQUIRE(b.isNone());
+        REQUIRE(!b.isNumber());
+        REQUIRE(!b.isSymbol());
+        b = std::move(a);
         REQUIRE(b.isNone());
         REQUIRE(!b.isNumber());
         REQUIRE(!b.isSymbol());
@@ -103,6 +111,10 @@ TEST_CASE("Test assignment", "[atom]")
         REQUIRE(b.isNone());
         REQUIRE(!b.isNumber());
         REQUIRE(!b.isSymbol());
+        b = std::move(a);
+        REQUIRE(b.isNone());
+        REQUIRE(!b.isNumber());
+        REQUIRE(!b.isSymbol());
     }
 
     {
@@ -110,6 +122,9 @@ TEST_CASE("Test assignment", "[atom]")
         Atom a(1.0);
         Atom b;
         b = a;
+        REQUIRE(b.isNumber());
+        REQUIRE(b.asNumber() == 1.0);
+        b = std::move(a);
         REQUIRE(b.isNumber());
         REQUIRE(b.asNumber() == 1.0);
     }
@@ -121,6 +136,9 @@ TEST_CASE("Test assignment", "[atom]")
         b = a;
         REQUIRE(b.isNumber());
         REQUIRE(b.asNumber() == 1.0);
+        b = std::move(a);
+        REQUIRE(b.isNumber());
+        REQUIRE(b.asNumber() == 1.0);
     }
 
     {
@@ -128,6 +146,9 @@ TEST_CASE("Test assignment", "[atom]")
         Atom a("hi");
         Atom b(1.0);
         b = a;
+        REQUIRE(b.isSymbol());
+        REQUIRE(b.asSymbol() == "hi");
+        b = std::move(a);
         REQUIRE(b.isSymbol());
         REQUIRE(b.asSymbol() == "hi");
     }
@@ -139,6 +160,9 @@ TEST_CASE("Test assignment", "[atom]")
         b = a;
         REQUIRE(b.isSymbol());
         REQUIRE(b.asSymbol() == "hi");
+        b = std::move(a);
+        REQUIRE(b.isSymbol());
+        REQUIRE(b.asSymbol() == "hi");
     }
 
     {
@@ -148,6 +172,9 @@ TEST_CASE("Test assignment", "[atom]")
         b = a;
         REQUIRE(b.isSymbol());
         REQUIRE(b.asSymbol() == "hi");
+        b = std::move(a);
+        REQUIRE(b.isSymbol());
+        REQUIRE(b.asSymbol() == "hi");
     }
 
     {
@@ -155,6 +182,9 @@ TEST_CASE("Test assignment", "[atom]")
         Atom a("hi");
         Atom b("bye");
         b = a;
+        REQUIRE(b.isSymbol());
+        REQUIRE(b.asSymbol() == "hi");
+        b = std::move(a);
         REQUIRE(b.isSymbol());
         REQUIRE(b.asSymbol() == "hi");
     }

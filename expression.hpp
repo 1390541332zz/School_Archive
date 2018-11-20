@@ -25,49 +25,56 @@ class Expression {
     friend OutputWidget;
 
 public:
-    typedef std::vector<Expression>::const_iterator ConstIteratorType;
+    using ConstIteratorType = std::vector<Expression>::const_iterator;
 
-    /// Default construct and Expression, whose type in NoneType
-    Expression();
+    /// Default construct an Expression, whose type is NoneType
+    Expression() noexcept = default;
+    ~Expression() = default;
 
     /*! Construct an Expression with given Atom as head an empty tail
-    \param atom the atom to make the head
-  */
-    Expression(const Atom& a);
+        \param atom the atom to make the head
+     */
+    Expression(Atom const & a) noexcept;
 
-    /// deep-copy construct an expression (recursive)
-    Expression(const Expression& a);
+    /// copy construct an expression
+    Expression(Expression const & a) = default;
 
+    /// move construct an expression
+    Expression(Expression && a) noexcept = default;
+    
     /// list constructor
     template <typename it,
         typename = typename std::enable_if<
             std::is_same<
                 typename std::iterator_traits<it>::value_type,
                 Expression>::value>::type>
-    Expression(it const& begin, it const& end)
+    Expression(it const & begin, it const & end) noexcept
+      : m_head("list")
     {
-        m_head = Atom("list");
-        for (auto e = begin; e != end; ++e) {
-            m_tail.push_back(*e);
-        }
+        m_tail.reserve(m_tail.size() + std::distance(begin, end));
+        std::copy(begin, end, std::back_inserter(m_tail));
     }
+
     /// deep-copy assign an expression  (recursive)
-    Expression& operator=(const Expression& a);
+    Expression & operator=(Expression const & a) = default;
+
+    /// move assign an expression 
+    Expression & operator=(Expression && a) noexcept = default;
 
     /// return a reference to the head Atom
-    Atom& head();
+    Atom & head() noexcept;
 
     /// return a const-reference to the head Atom
-    const Atom& head() const;
+    Atom const & head() const noexcept;
 
     /// append Atom to tail of the expression
-    void append(const Atom& a);
+    void append(Atom const & a);
 
     /// append Expression to tail of the expression
-    void append(const Expression& e);
+    void append(Expression const & e);
 
     /// return a pointer to the last expression in the tail, or nullptr
-    Expression* tail();
+    Expression * tail() noexcept;
 
     /// return a const-iterator to the beginning of tail
     ConstIteratorType tailConstBegin() const noexcept;
@@ -94,7 +101,7 @@ public:
     bool isLambda() const noexcept;
 
     /// convienience member to determine if expression is the type defined by 'str'
-    bool is(std::string const& str) const noexcept;
+    bool is(std::string const & str) const noexcept;
 
     /// convienience member to determine if expression is a NONE
     bool isNone() const noexcept;
@@ -103,13 +110,13 @@ public:
     std::size_t arg_length() const noexcept;
 
     /// Evaluate expression using a post-order traversal (recursive)
-    Expression eval(Environment& env);
+    Expression eval(Environment & env);
 
     /// equality comparison for two expressions (recursive)
-    bool operator==(const Expression& exp) const noexcept;
+    bool operator==(Expression const & exp) const noexcept;
 
     // Scope pointer for combinators
-    Environment* scope = nullptr;
+    Environment * scope = nullptr;
 
 private:
     // the head of the expression
@@ -123,21 +130,21 @@ private:
     std::map<std::string, Expression> pmap;
 
     // convenience typedef
-    typedef std::vector<Expression>::iterator IteratorType;
+    using IteratorType = std::vector<Expression>::iterator;
 
     // internal helper methods
-    Expression handle_lookup(const Atom& head, const Environment& env);
-    Expression handle_define(Environment& env);
-    Expression handle_begin(Environment& env);
-    Expression handle_lambda(Environment& env);
-    Expression handle_getprop(Environment& env);
-    Expression handle_setprop(Environment& env);
+    Expression handle_lookup(Atom const & head, Environment const & env);
+    Expression handle_define(Environment & env);
+    Expression handle_begin(Environment & env);
+    Expression handle_lambda(Environment & env);
+    Expression handle_getprop(Environment & env);
+    Expression handle_setprop(Environment & env);
 };
 
 /// Render expression to output stream
-std::ostream& operator<<(std::ostream& out, const Expression& exp);
+std::ostream & operator<<(std::ostream & out, Expression const & exp);
 
 /// inequality comparison for two expressions (recursive)
-bool operator!=(const Expression& left, const Expression& right) noexcept;
+bool operator!=(Expression const & left, Expression const & right) noexcept;
 
 #endif

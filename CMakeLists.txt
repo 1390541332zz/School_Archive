@@ -1,5 +1,6 @@
 if(DEFINED ENV{PERSONAL_DEV_ENV}) 
     cmake_minimum_required(VERSION 3.6)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 else()
     cmake_minimum_required(VERSION 3.5)
 endif()
@@ -16,34 +17,51 @@ configure_file(${CMAKE_SOURCE_DIR}/startup_config.hpp.in ${CMAKE_BINARY_DIR}/sta
 include_directories(${CMAKE_BINARY_DIR})
 
 set(interpreter_src
-  token.hpp       token.cpp
-  atom.hpp        atom.cpp
-  environment.hpp environment.cpp
-  env_helper.hpp  env_arithmetic.hpp
-  env_list.hpp    env_functional.hpp
-  expression.hpp  expression.cpp
-  parse.hpp       parse.cpp
-  interpreter.hpp interpreter.cpp
+  token.cpp
+  atom.cpp
+  environment.cpp
+  expression.cpp
+  parse.cpp
+  interpreter.cpp   
   )
 
+set(interpreter_h
+   token.hpp       
+   atom.hpp       
+   environment.hpp
+   env_helper.hpp 
+   env_list.hpp   
+   env_arithmetic.hpp
+   env_functional.hpp
+   expression.hpp 
+   parse.hpp      
+   interpreter.hpp
+   )
+
 set(unittest_src
-  atom_tests.cpp
-  environment_tests.cpp
-  expression_tests.cpp
-  interpreter_tests.cpp
-  parse_tests.cpp
-  semantic_error.hpp
-  token_tests.cpp
-  unit_tests.cpp
-  )
+   atom_tests.cpp
+   environment_tests.cpp
+   expression_tests.cpp
+   interpreter_tests.cpp
+   parse_tests.cpp
+   semantic_error.hpp
+   token_tests.cpp
+   unit_tests.cpp
+   )
 
 set(tui_src
   )
 
 set(gui_src
-   notebook_app.cpp  notebook_app.hpp
-   input_widget.cpp  input_widget.hpp
-   output_widget.cpp output_widget.hpp
+   notebook_app.cpp 
+   input_widget.cpp 
+   output_widget.cpp
+   )
+
+set(gui_h
+   notebook_app.hpp
+   input_widget.hpp
+   output_widget.hpp
    )
 
 set(gui_test_src
@@ -58,18 +76,47 @@ set(gui_main
   notebook.cpp
 )
 
+set(clangtidy_srcs 
+   ${interpreter_src}
+   ${tui_src}
+   ${gui_src}
+   ${tui_main}
+   ${gui_main}
+   )
 set(all_srcs
    ${interpreter_src}
+   ${interpreter_h}
    ${unittest_src}
    ${tui_src}
    ${gui_src}
+   ${gui_h}
    ${gui_tesr_src}
    ${tui_main}
    ${gui_main}
    )
 
+# remove hicpp-explicit-conversions later
 SET(CLANG_TIDY_CHECKS
-    "-checks=-*,bugprone-*,cert-*,cppcoreguidelines-*,clang-analyzer-*,hicpp-*,misc-*,modernize-*,performance-*,portability-*,readability-*"
+      -checks=
+      -*,
+      bugprone-*,
+      cert-*,
+      cppcoreguidelines-*,
+     -cppcoreguidelines-pro-type-union-access,
+     -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+     -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+     clang-analyzer-*,
+      hicpp-*,
+     -hicpp-explicit-conversions,
+     -hicpp-no-array-decay,
+      misc-*,
+     -misc-definitions-in-headers,
+      modernize-*,
+     -modernize-pass-by-value,
+      performance-*,
+      portability-*,
+      readability-*,
+     -readability-named-parameter
    )
 
 
@@ -90,7 +137,7 @@ if (Qt5Widgets_FOUND AND Qt5Test_FOUND)
 endif()
 
 # optional strict mode
-if(DEFINED ENV{PERSONAL_DEV_ENV} OR UNIX)
+if(UNIX AND CMAKE_COMPILER_IS_GNUCXX)
   message("-- Enabling strict compilation mode")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare -Wno-deprecated")
 endif()
@@ -214,15 +261,20 @@ if(DEFINED ENV{PERSONAL_DEV_ENV} AND DEFINED ENV{PERSONAL_DEV_ENV_CTIDY})
       message(STATUS "clang-tidy not found.")
     endif()
     if(CLANG_TIDY_EXE)
-        set(clangtidy_srcs ${all_srcs})
         message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
-        add_custom_target(
-            clang-tidy
+        foreach(clangtidy_src ${clangtidy_srcs})
+            get_filename_component(clangtidy_src ${clangtidy_src} ABSOLUTE)
+            list(APPEND clangtidy_srcs_tmp ${clangtidy_src})
+        endforeach()
+        set(clangtidy_srcs "${clangtidy_srcs_tmp}")
+        unset(clangtidy_srcs_tmp)
+        string(CONCAT clangtidy_opts ${CLANG_TIDY_CHECKS})
+        add_custom_target(clangtidy
             COMMAND ${CLANG_TIDY_EXE}
             ${clangtidy_srcs}
-            ${CLANG_TIDY_CHECKS}
-            --
-            ${INCLUDE_DIRECTORIES}
+            ${clangtidy_opts}
+            "-header-filter=${CMAKE_SOURCE_DIR}/*.h*"
+            -p ${CMAKE_BINARY_DIR}
         )
     endif()
 endif()

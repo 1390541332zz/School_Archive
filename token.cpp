@@ -15,7 +15,7 @@ Token::Token(TokenType t)
 {
 }
 
-Token::Token(const std::string& str)
+Token::Token(std::string const & str)
     : m_type(STRING)
     , value(str)
 {
@@ -42,7 +42,7 @@ std::string Token::asString() const
 }
 
 // add token to sequence unless it is empty, clears token
-void store_ifnot_empty(std::string& token, TokenSequenceType& seq)
+void store_ifnot_empty(std::string & token, TokenSequenceType & seq)
 {
     if (!token.empty()) {
         seq.emplace_back(token);
@@ -50,23 +50,25 @@ void store_ifnot_empty(std::string& token, TokenSequenceType& seq)
     }
 }
 
-TokenSequenceType tokenize(std::istream& seq)
+TokenSequenceType tokenize(std::istream & seq)
 {
     TokenSequenceType tokens;
     std::string token;
 
     while (true) {
         char c = seq.get();
-        if (seq.eof())
+        if (seq.eof()) {
             break;
+        }
 
         if (c == COMMENTCHAR) {
             // chomp until the end of the line
             while ((!seq.eof()) && (c != '\n')) {
                 c = seq.get();
             }
-            if (seq.eof())
+            if (seq.eof()) {
                 break;
+            }
         } else if ((c == QUOTECHAR) && (tokens.empty() || ((!tokens.empty()) && (tokens.back().type() != Token::TokenType::QUOTE)))) {
             store_ifnot_empty(token, tokens);
             tokens.push_back(Token::TokenType::QUOTE);
@@ -83,13 +85,12 @@ TokenSequenceType tokenize(std::istream& seq)
         } else if (c == CLOSECHAR) {
             store_ifnot_empty(token, tokens);
             tokens.push_back(Token::TokenType::CLOSE);
-        } else if (isspace(c)) {
+        } else if (std::isspace(c) != 0) {
             store_ifnot_empty(token, tokens);
         } else {
             token.push_back(c);
         }
     }
     store_ifnot_empty(token, tokens);
-
     return tokens;
 }

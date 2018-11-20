@@ -20,7 +20,7 @@ needed.
 \brief A Procedure is a C++ function pointer taking a vector of 
        Expressions as arguments and returning an Expression.
 */
-typedef Expression (*Procedure)(const std::vector<Expression>& args);
+using Procedure = Expression (*)(std::vector<Expression> const & args);
 
 /*! \class Environment
 \brief A class representing the interpreter environment.
@@ -40,45 +40,45 @@ class Environment {
 public:
     /*! Construct the default environment with built-in procedures and
    * definitions. */
-    Environment();
+    Environment() noexcept;
 
+    ~Environment() = default;
+
+    Environment(Environment const &) = delete; 
+    Environment & operator=(Environment const &) = delete; 
+    Environment(Environment &&) = delete; 
+    Environment & operator=(Environment &&) = delete; 
+    
     /*! Determine if a symbol is known to the environment.
     \param sym the sumbol to lookup
     \return true if the symbol has been defined in the environment
    */
-    bool is_known(const Atom& sym) const;
+    bool is_known(Atom const & sym) const noexcept;
 
     /*! Determine if a symbol has been defined as an expression.
     \param sym the sumbol to lookup
     \return true if the symbol has been defined in the environment as an
     expression
    */
-    bool is_exp(const Atom& sym) const;
+    bool is_exp(Atom const & sym) const noexcept;
 
     /*! Get the Expression the argument symbol maps to.
     \param sym the symbol to lookup
     \return the expression the symbol maps to or an Expression of NoneType
   */
-    Expression get_exp(const Atom& sym) const;
+    Expression get_exp(Atom const & sym) const noexcept;
 
     /*! Add a mapping from sym argument to the exp argument within the environment.
     \param sym the symbol to add
     \param exp the expression the symbol should map to
    */
-    void add_exp(const Atom& sym, const Expression& exp);
-
-    /*! Add a mapping from sym argument to the exp argument within the environment
-     *  replacing any element currently in said spot.
-    \param sym the symbol to add
-    \param exp the expression the symbol should map to
-   */
-    void add_exp_force(const Atom& sym, const Expression& exp);
+    void add_exp(Atom const & sym, Expression const & exp);
 
     /*! Determine if a symbol has been defined as a procedure
     \param sym the symbol to lookup
     \return true if thr symbol maps to a procedure
    */
-    bool is_proc(const Atom& sym) const;
+    bool is_proc(Atom const & sym) const noexcept;
 
     /*! Get the Procedure the argument symbol maps to
     \param sym the symbol to lookup
@@ -87,14 +87,14 @@ public:
     Note: return the default procedure if argument is not a symbol
           or does not map to a known procedure.
   */
-    Procedure get_proc(const Atom& sym) const;
+    Procedure get_proc(Atom const & sym) const noexcept;
 
     /*! Reset the environment to its default state. */
-    void reset();
+    void reset() noexcept;
 
     /*! parent scope environment */
     // Would use plain getters and setters anyways so might as well be public
-    Environment const* parent = nullptr;
+    Environment const * parent = nullptr;
 
 private:
     // Environment is a mapping from symbols to expressions or procedures
@@ -102,21 +102,26 @@ private:
         ProcedureType };
 
     struct EnvResult {
-        EnvResultType type;
-        Expression exp; // used when type is ExpressionType
-        Procedure proc; // used when type is ProcedureType
+        EnvResultType type = ExpressionType;
+        Expression exp = Expression(); // used when type is ExpressionType
+        Procedure proc = Procedure(); // used when type is ProcedureType
 
         // constructors for use in container emplace
-        EnvResult(){};
-        EnvResult(EnvResultType t, Expression e)
+        EnvResult() noexcept = default;
+        EnvResult(EnvResultType t, Expression e) noexcept
             : type(t)
-            , exp(e){};
-        EnvResult(EnvResultType t, Procedure p)
+            , exp(std::move(e))
+        {
+        }
+        EnvResult(EnvResultType t, Procedure p) noexcept
             : type(t)
-            , proc(p){};
+            , proc(p)
+        {
+        }
     };
     // the environment map
     std::map<std::string, EnvResult> envmap;
+
 };
 
 #endif

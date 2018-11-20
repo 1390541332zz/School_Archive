@@ -116,7 +116,7 @@ TEST_CASE("Test semeantic errors", "[environment]")
 
 TEST_CASE("Test Default Functions", "[environment]")
 {
-    auto test_pls = [](std::string const& pls) {
+    auto test_pls = [](std::string const & pls) {
         std::istringstream ss(pls);
         Interpreter intr;
         intr.parseStream(ss);

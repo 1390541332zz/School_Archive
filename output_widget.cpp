@@ -18,13 +18,13 @@ struct ps_res {
     Expression exp;
 };
 
-void find_center(QGraphicsItem* i)
+void find_center(QGraphicsItem * i)
 {
     i->setTransformOriginPoint(i->boundingRect().center());
     i->setPos(0, 0);
 }
 
-std::pair<enum ps_state, struct ps_res> eval_ps(QString const& str)
+std::pair<enum ps_state, struct ps_res> eval_ps(QString const & str)
 {
     std::istringstream is(str.toStdString());
     std::ostringstream os;
@@ -38,38 +38,35 @@ std::pair<enum ps_state, struct ps_res> eval_ps(QString const& str)
         struct ps_res r;
         r.str = QString::fromStdString(eos.str());
         return std::make_pair(PARSE_ERROR, r);
-    } else {
-        try {
-            Expression exp = interp.evaluate();
-        } catch (const SemanticError& ex) {
-            eos << ex.what() << std::endl;
-            struct ps_res r;
-            r.str = QString::fromStdString(eos.str());
-            return std::make_pair(EXCEPTION, r);
-        }
     }
+    try {
+        Expression exp = interp.evaluate();
+    } catch (SemanticError const & ex) {
+        struct ps_res r;
+        r.str = QString::fromStdString(ex.what());
+        return std::make_pair(EXCEPTION, r);
+    }
+
     if (!interp.parseStream(is)) {
         eos << "Error: Invalid Expression. Could not parse." << std::endl;
         struct ps_res r;
         r.str = QString::fromStdString(eos.str());
         return std::make_pair(PARSE_ERROR, r);
-    } else {
-        try {
-            Expression exp = interp.evaluate();
-            os << exp << std::endl;
-            struct ps_res r;
-            r.exp = exp;
-            return std::make_pair(SUCCESS, r);
-        } catch (const SemanticError& ex) {
-            eos << ex.what() << std::endl;
-            struct ps_res r;
-            r.str = QString::fromStdString(eos.str());
-            return std::make_pair(EXCEPTION, r);
-        }
+    }
+    try {
+        Expression exp = interp.evaluate();
+        os << exp << std::endl;
+        struct ps_res r;
+        r.exp = exp;
+        return std::make_pair(SUCCESS, r);
+    } catch (SemanticError const & ex) {
+        struct ps_res r;
+        r.str = QString::fromStdString(ex.what());
+        return std::make_pair(EXCEPTION, r);
     }
 }
 
-OutputWidget::OutputWidget(QWidget* parent)
+OutputWidget::OutputWidget(QWidget * parent)
     : QWidget(parent)
     , layout(new QVBoxLayout(this))
     , scene(new QGraphicsScene(this))
@@ -80,14 +77,12 @@ OutputWidget::OutputWidget(QWidget* parent)
     setObjectName("output");
 }
 
-OutputWidget::~OutputWidget() {}
-
-void OutputWidget::resizeEvent(QResizeEvent*)
+void OutputWidget::resizeEvent(QResizeEvent *)
 {
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 }
 
-void OutputWidget::eval_plotscript(QString const& str)
+void OutputWidget::eval_plotscript(QString const & str)
 {
     scene->clear();
     auto res = eval_ps(str);
@@ -103,7 +98,7 @@ void OutputWidget::eval_plotscript(QString const& str)
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 }
 
-void OutputWidget::eval_exp(Expression const& exp)
+void OutputWidget::eval_exp(Expression const & exp)
 {
     if (exp.isLambda()) {
     } else if (exp.is("point")) {
@@ -122,13 +117,13 @@ void OutputWidget::eval_exp(Expression const& exp)
     }
 }
 
-void OutputWidget::plot_text(QString const& str)
+void OutputWidget::plot_text(QString const & str)
 {
     auto t = scene->addText(str, QFont("Courier", 1));
     find_center(t);
 }
 
-void OutputWidget::plot_textexp(Expression const& exp)
+void OutputWidget::plot_textexp(Expression const & exp)
 {
     std::ostringstream os;
     os << exp;
@@ -157,14 +152,14 @@ void OutputWidget::plot_textexp(Expression const& exp)
     }
 }
 
-void OutputWidget::plot_listexp(Expression const& exp)
+void OutputWidget::plot_listexp(Expression const & exp)
 {
     for (auto it = exp.tailConstBegin(); it != exp.tailConstEnd(); ++it) {
         eval_exp(*it);
     }
 }
 
-void OutputWidget::plot_lineexp(Expression const& exp)
+void OutputWidget::plot_lineexp(Expression const & exp)
 {
     qreal thick = exp.pmap.find("thickness")->second.head().asNumber();
     if (thick < 0) {
@@ -175,7 +170,7 @@ void OutputWidget::plot_lineexp(Expression const& exp)
     scene->addLine(QLineF(p1, p2), QPen(QBrush(Qt::black), thick));
 }
 
-void OutputWidget::plot_pointexp(Expression const& exp)
+void OutputWidget::plot_pointexp(Expression const & exp)
 {
     qreal sz = exp.pmap.find("size")->second.head().asNumber();
     auto p = find_point(exp);
@@ -188,9 +183,9 @@ void OutputWidget::plot_pointexp(Expression const& exp)
     i->setPos(p);
 }
 
-QPointF OutputWidget::find_point(Expression const& exp)
+QPointF OutputWidget::find_point(Expression const & exp)
 {
     auto x = exp.m_tail[0].head().asNumber();
     auto y = exp.m_tail[1].head().asNumber();
-    return QPointF(x, y);
+    return { x, y };
 }

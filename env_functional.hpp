@@ -3,12 +3,12 @@
 
 #include "env_helper.hpp"
 
-Expression lambda(const std::vector<Expression>& args)
+Expression lambda(std::vector<Expression> const & args)
 {
     return Expression(args.cbegin(), args.cend());
 }
 
-Expression apply_comb(const std::vector<Expression>& args)
+Expression apply_comb(std::vector<Expression> const & args)
 {
     if (!nargs_equal(args, 2)) {
         throw SemanticError("Error: Incorrect number of arguments");
@@ -16,7 +16,7 @@ Expression apply_comb(const std::vector<Expression>& args)
     if (args[0].scope == nullptr) {
         throw SemanticError("Error: Detached Scope Pointer");
     }
-    auto& env = *(args[0].scope);
+    auto & env = *(args[0].scope);
     if (!env.is_proc(args[0].head()) && !args[0].isLambda()) {
         throw SemanticError("Error: first argument to apply is not a procedure.");
     }
@@ -28,7 +28,7 @@ Expression apply_comb(const std::vector<Expression>& args)
         exp.head() = args[0].head();
         try {
             return exp.eval(env);
-        } catch (SemanticError const& e) {
+        } catch (SemanticError const & e) {
             std::string ex = "Error: during apply: " + std::string(e.what());
             throw SemanticError(ex);
         }
@@ -46,12 +46,12 @@ Expression apply_comb(const std::vector<Expression>& args)
     }
     try {
         return exp.eval(lambda_env);
-    } catch (SemanticError const& e) {
+    } catch (SemanticError const & e) {
         std::string ex = "Error: during apply: " + std::string(e.what());
         throw SemanticError(ex);
     }
 }
-Expression map_comb(const std::vector<Expression>& args)
+Expression map_comb(std::vector<Expression> const & args)
 {
     if (!nargs_equal(args, 2)) {
         throw SemanticError("Error: Incorrect number of arguments");
@@ -59,7 +59,7 @@ Expression map_comb(const std::vector<Expression>& args)
     if (args[0].scope == nullptr) {
         throw SemanticError("Error: Detached Scope Pointer");
     }
-    auto& env = *(args[0].scope);
+    auto & env = *(args[0].scope);
     if (!env.is_proc(args[0].head()) && !args[0].isLambda()) {
         throw SemanticError("Error: first argument to map is not a procedure.");
     }
@@ -74,7 +74,7 @@ Expression map_comb(const std::vector<Expression>& args)
             try {
                 result.append(exp.eval(env));
                 continue;
-            } catch (SemanticError const& e) {
+            } catch (SemanticError const & e) {
                 std::string ex = "Error: during map: " + std::string(e.what());
                 throw SemanticError(ex);
             }
@@ -88,7 +88,7 @@ Expression map_comb(const std::vector<Expression>& args)
         lambda_env.add_exp(arg->head(), *val);
         try {
             result.append(exp.eval(lambda_env));
-        } catch (SemanticError const& e) {
+        } catch (SemanticError const & e) {
             std::string ex = "Error: during map: " + std::string(e.what());
             throw SemanticError(ex);
         }

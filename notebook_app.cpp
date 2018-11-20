@@ -1,7 +1,7 @@
 #include "notebook_app.hpp"
 #include <QDebug>
 
-NotebookApp::NotebookApp(QWidget* parent)
+NotebookApp::NotebookApp(QWidget * parent)
     : QWidget(parent)
     , layout(new QVBoxLayout(this))
     , iw(new InputWidget(this))
@@ -15,5 +15,3 @@ NotebookApp::NotebookApp(QWidget* parent)
             this->ow->eval_plotscript(this->iw->toPlainText());
         });
 }
-
-NotebookApp::~NotebookApp() {}

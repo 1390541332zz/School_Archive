@@ -14,7 +14,7 @@ Define a typed exception to indicate semantic errors during evaluation.
 class SemanticError : public std::runtime_error {
 public:
     /// Construct an exeption with a given message
-    SemanticError(const std::string& message)
+    SemanticError(std::string const & message)
         : std::runtime_error(message){};
 };
 

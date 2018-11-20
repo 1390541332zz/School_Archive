@@ -5,25 +5,24 @@
 #include <limits>
 #include <sstream>
 
-Atom::Atom()
-    : m_type(NoneType)
+Atom::Atom() noexcept
+    : num(0, 0)
 {
 }
 
-Atom::Atom(std::complex<double> value)
-{
-    setNumber(value);
-}
-
-Atom::Atom(double value)
+Atom::Atom(std::complex<double> value) noexcept
 {
     setNumber(value);
 }
 
-Atom::Atom(const Token& token)
+Atom::Atom(double value) noexcept
+{
+    setNumber(value);
+}
+
+Atom::Atom(Token const & token) noexcept
     : Atom()
 {
-
     // is token a number?
     double temp;
     std::istringstream iss(token.asString());
@@ -32,7 +31,7 @@ Atom::Atom(const Token& token)
         if (iss.rdbuf()->in_avail() == 0) {
             setNumber(temp);
         }
-    } else if (!std::isdigit(token.asString()[0])) {
+    } else if (std::isdigit(token.asString()[0]) == 0) {
         std::string str = token.asString();
         if ((str.front() == '"') && (str.back() == '"')) {
             auto x = str.substr(1, str.size() - 2);
@@ -43,13 +42,13 @@ Atom::Atom(const Token& token)
     }
 }
 
-Atom::Atom(const std::string& value)
+Atom::Atom(std::string const & value) noexcept
     : Atom()
 {
     setSymbol(value);
 }
 
-Atom::Atom(const Atom& x)
+Atom::Atom(Atom const & x) noexcept
     : Atom()
 {
     switch (x.m_type) {
@@ -71,11 +70,37 @@ Atom::Atom(const Atom& x)
     }
 }
 
-Atom& Atom::operator=(const Atom& x)
+Atom::Atom(Atom && x) noexcept
+{
+    switch (x.m_type) {
+    case NoneType:
+        m_type = NoneType;
+        break;
+    case ComplexType:
+        m_type = ComplexType;
+        num = x.num;
+        break;
+    case DoubleType:
+        m_type = DoubleType;
+        num = x.num;
+        break;
+    case SymbolType:
+        m_type = SymbolType;
+        new (&str) std::string(x.str);
+        break;
+    case StringType:
+        m_type = StringType;
+        new (&str) std::string(x.str);
+        break;
+    }
+}
+
+Atom & Atom::operator=(Atom const & x) noexcept
 {
 
-    if (this == &x)
+    if (this == &x) {
         return *this;
+    }
     switch (x.m_type) {
     case ComplexType:
         setNumber(x.num);
@@ -93,6 +118,37 @@ Atom& Atom::operator=(const Atom& x)
         m_type = x.m_type;
         break;
     }
+    return *this;
+}
+
+Atom & Atom::operator=(Atom && x) noexcept
+{
+
+    if (this == &x) {
+        return *this;
+    }
+    switch (x.m_type) {
+    case NoneType:
+        m_type = NoneType;
+        break;
+    case ComplexType:
+        m_type = ComplexType;
+        num = x.num;
+        break;
+    case DoubleType:
+        m_type = DoubleType;
+        num = x.num;
+        break;
+    case SymbolType:
+        m_type = SymbolType;
+        new (&str) std::string(x.str);
+        break;
+    case StringType:
+        m_type = StringType;
+        new (&str) std::string(x.str);
+        break;
+    }
+    x.m_type = NoneType;
     return *this;
 }
 
@@ -129,19 +185,19 @@ bool Atom::isString() const noexcept
     return m_type == StringType;
 }
 
-void Atom::setNumber(std::complex<double> value)
+void Atom::setNumber(std::complex<double> value) noexcept
 {
     m_type = ComplexType;
     num = value;
 }
 
-void Atom::setNumber(double value)
+void Atom::setNumber(double value) noexcept
 {
     m_type = DoubleType;
     num = std::complex<double>(value, 0);
 }
 
-void Atom::setSymbol(const std::string& value)
+void Atom::setSymbol(std::string const & value) noexcept
 {
     // we need to ensure the destructor of the symbol string is called
     if ((m_type == StringType) || (m_type == SymbolType)) {
@@ -152,15 +208,10 @@ void Atom::setSymbol(const std::string& value)
     new (&str) std::string(value);
 }
 
-void Atom::setString(const std::string& value)
+void Atom::setString(std::string const & value) noexcept
 {
-    // we need to ensure the destructor of the symbol string is called
-    if ((m_type == StringType) || (m_type == SymbolType)) {
-        str.~basic_string();
-    }
+    setSymbol(value);
     m_type = StringType;
-    // copy construct in place
-    new (&str) std::string(value);
 }
 
 std::complex<double> Atom::asComplex() const noexcept
@@ -169,9 +220,9 @@ std::complex<double> Atom::asComplex() const noexcept
     case ComplexType:
         return num;
     case DoubleType:
-        return std::complex<double>(num.real(), 0.0);
+        return { num.real(), 0.0 };
     default:
-        return std::complex<double>(0.0, 0.0);
+        return { 0.0, 0.0 };
     }
 }
 
@@ -197,19 +248,21 @@ std::string Atom::asSymbol() const noexcept
     return result;
 }
 
-bool Atom::operator==(const Atom& right) const noexcept
+bool Atom::operator==(Atom const & right) const noexcept
 {
 
-    if (m_type != right.m_type)
+    if (m_type != right.m_type) {
         return false;
+    }
 
     switch (m_type) {
     case NoneType:
         return (right.m_type == NoneType);
     case ComplexType:
     case DoubleType: {
-        if ((right.m_type != DoubleType) && (right.m_type != ComplexType))
+        if ((right.m_type != DoubleType) && (right.m_type != ComplexType)) {
             return false;
+        }
         auto l = asComplex();
         auto r = right.asComplex();
         double lr = l.real();
@@ -233,13 +286,13 @@ bool Atom::operator==(const Atom& right) const noexcept
     }
 }
 
-bool operator!=(const Atom& left, const Atom& right) noexcept
+bool operator!=(Atom const & left, Atom const & right) noexcept
 {
 
     return !(left == right);
 }
 
-std::ostream& operator<<(std::ostream& out, const Atom& a)
+std::ostream & operator<<(std::ostream & out, Atom const & a)
 {
 
     if (a.isComplex()) {

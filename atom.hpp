@@ -15,25 +15,31 @@ This class provides value semantics.
 class Atom {
 public:
     /// Construct a default Atom of type None
-    Atom();
+    Atom() noexcept;
 
     /// Construct an Atom of type Number with value
-    Atom(double value);
+    Atom(double value) noexcept;
 
     /// Construct an Atom of type Number with value
-    Atom(std::complex<double> value);
+    Atom(std::complex<double> value) noexcept;
 
     /// Construct an Atom of type Symbol named value
-    Atom(const std::string& value);
+    Atom(std::string const & value) noexcept;
 
     /// Construct an Atom directly from a Token
-    Atom(const Token& token);
+    Atom(Token const & token) noexcept;
 
     /// Copy-construct an Atom
-    Atom(const Atom& x);
+    Atom(Atom const & x) noexcept;
 
-    /// Assign an Atom
-    Atom& operator=(const Atom& x);
+    /// Move-construct an Atom
+    Atom(Atom && x) noexcept;
+
+    /// Copy Assign an Atom
+    Atom & operator=(Atom const & x) noexcept;
+
+    /// Move Assign an Atom
+    Atom & operator=(Atom && x) noexcept;
 
     /// Atom destructor
     ~Atom();
@@ -63,7 +69,7 @@ public:
     std::string asSymbol() const noexcept;
 
     /// equality comparison based on type and value
-    bool operator==(const Atom& right) const noexcept;
+    bool operator==(Atom const & right) const noexcept;
 
 private:
     // internal enum of known types
@@ -76,7 +82,7 @@ private:
     };
 
     // track the type
-    Type m_type;
+    Type m_type = NoneType;
 
     // values for the known types. Note the use of a union requires care
     // when setting non POD values (see setSymbol)
@@ -86,22 +92,22 @@ private:
     };
 
     // helper to set type and value of Number
-    void setNumber(std::complex<double> value);
+    void setNumber(std::complex<double> value) noexcept;
 
     // helper to set type and value of Number
-    void setNumber(double value);
+    void setNumber(double value) noexcept;
 
     // helper to set type and value of Symbol
-    void setSymbol(const std::string& value);
+    void setSymbol(std::string const & value) noexcept;
 
     // helper to set type and value of String
-    void setString(const std::string& value);
+    void setString(std::string const & value) noexcept;
 };
 
 /// inequality comparison for Atom
-bool operator!=(const Atom& left, const Atom& right) noexcept;
+bool operator!=(Atom const & left, Atom const & right) noexcept;
 
 /// output stream rendering
-std::ostream& operator<<(std::ostream& out, const Atom& a);
+std::ostream & operator<<(std::ostream & out, Atom const & a);
 
 #endif

@@ -9,7 +9,7 @@
 #include "interpreter.hpp"
 #include "semantic_error.hpp"
 
-Expression run(const std::string& program)
+Expression run(std::string const & program)
 {
 
     std::istringstream iss(program);

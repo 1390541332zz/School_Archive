@@ -3,12 +3,12 @@
 
 #include "env_helper.hpp"
 
-Expression list(const std::vector<Expression>& args)
+Expression list(std::vector<Expression> const & args)
 {
     return Expression(args.cbegin(), args.cend());
 }
 
-Expression first(const std::vector<Expression>& args)
+Expression first(std::vector<Expression> const & args)
 {
     if (!nargs_equal(args, 1)) {
         throw SemanticError("Error: more than one argument in call to first.");
@@ -22,7 +22,7 @@ Expression first(const std::vector<Expression>& args)
     return *(args[0].tailConstBegin());
 }
 
-Expression rest(const std::vector<Expression>& args)
+Expression rest(std::vector<Expression> const & args)
 {
     if (!nargs_equal(args, 1)) {
         throw SemanticError("Error: more than one argument in call to rest.");
@@ -36,7 +36,7 @@ Expression rest(const std::vector<Expression>& args)
     return Expression(std::next(args[0].tailConstBegin()), args[0].tailConstEnd());
 }
 
-Expression length(const std::vector<Expression>& args)
+Expression length(std::vector<Expression> const & args)
 {
     if (!nargs_equal(args, 1)) {
         throw SemanticError("Error: more than one argument in call to length.");
@@ -47,7 +47,7 @@ Expression length(const std::vector<Expression>& args)
     return Expression(std::distance(args[0].tailConstBegin(), args[0].tailConstEnd()));
 }
 
-Expression append(const std::vector<Expression>& args)
+Expression append(std::vector<Expression> const & args)
 {
     if (!nargs_equal(args, 2)) {
         throw SemanticError("Error: incorrect number of argument in call to append.");
@@ -60,7 +60,7 @@ Expression append(const std::vector<Expression>& args)
     return exp;
 }
 
-Expression join(const std::vector<Expression>& args)
+Expression join(std::vector<Expression> const & args)
 {
     if (!nargs_equal(args, 2)) {
         throw SemanticError("Error: incorrect number of argument in call to join.");
@@ -75,7 +75,7 @@ Expression join(const std::vector<Expression>& args)
     return exp;
 }
 
-Expression range(const std::vector<Expression>& args)
+Expression range(std::vector<Expression> const & args)
 {
     if (!nargs_equal(args, 3)) {
         throw SemanticError("Error: incorrect number of argument in call to join.");

@@ -8,10 +8,14 @@
 class InputWidget : public QPlainTextEdit {
     Q_OBJECT
 public:
-    InputWidget(QWidget* parent = nullptr);
-    ~InputWidget();
-    void keyPressEvent(QKeyEvent* e);
+    explicit InputWidget(QWidget * parent = nullptr);
+    ~InputWidget() override = default;
+    void keyPressEvent(QKeyEvent * e) override;
 
+    InputWidget(InputWidget const &) = delete; 
+    InputWidget & operator=(InputWidget const &) = delete; 
+    InputWidget(InputWidget &&) = delete; 
+    InputWidget & operator=(InputWidget &&) = delete; 
 private:
     QPointer<QShortcut> evalKey;
 signals:

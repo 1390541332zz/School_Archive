@@ -7,22 +7,23 @@
 
 #include "environment.hpp"
 
-static Environment const default_env;
-
 // Static Class Files
 #include "env_arithmetic.hpp"
 #include "env_functional.hpp"
 #include "env_helper.hpp"
 #include "env_list.hpp"
 
-Environment::Environment()
+Environment::Environment() noexcept
 {
     reset();
 }
 
 // Reset the environment to the default state.
-void Environment::reset()
+void Environment::reset() noexcept
 {
+    static double const PI = std::atan2(0, -1);
+    static double const EXP = std::exp(1);
+    static std::complex<double> const IMAG = { 0, 1 };
     static std::vector<std::tuple<std::string, Procedure>> const procedures
         = {
               // clang-format off
@@ -60,8 +61,9 @@ void Environment::reset()
     
     envmap.clear();
 
-    if (parent != nullptr) return;
-
+    if (parent != nullptr) {
+        return;
+    }
     // Built-In value of pi
     envmap.emplace("pi", EnvResult(ExpressionType, Expression(PI)));
 
@@ -76,10 +78,11 @@ void Environment::reset()
     }
 }
 
-bool Environment::is_known(const Atom& sym) const
+bool Environment::is_known(Atom const& sym) const noexcept
 {
-    if (!sym.isSymbol())
+    if (!sym.isSymbol()) {
         return false;
+    }
     auto result = envmap.find(sym.asSymbol());
     return (  (result != envmap.end())
            || (  (parent != nullptr) 
@@ -89,11 +92,11 @@ bool Environment::is_known(const Atom& sym) const
            );
 }
 
-bool Environment::is_exp(const Atom& sym) const
+bool Environment::is_exp(Atom const& sym) const noexcept
 {
-    if (!sym.isSymbol())
+    if (!sym.isSymbol()) {
         return false;
-
+    }
     auto result = envmap.find(sym.asSymbol());
     return (  (  (result != envmap.end()) 
               && (  (result->second.type == ExpressionType) 
@@ -107,9 +110,11 @@ bool Environment::is_exp(const Atom& sym) const
            );
 }
 
-Expression Environment::get_exp(const Atom& sym) const
+Expression Environment::get_exp(Atom const& sym) const noexcept
 {
-    if (!sym.isSymbol()) return Expression();
+    if (!sym.isSymbol()) {
+        return Expression();
+    }
     auto result = envmap.find(sym.asSymbol());
     if ((result != envmap.end()) && (result->second.type == ExpressionType)) {
         return result->second.exp;
@@ -120,9 +125,10 @@ Expression Environment::get_exp(const Atom& sym) const
     return Expression();
 }
 
-void Environment::add_exp(const Atom& sym, const Expression& exp)
+void Environment::add_exp(Atom const& sym, Expression const& exp)
 {
-
+    static Environment const default_env;
+    
     if (!sym.isSymbol()) {
         throw SemanticError("Attempt to add non-symbol to environment");
     }
@@ -137,11 +143,11 @@ void Environment::add_exp(const Atom& sym, const Expression& exp)
     envmap.emplace(sym.asSymbol(), EnvResult(ExpressionType, exp));
 }
 
-bool Environment::is_proc(const Atom& sym) const
+bool Environment::is_proc(Atom const& sym) const noexcept
 {
-    if (!sym.isSymbol())
+    if (!sym.isSymbol()) {
         return false;
-
+    }
     auto result = envmap.find(sym.asSymbol());
     return (  (  (result != envmap.end()) 
               && (result->second.type == ProcedureType)
@@ -153,13 +159,11 @@ bool Environment::is_proc(const Atom& sym) const
            );
 }
 
-Procedure Environment::get_proc(const Atom& sym) const
+Procedure Environment::get_proc(Atom const& sym) const noexcept
 {
-
-    //Procedure proc = default_proc;
-
-    if (!sym.isSymbol()) return default_proc;
-
+    if (!sym.isSymbol()) {
+        return default_proc;
+    }
     auto result = envmap.find(sym.asSymbol());
     if ((result != envmap.end()) && (result->second.type == ProcedureType)) {
         return result->second.proc;

@@ -20,17 +20,17 @@ std::string readline()
     return line;
 }
 
-void error(const std::string& err_str)
+void error(std::string const & err_str)
 {
     std::cerr << "Error: " << err_str << std::endl;
 }
 
-void info(const std::string& err_str)
+void info(std::string const & err_str)
 {
     std::cout << "Info: " << err_str << std::endl;
 }
 
-int eval_from_stream(std::istream& stream)
+int eval_from_stream(std::istream & stream)
 {
 
     Interpreter interp;
@@ -39,31 +39,29 @@ int eval_from_stream(std::istream& stream)
     if (!interp.parseStream(setupifs)) {
         error("Invalid Startup Program. Could not parse.");
         return EXIT_FAILURE;
-    } else {
-        try {
-            Expression exp = interp.evaluate();
-        } catch (const SemanticError& ex) {
-            std::cerr << ex.what() << std::endl;
-            return EXIT_FAILURE;
-        }
     }
+    try {
+        Expression exp = interp.evaluate();
+    } catch (SemanticError const & ex) {
+        std::cerr << ex.what() << std::endl;
+        return EXIT_FAILURE;
+    }
+
     if (!interp.parseStream(stream)) {
         error("Invalid Program. Could not parse.");
         return EXIT_FAILURE;
-    } else {
-        try {
-            Expression exp = interp.evaluate();
-            std::cout << exp << std::endl;
-        } catch (const SemanticError& ex) {
-            std::cerr << ex.what() << std::endl;
-            return EXIT_FAILURE;
-        }
     }
-
+    try {
+        Expression exp = interp.evaluate();
+        std::cout << exp << std::endl;
+    } catch (SemanticError const & ex) {
+        std::cerr << ex.what() << std::endl;
+        return EXIT_FAILURE;
+    }
     return EXIT_SUCCESS;
 }
 
-int eval_from_file(std::string filename)
+int eval_from_file(std::string const & filename)
 {
 
     std::ifstream ifs(filename);
@@ -76,7 +74,7 @@ int eval_from_file(std::string filename)
     return eval_from_stream(ifs);
 }
 
-int eval_from_command(std::string argexp)
+int eval_from_command(std::string const & argexp)
 {
 
     std::istringstream expression(argexp);
@@ -92,13 +90,12 @@ int repl()
     if (!interp.parseStream(setupifs)) {
         error("Invalid Startup Program. Could not parse.");
         return EXIT_FAILURE;
-    } else {
-        try {
-            Expression exp = interp.evaluate();
-        } catch (const SemanticError& ex) {
-            std::cerr << ex.what() << std::endl;
-            return EXIT_FAILURE;
-        }
+    }
+    try {
+        Expression exp = interp.evaluate();
+    } catch (SemanticError const & ex) {
+        std::cerr << ex.what() << std::endl;
+        return EXIT_FAILURE;
     }
 
     while (!std::cin.eof()) {
@@ -106,39 +103,36 @@ int repl()
         prompt();
         std::string line = readline();
 
-        if (line.empty())
+        if (line.empty()) {
             continue;
-
+        }
         std::istringstream expression(line);
 
         if (!interp.parseStream(expression)) {
             error("Invalid Expression. Could not parse.");
-        } else {
-            try {
-                Expression exp = interp.evaluate();
-                std::cout << exp << std::endl;
-            } catch (const SemanticError& ex) {
-                std::cerr << ex.what() << std::endl;
-            }
+            continue;
+        }
+        try {
+            Expression exp = interp.evaluate();
+            std::cout << exp << std::endl;
+        } catch (SemanticError const & ex) {
+            std::cerr << ex.what() << std::endl;
         }
     }
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char * argv[])
 {
-
     if (argc == 2) {
         return eval_from_file(argv[1]);
-    } else if (argc == 3) {
+    }
+    if (argc == 3) {
         if (std::string(argv[1]) == "-e") {
             return eval_from_command(argv[2]);
-        } else {
-            error("Incorrect number of command line arguments.");
         }
-    } else {
-        return repl();
+        error("Incorrect number of command line arguments.");
+        return EXIT_FAILURE;
     }
-
-    return EXIT_SUCCESS;
+    return repl();
 }
