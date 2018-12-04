@@ -277,8 +277,9 @@ bool Atom::operator==(Atom const & right) const noexcept
             && !std::isnan(di)
             && (dr <= std::numeric_limits<float>::epsilon())
             && (di <= std::numeric_limits<float>::epsilon()));
-    } break;
+    };
     case StringType:
+        return (right.m_type == StringType) && (str == right.str);
     case SymbolType:
         return (right.m_type == SymbolType) && (str == right.str);
     default:

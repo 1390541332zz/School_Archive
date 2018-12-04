@@ -20,7 +20,7 @@ public:
     enum TokenType {
         OPEN, //< open tag, aka '('
         CLOSE, //< close tag, aka ')'
-        QUOTE, //< quote tag, aka ')'
+        QUOTE, //< quote tag, aka '"'
         STRING //< string tag
     };
 

@@ -15,6 +15,11 @@ TEST_CASE("Test Token creation", "[token]")
     REQUIRE(tkc.type() == Token::CLOSE);
     REQUIRE(tkc.asString() == ")");
 
+    Token tkq(Token::QUOTE);
+
+    REQUIRE(tkq.type() == Token::QUOTE);
+    REQUIRE(tkq.asString() == "\"");
+
     Token tks("thevalue");
 
     REQUIRE(tks.type() == Token::STRING);
@@ -70,6 +75,32 @@ TEST_CASE("Test tokenize", "[token]")
 
     REQUIRE(tokens.front().type() == Token::STRING);
     REQUIRE(tokens.front().asString() == "3");
+    tokens.pop_front();
+
+    REQUIRE(tokens.empty());
+    
+    std::string input2 = "( A a aa )";
+
+    std::istringstream iss2(input2);
+
+    tokens = tokenize(iss2);
+    
+    REQUIRE(tokens.front().type() == Token::OPEN);
+    tokens.pop_front();
+
+    REQUIRE(tokens.front().type() == Token::STRING);
+    REQUIRE(tokens.front().asString() == "A");
+    tokens.pop_front();
+
+    REQUIRE(tokens.front().type() == Token::STRING);
+    REQUIRE(tokens.front().asString() == "a");
+    tokens.pop_front();
+
+    REQUIRE(tokens.front().type() == Token::STRING);
+    REQUIRE(tokens.front().asString() == "aa");
+    tokens.pop_front();
+
+    REQUIRE(tokens.front().type() == Token::CLOSE);
     tokens.pop_front();
 
     REQUIRE(tokens.empty());

@@ -37,7 +37,6 @@ void Environment::reset() noexcept
               { "join",          join           },
               { "range",         range          },
               // - functional operators - 
-              { "lambda",        lambda         },
               { "apply",         apply_comb     },
               { "map",           map_comb       },
               // - arithmetic operators - 

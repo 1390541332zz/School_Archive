@@ -12,10 +12,11 @@ public:
     ~InputWidget() override = default;
     void keyPressEvent(QKeyEvent * e) override;
 
-    InputWidget(InputWidget const &) = delete; 
-    InputWidget & operator=(InputWidget const &) = delete; 
-    InputWidget(InputWidget &&) = delete; 
-    InputWidget & operator=(InputWidget &&) = delete; 
+    InputWidget(InputWidget const &) = delete;
+    InputWidget & operator=(InputWidget const &) = delete;
+    InputWidget(InputWidget &&) = delete;
+    InputWidget & operator=(InputWidget &&) = delete;
+
 private:
     QPointer<QShortcut> evalKey;
 signals:

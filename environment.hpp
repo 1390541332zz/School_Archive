@@ -44,11 +44,11 @@ public:
 
     ~Environment() = default;
 
-    Environment(Environment const &) = delete; 
-    Environment & operator=(Environment const &) = delete; 
-    Environment(Environment &&) = delete; 
-    Environment & operator=(Environment &&) = delete; 
-    
+    Environment(Environment const &) = delete;
+    Environment & operator=(Environment const &) = delete;
+    Environment(Environment &&) = delete;
+    Environment & operator=(Environment &&) = delete;
+
     /*! Determine if a symbol is known to the environment.
     \param sym the sumbol to lookup
     \return true if the symbol has been defined in the environment
@@ -121,7 +121,6 @@ private:
     };
     // the environment map
     std::map<std::string, EnvResult> envmap;
-
 };
 
 #endif

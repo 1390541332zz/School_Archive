@@ -41,7 +41,7 @@ public:
 
     /// move construct an expression
     Expression(Expression && a) noexcept = default;
-    
+
     /// list constructor
     template <typename it,
         typename = typename std::enable_if<
@@ -49,7 +49,7 @@ public:
                 typename std::iterator_traits<it>::value_type,
                 Expression>::value>::type>
     Expression(it const & begin, it const & end) noexcept
-      : m_head("list")
+        : m_head("list")
     {
         m_tail.reserve(m_tail.size() + std::distance(begin, end));
         std::copy(begin, end, std::back_inserter(m_tail));
@@ -58,7 +58,7 @@ public:
     /// deep-copy assign an expression  (recursive)
     Expression & operator=(Expression const & a) = default;
 
-    /// move assign an expression 
+    /// move assign an expression
     Expression & operator=(Expression && a) noexcept = default;
 
     /// return a reference to the head Atom

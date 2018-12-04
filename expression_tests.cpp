@@ -1,5 +1,6 @@
 #include "catch.hpp"
-
+#include <sstream>
+#include "interpreter.hpp"
 #include "expression.hpp"
 
 TEST_CASE("Test default expression", "[expression]")
@@ -27,4 +28,19 @@ TEST_CASE("Test symbol expression", "[expression]")
 
     REQUIRE(!exp.isHeadNumber());
     REQUIRE(exp.isHeadSymbol());
+}
+
+TEST_CASE("Test prop checks", "[expression]")
+{
+    auto test_pls = [](std::string const & pls) {
+        std::istringstream ss(pls);
+        Interpreter intr;
+        intr.parseStream(ss);
+        return intr.evaluate();
+    };
+    auto exp = test_pls("(set-property \"object-name\" \"text\"  \"yeet\")");
+    REQUIRE(!exp.is("point"));
+    REQUIRE(exp.is("text"));
+    exp = test_pls("(+ 1 2)");
+    REQUIRE(!exp.is("text"));
 }

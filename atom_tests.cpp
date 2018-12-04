@@ -54,7 +54,7 @@ TEST_CASE("Test constructors", "[atom]")
         REQUIRE(!a.isNone());
         REQUIRE(!e.isNumber());
         REQUIRE(e.isSymbol());
-
+        
         Atom f(b);
         REQUIRE(!b.isNone());
         REQUIRE(f.isNumber());
@@ -133,10 +133,16 @@ TEST_CASE("Test assignment", "[atom]")
         INFO("number to number");
         Atom a(1.0);
         Atom b(2.0);
+        a = a;
+        REQUIRE(a.isNumber());
+        REQUIRE(a.asNumber() == 1.0);
         b = a;
         REQUIRE(b.isNumber());
         REQUIRE(b.asNumber() == 1.0);
         b = std::move(a);
+        REQUIRE(b.isNumber());
+        REQUIRE(b.asNumber() == 1.0);
+        b = std::move(b);
         REQUIRE(b.isNumber());
         REQUIRE(b.asNumber() == 1.0);
     }
@@ -233,8 +239,10 @@ TEST_CASE("test comparison", "[atom]")
     {
         INFO("compare number to symbol");
         Atom a(1.0);
+        Atom c(std::complex<double>(1.0, 2.0));
         Atom b("hi");
         REQUIRE(a != b);
+        REQUIRE(c != b);
     }
 
     {

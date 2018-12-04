@@ -127,6 +127,8 @@ TEST_CASE("Test Default Functions", "[environment]")
     std::vector<std::pair<std::string, std::string>> pass_cases{
         // input,                                result,                       test case
         // - Arithmetic Procedure Cases -
+        { "( 3 )",                             "( 3 )"                         }, // No Proc
+        { "( \"yeet\" )",                      "( \"yeet\" )"                  }, // No Proc
         { "( + 3 )",                           "( 3 )"                         }, // Add 1 Arg
         { "( + 3 5 )",                         "( 8 )"                         }, // Add 2 Arg
         { "( + 3 5 2 )",                       "( 10 )"                        }, // Add 3 Arg
@@ -213,55 +215,93 @@ TEST_CASE("Test Default Functions", "[environment]")
         { "(map / (list 1 2 4 8))",           "(list 1 0.5 0.25 0.125)"       }, // Map 
         { "(map (lambda (x) (- x))          \
             (list 1 2 3 4)                  \
-           )",                                "(list -1 -2 -3 -4)"            }, // Map 
+           )",                                "(list -1 -2 -3 -4)"            }, // Map
+        // - Property Procedure Cases -
+        { "(set-property \"y\" 2 1)",         "(1)"                           }, // set-prop
+        { "(get-property \"y\"              \
+              (set-property \"y\" 2 1))",     "(2)"                           }, // get-prop
     };
 
     std::vector<std::string> fail_cases{
-        // input,                                  test case
+        // input,                                          test case
+        "()",                                           // Invalid Type in terminal
+        "(begin)",                                      // Zero Args
+        "(define 1 1)",                                 // Define nonstring
+        "(define + 1)",                                 // Define builtin
+        "(y 1 2)",                                      // Undefined proc
+        "(1 1 2)",                                      // Undefined proc
+        "(g)",                                          // Undefined var
         // - Arithmetic Procedure Cases -    
-        "( / 3 2 1)",                           // Div Invalid # of Arg
-        "( ^ 1 )",                              // Pow Invalid # of Arg
-        "( - 3 2 2 )",                          // Sub Invalid # of Arg
-        "( sqrt 4 2 )",                         // Sqrt Invalid # of Arg
-        "( ln 4 2 )",                           // Log Invalid # of Arg
-        "( sin 4 2 )",                          // Sin Invalid # of Arg
-        "( cos 4 2 )",                          // Cos Invalid # of Arg
-        "( tan 4 2 )",                          // Tan Invalid # of Arg
-        "( real I 2 )",                         // Real Invalid # of Arg
-        "( imag I 2 )",                         // Imag Invalid # of Arg
-        "( mag I 2 )",                          // Mag Invalid # of Arg
-        "( arg I 2 )",                          // Arg Invalid # of Arg
-        "( conj I 2 )",                         // Conj Invalid # of Arg
-        "( ln 0 )",                             // Log Invalid Arg
-        "( real 1 )",                           // Real Non-complex Arg
-        "( imag 1 )",                           // Imag Non-complex Arg
-        "( mag 1 )",                            // Mag  Non-complex Arg
-        "( arg 1 )",                            // Arg  Non-complex Arg
-        "( conj 1 )",                           // Conj Non-complex Arg
+        "( / 3 2 1)",                                   // Div Invalid # of Arg
+        "( ^ 1 )",                                      // Pow Invalid # of Arg
+        "( - 3 2 2 )",                                  // Sub Invalid # of Arg
+        "( sqrt 4 2 )",                                 // Sqrt Invalid # of Arg
+        "( ln 4 2 )",                                   // Log Invalid # of Arg
+        "( sin 4 2 )",                                  // Sin Invalid # of Arg
+        "( cos 4 2 )",                                  // Cos Invalid # of Arg
+        "( tan 4 2 )",                                  // Tan Invalid # of Arg
+        "( real I 2 )",                                 // Real Invalid # of Arg
+        "( imag I 2 )",                                 // Imag Invalid # of Arg
+        "( mag I 2 )",                                  // Mag Invalid # of Arg
+        "( arg I 2 )",                                  // Arg Invalid # of Arg
+        "( conj I 2 )",                                 // Conj Invalid # of Arg
+        "( ln 0 )",                                     // Log Invalid Arg
+        "( real 1 )",                                   // Real Non-complex Arg
+        "( imag 1 )",                                   // Imag Non-complex Arg
+        "( mag 1 )",                                    // Mag  Non-complex Arg
+        "( arg 1 )",                                    // Arg  Non-complex Arg
+        "( conj 1 )",                                   // Conj Non-complex Arg
         // - List Procedure Cases - 
-        "(first (list 7 2 3) 2)",               // First # of Args
-        "(first 1)",                            // First Not List
-        "(first (list))",                       // First Empty List
-        "(rest  (list 7 2 3) 2)",               // Rest # of Args
-        "(rest  1)",                            // Rest Not List
-        "(rest  (list))",                       // Rest Empty List
-        "(length (list 7 2 5) 2)",              // Length # of Args
-        "(length 2)",                           // Length Not List
-        "(append (list 7 2 3) 9 7)",            // Append # of Args
-        "(append 9 (list 7 2 3))",              // Append Not List
-        "(join (list 7 2 3))",                  // Join # of Args
-        "(join (list 7) (list 2) (list 3))",    // Join # of Args
-        "(join (list 7 2 3) 9)",                // Join Not List
-        "(join 9 (list 7 2 3))",                // Join Not List
-        "(range 1 5 )",                         // Range # of Args
-        "(range 1 5 7 7)",                      // Range # of Args
-        "(range (list 1 2) 4 3)",               // Range Not Number
-        "(range 7 1 2)",                        // Range Beg > End
-        "(range 1 6 0)",                        // Range Neg Rate
-        "(range 1 6 -4)",                       // Range Neg Rate
+        "(first (list 7 2 3) 2)",                       // First # of Args
+        "(first 1)",                                    // First Not List
+        "(first (list))",                               // First Empty List
+        "(rest  (list 7 2 3) 2)",                       // Rest # of Args
+        "(rest  1)",                                    // Rest Not List
+        "(rest  (list))",                               // Rest Empty List
+        "(length (list 7 2 5) 2)",                      // Length # of Args
+        "(length 2)",                                   // Length Not List
+        "(append (list 7 2 3) 9 7)",                    // Append # of Args
+        "(append 9 (list 7 2 3))",                      // Append Not List
+        "(join (list 7 2 3))",                          // Join # of Args
+        "(join (list 7) (list 2) (list 3))",            // Join # of Args
+        "(join (list 7 2 3) 9)",                        // Join Not List
+        "(join 9 (list 7 2 3))",                        // Join Not List
+        "(range 1 5 )",                                 // Range # of Args
+        "(range 1 5 7 7)",                              // Range # of Args
+        "(range (list 1 2) 4 3)",                       // Range Not Number
+        "(range 7 1 2)",                                // Range Beg > End
+        "(range 1 6 0)",                                // Range Neg Rate
+        "(range 1 6 -4)",                               // Range Neg Rate
+        // - Functional Procedure Cases -
+        "(lambda (x))",                                 // lambda # of args
+        "(lambda (1 2) (x))",                           // Lambda Not Arg List
+        "(apply + (list 1 2) (1))",                     // Apply # of Args
+        "(apply 1 (list 1 2))",                         // Apply No Proc
+        "(apply + 1)",                                  // Apply No List
+        "(apply first (list 1))",                       // Apply Proc fail
+        "(apply (lambda (x) (first x)) (list 1))",      // Apply Lambda fail
+        "(map + (list 1 2) (1))",                       // Map # of Args
+        "(map 1 (list 1 2))",                           // Map No Proc
+        "(map + 1)",                                    // Map No List
+        "(map first (list (list)))",                    // Apply Proc fail
+        "(map (lambda (x) (first x)) (list (list)))",   // Apply Lambda fail
+        // - Property Procedure Cases -
+        "(set-property \"y\" 2)",                       // set-prop # of args
+        "(set-property 1 2 1)",                         // set-prop Not String
+        "(get-property \"y\")",                         // set-prop # of args
+        "(get-property 2 1)",                           // set-prop Not String
     };
     //clang-format on
 
+    {
+        Expression result = Atom{};
+        auto str = "(get-property \"y\" 2)";
+        Expression test = test_pls(str);
+        CAPTURE(str);
+        CAPTURE(result);
+        REQUIRE_NOTHROW(test = test_pls(str));
+        REQUIRE(test == result);
+    }
     for (auto const& p : pass_cases) {
         Expression test;
         Expression result = test_pls(std::get<1>(p));

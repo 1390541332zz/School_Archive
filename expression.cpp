@@ -46,7 +46,7 @@ bool Expression::isHeadString() const noexcept
 
 bool Expression::isNone() const noexcept
 {
-return (m_head.isNone());
+    return (m_head.isNone());
 }
 
 bool Expression::isList() const noexcept
@@ -158,10 +158,10 @@ Expression Expression::handle_lookup(Atom const & head, Environment const & env)
 
 Expression Expression::handle_begin(Environment & env)
 {
-
-    if (m_tail.empty()) {
-        throw SemanticError("Error during evaluation: zero arguments to begin");
-    }
+    // Unreachable Error
+    //if (m_tail.empty()) {
+    //    throw SemanticError("Error during evaluation: zero arguments to begin");
+    //}
 
     // evaluate each arg from tail, return the last
     Expression result;
@@ -191,16 +191,8 @@ Expression Expression::handle_define(Environment & env)
         throw SemanticError("Error during evaluation: attempt to redefine a special-form");
     }
 
-    if (env.is_proc(m_head)) {
-        throw SemanticError("Error during evaluation: attempt to redefine a built-in procedure");
-    }
-
     // eval tail[1]
     Expression result = m_tail[1].eval(env);
-    if (env.is_exp(m_head)) {
-        throw SemanticError("Error during evaluation: attempt to redefine a previously defined symbol");
-    }
-
     //and add to env
     env.add_exp(m_tail[0].head(), result);
 
@@ -308,8 +300,8 @@ Expression Expression::eval(Environment & env)
     // else attempt to treat as procedure
     std::vector<Expression> res;
     res.reserve(m_tail.size());
-    std::for_each(m_tail.begin(), m_tail.end(), [&env, &res] (Expression e) {
-        res.push_back(e.eval(env)); 
+    std::for_each(m_tail.begin(), m_tail.end(), [&env, &res](Expression e) {
+        res.push_back(e.eval(env));
     });
     std::for_each(res.begin(), res.end(), [&env](Expression & e) {
         e.scope = &env;

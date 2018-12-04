@@ -20,10 +20,11 @@ public:
 
     void eval_plotscript(QString const & str);
 
-    OutputWidget(OutputWidget const &) = delete; 
-    OutputWidget & operator=(OutputWidget const &) = delete; 
-    OutputWidget(OutputWidget &&) = delete; 
-    OutputWidget & operator=(OutputWidget &&) = delete; 
+    OutputWidget(OutputWidget const &) = delete;
+    OutputWidget & operator=(OutputWidget const &) = delete;
+    OutputWidget(OutputWidget &&) = delete;
+    OutputWidget & operator=(OutputWidget &&) = delete;
+
 protected:
     void resizeEvent(QResizeEvent *) override;
 

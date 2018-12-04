@@ -13,10 +13,11 @@ public:
     explicit NotebookApp(QWidget * parent = nullptr);
     ~NotebookApp() override = default;
 
-    NotebookApp(NotebookApp const &) = delete; 
-    NotebookApp & operator=(NotebookApp const &) = delete; 
-    NotebookApp(NotebookApp &&) = delete; 
-    NotebookApp & operator=(NotebookApp &&) = delete; 
+    NotebookApp(NotebookApp const &) = delete;
+    NotebookApp & operator=(NotebookApp const &) = delete;
+    NotebookApp(NotebookApp &&) = delete;
+    NotebookApp & operator=(NotebookApp &&) = delete;
+
 private:
     QPointer<QVBoxLayout> layout;
     QPointer<InputWidget> iw;

@@ -172,6 +172,7 @@ void OutputWidget::plot_lineexp(Expression const & exp)
 
 void OutputWidget::plot_pointexp(Expression const & exp)
 {
+    static const QBrush b(Qt::black);
     auto prop_sz = exp.pmap.find("size")->second.head();
     if ((prop_sz.asNumber() < 0) || (prop_sz.isComplex())) {
         plot_text("ERROR: size must be positive.");
@@ -179,7 +180,7 @@ void OutputWidget::plot_pointexp(Expression const & exp)
     qreal sz = prop_sz.asNumber();
     auto p = find_point(exp);
     auto i = scene->addEllipse(
-        0, 0, sz, sz, QPen(Qt::black), QBrush(Qt::black));
+        (-sz / 2), (-sz / 2), sz, sz, QPen(b, 0), b);
     find_center(i);
     i->setPos(p);
 }

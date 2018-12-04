@@ -64,9 +64,17 @@ set(gui_h
    output_widget.hpp
    )
 
-set(gui_test_src
-  notebook_test.cpp
-)
+set(gui_test_h
+    qtests/testHelpers.hpp
+    qtests/testUI.hpp
+    qtests/testPrimitiveGraphics.hpp
+    qtests/testDiscretePlotLayout.hpp
+    qtests/testContinuousPlotLayout.hpp
+   )
+
+set(gui_test_src 
+    notebook_test.cpp
+   )
 
 set(tui_main
   plotscript.cpp
@@ -90,7 +98,8 @@ set(all_srcs
    ${tui_src}
    ${gui_src}
    ${gui_h}
-   ${gui_tesr_src}
+   ${gui_test_src}
+   ${gui_test_h}
    ${tui_main}
    ${gui_main}
    )
@@ -165,8 +174,8 @@ if(  DEFINED ENV{ECE3574_REFERENCE_ENV}
   set(GCC_COVERAGE_COMPILE_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
   set_target_properties(interpreter PROPERTIES COMPILE_FLAGS ${GCC_COVERAGE_COMPILE_FLAGS} )
   set_target_properties(unit_tests PROPERTIES COMPILE_FLAGS ${GCC_COVERAGE_COMPILE_FLAGS} )
-  target_link_libraries(unit_tests interpreter gcov)
-  target_link_libraries(plotscript interpreter gcov)
+  target_link_libraries(unit_tests interpreter pthread gcov)
+  target_link_libraries(plotscript interpreter pthread gcov)
   add_custom_target(coverage
     COMMAND ${CMAKE_COMMAND} -E env "ROOT=${CMAKE_CURRENT_SOURCE_DIR}"
     ${CMAKE_CURRENT_SOURCE_DIR}/scripts/coverage.sh)

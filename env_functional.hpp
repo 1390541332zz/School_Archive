@@ -1,21 +1,15 @@
 #ifndef ENVIRONMENT_FUNCTIONAL_H
 #define ENVIRONMENT_FUNCTIONAL_H
 
+#include <cassert>
 #include "env_helper.hpp"
-
-Expression lambda(std::vector<Expression> const & args)
-{
-    return Expression(args.cbegin(), args.cend());
-}
 
 Expression apply_comb(std::vector<Expression> const & args)
 {
     if (!nargs_equal(args, 2)) {
         throw SemanticError("Error: Incorrect number of arguments");
     }
-    if (args[0].scope == nullptr) {
-        throw SemanticError("Error: Detached Scope Pointer");
-    }
+    assert(args[0].scope != nullptr);
     auto & env = *(args[0].scope);
     if (!env.is_proc(args[0].head()) && !args[0].isLambda()) {
         throw SemanticError("Error: first argument to apply is not a procedure.");
@@ -56,9 +50,7 @@ Expression map_comb(std::vector<Expression> const & args)
     if (!nargs_equal(args, 2)) {
         throw SemanticError("Error: Incorrect number of arguments");
     }
-    if (args[0].scope == nullptr) {
-        throw SemanticError("Error: Detached Scope Pointer");
-    }
+    assert(args[0].scope != nullptr);
     auto & env = *(args[0].scope);
     if (!env.is_proc(args[0].head()) && !args[0].isLambda()) {
         throw SemanticError("Error: first argument to map is not a procedure.");
