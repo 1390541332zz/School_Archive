@@ -157,7 +157,7 @@ if (Qt5Widgets_FOUND AND Qt5Test_FOUND)
 endif()
 
 # optional strict mode
-if(UNIX AND CMAKE_COMPILER_IS_GNUCXX)
+if(UNIX AND CMAKE_COMPILER_IS_GNUCXX AND STRICT)
   message("-- Enabling strict compilation mode")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wpedantic -Werror -Wchkp -Wno-sign-compare -Wno-deprecated")
 endif()
