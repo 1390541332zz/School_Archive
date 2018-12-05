@@ -25,7 +25,7 @@ bool message_queue<T>::pop(std::uint64_t id, message<T> & m_out)
         return false;
     }
     m_out = *it;
-    d.erase(it, it);
+    d.erase(it);
     return true;
 }
 

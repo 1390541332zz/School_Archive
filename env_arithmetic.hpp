@@ -131,8 +131,8 @@ Expression sin(std::vector<Expression> const & args)
     if (!nargs_equal(args, 1)) {
         throw SemanticError("Error in call to sin: invalid number of arguments.");
     }
-    auto result = std::sin(args[0].head().asComplex());
-    return Expression(result.real());
+    auto result = std::sin(args[0].head().asNumber());
+    return Expression(result);
 }
 
 Expression cos(std::vector<Expression> const & args)
@@ -140,11 +140,8 @@ Expression cos(std::vector<Expression> const & args)
     if (!nargs_equal(args, 1)) {
         throw SemanticError("Error in call to cos: invalid number of arguments.");
     }
-    auto result = std::cos(args[0].head().asComplex());
-    if (args[0].isHeadComplex()) {
-        return Expression(result);
-    }
-    return Expression(result.real());
+    auto result = std::cos(args[0].head().asNumber());
+    return Expression(result);
 }
 
 Expression tan(std::vector<Expression> const & args)
@@ -152,8 +149,8 @@ Expression tan(std::vector<Expression> const & args)
     if (!nargs_equal(args, 1)) {
         throw SemanticError("Error in call to tan: invalid number of arguments.");
     }
-    auto result = std::tan(args[0].head().asComplex());
-    return Expression(result.real());
+    auto result = std::tan(args[0].head().asNumber());
+    return Expression(result);
 }
 
 Expression real(std::vector<Expression> const & args)

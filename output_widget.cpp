@@ -41,7 +41,7 @@ void OutputWidget::eval_plotscript(QString const & str)
     case EXIT_FAILURE:
     default:
         qDebug().noquote() << "\n  " << QString::fromStdString(ess.str());
-        plot_text(QString::fromStdString(ess.str()));
+        plot_err(QString::fromStdString(ess.str()));
         break;
     }
     scene->setSceneRect(scene->itemsBoundingRect());
@@ -67,6 +67,6 @@ void OutputWidget::eval_exp(Expression const & exp)
         || exp.isHeadSymbol() || exp.isHeadString()) {
         plot_textexp(exp);
     } else {
-        plot_text("ERROR: Unknown Datatype found in OutputWidget::eval_exp");
+        plot_err("ERROR: Unknown Datatype found in OutputWidget::eval_exp");
     }
 }
