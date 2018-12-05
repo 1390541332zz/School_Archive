@@ -6,6 +6,7 @@
 #include "expression.hpp"
 #include "output_widget.hpp"
 #include "plotscript_eval.hpp"
+#include "output_widget_plot.hpp"
 
 OutputWidget::OutputWidget(QWidget * parent)
     : QWidget(parent)

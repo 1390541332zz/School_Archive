@@ -36,6 +36,8 @@ set(interpreter_h
    expression.hpp 
    parse.hpp      
    interpreter.hpp
+   message_queue.hpp
+   message_queue.tpp
    )
 
 set(unittest_src
@@ -46,6 +48,7 @@ set(unittest_src
    parse_tests.cpp
    semantic_error.hpp
    token_tests.cpp
+   message_queue_tests.cpp
    unit_tests.cpp
    )
 
@@ -61,12 +64,12 @@ set(gui_src
    notebook_app.cpp 
    input_widget.cpp 
    output_widget.cpp
-   output_widget_plot.cpp
    )
 
 set(gui_h
    notebook_app.hpp
    input_widget.hpp
+   output_widget_plot.hpp
    output_widget.hpp
    )
 
@@ -97,6 +100,7 @@ set(clangtidy_srcs
    ${tui_main}
    ${gui_main}
    )
+
 set(all_srcs
    ${interpreter_src}
    ${interpreter_h}
