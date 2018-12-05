@@ -115,7 +115,7 @@ int repl(std::istream & is, std::ostream & os, std::ostream & es)
         std::istringstream expression(line);
 
         if (!interp.parseStream(expression)) {
-            error("Invalid Expression. Could not parse.", es);
+            error("Error: Invalid Expression. Could not parse.", es);
             continue;
         }
         try {
