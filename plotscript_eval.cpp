@@ -7,6 +7,38 @@
 #include "plotscript_eval.hpp"
 #include "semantic_error.hpp"
 #include "startup_config.hpp"
+#include "message_queue.hpp"
+
+//message_queue<std::string> & access_interpthread(enum thread_command cmd)
+//{
+//    static std::thread interp;
+//    static bool halt = false;
+//    auto f = [&q, &halt] () {
+//        while(!halt) {
+//            
+//        }
+//    };
+//    static message_queue<std::string> q;
+//    switch (cmd) {
+//        case START_T:
+//            halt = false;
+//            interp = std::thread(f);
+//            break;
+//        case STOP_T:
+//            halt = true;
+//            f.join();
+//            break;
+//        case RESET_T:
+//            halt = true;
+//            f.join();
+//            halt = false;
+//            interp = std::thread(f);
+//            break;
+//        default:
+//            break;
+//    };
+//    return q;
+//}
 
 void prompt(std::ostream & os = DEFAULT_COUT)
 {

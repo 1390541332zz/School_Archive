@@ -2,11 +2,16 @@
 #define PLOTSCRIPT_EVAL_H
 
 #include "expression.hpp"
+#include "message_queue.hpp"
 #include <iostream>
 
 #define DEFAULT_COUT std::cout
 #define DEFAULT_CERR std::cerr
 #define DEFAULT_CIN std::cin
+
+//enum thread_command = {START_T, STOP_T, RESET_T};
+//
+//message_queue<Expression> & access_interpthread(enum thread_command cmd);
 
 void error(std::string const & err_str, std::ostream & es = DEFAULT_CERR);
 
