@@ -1,8 +1,8 @@
 #ifndef ENVIRONMENT_FUNCTIONAL_H
 #define ENVIRONMENT_FUNCTIONAL_H
 
-#include <cassert>
 #include "env_helper.hpp"
+#include <cassert>
 
 Expression apply_comb(std::vector<Expression> const & args)
 {

@@ -1,0 +1,100 @@
+#include "expression.hpp"
+#include "output_widget.hpp"
+#include <QDebug>
+#include <QtMath>
+
+void OutputWidget::find_center(QGraphicsItem * i)
+{
+    i->setTransformOriginPoint(i->boundingRect().center());
+    i->setPos(0, 0);
+}
+
+QPointF OutputWidget::find_point(Expression const & exp)
+{
+    auto x = exp.m_tail[0].head().asNumber();
+    auto y = exp.m_tail[1].head().asNumber();
+    return { x, y };
+}
+
+void OutputWidget::plot_text(QString const & str)
+{
+    auto t = scene->addText(str, QFont("Courier", 1));
+    find_center(t);
+}
+
+void OutputWidget::plot_pointexp(Expression const & exp)
+{
+    static const QBrush b(Qt::black);
+    auto prop_sz = exp.pmap.find("size")->second.head();
+    if ((prop_sz.asNumber() < 0) || (prop_sz.isComplex())) {
+        plot_text("ERROR: size must be positive.");
+    }
+    qreal sz = prop_sz.asNumber();
+    auto p = find_point(exp);
+    auto i = scene->addEllipse(
+        (-sz / 2), (-sz / 2), sz, sz, QPen(b, 0), b);
+    find_center(i);
+    i->setPos(p);
+}
+
+void OutputWidget::plot_lineexp(Expression const & exp)
+{
+    qreal thick = exp.pmap.find("thickness")->second.head().asNumber();
+    if (thick < 0) {
+        plot_text("ERROR: thickness must be positive.");
+    }
+    auto p1 = find_point(exp.m_tail[0]);
+    auto p2 = find_point(exp.m_tail[1]);
+    scene->addLine(QLineF(p1, p2), QPen(QBrush(Qt::black), thick));
+}
+
+void OutputWidget::plot_textexp(Expression const & exp)
+{
+    std::ostringstream os;
+    os << exp;
+    auto s = QString::fromStdString(os.str());
+    if (exp.is("text")) {
+        auto start = s.indexOf('"') + 1;
+        auto off = s.lastIndexOf('"') - start;
+        s = s.mid(start, off);
+    }
+    auto t = scene->addText(s, QFont("Courier", 1));
+    find_center(t);
+    if (exp.pmap.find("position") != exp.pmap.cend()) {
+        t->setPos(find_point(exp.pmap.find("position")->second));
+    }
+    if (exp.pmap.find("text-rotation") != exp.pmap.cend()) {
+        auto e = exp.pmap.find("text-rotation")->second;
+        if (e.isHeadNumber()) {
+            t->setRotation(qRadiansToDegrees(e.head().asNumber()));
+        }
+    }
+    if (exp.pmap.find("text-scale") != exp.pmap.cend()) {
+        auto e = exp.pmap.find("text-scale")->second;
+        if (e.isHeadNumber() && (e.head().asNumber() >= 0)) {
+            t->setScale(e.head().asNumber());
+        }
+    }
+}
+
+void OutputWidget::plot_listexp(Expression const & exp)
+{
+    for (auto it = exp.tailConstBegin(); it != exp.tailConstEnd(); ++it) {
+        eval_exp(*it);
+    }
+}
+
+void OutputWidget::plot_layout(Expression const & exp)
+{
+    qDebug() << &exp;
+}
+
+void OutputWidget::plot_discrete(Expression const & exp)
+{
+    qDebug() << &exp;
+}
+
+void OutputWidget::plot_continuous(Expression const & exp)
+{
+    qDebug() << &exp;
+}

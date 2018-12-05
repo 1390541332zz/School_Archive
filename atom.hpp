@@ -74,10 +74,10 @@ public:
 private:
     // internal enum of known types
     enum Type {
-        NoneType    = 0,
-        DoubleType  = 1,
-        StringType  = 2,
-        SymbolType  = 3,
+        NoneType = 0,
+        DoubleType = 1,
+        StringType = 2,
+        SymbolType = 3,
         ComplexType = 4
     };
 

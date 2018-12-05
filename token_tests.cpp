@@ -78,13 +78,13 @@ TEST_CASE("Test tokenize", "[token]")
     tokens.pop_front();
 
     REQUIRE(tokens.empty());
-    
+
     std::string input2 = "( A a aa )";
 
     std::istringstream iss2(input2);
 
     tokens = tokenize(iss2);
-    
+
     REQUIRE(tokens.front().type() == Token::OPEN);
     tokens.pop_front();
 

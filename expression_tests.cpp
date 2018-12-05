@@ -1,7 +1,7 @@
 #include "catch.hpp"
-#include <sstream>
-#include "interpreter.hpp"
 #include "expression.hpp"
+#include "interpreter.hpp"
+#include <sstream>
 
 TEST_CASE("Test default expression", "[expression]")
 {

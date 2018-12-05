@@ -50,12 +50,18 @@ set(unittest_src
    )
 
 set(tui_src
+    plotscript_eval.cpp
+  )
+
+set(tui_h
+    plotscript_eval.hpp
   )
 
 set(gui_src
    notebook_app.cpp 
    input_widget.cpp 
    output_widget.cpp
+   output_widget_plot.cpp
    )
 
 set(gui_h
@@ -96,6 +102,7 @@ set(all_srcs
    ${interpreter_h}
    ${unittest_src}
    ${tui_src}
+   ${tui_h}
    ${gui_src}
    ${gui_h}
    ${gui_test_src}
@@ -202,14 +209,14 @@ endif()
 
 if (Qt5Widgets_FOUND AND Qt5Test_FOUND)
   
-add_executable(notebook ${gui_main} ${gui_src})
+add_executable(notebook ${gui_main} ${gui_src} ${tui_src})
   if(UNIX AND NOT APPLE AND CMAKE_COMPILER_IS_GNUCXX)
     target_link_libraries(notebook interpreter Qt5::Widgets pthread gcov)
   else(UNIX AND NOT APPLE AND CMAKE_COMPILER_IS_GNUCXX)
     target_link_libraries(notebook interpreter Qt5::Widgets)
   endif()
 
-  add_executable(notebook_test ${gui_test_src} ${gui_src})
+  add_executable(notebook_test ${gui_test_src} ${gui_src} ${tui_src})
   if(UNIX AND NOT APPLE AND CMAKE_COMPILER_IS_GNUCXX)
     target_link_libraries(notebook_test interpreter Qt5::Widgets Qt5::Test pthread gcov)
   else(UNIX AND NOT APPLE AND CMAKE_COMPILER_IS_GNUCXX)

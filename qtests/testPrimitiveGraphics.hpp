@@ -2,7 +2,7 @@
 
 void NotebookTest::testPoints()
 {
-    NotebookApp_expose expose {};
+    NotebookApp_expose expose{};
     auto iw = expose.iw;
     auto ow = expose.ow;
 
@@ -28,13 +28,12 @@ void NotebookTest::testPoints()
     // make them all selectable
     foreach (auto item, items) {
         item->setFlag(QGraphicsItem::ItemIsSelectable);
-        qDebug() << item << '\n';
     }
 
-    QCOMPARE(findPoints(scene, QPointF(    0,     0), 2.51), 1);
-    QCOMPARE(findPoints(scene, QPointF(  -10,   -10), 0.11), 1);
-    QCOMPARE(findPoints(scene, QPointF(   10,    10), 0.11), 1);
-    QCOMPARE(findPoints(scene, QPointF(   20,    20), 2.51), 1);
+    QCOMPARE(findPoints(scene, QPointF(0, 0), 2.51), 1);
+    QCOMPARE(findPoints(scene, QPointF(-10, -10), 0.11), 1);
+    QCOMPARE(findPoints(scene, QPointF(10, 10), 0.11), 1);
+    QCOMPARE(findPoints(scene, QPointF(20, 20), 2.51), 1);
 }
 
 void NotebookTest::testLines()

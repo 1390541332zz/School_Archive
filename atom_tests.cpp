@@ -54,7 +54,7 @@ TEST_CASE("Test constructors", "[atom]")
         REQUIRE(!a.isNone());
         REQUIRE(!e.isNumber());
         REQUIRE(e.isSymbol());
-        
+
         Atom f(b);
         REQUIRE(!b.isNone());
         REQUIRE(f.isNumber());
