@@ -33,7 +33,7 @@ QPointF OutputWidget::find_point(Expression const & exp)
     return { x, y };
 }
 
-void OutputWidget::plot_err(QString const & err)
+void OutputWidget::plot_plaintext(QString const & err)
 {
     scene->addText(err);
 }
@@ -67,7 +67,7 @@ void OutputWidget::plot_pointexp(Expression const & exp)
 {
     auto prop_sz = exp.pmap.find("size")->second.head();
     if ((prop_sz.asNumber() < 0) || (prop_sz.isComplex())) {
-        plot_err("ERROR: size must be positive.");
+        plot_plaintext("ERROR: size must be positive.");
     }
     qreal sz = prop_sz.asNumber();
     auto p = find_point(exp);
@@ -78,13 +78,20 @@ void OutputWidget::plot_lineexp(Expression const & exp)
 {
     qreal thick = exp.pmap.find("thickness")->second.head().asNumber();
     if (thick < 0) {
-        plot_err("ERROR: thickness must be positive.");
+        plot_plaintext("ERROR: thickness must be positive.");
     }
     auto p1 = find_point(exp.m_tail[0]);
     auto p2 = find_point(exp.m_tail[1]);
     plot_line(p1, p2, thick);
 }
 
+void OutputWidget::plot_plaintextexp(Expression const & exp)
+{
+    std::ostringstream os;
+    os << exp;
+    auto s = QString::fromStdString(os.str());
+    plot_plaintext(s);
+}
 void OutputWidget::plot_textexp(Expression const & exp)
 {
     std::ostringstream os;
