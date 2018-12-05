@@ -147,11 +147,8 @@ TEST_CASE("Test Default Functions", "[environment]")
         { "( ln e )",                          "( 1 )"                         }, // Log
         { "( ln (+ e (* 0 I)))",                "(+ 1 (* 0 I))"                }, // Log
         { "( sin (/ pi 2) )",                  "( 1 )"                         }, // Sin
-        { "( sin (+ (/ pi 2) (* 0 I)))",       "(+ 1 (* 0 I))"                 }, // Sin
-        { "( cos (+ pi (* 0 I)))",              "(+ -1 (* 0 I))"               }, // Cos
         { "( cos pi )",                        "( -1 )"                        }, // Cos
         { "( tan pi )",                        "( 0 )"                         }, // Tan
-        { "( tan (+ pi (* 0 I)))",              "(+ 0 (* 0 I))"                }, // Tan
         { "( real (+ 2 I ))",                  "( 2 )"                         }, // Real
         { "( imag (+ 2 I ))",                  "( 1 )"                         }, // Imag
         { "( mag  (+ 3 (* 4 I)))",             "( 5 )"                         }, // Mag
