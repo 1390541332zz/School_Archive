@@ -5,6 +5,8 @@
 #include "output_widget.hpp"
 #include <QPointer>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
 #include <QWidget>
 
 class NotebookApp : public QWidget {
@@ -20,8 +22,13 @@ public:
 
 private:
     QPointer<QVBoxLayout> layout;
+    QPointer<QHBoxLayout> button_layout;
     QPointer<InputWidget> iw;
     QPointer<OutputWidget> ow;
+    QPointer<QPushButton> start;
+    QPointer<QPushButton> stop;
+    QPointer<QPushButton> reset;
+    QPointer<QPushButton> interrupt;
 };
 
 #endif /* PLOTSCRIPT_NOTEBOOK_APP_H */
