@@ -36,7 +36,6 @@ QPointF OutputWidget::find_point(Expression const & exp)
 void OutputWidget::plot_err(QString const & err)
 {
     auto t = scene->addText(err);
-    find_center(t);
 }
 
 void OutputWidget::plot_text(QString const & str, QPointF pos, qreal rot, qreal scale)
