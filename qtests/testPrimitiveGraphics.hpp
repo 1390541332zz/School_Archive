@@ -8,7 +8,7 @@ void NotebookTest::testPoints()
 
     std::string program = R"(
 (begin (list
-    (set-property "size" 0.1 (make-point  10  10))
+    (set-property "size" 0.000001 (make-point  10  10))
     (set-property "size" 0.1 (make-point -10 -10))
     (set-property "size"   5 (make-point   0   0))
     (set-property "size"   5 (make-point  20  20)) ))
@@ -28,6 +28,7 @@ void NotebookTest::testPoints()
     // make them all selectable
     foreach (auto item, items) {
         item->setFlag(QGraphicsItem::ItemIsSelectable);
+        qDebug().noquote() << item << "\n  b: " << item->boundingRect() <<"r: " << item->sceneBoundingRect() << " o: " << item->pos();
     }
 
     QCOMPARE(findPoints(scene, QPointF(0, 0), 2.51), 1);
