@@ -127,3 +127,20 @@ int repl(std::istream & is, std::ostream & os, std::ostream & es)
     }
     return EXIT_SUCCESS;
 }
+
+//Expression eval_fn(Expression const & fn, std::vector<qreal> const & args)
+//{
+//    Environment e;
+//    e.parent = fn.scope;
+//    std::stringstream is;
+//    is << "(map EVAL_FN_PLOTSCRIPT (list";
+//    for (auto i : args) {
+//        is << ' ' << i;
+//    }
+//    is << " ))";
+//    
+//    e.add_exp(Atom("EVAL_FN_PLOTSCRIPT"), fn);
+//    Interpreter in {e};
+//    in.parseStream(is);
+//    return in.eval();
+//}

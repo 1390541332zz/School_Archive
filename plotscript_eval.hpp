@@ -32,4 +32,7 @@ int repl(std::istream & is = DEFAULT_CIN,
     std::ostream & os = DEFAULT_COUT,
     std::ostream & es = DEFAULT_CERR);
 
+//Expression eval_fn(Expression const & fn, 
+//                   std::vector<qreal> const & args);
+
 #endif /* PLOTSCRIPT_EVAL_H */
