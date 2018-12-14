@@ -1,0 +1,133 @@
+Cache Scan on art.trace
+
+( Cache Size: 256, Assoc: 1 )
+Cache parameters:
+Cache Size (KB)			256
+Cache Associativity		1
+Cache Block Size (bytes)	32
+Miss penalty (cyc)		40
+
+Simulation results:
+	execution time 24684354 cycles
+	instructions 5136716
+	memory accesses 1957764
+	overall miss rate 0.25
+	read miss rate 0.27
+	memory CPI 3.78
+	total CPI 4.78
+	average memory access time 9.92 cycles
+dirty evictions 60059
+load_misses 465671
+store_misses 20017
+load_hits 1266212
+store_hits 205864
+
+( Cache Size: 128, Assoc: 2 )
+Cache parameters:
+Cache Size (KB)			128
+Cache Associativity		2
+Cache Block Size (bytes)	32
+Miss penalty (cyc)		40
+
+Simulation results:
+	execution time 24827142 cycles
+	instructions 5136716
+	memory accesses 1957764
+	overall miss rate 0.25
+	read miss rate 0.27
+	memory CPI 3.81
+	total CPI 4.81
+	average memory access time 10.00 cycles
+dirty evictions 60013
+load_misses 469246
+store_misses 20014
+load_hits 1262637
+store_hits 205867
+
+( Cache Size: 64, Assoc: 4 )
+Cache parameters:
+Cache Size (KB)			64
+Cache Associativity		4
+Cache Block Size (bytes)	32
+Miss penalty (cyc)		40
+
+Simulation results:
+	execution time 25060226 cycles
+	instructions 5136716
+	memory accesses 1957764
+	overall miss rate 0.25
+	read miss rate 0.27
+	memory CPI 3.86
+	total CPI 4.86
+	average memory access time 10.12 cycles
+dirty evictions 60015
+load_misses 475072
+store_misses 20015
+load_hits 1256811
+store_hits 205866
+
+( Cache Size: 32, Assoc: 8 )
+Cache parameters:
+Cache Size (KB)			32
+Cache Associativity		8
+Cache Block Size (bytes)	32
+Miss penalty (cyc)		40
+
+Simulation results:
+	execution time 25084226 cycles
+	instructions 5136716
+	memory accesses 1957764
+	overall miss rate 0.25
+	read miss rate 0.27
+	memory CPI 3.86
+	total CPI 4.86
+	average memory access time 10.13 cycles
+dirty evictions 60015
+load_misses 475672
+store_misses 20015
+load_hits 1256211
+store_hits 205866
+
+( Cache Size: 16, Assoc: 16 )
+Cache parameters:
+Cache Size (KB)			16
+Cache Associativity		16
+Cache Block Size (bytes)	32
+Miss penalty (cyc)		40
+
+Simulation results:
+	execution time 25084226 cycles
+	instructions 5136716
+	memory accesses 1957764
+	overall miss rate 0.25
+	read miss rate 0.27
+	memory CPI 3.86
+	total CPI 4.86
+	average memory access time 10.13 cycles
+dirty evictions 60015
+load_misses 475672
+store_misses 20015
+load_hits 1256211
+store_hits 205866
+
+( Cache Size: 8, Assoc: 32 )
+Cache parameters:
+Cache Size (KB)			8
+Cache Associativity		32
+Cache Block Size (bytes)	32
+Miss penalty (cyc)		40
+
+Simulation results:
+	execution time 25084226 cycles
+	instructions 5136716
+	memory accesses 1957764
+	overall miss rate 0.25
+	read miss rate 0.27
+	memory CPI 3.86
+	total CPI 4.86
+	average memory access time 10.13 cycles
+dirty evictions 60015
+load_misses 475672
+store_misses 20015
+load_hits 1256211
+store_hits 205866
