@@ -13,4 +13,5 @@
 *.qar binary
 *.pdf binary
 *.png binary
+*.PNG binary
 *.jpg binary
