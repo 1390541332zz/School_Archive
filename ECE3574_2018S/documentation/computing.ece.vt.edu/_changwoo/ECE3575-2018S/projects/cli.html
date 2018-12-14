@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/cli.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:25 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index-2.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="a-primer-on-command-line-arguments">A Primer on Command Line Arguments</h1>
+<p>Recall the primary ways to get user input into a program, standard input (<code>std::cin</code>) and reading from files. Another very convenient one is to use command line arguments. When your program is run, usually from another program (the operating system or a shell program), it starts executing in the function <code>main</code>. This is called the <em>entry</em> <em>point</em>.</p>
+<pre><code>int main()
+{
+    //code here
+    
+    return 0;
+}</code></pre>
+<p>There is another form of this entry point with two arguments. The first (traditionally named <code>argc</code>) is the number of string arguments to the program, the second (traditionally named <code>argv</code>) is an array of ``argc'' C-style strings (pointers to null-terminated memory) with the arguments themselves.</p>
+<pre><code>int main(int argc, char*argv[])
+{
+    //code here
+    
+    return 0;
+}</code></pre>
+<p>You can specify the command line arguments when you run the program from a text shell (e.g. powershell or bash), from a graphical shell (like when you click on an icon), or from a script.</p>
+<p>It is easy to convert the more C-style arguments to a more modern C++ style as follows</p>
+<pre><code>#include &lt;vector&gt;
+#include &lt;string&gt;
+
+int main(int argc, char*argv[])
+{
+    std::vector&lt;std::string&gt;  arguments;
+    for(int i = 0; i &lt; argc; ++i) arguments.push_back(argv[i]);
+    
+    // code can use arguments as a C++ vector of C++ strings 
+    
+    return 0;
+}</code></pre>
+<p>The most common use of command line arguments is to be able to run a program easily with different inputs, often filenames to use. A common followup question is why is this better than just prompting for input with standard output and standard input (''std::cout'' followed by ''std::cin'')?</p>
+<p>Than answer is that such input is difficult to automate. Scripts are one of the best ways to combine programs and often need to run unattended. A prompt blocks the program, waiting on standard input, usually requiring a user to be present and attending to the task. Although standard input can be &quot;piped&quot; into a program, it is much easier to use command line arguments. A script can also use the output of one program as the command line argument to another, allowing one to mix and match smaller programs into a single task. This is one of the core philosophies in computing.</p>
+<p>A related question to the previous is why does main return an int anyway? Well, when your program is run to completion it can indicate to the running process if it succeeded or if an error occurred by returning this int. Success is defined as zero, which is why most simple examples returns that. The following are defined in the header ''cstdlib'': ''EXIT_SUCCESS'' and ''EXIT_FAILURE'', and can be used when returning from main.</p>
+<p>Note you do not have to call return in main (this is a special case). In such cases the compiler inserts a success return for you.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2017 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/cli.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:25 GMT -->
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/parsing.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:25 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index-2.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="parsing">Parsing</h1>
+<p>Parsing is the process of going from a sequence of tokens to one or more data structures given a set of rules called a <strong>grammar</strong>. A grammar defines the <strong>syntax</strong> of a language. A token sequence is grammatically or syntactically correct if it follows the rules of the grammar.</p>
+<p>At its core a grammar is simply a set of rules with two parts, a name on the left, and an expansion of the name on the right. For example consider the language of a simple prefix calculator using <a href="https://en.wikipedia.org/wiki/S-expression">S-expressions</a>. Each computation is defined by an <em>expression</em> using the following rules:</p>
+<ol type="1">
+<li>expression → ( operator expression expression )</li>
+<li>expression → number</li>
+<li>operator → +</li>
+<li>operator → -</li>
+<li>operator → *</li>
+<li>operator → /</li>
+</ol>
+<p>Rule 1 says that an expression may be an open parenthesis followed by an operator, two expressions, and a close parenthesis. Note rule 1 is <em>recursive</em>. Rule 2 says an expression may also just be a number. Read together rules 1 and 2 say an expression can be either, that is an expression follows either rule 1 or rule 2. Rules 3-6, simply specify an operator is one of the characters <code>+</code>,<code>-</code>, <code>*</code>, or <code>/</code>.</p>
+<p>This set of rules can be used two ways. The first way is to <em>generate</em> a syntactically correct sequence by simply selecting a rule and applying its expansion, recursively repeating this until no more expansions can be applied. For this reason the rules are often called rewrite rules since they specify how to rewrite the name on the left to that on the right of the arrow. For example, given the grammar above suppose I wanted to generate an expression</p>
+<pre><code>expression</code></pre>
+<p>I could select rule 1 and rewrite it as (I could also have selected rule 2)</p>
+<pre><code>( operator expression expression )</code></pre>
+<p>I could then select for <code>operator</code> to apply rule 3 to get</p>
+<pre><code>( + expression expression )</code></pre>
+<p>and then select for the first <code>expression</code> to apply rule 2, with number = 4</p>
+<pre><code>( + 4 expression )</code></pre>
+<p>Continuing I might apply rule 1 again to the second expression, and so on, making (arbitrary) choices for each rule, say ending up with</p>
+<pre><code>( + 4 (* 2 3) )</code></pre>
+<p>This is the final generated expression because there are no more names to rewrite. The result consists of <em>terminal</em> symbols only, usually literal strings like &quot;+&quot; or types like any number (which themselves have a definitions as <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>). Names in our grammar are more-formally called <em>non-terminal</em> symbols. Recall, the choices of which rule to apply were arbitrary. Different choices would lead to different generated expressions. There are many (in fact an infinite number of) expressions that can be generated this way since it is recursive. This is the power of language and its pervasiveness in computing.</p>
+<p>The other way the rules can be used is in reverse. That is given a sequence of terminal symbols, is there a set of rule choices that could have generated it, and if so, what are they? This is <em>parsing</em>. If parsing succeeds then there are such choices that do not violate the rules of the grammar -- the sequence is syntactically correct (i.e. grammatical). If it fails to find such choices then the sequence is syntactically incorrect (i.e. ungrammatical). For example using our example grammar the following is incorrect</p>
+<pre><code>( 3 + 4 )</code></pre>
+<p>since the symbol <code>3</code> is not an allowed operator.</p>
+<p>A language's syntax can be described in a notation called <a href="https://en.wikipedia.org/wiki/Backus–Naur_form">Backus–Naur form</a>, after the inventors, or BNF. We will use BNF to compactly summarize the syntax of the assembly source in milestone 1.</p>
+<h2 id="backusnaur-form-and-extensions">Backus–Naur form and extensions</h2>
+<p>BNF notion replaces the right-arrow in our informal grammar with the symbols <code>::=</code> (so it can be easily typed in ASCII) meaning &quot;can be expanded to or replaced with&quot;. Every BNF rule is of the form</p>
+<pre><code>non_terminal_symbol ::= expansion</code></pre>
+<p>Names, or non-terminal symbols, are surrounded by <code>&lt;&gt;</code>, while terminal symbols are not. Two symbols separated by space is a sequence (left to right). The vertical bar, or pipe, <code>|</code> symbol is used to denote choice. For example in our grammar above the first two rules could be combined into a single BNF rule. Similarly for the operator rules 3-6.</p>
+<pre><code>&lt;expression&gt; ::= &#39;(&#39; &lt;operator&gt; &lt;expression&gt; &lt;expression&gt; &#39;)&#39; | number 
+&lt;operator&gt; ::= &#39;+&#39; | &#39;-&#39; | &#39;*&#39; | &#39;/&#39;</code></pre>
+<p>The grammar above is somewhat limited in what is can express. For example, suppose we wanted to extend the arity, that is the number of arguments to an operator so that we could express things like negate a number, e.g. <code>(- 4)</code>, or add several numbers at once, e.g. <code>(+ 1 2 3 4 5)</code>. We could add additional rules to accomplish this, but there are two common useful extensions to BNF that make it easier.</p>
+<p>BNF Extension - Option: to make a term in the sequence optional, surround it by <code>[</code> and <code>]</code>. For example</p>
+<pre><code>&lt;expression&gt; = `(` `-` &lt;expression&gt; [ &lt;expression&gt; ] `)`</code></pre>
+<p>can represent both subtraction and negation.</p>
+<p>BNF Extension - Repetition: to make a term repeat as many times as desired, surround it by <code>{</code> and <code>}</code>. For example</p>
+<pre><code>&lt;expression&gt; ::= &#39;(&#39; `+` &lt;expression&gt; { &lt;expression&gt; } &#39;)&#39;</code></pre>
+<p>can represent addition of an arbitrary number of terms.</p>
+<h2 id="aside-tools-for-parsing">Aside: tools for parsing</h2>
+<p>Manipulating grammars and parsing with them is such a common task in programming that there are applications that can read BNF descriptions and generate the code required to parse them, e.g. <a href="https://en.wikipedia.org/wiki/GNU_bison">Bison</a>. There are also libraries that allow you to specify a grammar and parse it, e.g. <a href="http://www.boost.org/doc/libs/1_66_0/libs/spirit/doc/html/spirit/introduction.html">Boost Spirit</a>. We will not be using these for a couple of reasons. First, our assembly grammar is not that complicated, so it is probably easier to write our own parser and not have to learn new tools or add another dependency. Second, it is a good learning experience to write a parser as it gives you a much fuller understanding of how programming works. In a production environment with a sufficiently complicated grammar one would typically use a library or generator.</p>
+<h2 id="example-parsing-s-expressions">Example: Parsing S-expressions</h2>
+<p>One common technique for writing a parser (<a href="https://www.amazon.com/gp/product/1441919015/">and there are many</a>) is to use a <a href="https://en.wikipedia.org/wiki/Finite-state_machine">state machine</a>. Lets see how to apply this technique with our example grammar.</p>
+<p>First we will assume a lexer has created a sequence of tokens that can either be of type <code>OPEN_PAREN</code>, <code>CLOSE_PAREN</code>, or <code>STRING</code>, with only the latter having a value. Further we will assume there exist functions that determined if a token of type <code>STRING</code> if it's value is an operator or a number. To wit</p>
+<pre><code>enum TokenType {OPEN_PAREN, CLOSE_PAREN, STRING};
+
+struct Token{
+  TokenType type;
+  std::string value;
+  Token(TokenType t): type(t) {}
+  Token(TokenType t, const std::string &amp; v): type(t), value(v) {};
+};
+
+typedef std::list&lt;Token&gt; TokenList;
+
+bool isOperator(const std::string &amp; str);
+
+bool isNumber(const std::string &amp; str);</code></pre>
+<p>A finite state machine is defined by a set of inputs, outputs, and states, along with a transition table and output function. The single input is the classification of the current token: <code>OPEN</code>, <code>CLOSE</code>, <code>OPERATOR</code>, <code>NUMBER</code>, or the special value end-of-tokens (<code>EOT</code>). Our parser state machine does not have any outputs.</p>
+<pre><code>enum InputValue {OPEN, CLOSE, OPERATOR, NUMBER, EOT};</code></pre>
+<p>Given a token iterator and the end iterator we can easily determine this value.</p>
+<pre><code>InputValue classify(TokenList::const_iterator it, TokenList::const_iterator end){
+
+  InputValue input = EOT;
+  
+  if(it == end){
+    input = EOT;
+  }
+  else if( it-&gt;type == OPEN_PAREN ){
+    input = OPEN;
+  }
+  else if( it-&gt;type == CLOSE_PAREN ){
+    input = CLOSE;
+  }
+  else if((it-&gt;type == STRING) &amp;&amp; isOp(it-&gt;value)){
+    input = OPERATOR;
+  }
+  else if((it-&gt;type == STRING) &amp;&amp; isNumber(it-&gt;value)){
+    input = NUMBER;
+  }
+
+ return input; 
+}</code></pre>
+<p>We will need only one state variable in our state machine. It will track where we are in the re-write rule of the grammar, if we are just getting started (the initial state), if we have a parsing error (the error state), or if we are done (the halt state). To see how many states we need lets assign each term in the grammar by a state value (<code>S1</code>-<code>S6</code>):</p>
+<pre><code>&lt;expression&gt; ::= number | &#39;(&#39;  &lt;operator&gt; &lt;expression&gt; &lt;expression&gt; &#39;)&#39;
+                  S1       S2      S3          S4          S5       S6</code></pre>
+<p>We start out in the initial state, called <code>S0</code>. If we get the input <code>NUMBER</code> then we move to state <code>S1</code>. If instead the input was <code>OPEN</code> then we move to state <code>S2</code>. If the input is anything else then according to the rewrite rule we have a parse error and the state moves to ``ERROR''. This gives us the first five lines of our state transition table (one for each input):</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">
+Current State
+</th>
+<th style="text-align: left;">
+Input
+</th>
+<th style="text-align: left;">
+Next state
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+S0
+</td>
+<td style="text-align: left;">
+NUMBER
+</td>
+<td style="text-align: left;">
+S1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S0
+</td>
+<td style="text-align: left;">
+OPEN
+</td>
+<td style="text-align: left;">
+S2
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S0
+</td>
+<td style="text-align: left;">
+CLOSE
+</td>
+<td style="text-align: left;">
+ERROR
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S0
+</td>
+<td style="text-align: left;">
+OPERATOR
+</td>
+<td style="text-align: left;">
+ERROR
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S0
+</td>
+<td style="text-align: left;">
+EOT
+</td>
+<td style="text-align: left;">
+ERROR
+</td>
+</tr>
+</tbody>
+</table>
+<p>Similarly, looking at the grammar, if we are in state <code>S1</code> and we get the input <code>EOT</code> we move to state <code>HALT</code>, else we move to state <code>ERROR</code>. This adds another five lines to the table:</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">
+Current State
+</th>
+<th style="text-align: left;">
+Input
+</th>
+<th style="text-align: left;">
+Next state
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+S0
+</td>
+<td style="text-align: left;">
+NUMBER
+</td>
+<td style="text-align: left;">
+S1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S0
+</td>
+<td style="text-align: left;">
+OPEN
+</td>
+<td style="text-align: left;">
+S2
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S0
+</td>
+<td style="text-align: left;">
+CLOSE
+</td>
+<td style="text-align: left;">
+ERROR
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S0
+</td>
+<td style="text-align: left;">
+OPERATOR
+</td>
+<td style="text-align: left;">
+ERROR
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S0
+</td>
+<td style="text-align: left;">
+EOT
+</td>
+<td style="text-align: left;">
+ERROR
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S1
+</td>
+<td style="text-align: left;">
+NUMBER
+</td>
+<td style="text-align: left;">
+ERROR
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S1
+</td>
+<td style="text-align: left;">
+OPEN
+</td>
+<td style="text-align: left;">
+ERROR
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S1
+</td>
+<td style="text-align: left;">
+CLOSE
+</td>
+<td style="text-align: left;">
+ERROR
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S1
+</td>
+<td style="text-align: left;">
+OPERATOR
+</td>
+<td style="text-align: left;">
+ERROR
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+S1
+</td>
+<td style="text-align: left;">
+EOT
+</td>
+<td style="text-align: left;">
+HALT
+</td>
+</tr>
+</tbody>
+</table>
+<p>We can continue with this process, filling out the table for all combinations of states and inputs (7*5 = 35 rows). I will leave this as an exercise.</p>
+<p>The parser will start in state <code>S0</code>, and consume tokens one at a time, classifying them, and changing states based on the transition table. If the state ever becomes <code>ERROR</code> or <code>HALT</code> the machine stops and the parser has either failed (in the former case) or succeeded (in the latter case). While there are many ways to structure such code, a simple, if repetitive, one is to use a switch block, i.e.</p>
+<pre><code>enum StateType {S0, S1, S2, S3, S4, S5, S6, HALT, ERROR};
+
+bool parse(const TokenList &amp; tokens){
+  
+  StateType state = S0; // start in the initial state
+  
+  auto it = tokens.begin();
+  do{
+    // classify input
+    InputValue input = classify(it, tokens.end());
+    ++it;
+    
+    // next state logic
+    switch(state){
+    case S0:
+      update0(state, input);
+      break;
+    case S1:
+      update1(state, input);
+      break;
+    case S2:
+      update2(state, input);
+      break;
+    case S3:
+      update3(state, input);
+      break;
+    case S4:
+      update4(state, input);
+      break;
+    case S5:
+      update5(state, input);
+      break;
+    case S6:
+      update6(state, input);
+      break;      
+    default:
+      state = ERROR;
+    };
+  } while((state != ERROR) &amp;&amp; (state != HALT));
+  
+  return state != ERROR;
+};</code></pre>
+<p>where each update function implements one row of the transition table. For example <code>update0</code> would be:</p>
+<pre><code>void update0(StateType &amp; state, InputValue input){
+
+  assert(state == S0); // a precondition
+
+  switch(input){
+  case NUMBER:
+    state = S1;
+    break;
+  case OPEN:
+    state = S2;
+    break;
+  default:
+    state = ERROR;
+  };
+}</code></pre>
+<p>it is straightforward to define the update functions for the other states.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2017 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/parsing.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:25 GMT -->
+</html>

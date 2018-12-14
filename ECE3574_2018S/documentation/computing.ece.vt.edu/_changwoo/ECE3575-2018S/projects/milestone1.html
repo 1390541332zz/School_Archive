@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/milestone1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:13 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index-2.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="milestone-1">Milestone 1</h1>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 60%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Assigned:
+</td>
+<td style="text-align: left;">
+2/6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Due:
+</td>
+<td style="text-align: left;">
+<del>
+2/20
+</del>
+2/26 by 11:59 pm
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://classroom.github.com/a/GOVD7lFi">GitHub Invitation Link</a></p>
+<p><strong>Corrections and Clarifications:</strong></p>
+<ul>
+<li>2/8 fixed definition of constant (duplicate EOL)</li>
+<li>2/9 updated integer grammar to include optional leading +/- sign</li>
+<li>2/9 fixed zero register name in tests/pass/*/test07.asm. Download <a href="m1-fixzero.patch">this file</a> (right click - save as) and, in the git repo, do <code>git apply path/to/m1-fixzero.patch</code>. You can then add and commit the changes.</li>
+<li>2/12 updated grammar to handle .text labels without an operation following it.</li>
+<li>2/12 fix missing text in tests. Download <a href="m1-fix-missing-text.patch">this file</a> (right click - save as) and, in the git repo, do <code>git apply path/to/m1-fix-missing-text.patch</code>. You can then add and commit the changes.</li>
+<li>2/12 clarified treatment of signed/unsigned integers when parsing</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>The goal of this milestone is to develop the parser for our simulator. The parser will consume tokens from the lexer and determine if it is a syntactically correct assembly program (grammatically correct). In addition to the modules from milestone 0 (token and lexer) this milestone adds the parser (<code>parser.hpp</code>, <code>parser.cpp</code>). Although it is not evaluated as part of this milestone, you should also design and begin implementation of your own modules for the data structures representing:</p>
+<ul>
+<li>memory, as a sequence of bytes,</li>
+<li>the association between constants and values,</li>
+<li>the association between labels and memory locations,</li>
+<li>the program, as a sequence of instructions, and</li>
+<li>the association between labels and instructions.</li>
+</ul>
+<p>Combined with the lexer from milestone 0 this will allow us to go from MIPS assembly source files to data ready for interpretation/simulation in milestone 2. In this milestone you will get practice with module design and implementation, as well as unit testing. If you were unable to complete milestone 0, you should do so fully <em>before</em> attempting this milestone.</p>
+<p>You can use any of <em>your</em> code from milestone 0 (lexer.cpp and any tests you wrote) as a starting point. You may need to modify and/or extend it as you work on this milestone.</p>
+<h2 id="recommended-background-reading">Recommended Background Reading</h2>
+<ul>
+<li>Sections 5 and 6 of &quot;<a href="MIPStextSMv11.pdf">MIPS Assembly Language Programming using QtSpim</a>&quot;, by Ed Jorgensen, 2016.</li>
+<li><a href="parsing.html">Parsing</a></li>
+<li><a href="http://matt.might.net/articles/grammars-bnf-ebnf/">A BNF tutorial</a> by Professor Matt Might at UAB.</li>
+<li><a href="cli.html">A Primer on Command Line Arguments</a></li>
+</ul>
+<h2 id="format-of-a-mips-assembly-program">Format of a MIPS assembly program</h2>
+<p>MIPS-I is a 32-bit CPU. The word size is 32-bits or 4 bytes long. A half-word is 16-bits or two bytes, and a byte is 8-bits. Memory is byte-addressable, meaning that individual bytes can be accessed. The CPU is word aligned and the CPU expects words to start at a memory address that is a multiple of 4 (we will ignore this complication). Bytes, half, or words may be treated as unsigned, in which case they are stored in normal binary, or signed, in which case they are stored using two's complement. To implement the various signed and unsigned instructions you will need to be familiar with arithmetic operations in binary and two's complement (this is covered in ECE 2504).</p>
+<p>MIPS is unique in that it can be either <a href="https://en.wikipedia.org/wiki/Endianness">little-endian or big-endian</a> depending on CPU initialization. This refers to the way multi-byte sequences (half and full words) are ordered in memory, most-significant byte at lower addresses (big-endian) or least-significant byte at lower addresses (little-endian). <em>We will assume a little-endian byte order</em> in our simulator. This primarily affects how memory is interpreted and how transfers to and from registers move individual bytes.</p>
+<p>The CPU has 32 32-bit general-purpose registers (labeled $0 to $31). There are also three additional registers (in the core processor) that contain CPU specific information: the program counter ($pc) and two registers used with the ALU ($hi and $lo). The coprocessors (which we are not simulating) have others.</p>
+<p>MIPS-I has a conventional fetch-decode-execute cycle, however some branches and loads require two clock cycles. This complicates the simulation significantly, so we will instead define a <em>virtual</em> <em>machine</em> (VM) that executes instructions directly in C++ code. In particular we will not be concerned with pipelines, caching, or the details of the data path. We will also not work with the binary representation of code (machine code) nor be concerned with timing (clock cycles per instruction). Instead, our simulation will initialize non-code memory and process each instruction as determined by the program-counter, accessing and updating the registers and memory as required as well as trapping instruction exceptions.</p>
+<p>The general-purpose registers also have aliases based on their typical usage (see table below). For example, register $8 is also called temporary register 0, or $t0. Most of these aliases are conventions useful for programming subroutines (procedures and functions) and operating system kernels. We will just use them as simple aliases for the numbered registers.</p>
+Reference: Figure A.6.1 in Patterson and Hennessy
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Number
+</td>
+<td style="text-align: center;">
+Alias
+</td>
+<td style="text-align: left;">
+Typical Usage
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$0
+</td>
+<td style="text-align: center;">
+$zero
+</td>
+<td style="text-align: left;">
+Hardwired to the value of zero
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$1
+</td>
+<td style="text-align: center;">
+$at
+</td>
+<td style="text-align: left;">
+Assembler Temporary (reserved for assembler pseudoinstructions)
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$2-$3
+</td>
+<td style="text-align: center;">
+$v0-$v1
+</td>
+<td style="text-align: left;">
+expression evaluation and function results
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$4-$7
+</td>
+<td style="text-align: center;">
+$a0-$a3
+</td>
+<td style="text-align: left;">
+first 4 arguments of procedures
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$8-$15
+</td>
+<td style="text-align: center;">
+$t0-$t7
+</td>
+<td style="text-align: left;">
+Temporaries (not saved)
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$16-$23
+</td>
+<td style="text-align: center;">
+$s0-$s7
+</td>
+<td style="text-align: left;">
+Saved Values
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$24-$25
+</td>
+<td style="text-align: center;">
+$t8-$t9
+</td>
+<td style="text-align: left;">
+Temporaries (not saved)
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$26-$27
+</td>
+<td style="text-align: center;">
+$k0-$k1
+</td>
+<td style="text-align: left;">
+for interrupt and exception handlers
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$28
+</td>
+<td style="text-align: center;">
+$gp
+</td>
+<td style="text-align: left;">
+the global pointer
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$29
+</td>
+<td style="text-align: center;">
+$sp
+</td>
+<td style="text-align: left;">
+stack pointer
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$30
+</td>
+<td style="text-align: center;">
+$fp
+</td>
+<td style="text-align: left;">
+frame pointer
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+$31
+</td>
+<td style="text-align: center;">
+$ra
+</td>
+<td style="text-align: left;">
+return address
+</td>
+</tr>
+</tbody>
+</table>
+<p>The grammar for our version of MIPS assembly can be split in two, depending if one is currently parsing a data section or a text section. If a string token with value &quot;.data&quot; followed by an EOL is encountered the parser switches to declaration mode and uses the data section grammar. If a string token with value &quot;.text&quot; followed by an EOL is encountered the parser switches to text mode and uses the text section grammar. One or the other must be encountered first in a file, or it is an error. The respective grammars are defined below.</p>
+<h2 id="data-section-grammar">Data Section grammar</h2>
+<p>The general grammar for a data declaration is a lone label or an optional label followed by a layout and value. Constants can also be defined in the data section using the <code>EQUAL</code> token. The <code>EOL</code> token terminates any declaration.</p>
+<pre><code>&lt;declaration&gt;   ::= &lt;constant&gt; EOL | &lt;label&gt; EOL | [&lt;label&gt;] &lt;layout&gt; EOL
+&lt;constant&gt;      ::= &lt;alpha&gt; { &lt;digit&gt; | &lt;alpha&gt; } EQUAL &lt;integer&gt;
+&lt;label&gt;         ::= &lt;alpha&gt; { &lt;digit&gt; | &lt;alpha&gt; } &#39;:&#39;
+&lt;layout&gt;        ::= &lt;int_layout&gt; &lt;integer&gt; {&#39;,&#39; &lt;integer&gt; } | &lt;string_layout&gt; &lt;string&gt; 
+&lt;int_layout&gt;    ::= &#39;.word&#39; | &#39;.half&#39; | &#39;.byte&#39; | &#39;.space&#39;
+&lt;string layout&gt; ::= &#39;.ascii&#39; | &#39;.asciiz&#39;
+&lt;integer&gt;       ::= [&#39;-&#39; | &#39;+] &lt;digit&gt; { &lt;digit&gt; }
+&lt;string&gt;        ::= &#39;&quot;&#39; {&lt;char&gt;} &#39;&quot;&#39;
+&lt;digit&gt;         ::= &#39;0&#39; | &#39;1&#39; | ... | &#39;9&#39;
+&lt;alpha&gt;         ::= &#39;a&#39; | &#39;b&#39; | ... | &#39;z&#39; | &#39;A&#39; | &#39;B&#39; | ... | &#39;Z&#39; | &#39;_&#39;
+&lt;char&gt;          ::= any printable ASCII character (see std::isprint)</code></pre>
+<p>The storage format is interpreted as:</p>
+<ul>
+<li><code>.word</code> followed by a comma separated list of 32 bit integers I. Allocate 4 bytes of space starting at the last available address and fill with I, LSB first. It is an error is any integer is larger than 32 bits.</li>
+<li><code>.half</code> followed by a comma separated list of 16 bit integers I. Allocate 2 bytes of space starting at the last available address and fill with I, LSB first. It is an error is the integer is larger than 16 bits.</li>
+<li><code>.byte</code> followed by a comma separated list of 8 bit integers. Allocate 1 byte of space starting at the last available address and fill with the bytes, in order. It is an error is the integer is larger than 8 bits.</li>
+<li><code>.space</code> followed by an integer I specifying the amount of space in bytes. Allocate I bytes of space starting at the last available address and fill with zeros. It is an error is the integer is larger than 32 bits.</li>
+<li><code>.ascii</code> followed by a string of length L (not automatically null-terminated). Allocate L bytes of space starting at the last available address and fill with the bytes of the string in order left-to-right.</li>
+<li><code>.asciiz</code> followed by a string of length L (automatically null-terminated). Same as .ascii but terminate the string with a null (decimal value 0) character. This will allocate L+1 bytes.</li>
+</ul>
+<p>We are going to ignore the concept of alignment -- data of any type can be placed at any memory word without restriction during parsing of the data section. We will assume the data section starts at a byte address of 0.</p>
+<p>Integer value's in-memory representation is <a href="https://en.wikipedia.org/wiki/Endianness">little endian</a> (least-significant byte first) with negative values in <a href="https://en.wikipedia.org/wiki/Two%27s_complement">two's complement</a>. So for example the following declarations</p>
+<pre><code>    .data
+x:  .word 1, -1
+y:  .byte 42, -42</code></pre>
+<p>would result in a memory layout (each byte in hex, memory address 0 on the left):</p>
+<pre><code>0x01 0x00 0x00 0x00 0xFF 0xFF 0xFF 0xFF 0x2A 0xD6</code></pre>
+<p>and the labels <code>x</code> and <code>y</code> would map to the addresses <code>0x00000000</code> and <code>0x000000008</code>.</p>
+<p>When parsing integers it is necessary to ensure they fit into the number of bits required, based on the context. To simplify this, for the purposes of bounds checking, if an integer starts with '+' or '-' then it should be treated as a signed type, otherwise it should be treated as unsigned. For example</p>
+<pre><code>    .data
+    .byte 250  # this is ok 0 &lt;= 250 &lt;= 255
+    .byte +250 # this is an error because -128 &lt;= +250 not&lt;= +127 </code></pre>
+<h2 id="text-section-grammar">Text section grammar</h2>
+<p>Our simulator will work with <strong>only a subset</strong> of MIPS instructions including data movement instructions, integer arithmetic instructions, logical instructions, and control instructions. The general grammar for an instruction is an optional label followed by an operation followed by an <code>EOL</code> token.</p>
+<pre><code>&lt;instruction&gt; ::= [&lt;label&gt;] EOL | [&lt;label&gt;] &lt;operation&gt; EOL</code></pre>
+<p>An operation is a mnemonic opcode followed by a comma-separated (SEP token) list of arguments, except in the case of the special <code>nop</code> (no operation) instruction.</p>
+<pre><code>&lt;operation&gt; ::= &#39;nop&#39; | &lt;op_code&gt; &lt;op_args&gt;</code></pre>
+<p>The number and interpretation of the arguments is context dependent, i.e. it depends on the opcode. In general an argument is either a register, memory reference, or an immediate value. Registers, denoted <code>&lt;register&gt;</code> in the grammar, are defined as the character <code>$</code> followed immediately by a valid numeric or alphanumeric sequence as specified in the table above. Memory references, denoted <code>&lt;memref&gt;</code> in the grammar, use either direct or indirect addressing. In direct addressing the argument refers to the actual value, for example a label from the data section. In indirect addressing the argument is surrounded by <code>()</code> and is treated like a pointer reference in C. The value inside the parenthesis is treated as a memory location and the value at that location is read. A signed offset to the address in bytes may be used as well. See section 6 of Jorgensen for more detail.</p>
+<pre><code>&lt;memref&gt; ::= &lt;label&gt; | &lt;register&gt; | [offset] &#39;(&#39; &lt;register&gt; &#39;)&#39;</code></pre>
+<p>Immediate value arguments are just the value itself, are denoted <code>&lt;immediate&gt;</code> in the grammar, and may be integers or (previously defined) constants. In the following <code>&lt;source&gt;</code> is either a register, <code>&lt;register&gt;</code>, or immediate value <code>&lt;immediate&gt;</code>.</p>
+<p><strong>Data Movement Instructions:</strong></p>
+<pre><code>&lt;load_word&gt;    ::= &#39;lw&#39;   &lt;register&gt; SEP &lt;memref&gt;
+&lt;load_half&gt;    ::= &#39;lh&#39;   &lt;register&gt; SEP &lt;memref&gt;
+&lt;load_byte&gt;    ::= &#39;lb&#39;   &lt;register&gt; SEP &lt;memref&gt;
+&lt;load_imm&gt;     ::= &#39;li&#39;   &lt;register&gt; SEP &lt;immediate&gt;
+&lt;load_add&gt;     ::= &#39;la&#39;   &lt;register&gt; SEP &lt;memref&gt;
+&lt;store_word&gt;   ::= &#39;sw&#39;   &lt;register&gt; SEP &lt;memref&gt;
+&lt;store_half&gt;   ::= &#39;sh&#39;   &lt;register&gt; SEP &lt;memref&gt;
+&lt;store_byte&gt;   ::= &#39;sb&#39;   &lt;register&gt; SEP &lt;memref&gt;
+&lt;move&gt;         ::= &#39;move&#39; &lt;register&gt; SEP &lt;register&gt;
+&lt;move_from_hi&gt; ::= &#39;mfhi&#39; &lt;register&gt;
+&lt;move_from_lo&gt; ::= &#39;mflo&#39; &lt;register&gt;
+&lt;move_to_hi&gt;   ::= &#39;mthi&#39; &lt;register&gt;
+&lt;move_to_lo&gt;   ::= &#39;mtlo&#39; &lt;register&gt;</code></pre>
+<p>Let look at some examples (see also section 5.3 of Jorgensen).</p>
+<pre><code>     .data
+x:   .word 100
+arr: .byte 10,11,12
+
+     .text
+main:
+     # load word from location x into temporary register 0
+     lw $t0, x
+
+     # load address of arr into $t1
+     la $t1, arr
+     # and get first value (10) into $t2
+     lb $t2, ($t0)
+     # and get second value (11) into $t3
+     lb $t3, 1($t0)
+     # and get third value (12)into $t4
+     lb $t4, 2($t0)</code></pre>
+<p><strong>Integer Arithmetic Instructions:</strong></p>
+<pre><code>&lt;add_s&gt;   ::= &#39;add&#39;   &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt; 
+&lt;add_u&gt;   ::= &#39;addu&#39;  &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;sub_s&gt;   ::= &#39;sub&#39;   &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;sub_u&gt;   ::= &#39;subu&#39;  &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;mul&gt;     ::= &#39;mul&#39;   &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;mul_lo&gt;  ::= &#39;mulo&#39;  &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;mul_lou&gt; ::= &#39;mulou&#39; &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;mult_s&gt;  ::= &#39;mult&#39;  &lt;register&gt; SEP &lt;register&gt;
+&lt;mult_u&gt;  ::= &#39;multu&#39; &lt;register&gt; SEP &lt;register&gt;
+&lt;div3_s&gt;  ::= &#39;div&#39;   &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;div3_u&gt;  ::= &#39;divu&#39;  &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;div2_s&gt;  ::= &#39;div&#39;   &lt;register&gt; SEP &lt;register&gt;
+&lt;div2_u&gt;  ::= &#39;divu&#39;  &lt;register&gt; SEP &lt;register&gt;
+&lt;rem_s&gt;   ::= &#39;rem&#39;   &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;rem_u&gt;   ::= &#39;remu&#39;  &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;abs&gt;     ::= &#39;abs&#39;   &lt;register&gt; SEP &lt;register&gt;
+&lt;neg_s&gt;   ::= &#39;neg&#39;   &lt;register&gt; SEP &lt;register&gt;
+&lt;neg_u&gt;   ::= &#39;negu&#39;  &lt;register&gt; SEP &lt;register&gt;</code></pre>
+<p><strong>Logical Instructions:</strong></p>
+<pre><code>&lt;and&gt; ::= &#39;and&#39; &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;nor&gt; ::= &#39;nor&#39; &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;not&gt; ::= &#39;not&#39; &lt;register&gt; SEP &lt;source&gt;
+&lt;or&gt;  ::= &#39;or&#39;  &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;
+&lt;xor&gt; ::= &#39;xor&#39; &lt;register&gt; SEP &lt;register&gt; SEP &lt;source&gt;</code></pre>
+<p><strong>Control Instructions:</strong></p>
+<pre><code>&lt;jump&gt;      ::= &#39;j&#39; &lt;label&gt;
+&lt;branch_eq&gt; ::= &#39;beq&#39; &lt;register&gt; SEP &lt;source&gt; SEP &lt;label&gt;
+&lt;branch_ne&gt; ::= &#39;bne&#39; &lt;register&gt; SEP &lt;source&gt; SEP &lt;label&gt;
+&lt;branch_lt&gt; ::= &#39;blt&#39; &lt;register&gt; SEP &lt;source&gt; SEP &lt;label&gt;
+&lt;branch_le&gt; ::= &#39;ble&#39; &lt;register&gt; SEP &lt;source&gt; SEP &lt;label&gt;
+&lt;branch_gt&gt; ::= &#39;bgt&#39; &lt;register&gt; SEP &lt;source&gt; SEP &lt;label&gt;
+&lt;branch_ge&gt; ::= &#39;bge&#39; &lt;register&gt; SEP &lt;source&gt; SEP &lt;label&gt;</code></pre>
+<h2 id="parsing-the-token-sequence">Parsing the token sequence</h2>
+<p>Your parser code can use the state machine technique in the background reading, but it is not a requirement. You will likely need to refactor your code so the complexity does not get out of hand and become difficult to debug. Unit tests can be a big help here.</p>
+<p>When a data declaration is successfully parsed, the VM memory should be appropriately initialized and any labels or constants added. Once an instruction is successfully parsed it should be added to the list of instructions held by the VM. Any instruction labels encountered should be added as well.</p>
+<p>If the lexer or parser encounters an error is should halt and store or return the line (in the original file) and reason for the error. This will be needed for error reporting.</p>
+<p>We will use a driver program, called <code>simmips</code>, to do functional testing. This program will eventually become our textual interface to the simulator, but for now it will just be used to open, lex, parse a file and report any errors. The file name to read is specified as a command line argument (whatever the user types on the command line after the executable). If you need a primer on how to use command line arguments, <a href="cli.html">see the background reading</a>.</p>
+<p>For example, the following program invocation reads the assembly program in the file <code>progn.asm</code> and attempts to lex and parse it (assuming Windows platform, <code>$</code> as the command line prompt):</p>
+<pre><code>$ .\simmips.exe progn.asm</code></pre>
+<p>If a single file name argument is not specified, or the specified file cannot be opened, the program should print an appropriate error message to standard error and return <code>EXIT_FAILURE</code>. If the input file fails to lex or parse then an error message should be printed to standard error and the program should return <code>EXIT_FAILURE</code>. The format of the error message should be:</p>
+<pre><code>Error:line: message</code></pre>
+<p>where <code>line</code> is the numeric line number of the input file (starting at 1) where the error occurred, and message is an informative diagnostic message. The portion of the message up to the second ':' should follow this format exactly, however the message text can vary as long as it does not exceed one line. <strong>The parser should halt on the first error and the program report only one error.</strong> These seemingly pedantic requirements are need for grading purposes.</p>
+<p>Otherwise, if the input file correctly parses the program should print nothing to standard output or standard error and should return <code>EXIT_SUCCESS</code>. See the header <a href="http://en.cppreference.com/w/cpp/utility/program/EXIT_status">std::cstdlib</a> where these return codes are defined.</p>
+<h2 id="testing">Testing</h2>
+<p>Each module of your code, generally a pair of files <code>module.hpp</code>/<code>module.cpp</code>, should have a corresponding set of unit tests in <code>test_module.cpp</code>. These should use the Catch testing framework (<code>catch.hpp</code> and main test driver <code>unit_tests.cpp</code> is provided). The quality of your tests is determined by code coverage which should exceed <strong>95% of lines</strong>. The building of these tests is setup via the provided <code>CMakeLists.txt</code>.</p>
+<p>Several CMake-driven functional tests are provided in the <code>CMakeLists.txt</code> file, using the <code>simmips</code> program to read files from the <code>tests</code> subdirectory of the repository. Do not modify these test input files. The functional tests can be run using the command <code>cmake --build . --target test</code> or by building the <code>RUN_TESTS</code> project in Visual Studio or XCode. These are a large subset of the tests that we will run when grading. <strong>Your code should pass these tests before your final submission.</strong></p>
+<p>The file <code>test_config.hpp</code> is written by cmake into the build directory (from the file <code>test_config.hpp.in</code>) at configure time to set a string that points to the test files root directory. You can include this file in your tests to determine those file names at run time.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>Accept the GitHub invitation above and then clone the git repository to your local machine. The initial git repository contains several files. Your task in this milestone is to implement the parser functionality in the module <code>parser.hpp</code>/<code>parser.cpp</code>. You can (and probably should) define additional units of code (classes, functions) and tests as additional files, but add them to the <code>CMakeLists.txt</code> files in the indicated place near the top.</p>
+<p>All unit tests should use the Catch testing framework (see meeting 7). The included CMakeLists.txt file sets up building these tests for you. Just configure the build, run the build, and then run the tests. You should use git to commit versions of your program source (only) as you go along, demonstrating good incremental programming technique.</p>
+<p>Steps to build and run the tests in the reference environment (after vagrant ssh).</p>
+<ul>
+<li><p>To configure the build</p>
+<pre><code>cmake /vagrant</code></pre></li>
+<li><p>To run the build</p>
+<pre><code>make</code></pre>
+<p>or</p>
+<pre><code>cmake --build .</code></pre></li>
+<li><p>To run all tests</p>
+<pre><code>make test</code></pre>
+<p>or</p>
+<pre><code>cmake --build . --target test</code></pre>
+<p>The test output is placed in ``Testing/Temporary/LastTest.log. You can also just run the unit tests directly:</p>
+<pre><code>./unit_tests</code></pre></li>
+<li><p>To run your tests and check code coverage.</p>
+<pre><code>make coverage</code></pre>
+<p>or</p>
+<pre><code>cmake --build . --target coverage</code></pre>
+<p>This will create a directory called <code>Coverage_Report</code> in the build directory. You can copy it back to your host by doing <code>cp -r Coverage_Report /vagrant</code>. Open the <code>index.html</code> file inside it to examine the detailed report.</p></li>
+<li><p>To run the memory checks on your unit tests.</p>
+<pre><code>make memtest</code></pre>
+<p>or</p>
+<pre><code>cmake --build . --target memtest</code></pre>
+<p>This should report no &quot;definitely lost&quot; leaks and no access errors. Look for</p>
+<pre><code>LEAK SUMMARY:
+   definitely lost: 0 bytes in 0 blocks</code></pre>
+<p>and</p>
+<pre><code>ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)</code></pre></li>
+<li><p>To configure and run the build in strict mode (increased warnings, warnings become errors)</p>
+<pre><code>cmake -DSTRICT=True /vagrant
+make clean; make</code></pre></li>
+</ul>
+<h2 id="to-do">To Do</h2>
+<p>Since this module has several pieces, below is a list of suggested &quot;todos&quot; in order of priority:</p>
+<ol type="1">
+<li>clone the repository, implement a stub for the parser and a functioning version of the <code>simmips</code> program (can compile and run).</li>
+<li>implement the parser, writing unit tests for each data declaration and instruction as you go</li>
+<li>finish implementing the parser so that it passes the provided functional tests</li>
+<li>design and implement data structures to hold the data encountered while parsing, with unit tests</li>
+</ol>
+<p>Todos 1-3 are required for milestone 1. The last todo will help you get started on milestone 2.</p>
+<h2 id="submission">Submission</h2>
+<p>To submit your assignment:</p>
+<ol type="1">
+<li><p>Tag the git commit that you wish to be considered for grading as &quot;final&quot;.</p>
+<pre><code>git tag final</code></pre></li>
+<li><p>Push this change to GitHub</p>
+<pre><code>git push origin final</code></pre></li>
+</ol>
+<p>If you need to tag a different version of your code as final (before the due date) simply create and push a new tag, appending a monotonically increasing number to final, e.g. final2, final3, etc.</p>
+<p>Be sure you have committed all the changes you intend to. It is a good idea to re-clone your repository into a separate directory and double check it is what you intend to submit. <strong>Failure to complete these steps by the due date will result in a failed submission.</strong></p>
+<h2 id="grading">Grading</h2>
+<p>There are 48 points allocated to this assignment. All requirements are evaluated with respect to the course reference environment.</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Correct files submitted (cmake configure)
+</td>
+<td style="text-align: left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Code Compiles
+</td>
+<td style="text-align: left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Functional Tests
+</td>
+<td style="text-align: left;">
+34
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Test Quality (coverage)
+</td>
+<td style="text-align: left;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Memory Analysis (valgrind)
+</td>
+<td style="text-align: left;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Code Compiles with No Warnings (STRICT mode)
+</td>
+<td style="text-align: left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Development Practices
+</td>
+<td style="text-align: left;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>Configuration and Compilation are all-or-nothing. Functional Tests, Test Quality, and Memory Analysis portions of the grade are proportional (you can receive partial points). Good development practices will be assessed by ensuring you have a regular commit history in your repository.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/milestone1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:14 GMT -->
+</html>

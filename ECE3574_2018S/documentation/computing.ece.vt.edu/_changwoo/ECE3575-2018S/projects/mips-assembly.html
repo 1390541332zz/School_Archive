@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/mips-assembly.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:25 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index-2.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<p>[ <a href="mips-architecture.html">&lt;&lt; prev</a> ] [ <a href="lexing.html">next &gt;&gt;</a> ] [ <a href="index.html#contents">contents</a> ]</p>
+<h1 id="mips-i-assembly">MIPS-I Assembly</h1>
+<p><strong>Suggested Reading:</strong></p>
+<ul>
+<li>Section 4 of &quot;MIPS Assembly Language Programming using QtSpim&quot;, by Ed Jorgensen, 2016.</li>
+<li>Appendix A of the Patterson and Hennessy text.</li>
+</ul>
+<p>The role of a compiler is to translate from a higher-level representation of a computation, called the source language, to a lower one, called the target language. Traditionally, when you are programming in a high-level language like C or C++, the target language is assembly. Individual files, or <em>modules</em>, are then passed through another compiler, called an assembler to produce object (machine) code. Multiple module object code is combined (usually with pre-compiled library code) by the linker to produce the final executable machine code. Modern compilers typically subsume high-level compilation and assembly into a single program, although they can emit intermediate langauges. Some high-level languages (e.g. Java, C#, Lua, PLT scheme) compile to a portable intermediate language called bytecode, which is then compiled to machine code as needed (so-called just-in-time or JIT).</p>
+<p>At each level of the compilation stage, the code moves from syntax that is more human understandable to less, while becoming more efficient for hardware execution. Assembly is the last language in this process that is symbolic enough that humans can interpret it without serious effort (one can decode and write/understand machine code, but it is a lot of work). Assembly language is expressed in plain text files called assembly source files. Like all languages it has a specific syntax, what constitutes a well-formed sequence of characters, and semantics, what the program does (it's side effects).</p>
+<p>A language syntax itself can be described in another language, called <a href="https://en.wikipedia.org/wiki/Backus–Naur_form">Backus–Naur form</a>, after the inventors, or BNF. We will use BNF to compactly summarize the syntax of the assembly source. See this <a href="http://matt.might.net/articles/grammars-bnf-ebnf/">excellent tutorial</a> for a primer.</p>
+<p>Our simulator will only simulate execution of a single module of code; thus, we will have no need for a linker. It will also not handle conditional assembly or macros.</p>
+<p>It will be helpful to see an example first before diving into the details of the assembler source format. So what follows is a simple program with some C-like translations.</p>
+<div class="sourceCode"><table class="sourceCode mips numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="sourceCode"><pre><code class="sourceCode mips"><span class="co"># this is a comment, any characters after # up to newline are ignored</span>
+
+    <span class="kw">.data</span> <span class="co"># start the data section, where variables are declared</span>
+
+<span class="ot">var1:</span>   <span class="dt">.byte</span> <span class="dv">1</span>      <span class="co"># char var1 = 1;</span>
+<span class="ot">var2:</span>   <span class="dt">.half</span> <span class="dv">65526</span>  <span class="co"># short var2 = 65526;</span>
+<span class="ot">var3:</span>   <span class="dt">.word</span> <span class="dv">1</span>      <span class="co"># int var3 = 1;</span>
+<span class="ot">var4:</span>   <span class="dt">.word</span> <span class="dv">2</span>      <span class="co"># int var4 = 2;</span>
+<span class="ot">var5:</span>   <span class="dt">.word</span> <span class="dv">0</span>      <span class="co"># int var5 = 0;</span>
+
+    <span class="kw">.text</span> <span class="co"># start the code section, a sequence of instructions</span>
+    
+<span class="ot">main:</span> <span class="co"># compute var5 = var3 + var4;</span>
+
+        <span class="kw">lw</span>  <span class="dt">$t0</span>, var3
+        <span class="kw">lw</span>  <span class="dt">$t1</span>, var4
+        <span class="kw">add</span> <span class="dt">$t3</span>, <span class="dt">$t0</span>, <span class="dt">$t1</span>
+        <span class="kw">sw</span>  <span class="dt">$t3</span>, var5</code></pre></td></tr></table></div>
+<p>Some initial things of note. Comments begin with the <code>#</code> character and are not semantically important to the execution of the program. The program contains several <em>directives</em> to the compiler. These begin with a <code>.</code> character. The most prominent are <code>.data</code> and <code>.text</code> which control if the assembler is laying out or initializing memory, or processing computations as instructions. Also notable are <em>labels</em>, strings that end in the character <code>:</code>.</p>
+<h2 id="data-declaration-section">Data Declaration Section</h2>
+<p>This section is started by the directive <code>.data</code>. The grammar (in EBNF) is</p>
+<pre><code>DECLARATION ::= [NAME] STORAGE ARGLIST EOL | ALIGNMENT INTEGER EOL
+ARGLIST ::= INTEGER | CHAR {SEP CHAR} | STRING  </code></pre>
+<p>Note: NAME is optional..</p>
+<p>where the terminals are given by:</p>
+<pre><code>SEP ::= &#39;,&#39;
+EOL ::= &#39;\n&#39;
+WS ::= &#39; &#39; | &#39;\r&#39; | &#39;\t&#39; | &#39;\f&#39; | &#39;\v&#39;
+ALPHA ::= a-z | A-Z | &#39;_&#39;
+ALPHANUM ::= ALPHA | 0-9
+LABEL ::= ALPHA {ALPHANUM}
+NAME ::= LABEL &#39;:&#39; WS
+STORAGE ::= &quot;.word&quot; | &quot;.byte&quot; | &quot;.space&quot; | &quot;.ascii&quot; | &quot;.asciiz&quot;
+INTEGER ::= 0-9 {0-9}
+CHAR ::= ? how to define this ? &#39;b&#39;, 4, &#39;\f&#39; all should be allowed
+STRING ::= &#39;&quot;&#39; {CHAR} &#39;&quot;&#39; ???</code></pre>
+<p>Note with this definition the lexer should work with <em>either</em> Windows or Unix line endings (&quot;&quot; vs &quot;&quot;).</p>
+<p>The storage format is interpreted as:</p>
+<ul>
+<li><code>.word</code> followed by a single 32 bit integer I. Allocate 4 bytes of space starting at the last available address and fill with I, LSB first.</li>
+<li><code>.byte</code> followed by a comma separated list of N characters. Allocate N bytes of space starting at the last available address and fill with the bytes, in order.</li>
+<li><code>.space</code> followed by an integer I specifying the amount of space in bytes. Allocate I bytes of space starting at the last available address and fill with zeros.</li>
+<li><code>.ascii</code> followed by a string of length L (not automatically null-terminated). Allocate L bytes of space starting at the last available address and fill with the bytes of the string in order left-to-right.</li>
+<li><code>.asciiz</code> followed by a string of length L (automatically null-terminated). Same as .ascii but terminate the string with a null (0) character. This will allocate L+1 bytes.</li>
+</ul>
+<p>The above grammar describes how to initialize the memory of the architecture.</p>
+<p>alignment .align n must start at an address that is a multiple of 2^n</p>
+<p>default alignment of words, n = 2</p>
+<p>** Code (Text) Section:**</p>
+<p>Detailed Reference: MIPS-IV Instruction Set Rev 3.2, section A6.</p>
+<p>How to read the instruction pseudo-code.</p>
+<p>pseudo-instructions vs core instructions?</p>
+<p>List of instructions (58):</p>
+<pre><code>lb
+lbu
+sb
+lh
+lhu
+sh
+lw
+sw
+lwl
+lwr
+swl
+swr
+addi
+addiu
+slti
+sltiu
+andi
+ori
+xori
+lui
+add
+addu
+sub
+subu
+slt
+sltu
+and
+or
+xor
+nor
+sll
+srl
+sra
+sllv
+srlv
+srav
+mult
+multu
+div
+divu
+mfhi
+mthi
+mflo
+mtlo
+j
+jal
+jr
+jalr
+beq
+bne
+blez
+bgtz
+bltz
+bgez
+bltal
+bgezal
+syscall
+break</code></pre>
+<p>There are four formats for assembly instructions.</p>
+<pre><code>mnemonic register, memory_reference</code></pre>
+<pre><code>mnemonic register, register</code></pre>
+<pre><code>mnemonic register, register, register</code></pre>
+<pre><code>mnemonic register, immediate</code></pre>
+<p>[ <a href="mips-architecture.html">&lt;&lt; prev</a> ] [ <a href="lexing.html">next &gt;&gt;</a> ] [ <a href="index.html#contents">contents</a> ]</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2017 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/mips-assembly.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:25 GMT -->
+</html>

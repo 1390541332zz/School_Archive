@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:07 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index-2.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index-2.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index-2.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="ece-3574---spring-2018---semester-project">ECE 3574 - Spring 2018 - Semester Project</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Each semester I develop one or more projects that require you to implement many of the design patterns and APIs discussed in class. The project for this semester is an instruction-level simulator of a common CPU instruction set architecture called <a href="https://en.wikipedia.org/wiki/MIPS_architecture">MIPS</a>.</p>
+<p>MIPS is a <a href="https://en.wikipedia.org/wiki/Reduced_instruction_set_computer">RISC</a> (reduced-instruction set computer) architecture adaptable to a wide-variety of applications, ranging from embedded systems (e.g. PIC32) and game consoles (e.g. PlayStation), to high-end servers (e.g. ARMv8). We will be simulating the first version, MIPS Release I, without co-processors. This CPU is ideally suited to our purposes since there are (relatively) few instructions with only three instruction formats and two addressing modes. It uses a 32-bit word size and has 32 general-purpose registers.</p>
+<p>Our simulator, which we will call <code>simmips</code>, will read a defined subset of MIPS assembly source code and simulate program execution, similar, but not identical to, <a href="http://spimsimulator.sourceforge.net/">SPIM</a> <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> and <a href="http://courses.missouristate.edu/KenVollmar/mars/">MARS</a>. The code and tests will be developed over the first part of the semester in milestones 0-2. We will then write a graphical debugger and visualization tool in milestones 3-4 during the last part of the semester.</p>
+<p>The milestones will be used for grading and thus are motivation to not procrastinate. They correspond closely to the schedule of material that we will be covering in class. Your progress will be tracked through a series of private git repositories on GitHub.</p>
+<p>This project assumes some familiarity with assembly (at the level of ECE 2500 and 2504) in addition to the data structures and algorithms prerequisites (ECE 2574 or equivalent). This document provides a primer on the MIPS architecture and a subset of MIPS instructions. It also provides information on the core tasks of the code, most importantly the lexer and parser. See the resources section for tutorials, textbooks, and other relevant material that you may find helpful. The references section of this document provides pointers to relevant MIPS documentation.</p>
+<h2 id="contents">Contents</h2>
+<ol type="1">
+<li><a href="mips-architecture.html">MIPS-I architecture</a></li>
+<li><a href="mips-assembly.html">MIPS-I assembly</a></li>
+<li><a href="lexing.html">Lexing</a></li>
+<li><a href="milestone0.html">Milestone 0</a></li>
+<li><a href="parsing.html">Parsing</a>, <a href="cli.html">command line argument</a></li>
+<li><a href="milestone1.html">Milestone 1</a></li>
+<li><a href="milestone2.html">Milestone 2</a></li>
+<li><a href="milestone3.html">Milestone 3</a></li>
+<li>Milestone 4</li>
+<li><a href="resources.html">Resources</a></li>
+<li><a href="references.html">References</a></li>
+</ol>
+<p>[<a href="mips-architecture.html">next &gt;&gt;</a>]</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>You can install and use SPIM to help you understand how our program should (roughly) behave and to help you learn MIPS assembly.<a href="#fnref1">↩</a></p></li>
+</ol>
+</section>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2017 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from computing.ece.vt.edu/~changwoo/ECE3575-2018S/projects/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 23:59:08 GMT -->
+</html>
