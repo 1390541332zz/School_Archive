@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/milestone0.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:05 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="milestone-0">Milestone 0</h1>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 27%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Assigned:
+</td>
+<td style="text-align: left;">
+8/21
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Due:
+</td>
+<td style="text-align: left;">
+9/7 by 11:59 pm
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="introduction">Introduction</h2>
+<p>The goal of this first milestone is to familiarize yourself with plotscript, the starter code implementing the interpreter, and how to build and run its tests on your host machine as well as the reference environment. These will introduce you to the course work-flow and how to read and follow others code. This is a useful skill as projects you work on will rarely have no preexisting code. You will also add a complex numerical type to the language and implement related numerical procedures. This will ensure you have a reasonably good understanding of the starter code. The work is divided into four tasks to guide your work. You are encouraged to ask questions in class, on Piazza, during help sessions, or during office hours if you have questions about the provided code.</p>
+<p>This assignment requires little C++ experience beyond basic data structures (e.g. memory management and trees). If you struggle with the programming part of this assignment you are woefully ill-prepared for this course. This means you should devote additional time to it and seek advice from the TAs and myself, or as a last resort drop.</p>
+<h2 id="background-information">Background Information</h2>
+<ul>
+<li><a href="index.html">Project Overview</a></li>
+<li>CMake Workflow on <a href="https://filebox.ece.vt.edu/~ECE2574/videos/Workflow2574-Windows/">Windows</a></li>
+<li><a href="starter-html/index.html">Documentation</a> for the starter code</li>
+</ul>
+<h2 id="task-1-building-the-starter-code">Task 1: building the starter code</h2>
+<p>If you have not already, accept the GitHub invitation at this <a href="https://classroom.github.com/a/Ih7PpCz5">link</a> and then clone the git repository to your local machine. The initial git repository contains the starter code for the semesters project. Be sure you can build the code, run the tests, and run the plotscript program on <strong>both</strong> your host machine and in the reference environment.</p>
+<p>Steps to build and run the tests in the reference environment (after opening the Terminal emulator).</p>
+<ul>
+<li><p>To configure the build</p>
+<pre><code>cmake /vagrant</code></pre></li>
+<li><p>To run the build</p>
+<pre><code>make</code></pre>
+<p>or</p>
+<pre><code>cmake --build .</code></pre></li>
+<li><p>To run the unit tests</p>
+<pre><code>make test</code></pre>
+<p>or</p>
+<pre><code>cmake --build . --target test</code></pre>
+<p>The test output is placed in ``Testing/Temporary/LastTest.log. You can also just run the tests directly:</p>
+<pre><code>./unit_tests</code></pre></li>
+<li><p>To configure and run the build in strict mode (increased warnings, warnings become errors)</p>
+<pre><code>cmake -DSTRICT=True /vagrant
+make clean; make</code></pre></li>
+</ul>
+<h2 id="task-2-experimenting-with-the-interpreter">Task 2: experimenting with the interpreter</h2>
+<p>To get a feel for the syntax of plotscript you should go though the following examples.</p>
+<p>Example 1: <strong>Before</strong> typing in the code, what does the following code evaluate to?</p>
+<pre><code>(begin
+    (define a 1)
+    (define b 2)
+    (define c (* 2 b))
+    (- c (+ (/ 1 a) b))
+)</code></pre>
+<p>Example 2: Using the plotscript REPL enter the same code above without the begin expression (one line at a time). Does the final result match your answer above.</p>
+<p>Example 3: Create a file named <code>example3</code> and write a plotscript program to find the average of the following numbers: 42, 34, 89, -3, 95, 4, -9, 32. Run your program using the plotscript program and verify the results are correct.</p>
+<h2 id="task-3-extend-procedures-for-the-number-type">Task 3: extend procedures for the Number type</h2>
+<p>The operations of our Numbers type in the base language are limited. Your task is to understand how the environment and procedures are implemented in the C++ interpreter code and extend it as follows. You should implement them one at a time, making a commit to your repository with an appropriate message each time. This will give you practice with working in increments.</p>
+<ul>
+<li>Extend the built-in symbols to include the Number symbol <code>e</code>, defined as <a href="https://en.wikipedia.org/wiki/E_(mathematical_constant)">Euler's number</a>, i.e. <code>std::exp(1)</code>.</li>
+<li>Extend the procedures for Number to include the unary procedure <code>sqrt</code>, the square root. Temporarily, the procedure should throw a semantic exception for negative arguments -- for the extension to negative arguments see task 4.</li>
+<li>Extend the procedures for Number to include the binary procedure <code>(^ a b)</code>, the exponential of <code>a</code> to the power <code>b</code>. Temporarily, the procedure should behave identical to std::pow -- for extensions see task 4.</li>
+<li>Extend the procedures for Number to include the unary procedure <code>ln</code>, the natural logarithm. The procedure should throw a semantic exception for negative arguments.</li>
+<li>Extend the procedures for Number to include the unary procedure <code>sin</code>, the trigonometric sine of the angle argument in radians.</li>
+<li>Extend the procedures for Number to include the unary procedure <code>cos</code>, the trigonometric cosine of the angle argument in radians.</li>
+<li>Extend the procedures for Number to include the unary procedure <code>tan</code>, the trigonometric tangent of the angle argument in radians.</li>
+</ul>
+<h2 id="task-4-adding-a-complex-number-type">Task 4: Adding a complex number type</h2>
+<p><a href="https://en.wikipedia.org/wiki/Complex_number">Complex numbers</a> are ubiquitous in engineering mathematics. Our current implementation of plotscript only supports real numbers modeled as double precision (IEEE 754) numbers. Extend the interpreter code to support complex numbers as the type <code>Complex</code>, using double precision numbers for the real and imaginary part as follows. As before, you should implement incremental changes, testing and making a commit to your repository with an appropriate message each time.</p>
+<ul>
+<li>Extend the built-in symbols to include the Complex symbol <code>I</code>, defined as the imaginary number, √ -1 = 0 + i.</li>
+<li>Extend the built-in m-ary procedure for addition to include both Numbers and Complex types. If any argument is complex, the result should be complex.</li>
+<li>Extend the built-in unary and binary procedures for subtraction to include both Numbers and Complex types. If any argument is complex, the result should be complex.</li>
+<li>Extend the built-in m-ary procedure for multiplication to include both Numbers and Complex types. If any argument is complex, the result should be complex.</li>
+<li>Extend the built-in binary procedure for division to include both Numbers and Complex types. If any argument is complex, the result should be complex.</li>
+<li>Add a built-in unary procedure <code>real</code> to return the real part of a Complex as a Number. It is a semantic error of the argument is not Complex.</li>
+<li>Add a built-in unary procedure <code>imag</code> to return the imaginary part of a Complex as a Number. It is a semantic error of the argument is not Complex.</li>
+<li>Add a built-in unary procedure <code>mag</code> to return the magnitude (absolute value) of a Complex as a Number. It is a semantic error of the argument is not Complex.</li>
+<li>Add a built-in unary procedure <code>arg</code> to return the argument (angle or phase) of a Complex as a Number in radians. It is a semantic error of the argument is not Complex.</li>
+<li>Add a built-in unary procedure <code>conj</code> to return the conjugate of a Complex argument. It is a semantic error of the argument is not Complex.</li>
+<li>Extend the procedure <code>sqrt</code> from task 1 to also return the square root of a Complex argument or a negative Number argument</li>
+<li>Extend the procedure <code>^</code> from task 1 to return the exponential of <code>a</code> to the power <code>b</code> for any combination of Number and Complex types on <code>a</code> and <code>b</code>. The result should be of type Number only when both arguments are of type Number.</li>
+</ul>
+<p>When displaying a complex expression render it as <code>(real,imag)</code>. For example:</p>
+<pre><code>plotscript&gt; (I)
+(0,1)</code></pre>
+<h2 id="examples">Examples</h2>
+<p>The following are a few examples to give you a better idea of the syntax specified.</p>
+<pre><code>(- I (sqrt -1))</code></pre>
+<p>should display (0,0).</p>
+<pre><code>(define x (+ 1 (* 2 I)))</code></pre>
+<p>defines the symbol x to be the complex number 1 + 2i. The real part of x is then <code>(real x)</code>, the imaginary part is <code>(imag x)</code>, while the magnitude and phase angle are <code>(mag x)</code> and <code>(arg x)</code> respectively.</p>
+<pre><code>(^ e (- (* pi I)))</code></pre>
+<p>computes a famous result due to Euler. Note the imaginary part might not be identically zero.</p>
+<h2 id="submission">Submission</h2>
+<p>To submit your milestone:</p>
+<ol type="1">
+<li><p>Tag the git commit that you wish to be considered for grading as &quot;milestone0&quot;.</p>
+<pre><code>git tag milestone0</code></pre></li>
+<li><p>Push this change to GitHub</p>
+<pre><code>git push origin milestone0</code></pre></li>
+</ol>
+<p>If you need to tag a different version of your code simply create and push a new tag appending a monotonically increasing number to milestone0 using '-', e.g. milestone0-2, milestone0-3, etc.</p>
+<p>Be sure you have committed all the changes you intend to. You should re-clone your repository into a separate directory and double check it is what you intend to submit. <strong>Failure to complete these steps by the due date will result in a failed submission.</strong></p>
+<h2 id="grading">Grading</h2>
+<p>There are 6 course percentage points allocated to this milestone. You will receive a detailed feedback report on your submission via Canvas within two weeks of the due date.</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Code compiles in the reference environment
+</td>
+<td style="text-align: left;">
+1 point
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Correctness Tests
+</td>
+<td style="text-align: left;">
+4 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Code Quality
+</td>
+<td style="text-align: left;">
+0.5 point
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Good Development Practices
+</td>
+<td style="text-align: left;">
+0.5 point
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note, if your code does not build in the reference environment you will receive <strong>no points</strong>. Correctness can be <a href="https://grader.ece.vt.edu/course/ECE_3574_Fall_2018">checked in the auto-grader</a> and is determined by the proportion of instructor tests that pass. The auto-grader uses the exact same environment as the reference so if your code compiles there, it should in the auto-grader as well. You are rate-limited to only two submissions every two hours to the auto-grader so as to prevent you from using it as your development environment and encourage proper debugging skills.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/milestone0.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:05 GMT -->
+</html>

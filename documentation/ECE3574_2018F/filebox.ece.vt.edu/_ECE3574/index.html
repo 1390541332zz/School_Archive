@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:55:54 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="general-information">General Information</h1>
+<p>
+Fall 2018
+<ul>
+<li>
+CRN 82992 — TR 11:00-12:15 in SURGE 117A
+</li>
+<li>
+CRN 82994 — TR 12:30-1:45 in SURGE 117A
+</li>
+</ul>
+</p>
+<table cellpadding="3">
+<tr>
+<td align="right">
+Instructor:
+</td>
+<td align="left">
+Chris Wyatt
+</td>
+</tr>
+<tr>
+<td align="right">
+</td>
+<td align="left">
+Office: 439 Whittemore Hall
+</td>
+</tr>
+<tr>
+<td align="right">
+</td>
+<td align="left">
+Phone: 231-6658
+</td>
+</tr>
+<tr>
+<td align="right">
+</td>
+<td align="left">
+Email: <a href="mailto:clwyatt@vt.edu?Subject=3574"> clwyatt@vt.edu</a>
+</td>
+</tr>
+<tr>
+<td align="right">
+</td>
+<td align="left">
+Office Hours: Tu and Th 2-3:30, Fri 10-noon. Other times by appointment.
+</td>
+</tr>
+<tr>
+<td align="right">
+TAs:
+</td>
+<td align="left">
+Ashin Thomas (<a href="mailto:ashinmarin@vt.edu?Subject=3574">ashinmarin@vt.edu</a>) and Sampanna Khu (<a href="mailto:sampanna@vt.edu?Subject=3574">sampanna@vt.edu</a>)
+</td>
+</tr>
+<tr>
+<td align="right">
+</td>
+<td align="left">
+<a href="https://sites.google.com/a/vt.edu/swel/348-durham">SWEL Hours</a>
+</td>
+</tr>
+<tr>
+<td align="right">
+Class Links:
+</td>
+<td align="left">
+<a href="https://vt.instructure.com/courses/74445">Canvas</a>, where grades are posted.
+</td>
+</tr>
+<tr>
+<td align="right">
+</td>
+<td align="left">
+<a href="https://piazza.com/class/jkwu7bybcw12ks">Piazza</a>, where online communication occurs.
+</td>
+</tr>
+<tr>
+<td align="right">
+</td>
+<td align="left">
+<a href="https://sites.google.com/a/vt.edu/swel/home">Software Engineering Lab</a> (SWEL), where the TAs hold office hours.
+</td>
+</tr>
+</table>
+<h1 id="course-objectives">Course Objectives</h1>
+<p>Having successfully completed this course, you should be able to:</p>
+<ul>
+<li>Use software design patterns and application programming interface (API) specifications to implement efficient and portable software.</li>
+<li>Design and implement multi-threaded and multi-process applications that rely on standardized inter-process communication and synchronization mechanisms.</li>
+<li>Design and implement complex software applications based on portable software frameworks and event-driven programming.</li>
+<li>Design, implement, and perform testing strategies including unit and integration testing.</li>
+</ul>
+<h1 id="schedule-tentative">Schedule (tentative)</h1>
+<p>This is the schedule for the semester, updated continually. The acronyms TPP and CC refer to the books &quot;The Pragmatic Programmer&quot; and &quot;Clean Code&quot; respectively.</p>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 37%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">
+Meeting
+</th>
+<th style="text-align: left;">
+Topic
+</th>
+<th style="text-align: left;">
+Notes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td style="text-align: left;">
+1 (Tu 8/21)
+</td>
+<td style="text-align: left;">
+<a href="meeting/01-introduction/index.html">Introduction</a>
+</td>
+<td style="text-align: left;">
+Reading: Syllabus<br> <a href="project/index.html">Course Project Introduction</a><br> <a href="project/milestone0.html">Milestone 0 Released</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+2 (Th 8/23)
+</td>
+<td style="text-align: left;">
+<a href="meeting/02-git/index.html">Version Control</a>
+</td>
+<td style="text-align: left;">
+Reading: Sections 1.1, 1.3, 1.4, 1.6 and Chapter 2 of <a href="https://git-scm.com/book/en/v2">Pro Git</a><br> Additional Reference: TPP Chapter 3
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+3 (Tu 8/28)
+</td>
+<td style="text-align: left;">
+<a href="meeting/03-vagrant/index.html">Course Reference Environment</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="https://www.virtualbox.org/manual/ch01.html">Virtual Box</a> and <a href="https://www.vagrantup.com/docs/getting-started/">Vagrant Getting Started</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+4 (Th 8/30)
+</td>
+<td style="text-align: left;">
+<a href="meeting/04-templates/index.html">Static Polymorphism using Templates</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="https://isocpp.org/wiki/faq/templates">C++ Generics: Templates</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+5 (Tu 9/4)
+</td>
+<td style="text-align: left;">
+<a href="meeting/05-stl/index.html">Review of Data Structures: A Tour of C++ Standard Library</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://en.cppreference.com/w/cpp/container">Containers Library</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+6 (Th 9/6)
+</td>
+<td style="text-align: left;">
+<a href="meeting/06-design/index.html">Module and API Design</a>
+</td>
+<td style="text-align: left;">
+Reading: TPP Sections 7, 8, 26<br> See also the <a href="https://en.wikipedia.org/wiki/Law_of_Demeter">Law of Demeter</a> and the <a href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment">Principle of Least-Astonishment</a><br> <a href="project/milestone1.html">Milestone 1 Released</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+7 (Tu 9/11)
+</td>
+<td style="text-align: left;">
+<a href="meeting/07-unit/index.html">Unit Testing using Catch</a>
+</td>
+<td style="text-align: left;">
+Reading: Catch <a href="https://github.com/philsquared/Catch/blob/master/docs/tutorial.md">Tutorial</a> and <a href="https://github.com/philsquared/Catch/blob/master/docs/Readme.md">Reference</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+8 (Th 9/13)
+</td>
+<td style="text-align: left;">
+<a href="meeting/08-cmake/index.html">Building Cross-Platform Software using CMake</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://www.cmake.org/cmake-tutorial/">CMake Tutorial</a>, and <a href="http://www.cmake.org/runningcmake">Running CMake</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+9 (Tu 9/18)
+</td>
+<td style="text-align: left;">
+<a href="meeting/09-qtintro/index.html">Introduction to Qt</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://doc.qt.io/qt-5/overviews-main.html">Overview of Qt</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+10 (Th 9/20)
+</td>
+<td style="text-align: left;">
+<a href="meeting/10-poly/index.html">Dynamic Polymorphism</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="https://en.wikipedia.org/wiki/Subtyping">Subtyping</a>, <a href="http://doc.qt.io/qt-5/object.html">Qt Object Model</a>, and <a href="http://doc.qt.io/qt-5/objecttrees.html">Qt Object Trees and Ownership</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+11 (Tu 9/25)
+</td>
+<td style="text-align: left;">
+<a href="meeting/11-composition/index.html">Reuse through Composition</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="https://en.wikipedia.org/wiki/Object_composition">Object Composition</a> and <a href="https://en.wikipedia.org/wiki/Has-a">Has-A relationships</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+12 (Th 9/27)
+</td>
+<td style="text-align: left;">
+<a href="meeting/12-events/index.html">Event Driven Programming</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://doc.qt.io/qt-5/eventsandfilters.html">Qt Event System</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+13 (Tu 10/2)
+</td>
+<td style="text-align: left;">
+<a href="meeting/13-signal-slots/index.html">Qt Signals and Slots</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://doc.qt.io/qt-5/signalsandslots.html">Signals and Slots</a><br> <a href="project/milestone2.html">Milestone 2 Released</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+14 (Th 10/4)
+</td>
+<td style="text-align: left;">
+<a href="meeting/14-qttest/index.html">Integration Testing</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://doc.qt.io/qt-5/qtest-overview.html">Qt Test Overview</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+15 (Tu 10/9)
+</td>
+<td style="text-align: left;">
+<a href="meeting/15-patterns/index.html">Design Patterns and C++ Idioms</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="https://en.wikibooks.org/wiki/C++_Programming/Code/Design_Patterns">Design Patterns</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+16 (Th 10/11)
+</td>
+<td style="text-align: left;">
+<a href="meeting/16-morepatterns/index.html">More Design Patterns</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="https://en.wikibooks.org/wiki/C++_Programming/Code/Design_Patterns">Design Patterns</a> and <a href="http://doc.qt.io/qt-5/model-view-programming.html" >Model-View Programming</a>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+17 (Tu 10/16)
+</td>
+<td style="text-align: left;">
+<a href="meeting/17-concurrency/index.html">Concurrency: Processes and Threads</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf">Chapter 26: Concurrency and Threads</a> from <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/">Operating Systems: Three Easy Pieces</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+18 (Th 10/18)
+</td>
+<td style="text-align: left;">
+<a href="meeting/18-ipc/index.html">InterProcess Communication with Pipes and Sockets</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://doc.qt.io/qt-5/ipc.html">Qt IPC</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+19 (Tu 10/23)
+</td>
+<td style="text-align: left;">
+<a href="meeting/19-shm/index.html">InterProcess Communication with Shared Memory</a>
+</td>
+<td style="text-align: left;">
+<a href="http://doc.qt.io/qt-5/qsharedmemory.html">Shared Memory in Qt</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+20 (Th 10/25)
+</td>
+<td style="text-align: left;">
+<a href="meeting/20-messages/index.html">Message Serialization</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://doc.qt.io/qt-5/qdatastream.html">QDataStream</a> and <a href="https://developers.google.com/protocol-buffers/?hl=en">Protocol Buffers</a><br> <a href="project/milestone3.html">Milestone 3 Released</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+21 (Tu 10/30)
+</td>
+<td style="text-align: left;">
+<a href="meeting/21-threads/index.html">Threads</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://en.cppreference.com/w/cpp/thread">C++11 Threading</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+22 (Th 11/1)
+</td>
+<td style="text-align: left;">
+<a href="meeting/22-sync/index.html">Thread Synchronization</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://en.cppreference.com/w/cpp/atomic/atomic">std::atomic</a>, <a href="http://en.cppreference.com/w/cpp/thread">C++11 Thread Library</a>, and <a href="http://doc.qt.io/qt-4.8/qsemaphore.html">QSemaphore</a>
+</td>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+23 (Tu 11/6)
+</td>
+<td style="text-align: left;">
+<a href="meeting/23-thread-safe-queue/index.html">Detailed Example: A thread-safe queue in C++11</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://en.cppreference.com/w/cpp/thread">C++11 Thread Library</a><br> <a href="project/milestone4.html">Milestone 4 Released</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+24 (Th 11/8)
+</td>
+<td style="text-align: left;">
+<a href="meeting/24-prodcon/index.html">Producer/Consumer Pattern</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="https://en.wikipedia.org/wiki/Producer–consumer_problem">Wikipedia Entry on Producer/Consumer</a>, <a href="http://doc.qt.io/qt-5/qthread.html">Qt Threads</a>, and <a href="http://doc.qt.io/qt-5/qtconcurrent.html">Qt Concurrent</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+25 (Tu 11/13)
+</td>
+<td style="text-align: left;">
+<a href="meeting/25-actors/index.html">Actor Pattern</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href= "http://actor-framework.org/pdf/chs-ccafs-14.pdf">Whitepaper on a C++ Actor Library</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+26 (Th 11/15)
+</td>
+<td style="text-align: left;">
+<a href="meeting/26-embedded/index.html">Embedded Programming in C++</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf">Chapter 17: Free-Space Management</a> from <a href="http://pages.cs.wisc.edu/~remzi/OSTEP/">Operating Systems: Three Easy Pieces</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+27 (Tu 11/27)
+</td>
+<td style="text-align: left;">
+<a href="meeting/27-rtos1/index.html">Embedded Memory Management, Event-driven Code</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://www.freertos.org/a00111.html">FreeRTOS Memory Management</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+28 (Th 11/29)
+</td>
+<td style="text-align: left;">
+<a href="meeting/28-rtos2/index.html">Introduction to FreeRTOS</a>
+</td>
+<td style="text-align: left;">
+Reading: <a href="http://www.freertos.org/taskandcr.html">FreeRTOS Tasks and Co-routines</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+29 (Tu 12/4)
+</td>
+<td style="text-align: left;">
+<a href="meeting/29-review/index.html">Review</a>
+</td>
+<td style="text-align: left;">
+</td>
+</tr>
+</tbody>
+</table>
+<h1 id="important-dates">Important Dates</h1>
+<ul>
+<li>Last day to drop: 10/1/2018</li>
+<li>Last date to reschedule Finals: 11/17/2018</li>
+<li>Final Exam Schedule:
+<ul>
+<li>(CRN 82992) 12/10/2018 1:05 PM to 3:05 PM in SURGE 117A</li>
+<li>(CRN 82994) 12/13/2018 1:05 PM to 3:05 PM in SURGE 117A</li>
+</ul></li>
+</ul>
+<h1 id="prerequisites">Prerequisites</h1>
+<p>ECE 2574 Data Structures and Algorithms. You are expected to be competent in the basics of programming with C++ and the use of data structures and algorithms to solve problems.</p>
+<p>It is helpful to be familiar with Unix systems (e.g. taken 2524), but it is not a prerequisite.</p>
+<p>If you have transferred and/or not taken ECE 1574/2574 you should expect a steep learning curve as you will need to learn C++ syntax and memory management techniques.</p>
+<h1 id="text-and-resources">Text and Resources</h1>
+<p>Readings will be assigned from the following books. They can be read online through the library, although there is limited access, or you can purchase your own (both are very good and offer solid, practical advice on programming). There will also be assigned readings from various online sources.</p>
+<ul>
+<li>Clean Code, Robert C. Martin, Prentice Hall 2009</li>
+<li>The Pragmatic Programmer, Andrew Hunt and David Thomas, Addison-Wesley, 2000</li>
+</ul>
+<p><em>Additional</em> <em>Resources</em></p>
+<ul>
+<li><a href="https://git-scm.com/book/en/v2">Pro Git book</a></li>
+<li><a href="http://www.cmake.org/">CMake Website</a></li>
+<li><a href="http://en.cppreference.com/w/">C++ Reference</a></li>
+<li><a href="http://doc.qt.io/">QT Documentation</a></li>
+</ul>
+<h1 id="software">Software</h1>
+<p>A modern C++ compiler with sufficient C++11 support is required (see below). Only specified compiler extensions and libraries may be used. We will use the open source CMake application for managing the build process (see www.cmake.org) and the git source code management tool (see git-scm.com).</p>
+<p>Recommended Compilers:</p>
+<ul>
+<li>GCC &gt;= 4.8</li>
+<li>Clang &gt;= 3.5</li>
+<li>VC++ &gt;= 19 (Visual Studio 2015 or 2017)</li>
+</ul>
+<p><em>Development</em> <em>Environments</em></p>
+<p>For development you can use your favorite editor and a command console to invoke the compiler toolchain, or you can use any other integrated development environment (IDE) supported by CMake, including Visual Studio on Windows and XCode on the Mac. There are several other options including Qt Creator and CLion which use cmake internally. Use whatever works for you but note the project defines a virtual reference environment that, for grading purposes, is the final arbiter of working code. More details about this will be provided in the first two weeks. It is your responsibility to ensure your code works as expected in the reference environment. Also, <strong>whatever environment you choose, you should be very adept at using it to write code, compile, and debug</strong>.</p>
+<h1 id="grading">Grading</h1>
+<p>Coursework consists of in-class exercises, a project with 5 milestones, and a final exam. Your score is weighted as follows:</p>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 27%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Exercises:
+</td>
+<td style="text-align: left;">
+10%
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Project Milestones:
+</td>
+<td style="text-align: left;">
+30%
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Final Project:
+</td>
+<td style="text-align: left;">
+45%
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Final Exam:
+</td>
+<td style="text-align: left;">
+15%
+</td>
+</tr>
+</tbody>
+</table>
+<p>Letter grades are assigned according to the following scale:</p>
+<pre><code>Min Score -&gt; Grade
+    0     -&gt; F
+    60    -&gt; D-
+    63    -&gt; D
+    67    -&gt; D+
+    70    -&gt; C-
+    73    -&gt; C
+    77    -&gt; C+
+    80    -&gt; B-
+    83    -&gt; B
+    87    -&gt; B+
+    90    -&gt; A-
+    94    -&gt; A</code></pre>
+<p>The exercises are worked through in-class after a short lecture on the material for that day, and are <strong>due by midnight the day of class</strong>.</p>
+<p>The project is divided into milestones with requirements that correspond to the material covered to that point in the course. These milestones have explicit due dates. The total project grade is distributed across these milestones and the final version you submit. All project milestones must be turned in by the time/date indicated on the assignment. <strong>No late project work will be assigned a grade.</strong></p>
+<p>If you feel that an error has been made in grading any assignment, you must present a <strong>written</strong> appeal to the instructor (email is preferred) within one week after the assignment feedback is returned to you. Verbal appeals are not considered before this step. Your appeal should be specific.</p>
+<h1 id="honor-code-policy">Honor Code Policy</h1>
+<p>The Undergraduate Honor Code pledge that each member of the university community agrees to abide by states:</p>
+<p><i>“As a Hokie, I will conduct myself with honor and integrity at all times. I will not lie, cheat, or steal, nor will I accept the actions of those who do.”</i></p>
+<p>Students enrolled in this course are responsible for abiding by the Honor Code. A student who has doubts about how the Honor Code applies to any assignment is responsible for obtaining specific guidance from the course instructor before submitting the assignment for evaluation. Ignorance of the rules does not exclude any member of the University community from the requirements and expectations of the Honor Code. For additional information about the Honor Code, please visit: www.honorsystem.vt.edu.</p>
+<p>Adherence to Virginia Tech's honor code is expected in all phases of this course. All graded work, other than the in-class exercises, is expected to be the original work of the individual student. In working on the assignments, discussion and cooperative learning is encouraged. However, solutions are to be the work of the individual student. In all assignments you may discuss general concepts, such as algorithms, language syntax, Internet resources, or class and text topics, with others. However, copying of specific assignment program-code <strong>in the current or from previous semesters</strong> is an honor code violation. Any violations of the honor code will automatically be forwarded to the Office of the Honor System with the recommendation of an F* sanction as your final grade in the course. I do use a code comparison system.</p>
+<h1 id="additional-course-policies">Additional Course Policies</h1>
+<p>Course Website: Students are expected to access class resources via this website, on Canvas (vt.instructure.com), and Piazza (piazza.com). This is the primary way assignments, examples, notes, and other information will be distributed. You should check the sites daily for updates.</p>
+<p>Class Attendance and Classroom Conduct: Students are expected to attend class and contribute to the discussion. Distractions (e. g. arriving to class late or leaving early) are disrespectful to the entire class and will not be tolerated.</p>
+<p>Email Communication: If you want to send email the instructor use clwyatt@vt.edu and use your VT email account as the sender to ensure it does not get filtered.</p>
+<p>University Closings: In case of inclement weather you may call 231-6668 to find out if any University closings are scheduled. If the University is closed due dates may be extended at the discretion of the instructor.</p>
+<h1 id="special-accommodations">Special Accommodations</h1>
+<p>Reasonable accommodations are available for students who have documentation of a disability from a qualified professional. Students should work through Services for Students with Disabilities (SSD) in Lavery Hall. Any student with accommodations through the SSD Office should contact me during the first two weeks of the semester.</p>
+<p>If participation in some part of this class conflicts with your observation of specific religious holidays during the semester, please contact me during the first two weeks of class to make alternative arrangements.</p>
+<p>If you miss class due to illness, especially in the case of an exam or some deadline, see a professional in Schiffert Health Center. If deemed appropriate, documentation of your illness will be sent to the Dean's Office for distribution to me. If you experience a personal or family emergency that necessitates missing class, contact the Dean of Students at 231-3787 or see them in 152 Henderson Hall.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:03 GMT -->
+</html>

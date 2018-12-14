@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/05-stl/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:07 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="meeting-05-review-of-data-structures-a-tour-of-c-standard-library">Meeting 05: Review of Data Structures: A Tour of C++ Standard Library</h1>
+<p><strong>TIP</strong>: prefer to use containers and algorithms from the standard library rather than hand-coded data structures and algorithms. Learn what is in the standard library and how to use it.</p>
+<p>In 2574 you saw how to implement data structures and common algorithms for sorting and searching. However, the C++ standard library provides implementations of these that are efficient and well tested, so you should prefer to use them over hand-coded approaches whenever feasible.</p>
+<p><strong>Aside</strong>: This might cause you some annoyance, why did we ask you to write code in 2574 that already exists? The reasons are that: one, it helped you understand which data structure and algorithm to use and under what tradeoffs, two, it was good experience, and three, in some cases, often in embedded programming, the C++ standard library is not a viable option.</p>
+<p>This extends beyond complex algorithms, to what might appear as simple loops.</p>
+<p>Links:</p>
+<ul>
+<li><a href="slides.pdf">slides</a></li>
+<li><a href="http://en.cppreference.com/w/">A good C++ reference</a></li>
+</ul>
+<h2 id="exercise-05-word-count">Exercise 05: Word Count</h2>
+<p>The goal of this exercise is to learn how to look for useful parts of the standard library and how to use it generally.</p>
+<p>GitHub Invitation URL: <a href="https://classroom.github.com/a/QOXVoryV">exercise5</a></p>
+<p>Prerequisites:</p>
+<ul>
+<li>You have completed <code>Exercise 01: Setup</code> and have a working compiler.</li>
+</ul>
+<p>Steps:</p>
+<ol type="1">
+<li>Create a working directory somewhere on your computer, then change to that directory.</li>
+<li><p>Clone the assignment for today after accepting the GitHub invitation at the link above.</p>
+<pre><code>git clone https://github.com/VTECE3574/exercise05-USER.git</code></pre>
+<p>where USER is your GitHub username. You will have to enter your GitHub username and password.</p></li>
+<li><p>In a file named wordcount.cpp write a program that reads all the words from a text file name &quot;prose.txt&quot;, counting how many times each word appears, sorting them from the most frequently appearing to least, then writing to standard out the top 10 most frequently used words.</p>
+<ul>
+<li>Consider a word any space-separated string.</li>
+<li><strong>Leverage the standard library as much as possible</strong>.</li>
+<li>For the purpose of this exercise you can skimp on error checking.</li>
+</ul></li>
+<li>Now, use git to commit the source file you added to the local repository.</li>
+<li><p>Finally, use git push to synchronize the repository with that on GitHub</p></li>
+</ol>
+<p>You have completed the Exercise.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/05-stl/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:08 GMT -->
+</html>

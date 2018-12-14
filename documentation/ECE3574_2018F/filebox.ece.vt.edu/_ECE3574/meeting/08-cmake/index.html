@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/08-cmake/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:08 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="meeting-08-building-cross-platform-software-using-cmake">Meeting 08: Building Cross-Platform Software using CMake</h1>
+<p>The goal of today's meeting it to learn about building larger software projects that have multiple modules of code, unit tests, and main programs.</p>
+<ul>
+<li>Why CMake?</li>
+<li>Running CMake: GUI and command-line</li>
+<li>Writing a basic CMakeLists.txt configuration file</li>
+<li>Exercise</li>
+</ul>
+<p>Links:</p>
+<ul>
+<li><a href="slides.pdf">Slides</a></li>
+</ul>
+<h2 id="exercise-08-basic-cmake">Exercise 08: Basic CMake</h2>
+<p>GitHub Invitation URL: <a href="https://classroom.github.com/a/XhmJp098">exercise8</a></p>
+<p>Steps:</p>
+<ol type="1">
+<li>Create a working directory somewhere on your computer, then change to that directory.</li>
+<li><p>Clone the assignment for today after accepting the GitHub invitation at the link above.</p>
+<pre><code>git clone https://github.com/VTECE3574/exercise08-USER.git</code></pre>
+<p>where USER is your GitHub username. You may have to enter your GitHub username and password.</p></li>
+<li><p>Examine the repository. There is a small set of source files in the repository that implement a simple module of code, a unit test for it, and a program that uses the module.</p>
+<ul>
+<li>treap_bst.h and treap_bst.txx implement a templated binary search tree using a data structure known as a treap.</li>
+<li>test_treap.cpp is an incomplete set of tests for the treap that uses catch. The test can be build from the files: catch.hpp test_treap.cpp treap_bst.h treap_bst.txx</li>
+<li>compress.cpp implements a simple compression/decompression program using the treap BST. It can be built from the files: compress.cpp treap_bst.h treap_bst.txx</li>
+</ul></li>
+<li><p>Write a CMakeLists.txt file to build the unit test and the program.</p></li>
+<li><p>Configure the project using CMake, compile the project, and run the unit tests on your host platform.</p></li>
+<li><p>Now, use git to commit the CMakeLists.txt file you added to the local repository.</p></li>
+<li><p>Finally, use git push to synchronize the repository with that on GitHub.</p></li>
+</ol>
+<p>You have completed the Exercise.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/08-cmake/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:09 GMT -->
+</html>

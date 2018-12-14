@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/06-design/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:08 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="meeting-06-module-and-api-design">Meeting 06: Module and API Design</h1>
+<p>The goal of today's meeting is to understand what makes a program or library well designed. These are somewhat subjective criteria but constitute the consensus of a large number of good programmers. You should strive to follow these principles and recommendations.</p>
+<ul>
+<li>DRY Principle</li>
+<li>Single-Responsibility Principle</li>
+<li>Othogonality</li>
+<li>Coupling and Law of Demeter</li>
+<li>Principle of Least-Astonishment</li>
+<li>Naming and Arguments</li>
+</ul>
+<p>Links:</p>
+<ul>
+<li><a href="slides.pdf">Slides</a></li>
+</ul>
+<h2 id="exercise-06-designing-an-argument-class">Exercise 06: Designing an Argument Class</h2>
+<p>Command-line applications often allow user input at program startup, using the argument to main:</p>
+<pre><code>int main(int argc, char *argv[])</code></pre>
+<p>where argc is the number of space-separated strings type after the executable name. For example, suppose we have an executable named <code>do.exe</code>. It might take several different arguments (&gt; is the command prompt)</p>
+<pre><code>&gt; do.exe -flag -setting=12 afilename1 afilename2</code></pre>
+<p>where</p>
+<ul>
+<li><code>flag</code> is an option, if <code>argv[1]=&quot;-flag&quot;</code> is present the flag it considered set by the program, else not</li>
+<li><code>setting</code> is a parameter with the text after the = parsed as a number</li>
+<li><code>afilename1</code> and <code>afilename2</code> are just strings representing filenames</li>
+</ul>
+<p>The first two arguments are optional and by convention start with a dash. Their ordering on the command-line does not matter. The last two are called a positional arguments, are required, and their order matters. So the following would start the program the same way:</p>
+<pre><code>&gt; do.exe -setting=12 afilename1 -flag afilename2</code></pre>
+<p>Generally if a required argument is missing or an unexpected argument is present then an error is printed along with usage information, e.g.</p>
+<pre><code>&gt; do.exe -flag myfile.txt
+Error: missing positional argument
+
+Usage: do.exe [-flag] [-setting=N] file1 file 2
+
+* flag is an optional flag
+* setting is an optional parameter where N is a positive integer
+* file1 is the input file
+* file2 is the output file</code></pre>
+<p>Consider a class named <code>CommandLineArguments</code> that helps the programmer deal with command-line arguments. <em>Design</em> a class to do this by creating a header file <code>command_line_arguments.hpp</code> that defines the public part of the class interface.</p>
+<ul>
+<li>What member functions should it have?</li>
+<li>What should they be named?</li>
+<li>What arguments should they take?</li>
+<li>What should they return?</li>
+<li>What should the comments say they do?</li>
+</ul>
+<p>You do not have to implement any of the methods and you can create other abstractions (classes, functions) as needed without explicitly defining them.</p>
+<p>This code does not have to compile.</p>
+<p>GitHub Invitation URL: <a href="https://classroom.github.com/a/it0hxWJl">exercise6</a></p>
+<p>Steps:</p>
+<ol type="1">
+<li>Create a working directory somewhere on your computer, then change to that directory.</li>
+<li><p>Clone the assignment for today after accepting the GitHub invitation at the link above.</p>
+<pre><code>git clone https://github.com/VTECE3574/exercise06-USER.git</code></pre>
+<p>where USER is your GitHub username. You may have to enter your GitHub username and password.</p></li>
+<li><p>In the file named <code>command_line_arguments.hpp</code> design your class as instructed above.</p></li>
+<li>Now, use git to commit your changes to the local repository.</li>
+<li><p>Finally, use git push to synchronize the repository with that on GitHub</p></li>
+</ol>
+<p>You have completed the Exercise.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/06-design/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:08 GMT -->
+</html>

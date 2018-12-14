@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/milestone4.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:19 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="milestone-4">Milestone 4</h1>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Assigned:
+</td>
+<td style="text-align: left;">
+11/6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Due:
+</td>
+<td style="text-align: left;">
+Wednesday 12/5 by 11:59 pm
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="updates">Updates</h2>
+<ul>
+<li>Mon Nov 12 09:27:01 EST 2018: split the last task up to better guide your development. Added an example code for handling OS signals.</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>In this last milestone you will develop the final version of the application using separate threads for the GUI and interpreter kernel. You must have completed at least milestone 0 and 1 and the basic GUI portion of Milestone 2 <strong>before</strong> attempting this one.</p>
+<p><strong>Note:</strong> Your final project grade will be evaluated using your Milestone 4 submission. All current and previously specified functionality should be available. See the <a href="index.html">project overview</a> page for the final project grading criteria.</p>
+<h2 id="background-information">Background Information</h2>
+<ul>
+<li><a href="index.html">Project Overview</a></li>
+<li><a href="milestone0.html">Milestone 0 Specification</a></li>
+<li><a href="milestone1.html">Milestone 1 Specification</a></li>
+<li><a href="milestone2.html">Milestone 2 Specification</a></li>
+<li><a href="milestone3.html">Milestone 3 Specification</a></li>
+<li><a href="../meeting/23-thread-safe-queue/index.html">Thread-Safe Queues</a></li>
+</ul>
+<h2 id="task-0-update-cmakelists.txt">Task 0: Update CMakeLists.txt</h2>
+<p>You will need to make the following change to the CMakeLists.txt file to allow the threaded version on plotscript and unit_tests to compile in the reference environment and the grader. Just add the pthread library to the <code>target_link_libraries</code> as shown in the diff below.</p>
+<pre><code>diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 5f0c883..6e1172c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -111,8 +111,8 @@ if(DEFINED ENV{ECE3574_REFERENCE_ENV})
+   set(GCC_COVERAGE_COMPILE_FLAGS &quot;-g -O0 -fprofile-arcs -ftest-coverage&quot;)
+   set_target_properties(interpreter PROPERTIES COMPILE_FLAGS ${GCC_COVERAGE_COMPILE_FLAGS} )
+   set_target_properties(unit_tests PROPERTIES COMPILE_FLAGS ${GCC_COVERAGE_COMPILE_FLAGS} )
+-  target_link_libraries(unit_tests interpreter gcov)
+-  target_link_libraries(plotscript interpreter gcov)
++  target_link_libraries(unit_tests interpreter pthread gcov)
++  target_link_libraries(plotscript interpreter pthread gcov)
+   add_custom_target(coverage
+     COMMAND ${CMAKE_COMMAND} -E env &quot;ROOT=${CMAKE_CURRENT_SOURCE_DIR}&quot;
+     ${CMAKE_CURRENT_SOURCE_DIR}/scripts/coverage.sh)</code></pre>
+<h2 id="task-1-message-queues-for-input-strings-and-expressions">Task 1: Message queues for input strings and expressions</h2>
+<p>Using one or more classes and the standard C++11 threading library, implement the functionality to pass a string containing a plotscript program and an arbitrary Expression between threads in a safe manner. Be sure to unit test your module(s) fully before moving to the remaining tasks. Add any files you create to the CMakeLists.txt file in the appropriate place.</p>
+<h2 id="task-2-move-interpreter-kernel-to-separate-thread">Task 2: Move interpreter kernel to separate thread</h2>
+<p>Redesign your code so that the parsing and evaluation of plotscript happens in a separate thread from that of the main program, TUI (plotscript) or GUI (notebook). The thread should be started upon program creation and be stopped before program exit. This should use the modules from task 1 to send the input string to the interpreter thread and receive the result for display asynchronously (that is do not just use <code>std::async</code>). You must use C++11 threading in both programs and neither the unit tests or plotscript program can link with Qt. Be sure to add any files you create to the CMakeLists.txt file in the appropriate place.</p>
+<p>You should write extensive unit tests to ensure your threaded interpreter kernel works correctly <strong>before</strong> moving to task 3. Note that you should use Catch's <code>CHECK</code> assertion rather than <code>REQUIRE</code> between starting and stopping of threads. otherwise your unit tests will abort abnormally on test failure.</p>
+<h2 id="task-3-starting-and-stopping-the-interpreter-kernel">Task 3: Starting and stopping the interpreter kernel</h2>
+<p>Add the ability to control the interpreter kernel thread as follows.</p>
+<p>In the TUI (plotscript), when in REPL mode (only), this functionality should be controlled using special (non-plotscript) commands:</p>
+<ul>
+<li>typing <code>%start</code> and pressing enter should start an interpreter kernel is a separate thread. It should have no effect if a thread is already running. The number of threads used should be two after this command.</li>
+<li>typing <code>%stop</code> and pressing enter should stop a running interpreter kernel. It should have no effect if a thread is already stopped. The number of threads used should be one after this command.</li>
+<li>typing <code>%reset</code> and pressing enter should stop and reset a running interpreter kernel to the default state, clearing the environment. It should then start a new running kernel. The number of threads used should be two after this command.</li>
+</ul>
+<p>If a user enters a plotscript expression when the interpreter is not running, display the error message: &quot;Error: interpreter kernel not running&quot;.</p>
+<p>In the GUI (notebook_app) add <a href="http://doc.qt.io/qt-5/qpushbutton.html">QPushButtons</a> to start/stop/reset the kernel with the same functionality of the corresponding TUI commands should be added in a layout at the top of the NotebookApp Widget (see figure). These should have the objects names &quot;start&quot;, &quot;stop&quot;, and &quot;reset&quot; respectively.</p>
+<center>
+<img src="m4-screenshot.png" alt="Milestone 4 Buttons" />
+</center>
+<p>In the GUI, if a user enters a plotscript expression for evaluation (using shift-enter) when the interpreter is not running, display the error message (using the OutputWidget): &quot;Error: interpreter kernel not running&quot;. Otherwise, disable the InputWidget until the result is ready to be displayed, at which time the result should be displayed in the OutputWidget and the InputWidget re-enabled.</p>
+<h2 id="task-4-interrupting-the-interpreter-kernel">Task 4: Interrupting the interpreter kernel</h2>
+<p>Add the ability to interrupt the evaluation of plotscript expressions.</p>
+<ul>
+<li>In the TUI, typing <code>%exit</code> and pressing enter should exit the plotscript REPL with <code>EXIT_SUCCESS</code>. Be sure to stop any running threads before program exit.<br />
+</li>
+<li>In the TUI, typing <code>Cntl-C</code> (holding down the Control key and pressing the C key) should interrupt a running interpreter kernel evaluation as soon as possible. That is it should be possible to interrupt the interpreter <strong>during</strong> evaluation. Plotscript should immediately display the error message: &quot;Error: interpreter kernel interrupted&quot;, be left running, and any environment changes prior to the interruption discarded. It should have no effect if a thread is stopped. An example program demonstrating how to handle signals like <code>Cntl-C</code> is <a href="https://gist.github.com/clwyatt/58169c7b0053c49cc36cca67f4c77cdc">here</a>.</li>
+<li>In the GUI (notebook_app) add another <a href="http://doc.qt.io/qt-5/qpushbutton.html">QPushButton</a> to interrupt the kernel with the same functionality of <code>Cntl-C</code> in the TUI, except the message is displayed in the OutputWidget. This button should have the object name &quot;interrupt&quot;.</li>
+</ul>
+<h2 id="submission">Submission</h2>
+<p>To submit your milestone:</p>
+<ol type="1">
+<li><p>Tag the git commit that you wish to be considered for grading as &quot;milestone4&quot;.</p>
+<pre><code>git tag milestone4</code></pre></li>
+<li><p>Push this change to GitHub</p>
+<pre><code>git push origin milestone4</code></pre></li>
+</ol>
+<p>If you need to tag a different version of your code simply create and push a new tag appending a monotonically increasing number to milestone4 using '-', e.g. milestone4-2, milestone4-3, etc.</p>
+<p>Be sure you have committed all the changes you intend to. You should re-clone your repository into a separate directory and double check it is what you intend to submit. <strong>Failure to complete these steps by the due date may result in a failed submission.</strong></p>
+<h2 id="grading">Grading</h2>
+<p>There are 6 course percentage points allocated to this milestone. You will receive a detailed feedback report on your submission via Canvas before the end of final exams.</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Code compiles in the reference environment
+</td>
+<td style="text-align: left;">
+0.5 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Correctness Tests
+</td>
+<td style="text-align: left;">
+4 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Testing
+</td>
+<td style="text-align: left;">
+0.5 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Code Quality
+</td>
+<td style="text-align: left;">
+0.5 point
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Good Development Practices
+</td>
+<td style="text-align: left;">
+0.5 point
+</td>
+</tr>
+</tbody>
+</table>
+<p>Grading Notes:</p>
+<ul>
+<li>If your code does not build in the reference environment you will receive <strong>no points</strong>.</li>
+<li>Correctness can be <a href="https://grader.ece.vt.edu/">checked in the auto-grader</a> and is determined by the proportion of instructor tests that pass.</li>
+<li>Testing includes both unit test coverage and completeness of NotebookApp functional tests. Unit test coverage can be determined in the reference environment using the same procedure in Milestone 1.</li>
+<li>Code quality means your code compiles with no warnings at a high-warning level (STRICT in the reference environment) and your unit tests have no memory leaks, as well as other criteria mentioned in class (function length, variable naming, etc).</li>
+<li>Good development practices is assessed by looking for regular, incremental, and well-packaged commits.</li>
+</ul>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/milestone4.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:19 GMT -->
+</html>

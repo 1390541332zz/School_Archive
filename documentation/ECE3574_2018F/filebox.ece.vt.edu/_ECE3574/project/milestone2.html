@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/milestone2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:12 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="milestone-2">Milestone 2</h1>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Assigned:
+</td>
+<td style="text-align: left;">
+10/2
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Due:
+</td>
+<td style="text-align: left;">
+<del>
+Wednesday 10/24 by 11:59 pm
+</del>
+Monday 10/29 by 11:59 pm
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="updates">Updates</h2>
+<ul>
+<li>Wed Oct 3 11:39:07 EDT 2018: simplified the display rules in Task 4, updated video.</li>
+<li>Tue Oct 9 08:52:16 EDT 2018: Fix gcov linker error in reference environment. Download <a href="m2_cmake_gcov_patch.diff">this patch file</a> (right click - save as) and, in the git repo, do <code>git apply path/to/m2_cmake_gov_patch.diff</code>. You can then add and commit the changes. Note it prints nothing if it applies successufully and can only be applied once.</li>
+<li>Mon Oct 15 07:13:32 EDT 2018: update to specify file names for Qt modules.</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>In this milestone you will extend PlotScript with some additional features and add support for the graphics primitives Point, Line, and Text. You will also prototype the interface to the graphical notebook application using Qt.</p>
+<p>You should complete milestone 0 and 1 <strong>before</strong> attempting this one.</p>
+<h2 id="background-information">Background Information</h2>
+<ul>
+<li><a href="index.html">Project Overview</a></li>
+<li><a href="milestone0.html">Milestone 0 Specification</a></li>
+<li><a href="milestone1.html">Milestone 1 Specification</a></li>
+<li><a href="http://doc.qt.io/qt-5/qplaintextedit.html">QPlainTextEdit Widget</a></li>
+<li><a href="http://doc.qt.io/qt-5/graphicsview.html">Qt Graphics View Framework</a></li>
+</ul>
+<h2 id="task-1-adding-a-literal-string-type">Task 1: Adding a literal string type</h2>
+<p>We will need the ability to give our plots titles, label axes, etc. For this we need a simple string type. Our strings will always be constant string literals denoted by surrounding <code>&quot;</code> (decimal ASCII character 34) and can include any printable character (including spaces) other than <code>&quot;</code>. Extend the interpreter code to support such strings as the type <code>String</code> which are entered directly with quotes. Strings are printed as expressions, including the surrounding quotes to distinguish them from symbols. For now, we are not defining any procedures that operate on strings, but they should be able to be used within PlotScript; i.e. symbols can be defined as strings and lists can hold strings, strings can be used as procedure arguments, etc. Some examples:</p>
+<pre><code>plotscript&gt; (&quot;foo&quot;)
+(&quot;foo&quot;)
+plotscript&gt; (&quot;a string with spaces&quot;)
+(&quot;a string with spaces&quot;)
+plotscript&gt; (define x (&quot;foo&quot;))
+(&quot;foo&quot;)
+plotscript&gt; (x)
+(&quot;foo&quot;)
+plotscript&gt; (define mylist (list &quot;eggs&quot; &quot;bread&quot; &quot;milk&quot; &quot;bacon&quot;))
+((&quot;eggs&quot;) (&quot;bread&quot;) (&quot;milk&quot;) (&quot;bacon&quot;))
+plotscript&gt; (first mylist)
+(&quot;eggs&quot;)</code></pre>
+<p><strong>Note:</strong> Implementing the <code>String</code> type will require modifications to the Token and Parse modules, in addition to the classes you have modified in earlier milestones.</p>
+<h2 id="task-2-adding-property-lists">Task 2: Adding property lists</h2>
+<p>Now that we have added several features to plotscript, it has become quite useful as a scripting language. The last major piece we will need is a way to tag certain expression with <em>properties</em>. While these might have many uses, we will apply them in the next task to implement geometric primitives within PlotScript itself.</p>
+<p>In the C++ code, add the ability to store a <em>property</em> <em>list</em>, consisting of unordered key-value pairs (entries in the property list), associated with the head of an expression. The key must be an expression of PlotScript type <code>String</code>. The value can be any Expression. Properties get copied and assigned with the expression, but do not affect comparisons.</p>
+<p>Add two built-in procedures, <code>set-property</code> and <code>get-property</code>, to set and retrieve a property.</p>
+<ul>
+<li><p><code>set-property</code> is a tertiary procedure taking a <code>String</code> expression as it's first argument (the key), an arbitrary expression as it's second argument (the value), and an Expression as the third argument. The procedure should add or reset an entry to the third argument's property list, after evaluating it, with a key equal to the first argument and value that results from evaluating the second argument. The resulting expression, with the modified property list, is returned. The property-list has no effect on how the expression is printed. It is a semantic error if the arguments are not of the correct type. Note the value argument to set-property is evaluated before adding it to the property list, but there are no side effects to the global environment (similar to lambdas). REPL examples:</p>
+<pre><code>plotscript&gt; (set-property &quot;number&quot; &quot;three&quot; (3))
+(3)
+plotscript&gt; (set-property &quot;number&quot; (3) &quot;three&quot;)
+(&quot;three&quot;)
+plotscript&gt; (set-property &quot;number&quot; (+ 1 2) &quot;three&quot;)
+(&quot;three&quot;)
+plotscript&gt; (set-property &quot;label&quot; &quot;foo&quot; (lambda (x) (* 3 (+ 2 x))))
+(((x)) (* (3) (+ (2) (x))))
+plotscript&gt; (set-property (+ 1 2) &quot;number&quot; &quot;three&quot;)
+Error: first argument to set-property not a string</code></pre></li>
+<li><p><code>get-property</code> is a binary procedure taking a <code>String</code> expression as it's first argument (the key) and an arbitrary expression as the second argument. The procedure returns the expression associated with the first argument of the expression in the second argument, or returns an Expression of type <code>None</code> if they key does not exist in the property list. It is a semantic error if the arguments are not of the correct type. REPL examples:</p>
+<pre><code>plotscript&gt; (define a (+ 1 I))
+(1,1)
+plotscript&gt; (define b (set-property &quot;note&quot; &quot;a complex number&quot; a))
+(1,1)
+plotscript&gt; (get-property &quot;note&quot; b)
+(&quot;a complex number&quot;)
+plotscript&gt; (get-property &quot;foo&quot; b)
+NONE</code></pre></li>
+</ul>
+<p><strong>Note:</strong> In the starter code, Expressions of type None where printed as <code>()</code> but now that we have empty lists, this needs to be adjusted. You should modify the way these expressions are printed to match the example above, that is print <code>NONE</code> for PlotScript Expressions of type None.</p>
+<h2 id="task-3-implementing-graphic-primitives">Task 3: Implementing graphic primitives</h2>
+<p>We will need some simple graphical primitives to build our plots from. These should be implemented in plotscript itself as defined lambda expressions, using the previously developed features, and saved as a plain-text file in the source code repository (give it the extension .pls). These pre-defined lambda functions should be parsed and evaluated by plotscript before interpreting any user code (from a file the -e flag, or the REPL). If there is a parsing or semantic error in the start-up script, it should be reported as an warning by the REPL prior to printing results or prompt.</p>
+<p><strong>Points:</strong> A <code>Point</code> graphic consists of a PlotScript List of two numbers representing a point in a two-dimensional plane, where the first number is the horizontal coordinate and the second number is the vertical coordinate. The list is tagged with the property <code>&quot;object-name&quot;</code> with a value of <code>&quot;point&quot;</code>.</p>
+<p>Point graphics have the properties:</p>
+<ul>
+<li>object-name: &quot;point&quot; (required)</li>
+<li>size: a positive Number expression indicating the size of the point to draw (optional, defaults to 0)</li>
+</ul>
+<p>The following user-defined procedure should be developed in Plotscript and placed in the start-up file.</p>
+<ul>
+<li><p>Construct a point with coordinates x y, where x and y are any expressions producing a Number.</p>
+<pre><code>(make-point x y)</code></pre></li>
+</ul>
+<p><strong>Line:</strong> A <code>Line</code> graphic consists of a PlotScript List with two <code>Point</code> entries indicating the start and end-points of the line respectively.</p>
+<p>Lines graphics have the properties:</p>
+<ul>
+<li>object-name: &quot;line&quot; (required)</li>
+<li>thickness: a positive Number expression indicating the thickness of the line (optional, defaults to 1)</li>
+</ul>
+<p>The following user-defined procedure should be developed in Plotscript and placed in the start-up file.</p>
+<ul>
+<li><p>Construct a line with points p1 and p2, where p1 and p2 are any expressions producing a Point.</p>
+<pre><code>(make-line p1 p2)</code></pre></li>
+</ul>
+<p><strong>Text:</strong> A <code>Text</code> graphic consists simply of a PlotScript String.</p>
+<p>Text graphics have the properties:</p>
+<ul>
+<li>object-name &quot;text&quot; (required)</li>
+<li>position (Point, optional, defaults to origin)</li>
+</ul>
+<p>The following user-defined procedure should be developed in Plotscript and placed in the start-up file.</p>
+<ul>
+<li><p>Construct text with the contents str, where str could be any expression producing a String.</p>
+<pre><code>(make-text str)</code></pre></li>
+</ul>
+<p><strong>Note</strong> that there is no precondition checking or error checking within the PlotScript procedures.</p>
+<hr />
+<p>Our code will need to locate the start-up script file at run-time. To do this add a text file named <code>startup_config.hpp.in</code> to the source code repository with the following contents</p>
+<pre><code>#ifndef STARTUP_CONFIG_HPP
+#define STARTUP_CONFIG_HPP
+
+#include &lt;string&gt;
+
+const std::string STARTUP_FILE = &quot;@STARTUP_FILE@&quot;;
+
+#endif</code></pre>
+<p>We need to configure cmake to use this file to create a header <code>startup_config.hpp</code> in the build directory with the <code>@STARTUP_FILE@</code> string above replaced by the actual location of the startup file in the source code repository. To do this add the following to the CMakeLists.txt file (replace <code>startup.pls</code> with whatever you named your file)</p>
+<pre><code>set(STARTUP_FILE ${CMAKE_SOURCE_DIR}/startup.pls)
+configure_file(${CMAKE_SOURCE_DIR}/startup_config.hpp.in ${CMAKE_BINARY_DIR}/startup_config.hpp)
+include_directories(${CMAKE_BINARY_DIR})</code></pre>
+<p>Now when you run configure using cmake it will write the <code>startup_config.hpp</code> into the build directory, which we can then include and use to locate the file.</p>
+<h2 id="task-4-starting-the-notebook-implementation">Task 4: Starting the notebook implementation</h2>
+<p><strong>Important Note:</strong> In order for testing and grading to work properly the type and object names specified below must be adhered to.</p>
+<p>The initial notebook interface consists of two widgets, of type <code>InputWidget</code> and <code>OutputWidget</code>, arranged vertically within a main widget <code>NotebookApp</code>. The NotebookApp widget should be used in the <code>notebook.cpp</code> file to instantiate and show the NotebookApp widget, and enter the Qt event loop only (no other work should be done). The NotebookApp module filename should be <code>notebook_app.hpp/.cpp</code>.</p>
+<p><code>InputWidget</code> <strong>must</strong> derive from <code>QPlainTextEdit</code> (using dynamic polymorphism) and have a Qt object name of &quot;input&quot;. The InputWidget module filename should be <code>input_widget.hpp/.cpp</code>. The widget should allow the user to type in PlotScript code within the widget. If the user enters Shift-Enter (hold a shift key down while pressing the return/enter key) the current text is evaluated as a plotscript expression. The result, one of a parsing error, an expression, or an exception, is displayed by the <code>OutputWidget</code>.</p>
+<p><code>OutputWidget</code> <strong>must</strong> internally use <code>QGraphicsView</code>, <code>QGraphicsScene</code>, and related types using composition, and have a Qt object name of &quot;output&quot;. The OnputWidget module filename should be <code>output_widget.hpp/.cpp</code>. The widget should display the output from the previous expression evaluation using the following formatting rules.</p>
+<p><strong>Formatting Rules:</strong></p>
+<ul>
+<li>if the result is a parse error, then the error text should be displayed using a <code>QGraphicsTextItem</code> with the default font staring at position (0,0).</li>
+<li>if the result is an exception, then the exception text should be displayed using a <code>QGraphicsTextItem</code> with the default font starting at position (0,0).</li>
+<li>if Expression is of type None, Number, Complex, Symbol, or String, then the same text as would be rendered in the plotscript REPL should be displayed using a <code>QGraphicsTextItem</code> with the default font starting at position (0,0).</li>
+<li>if Expression is of type (user-defined) Procedure then add nothing to the scene (no display).</li>
+<li>if Expression is of type Point, then a filled, black-colored, circle (using <code>QGraphicsEllipseItem</code>) should be displayed, centered at the Point's coordinates with a diameter equal to the size property. If present in the property list, it is an error if this property is not a positive Number.</li>
+<li>if Expression is of type Line, then a black-colored line (using <code>QGraphicsLineItem</code>) should be displayed, using the Line's coordinates with a thickness equal to the thickness property. If present in the property list, it is an error if this property is not a positive Number.</li>
+<li>if Expression is of type Text, then the text (using <code>QGraphicsTextItem</code>) should be displayed using the default font starting at the position indicated by it's position property. If present in the property list, it is an error if this property is not a Point.</li>
+<li>if Expression is of type List, then recursively display each entry using the rules above without any surrounding parenthesis.</li>
+</ul>
+<p>The display is cleared before displaying the next results. For this milestone we will use the default <code>QGraphicsView</code> coordinate system. Below is a video demonstrating the expected behavior. Note the widgets on your host may appear slightly different. You can pause the video to see study specific input/output behavior. Note the example with the user-defined procedure looks strange, but that is the expected behavior for this milestone.</p>
+<center>
+<video width="602" height="828" controls>
+<source src="m2-demo-media/m2-demo.mp4" type="video/mp4"> <source src="m2-demo-media/m2-demo.ogv" type="video/ogg"> <source src="m2-demo-media/m2-demo.webm" type="video/webm"> Your browser does not support the video tag.
+</video>
+</center>
+<h2 id="task-5-functional-tests-for-notebookapp">Task 5: Functional tests for NotebookApp</h2>
+<p>You should write functional tests for your NotebookApp widget within the provided <code>notebook_test.cpp</code> file. These should locate the widgets defined above (see lecture 14) and used them to inject user input and verify the proper response. There is no explicit coverage requirement for these tests, however you should have tests that demonstrate the all the expected behaviors defined above.</p>
+<h2 id="submission">Submission</h2>
+<p>To submit your milestone:</p>
+<ol type="1">
+<li><p>Tag the git commit that you wish to be considered for grading as &quot;milestone2&quot;.</p>
+<pre><code>git tag milestone2</code></pre></li>
+<li><p>Push this change to GitHub</p>
+<pre><code>git push origin milestone2</code></pre></li>
+</ol>
+<p>If you need to tag a different version of your code simply create and push a new tag appending a monotonically increasing number to milestone0 using '-', e.g. milestone2-2, milestone2-3, etc.</p>
+<p>Be sure you have committed all the changes you intend to. You should re-clone your repository into a separate directory and double check it is what you intend to submit. <strong>Failure to complete these steps by the due date will result in a failed submission.</strong></p>
+<h2 id="grading">Grading</h2>
+<p>There are 6 course percentage points allocated to this milestone. You will receive a detailed feedback report on your submission via Canvas within two weeks of the due date.</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Code compiles in the reference environment
+</td>
+<td style="text-align: left;">
+0.5 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Correctness Tests
+</td>
+<td style="text-align: left;">
+4 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Testing
+</td>
+<td style="text-align: left;">
+0.5 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Code Quality
+</td>
+<td style="text-align: left;">
+0.5 point
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Good Development Practices
+</td>
+<td style="text-align: left;">
+0.5 point
+</td>
+</tr>
+</tbody>
+</table>
+<p>Grading Notes:</p>
+<ul>
+<li>If your code does not build in the reference environment you will receive <strong>no points</strong>.</li>
+<li>Correctness can be <a href="https://grader.ece.vt.edu/">checked in the auto-grader</a> and is determined by the proportion of instructor tests that pass.</li>
+<li>Testing includes both unit test coverage and completeness of NotebookApp functional tests. Unit test coverage can be determined in the reference environment using the same procedure in Milestone 1.</li>
+<li>Code quality means your code compiles with no warnings at a high-warning level (STRICT in the reference environment) and your unit tests have no memory leaks, as well as other criteria mentioned in class (function length, variable naming, etc).</li>
+<li>Good development practices is assessed by looking for regular, incremental, and well-packaged commits.</li>
+</ul>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/milestone2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:12 GMT -->
+</html>

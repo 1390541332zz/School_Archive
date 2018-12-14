@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/milestone3.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:16 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="milestone-3">Milestone 3</h1>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Assigned:
+</td>
+<td style="text-align: left;">
+10/25
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Due:
+</td>
+<td style="text-align: left;">
+Wednesday 11/14 by 11:59 pm
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="updates">Updates</h2>
+<ul>
+<li>Thu Nov 8 08:40:56 EST 2018: to clarify the layout specification, revealed test for testDiscretePlotLayout</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>In this milestone you will so some minor improvements to graphics rendering and develop the plotting functionality that gives PlotScript it's name.</p>
+<p>You should complete milestone 0 through 2 <strong>before</strong> attempting this one.</p>
+<h2 id="background-information">Background Information</h2>
+<ul>
+<li><a href="index.html">Project Overview</a></li>
+<li><a href="milestone0.html">Milestone 0 Specification</a></li>
+<li><a href="milestone1.html">Milestone 1 Specification</a></li>
+<li><a href="milestone2.html">Milestone 2 Specification</a></li>
+</ul>
+<h2 id="task-1-graphics-continued">Task 1: Graphics continued</h2>
+<ol type="1">
+<li>Modify your code handling Text graphics from milestone 2 as follows:</li>
+</ol>
+<ul>
+<li>Modify the position of Text graphics to be at the center of it's bounding box and to use the &quot;Courier&quot; font with a point size of one. Thus, when the position is specified in PlotScript it should be the center of the text bounding box in the QtGraphicsScene coordinate system. For example the following code <code>(make-text &quot;Hello World!&quot;)</code> renders as
+<center>
+<img src="m3-text-screen.png" alt="Demonstration of Text position" />
+</center>
+in the scene coordinate system, where, for illustration, the cross-hairs have been added and centered at (0,0) with extents of +/- 1.</li>
+<li>Add an optional &quot;text-scale&quot; property mapping to a positive Number indicating the scale factor to use when displaying the text. If not present or the property value is invalid, the default scale factor is one.</li>
+<li>Add an optional &quot;text-rotation&quot; property mapping to a Number specifying the rotation angle about the Text Position <strong>in radians</strong>. If not present or the property value is invalid, the default rotation is zero.</li>
+</ul>
+<ol start="2" type="1">
+<li>Modify the behavior of OutputWidget so that the view never uses scroll-bars but all graphics are visible, even after re-sizing the window.</li>
+</ol>
+<h2 id="task-2-discrete-plots">Task 2: Discrete Plots</h2>
+<p>Discrete plots take a list of lists with two Number entries, denoting the abscissa (horizontal) and ordinate (vertical) coordinates respectively of points, producing a PlotScript List of Graphic objects rendering a stem plot (also called a lollipop plot) of the data (see details below). The procedure call is of the form:</p>
+<pre><code>(discrete-plot DATA OPTIONS)</code></pre>
+<p>where DATA is the list of coordinates described above (note, they are not required to have the &quot;point&quot; object-name), and OPTIONS is a List of Lists, each entry being a String Expression followed by an arbitrary Expression, specifying one of the following plotting options:</p>
+<ul>
+<li>&quot;title&quot; followed by a String representing the title text of the plot,</li>
+<li>&quot;abscissa-label&quot;, followed by a String representing the text of the abscissa (horizontal, x) label,</li>
+<li>&quot;ordinate-label&quot;, followed by a String representing the text of the ordinate (vertical, y) label,</li>
+<li>&quot;text-scale&quot;, positive Number representing the scale factor to apply to all text in the plot, defaults to 1.</li>
+</ul>
+<p>The procedure should return a List of Lines, Points, and Text that constitute the plot.</p>
+<p>The graphical layout of the discrete plot defined by a nested set of rectangles (see figure below). The innermost rectangle is defined by the bounding-box of the plot data. The next rectangle moving outward is defined by an offset from the data bounding box (dimensions C and D) and is used to place the abscissa and ordinate tick labels (AL, AU, OL, and OU). The outermost rectangle is defined by an offset from the data bounding-box rectangle (dimensions A and B) and is used to place the title and axis labels.</p>
+<center>
+<img src="m3-figure.png" alt="Plot Layout" />
+</center>
+<ul>
+<li>The Title Area is centered on the northern border of the outer rectangle.</li>
+<li>The Abscissa Label is centered on the southern border of the outer rectangle.</li>
+<li>The Ordinate Label is centered on the western border of the outer rectangle.</li>
+<li>The tick labels corresponding to the bounds of the data (AL, AU, OL, OU) should be replaced with their numerical values using a floating point precision of 2, and be centered on the corners of the bounding-box and the intermediate rectangle defined by the offsets C and D.</li>
+</ul>
+<p>The bounding box of the data is given by the minimum and maximum of the abscissa and ordinate values respectively, scaled to a rectangle of size NxN. All PlotScript graphic objects pertaining to data (as opposed to annotations) should be scaled to fit in this rectangle.</p>
+<p>The bounding-box should be drawn using a thickness of zero ( a <em>cosmetic</em> line in Qt). The coordinate system is such that the positive abscissa axis is oriented to screen right, and the positive ordinate axis is oriented to screen up. For each data point a cosmetic line should be drawn from the abscissa value, zero to the abscissa value, ordinate value, and a point of size P centered at its end drawn. If the bounding box include the zero abscissa or ordinate axis they should be drawn, again using a cosmetic line.</p>
+<p>The layout parameters above should be easily changed with defined constants and have the following values:</p>
+<ul>
+<li>N = 20</li>
+<li>A = 3</li>
+<li>B = 3</li>
+<li>C = 2</li>
+<li>D = 2</li>
+<li>P = 0.5</li>
+</ul>
+<p><strong>Example</strong>: the following plots a linear discrete function,</p>
+<pre><code>; plot the linear function y = f[x] = 2x+1 for x in [-2, -1.5, -1, ..., 2]
+(begin
+    (define f (lambda (x) 
+        (list x (+ (* 2 x) 1))))
+    (discrete-plot (map f (range -2 2 0.5))
+       (list
+       (list &quot;title&quot; &quot;The Data&quot;)
+       (list &quot;abscissa-label&quot; &quot;X Label&quot;)
+       (list &quot;ordinate-label&quot; &quot;Y Label&quot;)
+       (list &quot;text-scale&quot; 1))))</code></pre>
+<p>producing a List of Lines, Points, and Text that when displayed in the Notebook look like the following:</p>
+<center>
+<img src="m3-discrete-example.png" alt="Discrete Plot Example" />
+</center>
+<p>In order to clarify the specification above here are the contents <code>testDiscretePlotLayout</code>:</p>
+<div class="sourceCode"><pre class="sourceCode .cpp"><code class="sourceCode cpp"><span class="dt">void</span> NotebookTest::testDiscretePlotLayout() {
+
+  <span class="bu">std::</span>string program = <span class="st">R&quot;( </span>
+<span class="st">(discrete-plot (list (list -1 -1) (list 1 1)) </span>
+<span class="st">    (list (list &quot;title&quot; &quot;The Title&quot;) </span>
+<span class="st">          (list &quot;abscissa-label&quot; &quot;X Label&quot;) </span>
+<span class="st">          (list &quot;ordinate-label&quot; &quot;Y Label&quot;) ))</span>
+<span class="st">)&quot;</span>;
+
+  inputWidget-&gt;setPlainText(<span class="ex">QString::</span>fromStdString(program));
+  <span class="ex">QTest::</span>keyClick(inputWidget, <span class="ex">Qt::</span>Key_Return, <span class="ex">Qt::</span>ShiftModifier);
+
+  <span class="kw">auto</span> view = outputWidget-&gt;findChild&lt;<span class="ex">QGraphicsView</span> *&gt;();
+  <span class="ex">QVERIFY2</span>(view, <span class="st">&quot;Could not find QGraphicsView as child of OutputWidget&quot;</span>);
+
+  <span class="kw">auto</span> scene = view-&gt;scene();
+
+  <span class="co">// first check total number of items</span>
+  <span class="co">// 8 lines + 2 points + 7 text = 17</span>
+  <span class="kw">auto</span> items = scene-&gt;items();
+  <span class="ex">QCOMPARE</span>(items.size(), <span class="dv">17</span>);
+
+  <span class="co">// make them all selectable</span>
+  <span class="ex">foreach</span>(<span class="kw">auto</span> item, items){
+    item-&gt;setFlag(<span class="ex">QGraphicsItem::</span>ItemIsSelectable);
+  }
+
+  <span class="dt">double</span> scalex = <span class="fl">20.0</span>/<span class="fl">2.0</span>;
+  <span class="dt">double</span> scaley = <span class="fl">20.0</span>/<span class="fl">2.0</span>;
+
+  <span class="dt">double</span> xmin = scalex*<span class="dv">-1</span>;
+  <span class="dt">double</span> xmax = scalex*<span class="dv">1</span>;
+  <span class="dt">double</span> ymin = scaley*<span class="dv">-1</span>;
+  <span class="dt">double</span> ymax = scaley*<span class="dv">1</span>;
+  <span class="dt">double</span> xmiddle = (xmax+xmin)/<span class="dv">2</span>;
+  <span class="dt">double</span> ymiddle = (ymax+ymin)/<span class="dv">2</span>;
+    
+  <span class="co">// check title</span>
+  <span class="ex">QCOMPARE</span>(findText(scene, <span class="ex">QPointF</span>(xmiddle, -(ymax<span class="dv">+3</span>)), <span class="dv">0</span>, <span class="ex">QString</span>(<span class="st">&quot;The Title&quot;</span>)), <span class="dv">1</span>);
+  
+  <span class="co">// check abscissa label</span>
+  <span class="ex">QCOMPARE</span>(findText(scene, <span class="ex">QPointF</span>(xmiddle, -(ymin<span class="dv">-3</span>)), <span class="dv">0</span>, <span class="ex">QString</span>(<span class="st">&quot;X Label&quot;</span>)), <span class="dv">1</span>);
+  
+  <span class="co">// check ordinate label</span>
+  <span class="ex">QCOMPARE</span>(findText(scene, <span class="ex">QPointF</span>(xmin<span class="dv">-3</span>, -ymiddle), <span class="dv">-90</span>, <span class="ex">QString</span>(<span class="st">&quot;Y Label&quot;</span>)), <span class="dv">1</span>);
+
+  <span class="co">// check abscissa min label</span>
+  <span class="ex">QCOMPARE</span>(findText(scene, <span class="ex">QPointF</span>(xmin, -(ymin<span class="dv">-2</span>)), <span class="dv">0</span>, <span class="ex">QString</span>(<span class="st">&quot;-1&quot;</span>)), <span class="dv">1</span>);
+
+  <span class="co">// check abscissa max label</span>
+  <span class="ex">QCOMPARE</span>(findText(scene, <span class="ex">QPointF</span>(xmax, -(ymin<span class="dv">-2</span>)), <span class="dv">0</span>, <span class="ex">QString</span>(<span class="st">&quot;1&quot;</span>)), <span class="dv">1</span>);
+
+  <span class="co">// check ordinate min label</span>
+  <span class="ex">QCOMPARE</span>(findText(scene, <span class="ex">QPointF</span>(xmin<span class="dv">-2</span>, -ymin), <span class="dv">0</span>, <span class="ex">QString</span>(<span class="st">&quot;-1&quot;</span>)), <span class="dv">1</span>);
+
+  <span class="co">// check ordinate max label</span>
+  <span class="ex">QCOMPARE</span>(findText(scene, <span class="ex">QPointF</span>(xmin<span class="dv">-2</span>, -ymax), <span class="dv">0</span>, <span class="ex">QString</span>(<span class="st">&quot;1&quot;</span>)), <span class="dv">1</span>);
+
+  <span class="co">// check the bounding box bottom</span>
+  <span class="ex">QCOMPARE</span>(findLines(scene, <span class="ex">QRectF</span>(xmin, -ymin, <span class="dv">20</span>, <span class="dv">0</span>), <span class="fl">0.1</span>), <span class="dv">1</span>);
+
+  <span class="co">// check the bounding box top</span>
+  <span class="ex">QCOMPARE</span>(findLines(scene, <span class="ex">QRectF</span>(xmin, -ymax, <span class="dv">20</span>, <span class="dv">0</span>), <span class="fl">0.1</span>), <span class="dv">1</span>);
+
+  <span class="co">// check the bounding box left and (-1, -1) stem</span>
+  <span class="ex">QCOMPARE</span>(findLines(scene, <span class="ex">QRectF</span>(xmin, -ymax, <span class="dv">0</span>, <span class="dv">20</span>), <span class="fl">0.1</span>), <span class="dv">2</span>);
+
+  <span class="co">// check the bounding box right and (1, 1) stem</span>
+  <span class="ex">QCOMPARE</span>(findLines(scene, <span class="ex">QRectF</span>(xmax, -ymax, <span class="dv">0</span>, <span class="dv">20</span>), <span class="fl">0.1</span>), <span class="dv">2</span>);
+
+  <span class="co">// check the abscissa axis</span>
+  <span class="ex">QCOMPARE</span>(findLines(scene, <span class="ex">QRectF</span>(xmin, <span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">0</span>), <span class="fl">0.1</span>), <span class="dv">1</span>);
+
+  <span class="co">// check the ordinate axis </span>
+  <span class="ex">QCOMPARE</span>(findLines(scene, <span class="ex">QRectF</span>(<span class="dv">0</span>, -ymax, <span class="dv">0</span>, <span class="dv">20</span>), <span class="fl">0.1</span>), <span class="dv">1</span>);
+  
+  <span class="co">// check the point at (-1,-1)</span>
+  <span class="ex">QCOMPARE</span>(findPoints(scene, <span class="ex">QPointF</span>(<span class="dv">-10</span>, <span class="dv">10</span>), <span class="fl">0.6</span>), <span class="dv">1</span>);
+    
+  <span class="co">// check the point at (1,1)</span>
+  <span class="ex">QCOMPARE</span>(findPoints(scene, <span class="ex">QPointF</span>(<span class="dv">10</span>, <span class="dv">-10</span>), <span class="fl">0.6</span>), <span class="dv">1</span>); 
+}</code></pre></div>
+<p>where the helper functions are defined as:</p>
+<div class="sourceCode"><pre class="sourceCode .cpp"><code class="sourceCode cpp"><span class="co">/* </span>
+<span class="co">findLines - find lines in a scene contained within a bounding box </span>
+<span class="co">            with a small margin</span>
+<span class="co"> */</span>
+<span class="dt">int</span> findLines(<span class="ex">QGraphicsScene</span> * scene, <span class="ex">QRectF</span> bbox, <span class="ex">qreal</span> margin){
+
+  <span class="ex">QPainterPath</span> selectPath;
+
+  QMarginsF margins(margin, margin, margin, margin);
+  selectPath.addRect(bbox.marginsAdded(margins));
+  scene-&gt;setSelectionArea(selectPath, <span class="ex">Qt::</span>ContainsItemShape);
+  
+  <span class="dt">int</span> numlines(<span class="dv">0</span>);
+  <span class="ex">foreach</span>(<span class="kw">auto</span> item, scene-&gt;selectedItems()){
+    <span class="cf">if</span>(item-&gt;type() == <span class="ex">QGraphicsLineItem::</span>Type){
+      numlines += <span class="dv">1</span>;
+    }
+  }
+
+  <span class="cf">return</span> numlines;
+}
+
+<span class="co">/* </span>
+<span class="co">findPoints - find points in a scene contained within a specified rectangle</span>
+<span class="co"> */</span>
+<span class="dt">int</span> findPoints(<span class="ex">QGraphicsScene</span> * scene, <span class="ex">QPointF</span> center, <span class="ex">qreal</span> radius){
+  
+  <span class="ex">QPainterPath</span> selectPath;
+  selectPath.addRect(<span class="ex">QRectF</span>(center.x()-radius, center.y()-radius, <span class="dv">2</span>*radius, <span class="dv">2</span>*radius));
+  scene-&gt;setSelectionArea(selectPath, <span class="ex">Qt::</span>ContainsItemShape);
+
+  <span class="dt">int</span> numpoints(<span class="dv">0</span>);
+  <span class="ex">foreach</span>(<span class="kw">auto</span> item, scene-&gt;selectedItems()){
+    <span class="cf">if</span>(item-&gt;type() == <span class="ex">QGraphicsEllipseItem::</span>Type){
+      numpoints += <span class="dv">1</span>;
+    }
+  }
+
+  <span class="cf">return</span> numpoints;
+}
+
+<span class="co">/* </span>
+<span class="co">findText - find text in a scene centered at a specified point with a given </span>
+<span class="co">           rotation and string contents  </span>
+<span class="co"> */</span>
+<span class="dt">int</span> findText(<span class="ex">QGraphicsScene</span> * scene, <span class="ex">QPointF</span> center, <span class="ex">qreal</span> rotation, <span class="ex">QString</span> contents){
+  
+  <span class="dt">int</span> numtext(<span class="dv">0</span>);
+  <span class="ex">foreach</span>(<span class="kw">auto</span> item, scene-&gt;items(center)){
+    <span class="cf">if</span>(item-&gt;type() == <span class="ex">QGraphicsTextItem::</span>Type){
+      <span class="ex">QGraphicsTextItem</span> * text = <span class="kw">static_cast</span>&lt;<span class="ex">QGraphicsTextItem</span> *&gt;(item);
+      <span class="cf">if</span>((text-&gt;toPlainText() == contents) &amp;&amp;
+     (text-&gt;rotation() == rotation) &amp;&amp;
+     (text-&gt;pos() + text-&gt;boundingRect().center() == center)){
+    numtext += <span class="dv">1</span>;
+      }
+    }
+  }
+
+  <span class="cf">return</span> numtext;
+}
+
+<span class="co">/* </span>
+<span class="co">intersectsLine - find lines in a scene that intersect a specified rectangle</span>
+<span class="co"> */</span>
+<span class="dt">int</span> intersectsLine(<span class="ex">QGraphicsScene</span> * scene, <span class="ex">QPointF</span> center, <span class="ex">qreal</span> radius){
+              
+  <span class="ex">QPainterPath</span> selectPath;
+  selectPath.addRect(<span class="ex">QRectF</span>(center.x()-radius, center.y()-radius, <span class="dv">2</span>*radius, <span class="dv">2</span>*radius));
+  scene-&gt;setSelectionArea(selectPath, <span class="ex">Qt::</span>IntersectsItemShape);
+
+  <span class="dt">int</span> numlines(<span class="dv">0</span>);
+  <span class="ex">foreach</span>(<span class="kw">auto</span> item, scene-&gt;selectedItems()){
+    <span class="cf">if</span>(item-&gt;type() == <span class="ex">QGraphicsLineItem::</span>Type){
+      numlines += <span class="dv">1</span>;
+    }
+  }
+
+  <span class="cf">return</span> numlines;
+}</code></pre></div>
+<h2 id="task-3-continuous-plots">Task 3: Continuous Plots</h2>
+<p>Continuous plots take a lambda function of a single independent variable and a List with two entries denoting the lower and upper bounds of the independent variable, producing PlotScript graphic objects rendering a continuous plot of the function (see details below). The procedure call is of the form:</p>
+<pre><code>(continuous-plot FUNC BOUNDS OPTIONS)</code></pre>
+<p>where FUNC is a PlotScript lambda function of a single variable, BOUNDS is a list of size two holding Numbers representing the lower and upper bound of the domain of the function (the abscissa), and OPTIONS is the same as for discrete plots.</p>
+<p>The graphical layout of the continuous plot is the same as for the discrete plot, but the algorithm for drawing the plot differs, and is as follows. Start by sampling M = 50 equally spaced points between the lower and upper bounds of the abscissa, using the lambda function to determine the ordinate value, and connect the resulting coordinates by lines. Then for MAX = 10 number of iterations, if the angle between two adjacent lines is less than 175 degrees, split each line on either side by evaluating the lambda function at the midpoint of each line. Stop this process when no splits are made or the MAX number of iterations has been reached.</p>
+<p><strong>Example</strong>: The following plots the linear function <span class="math inline"><em>f</em>(<em>x</em>)=2<em>x</em> + 1</span> for <span class="math inline"><em>x</em> ∈ [ − 2, 2]</span>,</p>
+<pre><code>; plot the linear function f(x) = 2x+1 for x in [-2, 2]
+(begin
+    (define f (lambda (x) 
+        (+ (* 2 x) 1))) 
+    (continuous-plot f (list -2 2)
+        (list
+        (list &quot;title&quot; &quot;A continuous linear function&quot;)
+        (list &quot;abscissa-label&quot; &quot;x&quot;)
+        (list &quot;ordinate-label&quot; &quot;y&quot;))))</code></pre>
+<p>producing a List of Lines, Points, and Text that when displayed in the Notebook look like the following:</p>
+<center>
+<img src="m3-continuous-example.png" alt="Continuous Plot Example" />
+</center>
+<h2 id="additional-examples">Additional Examples</h2>
+<p>Below is a video demonstrating the expected behavior of Milestone 3. Note the widgets on your host may appear slightly different. You can pause the video to see study specific input/output behavior.</p>
+<center>
+<video width="398" height="820" controls>
+<source src="m3-demo-media/m3-demo.mp4" type="video/mp4"> <source src="m3-demo-media/m3-demo.ogv" type="video/ogg"> <source src="m3-demo-media/m3-demo.webm" type="video/webm"> Your browser does not support the video tag.
+</video>
+</center>
+<h2 id="submission">Submission</h2>
+<p>To submit your milestone:</p>
+<ol type="1">
+<li><p>Tag the git commit that you wish to be considered for grading as &quot;milestone3&quot;.</p>
+<pre><code>git tag milestone3</code></pre></li>
+<li><p>Push this change to GitHub</p>
+<pre><code>git push origin milestone3</code></pre></li>
+</ol>
+<p>If you need to tag a different version of your code simply create and push a new tag appending a monotonically increasing number to milestone3 using '-', e.g. milestone3-2, milestone3-3, etc.</p>
+<p>Be sure you have committed all the changes you intend to. You should re-clone your repository into a separate directory and double check it is what you intend to submit. <strong>Failure to complete these steps by the due date may result in a failed submission.</strong></p>
+<h2 id="grading">Grading</h2>
+<p>There are 6 course percentage points allocated to this milestone. You will receive a detailed feedback report on your submission via Canvas within two weeks of the due date.</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Code compiles in the reference environment
+</td>
+<td style="text-align: left;">
+0.5 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Correctness Tests
+</td>
+<td style="text-align: left;">
+4 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Testing
+</td>
+<td style="text-align: left;">
+0.5 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Code Quality
+</td>
+<td style="text-align: left;">
+0.5 point
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Good Development Practices
+</td>
+<td style="text-align: left;">
+0.5 point
+</td>
+</tr>
+</tbody>
+</table>
+<p>Grading Notes:</p>
+<ul>
+<li>If your code does not build in the reference environment you will receive <strong>no points</strong>.</li>
+<li>Correctness can be <a href="https://grader.ece.vt.edu/">checked in the auto-grader</a> and is determined by the proportion of instructor tests that pass.</li>
+<li>Testing includes both unit test coverage and completeness of NotebookApp functional tests. Unit test coverage can be determined in the reference environment using the same procedure in Milestone 1.</li>
+<li>Code quality means your code compiles with no warnings at a high-warning level (STRICT in the reference environment) and your unit tests have no memory leaks, as well as other criteria mentioned in class (function length, variable naming, etc).</li>
+<li>Good development practices is assessed by looking for regular, incremental, and well-packaged commits.</li>
+</ul>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/milestone3.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:17 GMT -->
+</html>
