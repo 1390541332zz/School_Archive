@@ -1,0 +1,38 @@
+\documentclass[12pt,letterpaper,notitlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\author{Jacob Abel}
+\title{	Lab 1
+	\\\large ECE2534 CRN:12927
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+
+\begin{raggedright}
+\paragraph{Description}
+
+This application demonstrates the ability to perform multiple actions in near parallel. The application has two buttons and two LEDs. The left button (button 1) controls LED 1 (monocolor) and the right button (button 2) controls LED 2 (RGB). Button 1 simply toggles LED 1 when pressed. In particular it toggles on the release of the button. Button 2 cycles through the colors RED, BLUE, GREEN, PURPLE in that order and repeats. Both LEDs should start in the off state on startup.
+
+\paragraph{Real-time Requirement}
+
+The system was designed to remain real-time by designing it so that all necessary tasks were completed in the same loop. As none of the tasks were particularly time, IO, compute, or memory intensive, all the tasks had more than ample time to complete long before the user would be able to realistically notice any break in the user interaction. For more intensive tasks this approach rapidly deteriorates and more creative approaches would be necessary however for this use case this simple approach is more than sufficient.
+
+\end{raggedright}
+\end{document}
