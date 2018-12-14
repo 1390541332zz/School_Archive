@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/02-git/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:05 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="meeting-2-version-control">Meeting 2: Version Control</h1>
+<p>No matter your preferred analogy for programming -- engineering, construction, gardening, art -- each has a set of tools that should be mastered to produce the best product. People who really care about their craft know what the best tools are and how to use them. They also are constantly on the lookout for better tools and in some cases build their own. Tools amplify your skills and talents and are often found outside your IDE -- Visual Studio and XCode are great, but it is not the only tool or the best tool for all jobs.</p>
+<p>The goal of the next few meetings is to learn what these tools are for the domain of programming and how to use representative versions of them. In this meeting we will learn about one of the most important tools in programming, after an editor and the compiler of course.</p>
+<p>Source code management, also called version control, keeps track of every change made to your code. It can act as an unlimited undo, but also provides a number of other benefits including documenting what changes were made, by whom, and when, as well as providing archiving and reproducibility of software builds. <strong>Always use some form of source code management</strong>, even for small projects. We will be using <a href="http://git-scm.com/">git</a> for this, although there are other good alternatives (mercurial, fossil).</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="slides.pdf">Slides</a></li>
+</ul>
+<h2 id="exercise-02-git">Exercise 02: git</h2>
+<p>The goal of this exercise is to use git to control the source of a simple C++ application.</p>
+<p>GitHub Invitation URL: <a href="https://classroom.github.com/a/-6N3n_HG">exercise02</a></p>
+<p>Prerequisites:</p>
+<ul>
+<li>You have completed <code>Exercise 01: Setup</code> and have a working command line with compiler and git accessible.</li>
+<li>You have read through Chapter 1 of the <a href="https://git-scm.com/book/en/v2">Pro Git Book</a>.</li>
+</ul>
+<p>Steps:</p>
+<ol start="0" type="1">
+<li><p>One-time git configuration (skip if you have done this before). Open your command line and type the following (replacing the information as appropriate of course):</p>
+<pre><code>git config --global user.name &quot;Your Name&quot;
+git config --global user.email pid@vt.edu</code></pre>
+<p>You also want to tell git what your preferred editor is for creating commit messages. For example on Windows, if you use Notepad++, you might type:</p>
+<pre><code>git config --global core.editor &quot;&#39;C:/Program Files (x86)/Notepad++/notepad++.exe&#39; -multiInst -nosession&quot;</code></pre>
+<p>Another popular cross platform editor is <a href="https://atom.io/">Atom</a>. If you have installed it you can make it the default git editor by typing:</p>
+<pre><code>git config --global core.editor &quot;atom --wait&quot;</code></pre></li>
+<li>Create a working directory somewhere on your computer. Open your command line terminal and make a working directory. Then change to that directory.</li>
+<li><p>Clone the assignment for today. Accept the Github invitation at the link above. This will automatically add a repository accessible to you and the instructor/TAs with some starter files. You can then clone this to your computer using</p>
+<pre><code>git clone https://github.com/VTECE3574/exercise02-USER.git</code></pre>
+where USER is your GitHub username. You will have to enter your GitHub username and password.</li>
+<li>Change to the repository directory. Write a program in <code>hello.cpp</code> to print &quot;Hello World!&quot; to standard output.</li>
+<li><p>Add the <code>hello.cpp</code> file to the index</p>
+<pre><code>git add hello.cpp</code></pre></li>
+<li><p>Commit the change with a message</p>
+<pre><code>git commit -m &quot;Added hello program&quot;</code></pre></li>
+<li><p>Use git log to see the results</p>
+<pre><code>git log</code></pre></li>
+<li><p>Change the program to add another line of output &quot;My name is NAME&quot;, where NAME is your name.</p></li>
+<li><p>Add the change to the index</p>
+<pre><code>git add hello.cpp</code></pre></li>
+<li><p>Use git status to see the state of the repository</p>
+<pre><code>git status</code></pre></li>
+<li><p>Commit the change with a message</p>
+<pre><code>git commit -m &quot;Added my name.&quot;</code></pre></li>
+<li><p>Use git log to verify the results</p>
+<pre><code>git log</code></pre></li>
+<li><p>Use git push to synchronize the repository with that on GitHub</p>
+<pre><code>git push</code></pre>
+<p>You may have to enter your GitHub username and password again.</p></li>
+<li><p>Use git tag to label the commit</p>
+<pre><code>git tag mylabel </code></pre></li>
+<li><p>Verify the tag is present</p>
+<pre><code>git log --decorate</code></pre>
+<p>or</p>
+<pre><code>git show mylabel</code></pre></li>
+<li><p>Use git push to synchronize the repository with that on GitHub</p>
+<pre><code>git push origin mylabel</code></pre>
+<p>You may have to enter your GitHub username and password again.</p></li>
+<li><p>If you want to double check everything is pushed to GitHub you can check the repo in your browser.</p></li>
+</ol>
+<p><strong>This is how you will turn in exercises and project code in this course</strong>, so be sure you understand these steps.</p>
+<p>You have now completed the exercise.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/02-git/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:06 GMT -->
+</html>

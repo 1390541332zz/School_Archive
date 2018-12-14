@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/13-signal-slots/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:11 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="meeting-13-qt-signals-and-slots">Meeting 13: Qt Signals and Slots</h1>
+<p>Today we will learn about a variation of the Observer design pattern that is used prominently within Qt, called signals and slots.</p>
+<ul>
+<li>Observer and Publish/Subscribe Pattern</li>
+<li>Observers as callback functions</li>
+<li>Observers using signals</li>
+<li>Qt signals</li>
+<li>Examples</li>
+<li>Exercise</li>
+</ul>
+<p>Links:</p>
+<ul>
+<li><a href="slides.pdf">Slides</a></li>
+<li><a href="code13.zip">Example Code</a></li>
+<li><a href="exercise13.zip">Exercise Code</a></li>
+</ul>
+<h2 id="exercise-13-qt-signals-and-slots">Exercise 13: Qt Signals and Slots</h2>
+<p>GitHub Invitation URL: <a href="https://classroom.github.com/a/SzM3nNGb">exercise13</a></p>
+<p>Steps:</p>
+<ol type="1">
+<li>Clone the assignment for today <strong>after</strong> accepting the GitHub invitation at the link above. The repository contains four files:</li>
+</ol>
+<ul>
+<li>traffic_light.h defines a Qt widget that uses three radio buttons to simulate a traffic light.</li>
+<li>traffic_light.cpp is the implementation of the traffic light</li>
+<li>main.ccp sets up the application and starts the event loop</li>
+<li>CMakeLists.txt is the build configuration for the example</li>
+</ul>
+<ol start="2" type="1">
+<li><p>Add code to the TrafficLight class to add a slot called <code>toggle</code> to change the light currently lit. The sequence should go red-&gt;green-&gt;yellow-&gt;red repeating after that. You will need to add some internal members to the TrafficLight class to accomplish this.</p></li>
+<li><p>Read the documentation for <a href="http://doc.qt.io/qt-5/qtimer.html">QTimer</a> and, in the main function of <code>main.cpp</code>, add code to setup and start a timer that goes off every one second, resulting in the traffic light being toggled. This will require connecting a signal from the timer to the slot implemented in step 2.</p></li>
+<li><p>Build and run your application. Does the light change in the correct sequence?</p></li>
+<li><p>Now, use git to commit the source files changed to the local repository.</p></li>
+<li><p>Finally, use git push to synchronize the repository with that on GitHub.</p></li>
+</ol>
+<p>You have completed the Exercise.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/13-signal-slots/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:11 GMT -->
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:04 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="ece-3574-fall-2018---semester-project">ECE 3574 Fall 2018 - Semester Project</h1>
+<p>Each semester I develop a project that requires you to use many of the design patterns and APIs discussed in class. This is where much of your learning occurs. The project for this semester is a notebook-style interpreter of a language we will call Plot Script. It will allow the user to enter blocks of code that is displayed with interleaved output such as numerical results and plots -- similar to, but much less complex than, systems like <a href="https://www.wolfram.com/mathematica/">Mathematica</a> and <a href="http://jupyter.org/">Jupyter</a>. The heart of the application is the kernel, a tree-walking interpreter that accepts input in Plot Script and produces output resulting from execution of the script.</p>
+<p>You will be given starter code that implements a base version of Plot Script, documented <a href="starter-html/index.html">here</a>. You are free to modify this code however needed or even discard it all together. As the semester progresses you will gradually modify and extend it through a series of milestones.</p>
+<ul>
+<li><a href="milestone0.html">Milestone 0</a>: In this milestone you will familiarize yourself with Plot Script, the starter code implementing the interpreter, and how to build and run its tests on your host machine as well as the reference environment. You will add a complex numerical type to the language and implement related numerical procedures.</li>
+<li><a href="milestone1.html">Milestone 1</a>: In this milestone you will extend the system to add a list type, lambda functions (user defined procedures), and relevent built-in procedures to the Plot Script language. You will also extend the test suite to cover the code thus far.</li>
+<li><a href="milestone2.html">Milestone 2</a>: In this milestone you will develop a prototype interface to the notebook and extend Plot Script to add built-in support for graphics primitives, rendered using Qt.</li>
+<li><a href="milestone3.html">Milestone 3</a>: In this milestone you will develop the final notebook interface using Qt, implementing the plotting functionality.</li>
+<li><a href="milestone4.html">Milestone 4</a>: In this last milestone you will develop the final version of the application using a seperate thread for the corresponding interpreter kernel.</li>
+</ul>
+<p>The milestones will be used for grading (see the syllabus) and thus are motivation to not procrastinate. They correspond roughly to the schedule of material that we will be covering in class with due dates spaced throughout the semester. Your project final version will be due on December 5th and evaluated based on the milestone 4 functionality.</p>
+<p>Your progress will be tracked through a version control system (see meeting 2). It is important that you complete each milestone, even if after the due date, as they build on one another and you <strong>will not</strong> be given solutions to earlier milestones.</p>
+<h2 id="grading">Grading</h2>
+<p>There are 45 course percentage points allocated to the final project.</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Correctness Tests
+</td>
+<td style="text-align: left;">
+25 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Testing
+</td>
+<td style="text-align: left;">
+10 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Code Quality
+</td>
+<td style="text-align: left;">
+5 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Good Development Practices
+</td>
+<td style="text-align: left;">
+5 points
+</td>
+</tr>
+</tbody>
+</table>
+<p>Grading Notes:</p>
+<ul>
+<li>If your code does not build in the reference environment you will receive <strong>no points</strong>.</li>
+<li>Correctness is determined by the proportion of instructor tests that pass from each milestone (5 points each).</li>
+<li>Testing includes both unit test coverage and completeness of NotebookApp functional tests. Unit test coverage can be determined in the reference environment using the procedure in Milestone 1.</li>
+<li>Code quality means your code compiles with no warnings at a high-warning level (STRICT in the reference environment) and your unit tests have no memory leaks, as well as other criteria mentioned in class (function length, variable naming, etc).</li>
+<li>Good development practices is assessed by looking for regular, incremental, and well-packaged commits.</li>
+</ul>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:05 GMT -->
+</html>

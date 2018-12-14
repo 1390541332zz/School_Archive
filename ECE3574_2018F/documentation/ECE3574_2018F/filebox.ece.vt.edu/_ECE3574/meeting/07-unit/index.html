@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/07-unit/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:08 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="meeting-07-unit-testing-using-catch">Meeting 07: Unit Testing using Catch</h1>
+<p>The goal of today's meeting it to learn about a very important part of programming, testing.</p>
+<ul>
+<li>Unit tests</li>
+<li>Integration tests</li>
+<li>Testing functional requirements</li>
+<li>Error and Recovery testing</li>
+<li>Performance testing</li>
+<li>Usability testing</li>
+<li>How to test</li>
+<li>Unit Testing using Catch</li>
+<li>Test coverage</li>
+</ul>
+<p>Links:</p>
+<ul>
+<li><a href="slides.pdf">Slides</a></li>
+<li><a href="#some-notes-on-testing">Notes on Testing</a></li>
+</ul>
+<h2 id="exercise-07-testing-unordered_map">Exercise 07: Testing unordered_map</h2>
+<p>GitHub Invitation URL: <a href="https://classroom.github.com/a/BjDmA2cm">exercise07</a></p>
+<p>Steps:</p>
+<ol type="1">
+<li>Create a working directory somewhere on your computer, then change to that directory.</li>
+<li><p>Clone the assignment for today after accepting the GitHub invitation at the link above.</p>
+<pre><code>git clone https://github.com/VTECE3574/exercise07-USER.git</code></pre>
+<p>where USER is your GitHub username. You may have to enter your GitHub username and password.</p></li>
+<li><p>Examine the repository. There is a single file called catch.hpp. That is all that is needed to use Catch.</p></li>
+<li><p>Write some unit tests for the standard library container <code>std::unordered_map</code> in a file named <code>test_unordered_map.cpp</code> in the top-level directory of the repository. Compile and run your tests.</p></li>
+<li><p>Now, use git to commit the source file you added to the local repository.</p></li>
+<li><p>Finally, use git push to synchronize the repository with that on GitHub</p></li>
+</ol>
+<p>You have completed the Exercise.</p>
+<h1 id="some-notes-on-testing">Some Notes on Testing</h1>
+<p>Suppose that we wanted to write a C++ class, <code>Puzzle</code>, that models an eight-tile sliding puzzle. You have probably seen these, a square array of tiles with numbers, letters, or part of an image printed on them, and one blank space. The tiles can slide left-right and up-down within the puzzle, exchanging positions with the empty location. The goal is, from a scrambled state, slide the tiles around until the tiles show a particular image or spell some text.</p>
+<p>Consider a 3 by 3 puzzle with eight tiles, addressed by row and column with 0-based indexing, with labels 'A' through 'H' and an empty spot denoted by the label ' '(space). For example:</p>
+<pre><code>ABC
+DEF
+GH</code></pre>
+<p>is empty at position (2,2), has tile 'D' in position (1,0), tile 'B' on position (0,1), etc.</p>
+<p>Our goal here is not to write a program to solve the puzzle (<a href="https://en.wikipedia.org/wiki/Sliding_puzzle">although it is fun to do</a>), but to just model the puzzle itself, a component of a larger puzzle solver program. But we want to ensure that the code works, perhaps before we write either the puzzle class or the solver, so we need to write some <em>unit</em> <em>tests</em>, code that tests individual units of other code, in this case the <code>Puzzle</code> class.</p>
+<p>Lets begin by defining how our class should behave, it's <em>specification</em>. <code>Puzzle</code> should support:</p>
+<ul>
+<li>Construction of a default puzzle instance with the layout in the example above,</li>
+<li>a <code>move</code> method taking two position arguments from and to, throwing an exception if either position or the move is invalid</li>
+<li>and a <code>get</code> method taking a position argument and returning the tile label at that position, throwing an exception if the position is invalid.</li>
+</ul>
+<p>This specification is pretty detailed but it still has some missing information. For example what types should the position, labels, and exceptions be? We can nail down the specification further and define a set of tests that tell us how well we are doing implementing Puzzle by writing a test <em>before</em> we write the Puzzle class. This is called Test-Driven-Development or <strong>TDD</strong>.</p>
+<p>In it's simplest form unit tests are just a program that tries to use the code being tested. So we might write a file <code>puzzle_test.cpp</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&quot;puzzle.h&quot;</span>
+
+<span class="dt">void</span> run_tests();
+
+<span class="dt">int</span> main()
+{
+  run_tests();
+
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>where the function <code>run_tests</code> has yet to be implemented and the puzzle.h file does not exist yet.</p>
+<p>Lets implement the first version of our test by appending the following to <code>puzzle_test.cpp</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> run_tests()
+{
+  Puzzle p;
+}</code></pre></div>
+<p>All this function does (at this point) is attempt to create an instance (an object/variable named p) of type Puzzle. If we try to compile this we get the error along the lines of</p>
+<pre><code>puzzle_test.cpp:1:10: fatal error: &#39;puzzle.h&#39; file not found
+#include &quot;puzzle.h&quot;
+         ^
+1 error generated.</code></pre>
+<p>Congratulations!, we have written our first failing test (it will not even compile!).</p>
+<p>So let us fix the problem. We clearly need to create a file name ``puzzle.h'' defining a type Puzzle, like so:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">class</span> Puzzle {};</code></pre></div>
+<p>Now if we compile <code>puzzle_test.cpp</code> it gives no errors, and it even runs. But clearly the test is not very good, we say it does not <em>cover</em> the functionality of the Puzzle specification. Notice we have started to define the puzzle class, but it is what we call a <em>stub</em>, it is just a placeholder to get the tests to at least compile.</p>
+<h2 id="improving-the-tests">Improving the tests</h2>
+<p>Ok, lets get more serious about our tests. In order to test the specification we need test code that calls and checks the constructor, the get method, and the move method. To test the constructor we can adapt our simple test above to check, or <em>assert</em>, the instantiated object p has the correct default contents:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> run_tests()
+{
+  Puzzle p;
+  
+  assert(p.get(<span class="dv">0</span>,<span class="dv">0</span>) == Puzzle::A);
+  assert(p.get(<span class="dv">0</span>,<span class="dv">1</span>) == Puzzle::B);
+  assert(p.get(<span class="dv">0</span>,<span class="dv">2</span>) == Puzzle::C);
+  assert(p.get(<span class="dv">1</span>,<span class="dv">0</span>) == Puzzle::D);
+  assert(p.get(<span class="dv">1</span>,<span class="dv">1</span>) == Puzzle::E);
+  assert(p.get(<span class="dv">1</span>,<span class="dv">2</span>) == Puzzle::F);
+  assert(p.get(<span class="dv">2</span>,<span class="dv">0</span>) == Puzzle::G);
+  assert(p.get(<span class="dv">2</span>,<span class="dv">1</span>) == Puzzle::H);
+  assert(p.get(<span class="dv">2</span>,<span class="dv">2</span>) == Puzzle::EMPTY);
+}</code></pre></div>
+<p>This requires adding the include <code>cassert</code> at the top of the <code>puzzle_test.cpp</code> file to use <a href="http://en.cppreference.com/w/cpp/error/assert">assert</a> from the standard library. To get this to compile we will need to extend our stub to define the type for the label and the default values. We can use an enum for this:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">class</span> Puzzle
+{
+<span class="kw">public</span>:
+
+  <span class="kw">enum</span> LabelType {A,B,C,D,E,F,G,H,EMPTY};
+
+  LabelType get(<span class="dt">int</span> row, <span class="dt">int</span> col)
+  {
+    <span class="cf">return</span> A;
+  }
+};</code></pre></div>
+<p>Compiling and running this gives us what we expect:</p>
+<pre><code>Assertion failed: (p.get(0,1) == Puzzle::B), function run_tests, file puzzle_test.cpp, line 19.</code></pre>
+<p>since the stub always returns the label A. It may seem odd but <strong>we are not concerned with the tests passing at this point</strong> just writing the tests to cover the functionality desired and the minimal stub necessary to get the tests to compile and run.</p>
+<p>Now lets test our move function by making a legal move and checking that it actually occurred. So that our testing code does not get too messy, lets <em>refactor</em> the tests into separate test functions with more meaningful names</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> test_constructor()
+{
+  Puzzle p;
+
+  assert(p.get(<span class="dv">0</span>,<span class="dv">0</span>) == Puzzle::A);
+  assert(p.get(<span class="dv">0</span>,<span class="dv">1</span>) == Puzzle::B);
+  assert(p.get(<span class="dv">0</span>,<span class="dv">2</span>) == Puzzle::C);
+  assert(p.get(<span class="dv">1</span>,<span class="dv">0</span>) == Puzzle::D);
+  assert(p.get(<span class="dv">1</span>,<span class="dv">1</span>) == Puzzle::E);
+  assert(p.get(<span class="dv">1</span>,<span class="dv">2</span>) == Puzzle::F);
+  assert(p.get(<span class="dv">2</span>,<span class="dv">0</span>) == Puzzle::G);
+  assert(p.get(<span class="dv">2</span>,<span class="dv">1</span>) == Puzzle::H);
+  assert(p.get(<span class="dv">2</span>,<span class="dv">2</span>) == Puzzle::EMPTY);
+}
+
+<span class="dt">void</span> test_move()
+{
+  Puzzle p;
+
+  p.move(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>); <span class="co">// slide H to the right</span>
+  assert(p.get(<span class="dv">2</span>,<span class="dv">1</span>) == Puzzle::EMPTY);
+  assert(p.get(<span class="dv">2</span>,<span class="dv">2</span>) == Puzzle::H);
+}
+
+<span class="dt">int</span> main()
+{
+  test_constructor();
+  test_move();
+  
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>To get this to compile requires defining a stub method inside the Puzzle class of <code>puzzle.h</code></p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  <span class="dt">void</span> move(<span class="dt">int</span> from_row, <span class="dt">int</span> from_col, <span class="dt">int</span> to_row, <span class="dt">int</span> to_col)
+  {
+    <span class="co">// do nothing</span>
+  }</code></pre></div>
+<p>So now we have some basic unit tests, most of which fail (the first test in test_constructor passes by accident). This gives us a few important things:</p>
+<ul>
+<li>We have a goal to work toward, namely to implement the methods of Puzzle so that all the tests pass.</li>
+<li>When all the tests pass, we have a reasonable belief the code is correct. There is a saying, often attributed to <a href="https://en.wikipedia.org/wiki/Fred_Brooks">Fred Brooks</a>, &quot;UNTESTED code is BROKEN code&quot;.</li>
+<li>Further, there are automated tools that can check how many of the statements we write in our implementations are covered by the tests. This is called the test <a href="https://en.wikipedia.org/wiki/Code_coverage">code coverage</a>. Particularly in critical applications e.g. avionics, medical devices, 100% code coverage is needed.</li>
+<li>We can spot potential design flaws in the detailed design of the code early on in the process.</li>
+</ul>
+<p>An example of the latter is in the move test, where the call to slide tile H to the right looks like <code>p.move(2,1,2,2);</code>. A function/method call with that many arguments is a <em>code</em> <em>smell</em>, one of many we will see during the course. Unless I am looking at the definition of the method or some documentation how do I remember if it is from then to, to to then from, and if the row is first or the column? Such code is ripe for being used incorrectly and causing a bug. So we might add a separate type defining position and modify the call. Note this happens early in the coding process, before we have put even minimal effort into implementing the methods. That does not mean that design flaws do not show up later, but we catch them earlier this way, when refactoring is easier. Paradoxically, the time put into writing test and the stub saves time overall. This process of test writing, stub writing, refactoring continues until all the functionality is covered and the design is in good shape. The result is a complete specification. Only then do we worry about implementing the methods to get the tests to pass.</p>
+<p>Our testing approach using assert is not very fancy. It stops at the first test that fails and does not give us very good diagnostic information about which test is failing. We could print out additional information and write our own version of assert that does not abort right away, however this is so common a task that there are many libraries that provide support for this. The one we will use is called <a href="https://github.com/philsquared/Catch">Catch</a>.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/07-unit/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:08 GMT -->
+</html>

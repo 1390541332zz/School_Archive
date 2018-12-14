@@ -1,0 +1,6 @@
+#ifndef STARTUP_CONFIG_HPP
+#define STARTUP_CONFIG_HPP
+
+constexpr char const STARTUP_FILE[] = "@STARTUP_FILE@";
+
+#endif

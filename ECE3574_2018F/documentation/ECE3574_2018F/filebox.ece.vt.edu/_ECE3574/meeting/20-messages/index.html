@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/20-messages/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:15 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="meeting-20-message-serialization">Meeting 20: Message Serialization</h1>
+<p>Today we are going to see various techniques for serializing objects, converting them to/from byte streams. This is a common task in concurrent programming.</p>
+<ul>
+<li>Serialization (Marshalling or Pickling)</li>
+<li>Deserialization (Unmarshalling or UnPickling)</li>
+<li>QDataStream</li>
+<li>Google Protocol buffers</li>
+<li>Exercise</li>
+</ul>
+<p>Links:</p>
+<ul>
+<li><a href="slides.pdf">Slides</a></li>
+<li><a href="code20.zip">Example Code</a></li>
+</ul>
+<h2 id="exercise-20-qdatastream">Exercise 20: QDataStream</h2>
+<p>GitHub Invitation URL: <a href="https://classroom.github.com/a/yNffB-Dm">exercise20</a></p>
+<p>Steps:</p>
+<ol type="1">
+<li>Clone the assignment for today after accepting the GitHub invitation at the link above. The repository contains three files:</li>
+</ol>
+<ul>
+<li><code>file_header.h</code> declares a shared magic number between reader and writer code.</li>
+<li><code>read_file.cpp</code> reads a file using a QDataStream</li>
+<li><code>write_file.cpp</code> writes a file using a QDataStream</li>
+<li>CMakeLists.txt is the build configuration for the exercise. It builds two applications, <code>read_file</code> and <code>write_file</code>.</li>
+</ul>
+<ol start="2" type="1">
+<li><p>Build and run the applications (<code>write_file</code> first). Verify <code>read_file</code> works.</p></li>
+<li><p>Modify the programs so they create a <code>QList</code> of <code>QStrings</code> and reads/writes from/to a file.</p></li>
+<li><p>Recompile your applications and verify they can exchange the objects through the file.</p></li>
+<li><p>Now, use git to commit the source files changed to the local repository.</p></li>
+<li><p>Finally, use git push to synchronize the repository with that on GitHub.</p></li>
+</ol>
+<p>You have completed the Exercise.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/meeting/20-messages/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:16 GMT -->
+</html>

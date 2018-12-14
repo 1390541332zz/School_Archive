@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/installqt.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:29 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="host-installation-instructions-for-qt">Host Installation Instructions for Qt</h1>
+<p>These are the instructions for installing the Qt library on your host machine so you can compile and test locally. The grading/reference environment virtual machines have their own (automated) installation.</p>
+<p>We will be using the open source version of Qt. This is appropriate for academic use. Just note if you were to use Qt in a commercial application there are licensing issues to consider. The installer includes QtCreator, a nice enough IDE, if you are into that sort of thing. However, we will not be using some of the Qt tools, such as QTDesigner.</p>
+<p>When doing the install <strong>be sure to do the step below involving modifications to your path.</strong> There is an example at the bottom of this page you can follow to make sure you have everything setup correctly. If you already have a working Qt &gt;= 5.9.5 you can use that.</p>
+<p><a href="https://www.qt.io/download">Download Link for All Platforms</a>. Click on &quot;Go Open Source&quot; and &quot;Accept&quot;. Then download and run the online installer for your system. You can skip the account creation step. Specify the directory where Qt should be installed and continue. Select the component Qt5.11.1. To save installation time and disk space expand that item and uncheck everything below that except the <a href="http://doc.qt.io/qt-5/supported-platforms.html">component for your OS</a>: on Windows I recommend the MSVC 2015 32-bit component (yes, 2015, see note below); for macOS, make sure just &quot;macOS&quot; is checked; on Linux I assume you know what you are doing. Accept the license agreement and select install.</p>
+<p><strong>IMPORTANT:</strong> After the installation completes, add the path to the <code>bin</code> directory under the Qt installation path you selected during the install to your PATH environment variable. This will allow cmake to automatically find the library. You may have to logout/in for the change to take effect.</p>
+<p><strong>Note</strong>: There is always some confusion on Windows about which Qt configuration to use. Here are the details. Visual Studio (MSVC) is a 32-bit application, but it can generate 32 or 64-bit applications. Even if your Windows version is 64-bit (most likely) the default compiler is set to 32-bit. This is also the default chosen by CMake. The 32-bit code MSVC 2017 generates is ABI compatible with MSVC 2015, which is the 32-bit version of Qt in the installer, thus it works with MSVC in 32-bit mode. You can install the 64-bit MSVC 2017 version of Qt, but you need to force that compiler mode to be selected when you configure using cmake (select Visual Studio 15 2017 <strong>Win64</strong> when prompted for a generator).</p>
+<h1 id="test-example">Test Example</h1>
+<ol type="1">
+<li>Create a working directory, e.g. <code>qtexample</code>, with subdirectories <code>src</code> and <code>build</code>.</li>
+<li><p>In the src directory create a C++ source file <code>qtexample.cpp</code> with the contents</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"> <span class="pp">#include </span><span class="im">&lt;QApplication&gt;</span>
+ <span class="pp">#include </span><span class="im">&lt;QLabel&gt;</span>
+
+ <span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[]){
+   <span class="ex">QApplication</span> app(argc, argv);
+
+   <span class="ex">QLabel</span> hello(<span class="st">&quot;Hello World!&quot;</span>);
+
+   hello.show();
+   <span class="cf">return</span> app.exec();
+}</code></pre></div></li>
+<li><p>In the src directory create a <code>CMakeLists.txt</code> file with the following contents</p>
+<pre><code>cmake_minimum_required(VERSION 3.5)
+project(QtExample CXX)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+find_package(Qt5Widgets REQUIRED)
+
+add_executable(qtexample qtexample.cpp)
+target_link_libraries(qtexample Qt5::Widgets)</code></pre></li>
+<li><p>Run CMake using the src and buld directories respectively to configure the build for you chosen host development environment. On 64-bit Windows you need to specify the 64 bit VS when configuring with cmake.</p></li>
+<li><p>Build the program.</p></li>
+<li><p>Run the program and verify it shows a small window with the string &quot;Hello World&quot; in it.</p></li>
+</ol>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/installqt.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:29 GMT -->
+</html>

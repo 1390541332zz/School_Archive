@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/milestone1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:08 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Applied Software Design">
+  <meta name="author" content="C.L. Wyatt">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <!-- MathJax -->	
+  <!--
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  -->
+  
+  <!-- Video Player -->
+  <!--
+  <link href="//vjs.zencdn.net/4.8/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/4.8/video.js"></script>
+  -->
+  
+  <!-- Customization -->
+  <style>
+    body {
+  	padding-top: 80px;
+    }
+    h1{
+    font-size: 1.2em;
+    border-bottom: solid 1pt #7B9148;
+    }
+    h2{
+    font-size: 1.2em;
+    }
+    a.title{
+    font-size: 1.5em;
+    color: #fcfcfc;
+    }
+    .navbar-default {
+    background-color: #660000;
+    border-color: #e7e7e7;
+    }
+    tr.even {
+    background-color: #E8E8E8;
+    }
+    tr.odd {
+    background-color: #FFFFFF;
+    } 
+    }
+  @media (max-width: 979px) {
+    body {
+  	padding-top: 0px;
+    }
+  }
+  </style>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  	<!--[if lt IE 9]>
+  	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+			  <div class="container">
+			  <a class="title" href="../index.html">ECE 3574 Applied Software Design</a>
+			  </div>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="../index.html" style="color: #b3b3b3">Syllabus</a></li>
+			<li><a href="../index.html#schedule-tentative" style="color: #b3b3b3">Schedule</a></li>
+
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+<div class="container">
+<h1 id="milestone-1">Milestone 1</h1>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 27%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Assigned:
+</td>
+<td style="text-align: left;">
+9/6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Due:
+</td>
+<td style="text-align: left;">
+9/28 by 11:59 pm
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="updates">Updates</h2>
+<ul>
+<li>Wed Sep 12 11:23:47 EDT 2018: fixed typos in expected REPL results for Task 3, clarified modifications to <code>/</code> operator as part of Task 3 (see Note).</li>
+<li>Sat Sep 15 11:27:16 EDT 2018: adjusted due date from 9/21 to 9/28</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>In this milestone you will extend the system to add a list type, lambda functions (user defined procedures), and relevant built-in procedures to the Plot Script language. You will also extend the test suite to cover the code thus far.</p>
+<p>You should complete milestone 0 <strong>before</strong> attempting this one.</p>
+<h2 id="background-information">Background Information</h2>
+<ul>
+<li><a href="index.html">Project Overview</a></li>
+<li><a href="milestone0.html">Milestone 0 Specification</a></li>
+</ul>
+<h2 id="task-1-improving-test-coverage">Task 1: Improving test coverage</h2>
+<p>You added several features in milestone 0, but perhaps did not add corresponding unit tests (the grader tests were functional tests using the REPL). Remember <strong>untested code is broken code</strong>, so you need to write tests to cover your milestone 0 changes.</p>
+<p>Each module of your code, generally a pair of files <code>module.hpp</code>/<code>module.cpp</code>, should have a corresponding set of unit tests in <code>module_tests.cpp</code>. These should use the Catch testing framework (<code>catch.hpp</code> and main test driver <code>unit_tests.cpp</code> was provided in the starter code). In cases where there was an existing test file from the starter code you should just add to it. If you created new modules in milestone 0 you should add an appropriate C++ file, add it to the CMakeLists.txt file, and implement the tests using Catch.</p>
+<p>One measure of your tests quality is code coverage, which should exceed <strong>98% of lines</strong> overall. The building of these tests is setup via the provided <code>CMakeLists.txt</code>. To run your tests and check code coverage in the reference environment, after the initial build, run</p>
+<pre><code>make coverage</code></pre>
+<p>or</p>
+<pre><code>cmake --build . --target coverage</code></pre>
+<p>This will create a directory called <code>Coverage_Report</code> in the build directory. You can either copy it back to your host by doing <code>cp -r Coverage_Report /vagrant</code> and open the <code>index.html</code> file inside it on your host to examine the detailed report, or use the simple browser installed in the reference environment called <code>hv3</code>:</p>
+<pre><code>hv3 Coverage_Report/index.html</code></pre>
+<p>You can browse through the code to see what parts of what files are covered by a test and which are not (in red).</p>
+<h2 id="task-2-adding-a-list-type">Task 2: Adding a list type</h2>
+<p>Plot Script is a LISP-style language and no LISP would be complete without a list type. In our version lists are created using a built-in procedure <code>list</code>, producing an expression of type List, which may hold an arbitrary-sized, ordered, list of expressions of any type, including List itself (i.e. it is recursive). Extend the interpreter code to support such lists as the type <code>List</code> created using the <code>list</code> built-in procedure. For example:</p>
+<pre><code>plotscript&gt; (define mylist (list 1 (+ 1 I) (list 5 4 3 2 1) (list)))
+((1) (1,1) ((5) (4) (3) (2) (1)) ())
+plotscript&gt; (mylist)
+((1) (1,1) ((5) (4) (3) (2) (1)) ())</code></pre>
+<p>binds a list to the symbol <code>mylist</code> containing four entries. The first is a Number Expression with value 1. The second is a Complex Expression with value 1 + i. The third is a List Expression holding five entries, each Number Expressions. The last entry is an empty list. Note lists are displayed by printing each expression separated by a single space, surrounded by parenthesis. Thus, the empty list is printed as <code>()</code>.</p>
+<p>There are several built-in procedures that operate on Lists to be implemented.</p>
+<ul>
+<li><p>Add a built-in unary procedure <code>first</code> returning the first expression of the List argument. It is a semantic error if the expression is not a List or is empty. REPL examples:</p>
+<pre><code>plotscript&gt; (first (list 1 2 3))
+(1)
+plotscript&gt; (first (1))
+Error: argument to first is not a list
+plotscript&gt; (first (list))
+Error: argument to first is an empty list
+plotscript&gt; (first (list 1 2) (list 3 4))
+Error: more than one argument in call to first</code></pre></li>
+<li><p>Add a built-in unary procedure <code>rest</code> returning a list staring at the second element of the List argument up to and including the last element. It is a semantic error if the expression is not a List or is empty. REPL examples:</p>
+<pre><code>plotscript&gt; (rest (list 1 2 3))
+((2) (3))
+plotscript&gt; (rest (1))
+Error: argument to rest is not a list
+plotscript&gt; (rest (list))
+Error: argument to rest is an empty list
+plotscript&gt; (rest (list 1 2) (list 3 4))
+Error: more than one argument in call to rest
+plotscript&gt; (rest (list 1))
+()</code></pre></li>
+<li><p>Add a built-in unary procedure <code>length</code> returning the number of items in a List argument as a Number Expression. It is a semantic error if the expression is not a List. REPL examples:</p>
+<pre><code>plotscript&gt; (define a (list))
+()
+plotscript&gt; (define b (list 1 2 3 4))
+((1) (2) (3) (4))
+plotscript&gt; (length a)
+(0)
+plotscript&gt; (length b)
+(4)
+plotscript&gt; (length 1)
+Error: argument to length is not a list</code></pre></li>
+<li><p>Add a built-in binary procedure <code>append</code> that appends the expression of the second argument to the first List argument. It is a semantic error if the first argument is not a List. REPL examples:</p>
+<pre><code>plotscript&gt; (define x (list 0 1 2 3))
+((0) (1) (2) (3))
+plotscript&gt; (define y (append x (+ 3 (* 4 I))))
+((0) (1) (2) (3) (3,4))
+plotscript&gt; (x)
+((0) (1) (2) (3))
+plotscript&gt; (y)
+((0) (1) (2) (3) (3,4))
+plotscript&gt; (append 3 x)
+Error: first argument to append not a list</code></pre></li>
+<li><p>Add a built-in binary procedure <code>join</code> that joins each of the List arguments into one list. It is a semantic error if any argument is not a List. REPL examples:</p>
+<pre><code>plotscript&gt; (define x (list 0 1 2 3))
+((0) (1) (2) (3))
+plotscript&gt; (define y (list (+ 3 I) 100 110))
+((3,1) (100) (110))
+plotscript&gt; (define z (join x y))
+((0) (1) (2) (3) (3,1) (100) (110))
+plotscript&gt; (list (length x) (length y) (length z))
+((4) (3) (7))
+plotscript&gt; (join (list 1 2) 10)
+Error: argument to join not a list</code></pre></li>
+<li><p>Add a built-in procedure <code>range</code> that produces a list of Numbers from a lower-bound (the first argument) to an upper-bound (the second argument) in positive increments specified by a third argument. It is a semantic error if any argument is not a Number, the first argument is not less than the second, or the increment is not strictly positive. REPL examples:</p>
+<pre><code>plotscript&gt; (range 0 5 1)
+((0) (1) (2) (3) (4) (5))
+plotscript&gt; (range -3 3 1)
+((-3) (-2) (-1) (0) (1) (2) (3))
+plotscript&gt; (range 0 1 0.11)
+((0) (0.11) (0.22) (0.33) (0.44) (0.55) (0.66) (0.77) (0.88) (0.99))
+plotscript&gt; (range 3 -1 1)
+Error: begin greater than end in range
+plotscript&gt; (range 0 5 -1)
+Error: negative or zero increment in range</code></pre></li>
+</ul>
+<p>While you are working on this task you should add additional unit tests <strong>as you go</strong> to check your code works as expected and maintain test code coverage.</p>
+<h2 id="task-3-adding-user-defined-procedures">Task 3: Adding user-defined procedures</h2>
+<p>You are probably getting a little tired of implementing built-in procedures for everything. It raises the following objection: how does this help a user -- they have to know two languages, C++ and Plot Script? Good point. Let's add user-defined procedures to our language using <em>lambda expressions</em> (also called <a href="https://en.wikipedia.org/wiki/Anonymous_function">anonymous functions</a>).</p>
+<p>Extend the system to include a special-form called <code>lambda</code>. Recall a special-form differs from a procedure because the expressions that make it up are selectively evaluated. The lambda special-form has two arguments. The first argument is a parenthetical list of symbols that are the lambda function arguments (parameters or inputs). The second argument is an expression. Note this expression is not evaluated and may use arbitrary symbols including the arguments. The lambda special-form should return an Expression of type <code>Procedure</code>.</p>
+<p>Once defined such a procedure can be called the same way as built-in ones. For example the following expression:</p>
+<pre><code>(begin
+  (define a 1)
+  (define x 100)
+  (define f (lambda (x) (begin
+                          (define b 12)
+                          (+ a b x))))
+  (f 2)
+)</code></pre>
+<p>produces the result <code>(15)</code>. Note that inside the lambda function the symbol <code>a</code> has the value 1, inherited from the environment. The terminology is that the variable <code>a</code> is <em>captured</em>. On the other hand the value of the symbol <code>x</code> in the lambda expression takes on whatever value is passed as the first argument when it is called, even though a definition for <code>x</code> already exists in the environment. The terminology is that the argument <code>x</code> <em>shadows</em> that in the environment (this is similar to shadowing in C++). Hint: implementing shadowing will require changing the behavior of <code>Environment::add_exp</code>.</p>
+<p>User defined procedures are printed as the arguments as a list, a space, and then the expression as usual, the entire result surrounded by parenthesis. For example:</p>
+<pre><code>plotscript&gt; (lambda (x) (* 2 x))
+(((x)) (* (2) (x)))
+
+plotscript&gt; (define f1 (lambda (x y) (/ x y)))
+(((x) (y)) (/ (x) (y)))</code></pre>
+<p>There are two very-useful built-in procedures that operate on built-in <strong>and</strong> user-defined procedures to be implemented.</p>
+<ul>
+<li><p>Add a built-in binary procedure <code>apply</code>. The first argument is a procedure, the second a list. It treats the elements of the list as the arguments to the procedure, returning the result after evaluation. It is a semantic error if the first argument is not a Procedure, the second argument is not a list, and if any semantic errors occur during evaluation. Implementing this procedure will require some substantial restructing of the code. REPL examples:</p>
+<pre><code>plotscript&gt; (apply + (list 1 2 3 4))
+(10)
+plotscript&gt; (define complexAsList (lambda (x) (list (real x) (imag x))))
+plotscript&gt; (apply complexAsList (list (+ 1 (* 3 I))))
+((1) (3))
+plotscript&gt; (define linear (lambda (a b x) (+ (* a x) b)))
+plotscript&gt; (apply linear (list 3 4 5))
+(19)
+plotscript&gt; (apply + 3)
+Error: second argument to apply not a list
+plotscript&gt; (apply (+ z I) (list 0))
+Error: first argument to apply not a procedure
+plotscript&gt; (apply / (list 1 2 4))
+Error: during apply: Error in call to division: invalid number of arguments.</code></pre></li>
+<li><p>Add a built-in binary procedure <code>map</code> that is similar to apply, but treats each entry of the list as a separate argument to the procedure, returning a list of the same size of results. As with <code>apply</code>, it is a semantic error if the first argument is not a Procedure, the second argument is not a list, and if any semantic errors occur during evaluation. Implementing this procedure will require some substantial restructing of the code. REPL examples:</p>
+<pre><code>plotscript&gt; (define f (lambda (x) (sin x)))
+plotscript&gt; (map f (list (- pi) (/ (- pi) 2) 0 (/ pi 2) pi))
+((-1.22465e-16) (-1) (0) (1) (1.22465e-16))
+plotscript&gt; (map / (list 1 2 4)) ; compare to above - see Note below
+((1) (0.5) (0.25))
+plotscript&gt; (map + 3)
+Error: second argument to map not a list
+plotscript&gt; (map 3 (list 1 2 3))
+Error: first argument to map not a procedure
+plotscript&gt; (define addtwo (lambda (x y) (+ x y)))
+plotscript&gt; (map addtwo (list 1 2 3))
+Error: during apply: Error in call to procedure: invalid number of arguments.</code></pre></li>
+</ul>
+<p>While you are working on this task you should add additional unit tests <strong>as you go</strong> to check your code works as expected and maintain test code coverage.</p>
+<p><strong>NOTE:</strong> To make <code>map</code> meaningful for the <code>/</code> operator, we are changing the definition slightly from the starter code to make it an m-ary operator, where a single argument means inverse (similar to how a single argument to <code>-</code> means negate). For example <code>(/ 2)</code> evaluates to <code>(0.5)</code> and <code>(/ I)</code> evaluates to <code>(0,-1)</code>. This will require a small change to that procedure's implementation.</p>
+<h2 id="submission">Submission</h2>
+<p>To submit your milestone:</p>
+<ol type="1">
+<li><p>Tag the git commit that you wish to be considered for grading as &quot;milestone1&quot;.</p>
+<pre><code>git tag milestone1</code></pre></li>
+<li><p>Push this change to GitHub</p>
+<pre><code>git push origin milestone1</code></pre></li>
+</ol>
+<p>If you need to tag a different version of your code simply create and push a new tag appending a monotonically increasing number to milestone0 using '-', e.g. milestone1-2, milestone1-3, etc.</p>
+<p>Be sure you have committed all the changes you intend to. You should re-clone your repository into a separate directory and double check it is what you intend to submit. <strong>Failure to complete these steps by the due date will result in a failed submission.</strong></p>
+<h2 id="grading">Grading</h2>
+<p>There are 6 course percentage points allocated to this milestone. You will receive a detailed feedback report on your submission via Canvas within two weeks of the due date.</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align: left;">
+Code compiles in the reference environment
+</td>
+<td style="text-align: left;">
+0.5 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Correctness Tests
+</td>
+<td style="text-align: left;">
+4 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Testing Coverage
+</td>
+<td style="text-align: left;">
+0.5 points
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Code Quality
+</td>
+<td style="text-align: left;">
+0.5 point
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Good Development Practices
+</td>
+<td style="text-align: left;">
+0.5 point
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note, if your code does not build in the reference environment you will receive <strong>no points</strong>. Correctness can be <a href="https://grader.ece.vt.edu/">checked in the auto-grader</a> and is determined by the proportion of instructor tests that pass. Coverage can be determined in the reference environment using the procedure in Task 1.</p>
+<footer class="footer">
+<hr>
+<p>Copyright &copy; 2018 Christopher Wyatt.</p>
+</footer>
+</div> <!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../../../netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+
+<!-- Mirrored from filebox.ece.vt.edu/~ECE3574/project/milestone1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Dec 2018 00:56:08 GMT -->
+</html>
