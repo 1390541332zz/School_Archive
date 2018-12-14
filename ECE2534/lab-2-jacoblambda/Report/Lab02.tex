@@ -1,0 +1,80 @@
+\documentclass[12pt,letterpaper,notitlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\author{Jacob Abel}
+\title{	Lab 2
+	\\\large ECE2534 CRN:12927
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+
+\begin{raggedright}
+\paragraph{Description}
+The lab required that we implement a basic terminal relay over UART. This requires that the terminal be capable of receiving input and both echoing it back to the transmitter and displaying it on the terminal screen. The terminal had the commands \#fN and \#bN where N is a number 0 through 7 representing a colour code. These changed the foreground and background of the terminal display. Additionally the top button cleared the display and printed out a status report with the current baud rate, the foreground and background color codes and the number of characters that have been sent to the terminal. With that, the bottom button changed the baud rate from 9600 to 19200 to 38400 to 57600 and back to 9600 with one change on each press. This button needed to be debounced. Finally as a bonus, the LED lights up corresponding to certain characters. White for the \# symbol. Red for digits. Blue for characters in the alphabet. Green for everything else.
+
+\paragraph{Finite State Machine}
+The debouncer uses a rudimentary finite state machine to smooth out the button presses by limiting the amount of triggers until some amount of time expired and only after the button is released. Similarly the main parser uses a finite state machine to keep track of which stage of command parsing it is on with state 0 being normal operation, state 1 being a command character being recieved (\#), state 2 being a option being recieved(f or b), and state 3 being the final argument being recieved(the color code). If the command was incorrectly structured, the FSM reset to stage 1 and printed any retained characters.
+
+\paragraph{HAL Design} The following functions make up my HAL
+
+set\_uart\_bd(UARTBaudRate\_t t): Sets a specific baud rate
+
+cycle\_uart\_bd(): Cycles the baud rates
+
+InitTimer(): Initialises the timers
+
+void Timer222msStartOneShot(): Starts the timer
+
+int Timer222msExpiredOneShot(): Returns the completion state of the timer
+
+void TimerDebounceStartOneShot(): Starts the timer
+
+int TimerDebounceExpiredOneShot(): Returns the completion state of the 
+
+bool BounceFSM(bool b): Debounces the button with output b
+
+void InitButtonS2(): Initialises the button
+
+void InitButtonS1(): Initialises the button
+
+int ButtonS2Pressed(): Returns the button state
+
+int ButtonS1Pressed(): Returns the button state
+
+void init\_led(): Configures the LED
+
+void set\_led(color\_t c): Sets the LED with the color c (black is off)
+
+void trigger\_222led(color\_t c): Starts the LED and timer
+
+void disable\_222led(): Disables the LED
+
+void lcd\_clear(): Resets the text stream for the display.
+
+int8\_t conv\_color(color\_t c): Converts a color\_t into a GraphicsLib Color
+
+void lcd\_set\_fg(color\_t c): Sets the foreground color
+
+void lcd\_set\_bg(color\_t c): Sets the foreground color
+
+void lcd\_out(int8\_t c): A basic text stream for the display.
+
+\end{raggedright}
+\end{document}
