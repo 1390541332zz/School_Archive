@@ -1,0 +1,18 @@
+/*! \file parse.hpp
+Defines the parse function.
+ */
+#ifndef PARSE_HPP
+#define PARSE_HPP
+
+#include "expression.hpp"
+#include "token.hpp"
+
+/*! \fn parse
+\brief parse a sequence of tokens into an expression (abstract syntax tree)
+
+\param tokens, the input token sequence
+\returns the expression resulting from parsing or the None Expression on failure
+ */
+Expression parse(TokenSequenceType const & tokens) noexcept;
+
+#endif
