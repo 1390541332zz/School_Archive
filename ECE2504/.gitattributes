@@ -1,5 +1,16 @@
 # Auto detect text files and perform LF normalization
 * text eol=lf
-*.cmp.rdb binary
+*.rdb binary
+*.hdb binary
+*.hsd binary
+*.sof binary
+*.cdb binary
+*.ddb binary
 *.sci binary
+*.qtl binary
+*.qdb binary
+*.qpg binary
 *.qar binary
+*.pdf binary
+*.png binary
+*.jpg binary
