@@ -1,7 +1,14 @@
 #include <cstdlib>
 #include <string>
+#include <map>
 #include <vector>
+#include <deque>
 #include <mutex>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <functional>
 #include <thread>
 
 // Concept courtesy of Herb Sutter's talk
@@ -22,9 +29,10 @@ public:
     }
 };
 
-using TSStrV = TSGeneric<std::vector<std::string>>;
+using SearchResult  = std::pair<void const *, std::string>;
+using SearchResults = std::deque<SearchResult>;
 
-void search_str(std::string const & s, std::string & file, std::ifstream & is, TSStrV & v)
+void search_str(std::string const & s, std::ifstream & is, TSGeneric<SearchResults> & d)
 {
     std::size_t line = 1;
     while (is.good()) {
@@ -39,9 +47,9 @@ void search_str(std::string const & s, std::string & file, std::ifstream & is, T
         }
         if (found) {
             std::stringstream ss;
-            ss << file << ':' << line;
-            v([&](std::vector<std::string> & vec){
-                vec.push_back(ss.str());
+            ss << line;
+            d([&](SearchResults & deq){
+                deq.push_back({&is,ss.str()});
             });
         }
     }
@@ -53,29 +61,36 @@ int main(int argc, char ** argv)
         return EXIT_FAILURE;
     }
     std::string str(argv[1]);
-    std::vector<std::string> filenames(argv[2], argv[argc + 1]);
-    std::vector<std::ifstream> files(argv[2], argv[argc + 1]);
-    if(std::any_of(files.cbegin(), files.cend(), &std::ifstream::is_open)) {
+    std::vector<std::ifstream> files(argv + 2, argv + argc);
+    if(std::any_of(files.cbegin(), files.cend(), [](std::ifstream const & s) {
+        return !s.is_open();
+    })) {
         return EXIT_FAILURE;
     }
     std::vector<std::thread> threads;
-    TSStrV v;
+    std::vector<std::thread::id> ids;
+    threads.reserve(files.size()); 
+    ids.reserve(files.size()); 
+    TSGeneric<SearchResults> d;
 
-    for (int i = 0; i < files.size(); ++i) {
-        std::thread t(search_str, std::ref(str), std::ref(filenames[i]), std::ref(files[i]), std::ref(v));
+    for (auto & file : files) {
+        std::thread t(search_str, std::ref(str), std::ref(file), std::ref(d));
+        ids.push_back(t.get_id());
         threads.push_back(std::move(t));
     }
-
-    for (auto t : threads) {
+    std::map<void const *, std::string> m;
+    std::transform(files.cbegin(), files.cend(), argv + 2, std::inserter(m, m.end()), 
+        [](std::ifstream const & is, std::string s)
+    {
+        return std::make_pair(&is, s);
+    });
+    for (auto & t : threads) {
         t.join();
     }
-    
-    while (true) {
-        std::cout << v([](std::vector<std::string> & v){
-            auto x = v.front();
-            x.pop_front();
-            return x;
-        }) << std::endl;
-    }
+    d([&m](SearchResults const & d) { 
+        std::for_each(d.cbegin(), d.cend(), [&m](SearchResult const & x) {
+            std::cout << m[x.first] << ':' << x.second << std::endl;
+        });
+    });
     return EXIT_SUCCESS;
 }
