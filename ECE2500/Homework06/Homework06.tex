@@ -1,0 +1,241 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{bbold}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+\usepackage{pgfplots}
+\usepackage{listings}
+
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+	
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 6
+	\\\large ECE2500 CRN:82943
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+
+%\begin{center}
+%\includegraphics[width=\textwidth, height=\textheight, keepaspectratio=true]{single}
+%\end{center}
+
+\clearpage
+\paragraph{Note: }Assume all numbers are in decimal unless explicitly preceded by \texttt{0x} for hexadecimal and \texttt{0b} for binary.
+
+\paragraph{Problem 1: }
+Explain briefly, the principles of spatial and temporal locality in the context of cache design and memory hierarchy.
+
+Temporal locality is the likelihood of a memory address being accessed based on the distance between the program counter and an instruction. High temporal locality occurs when a memory address is accessed repeatedly such as in a loop sequence. As data is repeatedly accessed it is promoted up the cache. Similarly this can be used in tandem with branch prediction to cache items along the instruction path the branch predictor selects.
+
+Spatial locality is the likelihood of a memory address being accessed based on the distance between the address and recently accessed memory locations. High spatial locality occurs when memory addresses are close to each other, i.e. the delta between two addresses. As such, data near the recently accessed memory addresses can be cached and the aggressiveness of this caching can be determined by detecting common access patterns (like stack frames) or by a algorithm similar to a Kalman filter which can be used to predict the path/direction that future memory accesses will take based on prior accesses. These predictors then signal the cache level and addresses of memory to cache.
+
+While temporally local data is not necessarily spatially local, there is a clear benefit to providing spatial locality to temporally local data when designing an executable as data packed within the same cache lines /blocks will require fewer cache fetches and / or cache misses.
+
+\clearpage
+\paragraph{Problem 2: }
+Suppose we have a cache that can hold a total of 8 blocks with 4 words per block.
+
+\begin{enumerate}
+    \item How many bytes does one block contain (block size)?
+
+	$\text{sz}_\text{block} = 4\times \text{sz}_\text{word}$
+
+	Assuming 32-bit words, $\text{sz}_\text{block} = 4\times 4 \text{bytes} = 16\,\text{bytes}$
+	
+    \item How many bytes does the cache contain (cache size)?
+
+	$\text{sz}_\text{cache} = 8\times \text{sz}_\text{block} = 32\times \text{sz}_\text{word}$
+
+	Assuming 32-bit words, $\text{sz}_\text{cache} = 8\times 16 \text{bytes} = 128\,\text{bytes}$
+    
+    \item Suppose that the cache is designed as a direct-mapped cache. Compute the block index, block offset, and the tag for the following addresses:
+
+\begin{enumerate}
+    \item \texttt{0x00000004}
+    \begin{description}
+    \item[Block Index] $\text{index} = \floor*{\frac{0x00000004}{16}} \bmod 8 = 0x0$ 
+    \item[Block Offset] $\text{offset} = 0x00000004\bmod 16 = 0x4$ 
+    \item[Tag] $\text{tag} = \floor*{\frac{0x00000004}{128}} = 0x0$ 
+    \end{description}
+    \item \texttt{0x00000014}
+    \begin{description}
+    \item[Block Index] $\text{index} = \floor*{\frac{0x00000014}{16}} \bmod 8 = 0x1$ 
+    \item[Block Offset] $\text{offset} = 0x00000014\bmod 16 = 0x4$ 
+    \item[Tag] $\text{tag} = \floor*{\frac{0x00000014}{128}} = 0x0$ 
+    \end{description}
+    \item \texttt{0x01000004}
+    \begin{description}
+    \item[Block Index] $\text{index} = \floor*{\frac{0x01000004}{16}} \bmod 8 = 0x0$ 
+    \item[Block Offset] $\text{offset} = 0x01000004\bmod 16 = 0x4$ 
+    \item[Tag] $\text{tag} = \floor*{\frac{0x01000004}{128}} = 0x20000$ 
+    \end{description}
+    \item \texttt{0x00000008}
+    \begin{description}
+    \item[Block Index] $\text{index} = \floor*{\frac{0x00000008}{16}} \bmod 8 = 0x0$ 
+    \item[Block Offset] $\text{offset} = 0x00000008\bmod 16 = 0x4$ 
+    \item[Tag] $\text{tag} = \floor*{\frac{0x00000008}{128}} = 0x0$ 
+    \end{description}
+    \item \texttt{0x00000018}
+    \begin{description}
+    \item[Block Index] $\text{index} = \floor*{\frac{0x00000018}{16}}\bmod 8 = 0x1$ 
+    \item[Block Offset] $\text{offset} = 0x00000018\bmod 16 = 0x8$ 
+    \item[Tag] $\text{tag} = \floor*{\frac{0x00000018}{128}} = 0x0$ 
+    \end{description}
+    \item \texttt{0x01000008}
+    \begin{description}
+    \item[Block Index] $\text{index} = \floor*{\frac{0x01000008}{16}}\bmod 8 = 0x0$ 
+    \item[Block Offset] $\text{offset} = 0x01000008\bmod 16 = 0x8$ 
+    \item[Tag] $\text{tag} = \floor*{\frac{0x01000008}{128}} = 0x20000$ 
+    \end{description}
+\end{enumerate}
+\end{enumerate}
+
+\clearpage
+\paragraph{Problem 3: }
+
+Suppose we have a cache that can hold 16 blocks with 2 words per block.
+Assume that initially the cache is empty. Draw tables to illustrate the state of the cache after each of the following data read operations from the processor:
+
+The rows in the table should correspond to blocks, with columns for tag, block index, valid, and the memory addresses of data currently stored in the blocks (if no data is stored in a block, simply put dashes). 
+Also, indicate if the processor will stall in order to complete each read operation.
+\begin{description}
+\item[Block Size] $\text{sz}_\text{block} = 2\times 4 \text{bytes} = 8\,\text{bytes}$
+\item[Cache Size] $\text{sz}_\text{cache} = 16\times 8 \text{bytes} = 128\,\text{bytes}$
+\item[Block Index] $\text{index} = \floor*{\frac{\text{addr}}{8}} \bmod 16$ 
+\item[Tag] $\text{tag} = \floor*{\frac{\text{addr}}{128}}$ 
+\end{description}
+
+
+\begin{enumerate}
+    \item Read word from \texttt{0x00000000}: CPU will stall
+\begin{center}
+\def\arraystretch{1.35}
+\begin{tabular}{|c|c|c|c|c|c|}
+  \hline Index & Tag      & Valid & Address    
+\\\hline 0x0   & 0x000000 & 1     & 0x00000000 - 0x00000007
+\\\hline 0x1   & ---      & ---   & ---        
+\\\hline 0x2   & ---      & ---   & ---        
+\\\hline 0x3   & ---      & ---   & ---        
+\\\hline 0x4   & ---      & ---   & ---        
+\\\hline 0x5   & ---      & ---   & ---        
+\\\hline 0x6   & ---      & ---   & ---        
+\\\hline 0x7   & ---      & ---   & ---        
+\\\hline 0x8   & ---      & ---   & ---        
+\\\hline 0x9   & ---      & ---   & ---        
+\\\hline 0xA   & ---      & ---   & ---        
+\\\hline 0xB   & ---      & ---   & ---        
+\\\hline 0xC   & ---      & ---   & ---        
+\\\hline 0xD   & ---      & ---   & ---        
+\\\hline 0xE   & ---      & ---   & ---        
+\\\hline 0xF   & ---      & ---   & ---        
+\\\hline
+
+\end{tabular}
+\end{center}
+\pagebreak
+    \item Read word from \texttt{0x00000004}: CPU will not stall
+\begin{center}
+\def\arraystretch{1.35}
+\begin{tabular}{|c|c|c|c|c|c|}
+  \hline Index & Tag      & Valid & Address    
+\\\hline 0x0   & 0x000000 & 1     & 0x00000000 - 0x00000007
+\\\hline 0x1   & ---      & ---   & ---        
+\\\hline 0x2   & ---      & ---   & ---        
+\\\hline 0x3   & ---      & ---   & ---        
+\\\hline 0x4   & ---      & ---   & ---        
+\\\hline 0x5   & ---      & ---   & ---        
+\\\hline 0x6   & ---      & ---   & ---        
+\\\hline 0x7   & ---      & ---   & ---        
+\\\hline 0x8   & ---      & ---   & ---        
+\\\hline 0x9   & ---      & ---   & ---        
+\\\hline 0xA   & ---      & ---   & ---        
+\\\hline 0xB   & ---      & ---   & ---        
+\\\hline 0xC   & ---      & ---   & ---        
+\\\hline 0xD   & ---      & ---   & ---        
+\\\hline 0xE   & ---      & ---   & ---        
+\\\hline 0xF   & ---      & ---   & ---        
+\\\hline
+\end{tabular}
+\end{center}
+\pagebreak
+    \item Read word from \texttt{0x00000040}: CPU will stall
+\begin{center}
+\def\arraystretch{1.35}
+\begin{tabular}{|c|c|c|c|c|c|}
+  \hline Index & Tag      & Valid & Address    
+\\\hline 0x0   & 0x000000 & 1     & 0x00000000 - 0x00000007
+\\\hline 0x1   & ---      & ---   & ---        
+\\\hline 0x2   & ---      & ---   & ---        
+\\\hline 0x3   & ---      & ---   & ---        
+\\\hline 0x4   & ---      & ---   & ---        
+\\\hline 0x5   & ---      & ---   & ---        
+\\\hline 0x6   & ---      & ---   & ---        
+\\\hline 0x7   & ---      & ---   & ---        
+\\\hline 0x8   & 0x000000 & 1     & 0x00000040 - 0x00000047
+\\\hline 0x9   & ---      & ---   & ---        
+\\\hline 0xA   & ---      & ---   & ---        
+\\\hline 0xB   & ---      & ---   & ---        
+\\\hline 0xC   & ---      & ---   & ---        
+\\\hline 0xD   & ---      & ---   & ---        
+\\\hline 0xE   & ---      & ---   & ---        
+\\\hline 0xF   & ---      & ---   & ---        
+\\\hline
+\end{tabular}
+\end{center}
+\pagebreak
+    \item Read word from \texttt{0x00000020}: CPU will stall
+\begin{center}
+\def\arraystretch{1.35}
+\begin{tabular}{|c|c|c|c|c|c|}
+  \hline Index & Tag      & Valid & Address    
+\\\hline 0x0   & 0x000000 & 1     & 0x00000000 - 0x00000007
+\\\hline 0x1   & ---      & ---   & ---        
+\\\hline 0x2   & ---      & ---   & ---        
+\\\hline 0x3   & ---      & ---   & ---        
+\\\hline 0x4   & 0x000000 & 1     & 0x00000020 - 0x00000027
+\\\hline 0x5   & ---      & ---   & ---        
+\\\hline 0x6   & ---      & ---   & ---        
+\\\hline 0x7   & ---      & ---   & ---        
+\\\hline 0x8   & 0x000000 & 1     & 0x00000040 - 0x00000047
+\\\hline 0x9   & ---      & ---   & ---        
+\\\hline 0xA   & ---      & ---   & ---        
+\\\hline 0xB   & ---      & ---   & ---        
+\\\hline 0xC   & ---      & ---   & ---        
+\\\hline 0xD   & ---      & ---   & ---        
+\\\hline 0xE   & ---      & ---   & ---        
+\\\hline 0xF   & ---      & ---   & ---        
+\\\hline
+\end{tabular}
+\end{center}
+\pagebreak
+\end{enumerate}
+
+\end{raggedright}
+\end{document}

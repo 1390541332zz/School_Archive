@@ -1,0 +1,154 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{bbold}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+\usepackage{pgfplots}
+\usepackage{listings}
+
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 1
+	\\\large ECE2500 CRN:82943
+}
+
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+
+\paragraph{Problem 1: } There are many different examples of Instruction Set Architectures (ISAs).Give three examples of ISAs other than MIPS. For each example, give the following details:
+
+\begin{itemize}
+\item What differentiates the ISA from MIPS?
+\item What similarities does the ISA share with MIPS?
+\item What devices or applications most often use the ISA?
+\end{itemize}
+
+\begin{enumerate}
+\item x86
+\begin{itemize}
+\item Unlike MIPS, x86 is a CISC architecture and therefore is more expensive to implement. x86 also has a variable instruction width unlike MIPS. Also x86 is little endian while MIPS can be either big or little endian.
+\item Both MIPS and x86 are register based ISAs.
+\item Most modern laptops and desktops are x86.
+\end{itemize}
+
+\item ARM
+\begin{itemize}
+\item ARM often implements branch prediction and has an extremely varied/heterogeneous architecture unlike MIPS which despite allowing extensions, tends to be much more homogeneous. 
+\item Both ARM and MIPS are RISC ISAs, have fixed instruction widths, and are bi-endian.
+\item Mobile devices and IoT devices often use ARM.
+\end{itemize}
+
+\item z/Architecture
+\begin{itemize}
+\item z/Architecture is primarily big endian, is CISC instead of RISC, and has variable width instructions unlike MIPS.
+\item MIPS and z/Architecture are largely dissimilar except that they are both register based architectures.
+\item This ISA is primarily used on IBM mainframes.
+\end{itemize}
+
+\end{enumerate}
+\clearpage
+\paragraph{Problem 2: }
+Assume that the base address of the array, $A$, is stored in $\$s0$. The following table gives the memory addresses of $A[0], \ldots ,A[3]$ along with the values stored in the corresponding memory location.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+       & Stored Value 	& Memory Address 	\\\hline 
+$A[0]$ & $-3$ 			&  $4$ 				\\\hline 
+$A[1]$ &  $7$ 			&  $8$ 				\\\hline 
+$A[2]$ & $-6$ 			& $12$ 				\\\hline 
+$A[3]$ & $11$ 			& $16$ 				\\\hline 
+\end{tabular} 
+\end{center}
+What are the values stored in registers $\$s0$, $\$s1$, $\$s2$, and $\$s3$ after executing the following MIPS instructions?
+\columnratio{0.4}
+\begin{paracol}{2}
+\centering
+Instructions
+\begin{lstlisting}
+sw  $s0, 0($s0) 
+lw  $s1, 0($s0)
+lw  $s2, 8($s0)
+add $s3, $s1, $s2
+\end{lstlisting}
+\switchcolumn
+\centering
+Changed Values
+\begin{lstlisting}
+A[0]=4, $s0=4
+A[0]=4, $s0=4, $s1=4
+A[0]=4, $s0=4, $s1=4, $s2=-6
+A[0]=4, $s0=4, $s1=4, $s2=-6, $s3=-2
+\end{lstlisting}
+\end{paracol}
+
+Final Register Values: $\$s0=4,\, \$s1=4,\, \$s2=-6,\, \$s3=-2$
+
+\clearpage
+\paragraph{Problem 3: }
+Convert each of the following C statements into MIPS instructions. Assume that the variables $a$, $b$, and $c$ are stored in $\$s0$, $\$s1$, and $\$s2$, respectively. The base addresses of the arrays $A$ and $B$ are stored in $\$s3$ and $\$s4$, respectively. Assume the arrays $A$ and $B$ contain integers.
+\begin{enumerate}
+\item $b = c - B[2^{17}]$
+\begin{lstlisting}
+lui   $s1, 0x0008
+addu  $s1, $s1, $s4
+lw    $s1, 0($s1)
+sub   $s1, $s2, $s1
+\end{lstlisting}
+
+\item $A[3] = b + a + 2^{11}$
+\begin{lstlisting}
+addi  $t0, $s0, 0x0800
+add   $t0, $t0, $s1
+sw    $t0, 12($s3)
+\end{lstlisting}
+
+\item $B[5] = A[6] - c + B[b]$
+\begin{lstlisting}
+lw    $t0, 24($s3)
+sll   $t1, $s1, 2
+addu  $t1, $t1, $s4
+lw    $t1, 0($t1)
+sub   $t2, $t0, $s2
+add   $t2, $t2, $t1
+sw    $t2, 20($s4)
+\end{lstlisting}
+
+\item $A[1] = B[a - c] + b - c$
+\begin{lstlisting}
+sub   $t0, $s0, $s2
+sll   $t0, $t0, 2
+addu  $t0, $t0, $s4
+lw    $t0, 0($t0)
+add   $t0, $t0, $s1
+sub   $t0, $t0, $s2
+sw    $t0, 4($s3)
+\end{lstlisting}
+
+\end{enumerate}
+
+\end{raggedright}
+\end{document}
