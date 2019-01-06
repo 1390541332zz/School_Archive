@@ -1,0 +1,10 @@
+* D:\GitHub\ECE2204\DesignSimulate03\src\3-4-a-1.asc
+B1 Nupper 0 V={(Jn * deltax)/(e * Dn) + nlower}
+.param Jn=200
+.param Dn=32
+.param e=1.6*(10**-19)
+.param nlower=10**13
+.step PARAM deltax 0 1000u 100u
+.op
+.backanno
+.end
