@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/GitHub/ECE3544/Project01A/P1A_1
+vrock_paper_scissors
+Z0 !s110 1537416201
+!i10b 1
+!s100 ^SVjjoLGUDc5QJh<5D>>@1
+I_NZC9j3=^iXh7bM6cQei52
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dD:/GitHub/ECE3544/Project01A/P1A_2
+w1537412537
+8D:/GitHub/ECE3544/Project01A/P1A_2/rock_paper_scissors.v
+FD:/GitHub/ECE3544/Project01A/P1A_2/rock_paper_scissors.v
+L0 8
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1537416201.000000
+!s107 D:/GitHub/ECE3544/Project01A/P1A_2/rock_paper_scissors.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project01A/P1A_2/rock_paper_scissors.v|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+vtb_rock_paper_scissors
+R0
+!i10b 1
+!s100 C0C`KfaH]l[CmGGm>bo4U0
+ImKlbPIX2g2_0J:`b87P?B1
+R1
+R2
+w1537416187
+8D:/GitHub/ECE3544/Project01A/P1A_2/tb_rock_paper_scissors.v
+FD:/GitHub/ECE3544/Project01A/P1A_2/tb_rock_paper_scissors.v
+L0 12
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:/GitHub/ECE3544/Project01A/P1A_2/tb_rock_paper_scissors.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project01A/P1A_2/tb_rock_paper_scissors.v|
+!i113 1
+R5
+R6

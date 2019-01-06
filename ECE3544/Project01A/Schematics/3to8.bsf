@@ -1,0 +1,128 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 64 64 168 248)
+	(text "3to8" (rect 5 0 26 12)(font "Arial" ))
+	(text "inst" (rect 8 168 25 180)(font "Arial" ))
+	(port
+		(pt 0 24)
+		(input)
+		(text "G1" (rect 24 16 41 35)(font "Intel Clear" (font_size 8)))
+		(text "G1" (rect 24 16 41 35)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 24)(pt 16 24))
+	)
+	(port
+		(pt 0 40)
+		(input)
+		(text "G2A" (rect 24 32 49 51)(font "Intel Clear" (font_size 8)))
+		(text "G2A" (rect 24 32 49 51)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 40)(pt 16 40))
+	)
+	(port
+		(pt 0 56)
+		(input)
+		(text "G2B" (rect 24 48 49 67)(font "Intel Clear" (font_size 8)))
+		(text "G2B" (rect 24 48 49 67)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 56)(pt 16 56))
+	)
+	(port
+		(pt 0 72)
+		(input)
+		(text "S0" (rect 24 64 40 83)(font "Intel Clear" (font_size 8)))
+		(text "S0" (rect 24 64 40 83)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 72)(pt 16 72))
+	)
+	(port
+		(pt 0 88)
+		(input)
+		(text "S1" (rect 24 80 40 99)(font "Intel Clear" (font_size 8)))
+		(text "S1" (rect 24 80 40 99)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 88)(pt 16 88))
+	)
+	(port
+		(pt 0 104)
+		(input)
+		(text "S2" (rect 24 96 40 115)(font "Intel Clear" (font_size 8)))
+		(text "S2" (rect 24 96 40 115)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 104)(pt 16 104))
+	)
+	(port
+		(pt 104 48)
+		(output)
+		(text "Y1" (rect 53 40 69 59)(font "Intel Clear" (font_size 8)))
+		(text "Y1" (rect 69 40 85 59)(font "Intel Clear" (font_size 8)))
+		(line (pt 104 48)(pt 88 48))
+	)
+	(port
+		(pt 104 64)
+		(output)
+		(text "Y2" (rect 53 56 69 75)(font "Intel Clear" (font_size 8)))
+		(text "Y2" (rect 69 56 85 75)(font "Intel Clear" (font_size 8)))
+		(line (pt 104 64)(pt 88 64))
+	)
+	(port
+		(pt 104 80)
+		(output)
+		(text "Y3" (rect 53 72 69 91)(font "Intel Clear" (font_size 8)))
+		(text "Y3" (rect 69 72 85 91)(font "Intel Clear" (font_size 8)))
+		(line (pt 104 80)(pt 88 80))
+	)
+	(port
+		(pt 104 96)
+		(output)
+		(text "Y4" (rect 53 96 69 115)(font "Intel Clear" (font_size 8)))
+		(text "Y4" (rect 69 88 85 107)(font "Intel Clear" (font_size 8)))
+		(line (pt 104 96)(pt 88 96))
+	)
+	(port
+		(pt 104 32)
+		(output)
+		(text "Y0" (rect 53 24 69 43)(font "Intel Clear" (font_size 8)))
+		(text "Y0" (rect 69 24 85 43)(font "Intel Clear" (font_size 8)))
+		(line (pt 104 32)(pt 88 32))
+	)
+	(port
+		(pt 104 112)
+		(output)
+		(text "Y5" (rect 53 104 69 123)(font "Intel Clear" (font_size 8)))
+		(text "Y5" (rect 69 104 85 123)(font "Intel Clear" (font_size 8)))
+		(line (pt 104 112)(pt 88 112))
+	)
+	(port
+		(pt 104 128)
+		(output)
+		(text "Y6" (rect 53 120 69 139)(font "Intel Clear" (font_size 8)))
+		(text "Y6" (rect 69 120 85 139)(font "Intel Clear" (font_size 8)))
+		(line (pt 104 128)(pt 88 128))
+	)
+	(port
+		(pt 104 144)
+		(output)
+		(text "Y7" (rect 53 136 69 155)(font "Intel Clear" (font_size 8)))
+		(text "Y7" (rect 69 136 85 155)(font "Intel Clear" (font_size 8)))
+		(line (pt 104 144)(pt 88 144))
+	)
+	(drawing
+		(rectangle (rect 16 16 88 160))
+	)
+)

@@ -1,0 +1,43 @@
+D:/GitHub/ECE3544/Project01B/P1B_0/sn74138_cont.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project01B/P1B_0/sn74138_cont.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module sn74138_continuous
+
+Top level modules:
+	sn74138_continuous
+
+} {} {}} D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_cont.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_cont.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module decoder4to16_cont
+
+Top level modules:
+	decoder4to16_cont
+
+} {} {}} D:/GitHub/ECE3544/Project01B/P1B_0/sn74138_struct.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project01B/P1B_0/sn74138_struct.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module sn74138_structural
+
+Top level modules:
+	sn74138_structural
+
+} {} {}} D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_struct.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_struct.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module decoder4to16_struct
+
+Top level modules:
+	decoder4to16_struct
+
+} {} {}} D:/GitHub/ECE3544/Project01B/P1B_0/tb_decoder4to16.v {1 {vlog -work work -stats=none {D:\GitHub\ECE3544\Project01B\P1B_0\tb_decoder4to16.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module tb_decoder4to16
+
+Top level modules:
+	tb_decoder4to16
+
+} {} {}} D:/GitHub/ECE3544/Project01B/P1B_0/tb_sn74138.v {1 {vlog -work work -stats=none D:/GitHub/ECE3544/Project01B/P1B_0/tb_sn74138.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module tb_sn74138
+
+Top level modules:
+	tb_sn74138
+
+} {} {}}

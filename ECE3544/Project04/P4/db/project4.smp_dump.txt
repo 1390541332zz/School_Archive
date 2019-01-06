@@ -1,0 +1,52 @@
+
+State Machine - |project4Top|primaryControl:PC|s
+Name s.INIT s.COUNTDOWN s.CLOCKFACE 
+s.INIT 0 0 0 
+s.CLOCKFACE 1 0 1 
+s.COUNTDOWN 1 1 0 
+
+State Machine - |project4Top|primaryControl:PC|clockface:CF|s
+Name s.DEFAULT_CF s.SETUP_CF s.RUN_CF 
+s.DEFAULT_CF 0 0 0 
+s.RUN_CF 1 0 1 
+s.SETUP_CF 1 1 0 
+
+State Machine - |project4Top|primaryControl:PC|clockface:CF|clockface_setup:CFS|s
+Name s.HOUR_CFS s.MIN_CFS s.SEC_CFS s.DEFAULT_CFS 
+s.DEFAULT_CFS 0 0 0 0 
+s.SEC_CFS 0 0 1 1 
+s.MIN_CFS 0 1 0 1 
+s.HOUR_CFS 1 0 0 1 
+
+State Machine - |project4Top|primaryControl:PC|countdown:CD|s
+Name s.ALARM_CD s.RUN_CD s.WAIT_CD s.START_CD s.SETUP_CD s.DEFAULT_CD 
+s.DEFAULT_CD 0 0 0 0 0 0 
+s.SETUP_CD 0 0 0 0 1 1 
+s.START_CD 0 0 0 1 0 1 
+s.WAIT_CD 0 0 1 0 0 1 
+s.RUN_CD 0 1 0 0 0 1 
+s.ALARM_CD 1 0 0 0 0 1 
+
+State Machine - |project4Top|primaryControl:PC|countdown:CD|countdown_setup:CDS|s
+Name s.DEFAULT_CDS s.MIN_CDS s.HOUR_CDS 
+s.DEFAULT_CDS 0 0 0 
+s.HOUR_CDS 1 0 1 
+s.MIN_CDS 1 1 0 
+
+State Machine - |project4Top|keypressed:K3|key_state
+Name key_state.KEY_FREE key_state.KEY_RELEASED key_state.KEY_PRESSED 
+key_state.KEY_FREE 0 0 0 
+key_state.KEY_PRESSED 1 0 1 
+key_state.KEY_RELEASED 1 1 0 
+
+State Machine - |project4Top|keypressed:K2|key_state
+Name key_state.KEY_FREE key_state.KEY_RELEASED key_state.KEY_PRESSED 
+key_state.KEY_FREE 0 0 0 
+key_state.KEY_PRESSED 1 0 1 
+key_state.KEY_RELEASED 1 1 0 
+
+State Machine - |project4Top|keypressed:K1|key_state
+Name key_state.KEY_FREE key_state.KEY_RELEASED key_state.KEY_PRESSED 
+key_state.KEY_FREE 0 0 0 
+key_state.KEY_PRESSED 1 0 1 
+key_state.KEY_RELEASED 1 1 0 

@@ -1,0 +1,157 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/GitHub/ECE3544/Project01A/P1A_2
+vdecoder4to16
+!s110 1537942013
+!i10b 1
+!s100 1UVSSO11O;bHWmaaRn[k30
+IUUiQMG>Na6_b8eLX>X3>=3
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dD:/GitHub/ECE3544/Project01B/P1B_0
+Z2 w1536071466
+8D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16.v
+FD:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16.v
+Z3 L0 10
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1537942013.000000
+!s107 D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16.v|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+vdecoder4to16_cont
+Z7 !s110 1537945934
+!i10b 1
+!s100 ]1cGO2=DlG3Aj<HIXFOR:0
+IfJ^:WMIGVl=MHJA13WOUg0
+R0
+R1
+w1537944962
+8D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_cont.v
+FD:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_cont.v
+R3
+R4
+r1
+!s85 0
+31
+Z8 !s108 1537945934.000000
+!s107 D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_cont.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_cont.v|
+!i113 1
+R5
+R6
+vdecoder4to16_struct
+R7
+!i10b 1
+!s100 j^<>FiXnR>l5X4;@f98<j0
+IIUQ:]`YLQdlS;`e9<6A0a0
+R0
+R1
+w1537944939
+8D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_struct.v
+FD:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_struct.v
+R3
+R4
+r1
+!s85 0
+31
+R8
+!s107 D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_struct.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project01B/P1B_0/decoder4to16_struct.v|
+!i113 1
+R5
+R6
+vsn74138_continuous
+R7
+!i10b 1
+!s100 @J4g=NP0Mj?:B^O0^T?Ni2
+I^4Z`5@_Ij>??aR0^lBcDm2
+R0
+R1
+R2
+8D:/GitHub/ECE3544/Project01B/P1B_0/sn74138_cont.v
+FD:/GitHub/ECE3544/Project01B/P1B_0/sn74138_cont.v
+L0 11
+R4
+r1
+!s85 0
+31
+R8
+!s107 D:/GitHub/ECE3544/Project01B/P1B_0/sn74138_cont.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project01B/P1B_0/sn74138_cont.v|
+!i113 1
+R5
+R6
+vsn74138_structural
+R7
+!i10b 1
+!s100 nO?0h9D8k=k0cb36@0JVG3
+IE55i[i1XD3OW8HBXllehP3
+R0
+R1
+w1536071452
+8D:/GitHub/ECE3544/Project01B/P1B_0/sn74138_struct.v
+FD:/GitHub/ECE3544/Project01B/P1B_0/sn74138_struct.v
+R3
+R4
+r1
+!s85 0
+31
+R8
+!s107 D:/GitHub/ECE3544/Project01B/P1B_0/sn74138_struct.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project01B/P1B_0/sn74138_struct.v|
+!i113 1
+R5
+R6
+vtb_decoder4to16
+R7
+!i10b 1
+!s100 h0Lg2QIj:XWzMzCoXGzAX1
+I[NJ7;E>6D<HCKEe0cjFBA1
+R0
+R1
+w1537945891
+8D:\GitHub\ECE3544\Project01B\P1B_0\tb_decoder4to16.v
+FD:\GitHub\ECE3544\Project01B\P1B_0\tb_decoder4to16.v
+Z9 L0 18
+R4
+r1
+!s85 0
+31
+R8
+!s107 D:\GitHub\ECE3544\Project01B\P1B_0\tb_decoder4to16.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:\GitHub\ECE3544\Project01B\P1B_0\tb_decoder4to16.v|
+!i113 1
+R5
+R6
+vtb_sn74138
+!s110 1537945933
+!i10b 1
+!s100 anQZZ9Kco48^fT7KBccK<0
+IXC76KmzFVIlOVbOlQ]I?L0
+R0
+R1
+w1537945903
+8D:/GitHub/ECE3544/Project01B/P1B_0/tb_sn74138.v
+FD:/GitHub/ECE3544/Project01B/P1B_0/tb_sn74138.v
+R9
+R4
+r1
+!s85 0
+31
+!s108 1537945933.000000
+!s107 D:/GitHub/ECE3544/Project01B/P1B_0/tb_sn74138.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project01B/P1B_0/tb_sn74138.v|
+!i113 1
+R5
+R6

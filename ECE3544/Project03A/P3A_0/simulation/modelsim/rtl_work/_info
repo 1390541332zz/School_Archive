@@ -1,0 +1,99 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/GitHub/ECE3544/Project03A/P3A_0/simulation/modelsim
+vECE3544project3a
+Z1 !s110 1541384147
+!i10b 1
+!s100 6@ZhVWAM3PgPb3DQ]VzS:2
+I=NhDe:OdU_4Cc:mUGgm?G3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1541382843
+8D:/GitHub/ECE3544/Project03A/P3A_0/ECE3544project3a.v
+FD:/GitHub/ECE3544/Project03A/P3A_0/ECE3544project3a.v
+L0 16
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1541384147.000000
+!s107 D:/GitHub/ECE3544/Project03A/P3A_0/ECE3544project3a.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/GitHub/ECE3544/Project03A/P3A_0|D:/GitHub/ECE3544/Project03A/P3A_0/ECE3544project3a.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work +incdir+D:/GitHub/ECE3544/Project03A/P3A_0
+Z7 tCvgOpt 0
+n@e@c@e3544project3a
+vhc85
+R1
+!i10b 1
+!s100 70Cn7SdAC_JlT?G?3?9LS3
+IL84:k_W6aL6S^4@?]2fc?1
+R2
+R0
+w1541381264
+8D:/GitHub/ECE3544/Project03A/P3A_0/hc85.v
+FD:/GitHub/ECE3544/Project03A/P3A_0/hc85.v
+L0 9
+R3
+r1
+!s85 0
+31
+!s108 1541384146.000000
+!s107 D:/GitHub/ECE3544/Project03A/P3A_0/hc85.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/GitHub/ECE3544/Project03A/P3A_0|D:/GitHub/ECE3544/Project03A/P3A_0/hc85.v|
+!i113 1
+R5
+R6
+R7
+vproc7segdecoder
+R1
+!i10b 1
+!s100 JEG_A1XzmLPSWB1j8^]MM3
+IXDZZP_>6;O[GDD?F<UBn;3
+R2
+R0
+w1541295830
+8D:/GitHub/ECE3544/Project03A/P3A_0/proc7segdecoder.v
+FD:/GitHub/ECE3544/Project03A/P3A_0/proc7segdecoder.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:/GitHub/ECE3544/Project03A/P3A_0/proc7segdecoder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/GitHub/ECE3544/Project03A/P3A_0|D:/GitHub/ECE3544/Project03A/P3A_0/proc7segdecoder.v|
+!i113 1
+R5
+R6
+R7
+vtb_project3a
+R1
+!i10b 1
+!s100 DfR[bPJKVFc3o4J3UM>H53
+IeZdJ<dD0Ma:S35g?NTZjk0
+R2
+R0
+w1541384047
+8D:/GitHub/ECE3544/Project03A/P3A_0/tb_project3a.v
+FD:/GitHub/ECE3544/Project03A/P3A_0/tb_project3a.v
+L0 10
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:/GitHub/ECE3544/Project03A/P3A_0/tb_project3a.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/GitHub/ECE3544/Project03A/P3A_0|D:/GitHub/ECE3544/Project03A/P3A_0/tb_project3a.v|
+!i113 1
+R5
+R6
+R7

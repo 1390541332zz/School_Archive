@@ -1,0 +1,188 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+\usepackage{pgfplots}
+\usepackage{karnaugh-map}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 2
+	\\\large ECE3544 CRN:82989
+}
+
+\setlength{\parskip}{0.25em}
+
+\begin{document}
+\maketitle
+\begin{raggedright}
+\begin{paracol}{2}
+\paragraph{Problem 1: }
+Use a Karnaugh map to find a minimal SOP expression for the function $F(t, u, v, w) = \Sigma(0, 2,4, 5, 7, 8, 10, 12, 13)$.
+
+\begin{karnaugh-map}[4][4][1][$vw$][$tu$]
+  \minterms{0,2,4,5,7,8,10,12,13}
+  \autoterms[0]
+  \implicantcorner[0]
+  \implicant{4}{13}
+  \implicant{5}{7}
+\end{karnaugh-map}
+
+$
+F(t, u, v, w) = \overline{t} u w
+		      + u \overline{v} 
+		      + \overline{u}\,\overline{w} 
+$
+
+\switchcolumn
+\paragraph{Problem 2: }
+Use a Karnaugh map to find a minimal SOP expression for the function $F(t, u, v, w) = \Sigma(0, 5, 7, 8, 9, 11, 15)$ with don't cares $d(w, x, y, z) = \Sigma(1, 2, 4, 6, 14)$.
+
+\begin{karnaugh-map}[4][4][1][$vw$][$tu$]
+  \minterms{0,5,7,8,9,11,15}
+  \indeterminants{1,2,4,6,14}
+  \autoterms[0]
+  \implicantedge{0}{1}{8}{9}
+  \implicant{4}{6}
+  \implicant{15}{11}
+\end{karnaugh-map}
+
+$
+F(t, u, v, w) = t u w
+		      + \overline{t} u
+		      + \overline{u}\,\overline{v} 
+$
+
+\switchcolumn*
+\paragraph{Problem 3: }
+Using the function $F$ and don't cares d from problem 2, use a Karnaugh map to find a minimal
+POS function for $F$.
+
+\begin{karnaugh-map}[4][4][1][$vw$][$tu$]
+  \minterms{0,5,7,8,9,11,15}
+  \indeterminants{1,2,4,6,14}
+  \autoterms[0]
+  \implicant{12}{13}
+  \implicant{2}{10}
+  \implicant{1}{3}
+\end{karnaugh-map}
+$
+F(t, u, v, w) = (t + u + \overline{w})
+				(\overline{t} + \overline{u} + v)
+				(\overline{v} + w)
+$
+
+\switchcolumn
+\paragraph{Problem 4: }
+Implement a hazard free circuit for F(a, b, c) = Σ(0, 1, 3, 4). In your circuit, show which term(s) are required for the minimal implementation and which term(s) are required to remove the hazard.
+\begin{karnaugh-map}[4][2][1][$bc$][$a$]
+  \minterms{0,1,3,4}
+  \autoterms[0]
+  \implicant{0}{4}
+  \implicant{0}{1}
+  \implicant{1}{3}
+\end{karnaugh-map}
+\begin{align*}
+   F_{hazard}(a, b, c) &= a + c
+\\ F_{safe}(a, b, c) &= a + \overline{a}b + c
+\end{align*}
+
+The term $\overline{a}b$ removes the hazard.
+
+\end{paracol}
+\clearpage
+\paragraph{Problem 5: }
+Consider the following two functions:
+
+\begin{align}
+   F(a, b, c, d) &= (a+\overline{b})(c+(bd))
+\\ G(a, b, c, d) &= (a(c+\overline{d}))+(c+(bd))
+\end{align}
+
+For your circuits, you can assume the true and complement forms of the inputs $(a, b, c, d)$ are available, so that you do not need to show inverters on the inputs or include them in the gate count.
+
+\begin{enumerate}[label=\roman*.]
+\item Show how to implement the functions using only two input NAND gates and inverters in a multilevel circuit. Share any sub-expressions that you can when implementing the circuit.
+\begin{paracol}{2}
+
+\begin{align*}
+   F(a, b, c, d) &= ( a + b' )( c + (bd) )
+\\				 &= ( a' b )' ( c' (bd)''' )'
+\\				 &= (( a' b )' ( c' (bd)' )')''
+\end{align*}
+
+\switchcolumn
+
+\begin{align*}
+   G(a, b, c, d) &= ( a ( c + d' ) ) + ( c + (bd)'' )
+\\			     &= ( a ( c' d )' )'' + ( c' (bd)''' )'
+\\			     &= (( a ( c' d )' )''' ( c' (bd)''' )'' )'
+\\			     &= (( a ( c' d )' )' ( c' (bd)' )'' )'
+\end{align*}
+
+\switchcolumn*
+
+\end{paracol}
+\pagebreak
+\item 
+Find the minimized two-level SOP expressions for $F$ and $G$.
+\begin{paracol}{2}
+
+$F(a, b, c, d) = (a+\overline{b})(c+b)(c+d)$
+\begin{karnaugh-map}[4][4][1][$cd$][$ab$]
+  \minterms{3,6,7,8,9,10,11,14,15}
+  \autoterms[0]
+  \implicant{3}{11}
+  \implicant{7}{14}
+  \implicant{8}{10}
+\end{karnaugh-map}
+\begin{karnaugh-map}[4][4][1][$cd$][$ab$]
+  \minterms{3,6,7,8,9,10,11,14,15}
+  \autoterms[0]
+  \implicant{4}{13}
+  \implicant{0}{5}
+  \implicantedge{0}{0}{2}{2}
+\end{karnaugh-map}
+$F(a, b, c, d) = a'b'd' + a'c' + bc'$
+
+\switchcolumn
+
+$G(a, b, c, d) = ac + a\overline{d} + c + bd$
+
+\switchcolumn*
+
+\end{paracol}
+
+\item 
+Implement the minimized SOP expressions using only two input NAND gates and inverters. Share any sub-expressions that you can when implementing the circuit.
+
+\item 
+Compare your circuits i and iii in terms of gate counts for NANDs and inverters. Briefly explain which circuit you would rather build.
+
+\end{enumerate}
+
+
+\end{raggedright}
+\end{document}

@@ -1,0 +1,8 @@
+digraph clockface {
+node [shape = plaintext] reset;
+node [shape = ellipse];
+reset -> DEFAULT_CF;
+DEFAULT_CF -> RUN_CF;
+RUN_CF -> SETUP_CF [ label = "setup" ];
+SETUP_CF -> RUN_CF [ label = "settime" ];
+}

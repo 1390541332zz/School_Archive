@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at fsm16bit.v(21): always construct contains both blocking and non-blocking assignments File: D:/GitHub/ECE3544/Project03B/P3B_0/fsm16bit.v Line: 21

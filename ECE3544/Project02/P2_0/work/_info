@@ -1,0 +1,304 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/GitHub/ECE3544/Homework03/src
+vclk
+Z0 !s110 1539735042
+!i10b 1
+!s100 4kUXd_>PUb@NFWZS9<k<33
+IkNzQQf@^P]YK^Gd7cR;UF0
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dD:/GitHub/ECE3544/Project02/P2_0
+Z3 w1457961362
+8D:/GitHub/ECE3544/Project02/P2_0/clk.v
+FD:/GitHub/ECE3544/Project02/P2_0/clk.v
+L0 25
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1539735042.000000
+!s107 D:/GitHub/ECE3544/Project02/P2_0/clk.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/clk.v|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+vclk_tb
+R0
+!i10b 1
+!s100 9nXkz2?]ZU[oY92gKezQ=0
+IMLz13cBi^Y0gf9Y@z]C071
+R1
+R2
+R3
+8D:/GitHub/ECE3544/Project02/P2_0/clk_tb.v
+FD:/GitHub/ECE3544/Project02/P2_0/clk_tb.v
+L0 23
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/GitHub/ECE3544/Project02/P2_0/clk_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/clk_tb.v|
+!i113 1
+R6
+R7
+vcounter_11bit
+Z8 !s110 1539735043
+!i10b 1
+!s100 i`T<VSX80^YgS;HeZPI6J0
+I^Q5G9ZRnQ8eM[M7dhZHn20
+R1
+R2
+w1539596673
+8D:/GitHub/ECE3544/Project02/P2_0/counter_11bit.v
+FD:/GitHub/ECE3544/Project02/P2_0/counter_11bit.v
+L0 29
+R4
+r1
+!s85 0
+31
+Z9 !s108 1539735043.000000
+!s107 D:/GitHub/ECE3544/Project02/P2_0/counter_11bit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/counter_11bit.v|
+!i113 1
+R6
+R7
+vcounter_4bit
+R0
+!i10b 1
+!s100 6hOFhfHe9PL<[2a:W:IT^1
+IS:Qh43f_BSXi]jfYV`^7G2
+R1
+R2
+w1538055272
+8D:/GitHub/ECE3544/Project02/P2_0/counter_4bit.v
+FD:/GitHub/ECE3544/Project02/P2_0/counter_4bit.v
+L0 34
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/GitHub/ECE3544/Project02/P2_0/counter_4bit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/counter_4bit.v|
+!i113 1
+R6
+R7
+vctr11_tb
+R8
+!i10b 1
+!s100 SJWAZ1?Wl4RX4?V^?`C?E0
+I;d_h8L:fM5>D?T>ORI5M]3
+R1
+R2
+w1539596670
+8D:/GitHub/ECE3544/Project02/P2_0/ctr11_tb.v
+FD:/GitHub/ECE3544/Project02/P2_0/ctr11_tb.v
+Z10 L0 15
+R4
+r1
+!s85 0
+31
+R9
+!s107 D:/GitHub/ECE3544/Project02/P2_0/ctr11_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/ctr11_tb.v|
+!i113 1
+R6
+R7
+vctr_tb
+R0
+!i10b 1
+!s100 >[iTb1TKT^T1=8b0[5<k53
+IHjVj?GCXzVK8`4SMfL0a@2
+R1
+R2
+R3
+8D:/GitHub/ECE3544/Project02/P2_0/ctr_tb.v
+FD:/GitHub/ECE3544/Project02/P2_0/ctr_tb.v
+L0 21
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/GitHub/ECE3544/Project02/P2_0/ctr_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/ctr_tb.v|
+!i113 1
+R6
+R7
+vhc85
+R8
+!i10b 1
+!s100 RBkBUnW]M_FFBHl@D^Ig`0
+IeiB4]AIB@IDaLmj``O>l[0
+R1
+R2
+w1539733210
+8D:/GitHub/ECE3544/Project02/P2_0/hc85.v
+FD:/GitHub/ECE3544/Project02/P2_0/hc85.v
+Z11 L0 17
+R4
+r1
+!s85 0
+31
+R9
+!s107 D:/GitHub/ECE3544/Project02/P2_0/hc85.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/hc85.v|
+!i113 1
+R6
+R7
+vhc85_tb
+R8
+!i10b 1
+!s100 >h6J:CV>e5G7UYIjQ99QY3
+IZ^bW]i[_cgOj2G2>bL7NO2
+R1
+R2
+w1539731715
+8D:/GitHub/ECE3544/Project02/P2_0/hc85_tb.v
+FD:/GitHub/ECE3544/Project02/P2_0/hc85_tb.v
+Z12 L0 13
+R4
+r1
+!s85 0
+31
+R9
+!s107 D:/GitHub/ECE3544/Project02/P2_0/hc85_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/hc85_tb.v|
+!i113 1
+R6
+R7
+vhc85_ut
+R8
+!i10b 1
+!s100 02CZbI8CjdiRLIIH7P;<G3
+I;a:F?c<T7kBX8G5mN2nI_3
+R1
+R2
+w1539673060
+8D:/GitHub/ECE3544/Project02/P2_0/hc85_ut.v
+FD:/GitHub/ECE3544/Project02/P2_0/hc85_ut.v
+Z13 L0 12
+R4
+r1
+!s85 0
+31
+R9
+!s107 D:/GitHub/ECE3544/Project02/P2_0/hc85_ut.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/hc85_ut.v|
+!i113 1
+R6
+R7
+vhc85_ut_tb
+R8
+!i10b 1
+!s100 8X5aOJYA73JGa3o2Bdg4G1
+IXH6jZhJ0BVVVRjgj>_kV23
+R1
+R2
+w1539671194
+8D:/GitHub/ECE3544/Project02/P2_0/hc85_ut_tb.v
+FD:/GitHub/ECE3544/Project02/P2_0/hc85_ut_tb.v
+R12
+R4
+r1
+!s85 0
+31
+R9
+!s107 D:/GitHub/ECE3544/Project02/P2_0/hc85_ut_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/hc85_ut_tb.v|
+!i113 1
+R6
+R7
+vreg10_tb
+Z14 !s110 1539735045
+!i10b 1
+!s100 MMXT@AMT?D76DEb693e9f3
+I1T4zg>_8`^E?K0Go[XA9U0
+R1
+R2
+w1539735035
+8D:\GitHub\ECE3544\Project02\P2_0\reg10_tb.v
+FD:\GitHub\ECE3544\Project02\P2_0\reg10_tb.v
+R13
+R4
+r1
+!s85 0
+31
+Z15 !s108 1539735045.000000
+!s107 D:\GitHub\ECE3544\Project02\P2_0\reg10_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:\GitHub\ECE3544\Project02\P2_0\reg10_tb.v|
+!i113 1
+R6
+R7
+vregister_10bit
+R14
+!i10b 1
+!s100 @9aPAGh_O=2[3^VfilVk63
+I[42lWaD1:K9CPIWZR<EFF2
+R1
+R2
+w1539726279
+8D:/GitHub/ECE3544/Project02/P2_0/register_10bit.v
+FD:/GitHub/ECE3544/Project02/P2_0/register_10bit.v
+R11
+R4
+r1
+!s85 0
+31
+R15
+!s107 D:/GitHub/ECE3544/Project02/P2_0/register_10bit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/register_10bit.v|
+!i113 1
+R6
+R7
+vsystem_tb1
+R14
+!i10b 1
+!s100 6fY]?L1K5MOj9WeMXQ:PV3
+I^[NGT`eDPe1e1f[UQY[280
+R1
+R2
+w1539725716
+8D:/GitHub/ECE3544/Project02/P2_0/system_tb1.v
+FD:/GitHub/ECE3544/Project02/P2_0/system_tb1.v
+R10
+R4
+r1
+!s85 0
+31
+R15
+!s107 D:/GitHub/ECE3544/Project02/P2_0/system_tb1.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/system_tb1.v|
+!i113 1
+R6
+R7
+vsystem_tb2
+R14
+!i10b 1
+!s100 @SJO2V_JOdO`HZTD7I>N_0
+I=9H5VE63nC5WFCIlb8oaV0
+R1
+R2
+w1539725799
+8D:/GitHub/ECE3544/Project02/P2_0/system_tb2.v
+FD:/GitHub/ECE3544/Project02/P2_0/system_tb2.v
+R10
+R4
+r1
+!s85 0
+31
+R15
+!s107 D:/GitHub/ECE3544/Project02/P2_0/system_tb2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/GitHub/ECE3544/Project02/P2_0/system_tb2.v|
+!i113 1
+R6
+R7

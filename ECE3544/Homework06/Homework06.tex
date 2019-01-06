@@ -1,0 +1,75 @@
+\documentclass[12pt,letterpaper,titlepage]{article}
+\usepackage{solarized-light}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setcounter{secnumdepth}{0}
+\usepackage{nameref}
+\usepackage{enumitem}
+\usepackage{environ}
+\usepackage{pgfplots}
+\usepackage{karnaugh-map}
+
+\setmainfont{Times New Roman}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
+
+
+\usepackage{paracol}
+\usepackage{wrapfig}
+\globalcounter{table}
+\globalcounter{figure}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\graphicspath{{img/}}
+
+\author{Jacob Abel}
+\title{	Homework 6
+	\\\large ECE3544 CRN:82989
+}
+
+\setlength{\parskip}{0.25em}
+
+\begin{document}
+\maketitle
+\begin{raggedright} 
+\paragraph{Problem 1: }
+For each of the following memory sizes, given as number of words x size of word in bits,
+list the number of address lines and data lines are required.
+\begin{enumerate}
+\item 1K x 8: 10 addr lines, 7 data lines
+\item 4K x 16: 12 addr lines, 16 data lines
+\item 512 x 13: 9 addr lines, 13 data lines
+\end{enumerate}
+
+\paragraph{Problem 2: }
+How many memory chips would be required to build a memory that is 8192 x 8, if each
+memory chip is 256 x 1 bits? 32
+
+\paragraph{Problem 3: }
+Using the dual\_port\_rom module from slide 12 of the memory lecture as a starting point,
+create a model of a single port ROM (with ports similar to the one on slide 10) and then use the
+ROM to implement the sum and carry out for a 2-bit adder with carry in. The inputs will be
+A[1:0], B[1:0], and c\_in, while outputs will be sum[1:0] and c\_out. Your ROM should be the
+minimum size necessary to implement the adder. The ROM values should be stored in a text file
+that is read in using the \$readmemh task. Create a testbench to show the correct operation of
+your ROM's functionality.
+
+Files included
+
+\paragraph{Problem 4: }
+Using the single\_clk\_ram module from slide 29 of the memory lecture as a starting point,
+create a 16 x 8 memory where each memory location is initialized to (A5)16. Create a test bench
+for the memory that writes the value x+1 to each memory address x (i.e., address 0 has value 1,
+address 1 has value 2, address 2 has value 3, and so on), and then reads from each location to
+verify that it has been written correctly. Your test bench should write all 16 locations before
+reading them.
+
+
+\end{raggedright}
+\end{document}
