@@ -1,0 +1,8 @@
+digraph countdownsetup {
+node [shape = plaintext] reset;
+node [shape = ellipse];
+reset -> DEFAULT_CDS;
+DEFAULT_CDS -> HOUR_CDS [ label = "cycle" ];
+HOUR_CDS -> MIN_CDS [ label = "cycle" ];
+MIN_CDS -> HOUR_CDS [ label = "cycle" ];
+}

@@ -1,0 +1,23 @@
+Quartus Prime Archive log --	D:/GitHub/ECE3544/Project03A/P3A_0/abelj_ECE3544project3a.qarlog
+
+Archive:	D:/GitHub/ECE3544/Project03A/P3A_0/abelj_ECE3544project3a.qar
+Date:		Sun Nov 04 21:19:00 2018
+Quartus Prime		17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+	=========== Files Selected: ===========
+D:/GitHub/ECE3544/Project03A/P3A_0/ECE3544project3a.qpf
+D:/GitHub/ECE3544/Project03A/P3A_0/ECE3544project3a.qsf
+D:/GitHub/ECE3544/Project03A/P3A_0/ECE3544project3a.sdc
+D:/GitHub/ECE3544/Project03A/P3A_0/ECE3544project3a.v
+D:/GitHub/ECE3544/Project03A/P3A_0/ECE3544project3a_assignment_defaults.qdf
+D:/GitHub/ECE3544/Project03A/P3A_0/assignment_defaults.qdf
+D:/GitHub/ECE3544/Project03A/P3A_0/hc85.v
+D:/GitHub/ECE3544/Project03A/P3A_0/hc85_tb.v
+D:/GitHub/ECE3544/Project03A/P3A_0/proc7segdecoder.v
+D:/GitHub/ECE3544/Project03A/P3A_0/proc7segdecoder_tb.v
+D:/GitHub/ECE3544/Project03A/P3A_0/project3aTest.v
+D:/GitHub/ECE3544/Project03A/P3A_0/tb_project3a.v
+	======= Total: 12 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

@@ -1,0 +1,9 @@
+digraph primaryControl {
+node [shape = plaintext] reset, alarm;
+node [shape = ellipse];
+reset -> INIT;
+INIT -> CLOCKFACE;
+CLOCKFACE -> COUNTDOWN [ label = "toggle" ];
+COUNTDOWN -> CLOCKFACE [ label = "toggle" ];
+alarm -> COUNTDOWN;
+}

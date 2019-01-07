@@ -1,0 +1,22 @@
+Quartus Prime Archive log --	D:/GitHub/ECE3544/Project03B/P3B_0/Project3b_abelj.qarlog
+
+Archive:	D:/GitHub/ECE3544/Project03B/P3B_0/Project3b_abelj.qar
+Date:		Sat Nov 10 21:57:15 2018
+Quartus Prime		17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+	=========== Files Selected: ===========
+D:/GitHub/ECE3544/Project03B/P3B_0/Project3b.qpf
+D:/GitHub/ECE3544/Project03B/P3B_0/assignment_defaults.qdf
+D:/GitHub/ECE3544/Project03B/P3B_0/fsm16bit.v
+D:/GitHub/ECE3544/Project03B/P3B_0/keypressed.v
+D:/GitHub/ECE3544/Project03B/P3B_0/proc7segdecoder.v
+D:/GitHub/ECE3544/Project03B/P3B_0/proc7segdecoder_tb.v
+D:/GitHub/ECE3544/Project03B/P3B_0/project3bTop.qsf
+D:/GitHub/ECE3544/Project03B/P3B_0/project3bTop.sdc
+D:/GitHub/ECE3544/Project03B/P3B_0/project3bTop.v
+D:/GitHub/ECE3544/Project03B/P3B_0/project3bTop_assignment_defaults.qdf
+D:/GitHub/ECE3544/Project03B/P3B_0/tb_fsm16bit.v
+	======= Total: 11 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

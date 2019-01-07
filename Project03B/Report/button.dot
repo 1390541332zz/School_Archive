@@ -1,0 +1,8 @@
+digraph button {
+node [shape = plaintext] reset;
+node [shape = ellipse];
+reset -> KEY_FREE;
+KEY_FREE -> KEY_PRESSED [ label = " 1/0 " ];
+KEY_PRESSED -> KEY_RELEASED [ label = " 1/1 " ];
+KEY_RELEASED -> KEY_FREE [ label = " X/0" ];
+}

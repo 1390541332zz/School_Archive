@@ -1,0 +1,13 @@
+digraph countdown {
+node [shape = plaintext] soft_reset, hard_reset;
+node [shape = ellipse];
+hard_reset -> DEFAULT_CD;
+soft_reset -> SETUP_CD;
+DEFAULT_CD -> SETUP_CD;
+SETUP_CD -> START_CD [ label = "setcount" ];
+START_CD -> WAIT_CD;
+WAIT_CD -> RUN_CD [ label = "pause" ];
+RUN_CD -> WAIT_CD [ label = "run" ];
+RUN_CD -> ALARM [ label = "alarm" ];
+ALARM_CD -> START_CD [ label = "clear" ];
+}

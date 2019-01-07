@@ -1,0 +1,373 @@
+|project4Top
+CLOCK_50 => CLOCK_50.IN4
+KEY[0] => reset.IN4
+KEY[1] => KEY[1].IN1
+KEY[2] => KEY[2].IN1
+KEY[3] => KEY[3].IN1
+SW[0] => ~NO_FANOUT~
+SW[1] => ~NO_FANOUT~
+SW[2] => ~NO_FANOUT~
+SW[3] => ~NO_FANOUT~
+SW[4] => ~NO_FANOUT~
+SW[5] => ~NO_FANOUT~
+SW[6] => ~NO_FANOUT~
+SW[7] => ~NO_FANOUT~
+SW[8] => ~NO_FANOUT~
+SW[9] => ~NO_FANOUT~
+LED[0] <= <GND>
+LED[1] <= <GND>
+LED[2] <= <GND>
+LED[3] <= <GND>
+LED[4] <= <GND>
+LED[5] <= <GND>
+LED[6] <= <GND>
+LED[7] <= <GND>
+LED[8] <= <GND>
+LED[9] <= <GND>
+HEX5[0] <= HEX5.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[1] <= HEX5.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[2] <= HEX5.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[3] <= HEX5.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[4] <= HEX5.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[5] <= HEX5.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[6] <= HEX5.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[0] <= HEX4.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[1] <= HEX4.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[2] <= HEX4.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[3] <= HEX4.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[4] <= HEX4.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[5] <= HEX4.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[6] <= HEX4.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[0] <= HEX3.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[1] <= HEX3.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[2] <= HEX3.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[3] <= HEX3.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[4] <= HEX3.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[5] <= HEX3.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[6] <= HEX3.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[0] <= HEX2.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[1] <= HEX2.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[2] <= HEX2.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[3] <= HEX2.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[4] <= HEX2.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[5] <= HEX2.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[6] <= HEX2.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[0] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[1] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[2] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[3] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[4] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[5] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[6] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[0] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[1] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[2] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[3] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[4] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[5] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[6] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|proc7segdecoder:H1_dec
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|proc7segdecoder:H0_dec
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|proc7segdecoder:M1_dec
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|proc7segdecoder:M0_dec
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|proc7segdecoder:S1_dec
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|proc7segdecoder:S0_dec
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|keypressed:K1
+clock => key_state~1.DATAIN
+reset => key_state~3.DATAIN
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_out <= enable_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|keypressed:K2
+clock => key_state~1.DATAIN
+reset => key_state~3.DATAIN
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_out <= enable_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|keypressed:K3
+clock => key_state~1.DATAIN
+reset => key_state~3.DATAIN
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_in => next_key_state.OUTPUTSELECT
+enable_out <= enable_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|primaryControl:PC
+CLK_50 => CLK_50.IN2
+CLK_1HZ => CLK_1HZ.IN2
+reset => reset.IN2
+adjust => adjust.IN2
+toggle => toggle.IN2
+mode => mode.IN2
+HEX_en[0] <= <VCC>
+HEX_en[1] <= <GND>
+HEX_en[2] <= <GND>
+HEX_en[3] <= <GND>
+HEX_en[4] <= HEX_en[4].DB_MAX_OUTPUT_PORT_TYPE
+HEX_en[5] <= HEX_en.DB_MAX_OUTPUT_PORT_TYPE
+HEX_flash[0] <= sec.DB_MAX_OUTPUT_PORT_TYPE
+HEX_flash[1] <= sec.DB_MAX_OUTPUT_PORT_TYPE
+HEX_flash[2] <= min.DB_MAX_OUTPUT_PORT_TYPE
+HEX_flash[3] <= min.DB_MAX_OUTPUT_PORT_TYPE
+HEX_flash[4] <= hr.DB_MAX_OUTPUT_PORT_TYPE
+HEX_flash[5] <= HEX_flash.DB_MAX_OUTPUT_PORT_TYPE
+H1[0] <= H1[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H1[1] <= H1[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H1[2] <= H1[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H1[3] <= H1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0[0] <= H0[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0[1] <= H0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0[2] <= H0[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0[3] <= H0[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1[0] <= M1[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1[1] <= M1[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1[2] <= M1[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1[3] <= M1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0[0] <= M0[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0[1] <= M0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0[2] <= M0[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0[3] <= M0[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1[0] <= S1[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1[1] <= S1[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1[2] <= S1[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1[3] <= S1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0[0] <= S0[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0[1] <= S0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0[2] <= S0[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0[3] <= S0[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|primaryControl:PC|countdown:CD
+CLK_50 => CLK_50.IN1
+CLK_1HZ => H0_a[0].CLK
+CLK_1HZ => H0_a[1].CLK
+CLK_1HZ => H0_a[2].CLK
+CLK_1HZ => H0_a[3].CLK
+CLK_1HZ => M1_a[0].CLK
+CLK_1HZ => M1_a[1].CLK
+CLK_1HZ => M1_a[2].CLK
+CLK_1HZ => M1_a[3].CLK
+CLK_1HZ => M0_a[0].CLK
+CLK_1HZ => M0_a[1].CLK
+CLK_1HZ => M0_a[2].CLK
+CLK_1HZ => M0_a[3].CLK
+CLK_1HZ => S0_a[0].CLK
+CLK_1HZ => S0_a[1].CLK
+CLK_1HZ => S0_a[2].CLK
+CLK_1HZ => S0_a[3].CLK
+CLK_1HZ => S1_a[0].CLK
+CLK_1HZ => S1_a[1].CLK
+CLK_1HZ => S1_a[2].CLK
+CLK_1HZ => S1_a[3].CLK
+reset => comb.IN1
+reset => s~3.DATAIN
+adjust => soft_reset.IN0
+adjust => clear.IN0
+adjust => Selector1.IN2
+adjust => Selector0.IN2
+toggle => clear.IN1
+toggle => s.OUTPUTSELECT
+toggle => s.OUTPUTSELECT
+toggle => always2.IN0
+toggle => Selector3.IN3
+toggle => Selector2.IN4
+toggle => Selector2.IN2
+mode => cycle.IN0
+mode => clear.IN1
+active => clear.IN1
+hr <= countdown_setup:CDS.port3
+min <= countdown_setup:CDS.port4
+sec <= <GND>
+alarm <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+H1[0] <= <GND>
+H1[1] <= <VCC>
+H1[2] <= <GND>
+H1[3] <= <VCC>
+H0_o[0] <= H0_o[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0_o[1] <= H0_o[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0_o[2] <= H0_o[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0_o[3] <= H0_o[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1_o[0] <= M1_o[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1_o[1] <= M1_o[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1_o[2] <= M1_o[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1_o[3] <= M1_o[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0_o[0] <= M0_o[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0_o[1] <= M0_o[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0_o[2] <= M0_o[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0_o[3] <= M0_o[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1_o[0] <= S1_o[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1_o[1] <= S1_o[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1_o[2] <= S1_o[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1_o[3] <= S1_o[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0_o[0] <= S0_o[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0_o[1] <= S0_o[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0_o[2] <= S0_o[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0_o[3] <= S0_o[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|primaryControl:PC|countdown:CD|countdown_setup:CDS
+CLK_50 => s~2.DATAIN
+cycle => s.OUTPUTSELECT
+cycle => s.OUTPUTSELECT
+cycle => s.OUTPUTSELECT
+reset => s.OUTPUTSELECT
+reset => s.OUTPUTSELECT
+reset => s.OUTPUTSELECT
+hr <= hr.DB_MAX_OUTPUT_PORT_TYPE
+min <= min.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|primaryControl:PC|clockface:CF
+CLK_50 => CLK_50.IN1
+CLK_1HZ => det_clk_1hz[0].DATAIN
+reset => cfs_reset.IN0
+reset => s.OUTPUTSELECT
+reset => s.OUTPUTSELECT
+reset => s.DEFAULT_CF.DATAIN
+adjust => Selector1.IN2
+adjust => Selector0.IN2
+adjust => Selector1.IN1
+adjust => Selector0.IN1
+toggle => always2.IN0
+mode => cycle.IN0
+hr <= clockface_setup:CFS.port3
+min <= clockface_setup:CFS.port4
+sec <= clockface_setup:CFS.port5
+no_ten <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+H1[0] <= H1[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H1[1] <= H1[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H1[2] <= H1[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H1[3] <= H1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0[0] <= H0[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0[1] <= H0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0[2] <= H0[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+H0[3] <= H0[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1[0] <= M1[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1[1] <= M1[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1[2] <= M1[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M1[3] <= M1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0[0] <= M0[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0[1] <= M0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0[2] <= M0[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+M0[3] <= M0[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1[0] <= S1[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1[1] <= S1[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1[2] <= S1[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S1[3] <= S1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0[0] <= S0[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0[1] <= S0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0[2] <= S0[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+S0[3] <= S0[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|project4Top|primaryControl:PC|clockface:CF|clockface_setup:CFS
+CLK_50 => s~2.DATAIN
+cycle => s.OUTPUTSELECT
+cycle => s.OUTPUTSELECT
+cycle => s.OUTPUTSELECT
+cycle => s.OUTPUTSELECT
+reset => s.OUTPUTSELECT
+reset => s.OUTPUTSELECT
+reset => s.OUTPUTSELECT
+reset => s.OUTPUTSELECT
+hr <= hr.DB_MAX_OUTPUT_PORT_TYPE
+min <= min.DB_MAX_OUTPUT_PORT_TYPE
+sec <= sec.DB_MAX_OUTPUT_PORT_TYPE
+
+

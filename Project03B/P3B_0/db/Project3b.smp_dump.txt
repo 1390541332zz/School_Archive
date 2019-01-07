@@ -1,0 +1,6 @@
+
+State Machine - |project3bTop|keypressed:U1|key_state
+Name key_state.KEY_FREE key_state.KEY_RELEASED key_state.KEY_PRESSED 
+key_state.KEY_FREE 0 0 0 
+key_state.KEY_PRESSED 1 0 1 
+key_state.KEY_RELEASED 1 1 0 

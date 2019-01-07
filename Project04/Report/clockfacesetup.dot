@@ -1,0 +1,9 @@
+digraph clockfacesetup {
+node [shape = plaintext] reset;
+node [shape = ellipse];
+reset -> DEFAULT_CFS;
+DEFAULT_CFS -> SEC_CFS;
+SEC_CFS -> MIN_CFS [ label = "cycle" ];
+MIN_CFS -> HOUR_CFS [ label = "cycle" ];
+HOUR_CFS -> SEC_CFS [ label = "cycle" ];
+}

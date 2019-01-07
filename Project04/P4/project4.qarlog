@@ -1,0 +1,25 @@
+Quartus Prime Archive log --	D:/GitHub/ECE3544/Project04/P4/project4.qarlog
+
+Archive:	D:/GitHub/ECE3544/Project04/P4/project4.qar
+Date:		Fri Nov 30 23:50:33 2018
+Quartus Prime		17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+	=========== Files Selected: ===========
+D:/GitHub/ECE3544/Project04/P4/assignment_defaults.qdf
+D:/GitHub/ECE3544/Project04/P4/clockface.v
+D:/GitHub/ECE3544/Project04/P4/clockface_setup.v
+D:/GitHub/ECE3544/Project04/P4/countdown.v
+D:/GitHub/ECE3544/Project04/P4/countdown_setup.v
+D:/GitHub/ECE3544/Project04/P4/keypressed.v
+D:/GitHub/ECE3544/Project04/P4/primaryControl.v
+D:/GitHub/ECE3544/Project04/P4/proc7segdecoder.v
+D:/GitHub/ECE3544/Project04/P4/proc7segdecoder_tb.v
+D:/GitHub/ECE3544/Project04/P4/project4.qpf
+D:/GitHub/ECE3544/Project04/P4/project4Top.qsf
+D:/GitHub/ECE3544/Project04/P4/project4Top.sdc
+D:/GitHub/ECE3544/Project04/P4/project4Top.v
+D:/GitHub/ECE3544/Project04/P4/project4Top_assignment_defaults.qdf
+	======= Total: 14 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

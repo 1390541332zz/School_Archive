@@ -1,0 +1,166 @@
+|ECE3544project3a
+SW[0] => SW[0].IN2
+SW[1] => SW[1].IN2
+SW[2] => SW[2].IN2
+SW[3] => SW[3].IN2
+SW[4] => SW[4].IN2
+SW[5] => SW[5].IN2
+SW[6] => SW[6].IN2
+SW[7] => SW[7].IN2
+SW[8] => SW[8].IN1
+SW[9] => LED[9].DATAIN
+LED[0] << SW[0].DB_MAX_OUTPUT_PORT_TYPE
+LED[1] << SW[1].DB_MAX_OUTPUT_PORT_TYPE
+LED[2] << SW[2].DB_MAX_OUTPUT_PORT_TYPE
+LED[3] << SW[3].DB_MAX_OUTPUT_PORT_TYPE
+LED[4] << SW[4].DB_MAX_OUTPUT_PORT_TYPE
+LED[5] << SW[5].DB_MAX_OUTPUT_PORT_TYPE
+LED[6] << SW[6].DB_MAX_OUTPUT_PORT_TYPE
+LED[7] << SW[7].DB_MAX_OUTPUT_PORT_TYPE
+LED[8] << SW[8].DB_MAX_OUTPUT_PORT_TYPE
+LED[9] << SW[9].DB_MAX_OUTPUT_PORT_TYPE
+HEX0[0] << proc7segdecoder:hex0.port1
+HEX0[1] << proc7segdecoder:hex0.port1
+HEX0[2] << proc7segdecoder:hex0.port1
+HEX0[3] << proc7segdecoder:hex0.port1
+HEX0[4] << proc7segdecoder:hex0.port1
+HEX0[5] << proc7segdecoder:hex0.port1
+HEX0[6] << proc7segdecoder:hex0.port1
+HEX1[0] << proc7segdecoder:hex1.port1
+HEX1[1] << proc7segdecoder:hex1.port1
+HEX1[2] << proc7segdecoder:hex1.port1
+HEX1[3] << proc7segdecoder:hex1.port1
+HEX1[4] << proc7segdecoder:hex1.port1
+HEX1[5] << proc7segdecoder:hex1.port1
+HEX1[6] << proc7segdecoder:hex1.port1
+HEX2[0] << proc7segdecoder:hex2.port1
+HEX2[1] << proc7segdecoder:hex2.port1
+HEX2[2] << proc7segdecoder:hex2.port1
+HEX2[3] << proc7segdecoder:hex2.port1
+HEX2[4] << proc7segdecoder:hex2.port1
+HEX2[5] << proc7segdecoder:hex2.port1
+HEX2[6] << proc7segdecoder:hex2.port1
+HEX3[0] << proc7segdecoder:hex3.port1
+HEX3[1] << proc7segdecoder:hex3.port1
+HEX3[2] << proc7segdecoder:hex3.port1
+HEX3[3] << proc7segdecoder:hex3.port1
+HEX3[4] << proc7segdecoder:hex3.port1
+HEX3[5] << proc7segdecoder:hex3.port1
+HEX3[6] << proc7segdecoder:hex3.port1
+HEX4[0] << proc7segdecoder:hex4.port1
+HEX4[1] << proc7segdecoder:hex4.port1
+HEX4[2] << proc7segdecoder:hex4.port1
+HEX4[3] << proc7segdecoder:hex4.port1
+HEX4[4] << proc7segdecoder:hex4.port1
+HEX4[5] << proc7segdecoder:hex4.port1
+HEX4[6] << proc7segdecoder:hex4.port1
+
+
+|ECE3544project3a|hc85:cmp
+a_in[0] => Equal0.IN3
+a_in[0] => LessThan0.IN4
+a_in[0] => LessThan1.IN4
+a_in[1] => Equal0.IN2
+a_in[1] => LessThan0.IN3
+a_in[1] => LessThan1.IN3
+a_in[2] => Equal0.IN1
+a_in[2] => LessThan0.IN2
+a_in[2] => LessThan1.IN2
+a_in[3] => Equal0.IN0
+a_in[3] => LessThan0.IN1
+a_in[3] => LessThan1.IN1
+b_in[0] => Equal0.IN7
+b_in[0] => LessThan0.IN8
+b_in[0] => LessThan1.IN8
+b_in[1] => Equal0.IN6
+b_in[1] => LessThan0.IN7
+b_in[1] => LessThan1.IN7
+b_in[2] => Equal0.IN5
+b_in[2] => LessThan0.IN6
+b_in[2] => LessThan1.IN6
+b_in[3] => Equal0.IN4
+b_in[3] => LessThan0.IN5
+b_in[3] => LessThan1.IN5
+en => oa_lt_b.OUTPUTSELECT
+en => oa_eq_b.OUTPUTSELECT
+en => oa_gt_b.OUTPUTSELECT
+ia_lt_b => cas_gt.IN0
+ia_eq_b => cas_gt.IN1
+ia_eq_b => cas_lt.IN0
+ia_eq_b => eq.IN1
+ia_gt_b => cas_lt.IN1
+oa_lt_b <= oa_lt_b.DB_MAX_OUTPUT_PORT_TYPE
+oa_eq_b <= oa_eq_b.DB_MAX_OUTPUT_PORT_TYPE
+oa_gt_b <= oa_gt_b.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ECE3544project3a|proc7segdecoder:hex0
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ECE3544project3a|proc7segdecoder:hex1
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ECE3544project3a|proc7segdecoder:hex2
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ECE3544project3a|proc7segdecoder:hex3
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ECE3544project3a|proc7segdecoder:hex4
+hex_digit[0] => Decoder0.IN3
+hex_digit[1] => Decoder0.IN2
+hex_digit[2] => Decoder0.IN1
+hex_digit[3] => Decoder0.IN0
+hex_display[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+hex_display[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
