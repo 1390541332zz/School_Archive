@@ -12,6 +12,7 @@ module heartbeatde2115(
 reg [17:0] ledr_reg;
 reg [23:0] count_reg;
 
+// this is a computed clock variable
 wire       tick;
 
 always @(posedge CLOCK_50)
