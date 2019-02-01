@@ -4,11 +4,12 @@ module question8(
     input sub,
     output [31:0] result
 );
-wire bsub, c, cout;
+wire [31:0] bsub;
+wire c, cout;
 
-assign bsub = b[0] ^ sub;
-add16 a0(a[15:0 ], {b[15:1], bsub}, 1'b0, sum[15:0 ],    c);
-add16 a1(a[31:15],        b[31:15],    c, sum[31:16], cout);
+assign bsub = b ^ {32{sub}};
+add16 a0(a[15:0 ], bsub[15:0],  sub, result[15:0 ],    c);
+add16 a1(a[31:16], bsub[31:16],   c, result[31:16], cout);
 
 endmodule
 
@@ -20,7 +21,7 @@ module add1 (
     output cout
 );
 
-assign sum  = ^{a, b, cin};
+assign sum  = a^ b ^ cin;
 assign cout = ((a ^ b) & cin) | (a & b);
 
 endmodule
