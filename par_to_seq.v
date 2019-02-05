@@ -17,10 +17,8 @@ reg [$clog2(PAR_SZ) : 0] cnt;
 
 //---------------------------------------------------------------------------//
 
-initial state = WAIT;
-
-always @(negedge reset, posedge clk) begin
-    if ((reset == 1'b0) || (cnt == PAR_SZ)) begin
+always @(posedge reset, posedge clk) begin
+    if ((reset == 1'b1) || (cnt == PAR_SZ)) begin
         state <= WAIT;
         ready <= 1'b1; 
         cnt   <= 1'b0; 
@@ -29,17 +27,17 @@ always @(negedge reset, posedge clk) begin
     ACTIVE: begin
         state <= ACTIVE;
         ready <= 1'b0; 
-        cnt   <= 1'b1; 
+        cnt   <= cnt + 1'b1; 
         seq   <= (par[cnt] == 1'b1) ? BIT1 : BIT0;
     end
     WAIT: if (init == 1'b1) begin
-        state <= WAIT;
-        ready <= 1'b1; 
+        state <= ACTIVE;
+        ready <= 1'b0; 
         cnt   <= 1'b0; 
         seq   <= { WORD_SZ { 1'bZ }};
     end else begin
-        state <= ACTIVE;
-        ready <= 1'b0; 
+        state <= WAIT;
+        ready <= 1'b1; 
         cnt   <= 1'b0; 
         seq   <= { WORD_SZ { 1'bZ }};
     end

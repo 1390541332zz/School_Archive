@@ -23,8 +23,8 @@ reg [DATA_SZ - 1 : 0] index;
 wire 
     bit_ready, 
     write_ready, 
-    bit_clk,
-    command;
+    bit_clk;
+wire [CMD_SZ - 1 : 0]  command;
 wire [ADDR_SZ - 1 : 0] addr;
 wire [WORD_SZ - 1 : 0] data;
 wire [DATA_SZ - 1 : 0]
@@ -34,7 +34,7 @@ wire [DATA_SZ - 1 : 0]
 
 //---------------------------------------------------------------------------//
 
-assign bit_clk   = clk & bit_ready;
+assign bit_clk = bit_ready;
 
 // Signal Level Interface
 bitxmit bit(
@@ -51,11 +51,12 @@ i2cwrite #(
     .ADDR_SZ(ADDR_SZ),
     .DATA_SZ(DATA_SZ),
     .WORD_SZ(WORD_SZ),
-    .CMD_SZ(3)
+    .CMD_SZ(CMD_SZ)
 ) writer (
     .reset(reset), 
     .init(write_init),
-    .clk(bit_clk), 
+    .clk(clk), 
+    .bit_clk(bit_clk), 
     .addr(addr),
     .data(data),
     .ptr_begin(ptr_begin),
@@ -79,20 +80,24 @@ datarom datarom (
 
 //---------------------------------------------------------------------------//
 
-always @(negedge reset, posedge clk) begin
-    if (reset == 1'b0) begin
+always @(posedge reset, posedge init, posedge clk) begin
+    if (reset == 1'b1) begin
         state      <= WAIT;
+        index      <= { DATA_SZ { 1'bZ }};
+        write_init <= 1'b0;
+    end else if (init == 1'b1) begin
+        state      <= INIT;
         index      <= { DATA_SZ { 1'bZ }};
         write_init <= 1'b0;
     end else case (state)
     INIT: begin
         state      <= STAGE;
-        index      <= { DATA_SZ { 1'bZ }};
+        index      <= 1'b0;
         write_init <= 1'b0;
     end
     STAGE: if (index >= MAX_INDEX) begin
         state      <= WAIT;
-        index      <= index;
+        index      <= { DATA_SZ { 1'bZ }};
         write_init <= 1'b0;
     end else begin
         state      <= WRITE;
