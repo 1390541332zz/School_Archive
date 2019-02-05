@@ -1,6 +1,5 @@
 vlib work
 vlog bitxmit.v
-vlog clog2.v
 vlog cmdrom.v
 vlog datarom.v
 vlog par_to_seq.v

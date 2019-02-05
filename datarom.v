@@ -1,7 +1,7 @@
 module datarom (
-    input [3:0] addr;
-    output reg [7:0] data;
-)
+    input [3:0] addr,
+    output reg [7:0] data
+);
 
 always @ (addr) casez (addr)
     4'h0 : data = 8'hAA;

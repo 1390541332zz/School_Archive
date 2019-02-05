@@ -1,17 +1,17 @@
 `include "bitxmit.h"
 
 module i2cwrite #(
-    parameter ADDR_SZ = 7;
-    parameter WORD_SZ = 8;
-    parameter DATA_SZ = 4;
-    parameter CMD_SZ = 3;
+    parameter ADDR_SZ = 7,
+    parameter WORD_SZ = 8,
+    parameter DATA_SZ = 4,
+    parameter CMD_SZ = 3
 ) (
     input reset, init, clk,
     input [ADDR_SZ - 1 : 0] addr,
     input [WORD_SZ - 1 : 0] data,
-    input [clog2(DATA_SZ) : 0] ptr_begin,
-    input [clog2(DATA_SZ) : 0] ptr_end,
-    output reg [clog2(DATA_SZ) : 0] ptr_cur,
+    input [$clog2(DATA_SZ) : 0] ptr_begin,
+    input [$clog2(DATA_SZ) : 0] ptr_end,
+    output reg [$clog2(DATA_SZ) : 0] ptr_cur,
     output reg [CMD_SZ - 1 : 0] command,
     output reg ready
 ); 
@@ -38,8 +38,8 @@ assign data_init = (state == DATA_BEG);
 par_to_seq #(
     .PAR_SZ(7),
     .WORD_SZ(CMD_SZ),
-    .BIT0(CMDBIT0),
-    .BIT1(CMDBIT1)
+    .BIT0(`CMDBIT0),
+    .BIT1(`CMDBIT1)
 ) addr_pts (
     .clk(clk),
     .reset(reset),
@@ -52,8 +52,8 @@ par_to_seq #(
 par_to_seq #(
     .PAR_SZ(WORD_SZ),
     .WORD_SZ(CMD_SZ),
-    .BIT0(CMDBIT0),
-    .BIT1(CMDBIT1)
+    .BIT0(`CMDBIT0),
+    .BIT1(`CMDBIT1)
 ) data_pts (
     .clk(clk),
     .reset(reset),
@@ -69,8 +69,8 @@ always @(negedge reset, posedge clk) begin
     if (reset == 1'b0) begin
         ready   <= 1'b1;
         state   <= WAIT;
-        command <= CMDIDLE;
-        ptr_cur <= { clog2(addr_sz) { 1'bz }};
+        command <= `CMDIDLE;
+        ptr_cur <= { $clog2(ADDR_SZ) { 1'bz }};
     end else case (state)
     WAIT: begin 
         if (init == 1'b1) begin    
@@ -80,37 +80,37 @@ always @(negedge reset, posedge clk) begin
             ready   <= 1'b1;
             state   <= WAIT;
         end
-        command <= CMDIDLE;
-        ptr_cur <= { clog2(ADDR_SZ) { 1'bZ }};
+        command <= `CMDIDLE;
+        ptr_cur <= { $clog2(DATA_SZ) { 1'bZ }};
     end
     START: begin 
         ready   <= 1'b0;
         state   <= ADDR_BEG;
-        command <= CMDSTART;
-        ptr_cur <= { clog2(ADDR_SZ) { 1'bZ }};
+        command <= `CMDSTART;
+        ptr_cur <= { $clog2(DATA_SZ) { 1'bZ }};
     end
     ADDR_BEG: begin 
         ready   <= 1'b0;
         state   <= ADDR;
         command <= { CMD_SZ { 1'bZ }};
-        ptr_cur <= { clog2(ADDR_SZ) { 1'bZ }};
+        ptr_cur <= { $clog2(DATA_SZ) { 1'bZ }};
     end
     ADDR: begin
         ready   <= 1'b0;
         state   <= (addr_ready == 1'b1) ? RW : ADDR;
         command <= { CMD_SZ { 1'bZ }};
-        ptr_cur <= { clog2(ADDR_SZ) { 1'bZ }};
+        ptr_cur <= { $clog2(DATA_SZ) { 1'bZ }};
     end
     RW: begin
         ready   <= 1'b0;
         state   <= ACK;
-        command <= CMDRBIT;
+        command <= `CMDRBIT;
         ptr_cur <= ptr_begin;
     end
     ACK: begin
         ready   <= 1'b0;
         state   <= (ptr_cur >= ptr_end) ? STOP : DATA_BEG;
-        command <= CMDIDLE;
+        command <= `CMDIDLE;
         ptr_cur <= ptr_cur;
     end
     DATA_BEG: begin 
@@ -133,8 +133,8 @@ always @(negedge reset, posedge clk) begin
     STOP: begin
         ready   <= 1'b0;
         state   <= WAIT;
-        command <= CMDSTOP;
-        ptr_cur <= { clog2(ADDR_SZ) { 1'bZ }};
+        command <= `CMDSTOP;
+        ptr_cur <= { $clog2(DATA_SZ) { 1'bZ }};
     end
     endcase
 end

@@ -13,25 +13,36 @@ module par_to_seq #(
 localparam ACTIVE = 1'b1, WAIT = 1'b0;
 
 reg state;
-reg [clog2(PAR_SZ) : 0] cnt;
+reg [$clog2(PAR_SZ) : 0] cnt;
 
 //---------------------------------------------------------------------------//
 
 initial state = WAIT;
 
 always @(negedge reset, posedge clk) begin
-    if ((reset == 1'b0) || (cnt == PAR_SZ))
-        { state, ready, cnt } <= { WAIT, 1'b1, (PAR_SZ)'b0 };
-        seq <= { WORD_SZ { 1'bZ }};
-    else case (state)
-    ACTIVE:
-        { state, ready, cnt } <= { ACTIVE, 1'b0, cnt + (PAR_SZ)'b1 };
-        seq <= (par[cnt] == 1'b1) ? BIT1 : BIT0;
-    WAIT:
-        if (init == 1'b1)
-            { state, ready, cnt, seq } <= {   WAIT, 1'b1, (PAR_SZ)'b0, { WORD_SZ {1'bZ }} };
-        else
-            { state, ready, cnt, seq } <= { ACTIVE, 1'b0, (PAR_SZ)'b0, { WORD_SZ {1'bZ }} };
+    if ((reset == 1'b0) || (cnt == PAR_SZ)) begin
+        state <= WAIT;
+        ready <= 1'b1; 
+        cnt   <= 1'b0; 
+        seq   <= { WORD_SZ { 1'bZ }};
+    end else case (state)
+    ACTIVE: begin
+        state <= ACTIVE;
+        ready <= 1'b0; 
+        cnt   <= 1'b1; 
+        seq   <= (par[cnt] == 1'b1) ? BIT1 : BIT0;
+    end
+    WAIT: if (init == 1'b1) begin
+        state <= WAIT;
+        ready <= 1'b1; 
+        cnt   <= 1'b0; 
+        seq   <= { WORD_SZ { 1'bZ }};
+    end else begin
+        state <= ACTIVE;
+        ready <= 1'b0; 
+        cnt   <= 1'b0; 
+        seq   <= { WORD_SZ { 1'bZ }};
+    end
     endcase
 end
 endmodule

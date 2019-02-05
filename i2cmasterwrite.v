@@ -5,6 +5,7 @@ module i2cmasterwrite(
     output sck,
     inout  sda
 );
+localparam MAX_INDEX = 4;
 localparam ADDR_SZ = 7;
 localparam DATA_SZ = 4;
 localparam WORD_SZ = 8;
@@ -22,7 +23,6 @@ reg [DATA_SZ - 1 : 0] index;
 wire 
     bit_ready, 
     write_ready, 
-    write_init,
     bit_clk,
     command;
 wire [ADDR_SZ - 1 : 0] addr;
