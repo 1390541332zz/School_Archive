@@ -1,5 +1,10 @@
 vlib work
 vlog bitxmit.v
+vlog clog2.v
+vlog cmdrom.v
+vlog datarom.v
+vlog par_to_seq.v
+vlog i2cwrite.v
 vlog i2cmasterwrite.v
 vlog i2ctb.v
 vlog slave/i2cSlave.v
