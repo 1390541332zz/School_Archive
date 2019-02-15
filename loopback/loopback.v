@@ -100,7 +100,7 @@ always @(*) begin
     load        = 1'b0;
     datanext    = data;
     case (state)
-        RESET: if (init) begin
+        RESET: if (ready) begin
             statenext = WAIT;
             datanext  = 16'h0F00;  // write 00 to control address 0F
             load      = 1'b1;
