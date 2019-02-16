@@ -81,8 +81,17 @@ bitxmit dut2(
 always @(posedge clk)     clk_250 <= (reset) ? 1'b0 : ~clk_250;
 always @(posedge clk_250) clk_125 <= (reset) ? 1'b0 : ~clk_125;
 
-localparam RESET = 0, WAIT = 1, LOOPBACK = 2, SILENCE = 3;
-reg [2:0] state, statenext;
+localparam 
+	RESET = 0, 
+	WAIT = 1, 
+	LOOPBACK_A = 2, 
+	LOOPBACK_B = 3, 
+	SILENCE_A = 4,
+	SILENCE_B = 5;
+
+reg [2:0] 
+	state, 
+	statenext;
 
 always @(posedge clk) begin
     if (reset) begin
@@ -102,25 +111,35 @@ always @(*) begin
     case (state)
         RESET: if (ready) begin
             statenext = WAIT;
-            datanext  = 16'h0F00;  // write 00 to control address 0F
+            datanext  = {7'h0F, 9'h00};  // write 00 to control address 0F
             load      = 1'b1;
         end
         WAIT: if (ready) begin
             statenext = (KEY[0] == 1'b0) ? RESET
-                      : (KEY[1] == 1'b0) ? LOOPBACK 
-                      : (KEY[2] == 1'b0) ? SILENCE 
+                      : (KEY[1] == 1'b0) ? LOOPBACK_A
+                      : (KEY[2] == 1'b0) ? SILENCE_A
                                          : WAIT;
             datanext  = 16'hZZZZ; 
             load      = 1'b0;
         end
-        LOOPBACK: if (ready) begin
-            statenext = WAIT;
-            datanext  = 16'h040A;  // write 0A to control address 04
+        LOOPBACK_A: if (ready) begin
+            statenext = LOOPBACK_B;
+            datanext  = {7'h06, 9'b0_0000_1010};  // Poweron
             load      = 1'b1;
         end
-        SILENCE: if (ready) begin
+        LOOPBACK_B: if (ready) begin
             statenext = WAIT;
-            datanext  = 16'h0402;  // write 02 to control address 04
+            datanext  = {7'h04, 9'h0A};  // Analogue Audio Control
+            load      = 1'b1;
+        end
+        SILENCE_A: if (ready) begin
+            statenext = SILENCE_B;
+            datanext  = {7'h04, 9'h02};  // Analogue Audio Control
+            load      = 1'b1;
+        end
+        SILENCE_B: if (ready) begin
+            statenext = WAIT;
+            datanext  = {7'h06, 9'b0_1001_1111};  // Poweroff
             load      = 1'b1;
         end
     endcase
