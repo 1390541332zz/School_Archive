@@ -101,8 +101,9 @@ localparam
 	AUDIO_D = 9,
 	AUDIO_E = 10,
 	AUDIO_F = 11,
-	AUDIO = 12,
-	CUR_STATE = 13;
+	AUDIO_G = 12,
+	AUDIO = 13,
+	CUR_STATE = 14;
 
 wire [3:0]
     state_bridge;
@@ -188,10 +189,15 @@ always @(*) begin
         end
         AUDIO_E: if (ready) begin
             statenext = AUDIO_F;
-            datanext  = {7'h08, 9'b0_0000_0000};  // Sampling Control
+            datanext  = {7'h05, 9'b0_0000_0110};  // DAC Controls
             load      = 1'b1;
         end
         AUDIO_F: if (ready) begin
+            statenext = AUDIO_G;
+            datanext  = {7'h08, 9'b0_0000_0000};  // Sampling Control
+            load      = 1'b1;
+        end
+        AUDIO_G: if (ready) begin
             statenext = AUDIO;
             datanext  = {7'h09, 9'b0_0000_0001};  // Activate
             load      = 1'b1;
