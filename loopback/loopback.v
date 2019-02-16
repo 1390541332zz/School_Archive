@@ -124,17 +124,17 @@ always @(*) begin
         end
         LOOPBACK_A: if (ready) begin
             statenext = LOOPBACK_B;
-            datanext  = {7'h06, 9'b0_0000_1010};  // Poweron
+            datanext  = {7'h06, 9'b0_0000_1110};  // Poweron
             load      = 1'b1;
         end
         LOOPBACK_B: if (ready) begin
             statenext = WAIT;
-            datanext  = {7'h04, 9'h0A};  // Analogue Audio Control
+            datanext  = {7'h04, 9'b0_0000_1010};  // Analogue Audio Control
             load      = 1'b1;
         end
         SILENCE_A: if (ready) begin
             statenext = SILENCE_B;
-            datanext  = {7'h04, 9'h02};  // Analogue Audio Control
+            datanext  = {7'h04, 9'b_0000_0010};  // Analogue Audio Control
             load      = 1'b1;
         end
         SILENCE_B: if (ready) begin
