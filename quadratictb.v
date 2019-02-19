@@ -23,4 +23,4 @@ module quadratictb;
 
 endmodule
 
-# vsim -c quadratictb -do "run -all; exit"
+// vsim -c quadratictb -do "run -all; exit"
