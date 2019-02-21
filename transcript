@@ -1,0 +1,56 @@
+# vsim tonegentb 
+# Start time: 17:00:07 on Feb 20,2019
+# Loading work.tonegentb
+# Loading work.tonegen
+# Loading work.i2cmasterwrite
+# Loading work.i2cgenerator
+# Loading work.bitxmit
+# Loading work.audiogen
+# Loading work.i2cSlave
+# Loading work.registerInterface
+# Loading work.serialInterface
+add wave -position end  sim:/tonegentb/DUT/AUDIO/adcdat
+add wave -position end  sim:/tonegentb/DUT/AUDIO/adclrck
+add wave -position end  sim:/tonegentb/DUT/AUDIO/bclk
+add wave -position end  sim:/tonegentb/DUT/AUDIO/bclktick
+add wave -position end  sim:/tonegentb/DUT/AUDIO/clk
+add wave -position end  sim:/tonegentb/DUT/AUDIO/dacdat
+add wave -position end  sim:/tonegentb/DUT/AUDIO/daclrck
+add wave -position end  sim:/tonegentb/DUT/AUDIO/firstsample
+add wave -position end  sim:/tonegentb/DUT/AUDIO/halfperiod
+add wave -position end  sim:/tonegentb/DUT/AUDIO/halfperiodnext
+add wave -position end  sim:/tonegentb/DUT/AUDIO/oldbclk
+add wave -position end  sim:/tonegentb/DUT/AUDIO/oldbclknext
+add wave -position end  sim:/tonegentb/DUT/AUDIO/oldlrck
+add wave -position end  sim:/tonegentb/DUT/AUDIO/oldlrcknext
+add wave -position end  sim:/tonegentb/DUT/AUDIO/reset
+add wave -position end  sim:/tonegentb/DUT/AUDIO/sample
+add wave -position end  sim:/tonegentb/DUT/AUDIO/samplenext
+add wave -position end  sim:/tonegentb/DUT/AUDIO/samplevalue
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: Patrick Schaumont  Hostname: PRS-MACBOOK  ProcessID: 2036
+#           Attempting to use alternate WLF file "./wlftjgxe3z".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftjgxe3z
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit
+# End time: 17:12:48 on Feb 20,2019, Elapsed time: 0:12:41
+# Errors: 0, Warnings: 2
