@@ -1,5 +1,3 @@
-`include "constants.h"
-
 module ddstop(
     input  wire        clk,
     input  wire        reset,
@@ -9,19 +7,21 @@ module ddstop(
     output wire        ready
 );
 
+`include "constants.h"
+
 //---------------------------------------------------------------------------//
 /* verilator lint_off VARHIDDEN */
 
-function [15:0] accumulator;
-input [15:0]
+function [17:0] accumulator;
+input [17:0]
     in_angle,
     in_angle_add;
-reg [15:0] 
+reg [17:0] 
     mid_angle,
     out_angle;
 begin
     mid_angle = in_angle + in_angle_add;
-    out_angle = (mid_angle > (PI2 * 2)) ? mid_angle - (PI2 * 4)
+    out_angle = (mid_angle > (PI2 * 4)) ? mid_angle - (PI2 * 4)
                                         : mid_angle;
     accumulator = out_angle;
 end
@@ -30,9 +30,9 @@ endfunction
 /* verilator lint_on VARHIDDEN */
 //---------------------------------------------------------------------------//
 
-reg [15:0] 
+reg [17:0] 
     in_angle;
-reg 
+reg
     update_csine;
 
 cordicsine csine(
@@ -44,7 +44,10 @@ cordicsine csine(
    .out_angle(q)
 );
 
-always @(posedge update) in_angle  <= accumulator(q, increment);
-always @(posedge clk) update_csine <= update;
-
+always @(posedge clk) begin
+    in_angle  <= (reset)  ? 0 
+               : (update) ? accumulator(in_angle, {{2{increment[15]}}, increment})
+                          : in_angle;
+    update_csine <= update;
+end
 endmodule

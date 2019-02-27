@@ -134,6 +134,7 @@ int main(int argc, char *argv[]) {
   unsigned i;
   double   fsine;
 
+  showtable();
   if (argc != 4) {
     fprintf(stderr, "%s samples increment float\n", argv[0]);
     fprintf(stderr, "    samples:   number of samples to generate\n");
@@ -145,7 +146,6 @@ int main(int argc, char *argv[]) {
   unsigned samples  = atoi(argv[1]);
   fixed    angleadd = atoi(argv[2]);
   unsigned flpout   = atoi(argv[3]);
-
   if (flpout == 0) {
     // hex format will be used by the verilog testbench
     printf("%x\n", samples);
