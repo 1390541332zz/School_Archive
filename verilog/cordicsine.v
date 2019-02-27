@@ -10,12 +10,12 @@ module cordicsine(
 );
 
 //---------------------------------------------------------------------------//
-
-function quadrant(
-    input wire [15:0] in_angle;
-);
-wire [15:0] 
-    mid_angle;
+/* verilator lint_off VARHIDDEN */
+function [15:0] quadrant;
+input [15:0] 
+    in_angle;
+reg [15:0] 
+    mid_angle,
     out_quad;
 begin
     mid_angle = (in_angle > (PI2 * 4)) ? in_angle - (PI2 * 4)
@@ -28,14 +28,13 @@ begin
     quadrant = out_quad;
 end
 endfunction
-
 //---------------------------------------------------------------------------//
 
-function angleadj(
-    input wire [15:0] in_angle;
-);
-wire [15:0] 
-    mid_angle;
+function [15:0] angleadj;
+input [15:0] 
+    in_angle;
+reg [15:0] 
+    mid_angle,
     out_angle;
 begin
     mid_angle = (in_angle > (PI2 * 4)) ? in_angle - (PI2 * 4)
@@ -49,6 +48,7 @@ begin
 end
 endfunction
 
+/* verilator lint_on VARHIDDEN */
 //---------------------------------------------------------------------------//
 
 
@@ -73,25 +73,26 @@ reg [4:0]
 //---------------------------------------------------------------------------//
 
 always @(posedge clk) case (ctr)
-    5'h01: fix_angle <= 0.7853981633974483 << `FIX_SHIFT; 
-    5'h02: fix_angle <= 0.4636476090008061 << `FIX_SHIFT;
-    5'h03: fix_angle <= 0.2449786631268641 << `FIX_SHIFT;
-    5'h04: fix_angle <= 0.1243549945467614 << `FIX_SHIFT;
-    5'h05: fix_angle <= 0.0624188099959574 << `FIX_SHIFT;
-    5'h06: fix_angle <= 0.0312398334302683 << `FIX_SHIFT;
-    5'h07: fix_angle <= 0.0156237286204768 << `FIX_SHIFT;
-    5'h08: fix_angle <= 0.0078123410601011 << `FIX_SHIFT;
-    5'h09: fix_angle <= 0.0039062301319670 << `FIX_SHIFT;
-    5'h0A: fix_angle <= 0.0019531225164788 << `FIX_SHIFT;
-    5'h0B: fix_angle <= 0.0009765621895593 << `FIX_SHIFT;
-    5'h0C: fix_angle <= 0.0004882812111949 << `FIX_SHIFT;
-    5'h0D: fix_angle <= 0.0002441406201494 << `FIX_SHIFT;
-    5'h0E: fix_angle <= 0.0001220703118937 << `FIX_SHIFT;
-    5'h0F: fix_angle <= 0.0000610351561742 << `FIX_SHIFT;
-    5'h10: fix_angle <= 0.0000305175781155 << `FIX_SHIFT;
-    5'h11: fix_angle <= 0.0000152587890613 << `FIX_SHIFT;
-    5'h12: fix_angle <= 0.0000076293945311 << `FIX_SHIFT;
-    5'h13: fix_angle <= 0.0000038146972656 << `FIX_SHIFT;
+    5'h01: fix_angle <= shortint'($rtoi(0.7853981633974483 * (2 ** FIX_SHIFT))); 
+    5'h02: fix_angle <= shortint'($rtoi(0.4636476090008061 * (2 ** FIX_SHIFT)));
+    5'h03: fix_angle <= shortint'($rtoi(0.2449786631268641 * (2 ** FIX_SHIFT)));
+    5'h04: fix_angle <= shortint'($rtoi(0.1243549945467614 * (2 ** FIX_SHIFT)));
+    5'h05: fix_angle <= shortint'($rtoi(0.0624188099959574 * (2 ** FIX_SHIFT)));
+    5'h06: fix_angle <= shortint'($rtoi(0.0312398334302683 * (2 ** FIX_SHIFT)));
+    5'h07: fix_angle <= shortint'($rtoi(0.0156237286204768 * (2 ** FIX_SHIFT)));
+    5'h08: fix_angle <= shortint'($rtoi(0.0078123410601011 * (2 ** FIX_SHIFT)));
+    5'h09: fix_angle <= shortint'($rtoi(0.0039062301319670 * (2 ** FIX_SHIFT)));
+    5'h0A: fix_angle <= shortint'($rtoi(0.0019531225164788 * (2 ** FIX_SHIFT)));
+    5'h0B: fix_angle <= shortint'($rtoi(0.0009765621895593 * (2 ** FIX_SHIFT)));
+    5'h0C: fix_angle <= shortint'($rtoi(0.0004882812111949 * (2 ** FIX_SHIFT)));
+    5'h0D: fix_angle <= shortint'($rtoi(0.0002441406201494 * (2 ** FIX_SHIFT)));
+    5'h0E: fix_angle <= shortint'($rtoi(0.0001220703118937 * (2 ** FIX_SHIFT)));
+    5'h0F: fix_angle <= shortint'($rtoi(0.0000610351561742 * (2 ** FIX_SHIFT)));
+    5'h10: fix_angle <= shortint'($rtoi(0.0000305175781155 * (2 ** FIX_SHIFT)));
+    5'h11: fix_angle <= shortint'($rtoi(0.0000152587890613 * (2 ** FIX_SHIFT)));
+    5'h12: fix_angle <= shortint'($rtoi(0.0000076293945311 * (2 ** FIX_SHIFT)));
+    5'h13: fix_angle <= shortint'($rtoi(0.0000038146972656 * (2 ** FIX_SHIFT)));
+    default: fix_angle <= 16'h0;
 endcase
 
 //---------------------------------------------------------------------------//
@@ -100,15 +101,15 @@ always @(posedge clk) begin
     if (reset) begin
         state <= S0;
     end else begin
-        state <= state_next;
+        state     <= state_next;
+        cur_angle <= new_angle;
+        x         <= x_new;
+        y         <= y_new;
     end
 end
 
 always @(*) begin
     ready        = 1'b1;
-    x            = x_new;
-    y            = y_new;
-    cur_angle    = new_angle;
     target_angle = angleadj(in_angle);
     case (state)
     S0: begin
@@ -116,9 +117,9 @@ always @(*) begin
     end
     INIT: begin
         state_next = COMPUTE;
-        cur_angle  = 0;
+        new_angle  = 0;
         ready      = 1'b0;
-        x_new      = `AG_CONST;
+        x_new      = AG_CONST;
         y_new      = 0;
         ctr        = 0;
     end

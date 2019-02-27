@@ -10,21 +10,24 @@ module ddstop(
 );
 
 //---------------------------------------------------------------------------//
+/* verilator lint_off VARHIDDEN */
 
-function accumulator(
-    input wire [15:0] in_angle,
-    input wire [15:0] in_angle_add;
-);
-    wire [15:0] mid_angle;
-    wire [15:0] out_angle;
+function [15:0] accumulator;
+input [15:0]
+    in_angle,
+    in_angle_add;
+reg [15:0] 
+    mid_angle,
+    out_angle;
 begin
     mid_angle = in_angle + in_angle_add;
     out_angle = (mid_angle > (PI2 * 2)) ? mid_angle - (PI2 * 4)
                                         : mid_angle;
     accumulator = out_angle;
 end
-endtask
+endfunction
 
+/* verilator lint_on VARHIDDEN */
 //---------------------------------------------------------------------------//
 
 reg [15:0] 
@@ -35,13 +38,13 @@ reg
 cordicsine csine(
    .clk(clk),
    .reset(reset),
-   .update(update),
+   .update(update_csine),
    .in_angle(in_angle),
    .ready(ready),
    .out_angle(q)
 );
 
-always @(posedge update) in_angle  = accumulator(q, increment);
-always @(posedge clk) update_csine = update;
+always @(posedge update) in_angle  <= accumulator(q, increment);
+always @(posedge clk) update_csine <= update;
 
 endmodule
