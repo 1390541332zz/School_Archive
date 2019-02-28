@@ -148,12 +148,12 @@ always @(*) begin
     COMPUTE: begin
         state_next = (ctr < 16) ? COMPUTE : DONE; 
         if (target_angle > cur_angle) begin
-            x_new     = x - (y >> ctr);
-            y_new     = y + (x >> ctr);
+            x_new     = x - (y >>> ctr);
+            y_new     = y + (x >>> ctr);
             new_angle = cur_angle + fix_angle; 
         end else begin
-            x_new     = x + (y >> ctr);
-            y_new     = y - (x >> ctr);
+            x_new     = x + (y >>> ctr);
+            y_new     = y - (x >>> ctr);
             new_angle = cur_angle - fix_angle; 
         end
         ctr_next = ctr + 1;
