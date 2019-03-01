@@ -36,7 +36,9 @@ void showtable() {
   unsigned Step;
 
   printf("Angles Table\n");
-  for (Step = 0; Step < 15; Step++)
+  printf("PI2: 16'h%x\n", PI2);
+  printf("AC_CONST: 16'h%x\n", FIXED(AG_CONST));
+  for (Step = 0; Step < 16; Step++)
     printf("16'h%x\n", Angles[Step]);
 }
 
@@ -107,6 +109,7 @@ fixed cordicsine(fixed inangle) {
   CurrAngle=0;
   for(Step=0; Step < 16; Step++) {
     fixed NewX;
+    printf("%x: %x\n", Step, ((quadrant(inangle) < 2) ? Y >> 1 : -Y >> 1));
     if (TargetAngle > CurrAngle) {
       NewX       =  X - (Y >> Step);
       Y          = (X >> Step) + Y;
