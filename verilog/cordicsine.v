@@ -120,11 +120,40 @@ endfunction
 /* verilator lint_on VARHIDDEN */
 //---------------------------------------------------------------------------//
 
+//---------------------------------------------------------------------------//
+/* verilator lint_off VARHIDDEN */
+
+function [17:0] fix_angle;
+input [4:0] ctr;
+case (ctr)
+    5'h00: fix_angle = 18'h6487; // ANGLE_00[17:0]; 
+    5'h01: fix_angle = 18'h3b58; // ANGLE_01[17:0];
+    5'h02: fix_angle = 18'h1f5b; // ANGLE_02[17:0];
+    5'h03: fix_angle = 18'hfea ; // ANGLE_03[17:0];
+    5'h04: fix_angle = 18'h7fd ; // ANGLE_04[17:0];
+    5'h05: fix_angle = 18'h3ff ; // ANGLE_05[17:0];
+    5'h06: fix_angle = 18'h1ff ; // ANGLE_06[17:0];
+    5'h07: fix_angle = 18'hff  ; // ANGLE_07[17:0];
+    5'h08: fix_angle = 18'h7f  ; // ANGLE_08[17:0];
+    5'h09: fix_angle = 18'h3f  ; // ANGLE_09[17:0];
+    5'h0A: fix_angle = 18'h1f  ; // ANGLE_0A[17:0];
+    5'h0B: fix_angle = 18'hf   ; // ANGLE_0B[17:0];
+    5'h0C: fix_angle = 18'h7   ; // ANGLE_0C[17:0];
+    5'h0D: fix_angle = 18'h3   ; // ANGLE_0D[17:0];
+    5'h0E: fix_angle = 18'h1   ; // ANGLE_0E[17:0];
+    5'h0F: fix_angle = 18'h0   ; // ANGLE_0F[17:0];
+    5'h10: fix_angle = 18'h0   ; // ANGLE_10[17:0];
+    5'h11: fix_angle = 18'h0   ; // ANGLE_11[17:0];
+    5'h12: fix_angle = 18'h0   ; // ANGLE_12[17:0];
+    default: fix_angle = 18'h0;
+endcase
+endfunction
+/* verilator lint_on VARHIDDEN */
+//---------------------------------------------------------------------------//
 
 reg [17:0]
     x, x_new, 
     y, y_new, 
-    fix_angle, 
     target_angle, 
     cur_angle, new_angle;
 
@@ -139,32 +168,6 @@ reg [1:0]
 reg [4:0]
     ctr, ctr_next;
 
-//---------------------------------------------------------------------------//
-
-always @(posedge clk) case (ctr_next)
-    5'h00: fix_angle <= 18'h6487; // ANGLE_00[17:0]; 
-    5'h01: fix_angle <= 18'h3b58; // ANGLE_01[17:0];
-    5'h02: fix_angle <= 18'h1f5b; // ANGLE_02[17:0];
-    5'h03: fix_angle <= 18'hfea ; // ANGLE_03[17:0];
-    5'h04: fix_angle <= 18'h7fd ; // ANGLE_04[17:0];
-    5'h05: fix_angle <= 18'h3ff ; // ANGLE_05[17:0];
-    5'h06: fix_angle <= 18'h1ff ; // ANGLE_06[17:0];
-    5'h07: fix_angle <= 18'hff  ; // ANGLE_07[17:0];
-    5'h08: fix_angle <= 18'h7f  ; // ANGLE_08[17:0];
-    5'h09: fix_angle <= 18'h3f  ; // ANGLE_09[17:0];
-    5'h0A: fix_angle <= 18'h1f  ; // ANGLE_0A[17:0];
-    5'h0B: fix_angle <= 18'hf   ; // ANGLE_0B[17:0];
-    5'h0C: fix_angle <= 18'h7   ; // ANGLE_0C[17:0];
-    5'h0D: fix_angle <= 18'h3   ; // ANGLE_0D[17:0];
-    5'h0E: fix_angle <= 18'h1   ; // ANGLE_0E[17:0];
-    5'h0F: fix_angle <= 18'h0   ; // ANGLE_0F[17:0];
-    5'h10: fix_angle <= 18'h0   ; // ANGLE_10[17:0];
-    5'h11: fix_angle <= 18'h0   ; // ANGLE_11[17:0];
-    5'h12: fix_angle <= 18'h0   ; // ANGLE_12[17:0];
-    default: fix_angle <= 18'h0;
-endcase
-
-//---------------------------------------------------------------------------//
 
 /*
  * fixed cordicsine(fixed inangle) {
@@ -230,11 +233,11 @@ always @(*) begin
         if (target_angle > cur_angle) begin
             x_new     = x - (y >>> ctr);
             y_new     = y + (x >>> ctr);
-            new_angle = cur_angle + fix_angle; 
+            new_angle = cur_angle + fix_angle(ctr); 
         end else begin
             x_new     = x + (y >>> ctr);
             y_new     = y - (x >>> ctr);
-            new_angle = cur_angle - fix_angle; 
+            new_angle = cur_angle - fix_angle(ctr); 
         end
         //$display("%t: (%x)", $time, (quadrant(in_angle) < 2) ?  {y[17], y[15:1]} 
         //                                                     : -{y[17], y[15:1]});
