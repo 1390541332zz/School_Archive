@@ -32,6 +32,31 @@ module cordicsine(
 
 //---------------------------------------------------------------------------//
 /* verilator lint_off VARHIDDEN */
+
+/*
+ * fixed quadrant(fixed inangle) {
+ *   // output: 0-3 for quadrant 0-3
+ *   // we assume step-angle is smaller than pi
+ *   // so that there are always at least two samples per period (alias-free)
+ *   // hence the max input angle can be (2pi + pi)
+ *   unsigned q = 0;
+ * 
+ *   // if inangle >2pi, subtract 2pi.
+ *   // This brings inangle in the range 0 - pi and keeps the same quardrant
+ *   if (inangle > 4*PI2) 
+ *     inangle = inangle - 4*PI2;
+ * 
+ *   if (inangle > 3*PI2)
+ *     return 3;
+ *   else if (inangle > 2*PI2)
+ *     return 2;
+ *   else if (inangle > PI2)
+ *     return 1;
+ * 
+ *   return 0;
+ * }
+ */
+
 function [17:0] quadrant;
 input [17:0] 
     in_angle;
@@ -50,6 +75,29 @@ begin
 end
 endfunction
 //---------------------------------------------------------------------------//
+
+/*
+ * fixed angleadj(fixed inangle) {
+ * 
+ *   // input angle is 0 .. 3pi
+ *   // output angle in first quadrant such that
+ *   // abs(sin(inangle)) = sin(outangle)
+ * 
+ *   // if inangle >2pi, subtract 2pi.
+ *   // This brings inangle in the range 0 - pi and keeps the same quardrant
+ *   if (inangle > 4*PI2) 
+ *     inangle = inangle - 4*PI2;
+ * 
+ *   if (inangle > 3*PI2)
+ *     return (4*PI2 - inangle);
+ *   else if (inangle > 2*PI2)
+ *     return (inangle - 2*PI2);
+ *   else if (inangle > PI2)
+ *     return (2*PI2 - inangle);
+ * 
+ *   return inangle;
+ * }
+ */
 
 function [17:0] angleadj;
 input [17:0] 
@@ -118,6 +166,38 @@ endcase
 
 //---------------------------------------------------------------------------//
 
+/*
+ * fixed cordicsine(fixed inangle) {
+ *   fixed X, Y, TargetAngle, CurrAngle;
+ *   unsigned Step;
+ * 
+ *   X=FIXED(AG_CONST);  // AG_CONST * cos(0)
+ *   Y=0;                // AG_CONST * sin(0)
+ *   
+ *   TargetAngle = angleadj(inangle);
+ *   CurrAngle=0;
+ *   for(Step=0; Step < 16; Step++) {
+ *     fixed NewX;
+ *     if (TargetAngle > CurrAngle) {
+ *       NewX       =  X - (Y >> Step);
+ *       Y          = (X >> Step) + Y;
+ *       X          = NewX;
+ *       CurrAngle += Angles[Step];
+ *     } else {
+ *       NewX       = X + (Y >> Step);
+ *       Y          = -(X >> Step) + Y;
+ *       X          = NewX;
+ *       CurrAngle -= Angles[Step];
+ *     }
+ *   }
+ * 
+ *   if (quadrant(inangle) < 2) 
+ *     return  Y;
+ *   else
+ *     return -Y;
+ * }
+ */
+
 always @(posedge clk) begin
     if (reset) begin
         state <= S0;
@@ -158,7 +238,6 @@ always @(*) begin
         end
         //$display("%t: (%x)", $time, (quadrant(in_angle) < 2) ?  {y[17], y[15:1]} 
         //                                                     : -{y[17], y[15:1]});
-        ctr_next = ctr + 1;
         ctr_next = ctr + 1;
     end
     DONE: begin

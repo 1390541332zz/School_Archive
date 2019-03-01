@@ -12,6 +12,17 @@ module ddstop(
 //---------------------------------------------------------------------------//
 /* verilator lint_off VARHIDDEN */
 
+/*
+ * fixed accumulator(fixed inangle, fixed inangleadd) {
+ *   inangle = inangle + inangleadd;
+ * 
+ *   if (inangle > 4*PI2)
+ *     inangle = inangle - 4*PI2;
+ * 
+ *   return inangle;
+ * }
+*/
+
 function [17:0] accumulator;
 input [17:0]
     in_angle,
