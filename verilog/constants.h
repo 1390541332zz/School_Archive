@@ -1,5 +1,6 @@
 `ifndef DDSTOP_H
 `define DDSTOP_H
+/* verilator lint_off WIDTH */
 localparam [17:0] FIX_SHIFT  = 18'd15;
 localparam [31:0] __AG_CONST = $rtoi(1 / 1.6467602578655 * (2.0 ** FIX_SHIFT));
 localparam [31:0] __PI2      = $rtoi($atan(1.0) * 2.0 * (2 ** FIX_SHIFT));
@@ -25,4 +26,5 @@ localparam [31:0]
     ANGLE_10 = $rtoi(0.0000152587890613 * (2 ** FIX_SHIFT)),
     ANGLE_11 = $rtoi(0.0000076293945311 * (2 ** FIX_SHIFT)),
     ANGLE_12 = $rtoi(0.0000038146972656 * (2 ** FIX_SHIFT));
+/* verilator lint_on WIDTH */
 `endif

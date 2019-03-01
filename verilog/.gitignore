@@ -31,6 +31,7 @@ nios_system_log.txt
 *.objdump
 obj
 *.swp
+*.wlf
 *.sld
 *.a
 *.smsg

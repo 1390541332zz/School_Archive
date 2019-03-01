@@ -132,7 +132,10 @@ endfunction
 
 reg signed [17:0]
     x, x_new, 
-    y, y_new, y_trunc, 
+    y, y_new, 
+/* verilator lint_off UNUSED */
+    y_trunc, 
+/* verilator lint_on UNUSED */
     target_angle, 
     cur_angle, new_angle;
 
@@ -227,8 +230,8 @@ always @(*) begin
         state_next = (update) ? INIT : DONE;
         y_trunc    = (quadrant(in_angle) < 2) ? ( y) >>> 1
                                               : (-y) >>> 1;
-        y_new      = y;
         out_angle  = y_trunc[15:0];
+        y_new      = y;
     end
     endcase
 end
