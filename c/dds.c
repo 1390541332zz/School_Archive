@@ -109,7 +109,7 @@ fixed cordicsine(fixed inangle) {
   CurrAngle=0;
   for(Step=0; Step < 16; Step++) {
     fixed NewX;
-    printf("%x: %x\n", Step, Y);
+    printf("%x: y: %x, x:%x\n", Step, Y, X);
     if (TargetAngle > CurrAngle) {
       NewX       =  X - (Y >> Step);
       Y          = (X >> Step) + Y;
