@@ -153,7 +153,7 @@ endfunction
 
 reg [17:0]
     x, x_new, 
-    y, y_new, 
+    y, y_new, y_trunc, 
     target_angle, 
     cur_angle, new_angle;
 
@@ -246,9 +246,10 @@ always @(*) begin
     DONE: begin
         ready      = 1'b1;
         state_next = (update) ? INIT : DONE;
-        out_angle  = (quadrant(in_angle) < 2) ?  {y[17], y[15:1]} 
-                                              : -{y[17], y[15:1]};
+        y_trunc    = (quadrant(in_angle) < 2) ? ( y) >>> 1
+                                              : (-y) >>> 1;
         y_new      = y;
+        out_angle  = y_trunc[15:0];
     end
     endcase
 end
