@@ -65,7 +65,7 @@ module i2cgenerator(input        clk,
              if (bitready) begin
                 statenext    = ADR; 
                 rcommand     = `CMDWAIT;
-                shiftnext    = 1'b1;
+                shiftnext    = 8'b1;
                 worddatanext =  {address, 1'b0};
              end
           end
@@ -89,7 +89,7 @@ module i2cgenerator(input        clk,
              if (bitready) begin
                 statenext     = MSB; 
                 rcommand      = `CMDWAIT;
-                shiftnext     = 1'b1;
+                shiftnext     = 8'b1;
                 worddatanext  = data[15:8];
              end
           end
@@ -113,7 +113,7 @@ module i2cgenerator(input        clk,
              if (bitready) begin
                 statenext    = LSB; 
                 rcommand     = `CMDWAIT;
-                shiftnext    = 1'b1;
+                shiftnext    = 8'b1;
                 worddatanext =  data[7:0];
              end
           end

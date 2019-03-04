@@ -25,7 +25,7 @@ module tonegen(
 	reg [24:0] counter, counternext;
 
 	always @(posedge CLOCK_50)
-	counter <= (reset) ? 24'h0 : counternext;
+	counter <= (reset) ? 25'h0 : counternext;
 
 	always @(*)
 	counternext = counter + 24'h1;

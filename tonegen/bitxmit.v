@@ -28,7 +28,7 @@ module bitxmit(
    reg                     sdaread, sdareadnext;
    
    assign sck = sckout;
-   assign sda = sdaread ? 8'bz : sdaout;
+   assign sda = sdaread ? 1'bz : sdaout;
    
    assign ready = (state == END) ? 1'b1 : 1'b0;
    

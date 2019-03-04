@@ -33,19 +33,19 @@ module audiogen(input  wire clk,
 	reg [7:0] halfperiod, halfperiodnext;
 	always @(posedge clk)
 	begin
-		halfperiod = (reset) ? 7'h0 : halfperiodnext;
+		halfperiod = (reset) ? 8'h0 : halfperiodnext;
 	end
 	always @(*) 
 	begin
 	halfperiodnext = halfperiod;
 	if (firstsample)
-			halfperiodnext = halfperiod + 7'h1;
-	if (halfperiodnext == 7'd48)
-			halfperiodnext = 7'd0;
+			halfperiodnext = halfperiod + 8'h1;
+	if (halfperiodnext == 8'd48)
+			halfperiodnext = 8'd0;
 	end
 
 	wire [63:0] samplevalue;
-	assign samplevalue = (halfperiod < 7'd24) ? 
+	assign samplevalue = (halfperiod < 8'd24) ? 
 						 {swhi, 28'h000_0000, swhi, 28'h000_0000} : 
 						 {swlo, 28'h000_0000, swlo, 28'h000_0000};
 
