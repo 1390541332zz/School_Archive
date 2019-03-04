@@ -7,7 +7,7 @@ module cordicconst(input wire         clk,
    
    always @(*)
      begin
-	q = 18'h0;
+	q = 20'h0;
 	case (address)
 	  4'h0: q = 20'h6487;
 	  4'h1: q = 20'h3b58;
