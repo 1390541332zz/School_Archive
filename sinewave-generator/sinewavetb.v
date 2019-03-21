@@ -9,7 +9,7 @@ module sinewavetb;
 	wire AUD_DACDAT;
 	reg  AUD_DACLRCKr;
 	wire AUD_DACLRCK;
-	wire AUD_XCKl;
+	wire AUD_XCK;
 
 	reg CLOCK2_50;
 	reg CLOCK3_50;

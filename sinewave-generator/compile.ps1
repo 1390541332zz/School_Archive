@@ -1,4 +1,8 @@
 vlib work
+vlog -lint -pedanticerrors slave/i2cSlave.v
+vlog -lint -pedanticerrors slave/i2cSlave_define.v
+vlog -lint -pedanticerrors slave/registerInterface.v
+vlog -lint -pedanticerrors slave/serialInterface.v
 vlog -lint -pedanticerrors audio_gen.v
 vlog -lint -pedanticerrors bit_stream.v
 vlog -lint -pedanticerrors codec_cfg.v

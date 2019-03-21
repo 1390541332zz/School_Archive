@@ -35,7 +35,7 @@ always @(posedge CLOCK_50)
 counter <= (reset) ? 25'h0 : counternext;
 
 always @(*)
-counternext = counter + 24'h1;
+counternext = counter + 25'h1;
 
 assign GPIO[1]   = FPGA_I2C_SCLK;
 assign GPIO[3]   = FPGA_I2C_SDAT;
@@ -49,19 +49,16 @@ assign LEDR[9]   = counter[24];
 
 wire
     clk,
+    clk_125,
     data_en,
     audio_en;
 wire [15:0]    
     a_data;
-reg 
-    clk_125,
-    clk_250;
     
 assign clk = CLOCK_50;
+assign clk_125 = counter[1];
 assign AUD_XCK = clk_125;
 
-always @(posedge clk)     clk_250 <= (reset) ? 1'b0 : ~clk_250;
-always @(posedge clk_250) clk_125 <= (reset) ? 1'b0 : ~clk_125;
 
 codec_cfg cfg(
     .clk(clk),
