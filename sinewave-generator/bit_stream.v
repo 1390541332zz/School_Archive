@@ -16,7 +16,7 @@ module bit_stream(
                );
    
    // 500 clock cycles -> 100 kbps for 50MHz clock
-   parameter CYCLESPERBIT = 500;
+   parameter CYCLESPERBIT = 12'd500;
    
    localparam S0 = 0, PRE = 1, BIT = 2, POST = 3, END = 4;
    
@@ -157,7 +157,8 @@ module bit_stream(
                            (state == POST) ? 1'b0 : 
                            sckout;
           end
-          
+          default: begin
+          end
         endcase
      end
    

@@ -20,7 +20,7 @@ module sinewave(
 );
 
 localparam
-    SIN_INCR = 16'h8000;
+    INCR_1KHZ = 16'h1F40;
 
 // ---- reset ----
 wire reset;
@@ -37,8 +37,8 @@ counter <= (reset) ? 25'h0 : counternext;
 always @(*)
 counternext = counter + 25'h1;
 
-assign GPIO[1]   = FPGA_I2C_SCLK;
-assign GPIO[3]   = FPGA_I2C_SDAT;
+//assign GPIO[1]   = FPGA_I2C_SCLK;
+//assign GPIO[3]   = FPGA_I2C_SDAT;
 assign GPIO[11]  = AUD_ADCDAT;
 assign GPIO[13]  = AUD_ADCLRCK;
 assign GPIO[15]  = AUD_BCLK;
@@ -53,12 +53,13 @@ wire
     data_en,
     audio_en;
 wire [15:0]    
+    freq_incr,
     a_data;
     
 assign clk = CLOCK_50;
 assign clk_125 = counter[1];
 assign AUD_XCK = clk_125;
-
+assign freq_incr = INCR_1KHZ * SW[2:0];
 
 codec_cfg cfg(
     .clk(clk),
@@ -69,6 +70,7 @@ codec_cfg cfg(
 );
 
 audio_gen gen(
+    .clk(clk),
     .reset(reset),
     .enable(audio_en),
     .bclk(AUD_BCLK),
@@ -83,12 +85,15 @@ audio_gen gen(
 sin_gen audio(
     .clk(clk),
     .reset(reset),
-    .increment(SIN_INCR),
+    .increment(freq_incr),
     .update(data_en),
-    .q(a_data)
+    .q(a_data),
+    /* verilator lint_off PINCONNECTEMPTY */
+    .ready()
+    /* verilator lint_on PINCONNECTEMPTY */
 );
 
 endmodule
 
 // quartus_sh --flow compile tonegen
-// quartus_pgm -m jtag -o "p;tonegen.sof@2"
+// quartus_pgm -m jtag -o "p;sinewave.sof@2"

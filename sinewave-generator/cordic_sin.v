@@ -3,7 +3,8 @@ module cordic_sin(
     input  wire        reset,
     input  wire        update,
     input  wire [17:0] in_angle,
-    output reg  [15:0] out_angle
+    output reg  [15:0] out_angle,
+    output reg         ready
 );
 
 `include "constants.h"
@@ -21,34 +22,34 @@ module cordic_sin(
  * 
  *   // if inangle >2pi, subtract 2pi.
  *   // This brings inangle in the range 0 - pi and keeps the same quardrant
- *   if (inangle > 4*PI2) 
- *     inangle = inangle - 4*PI2;
+ *   if (inangle > 4*`PI2) 
+ *     inangle = inangle - 4*`PI2;
  * 
- *   if (inangle > 3*PI2)
+ *   if (inangle > 3*`PI2)
  *     return 3;
- *   else if (inangle > 2*PI2)
+ *   else if (inangle > 2*`PI2)
  *     return 2;
- *   else if (inangle > PI2)
+ *   else if (inangle > `PI2)
  *     return 1;
  * 
  *   return 0;
  * }
  */
 
-function [17:0] quadrant;
-input [17:0] 
-    in_angle;
+function [17:0] quadrant(
+    input [17:0] in_angle
+);
 reg [17:0] 
     mid_angle,
     out_quad;
 begin
-    mid_angle = (in_angle > (PI2 * 4)) ? in_angle - (PI2 * 4)
-                                       : in_angle;
+    mid_angle = (in_angle > (`PI2 * 18'h4)) ? in_angle - (`PI2 * 18'h4)
+                                            : in_angle;
 
-    out_quad = (mid_angle > (PI2 * 3)) ? 3 
-             : (mid_angle > (PI2 * 2)) ? 2
-             : (mid_angle > (PI2 * 1)) ? 1
-                                       : 0;
+    out_quad = (mid_angle > (`PI2 * 18'h3)) ? 18'h3 
+             : (mid_angle > (`PI2 * 18'h2)) ? 18'h2
+             : (mid_angle > (`PI2 * 18'h1)) ? 18'h1
+                                            : 18'h0;
     quadrant = out_quad;
 end
 endfunction
@@ -63,34 +64,34 @@ endfunction
  * 
  *   // if inangle >2pi, subtract 2pi.
  *   // This brings inangle in the range 0 - pi and keeps the same quardrant
- *   if (inangle > 4*PI2) 
- *     inangle = inangle - 4*PI2;
+ *   if (inangle > 4*`PI2) 
+ *     inangle = inangle - 4*`PI2;
  * 
- *   if (inangle > 3*PI2)
- *     return (4*PI2 - inangle);
- *   else if (inangle > 2*PI2)
- *     return (inangle - 2*PI2);
- *   else if (inangle > PI2)
- *     return (2*PI2 - inangle);
+ *   if (inangle > 3*`PI2)
+ *     return (4*`PI2 - inangle);
+ *   else if (inangle > 2*`PI2)
+ *     return (inangle - 2*`PI2);
+ *   else if (inangle > `PI2)
+ *     return (2*`PI2 - inangle);
  * 
  *   return inangle;
  * }
  */
 
-function [17:0] angleadj;
-input [17:0] 
-    in_angle;
+function [17:0] angleadj(
+    input [17:0] in_angle
+);
 reg [17:0] 
     mid_angle,
     out_angle;
 begin
-    mid_angle = (in_angle > (PI2 * 4)) ? in_angle - (PI2 * 4)
-                                       : in_angle;
+    mid_angle = (in_angle > (`PI2 * 18'h4)) ? in_angle - (`PI2 * 18'h4)
+                                            : in_angle;
 
-    out_angle = (mid_angle > (PI2 * 3)) ? (PI2 * 4 - mid_angle)
-              : (mid_angle > (PI2 * 2)) ? (mid_angle - PI2 * 2)
-              : (mid_angle > (PI2 * 1)) ? (PI2 * 2 - mid_angle)
-                                        : mid_angle;
+    out_angle = (mid_angle > (`PI2 * 18'h3)) ? (`PI2 * 18'h4 - mid_angle)
+              : (mid_angle > (`PI2 * 18'h2)) ? (mid_angle - `PI2 * 18'h2)
+              : (mid_angle > (`PI2 * 18'h1)) ? (`PI2 * 18'h2 - mid_angle)
+                                             : mid_angle;
     angleadj = out_angle;
 end
 endfunction
@@ -101,28 +102,29 @@ endfunction
 //---------------------------------------------------------------------------//
 /* verilator lint_off VARHIDDEN */
 
-function [17:0] fix_angle;
-input [4:0] ctr;
+function [17:0] fix_angle(
+    input [4:0] ctr
+);
 case (ctr)
-    5'h00: fix_angle = ANGLE_00[17:0]; 
-    5'h01: fix_angle = ANGLE_01[17:0];
-    5'h02: fix_angle = ANGLE_02[17:0];
-    5'h03: fix_angle = ANGLE_03[17:0];
-    5'h04: fix_angle = ANGLE_04[17:0];
-    5'h05: fix_angle = ANGLE_05[17:0];
-    5'h06: fix_angle = ANGLE_06[17:0];
-    5'h07: fix_angle = ANGLE_07[17:0];
-    5'h08: fix_angle = ANGLE_08[17:0];
-    5'h09: fix_angle = ANGLE_09[17:0];
-    5'h0A: fix_angle = ANGLE_0A[17:0];
-    5'h0B: fix_angle = ANGLE_0B[17:0];
-    5'h0C: fix_angle = ANGLE_0C[17:0];
-    5'h0D: fix_angle = ANGLE_0D[17:0];
-    5'h0E: fix_angle = ANGLE_0E[17:0];
-    5'h0F: fix_angle = ANGLE_0F[17:0];
-    5'h10: fix_angle = ANGLE_10[17:0];
-    5'h11: fix_angle = ANGLE_11[17:0];
-    5'h12: fix_angle = ANGLE_12[17:0];
+    5'h00: fix_angle = 18'h6487; 
+    5'h01: fix_angle = 18'h3b58;
+    5'h02: fix_angle = 18'h1f5b;
+    5'h03: fix_angle = 18'hfea ;
+    5'h04: fix_angle = 18'h7fd ;
+    5'h05: fix_angle = 18'h3ff ;
+    5'h06: fix_angle = 18'h1ff ;
+    5'h07: fix_angle = 18'hff  ;
+    5'h08: fix_angle = 18'h7f  ;
+    5'h09: fix_angle = 18'h3f  ;
+    5'h0A: fix_angle = 18'h1f  ;
+    5'h0B: fix_angle = 18'hf   ;
+    5'h0C: fix_angle = 18'h7   ;
+    5'h0D: fix_angle = 18'h3   ;
+    5'h0E: fix_angle = 18'h1   ;
+    5'h0F: fix_angle = 18'h0   ;
+    5'h10: fix_angle = 18'h0   ;
+    5'h11: fix_angle = 18'h0   ;
+    5'h12: fix_angle = 18'h0   ;
     default: fix_angle = 18'h0;
 endcase
 endfunction
@@ -139,10 +141,10 @@ reg signed [17:0]
     cur_angle, new_angle;
 
 localparam 
-    S0      = 0, 
-    INIT    = 1,
-    COMPUTE = 2,
-    DONE    = 3;
+    S0      = 2'h0, 
+    INIT    = 2'h1,
+    COMPUTE = 2'h2,
+    DONE    = 2'h3;
 
 reg [1:0]
     state, state_next;
@@ -196,17 +198,24 @@ end
 
 always @(*) begin
     target_angle = angleadj(in_angle);
+    ctr_next     = ctr;
+    new_angle    = cur_angle;
+    x_new        = x;
+    y_new        = y;
+    y_trunc      = 18'b0;
+    out_angle    = 16'b0;
+    ready        = 1'b0;
     case (state)
     S0: begin
         state_next = (update) ? INIT : S0;
-        ctr_next   = 0;
+        ctr_next   = 5'b0;
     end
     INIT: begin
         state_next = COMPUTE;
-        new_angle  = 0;
-        x_new      = AG_CONST;
-        y_new      = 0;
-        ctr_next   = 0;
+        new_angle  = 18'b0;
+        x_new      = `AG_CONST;
+        y_new      = 18'b0;
+        ctr_next   = 5'b0;
     end
     COMPUTE: begin
         state_next = (ctr < 5'h10) ? COMPUTE : DONE; 
@@ -221,7 +230,7 @@ always @(*) begin
         end
         //$display("%t: (%x)", $time, (quadrant(in_angle) < 2) ?  {y[17], y[15:1]} 
         //                                                     : -{y[17], y[15:1]});
-        ctr_next = ctr + 1;
+        ctr_next = ctr + 5'h1;
     end
     DONE: begin
         state_next = (update) ? INIT : DONE;
@@ -229,6 +238,7 @@ always @(*) begin
                                               : (-y) >>> 1;
         out_angle  = y_trunc[15:0];
         y_new      = y;
+        ready      = 1'b1;
     end
     endcase
 end
