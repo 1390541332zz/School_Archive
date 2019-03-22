@@ -38,9 +38,9 @@ assign bclk_next   = bclk;
 assign lr_clk_next = dac_lr_clk;
 
 assign dac_dat  = sample[63];
-assign rate_cnt = CNT_8KHZ * {2'b0, freq} - 5'h1;
+assign rate_cnt = CNT_8KHZ /* {2'b0, freq})*/ - 5'h1;
 
-assign data_ready = lr_clk_tick & ~reset & (ctr_24 == rate_cnt);
+assign data_ready = lr_clk_tick;
 
 always @(posedge clk) begin
     ctr_24     <= ctr_24_next;
