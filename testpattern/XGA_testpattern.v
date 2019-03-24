@@ -24,10 +24,10 @@ localparam
 
 wire
     clk_75;
-wire [10:0]
-    ctr_h;
-wire [ 9:0]
-    ctr_v;
+wire [log2(width) - 1:0]
+    h_pos;
+wire [log2(height) - 1:0]
+    v_pos;
 wire [7:0]
     vga_r,
     vga_g,
@@ -69,12 +69,12 @@ vga_driver #(
     .vga_sync_n(VGA_SYNC_N),
     .vga_hs(VGA_HS),
     .vga_vs(VGA_VS),
-    .ctr_h(ctr_h),
-    .ctr_v(ctr_v)
+    .h_pos(h_pos),
+    .v_pos(v_pos)
 );
 
-assign vga_r = {8{ctr_h[ 8]}};
-assign vga_g = {8{ctr_h[ 9]}};
-assign vga_b = {8{ctr_h[10]}};
+assign vga_r = {8{h_pos[log2(width) - 3]}};
+assign vga_g = {8{h_pos[log2(width) - 2]}};
+assign vga_b = {8{h_pos[log2(width) - 1]}};
 
 endmodule

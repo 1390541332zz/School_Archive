@@ -33,20 +33,20 @@ module vga_driver #(
     parameter v_addr_start  = v_back_start  + v_back_cnt,
     parameter v_cnt         = v_addr_start  + v_addr_cnt
 )(
-    input  wire                     clk,             
-    input  wire [color_depth - 1:0] vga_r_in,
-    input  wire [color_depth - 1:0] vga_g_in,
-    input  wire [color_depth - 1:0] vga_b_in,
-    output wire [color_depth - 1:0] vga_r_out,
-    output wire [color_depth - 1:0] vga_g_out,
-    output wire [color_depth - 1:0] vga_b_out,
-    output wire                     vga_clk,
-    output wire                     vga_blank_n,
-    output wire                     vga_sync_n,
-    output wire                     vga_hs,
-    output wire                     vga_vs,
-    output reg [log2(h_cnt) - 1:0]  ctr_h,
-    output reg [log2(v_cnt) - 1:0]  ctr_v
+    input  wire                          clk,             
+    input  wire [color_depth - 1:0]      vga_r_in,
+    input  wire [color_depth - 1:0]      vga_g_in,
+    input  wire [color_depth - 1:0]      vga_b_in,
+    output wire [color_depth - 1:0]      vga_r_out,
+    output wire [color_depth - 1:0]      vga_g_out,
+    output wire [color_depth - 1:0]      vga_b_out,
+    output wire                          vga_clk,
+    output wire                          vga_blank_n,
+    output wire                          vga_sync_n,
+    output wire                          vga_hs,
+    output wire                          vga_vs,
+    output wire [log2(vga_width) - 1:0]  h_pos,
+    output wire [log2(vga_height) - 1:0] v_pos
 );
 
 /* Constant Time Functions */
@@ -58,9 +58,15 @@ end endfunction
 /*---------------------------------------------------------------------------*/
 
 
+reg [log2(h_cnt) - 1:0]
+    ctr_h;
+reg [log2(v_cnt) - 1:0]
+    ctr_v;
 wire [log2(h_cnt) - 1:0]
+    h_pos_pre,
     ctr_h_next;
 wire [log2(v_cnt) - 1:0]
+    v_pos_pre,
     ctr_v_next;
 wire
     /* Horizontal Ticks */
@@ -93,6 +99,12 @@ assign vga_b_out   = vga_blank_n ? vga_b_in : 0;
 assign vga_hs      = h_sync;
 assign vga_vs      = v_sync;
 assign vga_sync_n  = vga_hs ~^ vga_vs;
+
+assign h_pos_pre = ctr_h - h_addr_start;
+assign v_pos_pre = ctr_v - v_addr_start;
+
+assign h_pos = h_pos_pre[log2(vga_width)  - 1:0];
+assign v_pos = v_pos_pre[log2(vga_height) - 1:0];
 
 assign ctr_h_next  = ctr_h + 1;
 assign ctr_v_next  = ctr_v;
