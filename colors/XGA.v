@@ -19,9 +19,9 @@ wire [7:0]
     vga_g,
     vga_b;
 
-assign vga_r = 8'hFF;
-assign vga_g = 8'hFF;
-assign vga_b = 8'hFF;
+assign vga_r = {8{SW[0]}};
+assign vga_g = {8{SW[1]}};
+assign vga_b = {8{SW[2]}};
 
 altpll_75 pll(
     .refclk(CLOCK_50),

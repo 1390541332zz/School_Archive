@@ -73,15 +73,16 @@ vga_driver #(
     .ctr_v(ctr_v)
 );
 
-always @(*) case (ctr_h >> 3)
-    0: {vga_r, vga_g, vga_b} = {8'h00, 8'h00, 8'h00};
-    1: {vga_r, vga_g, vga_b} = {8'hFF, 8'h00, 8'h00};
-    2: {vga_r, vga_g, vga_b} = {8'h00, 8'hFF, 8'h00};
-    3: {vga_r, vga_g, vga_b} = {8'hFF, 8'hFF, 8'h00};
-    4: {vga_r, vga_g, vga_b} = {8'h00, 8'h00, 8'hFF};
-    5: {vga_r, vga_g, vga_b} = {8'hFF, 8'h00, 8'hFF};
-    6: {vga_r, vga_g, vga_b} = {8'h00, 8'hFF, 8'hFF};
-    7: {vga_r, vga_g, vga_b} = {8'hFF, 8'hFF, 8'hFF};
+always @(*) case (ctr_h >> 7)
+          0: {vga_r, vga_g, vga_b} = {8'h00, 8'h00, 8'h00};
+          1: {vga_r, vga_g, vga_b} = {8'hFF, 8'h00, 8'h00};
+          2: {vga_r, vga_g, vga_b} = {8'h00, 8'hFF, 8'h00};
+          3: {vga_r, vga_g, vga_b} = {8'hFF, 8'hFF, 8'h00};
+          4: {vga_r, vga_g, vga_b} = {8'h00, 8'h00, 8'hFF};
+          5: {vga_r, vga_g, vga_b} = {8'hFF, 8'h00, 8'hFF};
+          6: {vga_r, vga_g, vga_b} = {8'h00, 8'hFF, 8'hFF};
+          7: {vga_r, vga_g, vga_b} = {8'hFF, 8'hFF, 8'hFF};
+    default: {vga_r, vga_g, vga_b} = {8'h00, 8'h00, 8'h00};
 endcase
 
 endmodule

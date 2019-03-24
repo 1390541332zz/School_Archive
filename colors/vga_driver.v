@@ -93,17 +93,25 @@ assign vga_clk     = clk;
 assign vga_r_out   = (h_addr) ? vga_r_in : 0;
 assign vga_g_out   = (h_addr) ? vga_g_in : 0;
 assign vga_b_out   = (h_addr) ? vga_b_in : 0;
-assign vga_hs      = h_sync;
-assign vga_vs      = v_sync;
+assign vga_hs      = ~h_sync;
+assign vga_vs      = ~v_sync;
 assign vga_sync_n  = vga_hs ~^ vga_vs;
 assign vga_blank_n = ~(v_addr | h_addr);
 
 assign ctr_h_next  = ctr_h + 1;
-assign ctr_v_next  = ctr_v + 1;
+assign ctr_v_next  = ctr_v;
 
 always @(posedge clk) begin
-    ctr_h <= (ctr_h_next < h_cnt) ? ctr_h_next : 0;
-    ctr_v <= (ctr_v_next < v_cnt) ? ctr_v_next : 0;
+    if (ctr_h_next < h_cnt) begin
+        ctr_h <= ctr_h_next;
+        ctr_v <= ctr_v_next;
+    end else if (ctr_v_next + 1 < v_cnt) begin
+        ctr_h <= 0;
+        ctr_v <= ctr_v_next + 1;
+    end else begin
+        ctr_h <= 0;
+        ctr_v <= 0;
+    end
 end
 
 endmodule
