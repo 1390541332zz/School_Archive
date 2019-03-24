@@ -28,7 +28,7 @@ wire [10:0]
     ctr_h;
 wire [ 9:0]
     ctr_v;
-reg [7:0]
+wire [7:0]
     vga_r,
     vga_g,
     vga_b;
@@ -73,16 +73,8 @@ vga_driver #(
     .ctr_v(ctr_v)
 );
 
-always @(*) case (ctr_h >> 7)
-          0: {vga_r, vga_g, vga_b} = {8'h00, 8'h00, 8'h00};
-          1: {vga_r, vga_g, vga_b} = {8'hFF, 8'h00, 8'h00};
-          2: {vga_r, vga_g, vga_b} = {8'h00, 8'hFF, 8'h00};
-          3: {vga_r, vga_g, vga_b} = {8'hFF, 8'hFF, 8'h00};
-          4: {vga_r, vga_g, vga_b} = {8'h00, 8'h00, 8'hFF};
-          5: {vga_r, vga_g, vga_b} = {8'hFF, 8'h00, 8'hFF};
-          6: {vga_r, vga_g, vga_b} = {8'h00, 8'hFF, 8'hFF};
-          7: {vga_r, vga_g, vga_b} = {8'hFF, 8'hFF, 8'hFF};
-    default: {vga_r, vga_g, vga_b} = {8'h00, 8'h00, 8'h00};
-endcase
+assign vga_r = {8{ctr_h[ 8]}};
+assign vga_g = {8{ctr_h[ 9]}};
+assign vga_b = {8{ctr_h[10]}};
 
 endmodule
