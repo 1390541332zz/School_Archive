@@ -1,0 +1,5101 @@
+// Copyright (C) 2017  Intel Corporation. All rights reserved.
+// Your use of Intel Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Intel Program License 
+// Subscription Agreement, the Intel Quartus Prime License Agreement,
+// the Intel MegaCore Function License Agreement, or other 
+// applicable license agreement, including, without limitation, 
+// that your use is for the sole purpose of programming logic 
+// devices manufactured by Intel and sold by Intel or its 
+// authorized distributors.  Please refer to the applicable 
+// agreement for further details.
+
+// VENDOR "Altera"
+// PROGRAM "Quartus Prime"
+// VERSION "Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition"
+
+// DATE "04/05/2019 03:43:44"
+
+// 
+// Device: Altera 5CSEMA5F31C6 Package FBGA896
+// 
+
+// 
+// This Verilog file should be used for ModelSim-Altera (Verilog) only
+// 
+
+`timescale 1 ps/ 1 ps
+
+module XGA_testpattern (
+	CLOCK_50,
+	KEY,
+	SW,
+	VGA_R,
+	VGA_G,
+	VGA_B,
+	VGA_CLK,
+	VGA_BLANK_N,
+	VGA_SYNC_N,
+	VGA_HS,
+	VGA_VS);
+input 	CLOCK_50;
+input 	[3:0] KEY;
+input 	[9:0] SW;
+output 	[7:0] VGA_R;
+output 	[7:0] VGA_G;
+output 	[7:0] VGA_B;
+output 	VGA_CLK;
+output 	VGA_BLANK_N;
+output 	VGA_SYNC_N;
+output 	VGA_HS;
+output 	VGA_VS;
+
+// Design Ports Information
+// KEY[1]	=>  Location: PIN_AA15,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// KEY[2]	=>  Location: PIN_W15,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// KEY[3]	=>  Location: PIN_Y16,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// SW[0]	=>  Location: PIN_AB12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// SW[1]	=>  Location: PIN_AC12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// SW[2]	=>  Location: PIN_AF9,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// SW[3]	=>  Location: PIN_AF10,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// SW[4]	=>  Location: PIN_AD11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// SW[5]	=>  Location: PIN_AD12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// SW[6]	=>  Location: PIN_AE11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// SW[7]	=>  Location: PIN_AC9,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// SW[8]	=>  Location: PIN_AD10,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// SW[9]	=>  Location: PIN_AE12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// VGA_R[0]	=>  Location: PIN_A13,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_R[1]	=>  Location: PIN_C13,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_R[2]	=>  Location: PIN_E13,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_R[3]	=>  Location: PIN_B12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_R[4]	=>  Location: PIN_C12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_R[5]	=>  Location: PIN_D12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_R[6]	=>  Location: PIN_E12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_R[7]	=>  Location: PIN_F13,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_G[0]	=>  Location: PIN_J9,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_G[1]	=>  Location: PIN_J10,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_G[2]	=>  Location: PIN_H12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_G[3]	=>  Location: PIN_G10,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_G[4]	=>  Location: PIN_G11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_G[5]	=>  Location: PIN_G12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_G[6]	=>  Location: PIN_F11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_G[7]	=>  Location: PIN_E11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_B[0]	=>  Location: PIN_B13,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_B[1]	=>  Location: PIN_G13,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_B[2]	=>  Location: PIN_H13,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_B[3]	=>  Location: PIN_F14,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_B[4]	=>  Location: PIN_H14,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_B[5]	=>  Location: PIN_F15,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_B[6]	=>  Location: PIN_G15,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_B[7]	=>  Location: PIN_J14,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_CLK	=>  Location: PIN_A11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_BLANK_N	=>  Location: PIN_F10,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_SYNC_N	=>  Location: PIN_C10,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_HS	=>  Location: PIN_B11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// VGA_VS	=>  Location: PIN_D11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// KEY[0]	=>  Location: PIN_AA14,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// CLOCK_50	=>  Location: PIN_AF14,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+tri1 devclrn;
+tri1 devpor;
+tri1 devoe;
+wire myvesa_avideo_on_a0_combout;
+wire myvesa_ah_sync_reg_aq;
+wire myvesa_av_sync_reg_aq;
+wire myvesa_acsync_acombout;
+wire KEY_a1_a_ainput_o;
+wire KEY_a2_a_ainput_o;
+wire KEY_a3_a_ainput_o;
+wire SW_a0_a_ainput_o;
+wire SW_a1_a_ainput_o;
+wire SW_a2_a_ainput_o;
+wire SW_a3_a_ainput_o;
+wire SW_a4_a_ainput_o;
+wire SW_a5_a_ainput_o;
+wire SW_a6_a_ainput_o;
+wire SW_a7_a_ainput_o;
+wire SW_a8_a_ainput_o;
+wire SW_a9_a_ainput_o;
+wire KEY_a0_a_ainput_o;
+wire CLOCK_50_ainput_o;
+wire a_aQUARTUS_CREATED_GND_aI_combout;
+wire myclockgen_aclockgen_inst_aaltera_pll_i_aoutclk_wire_a0_a_aCLKENA0_outclk;
+wire myvesa_ah_count_reg_a8_a_a_Duplicate_1_q;
+wire myvesa_ah_count_reg_a8_a_a_Duplicate_2_q;
+wire myvesa_ah_count_reg_a8_a_a_Duplicate_3_q;
+wire myvesa_ah_count_reg_a8_a_a_Duplicate_4_q;
+wire myvesa_ah_count_reg_a8_a_a_Duplicate_5_q;
+wire myvesa_ah_count_reg_a8_a_a_Duplicate_6_q;
+wire myvesa_ah_count_reg_a8_a_a_Duplicate_7_q;
+wire myvesa_ah_count_reg_a7_a_a_Duplicate_1_q;
+wire myvesa_ah_count_reg_a7_a_a_Duplicate_2_q;
+wire myvesa_ah_count_reg_a7_a_a_Duplicate_3_q;
+wire myvesa_ah_count_reg_a9_a_a_Duplicate_1_q;
+wire myvesa_ah_count_reg_a9_a_a_Duplicate_2_q;
+wire myvesa_ah_count_reg_a7_a_a_Duplicate_4_q;
+wire myvesa_ah_count_reg_a7_a_a_Duplicate_5_q;
+wire myvesa_ah_count_reg_a9_a_a_Duplicate_3_q;
+wire myvesa_ah_count_reg_a9_a_a_Duplicate_4_q;
+wire myvesa_ah_count_reg_a7_a_a_Duplicate_6_q;
+wire myvesa_ah_count_reg_a9_a_a_Duplicate_5_q;
+wire myvesa_ah_count_reg_a9_a_a_Duplicate_6_q;
+wire myvesa_ah_count_reg_a7_a_a_Duplicate_7_q;
+wire myvesa_ah_count_reg_a9_a_a_Duplicate_7_q;
+wire [10:0] myvesa_ah_count_reg;
+
+wire KEY_a0_a_ainput_I_driver;
+wire CLOCK_50_ainput_I_driver;
+wire VGA_R_a0_a_aoutput_I_driver;
+wire VGA_R_a1_a_aoutput_I_driver;
+wire VGA_R_a2_a_aoutput_I_driver;
+wire VGA_R_a3_a_aoutput_I_driver;
+wire VGA_R_a4_a_aoutput_I_driver;
+wire VGA_R_a5_a_aoutput_I_driver;
+wire VGA_R_a6_a_aoutput_I_driver;
+wire VGA_R_a7_a_aoutput_I_driver;
+wire VGA_G_a0_a_aoutput_I_driver;
+wire VGA_G_a1_a_aoutput_I_driver;
+wire VGA_G_a2_a_aoutput_I_driver;
+wire VGA_G_a3_a_aoutput_I_driver;
+wire VGA_G_a4_a_aoutput_I_driver;
+wire VGA_G_a5_a_aoutput_I_driver;
+wire VGA_G_a6_a_aoutput_I_driver;
+wire VGA_G_a7_a_aoutput_I_driver;
+wire VGA_B_a0_a_aoutput_I_driver;
+wire VGA_B_a1_a_aoutput_I_driver;
+wire VGA_B_a2_a_aoutput_I_driver;
+wire VGA_B_a3_a_aoutput_I_driver;
+wire VGA_B_a4_a_aoutput_I_driver;
+wire VGA_B_a5_a_aoutput_I_driver;
+wire VGA_B_a6_a_aoutput_I_driver;
+wire VGA_B_a7_a_aoutput_I_driver;
+wire VGA_CLK_aoutput_I_driver;
+wire VGA_BLANK_N_aoutput_I_driver;
+wire VGA_SYNC_N_aoutput_I_driver;
+wire VGA_HS_aoutput_I_driver;
+wire VGA_VS_aoutput_I_driver;
+wire KEY_a1_a_ainput_I_driver;
+wire KEY_a2_a_ainput_I_driver;
+wire KEY_a3_a_ainput_I_driver;
+wire SW_a0_a_ainput_I_driver;
+wire SW_a1_a_ainput_I_driver;
+wire SW_a2_a_ainput_I_driver;
+wire SW_a3_a_ainput_I_driver;
+wire SW_a4_a_ainput_I_driver;
+wire SW_a5_a_ainput_I_driver;
+wire SW_a6_a_ainput_I_driver;
+wire SW_a7_a_ainput_I_driver;
+wire SW_a8_a_ainput_I_driver;
+wire SW_a9_a_ainput_I_driver;
+
+vesasync myvesa(
+	.video_on(myvesa_avideo_on_a0_combout),
+	.h_sync_reg1(myvesa_ah_sync_reg_aq),
+	.v_sync_reg1(myvesa_av_sync_reg_aq),
+	.csync1(myvesa_acsync_acombout),
+	.reset(KEY_a0_a_ainput_o),
+	.clk(myclockgen_aclockgen_inst_aaltera_pll_i_aoutclk_wire_a0_a_aCLKENA0_outclk),
+	.h_count_reg_7(myvesa_ah_count_reg[7]),
+	.h_count_reg_8(myvesa_ah_count_reg[8]),
+	.h_count_reg_9(myvesa_ah_count_reg[9]),
+	.h_count_reg_81(myvesa_ah_count_reg_a8_a_a_Duplicate_1_q),
+	.h_count_reg_82(myvesa_ah_count_reg_a8_a_a_Duplicate_2_q),
+	.h_count_reg_83(myvesa_ah_count_reg_a8_a_a_Duplicate_3_q),
+	.h_count_reg_84(myvesa_ah_count_reg_a8_a_a_Duplicate_4_q),
+	.h_count_reg_85(myvesa_ah_count_reg_a8_a_a_Duplicate_5_q),
+	.h_count_reg_86(myvesa_ah_count_reg_a8_a_a_Duplicate_6_q),
+	.h_count_reg_87(myvesa_ah_count_reg_a8_a_a_Duplicate_7_q),
+	.h_count_reg_71(myvesa_ah_count_reg_a7_a_a_Duplicate_1_q),
+	.h_count_reg_72(myvesa_ah_count_reg_a7_a_a_Duplicate_2_q),
+	.h_count_reg_73(myvesa_ah_count_reg_a7_a_a_Duplicate_3_q),
+	.h_count_reg_91(myvesa_ah_count_reg_a9_a_a_Duplicate_1_q),
+	.h_count_reg_92(myvesa_ah_count_reg_a9_a_a_Duplicate_2_q),
+	.h_count_reg_74(myvesa_ah_count_reg_a7_a_a_Duplicate_4_q),
+	.h_count_reg_75(myvesa_ah_count_reg_a7_a_a_Duplicate_5_q),
+	.h_count_reg_93(myvesa_ah_count_reg_a9_a_a_Duplicate_3_q),
+	.h_count_reg_94(myvesa_ah_count_reg_a9_a_a_Duplicate_4_q),
+	.h_count_reg_76(myvesa_ah_count_reg_a7_a_a_Duplicate_6_q),
+	.h_count_reg_95(myvesa_ah_count_reg_a9_a_a_Duplicate_5_q),
+	.h_count_reg_96(myvesa_ah_count_reg_a9_a_a_Duplicate_6_q),
+	.h_count_reg_77(myvesa_ah_count_reg_a7_a_a_Duplicate_7_q),
+	.h_count_reg_97(myvesa_ah_count_reg_a9_a_a_Duplicate_7_q),
+	.devpor(devpor),
+	.devclrn(devclrn),
+	.devoe(devoe));
+
+clockgen myclockgen(
+	.KEY_0(KEY_a0_a_ainput_o),
+	.CLOCK_50(CLOCK_50_ainput_o),
+	.outclk_wire_0(myclockgen_aclockgen_inst_aaltera_pll_i_aoutclk_wire_a0_a_aCLKENA0_outclk),
+	.devpor(devpor),
+	.devclrn(devclrn),
+	.devoe(devoe));
+
+cyclonev_routing_wire KEY_a0_a_ainput_I_routing_wire_inst (
+	.datain(KEY[0]),
+	.dataout(KEY_a0_a_ainput_I_driver));
+
+// Location: IOIBUF_X36_Y0_N1
+cyclonev_io_ibuf KEY_a0_a_ainput(
+	.i(KEY_a0_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(KEY_a0_a_ainput_o));
+// synopsys translate_off
+defparam KEY_a0_a_ainput.bus_hold = "false";
+defparam KEY_a0_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire CLOCK_50_ainput_I_routing_wire_inst (
+	.datain(CLOCK_50),
+	.dataout(CLOCK_50_ainput_I_driver));
+
+// Location: IOIBUF_X32_Y0_N1
+cyclonev_io_ibuf CLOCK_50_ainput(
+	.i(CLOCK_50_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(CLOCK_50_ainput_o));
+// synopsys translate_off
+defparam CLOCK_50_ainput.bus_hold = "false";
+defparam CLOCK_50_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_R_a0_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a7_a_a_Duplicate_1_q),
+	.dataout(VGA_R_a0_a_aoutput_I_driver));
+
+// Location: IOOBUF_X40_Y81_N53
+cyclonev_io_obuf VGA_R_a0_a_aoutput(
+	.i(VGA_R_a0_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_R[0]),
+	.obar());
+// synopsys translate_off
+defparam VGA_R_a0_a_aoutput.bus_hold = "false";
+defparam VGA_R_a0_a_aoutput.open_drain_output = "false";
+defparam VGA_R_a0_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_R_a1_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a7_a_a_Duplicate_3_q),
+	.dataout(VGA_R_a1_a_aoutput_I_driver));
+
+// Location: IOOBUF_X38_Y81_N2
+cyclonev_io_obuf VGA_R_a1_a_aoutput(
+	.i(VGA_R_a1_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_R[1]),
+	.obar());
+// synopsys translate_off
+defparam VGA_R_a1_a_aoutput.bus_hold = "false";
+defparam VGA_R_a1_a_aoutput.open_drain_output = "false";
+defparam VGA_R_a1_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_R_a2_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a7_a_a_Duplicate_7_q),
+	.dataout(VGA_R_a2_a_aoutput_I_driver));
+
+// Location: IOOBUF_X26_Y81_N59
+cyclonev_io_obuf VGA_R_a2_a_aoutput(
+	.i(VGA_R_a2_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_R[2]),
+	.obar());
+// synopsys translate_off
+defparam VGA_R_a2_a_aoutput.bus_hold = "false";
+defparam VGA_R_a2_a_aoutput.open_drain_output = "false";
+defparam VGA_R_a2_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_R_a3_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a7_a_a_Duplicate_2_q),
+	.dataout(VGA_R_a3_a_aoutput_I_driver));
+
+// Location: IOOBUF_X38_Y81_N19
+cyclonev_io_obuf VGA_R_a3_a_aoutput(
+	.i(VGA_R_a3_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_R[3]),
+	.obar());
+// synopsys translate_off
+defparam VGA_R_a3_a_aoutput.bus_hold = "false";
+defparam VGA_R_a3_a_aoutput.open_drain_output = "false";
+defparam VGA_R_a3_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_R_a4_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg[7]),
+	.dataout(VGA_R_a4_a_aoutput_I_driver));
+
+// Location: IOOBUF_X36_Y81_N36
+cyclonev_io_obuf VGA_R_a4_a_aoutput(
+	.i(VGA_R_a4_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_R[4]),
+	.obar());
+// synopsys translate_off
+defparam VGA_R_a4_a_aoutput.bus_hold = "false";
+defparam VGA_R_a4_a_aoutput.open_drain_output = "false";
+defparam VGA_R_a4_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_R_a5_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a7_a_a_Duplicate_5_q),
+	.dataout(VGA_R_a5_a_aoutput_I_driver));
+
+// Location: IOOBUF_X22_Y81_N19
+cyclonev_io_obuf VGA_R_a5_a_aoutput(
+	.i(VGA_R_a5_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_R[5]),
+	.obar());
+// synopsys translate_off
+defparam VGA_R_a5_a_aoutput.bus_hold = "false";
+defparam VGA_R_a5_a_aoutput.open_drain_output = "false";
+defparam VGA_R_a5_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_R_a6_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a7_a_a_Duplicate_4_q),
+	.dataout(VGA_R_a6_a_aoutput_I_driver));
+
+// Location: IOOBUF_X22_Y81_N2
+cyclonev_io_obuf VGA_R_a6_a_aoutput(
+	.i(VGA_R_a6_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_R[6]),
+	.obar());
+// synopsys translate_off
+defparam VGA_R_a6_a_aoutput.bus_hold = "false";
+defparam VGA_R_a6_a_aoutput.open_drain_output = "false";
+defparam VGA_R_a6_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_R_a7_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a7_a_a_Duplicate_6_q),
+	.dataout(VGA_R_a7_a_aoutput_I_driver));
+
+// Location: IOOBUF_X26_Y81_N42
+cyclonev_io_obuf VGA_R_a7_a_aoutput(
+	.i(VGA_R_a7_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_R[7]),
+	.obar());
+// synopsys translate_off
+defparam VGA_R_a7_a_aoutput.bus_hold = "false";
+defparam VGA_R_a7_a_aoutput.open_drain_output = "false";
+defparam VGA_R_a7_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_G_a0_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a8_a_a_Duplicate_4_q),
+	.dataout(VGA_G_a0_a_aoutput_I_driver));
+
+// Location: IOOBUF_X4_Y81_N19
+cyclonev_io_obuf VGA_G_a0_a_aoutput(
+	.i(VGA_G_a0_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_G[0]),
+	.obar());
+// synopsys translate_off
+defparam VGA_G_a0_a_aoutput.bus_hold = "false";
+defparam VGA_G_a0_a_aoutput.open_drain_output = "false";
+defparam VGA_G_a0_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_G_a1_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a8_a_a_Duplicate_2_q),
+	.dataout(VGA_G_a1_a_aoutput_I_driver));
+
+// Location: IOOBUF_X4_Y81_N2
+cyclonev_io_obuf VGA_G_a1_a_aoutput(
+	.i(VGA_G_a1_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_G[1]),
+	.obar());
+// synopsys translate_off
+defparam VGA_G_a1_a_aoutput.bus_hold = "false";
+defparam VGA_G_a1_a_aoutput.open_drain_output = "false";
+defparam VGA_G_a1_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_G_a2_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a8_a_a_Duplicate_6_q),
+	.dataout(VGA_G_a2_a_aoutput_I_driver));
+
+// Location: IOOBUF_X20_Y81_N19
+cyclonev_io_obuf VGA_G_a2_a_aoutput(
+	.i(VGA_G_a2_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_G[2]),
+	.obar());
+// synopsys translate_off
+defparam VGA_G_a2_a_aoutput.bus_hold = "false";
+defparam VGA_G_a2_a_aoutput.open_drain_output = "false";
+defparam VGA_G_a2_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_G_a3_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a8_a_a_Duplicate_3_q),
+	.dataout(VGA_G_a3_a_aoutput_I_driver));
+
+// Location: IOOBUF_X6_Y81_N2
+cyclonev_io_obuf VGA_G_a3_a_aoutput(
+	.i(VGA_G_a3_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_G[3]),
+	.obar());
+// synopsys translate_off
+defparam VGA_G_a3_a_aoutput.bus_hold = "false";
+defparam VGA_G_a3_a_aoutput.open_drain_output = "false";
+defparam VGA_G_a3_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_G_a4_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a8_a_a_Duplicate_7_q),
+	.dataout(VGA_G_a4_a_aoutput_I_driver));
+
+// Location: IOOBUF_X10_Y81_N59
+cyclonev_io_obuf VGA_G_a4_a_aoutput(
+	.i(VGA_G_a4_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_G[4]),
+	.obar());
+// synopsys translate_off
+defparam VGA_G_a4_a_aoutput.bus_hold = "false";
+defparam VGA_G_a4_a_aoutput.open_drain_output = "false";
+defparam VGA_G_a4_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_G_a5_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a8_a_a_Duplicate_5_q),
+	.dataout(VGA_G_a5_a_aoutput_I_driver));
+
+// Location: IOOBUF_X10_Y81_N42
+cyclonev_io_obuf VGA_G_a5_a_aoutput(
+	.i(VGA_G_a5_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_G[5]),
+	.obar());
+// synopsys translate_off
+defparam VGA_G_a5_a_aoutput.bus_hold = "false";
+defparam VGA_G_a5_a_aoutput.open_drain_output = "false";
+defparam VGA_G_a5_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_G_a6_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg[8]),
+	.dataout(VGA_G_a6_a_aoutput_I_driver));
+
+// Location: IOOBUF_X18_Y81_N42
+cyclonev_io_obuf VGA_G_a6_a_aoutput(
+	.i(VGA_G_a6_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_G[6]),
+	.obar());
+// synopsys translate_off
+defparam VGA_G_a6_a_aoutput.bus_hold = "false";
+defparam VGA_G_a6_a_aoutput.open_drain_output = "false";
+defparam VGA_G_a6_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_G_a7_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a8_a_a_Duplicate_1_q),
+	.dataout(VGA_G_a7_a_aoutput_I_driver));
+
+// Location: IOOBUF_X18_Y81_N59
+cyclonev_io_obuf VGA_G_a7_a_aoutput(
+	.i(VGA_G_a7_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_G[7]),
+	.obar());
+// synopsys translate_off
+defparam VGA_G_a7_a_aoutput.bus_hold = "false";
+defparam VGA_G_a7_a_aoutput.open_drain_output = "false";
+defparam VGA_G_a7_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_B_a0_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg[9]),
+	.dataout(VGA_B_a0_a_aoutput_I_driver));
+
+// Location: IOOBUF_X40_Y81_N36
+cyclonev_io_obuf VGA_B_a0_a_aoutput(
+	.i(VGA_B_a0_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_B[0]),
+	.obar());
+// synopsys translate_off
+defparam VGA_B_a0_a_aoutput.bus_hold = "false";
+defparam VGA_B_a0_a_aoutput.open_drain_output = "false";
+defparam VGA_B_a0_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_B_a1_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a9_a_a_Duplicate_5_q),
+	.dataout(VGA_B_a1_a_aoutput_I_driver));
+
+// Location: IOOBUF_X28_Y81_N19
+cyclonev_io_obuf VGA_B_a1_a_aoutput(
+	.i(VGA_B_a1_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_B[1]),
+	.obar());
+// synopsys translate_off
+defparam VGA_B_a1_a_aoutput.bus_hold = "false";
+defparam VGA_B_a1_a_aoutput.open_drain_output = "false";
+defparam VGA_B_a1_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_B_a2_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a9_a_a_Duplicate_7_q),
+	.dataout(VGA_B_a2_a_aoutput_I_driver));
+
+// Location: IOOBUF_X20_Y81_N2
+cyclonev_io_obuf VGA_B_a2_a_aoutput(
+	.i(VGA_B_a2_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_B[2]),
+	.obar());
+// synopsys translate_off
+defparam VGA_B_a2_a_aoutput.bus_hold = "false";
+defparam VGA_B_a2_a_aoutput.open_drain_output = "false";
+defparam VGA_B_a2_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_B_a3_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a9_a_a_Duplicate_6_q),
+	.dataout(VGA_B_a3_a_aoutput_I_driver));
+
+// Location: IOOBUF_X36_Y81_N19
+cyclonev_io_obuf VGA_B_a3_a_aoutput(
+	.i(VGA_B_a3_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_B[3]),
+	.obar());
+// synopsys translate_off
+defparam VGA_B_a3_a_aoutput.bus_hold = "false";
+defparam VGA_B_a3_a_aoutput.open_drain_output = "false";
+defparam VGA_B_a3_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_B_a4_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a9_a_a_Duplicate_3_q),
+	.dataout(VGA_B_a4_a_aoutput_I_driver));
+
+// Location: IOOBUF_X28_Y81_N2
+cyclonev_io_obuf VGA_B_a4_a_aoutput(
+	.i(VGA_B_a4_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_B[4]),
+	.obar());
+// synopsys translate_off
+defparam VGA_B_a4_a_aoutput.bus_hold = "false";
+defparam VGA_B_a4_a_aoutput.open_drain_output = "false";
+defparam VGA_B_a4_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_B_a5_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a9_a_a_Duplicate_4_q),
+	.dataout(VGA_B_a5_a_aoutput_I_driver));
+
+// Location: IOOBUF_X36_Y81_N2
+cyclonev_io_obuf VGA_B_a5_a_aoutput(
+	.i(VGA_B_a5_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_B[5]),
+	.obar());
+// synopsys translate_off
+defparam VGA_B_a5_a_aoutput.bus_hold = "false";
+defparam VGA_B_a5_a_aoutput.open_drain_output = "false";
+defparam VGA_B_a5_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_B_a6_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a9_a_a_Duplicate_1_q),
+	.dataout(VGA_B_a6_a_aoutput_I_driver));
+
+// Location: IOOBUF_X40_Y81_N19
+cyclonev_io_obuf VGA_B_a6_a_aoutput(
+	.i(VGA_B_a6_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_B[6]),
+	.obar());
+// synopsys translate_off
+defparam VGA_B_a6_a_aoutput.bus_hold = "false";
+defparam VGA_B_a6_a_aoutput.open_drain_output = "false";
+defparam VGA_B_a6_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_B_a7_a_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_count_reg_a9_a_a_Duplicate_2_q),
+	.dataout(VGA_B_a7_a_aoutput_I_driver));
+
+// Location: IOOBUF_X32_Y81_N19
+cyclonev_io_obuf VGA_B_a7_a_aoutput(
+	.i(VGA_B_a7_a_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_B[7]),
+	.obar());
+// synopsys translate_off
+defparam VGA_B_a7_a_aoutput.bus_hold = "false";
+defparam VGA_B_a7_a_aoutput.open_drain_output = "false";
+defparam VGA_B_a7_a_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_CLK_aoutput_I_routing_wire_inst (
+	.datain(myclockgen_aclockgen_inst_aaltera_pll_i_aoutclk_wire_a0_a_aCLKENA0_outclk),
+	.dataout(VGA_CLK_aoutput_I_driver));
+
+// Location: IOOBUF_X38_Y81_N36
+cyclonev_io_obuf VGA_CLK_aoutput(
+	.i(VGA_CLK_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_CLK),
+	.obar());
+// synopsys translate_off
+defparam VGA_CLK_aoutput.bus_hold = "false";
+defparam VGA_CLK_aoutput.open_drain_output = "false";
+defparam VGA_CLK_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_BLANK_N_aoutput_I_routing_wire_inst (
+	.datain(myvesa_avideo_on_a0_combout),
+	.dataout(VGA_BLANK_N_aoutput_I_driver));
+
+// Location: IOOBUF_X6_Y81_N19
+cyclonev_io_obuf VGA_BLANK_N_aoutput(
+	.i(VGA_BLANK_N_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_BLANK_N),
+	.obar());
+// synopsys translate_off
+defparam VGA_BLANK_N_aoutput.bus_hold = "false";
+defparam VGA_BLANK_N_aoutput.open_drain_output = "false";
+defparam VGA_BLANK_N_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_SYNC_N_aoutput_I_routing_wire_inst (
+	.datain(!myvesa_acsync_acombout),
+	.dataout(VGA_SYNC_N_aoutput_I_driver));
+
+// Location: IOOBUF_X28_Y81_N36
+cyclonev_io_obuf VGA_SYNC_N_aoutput(
+	.i(VGA_SYNC_N_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_SYNC_N),
+	.obar());
+// synopsys translate_off
+defparam VGA_SYNC_N_aoutput.bus_hold = "false";
+defparam VGA_SYNC_N_aoutput.open_drain_output = "false";
+defparam VGA_SYNC_N_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_HS_aoutput_I_routing_wire_inst (
+	.datain(myvesa_ah_sync_reg_aq),
+	.dataout(VGA_HS_aoutput_I_driver));
+
+// Location: IOOBUF_X36_Y81_N53
+cyclonev_io_obuf VGA_HS_aoutput(
+	.i(VGA_HS_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_HS),
+	.obar());
+// synopsys translate_off
+defparam VGA_HS_aoutput.bus_hold = "false";
+defparam VGA_HS_aoutput.open_drain_output = "false";
+defparam VGA_HS_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire VGA_VS_aoutput_I_routing_wire_inst (
+	.datain(myvesa_av_sync_reg_aq),
+	.dataout(VGA_VS_aoutput_I_driver));
+
+// Location: IOOBUF_X34_Y81_N42
+cyclonev_io_obuf VGA_VS_aoutput(
+	.i(VGA_VS_aoutput_I_driver),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(VGA_VS),
+	.obar());
+// synopsys translate_off
+defparam VGA_VS_aoutput.bus_hold = "false";
+defparam VGA_VS_aoutput.open_drain_output = "false";
+defparam VGA_VS_aoutput.shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_routing_wire KEY_a1_a_ainput_I_routing_wire_inst (
+	.datain(KEY[1]),
+	.dataout(KEY_a1_a_ainput_I_driver));
+
+// Location: IOIBUF_X36_Y0_N18
+cyclonev_io_ibuf KEY_a1_a_ainput(
+	.i(KEY_a1_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(KEY_a1_a_ainput_o));
+// synopsys translate_off
+defparam KEY_a1_a_ainput.bus_hold = "false";
+defparam KEY_a1_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire KEY_a2_a_ainput_I_routing_wire_inst (
+	.datain(KEY[2]),
+	.dataout(KEY_a2_a_ainput_I_driver));
+
+// Location: IOIBUF_X40_Y0_N1
+cyclonev_io_ibuf KEY_a2_a_ainput(
+	.i(KEY_a2_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(KEY_a2_a_ainput_o));
+// synopsys translate_off
+defparam KEY_a2_a_ainput.bus_hold = "false";
+defparam KEY_a2_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire KEY_a3_a_ainput_I_routing_wire_inst (
+	.datain(KEY[3]),
+	.dataout(KEY_a3_a_ainput_I_driver));
+
+// Location: IOIBUF_X40_Y0_N18
+cyclonev_io_ibuf KEY_a3_a_ainput(
+	.i(KEY_a3_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(KEY_a3_a_ainput_o));
+// synopsys translate_off
+defparam KEY_a3_a_ainput.bus_hold = "false";
+defparam KEY_a3_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire SW_a0_a_ainput_I_routing_wire_inst (
+	.datain(SW[0]),
+	.dataout(SW_a0_a_ainput_I_driver));
+
+// Location: IOIBUF_X12_Y0_N18
+cyclonev_io_ibuf SW_a0_a_ainput(
+	.i(SW_a0_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(SW_a0_a_ainput_o));
+// synopsys translate_off
+defparam SW_a0_a_ainput.bus_hold = "false";
+defparam SW_a0_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire SW_a1_a_ainput_I_routing_wire_inst (
+	.datain(SW[1]),
+	.dataout(SW_a1_a_ainput_I_driver));
+
+// Location: IOIBUF_X16_Y0_N1
+cyclonev_io_ibuf SW_a1_a_ainput(
+	.i(SW_a1_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(SW_a1_a_ainput_o));
+// synopsys translate_off
+defparam SW_a1_a_ainput.bus_hold = "false";
+defparam SW_a1_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire SW_a2_a_ainput_I_routing_wire_inst (
+	.datain(SW[2]),
+	.dataout(SW_a2_a_ainput_I_driver));
+
+// Location: IOIBUF_X8_Y0_N35
+cyclonev_io_ibuf SW_a2_a_ainput(
+	.i(SW_a2_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(SW_a2_a_ainput_o));
+// synopsys translate_off
+defparam SW_a2_a_ainput.bus_hold = "false";
+defparam SW_a2_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire SW_a3_a_ainput_I_routing_wire_inst (
+	.datain(SW[3]),
+	.dataout(SW_a3_a_ainput_I_driver));
+
+// Location: IOIBUF_X4_Y0_N52
+cyclonev_io_ibuf SW_a3_a_ainput(
+	.i(SW_a3_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(SW_a3_a_ainput_o));
+// synopsys translate_off
+defparam SW_a3_a_ainput.bus_hold = "false";
+defparam SW_a3_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire SW_a4_a_ainput_I_routing_wire_inst (
+	.datain(SW[4]),
+	.dataout(SW_a4_a_ainput_I_driver));
+
+// Location: IOIBUF_X2_Y0_N41
+cyclonev_io_ibuf SW_a4_a_ainput(
+	.i(SW_a4_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(SW_a4_a_ainput_o));
+// synopsys translate_off
+defparam SW_a4_a_ainput.bus_hold = "false";
+defparam SW_a4_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire SW_a5_a_ainput_I_routing_wire_inst (
+	.datain(SW[5]),
+	.dataout(SW_a5_a_ainput_I_driver));
+
+// Location: IOIBUF_X16_Y0_N18
+cyclonev_io_ibuf SW_a5_a_ainput(
+	.i(SW_a5_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(SW_a5_a_ainput_o));
+// synopsys translate_off
+defparam SW_a5_a_ainput.bus_hold = "false";
+defparam SW_a5_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire SW_a6_a_ainput_I_routing_wire_inst (
+	.datain(SW[6]),
+	.dataout(SW_a6_a_ainput_I_driver));
+
+// Location: IOIBUF_X4_Y0_N35
+cyclonev_io_ibuf SW_a6_a_ainput(
+	.i(SW_a6_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(SW_a6_a_ainput_o));
+// synopsys translate_off
+defparam SW_a6_a_ainput.bus_hold = "false";
+defparam SW_a6_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire SW_a7_a_ainput_I_routing_wire_inst (
+	.datain(SW[7]),
+	.dataout(SW_a7_a_ainput_I_driver));
+
+// Location: IOIBUF_X4_Y0_N1
+cyclonev_io_ibuf SW_a7_a_ainput(
+	.i(SW_a7_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(SW_a7_a_ainput_o));
+// synopsys translate_off
+defparam SW_a7_a_ainput.bus_hold = "false";
+defparam SW_a7_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire SW_a8_a_ainput_I_routing_wire_inst (
+	.datain(SW[8]),
+	.dataout(SW_a8_a_ainput_I_driver));
+
+// Location: IOIBUF_X4_Y0_N18
+cyclonev_io_ibuf SW_a8_a_ainput(
+	.i(SW_a8_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(SW_a8_a_ainput_o));
+// synopsys translate_off
+defparam SW_a8_a_ainput.bus_hold = "false";
+defparam SW_a8_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_routing_wire SW_a9_a_ainput_I_routing_wire_inst (
+	.datain(SW[9]),
+	.dataout(SW_a9_a_ainput_I_driver));
+
+// Location: IOIBUF_X2_Y0_N58
+cyclonev_io_ibuf SW_a9_a_ainput(
+	.i(SW_a9_a_ainput_I_driver),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(SW_a9_a_ainput_o));
+// synopsys translate_off
+defparam SW_a9_a_ainput.bus_hold = "false";
+defparam SW_a9_a_ainput.simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: LABCELL_X12_Y57_N0
+cyclonev_lcell_comb a_aQUARTUS_CREATED_GND_aI(
+// Equation(s):
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(a_aQUARTUS_CREATED_GND_aI_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam a_aQUARTUS_CREATED_GND_aI.extended_lut = "off";
+defparam a_aQUARTUS_CREATED_GND_aI.lut_mask = 64'h0000000000000000;
+defparam a_aQUARTUS_CREATED_GND_aI.shared_arith = "off";
+// synopsys translate_on
+
+endmodule
+
+module clockgen (
+	KEY_0,
+	CLOCK_50,
+	outclk_wire_0,
+	devpor,
+	devclrn,
+	devoe);
+input 	KEY_0;
+input 	CLOCK_50;
+output 	outclk_wire_0;
+
+// Design Ports Information
+
+input 	devpor;
+input 	devclrn;
+input 	devoe;
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+
+
+clockgen_0002 clockgen_inst(
+	.KEY_0(KEY_0),
+	.CLOCK_50(CLOCK_50),
+	.outclk_wire_0(outclk_wire_0),
+	.devpor(devpor),
+	.devclrn(devclrn),
+	.devoe(devoe));
+
+endmodule
+
+module clockgen_0002 (
+	KEY_0,
+	CLOCK_50,
+	outclk_wire_0,
+	devpor,
+	devclrn,
+	devoe);
+input 	KEY_0;
+input 	CLOCK_50;
+output 	outclk_wire_0;
+
+// Design Ports Information
+
+input 	devpor;
+input 	devclrn;
+input 	devoe;
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+
+
+altera_pll_1 altera_pll_i(
+	.KEY_0(KEY_0),
+	.CLOCK_50(CLOCK_50),
+	.outclk_wire_0(outclk_wire_0),
+	.devpor(devpor),
+	.devclrn(devclrn),
+	.devoe(devoe));
+
+endmodule
+
+module altera_pll_1 (
+	KEY_0,
+	CLOCK_50,
+	outclk_wire_0,
+	devpor,
+	devclrn,
+	devoe);
+input 	KEY_0;
+input 	CLOCK_50;
+output 	outclk_wire_0;
+
+// Design Ports Information
+
+input 	devpor;
+input 	devclrn;
+input 	devoe;
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+wire general_a0_a_agpll_aPLL_REFCLK_SELECT_O_EXTSWITCHBUF;
+wire general_a0_a_agpll_aPLL_REFCLK_SELECT_O_CLKOUT;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI2;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI3;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI4;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI5;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI6;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI7;
+wire general_a0_a_agpll_aPLL_RECONFIG_O_UP;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI1;
+wire general_a0_a_agpll_aPLL_RECONFIG_O_SHIFTENM;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI0;
+wire general_a0_a_agpll_aPLL_RECONFIG_O_SHIFT;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_CNTNEN;
+wire general_a0_a_agpll_aPLL_RECONFIGSHIFTEN6;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_TCLK;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH0;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH1;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH2;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH3;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH4;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH5;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH6;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH7;
+wire [0:0] fboutclk_wire;
+wire [0:0] outclk_wire;
+
+wire outclk_wire_a0_a_aCLKENA0_INCLK_driver;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_CORECLKFB_driver;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_ECNC1TEST_driver;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_NRESYNC_driver;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_REFCLKIN_driver;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_SHIFT_driver;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_SHIFTDONEIN_driver;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_SHIFTEN_driver;
+wire general_a0_a_agpll_aFRACTIONAL_PLL_UP_driver;
+wire general_a0_a_agpll_aPLL_RECONFIG_CNTNEN_driver;
+wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_NEN0_driver;
+wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_SHIFT0_driver;
+wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_SHIFTEN_driver;
+wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_TCLK0_driver;
+wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_UP0_driver;
+wire [3:0] general_a0_a_agpll_aPLL_REFCLK_SELECT_CLKIN_bus;
+wire [7:0] general_a0_a_agpll_aPLL_RECONFIG_MHI_bus;
+wire [7:0] general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_bus;
+wire [7:0] general_a0_a_agpll_aFRACTIONAL_PLL_VCOPH_bus;
+wire [7:0] general_a0_a_agpll_aFRACTIONAL_PLL_MHI_bus;
+wire [8:0] general_a0_a_agpll_aPLL_RECONFIG_SHIFTEN_bus;
+
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH0 = general_a0_a_agpll_aFRACTIONAL_PLL_VCOPH_bus[0];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH1 = general_a0_a_agpll_aFRACTIONAL_PLL_VCOPH_bus[1];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH2 = general_a0_a_agpll_aFRACTIONAL_PLL_VCOPH_bus[2];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH3 = general_a0_a_agpll_aFRACTIONAL_PLL_VCOPH_bus[3];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH4 = general_a0_a_agpll_aFRACTIONAL_PLL_VCOPH_bus[4];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH5 = general_a0_a_agpll_aFRACTIONAL_PLL_VCOPH_bus[5];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH6 = general_a0_a_agpll_aFRACTIONAL_PLL_VCOPH_bus[6];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH7 = general_a0_a_agpll_aFRACTIONAL_PLL_VCOPH_bus[7];
+
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI0 = general_a0_a_agpll_aFRACTIONAL_PLL_MHI_bus[0];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI1 = general_a0_a_agpll_aFRACTIONAL_PLL_MHI_bus[1];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI2 = general_a0_a_agpll_aFRACTIONAL_PLL_MHI_bus[2];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI3 = general_a0_a_agpll_aFRACTIONAL_PLL_MHI_bus[3];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI4 = general_a0_a_agpll_aFRACTIONAL_PLL_MHI_bus[4];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI5 = general_a0_a_agpll_aFRACTIONAL_PLL_MHI_bus[5];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI6 = general_a0_a_agpll_aFRACTIONAL_PLL_MHI_bus[6];
+assign general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI7 = general_a0_a_agpll_aFRACTIONAL_PLL_MHI_bus[7];
+
+assign general_a0_a_agpll_aPLL_RECONFIGSHIFTEN6 = general_a0_a_agpll_aPLL_RECONFIG_SHIFTEN_bus[6];
+
+cyclonev_routing_wire outclk_wire_a0_a_aCLKENA0_INCLK_routing_wire_inst (
+	.datain(outclk_wire[0]),
+	.dataout(outclk_wire_a0_a_aCLKENA0_INCLK_driver));
+
+// Location: CLKCTRL_G6
+cyclonev_clkena outclk_wire_a0_a_aCLKENA0(
+	.inclk(outclk_wire_a0_a_aCLKENA0_INCLK_driver),
+	.ena(vcc),
+	.outclk(outclk_wire_0),
+	.enaout());
+// synopsys translate_off
+defparam outclk_wire_a0_a_aCLKENA0.clock_type = "global clock";
+defparam outclk_wire_a0_a_aCLKENA0.disable_mode = "low";
+defparam outclk_wire_a0_a_aCLKENA0.ena_register_mode = "always enabled";
+defparam outclk_wire_a0_a_aCLKENA0.ena_register_power_up = "high";
+defparam outclk_wire_a0_a_aCLKENA0.test_syn = "high";
+// synopsys translate_on
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_REFCLK_SELECT_CLKIN_a0_a_routing_wire_inst (
+	.datain(CLOCK_50),
+	.dataout(general_a0_a_agpll_aPLL_REFCLK_SELECT_CLKIN_bus[0]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_REFCLK_SELECT_CLKIN_a1_a_routing_wire_inst (
+	.datain(gnd),
+	.dataout(general_a0_a_agpll_aPLL_REFCLK_SELECT_CLKIN_bus[1]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_REFCLK_SELECT_CLKIN_a2_a_routing_wire_inst (
+	.datain(gnd),
+	.dataout(general_a0_a_agpll_aPLL_REFCLK_SELECT_CLKIN_bus[2]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_REFCLK_SELECT_CLKIN_a3_a_routing_wire_inst (
+	.datain(gnd),
+	.dataout(general_a0_a_agpll_aPLL_REFCLK_SELECT_CLKIN_bus[3]));
+
+// Location: PLLREFCLKSELECT_X0_Y21_N0
+cyclonev_pll_refclk_select general_a0_a_agpll_aPLL_REFCLK_SELECT(
+	.adjpllin(gnd),
+	.cclk(gnd),
+	.coreclkin(gnd),
+	.extswitch(gnd),
+	.iqtxrxclkin(gnd),
+	.plliqclkin(gnd),
+	.rxiqclkin(gnd),
+	.clkin(general_a0_a_agpll_aPLL_REFCLK_SELECT_CLKIN_bus),
+	.refiqclk(2'b00),
+	.clk0bad(),
+	.clk1bad(),
+	.clkout(general_a0_a_agpll_aPLL_REFCLK_SELECT_O_CLKOUT),
+	.extswitchbuf(general_a0_a_agpll_aPLL_REFCLK_SELECT_O_EXTSWITCHBUF),
+	.pllclksel());
+// synopsys translate_off
+defparam general_a0_a_agpll_aPLL_REFCLK_SELECT.pll_auto_clk_sw_en = "false";
+defparam general_a0_a_agpll_aPLL_REFCLK_SELECT.pll_clk_loss_edge = "both_edges";
+defparam general_a0_a_agpll_aPLL_REFCLK_SELECT.pll_clk_loss_sw_en = "false";
+defparam general_a0_a_agpll_aPLL_REFCLK_SELECT.pll_clk_sw_dly = 0;
+defparam general_a0_a_agpll_aPLL_REFCLK_SELECT.pll_clkin_0_src = "clk_0";
+defparam general_a0_a_agpll_aPLL_REFCLK_SELECT.pll_clkin_1_src = "ref_clk1";
+defparam general_a0_a_agpll_aPLL_REFCLK_SELECT.pll_manu_clk_sw_en = "false";
+defparam general_a0_a_agpll_aPLL_REFCLK_SELECT.pll_sw_refclk_src = "clk_0";
+// synopsys translate_on
+
+cyclonev_routing_wire general_a0_a_agpll_aFRACTIONAL_PLL_CORECLKFB_routing_wire_inst (
+	.datain(fboutclk_wire[0]),
+	.dataout(general_a0_a_agpll_aFRACTIONAL_PLL_CORECLKFB_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aFRACTIONAL_PLL_ECNC1TEST_routing_wire_inst (
+	.datain(general_a0_a_agpll_aPLL_REFCLK_SELECT_O_EXTSWITCHBUF),
+	.dataout(general_a0_a_agpll_aFRACTIONAL_PLL_ECNC1TEST_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aFRACTIONAL_PLL_NRESYNC_routing_wire_inst (
+	.datain(!KEY_0),
+	.dataout(general_a0_a_agpll_aFRACTIONAL_PLL_NRESYNC_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aFRACTIONAL_PLL_REFCLKIN_routing_wire_inst (
+	.datain(general_a0_a_agpll_aPLL_REFCLK_SELECT_O_CLKOUT),
+	.dataout(general_a0_a_agpll_aFRACTIONAL_PLL_REFCLKIN_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aFRACTIONAL_PLL_SHIFT_routing_wire_inst (
+	.datain(general_a0_a_agpll_aPLL_RECONFIG_O_SHIFT),
+	.dataout(general_a0_a_agpll_aFRACTIONAL_PLL_SHIFT_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aFRACTIONAL_PLL_SHIFTDONEIN_routing_wire_inst (
+	.datain(general_a0_a_agpll_aPLL_RECONFIG_O_SHIFT),
+	.dataout(general_a0_a_agpll_aFRACTIONAL_PLL_SHIFTDONEIN_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aFRACTIONAL_PLL_SHIFTEN_routing_wire_inst (
+	.datain(general_a0_a_agpll_aPLL_RECONFIG_O_SHIFTENM),
+	.dataout(general_a0_a_agpll_aFRACTIONAL_PLL_SHIFTEN_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aFRACTIONAL_PLL_UP_routing_wire_inst (
+	.datain(general_a0_a_agpll_aPLL_RECONFIG_O_UP),
+	.dataout(general_a0_a_agpll_aFRACTIONAL_PLL_UP_driver));
+
+// Location: FRACTIONALPLL_X0_Y15_N0
+cyclonev_fractional_pll general_a0_a_agpll_aFRACTIONAL_PLL(
+	.coreclkfb(general_a0_a_agpll_aFRACTIONAL_PLL_CORECLKFB_driver),
+	.ecnc1test(general_a0_a_agpll_aFRACTIONAL_PLL_ECNC1TEST_driver),
+	.ecnc2test(gnd),
+	.fbclkfpll(gnd),
+	.lvdsfbin(gnd),
+	.nresync(general_a0_a_agpll_aFRACTIONAL_PLL_NRESYNC_driver),
+	.pfden(gnd),
+	.refclkin(general_a0_a_agpll_aFRACTIONAL_PLL_REFCLKIN_driver),
+	.shift(general_a0_a_agpll_aFRACTIONAL_PLL_SHIFT_driver),
+	.shiftdonein(general_a0_a_agpll_aFRACTIONAL_PLL_SHIFTDONEIN_driver),
+	.shiften(general_a0_a_agpll_aFRACTIONAL_PLL_SHIFTEN_driver),
+	.up(general_a0_a_agpll_aFRACTIONAL_PLL_UP_driver),
+	.zdb(gnd),
+	.cntnen(general_a0_a_agpll_aFRACTIONAL_PLL_O_CNTNEN),
+	.fbclk(fboutclk_wire[0]),
+	.fblvdsout(),
+	.lock(),
+	.mcntout(),
+	.plniotribuf(),
+	.shiftdoneout(),
+	.tclk(general_a0_a_agpll_aFRACTIONAL_PLL_O_TCLK),
+	.mhi(general_a0_a_agpll_aFRACTIONAL_PLL_MHI_bus),
+	.vcoph(general_a0_a_agpll_aFRACTIONAL_PLL_VCOPH_bus));
+// synopsys translate_off
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.dsm_accumulator_reset_value = 0;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.forcelock = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.mimic_fbclk_type = "none";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.nreset_invert = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.output_clock_frequency = "300.0 mhz";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_atb = 0;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_bwctrl = 4000;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_cmp_buf_dly = "0 ps";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_cp_comp = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_cp_current = 10;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_ctrl_override_setting = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_dsm_dither = "disable";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_dsm_out_sel = "disable";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_dsm_reset = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_ecn_bypass = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_ecn_test_en = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_enable = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_fbclk_mux_1 = "glb";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_fbclk_mux_2 = "m_cnt";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_fractional_carry_out = 32;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_fractional_division = 1;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_fractional_division_string = "'0'";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_fractional_value_ready = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_lf_testen = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_lock_fltr_cfg = 25;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_lock_fltr_test = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_m_cnt_bypass_en = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_m_cnt_coarse_dly = "0 ps";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_m_cnt_fine_dly = "0 ps";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_m_cnt_hi_div = 6;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_m_cnt_in_src = "ph_mux_clk";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_m_cnt_lo_div = 6;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_m_cnt_odd_div_duty_en = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_m_cnt_ph_mux_prst = 0;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_m_cnt_prst = 1;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_n_cnt_bypass_en = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_n_cnt_coarse_dly = "0 ps";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_n_cnt_fine_dly = "0 ps";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_n_cnt_hi_div = 1;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_n_cnt_lo_div = 1;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_n_cnt_odd_div_duty_en = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_ref_buf_dly = "0 ps";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_reg_boost = 0;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_regulator_bypass = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_ripplecap_ctrl = 0;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_slf_rst = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_tclk_mux_en = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_tclk_sel = "n_src";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_test_enable = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_testdn_enable = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_testup_enable = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_unlock_fltr_cfg = 2;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_vco_div = 2;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_vco_ph0_en = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_vco_ph1_en = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_vco_ph2_en = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_vco_ph3_en = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_vco_ph4_en = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_vco_ph5_en = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_vco_ph6_en = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_vco_ph7_en = "true";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.pll_vctrl_test_voltage = 750;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.reference_clock_frequency = "50.0 mhz";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.vccd0g_atb = "disable";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.vccd0g_output = 0;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.vccd1g_atb = "disable";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.vccd1g_output = 0;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.vccm1g_tap = 2;
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.vccr_pd = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.vcodiv_override = "false";
+defparam general_a0_a_agpll_aFRACTIONAL_PLL.fractional_pll_index = 0;
+// synopsys translate_on
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_RECONFIG_CNTNEN_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_CNTNEN),
+	.dataout(general_a0_a_agpll_aPLL_RECONFIG_CNTNEN_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_RECONFIG_MHI_a0_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI0),
+	.dataout(general_a0_a_agpll_aPLL_RECONFIG_MHI_bus[0]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_RECONFIG_MHI_a1_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI1),
+	.dataout(general_a0_a_agpll_aPLL_RECONFIG_MHI_bus[1]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_RECONFIG_MHI_a2_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI2),
+	.dataout(general_a0_a_agpll_aPLL_RECONFIG_MHI_bus[2]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_RECONFIG_MHI_a3_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI3),
+	.dataout(general_a0_a_agpll_aPLL_RECONFIG_MHI_bus[3]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_RECONFIG_MHI_a4_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI4),
+	.dataout(general_a0_a_agpll_aPLL_RECONFIG_MHI_bus[4]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_RECONFIG_MHI_a5_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI5),
+	.dataout(general_a0_a_agpll_aPLL_RECONFIG_MHI_bus[5]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_RECONFIG_MHI_a6_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI6),
+	.dataout(general_a0_a_agpll_aPLL_RECONFIG_MHI_bus[6]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_RECONFIG_MHI_a7_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_MHI7),
+	.dataout(general_a0_a_agpll_aPLL_RECONFIG_MHI_bus[7]));
+
+// Location: PLLRECONFIG_X0_Y19_N0
+cyclonev_pll_reconfig general_a0_a_agpll_aPLL_RECONFIG(
+	.atpgmode(gnd),
+	.clk(gnd),
+	.cntnen(general_a0_a_agpll_aPLL_RECONFIG_CNTNEN_driver),
+	.fpllcsrtest(gnd),
+	.iocsrclkin(gnd),
+	.iocsrdatain(gnd),
+	.iocsren(gnd),
+	.iocsrrstn(gnd),
+	.mdiodis(gnd),
+	.phaseen(gnd),
+	.read(gnd),
+	.rstn(gnd),
+	.scanen(gnd),
+	.sershiftload(gnd),
+	.shiftdonei(gnd),
+	.updn(gnd),
+	.write(gnd),
+	.addr(6'b000000),
+	.byteen(2'b00),
+	.cntsel(5'b00000),
+	.din(16'b0000000000000000),
+	.mhi(general_a0_a_agpll_aPLL_RECONFIG_MHI_bus),
+	.blockselect(),
+	.iocsrdataout(),
+	.iocsrenbuf(),
+	.iocsrrstnbuf(),
+	.phasedone(),
+	.shift(general_a0_a_agpll_aPLL_RECONFIG_O_SHIFT),
+	.shiftenm(general_a0_a_agpll_aPLL_RECONFIG_O_SHIFTENM),
+	.up(general_a0_a_agpll_aPLL_RECONFIG_O_UP),
+	.dout(),
+	.dprioout(),
+	.shiften(general_a0_a_agpll_aPLL_RECONFIG_SHIFTEN_bus));
+// synopsys translate_off
+defparam general_a0_a_agpll_aPLL_RECONFIG.fractional_pll_index = 0;
+// synopsys translate_on
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_NEN0_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_CNTNEN),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_NEN0_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_SHIFT0_routing_wire_inst (
+	.datain(general_a0_a_agpll_aPLL_RECONFIG_O_SHIFT),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_SHIFT0_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_SHIFTEN_routing_wire_inst (
+	.datain(general_a0_a_agpll_aPLL_RECONFIGSHIFTEN6),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_SHIFTEN_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_TCLK0_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_TCLK),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_TCLK0_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_UP0_routing_wire_inst (
+	.datain(general_a0_a_agpll_aPLL_RECONFIG_O_UP),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_UP0_driver));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_a0_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH0),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_bus[0]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_a1_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH1),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_bus[1]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_a2_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH2),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_bus[2]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_a3_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH3),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_bus[3]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_a4_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH4),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_bus[4]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_a5_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH5),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_bus[5]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_a6_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH6),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_bus[6]));
+
+cyclonev_routing_wire general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_a7_a_routing_wire_inst (
+	.datain(general_a0_a_agpll_aFRACTIONAL_PLL_O_VCOPH7),
+	.dataout(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_bus[7]));
+
+// Location: PLLOUTPUTCOUNTER_X0_Y20_N1
+cyclonev_pll_output_counter general_a0_a_agpll_aPLL_OUTPUT_COUNTER(
+	.cascadein(gnd),
+	.nen0(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_NEN0_driver),
+	.shift0(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_SHIFT0_driver),
+	.shiftdone0i(gnd),
+	.shiften(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_SHIFTEN_driver),
+	.tclk0(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_TCLK0_driver),
+	.up0(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_UP0_driver),
+	.vco0ph(general_a0_a_agpll_aPLL_OUTPUT_COUNTER_VCO0PH_bus),
+	.cascadeout(),
+	.divclk(outclk_wire[0]),
+	.shiftdone0o());
+// synopsys translate_off
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.c_cnt_coarse_dly = "0 ps";
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.c_cnt_fine_dly = "0 ps";
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.c_cnt_in_src = "ph_mux_clk";
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.c_cnt_ph_mux_prst = 0;
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.c_cnt_prst = 1;
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.cnt_fpll_src = "fpll_0";
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.dprio0_cnt_bypass_en = "false";
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.dprio0_cnt_hi_div = 2;
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.dprio0_cnt_lo_div = 2;
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.dprio0_cnt_odd_div_even_duty_en = "false";
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.duty_cycle = 50;
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.output_clock_frequency = "75.0 mhz";
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.phase_shift = "0 ps";
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.fractional_pll_index = 0;
+defparam general_a0_a_agpll_aPLL_OUTPUT_COUNTER.output_counter_index = 6;
+// synopsys translate_on
+
+
+altera_pll_reconfig_tasks pll_reconfig_inst_tasks();
+// synopsys translate_off
+defparam pll_reconfig_inst_tasks .number_of_fplls = 0;
+// synopsys translate_on
+
+endmodule
+
+module vesasync (
+	video_on,
+	h_sync_reg1,
+	v_sync_reg1,
+	csync1,
+	reset,
+	clk,
+	h_count_reg_7,
+	h_count_reg_8,
+	h_count_reg_9,
+	h_count_reg_81,
+	h_count_reg_82,
+	h_count_reg_83,
+	h_count_reg_84,
+	h_count_reg_85,
+	h_count_reg_86,
+	h_count_reg_87,
+	h_count_reg_71,
+	h_count_reg_72,
+	h_count_reg_73,
+	h_count_reg_91,
+	h_count_reg_92,
+	h_count_reg_74,
+	h_count_reg_75,
+	h_count_reg_93,
+	h_count_reg_94,
+	h_count_reg_76,
+	h_count_reg_95,
+	h_count_reg_96,
+	h_count_reg_77,
+	h_count_reg_97,
+	devpor,
+	devclrn,
+	devoe);
+output 	video_on;
+output 	h_sync_reg1;
+output 	v_sync_reg1;
+output 	csync1;
+input 	reset;
+input 	clk;
+output 	h_count_reg_7;
+output 	h_count_reg_8;
+output 	h_count_reg_9;
+output 	h_count_reg_81;
+output 	h_count_reg_82;
+output 	h_count_reg_83;
+output 	h_count_reg_84;
+output 	h_count_reg_85;
+output 	h_count_reg_86;
+output 	h_count_reg_87;
+output 	h_count_reg_71;
+output 	h_count_reg_72;
+output 	h_count_reg_73;
+output 	h_count_reg_91;
+output 	h_count_reg_92;
+output 	h_count_reg_74;
+output 	h_count_reg_75;
+output 	h_count_reg_93;
+output 	h_count_reg_94;
+output 	h_count_reg_76;
+output 	h_count_reg_95;
+output 	h_count_reg_96;
+output 	h_count_reg_77;
+output 	h_count_reg_97;
+
+// Design Ports Information
+
+input 	devpor;
+input 	devclrn;
+input 	devoe;
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+wire Add1_a41_sumout;
+wire Equal1_a1_combout;
+wire Add0_a41_sumout;
+wire Add0_a6;
+wire Add0_a9_sumout;
+wire h_count_reg_a9_a_a_Duplicate_8_q;
+wire Add0_a10;
+wire Add0_a13_sumout;
+wire Equal0_a1_combout;
+wire Equal0_a2_combout;
+wire Add0_a42;
+wire Add0_a21_sumout;
+wire Add0_a22;
+wire Add0_a37_sumout;
+wire Add0_a38;
+wire Add0_a33_sumout;
+wire Add0_a34;
+wire Add0_a29_sumout;
+wire Add0_a30;
+wire Add0_a25_sumout;
+wire Add0_a26;
+wire Add0_a17_sumout;
+wire Add0_a18;
+wire Add0_a1_sumout;
+wire h_count_reg_a7_a_a_Duplicate_8_q;
+wire Add0_a2;
+wire Add0_a5_sumout;
+wire h_count_reg_a8_a_a_Duplicate_8_q;
+wire Equal0_a0_combout;
+wire v_count_reg_a10_a_a0_combout;
+wire Equal1_a0_combout;
+wire Equal1_a2_combout;
+wire Add1_a42;
+wire Add1_a37_sumout;
+wire Add1_a38;
+wire Add1_a33_sumout;
+wire Add1_a34;
+wire Add1_a29_sumout;
+wire v_count_reg_a3_a_aDUPLICATE_q;
+wire Add1_a30;
+wire Add1_a21_sumout;
+wire Add1_a22;
+wire Add1_a25_sumout;
+wire Add1_a26;
+wire Add1_a17_sumout;
+wire Add1_a18;
+wire Add1_a13_sumout;
+wire v_count_reg_a7_a_aDUPLICATE_q;
+wire Add1_a14;
+wire Add1_a9_sumout;
+wire v_count_reg_a8_a_aDUPLICATE_q;
+wire Add1_a10;
+wire Add1_a5_sumout;
+wire Add1_a6;
+wire Add1_a1_sumout;
+wire h_sync_next_a0_combout;
+wire h_sync_next_a1_combout;
+wire v_sync_next_a0_combout;
+wire [10:0] h_count_reg;
+wire [10:0] v_count_reg;
+
+wire video_on_a0_DATAB_driver;
+wire video_on_a0_DATAC_driver;
+wire video_on_a0_DATAD_driver;
+wire video_on_a0_DATAF_driver;
+wire h_sync_reg_CLK_driver;
+wire h_sync_reg_D_driver;
+wire h_sync_reg_CLRN_driver;
+wire v_sync_reg_CLK_driver;
+wire v_sync_reg_D_driver;
+wire v_sync_reg_CLRN_driver;
+wire csync_DATAB_driver;
+wire csync_DATAF_driver;
+wire h_count_reg_a7_a_CLK_driver;
+wire h_count_reg_a7_a_D_driver;
+wire h_count_reg_a7_a_CLRN_driver;
+wire h_count_reg_a7_a_SCLR_driver;
+wire h_count_reg_a8_a_CLK_driver;
+wire h_count_reg_a8_a_D_driver;
+wire h_count_reg_a8_a_CLRN_driver;
+wire h_count_reg_a8_a_SCLR_driver;
+wire h_count_reg_a9_a_CLK_driver;
+wire h_count_reg_a9_a_D_driver;
+wire h_count_reg_a9_a_CLRN_driver;
+wire h_count_reg_a9_a_SCLR_driver;
+wire h_count_reg_a8_a_a_Duplicate_1_CLK_driver;
+wire h_count_reg_a8_a_a_Duplicate_1_D_driver;
+wire h_count_reg_a8_a_a_Duplicate_1_CLRN_driver;
+wire h_count_reg_a8_a_a_Duplicate_1_SCLR_driver;
+wire h_count_reg_a8_a_a_Duplicate_2_CLK_driver;
+wire h_count_reg_a8_a_a_Duplicate_2_D_driver;
+wire h_count_reg_a8_a_a_Duplicate_2_CLRN_driver;
+wire h_count_reg_a8_a_a_Duplicate_2_SCLR_driver;
+wire h_count_reg_a8_a_a_Duplicate_3_CLK_driver;
+wire h_count_reg_a8_a_a_Duplicate_3_D_driver;
+wire h_count_reg_a8_a_a_Duplicate_3_CLRN_driver;
+wire h_count_reg_a8_a_a_Duplicate_3_SCLR_driver;
+wire h_count_reg_a8_a_a_Duplicate_4_CLK_driver;
+wire h_count_reg_a8_a_a_Duplicate_4_D_driver;
+wire h_count_reg_a8_a_a_Duplicate_4_CLRN_driver;
+wire h_count_reg_a8_a_a_Duplicate_4_SCLR_driver;
+wire h_count_reg_a8_a_a_Duplicate_5_CLK_driver;
+wire h_count_reg_a8_a_a_Duplicate_5_D_driver;
+wire h_count_reg_a8_a_a_Duplicate_5_CLRN_driver;
+wire h_count_reg_a8_a_a_Duplicate_5_SCLR_driver;
+wire h_count_reg_a8_a_a_Duplicate_6_CLK_driver;
+wire h_count_reg_a8_a_a_Duplicate_6_D_driver;
+wire h_count_reg_a8_a_a_Duplicate_6_CLRN_driver;
+wire h_count_reg_a8_a_a_Duplicate_6_SCLR_driver;
+wire h_count_reg_a8_a_a_Duplicate_7_CLK_driver;
+wire h_count_reg_a8_a_a_Duplicate_7_D_driver;
+wire h_count_reg_a8_a_a_Duplicate_7_CLRN_driver;
+wire h_count_reg_a8_a_a_Duplicate_7_SCLR_driver;
+wire h_count_reg_a7_a_a_Duplicate_1_CLK_driver;
+wire h_count_reg_a7_a_a_Duplicate_1_D_driver;
+wire h_count_reg_a7_a_a_Duplicate_1_CLRN_driver;
+wire h_count_reg_a7_a_a_Duplicate_1_SCLR_driver;
+wire h_count_reg_a7_a_a_Duplicate_2_CLK_driver;
+wire h_count_reg_a7_a_a_Duplicate_2_D_driver;
+wire h_count_reg_a7_a_a_Duplicate_2_CLRN_driver;
+wire h_count_reg_a7_a_a_Duplicate_2_SCLR_driver;
+wire h_count_reg_a7_a_a_Duplicate_3_CLK_driver;
+wire h_count_reg_a7_a_a_Duplicate_3_D_driver;
+wire h_count_reg_a7_a_a_Duplicate_3_CLRN_driver;
+wire h_count_reg_a7_a_a_Duplicate_3_SCLR_driver;
+wire h_count_reg_a9_a_a_Duplicate_1_CLK_driver;
+wire h_count_reg_a9_a_a_Duplicate_1_D_driver;
+wire h_count_reg_a9_a_a_Duplicate_1_CLRN_driver;
+wire h_count_reg_a9_a_a_Duplicate_1_SCLR_driver;
+wire h_count_reg_a9_a_a_Duplicate_2_CLK_driver;
+wire h_count_reg_a9_a_a_Duplicate_2_D_driver;
+wire h_count_reg_a9_a_a_Duplicate_2_CLRN_driver;
+wire h_count_reg_a9_a_a_Duplicate_2_SCLR_driver;
+wire h_count_reg_a7_a_a_Duplicate_4_CLK_driver;
+wire h_count_reg_a7_a_a_Duplicate_4_D_driver;
+wire h_count_reg_a7_a_a_Duplicate_4_CLRN_driver;
+wire h_count_reg_a7_a_a_Duplicate_4_SCLR_driver;
+wire h_count_reg_a7_a_a_Duplicate_5_CLK_driver;
+wire h_count_reg_a7_a_a_Duplicate_5_D_driver;
+wire h_count_reg_a7_a_a_Duplicate_5_CLRN_driver;
+wire h_count_reg_a7_a_a_Duplicate_5_SCLR_driver;
+wire h_count_reg_a9_a_a_Duplicate_3_CLK_driver;
+wire h_count_reg_a9_a_a_Duplicate_3_D_driver;
+wire h_count_reg_a9_a_a_Duplicate_3_CLRN_driver;
+wire h_count_reg_a9_a_a_Duplicate_3_SCLR_driver;
+wire h_count_reg_a9_a_a_Duplicate_4_CLK_driver;
+wire h_count_reg_a9_a_a_Duplicate_4_D_driver;
+wire h_count_reg_a9_a_a_Duplicate_4_CLRN_driver;
+wire h_count_reg_a9_a_a_Duplicate_4_SCLR_driver;
+wire h_count_reg_a7_a_a_Duplicate_6_CLK_driver;
+wire h_count_reg_a7_a_a_Duplicate_6_D_driver;
+wire h_count_reg_a7_a_a_Duplicate_6_CLRN_driver;
+wire h_count_reg_a7_a_a_Duplicate_6_SCLR_driver;
+wire h_count_reg_a9_a_a_Duplicate_5_CLK_driver;
+wire h_count_reg_a9_a_a_Duplicate_5_D_driver;
+wire h_count_reg_a9_a_a_Duplicate_5_CLRN_driver;
+wire h_count_reg_a9_a_a_Duplicate_5_SCLR_driver;
+wire h_count_reg_a9_a_a_Duplicate_6_CLK_driver;
+wire h_count_reg_a9_a_a_Duplicate_6_D_driver;
+wire h_count_reg_a9_a_a_Duplicate_6_CLRN_driver;
+wire h_count_reg_a9_a_a_Duplicate_6_SCLR_driver;
+wire h_count_reg_a7_a_a_Duplicate_7_CLK_driver;
+wire h_count_reg_a7_a_a_Duplicate_7_D_driver;
+wire h_count_reg_a7_a_a_Duplicate_7_CLRN_driver;
+wire h_count_reg_a7_a_a_Duplicate_7_SCLR_driver;
+wire h_count_reg_a9_a_a_Duplicate_7_CLK_driver;
+wire h_count_reg_a9_a_a_Duplicate_7_D_driver;
+wire h_count_reg_a9_a_a_Duplicate_7_CLRN_driver;
+wire h_count_reg_a9_a_a_Duplicate_7_SCLR_driver;
+wire Add1_a41_DATAC_driver;
+wire Equal1_a1_DATAB_driver;
+wire Equal1_a1_DATAC_driver;
+wire Equal1_a1_DATAD_driver;
+wire Equal1_a1_DATAE_driver;
+wire Equal1_a1_DATAF_driver;
+wire Add0_a41_DATAC_driver;
+wire Add0_a5_DATAC_driver;
+wire Add0_a5_CIN_driver;
+wire Add0_a9_DATAC_driver;
+wire Add0_a9_CIN_driver;
+wire h_count_reg_a9_a_a_Duplicate_8_CLK_driver;
+wire h_count_reg_a9_a_a_Duplicate_8_ASDATA_driver;
+wire h_count_reg_a9_a_a_Duplicate_8_CLRN_driver;
+wire h_count_reg_a9_a_a_Duplicate_8_SCLR_driver;
+wire Add0_a13_DATAB_driver;
+wire Add0_a13_CIN_driver;
+wire h_count_reg_a10_a_CLK_driver;
+wire h_count_reg_a10_a_D_driver;
+wire h_count_reg_a10_a_CLRN_driver;
+wire h_count_reg_a10_a_SCLR_driver;
+wire Equal0_a1_DATAA_driver;
+wire Equal0_a1_DATAB_driver;
+wire Equal0_a1_DATAC_driver;
+wire Equal0_a1_DATAD_driver;
+wire Equal0_a1_DATAF_driver;
+wire Equal0_a2_DATAC_driver;
+wire Equal0_a2_DATAD_driver;
+wire Equal0_a2_DATAF_driver;
+wire h_count_reg_a0_a_CLK_driver;
+wire h_count_reg_a0_a_D_driver;
+wire h_count_reg_a0_a_CLRN_driver;
+wire h_count_reg_a0_a_SCLR_driver;
+wire Add0_a21_DATAA_driver;
+wire Add0_a21_CIN_driver;
+wire h_count_reg_a1_a_CLK_driver;
+wire h_count_reg_a1_a_D_driver;
+wire h_count_reg_a1_a_CLRN_driver;
+wire h_count_reg_a1_a_SCLR_driver;
+wire Add0_a37_DATAC_driver;
+wire Add0_a37_CIN_driver;
+wire h_count_reg_a2_a_CLK_driver;
+wire h_count_reg_a2_a_D_driver;
+wire h_count_reg_a2_a_CLRN_driver;
+wire h_count_reg_a2_a_SCLR_driver;
+wire Add0_a33_DATAB_driver;
+wire Add0_a33_CIN_driver;
+wire h_count_reg_a3_a_CLK_driver;
+wire h_count_reg_a3_a_D_driver;
+wire h_count_reg_a3_a_CLRN_driver;
+wire h_count_reg_a3_a_SCLR_driver;
+wire Add0_a29_DATAB_driver;
+wire Add0_a29_CIN_driver;
+wire h_count_reg_a4_a_CLK_driver;
+wire h_count_reg_a4_a_D_driver;
+wire h_count_reg_a4_a_CLRN_driver;
+wire h_count_reg_a4_a_SCLR_driver;
+wire Add0_a25_DATAC_driver;
+wire Add0_a25_CIN_driver;
+wire h_count_reg_a5_a_CLK_driver;
+wire h_count_reg_a5_a_D_driver;
+wire h_count_reg_a5_a_CLRN_driver;
+wire h_count_reg_a5_a_SCLR_driver;
+wire Add0_a17_DATAC_driver;
+wire Add0_a17_CIN_driver;
+wire h_count_reg_a6_a_CLK_driver;
+wire h_count_reg_a6_a_D_driver;
+wire h_count_reg_a6_a_CLRN_driver;
+wire h_count_reg_a6_a_SCLR_driver;
+wire Add0_a1_DATAA_driver;
+wire Add0_a1_CIN_driver;
+wire h_count_reg_a7_a_a_Duplicate_8_CLK_driver;
+wire h_count_reg_a7_a_a_Duplicate_8_ASDATA_driver;
+wire h_count_reg_a7_a_a_Duplicate_8_CLRN_driver;
+wire h_count_reg_a7_a_a_Duplicate_8_SCLR_driver;
+wire h_count_reg_a8_a_a_Duplicate_8_CLK_driver;
+wire h_count_reg_a8_a_a_Duplicate_8_ASDATA_driver;
+wire h_count_reg_a8_a_a_Duplicate_8_CLRN_driver;
+wire h_count_reg_a8_a_a_Duplicate_8_SCLR_driver;
+wire Equal0_a0_DATAA_driver;
+wire Equal0_a0_DATAB_driver;
+wire Equal0_a0_DATAC_driver;
+wire Equal0_a0_DATAD_driver;
+wire Equal0_a0_DATAF_driver;
+wire v_count_reg_a10_a_a0_DATAA_driver;
+wire v_count_reg_a10_a_a0_DATAB_driver;
+wire v_count_reg_a10_a_a0_DATAC_driver;
+wire v_count_reg_a10_a_a0_DATAE_driver;
+wire v_count_reg_a10_a_a0_DATAF_driver;
+wire v_count_reg_a7_a_CLK_driver;
+wire v_count_reg_a7_a_D_driver;
+wire v_count_reg_a7_a_CLRN_driver;
+wire v_count_reg_a7_a_SCLR_driver;
+wire v_count_reg_a7_a_ENA_driver;
+wire v_count_reg_a8_a_CLK_driver;
+wire v_count_reg_a8_a_D_driver;
+wire v_count_reg_a8_a_CLRN_driver;
+wire v_count_reg_a8_a_SCLR_driver;
+wire v_count_reg_a8_a_ENA_driver;
+wire Equal1_a0_DATAA_driver;
+wire Equal1_a0_DATAB_driver;
+wire Equal1_a0_DATAC_driver;
+wire Equal1_a0_DATAD_driver;
+wire Equal1_a0_DATAE_driver;
+wire Equal1_a0_DATAF_driver;
+wire Equal1_a2_DATAC_driver;
+wire Equal1_a2_DATAF_driver;
+wire v_count_reg_a0_a_CLK_driver;
+wire v_count_reg_a0_a_D_driver;
+wire v_count_reg_a0_a_CLRN_driver;
+wire v_count_reg_a0_a_SCLR_driver;
+wire v_count_reg_a0_a_ENA_driver;
+wire Add1_a37_DATAA_driver;
+wire Add1_a37_CIN_driver;
+wire v_count_reg_a1_a_CLK_driver;
+wire v_count_reg_a1_a_D_driver;
+wire v_count_reg_a1_a_CLRN_driver;
+wire v_count_reg_a1_a_SCLR_driver;
+wire v_count_reg_a1_a_ENA_driver;
+wire Add1_a33_DATAF_driver;
+wire Add1_a33_CIN_driver;
+wire v_count_reg_a2_a_CLK_driver;
+wire v_count_reg_a2_a_D_driver;
+wire v_count_reg_a2_a_CLRN_driver;
+wire v_count_reg_a2_a_SCLR_driver;
+wire v_count_reg_a2_a_ENA_driver;
+wire Add1_a29_DATAB_driver;
+wire Add1_a29_CIN_driver;
+wire v_count_reg_a3_a_aDUPLICATE_CLK_driver;
+wire v_count_reg_a3_a_aDUPLICATE_D_driver;
+wire v_count_reg_a3_a_aDUPLICATE_CLRN_driver;
+wire v_count_reg_a3_a_aDUPLICATE_SCLR_driver;
+wire v_count_reg_a3_a_aDUPLICATE_ENA_driver;
+wire Add1_a21_DATAB_driver;
+wire Add1_a21_CIN_driver;
+wire v_count_reg_a4_a_CLK_driver;
+wire v_count_reg_a4_a_D_driver;
+wire v_count_reg_a4_a_CLRN_driver;
+wire v_count_reg_a4_a_SCLR_driver;
+wire v_count_reg_a4_a_ENA_driver;
+wire Add1_a25_DATAC_driver;
+wire Add1_a25_CIN_driver;
+wire v_count_reg_a5_a_CLK_driver;
+wire v_count_reg_a5_a_D_driver;
+wire v_count_reg_a5_a_CLRN_driver;
+wire v_count_reg_a5_a_SCLR_driver;
+wire v_count_reg_a5_a_ENA_driver;
+wire Add1_a17_DATAA_driver;
+wire Add1_a17_CIN_driver;
+wire v_count_reg_a6_a_CLK_driver;
+wire v_count_reg_a6_a_D_driver;
+wire v_count_reg_a6_a_CLRN_driver;
+wire v_count_reg_a6_a_SCLR_driver;
+wire v_count_reg_a6_a_ENA_driver;
+wire Add1_a13_DATAC_driver;
+wire Add1_a13_CIN_driver;
+wire v_count_reg_a7_a_aDUPLICATE_CLK_driver;
+wire v_count_reg_a7_a_aDUPLICATE_D_driver;
+wire v_count_reg_a7_a_aDUPLICATE_CLRN_driver;
+wire v_count_reg_a7_a_aDUPLICATE_SCLR_driver;
+wire v_count_reg_a7_a_aDUPLICATE_ENA_driver;
+wire Add1_a9_DATAB_driver;
+wire Add1_a9_CIN_driver;
+wire v_count_reg_a8_a_aDUPLICATE_CLK_driver;
+wire v_count_reg_a8_a_aDUPLICATE_D_driver;
+wire v_count_reg_a8_a_aDUPLICATE_CLRN_driver;
+wire v_count_reg_a8_a_aDUPLICATE_SCLR_driver;
+wire v_count_reg_a8_a_aDUPLICATE_ENA_driver;
+wire Add1_a5_DATAA_driver;
+wire Add1_a5_CIN_driver;
+wire v_count_reg_a9_a_CLK_driver;
+wire v_count_reg_a9_a_D_driver;
+wire v_count_reg_a9_a_CLRN_driver;
+wire v_count_reg_a9_a_SCLR_driver;
+wire v_count_reg_a9_a_ENA_driver;
+wire Add1_a1_DATAB_driver;
+wire Add1_a1_CIN_driver;
+wire v_count_reg_a10_a_CLK_driver;
+wire v_count_reg_a10_a_D_driver;
+wire v_count_reg_a10_a_CLRN_driver;
+wire v_count_reg_a10_a_SCLR_driver;
+wire v_count_reg_a10_a_ENA_driver;
+wire h_sync_next_a0_DATAA_driver;
+wire h_sync_next_a0_DATAC_driver;
+wire h_sync_next_a0_DATAF_driver;
+wire h_sync_next_a1_DATAA_driver;
+wire h_sync_next_a1_DATAB_driver;
+wire h_sync_next_a1_DATAC_driver;
+wire h_sync_next_a1_DATAD_driver;
+wire h_sync_next_a1_DATAE_driver;
+wire h_sync_next_a1_DATAF_driver;
+wire v_count_reg_a3_a_CLK_driver;
+wire v_count_reg_a3_a_D_driver;
+wire v_count_reg_a3_a_CLRN_driver;
+wire v_count_reg_a3_a_SCLR_driver;
+wire v_count_reg_a3_a_ENA_driver;
+wire v_sync_next_a0_DATAA_driver;
+wire v_sync_next_a0_DATAB_driver;
+wire v_sync_next_a0_DATAC_driver;
+wire v_sync_next_a0_DATAD_driver;
+wire v_sync_next_a0_DATAE_driver;
+wire v_sync_next_a0_DATAF_driver;
+
+cyclonev_routing_wire video_on_a0_DATAB_routing_wire_inst (
+	.datain(!v_count_reg[10]),
+	.dataout(video_on_a0_DATAB_driver));
+
+cyclonev_routing_wire video_on_a0_DATAC_routing_wire_inst (
+	.datain(!v_count_reg[8]),
+	.dataout(video_on_a0_DATAC_driver));
+
+cyclonev_routing_wire video_on_a0_DATAD_routing_wire_inst (
+	.datain(!v_count_reg[9]),
+	.dataout(video_on_a0_DATAD_driver));
+
+cyclonev_routing_wire video_on_a0_DATAF_routing_wire_inst (
+	.datain(!h_count_reg[10]),
+	.dataout(video_on_a0_DATAF_driver));
+
+// Location: MLABCELL_X6_Y80_N48
+cyclonev_lcell_comb video_on_a0(
+// Equation(s):
+// video_on = ( !h_count_reg[10] & ( (!v_count_reg[10] & ((!v_count_reg[8]) # (!v_count_reg[9]))) ) )
+
+	.dataa(gnd),
+	.datab(video_on_a0_DATAB_driver),
+	.datac(video_on_a0_DATAC_driver),
+	.datad(video_on_a0_DATAD_driver),
+	.datae(gnd),
+	.dataf(video_on_a0_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(video_on),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam video_on_a0.extended_lut = "off";
+defparam video_on_a0.lut_mask = 64'hCCC0CCC000000000;
+defparam video_on_a0.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_sync_reg_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_sync_reg_CLK_driver));
+
+cyclonev_routing_wire h_sync_reg_D_routing_wire_inst (
+	.datain(h_sync_next_a1_combout),
+	.dataout(h_sync_reg_D_driver));
+
+cyclonev_routing_wire h_sync_reg_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_sync_reg_CLRN_driver));
+
+// Location: FF_X7_Y80_N49
+dffeas h_sync_reg(
+	.clk(h_sync_reg_CLK_driver),
+	.d(h_sync_reg_D_driver),
+	.asdata(vcc),
+	.clrn(h_sync_reg_CLRN_driver),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_sync_reg1),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_sync_reg.is_wysiwyg = "true";
+defparam h_sync_reg.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire v_sync_reg_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_sync_reg_CLK_driver));
+
+cyclonev_routing_wire v_sync_reg_D_routing_wire_inst (
+	.datain(v_sync_next_a0_combout),
+	.dataout(v_sync_reg_D_driver));
+
+cyclonev_routing_wire v_sync_reg_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_sync_reg_CLRN_driver));
+
+// Location: FF_X6_Y80_N37
+dffeas v_sync_reg(
+	.clk(v_sync_reg_CLK_driver),
+	.d(v_sync_reg_D_driver),
+	.asdata(vcc),
+	.clrn(v_sync_reg_CLRN_driver),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_sync_reg1),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_sync_reg.is_wysiwyg = "true";
+defparam v_sync_reg.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire csync_DATAB_routing_wire_inst (
+	.datain(!v_sync_reg1),
+	.dataout(csync_DATAB_driver));
+
+cyclonev_routing_wire csync_DATAF_routing_wire_inst (
+	.datain(!h_sync_reg1),
+	.dataout(csync_DATAF_driver));
+
+// Location: MLABCELL_X28_Y80_N48
+cyclonev_lcell_comb csync(
+// Equation(s):
+// csync1 = ( h_sync_reg1 & ( !v_sync_reg1 ) ) # ( !h_sync_reg1 & ( v_sync_reg1 ) )
+
+	.dataa(gnd),
+	.datab(csync_DATAB_driver),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(csync_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(csync1),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam csync.extended_lut = "off";
+defparam csync.lut_mask = 64'h33333333CCCCCCCC;
+defparam csync.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a7_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a7_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_D_routing_wire_inst (
+	.datain(Add0_a1_sumout),
+	.dataout(h_count_reg_a7_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a7_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a7_a_SCLR_driver));
+
+// Location: DDIOOUTCELL_X36_Y81_N44
+dffeas h_count_reg_a7_a(
+	.clk(h_count_reg_a7_a_CLK_driver),
+	.d(h_count_reg_a7_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a7_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a7_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_7),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a7_a.is_wysiwyg = "true";
+defparam h_count_reg_a7_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a8_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a8_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_D_routing_wire_inst (
+	.datain(Add0_a5_sumout),
+	.dataout(h_count_reg_a8_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a8_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a8_a_SCLR_driver));
+
+// Location: DDIOOUTCELL_X18_Y81_N50
+dffeas h_count_reg_a8_a(
+	.clk(h_count_reg_a8_a_CLK_driver),
+	.d(h_count_reg_a8_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a8_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a8_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_8),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a8_a.is_wysiwyg = "true";
+defparam h_count_reg_a8_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a9_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a9_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_D_routing_wire_inst (
+	.datain(Add0_a9_sumout),
+	.dataout(h_count_reg_a9_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a9_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a9_a_SCLR_driver));
+
+// Location: DDIOOUTCELL_X40_Y81_N44
+dffeas h_count_reg_a9_a(
+	.clk(h_count_reg_a9_a_CLK_driver),
+	.d(h_count_reg_a9_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a9_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a9_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_9),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a9_a.is_wysiwyg = "true";
+defparam h_count_reg_a9_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_1_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a8_a_a_Duplicate_1_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_1_D_routing_wire_inst (
+	.datain(Add0_a5_sumout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_1_D_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_1_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a8_a_a_Duplicate_1_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_1_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_1_SCLR_driver));
+
+// Location: DDIOOUTCELL_X18_Y81_N67
+dffeas h_count_reg_a8_a_a_Duplicate_1(
+	.clk(h_count_reg_a8_a_a_Duplicate_1_CLK_driver),
+	.d(h_count_reg_a8_a_a_Duplicate_1_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a8_a_a_Duplicate_1_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a8_a_a_Duplicate_1_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_81),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a8_a_a_Duplicate_1.is_wysiwyg = "true";
+defparam h_count_reg_a8_a_a_Duplicate_1.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_2_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a8_a_a_Duplicate_2_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_2_D_routing_wire_inst (
+	.datain(Add0_a5_sumout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_2_D_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_2_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a8_a_a_Duplicate_2_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_2_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_2_SCLR_driver));
+
+// Location: DDIOOUTCELL_X4_Y81_N10
+dffeas h_count_reg_a8_a_a_Duplicate_2(
+	.clk(h_count_reg_a8_a_a_Duplicate_2_CLK_driver),
+	.d(h_count_reg_a8_a_a_Duplicate_2_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a8_a_a_Duplicate_2_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a8_a_a_Duplicate_2_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_82),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a8_a_a_Duplicate_2.is_wysiwyg = "true";
+defparam h_count_reg_a8_a_a_Duplicate_2.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_3_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a8_a_a_Duplicate_3_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_3_D_routing_wire_inst (
+	.datain(Add0_a5_sumout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_3_D_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_3_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a8_a_a_Duplicate_3_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_3_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_3_SCLR_driver));
+
+// Location: DDIOOUTCELL_X6_Y81_N10
+dffeas h_count_reg_a8_a_a_Duplicate_3(
+	.clk(h_count_reg_a8_a_a_Duplicate_3_CLK_driver),
+	.d(h_count_reg_a8_a_a_Duplicate_3_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a8_a_a_Duplicate_3_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a8_a_a_Duplicate_3_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_83),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a8_a_a_Duplicate_3.is_wysiwyg = "true";
+defparam h_count_reg_a8_a_a_Duplicate_3.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_4_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a8_a_a_Duplicate_4_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_4_D_routing_wire_inst (
+	.datain(Add0_a5_sumout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_4_D_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_4_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a8_a_a_Duplicate_4_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_4_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_4_SCLR_driver));
+
+// Location: DDIOOUTCELL_X4_Y81_N27
+dffeas h_count_reg_a8_a_a_Duplicate_4(
+	.clk(h_count_reg_a8_a_a_Duplicate_4_CLK_driver),
+	.d(h_count_reg_a8_a_a_Duplicate_4_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a8_a_a_Duplicate_4_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a8_a_a_Duplicate_4_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_84),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a8_a_a_Duplicate_4.is_wysiwyg = "true";
+defparam h_count_reg_a8_a_a_Duplicate_4.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_5_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a8_a_a_Duplicate_5_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_5_D_routing_wire_inst (
+	.datain(Add0_a5_sumout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_5_D_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_5_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a8_a_a_Duplicate_5_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_5_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_5_SCLR_driver));
+
+// Location: DDIOOUTCELL_X10_Y81_N50
+dffeas h_count_reg_a8_a_a_Duplicate_5(
+	.clk(h_count_reg_a8_a_a_Duplicate_5_CLK_driver),
+	.d(h_count_reg_a8_a_a_Duplicate_5_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a8_a_a_Duplicate_5_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a8_a_a_Duplicate_5_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_85),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a8_a_a_Duplicate_5.is_wysiwyg = "true";
+defparam h_count_reg_a8_a_a_Duplicate_5.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_6_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a8_a_a_Duplicate_6_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_6_D_routing_wire_inst (
+	.datain(Add0_a5_sumout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_6_D_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_6_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a8_a_a_Duplicate_6_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_6_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_6_SCLR_driver));
+
+// Location: DDIOOUTCELL_X20_Y81_N27
+dffeas h_count_reg_a8_a_a_Duplicate_6(
+	.clk(h_count_reg_a8_a_a_Duplicate_6_CLK_driver),
+	.d(h_count_reg_a8_a_a_Duplicate_6_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a8_a_a_Duplicate_6_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a8_a_a_Duplicate_6_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_86),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a8_a_a_Duplicate_6.is_wysiwyg = "true";
+defparam h_count_reg_a8_a_a_Duplicate_6.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_7_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a8_a_a_Duplicate_7_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_7_D_routing_wire_inst (
+	.datain(Add0_a5_sumout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_7_D_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_7_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a8_a_a_Duplicate_7_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_7_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_7_SCLR_driver));
+
+// Location: DDIOOUTCELL_X10_Y81_N67
+dffeas h_count_reg_a8_a_a_Duplicate_7(
+	.clk(h_count_reg_a8_a_a_Duplicate_7_CLK_driver),
+	.d(h_count_reg_a8_a_a_Duplicate_7_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a8_a_a_Duplicate_7_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a8_a_a_Duplicate_7_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_87),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a8_a_a_Duplicate_7.is_wysiwyg = "true";
+defparam h_count_reg_a8_a_a_Duplicate_7.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_1_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a7_a_a_Duplicate_1_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_1_D_routing_wire_inst (
+	.datain(Add0_a1_sumout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_1_D_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_1_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a7_a_a_Duplicate_1_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_1_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_1_SCLR_driver));
+
+// Location: DDIOOUTCELL_X40_Y81_N61
+dffeas h_count_reg_a7_a_a_Duplicate_1(
+	.clk(h_count_reg_a7_a_a_Duplicate_1_CLK_driver),
+	.d(h_count_reg_a7_a_a_Duplicate_1_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a7_a_a_Duplicate_1_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a7_a_a_Duplicate_1_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_71),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a7_a_a_Duplicate_1.is_wysiwyg = "true";
+defparam h_count_reg_a7_a_a_Duplicate_1.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_2_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a7_a_a_Duplicate_2_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_2_D_routing_wire_inst (
+	.datain(Add0_a1_sumout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_2_D_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_2_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a7_a_a_Duplicate_2_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_2_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_2_SCLR_driver));
+
+// Location: DDIOOUTCELL_X38_Y81_N27
+dffeas h_count_reg_a7_a_a_Duplicate_2(
+	.clk(h_count_reg_a7_a_a_Duplicate_2_CLK_driver),
+	.d(h_count_reg_a7_a_a_Duplicate_2_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a7_a_a_Duplicate_2_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a7_a_a_Duplicate_2_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_72),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a7_a_a_Duplicate_2.is_wysiwyg = "true";
+defparam h_count_reg_a7_a_a_Duplicate_2.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_3_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a7_a_a_Duplicate_3_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_3_D_routing_wire_inst (
+	.datain(Add0_a1_sumout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_3_D_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_3_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a7_a_a_Duplicate_3_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_3_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_3_SCLR_driver));
+
+// Location: DDIOOUTCELL_X38_Y81_N10
+dffeas h_count_reg_a7_a_a_Duplicate_3(
+	.clk(h_count_reg_a7_a_a_Duplicate_3_CLK_driver),
+	.d(h_count_reg_a7_a_a_Duplicate_3_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a7_a_a_Duplicate_3_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a7_a_a_Duplicate_3_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_73),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a7_a_a_Duplicate_3.is_wysiwyg = "true";
+defparam h_count_reg_a7_a_a_Duplicate_3.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_1_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a9_a_a_Duplicate_1_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_1_D_routing_wire_inst (
+	.datain(Add0_a9_sumout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_1_D_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_1_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a9_a_a_Duplicate_1_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_1_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_1_SCLR_driver));
+
+// Location: DDIOOUTCELL_X40_Y81_N27
+dffeas h_count_reg_a9_a_a_Duplicate_1(
+	.clk(h_count_reg_a9_a_a_Duplicate_1_CLK_driver),
+	.d(h_count_reg_a9_a_a_Duplicate_1_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a9_a_a_Duplicate_1_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a9_a_a_Duplicate_1_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_91),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a9_a_a_Duplicate_1.is_wysiwyg = "true";
+defparam h_count_reg_a9_a_a_Duplicate_1.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_2_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a9_a_a_Duplicate_2_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_2_D_routing_wire_inst (
+	.datain(Add0_a9_sumout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_2_D_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_2_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a9_a_a_Duplicate_2_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_2_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_2_SCLR_driver));
+
+// Location: DDIOOUTCELL_X32_Y81_N27
+dffeas h_count_reg_a9_a_a_Duplicate_2(
+	.clk(h_count_reg_a9_a_a_Duplicate_2_CLK_driver),
+	.d(h_count_reg_a9_a_a_Duplicate_2_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a9_a_a_Duplicate_2_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a9_a_a_Duplicate_2_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_92),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a9_a_a_Duplicate_2.is_wysiwyg = "true";
+defparam h_count_reg_a9_a_a_Duplicate_2.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_4_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a7_a_a_Duplicate_4_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_4_D_routing_wire_inst (
+	.datain(Add0_a1_sumout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_4_D_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_4_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a7_a_a_Duplicate_4_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_4_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_4_SCLR_driver));
+
+// Location: DDIOOUTCELL_X22_Y81_N10
+dffeas h_count_reg_a7_a_a_Duplicate_4(
+	.clk(h_count_reg_a7_a_a_Duplicate_4_CLK_driver),
+	.d(h_count_reg_a7_a_a_Duplicate_4_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a7_a_a_Duplicate_4_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a7_a_a_Duplicate_4_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_74),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a7_a_a_Duplicate_4.is_wysiwyg = "true";
+defparam h_count_reg_a7_a_a_Duplicate_4.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_5_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a7_a_a_Duplicate_5_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_5_D_routing_wire_inst (
+	.datain(Add0_a1_sumout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_5_D_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_5_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a7_a_a_Duplicate_5_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_5_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_5_SCLR_driver));
+
+// Location: DDIOOUTCELL_X22_Y81_N27
+dffeas h_count_reg_a7_a_a_Duplicate_5(
+	.clk(h_count_reg_a7_a_a_Duplicate_5_CLK_driver),
+	.d(h_count_reg_a7_a_a_Duplicate_5_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a7_a_a_Duplicate_5_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a7_a_a_Duplicate_5_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_75),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a7_a_a_Duplicate_5.is_wysiwyg = "true";
+defparam h_count_reg_a7_a_a_Duplicate_5.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_3_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a9_a_a_Duplicate_3_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_3_D_routing_wire_inst (
+	.datain(Add0_a9_sumout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_3_D_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_3_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a9_a_a_Duplicate_3_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_3_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_3_SCLR_driver));
+
+// Location: DDIOOUTCELL_X28_Y81_N10
+dffeas h_count_reg_a9_a_a_Duplicate_3(
+	.clk(h_count_reg_a9_a_a_Duplicate_3_CLK_driver),
+	.d(h_count_reg_a9_a_a_Duplicate_3_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a9_a_a_Duplicate_3_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a9_a_a_Duplicate_3_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_93),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a9_a_a_Duplicate_3.is_wysiwyg = "true";
+defparam h_count_reg_a9_a_a_Duplicate_3.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_4_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a9_a_a_Duplicate_4_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_4_D_routing_wire_inst (
+	.datain(Add0_a9_sumout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_4_D_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_4_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a9_a_a_Duplicate_4_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_4_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_4_SCLR_driver));
+
+// Location: DDIOOUTCELL_X36_Y81_N10
+dffeas h_count_reg_a9_a_a_Duplicate_4(
+	.clk(h_count_reg_a9_a_a_Duplicate_4_CLK_driver),
+	.d(h_count_reg_a9_a_a_Duplicate_4_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a9_a_a_Duplicate_4_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a9_a_a_Duplicate_4_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_94),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a9_a_a_Duplicate_4.is_wysiwyg = "true";
+defparam h_count_reg_a9_a_a_Duplicate_4.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_6_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a7_a_a_Duplicate_6_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_6_D_routing_wire_inst (
+	.datain(Add0_a1_sumout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_6_D_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_6_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a7_a_a_Duplicate_6_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_6_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_6_SCLR_driver));
+
+// Location: DDIOOUTCELL_X26_Y81_N50
+dffeas h_count_reg_a7_a_a_Duplicate_6(
+	.clk(h_count_reg_a7_a_a_Duplicate_6_CLK_driver),
+	.d(h_count_reg_a7_a_a_Duplicate_6_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a7_a_a_Duplicate_6_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a7_a_a_Duplicate_6_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_76),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a7_a_a_Duplicate_6.is_wysiwyg = "true";
+defparam h_count_reg_a7_a_a_Duplicate_6.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_5_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a9_a_a_Duplicate_5_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_5_D_routing_wire_inst (
+	.datain(Add0_a9_sumout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_5_D_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_5_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a9_a_a_Duplicate_5_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_5_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_5_SCLR_driver));
+
+// Location: DDIOOUTCELL_X28_Y81_N27
+dffeas h_count_reg_a9_a_a_Duplicate_5(
+	.clk(h_count_reg_a9_a_a_Duplicate_5_CLK_driver),
+	.d(h_count_reg_a9_a_a_Duplicate_5_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a9_a_a_Duplicate_5_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a9_a_a_Duplicate_5_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_95),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a9_a_a_Duplicate_5.is_wysiwyg = "true";
+defparam h_count_reg_a9_a_a_Duplicate_5.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_6_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a9_a_a_Duplicate_6_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_6_D_routing_wire_inst (
+	.datain(Add0_a9_sumout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_6_D_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_6_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a9_a_a_Duplicate_6_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_6_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_6_SCLR_driver));
+
+// Location: DDIOOUTCELL_X36_Y81_N27
+dffeas h_count_reg_a9_a_a_Duplicate_6(
+	.clk(h_count_reg_a9_a_a_Duplicate_6_CLK_driver),
+	.d(h_count_reg_a9_a_a_Duplicate_6_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a9_a_a_Duplicate_6_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a9_a_a_Duplicate_6_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_96),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a9_a_a_Duplicate_6.is_wysiwyg = "true";
+defparam h_count_reg_a9_a_a_Duplicate_6.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_7_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a7_a_a_Duplicate_7_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_7_D_routing_wire_inst (
+	.datain(Add0_a1_sumout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_7_D_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_7_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a7_a_a_Duplicate_7_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_7_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_7_SCLR_driver));
+
+// Location: DDIOOUTCELL_X26_Y81_N67
+dffeas h_count_reg_a7_a_a_Duplicate_7(
+	.clk(h_count_reg_a7_a_a_Duplicate_7_CLK_driver),
+	.d(h_count_reg_a7_a_a_Duplicate_7_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a7_a_a_Duplicate_7_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a7_a_a_Duplicate_7_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_77),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a7_a_a_Duplicate_7.is_wysiwyg = "true";
+defparam h_count_reg_a7_a_a_Duplicate_7.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_7_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a9_a_a_Duplicate_7_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_7_D_routing_wire_inst (
+	.datain(Add0_a9_sumout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_7_D_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_7_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a9_a_a_Duplicate_7_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_7_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_7_SCLR_driver));
+
+// Location: DDIOOUTCELL_X20_Y81_N10
+dffeas h_count_reg_a9_a_a_Duplicate_7(
+	.clk(h_count_reg_a9_a_a_Duplicate_7_CLK_driver),
+	.d(h_count_reg_a9_a_a_Duplicate_7_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a9_a_a_Duplicate_7_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a9_a_a_Duplicate_7_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_97),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a9_a_a_Duplicate_7.is_wysiwyg = "true";
+defparam h_count_reg_a9_a_a_Duplicate_7.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a41_DATAC_routing_wire_inst (
+	.datain(!v_count_reg[0]),
+	.dataout(Add1_a41_DATAC_driver));
+
+// Location: MLABCELL_X6_Y80_N0
+cyclonev_lcell_comb Add1_a41(
+// Equation(s):
+// Add1_a41_sumout = SUM(( v_count_reg[0] ) + ( VCC ) + ( !VCC ))
+// Add1_a42 = CARRY(( v_count_reg[0] ) + ( VCC ) + ( !VCC ))
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Add1_a41_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a41_sumout),
+	.cout(Add1_a42),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a41.extended_lut = "off";
+defparam Add1_a41.lut_mask = 64'h0000000000000F0F;
+defparam Add1_a41.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire Equal1_a1_DATAB_routing_wire_inst (
+	.datain(!v_count_reg_a3_a_aDUPLICATE_q),
+	.dataout(Equal1_a1_DATAB_driver));
+
+cyclonev_routing_wire Equal1_a1_DATAC_routing_wire_inst (
+	.datain(!v_count_reg[1]),
+	.dataout(Equal1_a1_DATAC_driver));
+
+cyclonev_routing_wire Equal1_a1_DATAD_routing_wire_inst (
+	.datain(!v_count_reg[5]),
+	.dataout(Equal1_a1_DATAD_driver));
+
+cyclonev_routing_wire Equal1_a1_DATAE_routing_wire_inst (
+	.datain(!v_count_reg[0]),
+	.dataout(Equal1_a1_DATAE_driver));
+
+cyclonev_routing_wire Equal1_a1_DATAF_routing_wire_inst (
+	.datain(!v_count_reg[2]),
+	.dataout(Equal1_a1_DATAF_driver));
+
+// Location: MLABCELL_X6_Y80_N42
+cyclonev_lcell_comb Equal1_a1(
+// Equation(s):
+// Equal1_a1_combout = ( !v_count_reg[0] & ( v_count_reg[2] & ( (!v_count_reg_a3_a_aDUPLICATE_q & (v_count_reg[1] & v_count_reg[5])) ) ) )
+
+	.dataa(gnd),
+	.datab(Equal1_a1_DATAB_driver),
+	.datac(Equal1_a1_DATAC_driver),
+	.datad(Equal1_a1_DATAD_driver),
+	.datae(Equal1_a1_DATAE_driver),
+	.dataf(Equal1_a1_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(Equal1_a1_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam Equal1_a1.extended_lut = "off";
+defparam Equal1_a1.lut_mask = 64'h00000000000C0000;
+defparam Equal1_a1.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a41_DATAC_routing_wire_inst (
+	.datain(!h_count_reg[0]),
+	.dataout(Add0_a41_DATAC_driver));
+
+// Location: LABCELL_X7_Y80_N0
+cyclonev_lcell_comb Add0_a41(
+// Equation(s):
+// Add0_a41_sumout = SUM(( h_count_reg[0] ) + ( VCC ) + ( !VCC ))
+// Add0_a42 = CARRY(( h_count_reg[0] ) + ( VCC ) + ( !VCC ))
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Add0_a41_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a41_sumout),
+	.cout(Add0_a42),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a41.extended_lut = "off";
+defparam Add0_a41.lut_mask = 64'h0000000000000F0F;
+defparam Add0_a41.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a5_DATAC_routing_wire_inst (
+	.datain(!h_count_reg_a8_a_a_Duplicate_8_q),
+	.dataout(Add0_a5_DATAC_driver));
+
+cyclonev_routing_wire Add0_a5_CIN_routing_wire_inst (
+	.datain(Add0_a2),
+	.dataout(Add0_a5_CIN_driver));
+
+// Location: LABCELL_X7_Y80_N24
+cyclonev_lcell_comb Add0_a5(
+// Equation(s):
+// Add0_a5_sumout = SUM(( h_count_reg_a8_a_a_Duplicate_8_q ) + ( GND ) + ( Add0_a2 ))
+// Add0_a6 = CARRY(( h_count_reg_a8_a_a_Duplicate_8_q ) + ( GND ) + ( Add0_a2 ))
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Add0_a5_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add0_a5_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a5_sumout),
+	.cout(Add0_a6),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a5.extended_lut = "off";
+defparam Add0_a5.lut_mask = 64'h0000FFFF00000F0F;
+defparam Add0_a5.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a9_DATAC_routing_wire_inst (
+	.datain(!h_count_reg_a9_a_a_Duplicate_8_q),
+	.dataout(Add0_a9_DATAC_driver));
+
+cyclonev_routing_wire Add0_a9_CIN_routing_wire_inst (
+	.datain(Add0_a6),
+	.dataout(Add0_a9_CIN_driver));
+
+// Location: LABCELL_X7_Y80_N27
+cyclonev_lcell_comb Add0_a9(
+// Equation(s):
+// Add0_a9_sumout = SUM(( h_count_reg_a9_a_a_Duplicate_8_q ) + ( GND ) + ( Add0_a6 ))
+// Add0_a10 = CARRY(( h_count_reg_a9_a_a_Duplicate_8_q ) + ( GND ) + ( Add0_a6 ))
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Add0_a9_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add0_a9_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a9_sumout),
+	.cout(Add0_a10),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a9.extended_lut = "off";
+defparam Add0_a9.lut_mask = 64'h0000FFFF00000F0F;
+defparam Add0_a9.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_8_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a9_a_a_Duplicate_8_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_8_ASDATA_routing_wire_inst (
+	.datain(Add0_a9_sumout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_8_ASDATA_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_8_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a9_a_a_Duplicate_8_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a9_a_a_Duplicate_8_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a9_a_a_Duplicate_8_SCLR_driver));
+
+// Location: FF_X7_Y80_N59
+dffeas h_count_reg_a9_a_a_Duplicate_8(
+	.clk(h_count_reg_a9_a_a_Duplicate_8_CLK_driver),
+	.d(gnd),
+	.asdata(h_count_reg_a9_a_a_Duplicate_8_ASDATA_driver),
+	.clrn(h_count_reg_a9_a_a_Duplicate_8_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a9_a_a_Duplicate_8_SCLR_driver),
+	.sload(vcc),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_a9_a_a_Duplicate_8_q),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a9_a_a_Duplicate_8.is_wysiwyg = "true";
+defparam h_count_reg_a9_a_a_Duplicate_8.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a13_DATAB_routing_wire_inst (
+	.datain(!h_count_reg[10]),
+	.dataout(Add0_a13_DATAB_driver));
+
+cyclonev_routing_wire Add0_a13_CIN_routing_wire_inst (
+	.datain(Add0_a10),
+	.dataout(Add0_a13_CIN_driver));
+
+// Location: LABCELL_X7_Y80_N30
+cyclonev_lcell_comb Add0_a13(
+// Equation(s):
+// Add0_a13_sumout = SUM(( h_count_reg[10] ) + ( GND ) + ( Add0_a10 ))
+
+	.dataa(gnd),
+	.datab(Add0_a13_DATAB_driver),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add0_a13_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a13_sumout),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a13.extended_lut = "off";
+defparam Add0_a13.lut_mask = 64'h0000FFFF00003333;
+defparam Add0_a13.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a10_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a10_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a10_a_D_routing_wire_inst (
+	.datain(Add0_a13_sumout),
+	.dataout(h_count_reg_a10_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a10_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a10_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a10_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a10_a_SCLR_driver));
+
+// Location: FF_X7_Y80_N32
+dffeas h_count_reg_a10_a(
+	.clk(h_count_reg_a10_a_CLK_driver),
+	.d(h_count_reg_a10_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a10_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a10_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg[10]),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a10_a.is_wysiwyg = "true";
+defparam h_count_reg_a10_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Equal0_a1_DATAA_routing_wire_inst (
+	.datain(!h_count_reg[6]),
+	.dataout(Equal0_a1_DATAA_driver));
+
+cyclonev_routing_wire Equal0_a1_DATAB_routing_wire_inst (
+	.datain(!h_count_reg_a9_a_a_Duplicate_8_q),
+	.dataout(Equal0_a1_DATAB_driver));
+
+cyclonev_routing_wire Equal0_a1_DATAC_routing_wire_inst (
+	.datain(!h_count_reg_a7_a_a_Duplicate_8_q),
+	.dataout(Equal0_a1_DATAC_driver));
+
+cyclonev_routing_wire Equal0_a1_DATAD_routing_wire_inst (
+	.datain(!h_count_reg[0]),
+	.dataout(Equal0_a1_DATAD_driver));
+
+cyclonev_routing_wire Equal0_a1_DATAF_routing_wire_inst (
+	.datain(!h_count_reg[10]),
+	.dataout(Equal0_a1_DATAF_driver));
+
+// Location: LABCELL_X7_Y80_N42
+cyclonev_lcell_comb Equal0_a1(
+// Equation(s):
+// Equal0_a1_combout = ( h_count_reg[10] & ( (!h_count_reg[6] & (!h_count_reg_a9_a_a_Duplicate_8_q & (!h_count_reg_a7_a_a_Duplicate_8_q & !h_count_reg[0]))) ) )
+
+	.dataa(Equal0_a1_DATAA_driver),
+	.datab(Equal0_a1_DATAB_driver),
+	.datac(Equal0_a1_DATAC_driver),
+	.datad(Equal0_a1_DATAD_driver),
+	.datae(gnd),
+	.dataf(Equal0_a1_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(Equal0_a1_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam Equal0_a1.extended_lut = "off";
+defparam Equal0_a1.lut_mask = 64'h0000000080008000;
+defparam Equal0_a1.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire Equal0_a2_DATAC_routing_wire_inst (
+	.datain(!Equal0_a1_combout),
+	.dataout(Equal0_a2_DATAC_driver));
+
+cyclonev_routing_wire Equal0_a2_DATAD_routing_wire_inst (
+	.datain(!Equal0_a0_combout),
+	.dataout(Equal0_a2_DATAD_driver));
+
+cyclonev_routing_wire Equal0_a2_DATAF_routing_wire_inst (
+	.datain(!h_count_reg[1]),
+	.dataout(Equal0_a2_DATAF_driver));
+
+// Location: LABCELL_X7_Y80_N45
+cyclonev_lcell_comb Equal0_a2(
+// Equation(s):
+// Equal0_a2_combout = ( !h_count_reg[1] & ( (Equal0_a1_combout & Equal0_a0_combout) ) )
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Equal0_a2_DATAC_driver),
+	.datad(Equal0_a2_DATAD_driver),
+	.datae(gnd),
+	.dataf(Equal0_a2_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(Equal0_a2_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam Equal0_a2.extended_lut = "off";
+defparam Equal0_a2.lut_mask = 64'h000F000F00000000;
+defparam Equal0_a2.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a0_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a0_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a0_a_D_routing_wire_inst (
+	.datain(Add0_a41_sumout),
+	.dataout(h_count_reg_a0_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a0_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a0_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a0_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a0_a_SCLR_driver));
+
+// Location: FF_X7_Y80_N2
+dffeas h_count_reg_a0_a(
+	.clk(h_count_reg_a0_a_CLK_driver),
+	.d(h_count_reg_a0_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a0_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a0_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg[0]),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a0_a.is_wysiwyg = "true";
+defparam h_count_reg_a0_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a21_DATAA_routing_wire_inst (
+	.datain(!h_count_reg[1]),
+	.dataout(Add0_a21_DATAA_driver));
+
+cyclonev_routing_wire Add0_a21_CIN_routing_wire_inst (
+	.datain(Add0_a42),
+	.dataout(Add0_a21_CIN_driver));
+
+// Location: LABCELL_X7_Y80_N3
+cyclonev_lcell_comb Add0_a21(
+// Equation(s):
+// Add0_a21_sumout = SUM(( h_count_reg[1] ) + ( GND ) + ( Add0_a42 ))
+// Add0_a22 = CARRY(( h_count_reg[1] ) + ( GND ) + ( Add0_a42 ))
+
+	.dataa(Add0_a21_DATAA_driver),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add0_a21_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a21_sumout),
+	.cout(Add0_a22),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a21.extended_lut = "off";
+defparam Add0_a21.lut_mask = 64'h0000FFFF00005555;
+defparam Add0_a21.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a1_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a1_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a1_a_D_routing_wire_inst (
+	.datain(Add0_a21_sumout),
+	.dataout(h_count_reg_a1_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a1_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a1_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a1_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a1_a_SCLR_driver));
+
+// Location: FF_X7_Y80_N5
+dffeas h_count_reg_a1_a(
+	.clk(h_count_reg_a1_a_CLK_driver),
+	.d(h_count_reg_a1_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a1_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a1_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg[1]),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a1_a.is_wysiwyg = "true";
+defparam h_count_reg_a1_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a37_DATAC_routing_wire_inst (
+	.datain(!h_count_reg[2]),
+	.dataout(Add0_a37_DATAC_driver));
+
+cyclonev_routing_wire Add0_a37_CIN_routing_wire_inst (
+	.datain(Add0_a22),
+	.dataout(Add0_a37_CIN_driver));
+
+// Location: LABCELL_X7_Y80_N6
+cyclonev_lcell_comb Add0_a37(
+// Equation(s):
+// Add0_a37_sumout = SUM(( h_count_reg[2] ) + ( GND ) + ( Add0_a22 ))
+// Add0_a38 = CARRY(( h_count_reg[2] ) + ( GND ) + ( Add0_a22 ))
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Add0_a37_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add0_a37_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a37_sumout),
+	.cout(Add0_a38),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a37.extended_lut = "off";
+defparam Add0_a37.lut_mask = 64'h0000FFFF00000F0F;
+defparam Add0_a37.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a2_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a2_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a2_a_D_routing_wire_inst (
+	.datain(Add0_a37_sumout),
+	.dataout(h_count_reg_a2_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a2_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a2_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a2_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a2_a_SCLR_driver));
+
+// Location: FF_X7_Y80_N7
+dffeas h_count_reg_a2_a(
+	.clk(h_count_reg_a2_a_CLK_driver),
+	.d(h_count_reg_a2_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a2_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a2_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg[2]),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a2_a.is_wysiwyg = "true";
+defparam h_count_reg_a2_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a33_DATAB_routing_wire_inst (
+	.datain(!h_count_reg[3]),
+	.dataout(Add0_a33_DATAB_driver));
+
+cyclonev_routing_wire Add0_a33_CIN_routing_wire_inst (
+	.datain(Add0_a38),
+	.dataout(Add0_a33_CIN_driver));
+
+// Location: LABCELL_X7_Y80_N9
+cyclonev_lcell_comb Add0_a33(
+// Equation(s):
+// Add0_a33_sumout = SUM(( h_count_reg[3] ) + ( GND ) + ( Add0_a38 ))
+// Add0_a34 = CARRY(( h_count_reg[3] ) + ( GND ) + ( Add0_a38 ))
+
+	.dataa(gnd),
+	.datab(Add0_a33_DATAB_driver),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add0_a33_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a33_sumout),
+	.cout(Add0_a34),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a33.extended_lut = "off";
+defparam Add0_a33.lut_mask = 64'h0000FFFF00003333;
+defparam Add0_a33.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a3_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a3_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a3_a_D_routing_wire_inst (
+	.datain(Add0_a33_sumout),
+	.dataout(h_count_reg_a3_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a3_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a3_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a3_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a3_a_SCLR_driver));
+
+// Location: FF_X7_Y80_N11
+dffeas h_count_reg_a3_a(
+	.clk(h_count_reg_a3_a_CLK_driver),
+	.d(h_count_reg_a3_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a3_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a3_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg[3]),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a3_a.is_wysiwyg = "true";
+defparam h_count_reg_a3_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a29_DATAB_routing_wire_inst (
+	.datain(!h_count_reg[4]),
+	.dataout(Add0_a29_DATAB_driver));
+
+cyclonev_routing_wire Add0_a29_CIN_routing_wire_inst (
+	.datain(Add0_a34),
+	.dataout(Add0_a29_CIN_driver));
+
+// Location: LABCELL_X7_Y80_N12
+cyclonev_lcell_comb Add0_a29(
+// Equation(s):
+// Add0_a29_sumout = SUM(( h_count_reg[4] ) + ( GND ) + ( Add0_a34 ))
+// Add0_a30 = CARRY(( h_count_reg[4] ) + ( GND ) + ( Add0_a34 ))
+
+	.dataa(gnd),
+	.datab(Add0_a29_DATAB_driver),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add0_a29_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a29_sumout),
+	.cout(Add0_a30),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a29.extended_lut = "off";
+defparam Add0_a29.lut_mask = 64'h0000FFFF00003333;
+defparam Add0_a29.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a4_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a4_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a4_a_D_routing_wire_inst (
+	.datain(Add0_a29_sumout),
+	.dataout(h_count_reg_a4_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a4_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a4_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a4_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a4_a_SCLR_driver));
+
+// Location: FF_X7_Y80_N14
+dffeas h_count_reg_a4_a(
+	.clk(h_count_reg_a4_a_CLK_driver),
+	.d(h_count_reg_a4_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a4_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a4_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg[4]),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a4_a.is_wysiwyg = "true";
+defparam h_count_reg_a4_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a25_DATAC_routing_wire_inst (
+	.datain(!h_count_reg[5]),
+	.dataout(Add0_a25_DATAC_driver));
+
+cyclonev_routing_wire Add0_a25_CIN_routing_wire_inst (
+	.datain(Add0_a30),
+	.dataout(Add0_a25_CIN_driver));
+
+// Location: LABCELL_X7_Y80_N15
+cyclonev_lcell_comb Add0_a25(
+// Equation(s):
+// Add0_a25_sumout = SUM(( h_count_reg[5] ) + ( GND ) + ( Add0_a30 ))
+// Add0_a26 = CARRY(( h_count_reg[5] ) + ( GND ) + ( Add0_a30 ))
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Add0_a25_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add0_a25_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a25_sumout),
+	.cout(Add0_a26),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a25.extended_lut = "off";
+defparam Add0_a25.lut_mask = 64'h0000FFFF00000F0F;
+defparam Add0_a25.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a5_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a5_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a5_a_D_routing_wire_inst (
+	.datain(Add0_a25_sumout),
+	.dataout(h_count_reg_a5_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a5_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a5_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a5_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a5_a_SCLR_driver));
+
+// Location: FF_X7_Y80_N17
+dffeas h_count_reg_a5_a(
+	.clk(h_count_reg_a5_a_CLK_driver),
+	.d(h_count_reg_a5_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a5_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a5_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg[5]),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a5_a.is_wysiwyg = "true";
+defparam h_count_reg_a5_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a17_DATAC_routing_wire_inst (
+	.datain(!h_count_reg[6]),
+	.dataout(Add0_a17_DATAC_driver));
+
+cyclonev_routing_wire Add0_a17_CIN_routing_wire_inst (
+	.datain(Add0_a26),
+	.dataout(Add0_a17_CIN_driver));
+
+// Location: LABCELL_X7_Y80_N18
+cyclonev_lcell_comb Add0_a17(
+// Equation(s):
+// Add0_a17_sumout = SUM(( h_count_reg[6] ) + ( GND ) + ( Add0_a26 ))
+// Add0_a18 = CARRY(( h_count_reg[6] ) + ( GND ) + ( Add0_a26 ))
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Add0_a17_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add0_a17_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a17_sumout),
+	.cout(Add0_a18),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a17.extended_lut = "off";
+defparam Add0_a17.lut_mask = 64'h0000FFFF00000F0F;
+defparam Add0_a17.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a6_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a6_a_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a6_a_D_routing_wire_inst (
+	.datain(Add0_a17_sumout),
+	.dataout(h_count_reg_a6_a_D_driver));
+
+cyclonev_routing_wire h_count_reg_a6_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a6_a_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a6_a_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a6_a_SCLR_driver));
+
+// Location: FF_X7_Y80_N20
+dffeas h_count_reg_a6_a(
+	.clk(h_count_reg_a6_a_CLK_driver),
+	.d(h_count_reg_a6_a_D_driver),
+	.asdata(vcc),
+	.clrn(h_count_reg_a6_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a6_a_SCLR_driver),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg[6]),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a6_a.is_wysiwyg = "true";
+defparam h_count_reg_a6_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add0_a1_DATAA_routing_wire_inst (
+	.datain(!h_count_reg_a7_a_a_Duplicate_8_q),
+	.dataout(Add0_a1_DATAA_driver));
+
+cyclonev_routing_wire Add0_a1_CIN_routing_wire_inst (
+	.datain(Add0_a18),
+	.dataout(Add0_a1_CIN_driver));
+
+// Location: LABCELL_X7_Y80_N21
+cyclonev_lcell_comb Add0_a1(
+// Equation(s):
+// Add0_a1_sumout = SUM(( h_count_reg_a7_a_a_Duplicate_8_q ) + ( GND ) + ( Add0_a18 ))
+// Add0_a2 = CARRY(( h_count_reg_a7_a_a_Duplicate_8_q ) + ( GND ) + ( Add0_a18 ))
+
+	.dataa(Add0_a1_DATAA_driver),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add0_a1_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add0_a1_sumout),
+	.cout(Add0_a2),
+	.shareout());
+// synopsys translate_off
+defparam Add0_a1.extended_lut = "off";
+defparam Add0_a1.lut_mask = 64'h0000FFFF00005555;
+defparam Add0_a1.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_8_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a7_a_a_Duplicate_8_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_8_ASDATA_routing_wire_inst (
+	.datain(Add0_a1_sumout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_8_ASDATA_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_8_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a7_a_a_Duplicate_8_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a7_a_a_Duplicate_8_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a7_a_a_Duplicate_8_SCLR_driver));
+
+// Location: FF_X7_Y80_N35
+dffeas h_count_reg_a7_a_a_Duplicate_8(
+	.clk(h_count_reg_a7_a_a_Duplicate_8_CLK_driver),
+	.d(gnd),
+	.asdata(h_count_reg_a7_a_a_Duplicate_8_ASDATA_driver),
+	.clrn(h_count_reg_a7_a_a_Duplicate_8_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a7_a_a_Duplicate_8_SCLR_driver),
+	.sload(vcc),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_a7_a_a_Duplicate_8_q),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a7_a_a_Duplicate_8.is_wysiwyg = "true";
+defparam h_count_reg_a7_a_a_Duplicate_8.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_8_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(h_count_reg_a8_a_a_Duplicate_8_CLK_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_8_ASDATA_routing_wire_inst (
+	.datain(Add0_a5_sumout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_8_ASDATA_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_8_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(h_count_reg_a8_a_a_Duplicate_8_CLRN_driver));
+
+cyclonev_routing_wire h_count_reg_a8_a_a_Duplicate_8_SCLR_routing_wire_inst (
+	.datain(Equal0_a2_combout),
+	.dataout(h_count_reg_a8_a_a_Duplicate_8_SCLR_driver));
+
+// Location: FF_X7_Y80_N53
+dffeas h_count_reg_a8_a_a_Duplicate_8(
+	.clk(h_count_reg_a8_a_a_Duplicate_8_CLK_driver),
+	.d(gnd),
+	.asdata(h_count_reg_a8_a_a_Duplicate_8_ASDATA_driver),
+	.clrn(h_count_reg_a8_a_a_Duplicate_8_CLRN_driver),
+	.aload(gnd),
+	.sclr(h_count_reg_a8_a_a_Duplicate_8_SCLR_driver),
+	.sload(vcc),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(h_count_reg_a8_a_a_Duplicate_8_q),
+	.prn(vcc));
+// synopsys translate_off
+defparam h_count_reg_a8_a_a_Duplicate_8.is_wysiwyg = "true";
+defparam h_count_reg_a8_a_a_Duplicate_8.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Equal0_a0_DATAA_routing_wire_inst (
+	.datain(!h_count_reg_a8_a_a_Duplicate_8_q),
+	.dataout(Equal0_a0_DATAA_driver));
+
+cyclonev_routing_wire Equal0_a0_DATAB_routing_wire_inst (
+	.datain(!h_count_reg[4]),
+	.dataout(Equal0_a0_DATAB_driver));
+
+cyclonev_routing_wire Equal0_a0_DATAC_routing_wire_inst (
+	.datain(!h_count_reg[2]),
+	.dataout(Equal0_a0_DATAC_driver));
+
+cyclonev_routing_wire Equal0_a0_DATAD_routing_wire_inst (
+	.datain(!h_count_reg[5]),
+	.dataout(Equal0_a0_DATAD_driver));
+
+cyclonev_routing_wire Equal0_a0_DATAF_routing_wire_inst (
+	.datain(!h_count_reg[3]),
+	.dataout(Equal0_a0_DATAF_driver));
+
+// Location: LABCELL_X7_Y80_N36
+cyclonev_lcell_comb Equal0_a0(
+// Equation(s):
+// Equal0_a0_combout = ( !h_count_reg[3] & ( (h_count_reg_a8_a_a_Duplicate_8_q & (h_count_reg[4] & (!h_count_reg[2] & h_count_reg[5]))) ) )
+
+	.dataa(Equal0_a0_DATAA_driver),
+	.datab(Equal0_a0_DATAB_driver),
+	.datac(Equal0_a0_DATAC_driver),
+	.datad(Equal0_a0_DATAD_driver),
+	.datae(gnd),
+	.dataf(Equal0_a0_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(Equal0_a0_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam Equal0_a0.extended_lut = "off";
+defparam Equal0_a0.lut_mask = 64'h0010001000000000;
+defparam Equal0_a0.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a10_a_a0_DATAA_routing_wire_inst (
+	.datain(!Equal0_a0_combout),
+	.dataout(v_count_reg_a10_a_a0_DATAA_driver));
+
+cyclonev_routing_wire v_count_reg_a10_a_a0_DATAB_routing_wire_inst (
+	.datain(!Equal1_a1_combout),
+	.dataout(v_count_reg_a10_a_a0_DATAB_driver));
+
+cyclonev_routing_wire v_count_reg_a10_a_a0_DATAC_routing_wire_inst (
+	.datain(!Equal1_a0_combout),
+	.dataout(v_count_reg_a10_a_a0_DATAC_driver));
+
+cyclonev_routing_wire v_count_reg_a10_a_a0_DATAE_routing_wire_inst (
+	.datain(!h_count_reg[1]),
+	.dataout(v_count_reg_a10_a_a0_DATAE_driver));
+
+cyclonev_routing_wire v_count_reg_a10_a_a0_DATAF_routing_wire_inst (
+	.datain(!Equal0_a1_combout),
+	.dataout(v_count_reg_a10_a_a0_DATAF_driver));
+
+// Location: LABCELL_X7_Y80_N54
+cyclonev_lcell_comb v_count_reg_a10_a_a0(
+// Equation(s):
+// v_count_reg_a10_a_a0_combout = ( h_count_reg[1] & ( Equal0_a1_combout & ( (Equal1_a1_combout & Equal1_a0_combout) ) ) ) # ( !h_count_reg[1] & ( Equal0_a1_combout & ( ((Equal1_a1_combout & Equal1_a0_combout)) # (Equal0_a0_combout) ) ) ) # ( h_count_reg[1] 
+// & ( !Equal0_a1_combout & ( (Equal1_a1_combout & Equal1_a0_combout) ) ) ) # ( !h_count_reg[1] & ( !Equal0_a1_combout & ( (Equal1_a1_combout & Equal1_a0_combout) ) ) )
+
+	.dataa(v_count_reg_a10_a_a0_DATAA_driver),
+	.datab(v_count_reg_a10_a_a0_DATAB_driver),
+	.datac(v_count_reg_a10_a_a0_DATAC_driver),
+	.datad(gnd),
+	.datae(v_count_reg_a10_a_a0_DATAE_driver),
+	.dataf(v_count_reg_a10_a_a0_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(v_count_reg_a10_a_a0_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam v_count_reg_a10_a_a0.extended_lut = "off";
+defparam v_count_reg_a10_a_a0.lut_mask = 64'h0303030357570303;
+defparam v_count_reg_a10_a_a0.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a7_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a7_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a7_a_D_routing_wire_inst (
+	.datain(Add1_a13_sumout),
+	.dataout(v_count_reg_a7_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a7_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a7_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a7_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a7_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a7_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a7_a_ENA_driver));
+
+// Location: FF_X6_Y80_N23
+dffeas v_count_reg_a7_a(
+	.clk(v_count_reg_a7_a_CLK_driver),
+	.d(v_count_reg_a7_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a7_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a7_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a7_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[7]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a7_a.is_wysiwyg = "true";
+defparam v_count_reg_a7_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a8_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a8_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a8_a_D_routing_wire_inst (
+	.datain(Add1_a9_sumout),
+	.dataout(v_count_reg_a8_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a8_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a8_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a8_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a8_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a8_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a8_a_ENA_driver));
+
+// Location: FF_X6_Y80_N26
+dffeas v_count_reg_a8_a(
+	.clk(v_count_reg_a8_a_CLK_driver),
+	.d(v_count_reg_a8_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a8_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a8_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a8_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[8]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a8_a.is_wysiwyg = "true";
+defparam v_count_reg_a8_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Equal1_a0_DATAA_routing_wire_inst (
+	.datain(!v_count_reg[7]),
+	.dataout(Equal1_a0_DATAA_driver));
+
+cyclonev_routing_wire Equal1_a0_DATAB_routing_wire_inst (
+	.datain(!v_count_reg[4]),
+	.dataout(Equal1_a0_DATAB_driver));
+
+cyclonev_routing_wire Equal1_a0_DATAC_routing_wire_inst (
+	.datain(!v_count_reg[6]),
+	.dataout(Equal1_a0_DATAC_driver));
+
+cyclonev_routing_wire Equal1_a0_DATAD_routing_wire_inst (
+	.datain(!v_count_reg[10]),
+	.dataout(Equal1_a0_DATAD_driver));
+
+cyclonev_routing_wire Equal1_a0_DATAE_routing_wire_inst (
+	.datain(!v_count_reg[9]),
+	.dataout(Equal1_a0_DATAE_driver));
+
+cyclonev_routing_wire Equal1_a0_DATAF_routing_wire_inst (
+	.datain(!v_count_reg[8]),
+	.dataout(Equal1_a0_DATAF_driver));
+
+// Location: MLABCELL_X6_Y80_N54
+cyclonev_lcell_comb Equal1_a0(
+// Equation(s):
+// Equal1_a0_combout = ( v_count_reg[9] & ( v_count_reg[8] & ( (!v_count_reg[7] & (!v_count_reg[4] & (!v_count_reg[6] & !v_count_reg[10]))) ) ) )
+
+	.dataa(Equal1_a0_DATAA_driver),
+	.datab(Equal1_a0_DATAB_driver),
+	.datac(Equal1_a0_DATAC_driver),
+	.datad(Equal1_a0_DATAD_driver),
+	.datae(Equal1_a0_DATAE_driver),
+	.dataf(Equal1_a0_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(Equal1_a0_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam Equal1_a0.extended_lut = "off";
+defparam Equal1_a0.lut_mask = 64'h0000000000008000;
+defparam Equal1_a0.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire Equal1_a2_DATAC_routing_wire_inst (
+	.datain(!Equal1_a1_combout),
+	.dataout(Equal1_a2_DATAC_driver));
+
+cyclonev_routing_wire Equal1_a2_DATAF_routing_wire_inst (
+	.datain(!Equal1_a0_combout),
+	.dataout(Equal1_a2_DATAF_driver));
+
+// Location: LABCELL_X7_Y80_N39
+cyclonev_lcell_comb Equal1_a2(
+// Equation(s):
+// Equal1_a2_combout = ( Equal1_a0_combout & ( Equal1_a1_combout ) )
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Equal1_a2_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(Equal1_a2_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(Equal1_a2_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam Equal1_a2.extended_lut = "off";
+defparam Equal1_a2.lut_mask = 64'h000000000F0F0F0F;
+defparam Equal1_a2.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a0_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a0_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a0_a_D_routing_wire_inst (
+	.datain(Add1_a41_sumout),
+	.dataout(v_count_reg_a0_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a0_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a0_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a0_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a0_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a0_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a0_a_ENA_driver));
+
+// Location: FF_X6_Y80_N2
+dffeas v_count_reg_a0_a(
+	.clk(v_count_reg_a0_a_CLK_driver),
+	.d(v_count_reg_a0_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a0_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a0_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a0_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[0]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a0_a.is_wysiwyg = "true";
+defparam v_count_reg_a0_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a37_DATAA_routing_wire_inst (
+	.datain(!v_count_reg[1]),
+	.dataout(Add1_a37_DATAA_driver));
+
+cyclonev_routing_wire Add1_a37_CIN_routing_wire_inst (
+	.datain(Add1_a42),
+	.dataout(Add1_a37_CIN_driver));
+
+// Location: MLABCELL_X6_Y80_N3
+cyclonev_lcell_comb Add1_a37(
+// Equation(s):
+// Add1_a37_sumout = SUM(( v_count_reg[1] ) + ( GND ) + ( Add1_a42 ))
+// Add1_a38 = CARRY(( v_count_reg[1] ) + ( GND ) + ( Add1_a42 ))
+
+	.dataa(Add1_a37_DATAA_driver),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add1_a37_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a37_sumout),
+	.cout(Add1_a38),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a37.extended_lut = "off";
+defparam Add1_a37.lut_mask = 64'h0000FFFF00005555;
+defparam Add1_a37.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a1_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a1_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a1_a_D_routing_wire_inst (
+	.datain(Add1_a37_sumout),
+	.dataout(v_count_reg_a1_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a1_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a1_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a1_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a1_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a1_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a1_a_ENA_driver));
+
+// Location: FF_X6_Y80_N5
+dffeas v_count_reg_a1_a(
+	.clk(v_count_reg_a1_a_CLK_driver),
+	.d(v_count_reg_a1_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a1_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a1_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a1_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[1]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a1_a.is_wysiwyg = "true";
+defparam v_count_reg_a1_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a33_DATAF_routing_wire_inst (
+	.datain(!v_count_reg[2]),
+	.dataout(Add1_a33_DATAF_driver));
+
+cyclonev_routing_wire Add1_a33_CIN_routing_wire_inst (
+	.datain(Add1_a38),
+	.dataout(Add1_a33_CIN_driver));
+
+// Location: MLABCELL_X6_Y80_N6
+cyclonev_lcell_comb Add1_a33(
+// Equation(s):
+// Add1_a33_sumout = SUM(( GND ) + ( v_count_reg[2] ) + ( Add1_a38 ))
+// Add1_a34 = CARRY(( GND ) + ( v_count_reg[2] ) + ( Add1_a38 ))
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(Add1_a33_DATAF_driver),
+	.datag(gnd),
+	.cin(Add1_a33_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a33_sumout),
+	.cout(Add1_a34),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a33.extended_lut = "off";
+defparam Add1_a33.lut_mask = 64'h0000FF0000000000;
+defparam Add1_a33.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a2_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a2_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a2_a_D_routing_wire_inst (
+	.datain(Add1_a33_sumout),
+	.dataout(v_count_reg_a2_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a2_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a2_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a2_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a2_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a2_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a2_a_ENA_driver));
+
+// Location: FF_X6_Y80_N8
+dffeas v_count_reg_a2_a(
+	.clk(v_count_reg_a2_a_CLK_driver),
+	.d(v_count_reg_a2_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a2_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a2_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a2_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[2]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a2_a.is_wysiwyg = "true";
+defparam v_count_reg_a2_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a29_DATAB_routing_wire_inst (
+	.datain(!v_count_reg_a3_a_aDUPLICATE_q),
+	.dataout(Add1_a29_DATAB_driver));
+
+cyclonev_routing_wire Add1_a29_CIN_routing_wire_inst (
+	.datain(Add1_a34),
+	.dataout(Add1_a29_CIN_driver));
+
+// Location: MLABCELL_X6_Y80_N9
+cyclonev_lcell_comb Add1_a29(
+// Equation(s):
+// Add1_a29_sumout = SUM(( v_count_reg_a3_a_aDUPLICATE_q ) + ( GND ) + ( Add1_a34 ))
+// Add1_a30 = CARRY(( v_count_reg_a3_a_aDUPLICATE_q ) + ( GND ) + ( Add1_a34 ))
+
+	.dataa(gnd),
+	.datab(Add1_a29_DATAB_driver),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add1_a29_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a29_sumout),
+	.cout(Add1_a30),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a29.extended_lut = "off";
+defparam Add1_a29.lut_mask = 64'h0000FFFF00003333;
+defparam Add1_a29.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a3_a_aDUPLICATE_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a3_a_aDUPLICATE_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a3_a_aDUPLICATE_D_routing_wire_inst (
+	.datain(Add1_a29_sumout),
+	.dataout(v_count_reg_a3_a_aDUPLICATE_D_driver));
+
+cyclonev_routing_wire v_count_reg_a3_a_aDUPLICATE_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a3_a_aDUPLICATE_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a3_a_aDUPLICATE_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a3_a_aDUPLICATE_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a3_a_aDUPLICATE_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a3_a_aDUPLICATE_ENA_driver));
+
+// Location: FF_X6_Y80_N11
+dffeas v_count_reg_a3_a_aDUPLICATE(
+	.clk(v_count_reg_a3_a_aDUPLICATE_CLK_driver),
+	.d(v_count_reg_a3_a_aDUPLICATE_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a3_a_aDUPLICATE_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a3_a_aDUPLICATE_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a3_a_aDUPLICATE_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg_a3_a_aDUPLICATE_q),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a3_a_aDUPLICATE.is_wysiwyg = "true";
+defparam v_count_reg_a3_a_aDUPLICATE.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a21_DATAB_routing_wire_inst (
+	.datain(!v_count_reg[4]),
+	.dataout(Add1_a21_DATAB_driver));
+
+cyclonev_routing_wire Add1_a21_CIN_routing_wire_inst (
+	.datain(Add1_a30),
+	.dataout(Add1_a21_CIN_driver));
+
+// Location: MLABCELL_X6_Y80_N12
+cyclonev_lcell_comb Add1_a21(
+// Equation(s):
+// Add1_a21_sumout = SUM(( v_count_reg[4] ) + ( GND ) + ( Add1_a30 ))
+// Add1_a22 = CARRY(( v_count_reg[4] ) + ( GND ) + ( Add1_a30 ))
+
+	.dataa(gnd),
+	.datab(Add1_a21_DATAB_driver),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add1_a21_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a21_sumout),
+	.cout(Add1_a22),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a21.extended_lut = "off";
+defparam Add1_a21.lut_mask = 64'h0000FFFF00003333;
+defparam Add1_a21.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a4_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a4_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a4_a_D_routing_wire_inst (
+	.datain(Add1_a21_sumout),
+	.dataout(v_count_reg_a4_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a4_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a4_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a4_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a4_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a4_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a4_a_ENA_driver));
+
+// Location: FF_X6_Y80_N14
+dffeas v_count_reg_a4_a(
+	.clk(v_count_reg_a4_a_CLK_driver),
+	.d(v_count_reg_a4_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a4_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a4_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a4_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[4]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a4_a.is_wysiwyg = "true";
+defparam v_count_reg_a4_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a25_DATAC_routing_wire_inst (
+	.datain(!v_count_reg[5]),
+	.dataout(Add1_a25_DATAC_driver));
+
+cyclonev_routing_wire Add1_a25_CIN_routing_wire_inst (
+	.datain(Add1_a22),
+	.dataout(Add1_a25_CIN_driver));
+
+// Location: MLABCELL_X6_Y80_N15
+cyclonev_lcell_comb Add1_a25(
+// Equation(s):
+// Add1_a25_sumout = SUM(( v_count_reg[5] ) + ( GND ) + ( Add1_a22 ))
+// Add1_a26 = CARRY(( v_count_reg[5] ) + ( GND ) + ( Add1_a22 ))
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Add1_a25_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add1_a25_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a25_sumout),
+	.cout(Add1_a26),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a25.extended_lut = "off";
+defparam Add1_a25.lut_mask = 64'h0000FFFF00000F0F;
+defparam Add1_a25.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a5_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a5_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a5_a_D_routing_wire_inst (
+	.datain(Add1_a25_sumout),
+	.dataout(v_count_reg_a5_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a5_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a5_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a5_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a5_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a5_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a5_a_ENA_driver));
+
+// Location: FF_X6_Y80_N17
+dffeas v_count_reg_a5_a(
+	.clk(v_count_reg_a5_a_CLK_driver),
+	.d(v_count_reg_a5_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a5_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a5_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a5_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[5]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a5_a.is_wysiwyg = "true";
+defparam v_count_reg_a5_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a17_DATAA_routing_wire_inst (
+	.datain(!v_count_reg[6]),
+	.dataout(Add1_a17_DATAA_driver));
+
+cyclonev_routing_wire Add1_a17_CIN_routing_wire_inst (
+	.datain(Add1_a26),
+	.dataout(Add1_a17_CIN_driver));
+
+// Location: MLABCELL_X6_Y80_N18
+cyclonev_lcell_comb Add1_a17(
+// Equation(s):
+// Add1_a17_sumout = SUM(( v_count_reg[6] ) + ( GND ) + ( Add1_a26 ))
+// Add1_a18 = CARRY(( v_count_reg[6] ) + ( GND ) + ( Add1_a26 ))
+
+	.dataa(Add1_a17_DATAA_driver),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add1_a17_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a17_sumout),
+	.cout(Add1_a18),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a17.extended_lut = "off";
+defparam Add1_a17.lut_mask = 64'h0000FFFF00005555;
+defparam Add1_a17.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a6_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a6_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a6_a_D_routing_wire_inst (
+	.datain(Add1_a17_sumout),
+	.dataout(v_count_reg_a6_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a6_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a6_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a6_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a6_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a6_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a6_a_ENA_driver));
+
+// Location: FF_X6_Y80_N20
+dffeas v_count_reg_a6_a(
+	.clk(v_count_reg_a6_a_CLK_driver),
+	.d(v_count_reg_a6_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a6_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a6_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a6_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[6]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a6_a.is_wysiwyg = "true";
+defparam v_count_reg_a6_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a13_DATAC_routing_wire_inst (
+	.datain(!v_count_reg_a7_a_aDUPLICATE_q),
+	.dataout(Add1_a13_DATAC_driver));
+
+cyclonev_routing_wire Add1_a13_CIN_routing_wire_inst (
+	.datain(Add1_a18),
+	.dataout(Add1_a13_CIN_driver));
+
+// Location: MLABCELL_X6_Y80_N21
+cyclonev_lcell_comb Add1_a13(
+// Equation(s):
+// Add1_a13_sumout = SUM(( v_count_reg_a7_a_aDUPLICATE_q ) + ( GND ) + ( Add1_a18 ))
+// Add1_a14 = CARRY(( v_count_reg_a7_a_aDUPLICATE_q ) + ( GND ) + ( Add1_a18 ))
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(Add1_a13_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add1_a13_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a13_sumout),
+	.cout(Add1_a14),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a13.extended_lut = "off";
+defparam Add1_a13.lut_mask = 64'h0000FFFF00000F0F;
+defparam Add1_a13.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a7_a_aDUPLICATE_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a7_a_aDUPLICATE_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a7_a_aDUPLICATE_D_routing_wire_inst (
+	.datain(Add1_a13_sumout),
+	.dataout(v_count_reg_a7_a_aDUPLICATE_D_driver));
+
+cyclonev_routing_wire v_count_reg_a7_a_aDUPLICATE_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a7_a_aDUPLICATE_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a7_a_aDUPLICATE_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a7_a_aDUPLICATE_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a7_a_aDUPLICATE_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a7_a_aDUPLICATE_ENA_driver));
+
+// Location: FF_X6_Y80_N22
+dffeas v_count_reg_a7_a_aDUPLICATE(
+	.clk(v_count_reg_a7_a_aDUPLICATE_CLK_driver),
+	.d(v_count_reg_a7_a_aDUPLICATE_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a7_a_aDUPLICATE_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a7_a_aDUPLICATE_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a7_a_aDUPLICATE_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg_a7_a_aDUPLICATE_q),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a7_a_aDUPLICATE.is_wysiwyg = "true";
+defparam v_count_reg_a7_a_aDUPLICATE.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a9_DATAB_routing_wire_inst (
+	.datain(!v_count_reg_a8_a_aDUPLICATE_q),
+	.dataout(Add1_a9_DATAB_driver));
+
+cyclonev_routing_wire Add1_a9_CIN_routing_wire_inst (
+	.datain(Add1_a14),
+	.dataout(Add1_a9_CIN_driver));
+
+// Location: MLABCELL_X6_Y80_N24
+cyclonev_lcell_comb Add1_a9(
+// Equation(s):
+// Add1_a9_sumout = SUM(( v_count_reg_a8_a_aDUPLICATE_q ) + ( GND ) + ( Add1_a14 ))
+// Add1_a10 = CARRY(( v_count_reg_a8_a_aDUPLICATE_q ) + ( GND ) + ( Add1_a14 ))
+
+	.dataa(gnd),
+	.datab(Add1_a9_DATAB_driver),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add1_a9_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a9_sumout),
+	.cout(Add1_a10),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a9.extended_lut = "off";
+defparam Add1_a9.lut_mask = 64'h0000FFFF00003333;
+defparam Add1_a9.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a8_a_aDUPLICATE_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a8_a_aDUPLICATE_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a8_a_aDUPLICATE_D_routing_wire_inst (
+	.datain(Add1_a9_sumout),
+	.dataout(v_count_reg_a8_a_aDUPLICATE_D_driver));
+
+cyclonev_routing_wire v_count_reg_a8_a_aDUPLICATE_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a8_a_aDUPLICATE_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a8_a_aDUPLICATE_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a8_a_aDUPLICATE_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a8_a_aDUPLICATE_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a8_a_aDUPLICATE_ENA_driver));
+
+// Location: FF_X6_Y80_N25
+dffeas v_count_reg_a8_a_aDUPLICATE(
+	.clk(v_count_reg_a8_a_aDUPLICATE_CLK_driver),
+	.d(v_count_reg_a8_a_aDUPLICATE_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a8_a_aDUPLICATE_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a8_a_aDUPLICATE_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a8_a_aDUPLICATE_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg_a8_a_aDUPLICATE_q),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a8_a_aDUPLICATE.is_wysiwyg = "true";
+defparam v_count_reg_a8_a_aDUPLICATE.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a5_DATAA_routing_wire_inst (
+	.datain(!v_count_reg[9]),
+	.dataout(Add1_a5_DATAA_driver));
+
+cyclonev_routing_wire Add1_a5_CIN_routing_wire_inst (
+	.datain(Add1_a10),
+	.dataout(Add1_a5_CIN_driver));
+
+// Location: MLABCELL_X6_Y80_N27
+cyclonev_lcell_comb Add1_a5(
+// Equation(s):
+// Add1_a5_sumout = SUM(( v_count_reg[9] ) + ( GND ) + ( Add1_a10 ))
+// Add1_a6 = CARRY(( v_count_reg[9] ) + ( GND ) + ( Add1_a10 ))
+
+	.dataa(Add1_a5_DATAA_driver),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add1_a5_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a5_sumout),
+	.cout(Add1_a6),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a5.extended_lut = "off";
+defparam Add1_a5.lut_mask = 64'h0000FFFF00005555;
+defparam Add1_a5.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a9_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a9_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a9_a_D_routing_wire_inst (
+	.datain(Add1_a5_sumout),
+	.dataout(v_count_reg_a9_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a9_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a9_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a9_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a9_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a9_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a9_a_ENA_driver));
+
+// Location: FF_X6_Y80_N29
+dffeas v_count_reg_a9_a(
+	.clk(v_count_reg_a9_a_CLK_driver),
+	.d(v_count_reg_a9_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a9_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a9_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a9_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[9]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a9_a.is_wysiwyg = "true";
+defparam v_count_reg_a9_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire Add1_a1_DATAB_routing_wire_inst (
+	.datain(!v_count_reg[10]),
+	.dataout(Add1_a1_DATAB_driver));
+
+cyclonev_routing_wire Add1_a1_CIN_routing_wire_inst (
+	.datain(Add1_a6),
+	.dataout(Add1_a1_CIN_driver));
+
+// Location: MLABCELL_X6_Y80_N30
+cyclonev_lcell_comb Add1_a1(
+// Equation(s):
+// Add1_a1_sumout = SUM(( v_count_reg[10] ) + ( GND ) + ( Add1_a6 ))
+
+	.dataa(gnd),
+	.datab(Add1_a1_DATAB_driver),
+	.datac(gnd),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(Add1_a1_CIN_driver),
+	.sharein(gnd),
+	.combout(),
+	.sumout(Add1_a1_sumout),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam Add1_a1.extended_lut = "off";
+defparam Add1_a1.lut_mask = 64'h0000FFFF00003333;
+defparam Add1_a1.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a10_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a10_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a10_a_D_routing_wire_inst (
+	.datain(Add1_a1_sumout),
+	.dataout(v_count_reg_a10_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a10_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a10_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a10_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a10_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a10_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a10_a_ENA_driver));
+
+// Location: FF_X6_Y80_N32
+dffeas v_count_reg_a10_a(
+	.clk(v_count_reg_a10_a_CLK_driver),
+	.d(v_count_reg_a10_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a10_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a10_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a10_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[10]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a10_a.is_wysiwyg = "true";
+defparam v_count_reg_a10_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire h_sync_next_a0_DATAA_routing_wire_inst (
+	.datain(!h_count_reg[10]),
+	.dataout(h_sync_next_a0_DATAA_driver));
+
+cyclonev_routing_wire h_sync_next_a0_DATAC_routing_wire_inst (
+	.datain(!h_count_reg_a9_a_a_Duplicate_8_q),
+	.dataout(h_sync_next_a0_DATAC_driver));
+
+cyclonev_routing_wire h_sync_next_a0_DATAF_routing_wire_inst (
+	.datain(!h_count_reg_a8_a_a_Duplicate_8_q),
+	.dataout(h_sync_next_a0_DATAF_driver));
+
+// Location: MLABCELL_X6_Y80_N51
+cyclonev_lcell_comb h_sync_next_a0(
+// Equation(s):
+// h_sync_next_a0_combout = ( !h_count_reg_a8_a_a_Duplicate_8_q & ( (h_count_reg[10] & !h_count_reg_a9_a_a_Duplicate_8_q) ) )
+
+	.dataa(h_sync_next_a0_DATAA_driver),
+	.datab(gnd),
+	.datac(h_sync_next_a0_DATAC_driver),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(h_sync_next_a0_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(h_sync_next_a0_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam h_sync_next_a0.extended_lut = "off";
+defparam h_sync_next_a0.lut_mask = 64'h5050505000000000;
+defparam h_sync_next_a0.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire h_sync_next_a1_DATAA_routing_wire_inst (
+	.datain(!h_count_reg[6]),
+	.dataout(h_sync_next_a1_DATAA_driver));
+
+cyclonev_routing_wire h_sync_next_a1_DATAB_routing_wire_inst (
+	.datain(!h_count_reg[4]),
+	.dataout(h_sync_next_a1_DATAB_driver));
+
+cyclonev_routing_wire h_sync_next_a1_DATAC_routing_wire_inst (
+	.datain(!h_sync_next_a0_combout),
+	.dataout(h_sync_next_a1_DATAC_driver));
+
+cyclonev_routing_wire h_sync_next_a1_DATAD_routing_wire_inst (
+	.datain(!h_count_reg[3]),
+	.dataout(h_sync_next_a1_DATAD_driver));
+
+cyclonev_routing_wire h_sync_next_a1_DATAE_routing_wire_inst (
+	.datain(!h_count_reg_a7_a_a_Duplicate_8_q),
+	.dataout(h_sync_next_a1_DATAE_driver));
+
+cyclonev_routing_wire h_sync_next_a1_DATAF_routing_wire_inst (
+	.datain(!h_count_reg[5]),
+	.dataout(h_sync_next_a1_DATAF_driver));
+
+// Location: LABCELL_X7_Y80_N48
+cyclonev_lcell_comb h_sync_next_a1(
+// Equation(s):
+// h_sync_next_a1_combout = ( !h_count_reg_a7_a_a_Duplicate_8_q & ( h_count_reg[5] & ( h_sync_next_a0_combout ) ) ) # ( h_count_reg_a7_a_a_Duplicate_8_q & ( !h_count_reg[5] & ( (!h_count_reg[6] & h_sync_next_a0_combout) ) ) ) # ( 
+// !h_count_reg_a7_a_a_Duplicate_8_q & ( !h_count_reg[5] & ( (h_sync_next_a0_combout & (((h_count_reg[4] & h_count_reg[3])) # (h_count_reg[6]))) ) ) )
+
+	.dataa(h_sync_next_a1_DATAA_driver),
+	.datab(h_sync_next_a1_DATAB_driver),
+	.datac(h_sync_next_a1_DATAC_driver),
+	.datad(h_sync_next_a1_DATAD_driver),
+	.datae(h_sync_next_a1_DATAE_driver),
+	.dataf(h_sync_next_a1_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(h_sync_next_a1_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam h_sync_next_a1.extended_lut = "off";
+defparam h_sync_next_a1.lut_mask = 64'h05070A0A0F0F0000;
+defparam h_sync_next_a1.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_routing_wire v_count_reg_a3_a_CLK_routing_wire_inst (
+	.datain(clk),
+	.dataout(v_count_reg_a3_a_CLK_driver));
+
+cyclonev_routing_wire v_count_reg_a3_a_D_routing_wire_inst (
+	.datain(Add1_a29_sumout),
+	.dataout(v_count_reg_a3_a_D_driver));
+
+cyclonev_routing_wire v_count_reg_a3_a_CLRN_routing_wire_inst (
+	.datain(reset),
+	.dataout(v_count_reg_a3_a_CLRN_driver));
+
+cyclonev_routing_wire v_count_reg_a3_a_SCLR_routing_wire_inst (
+	.datain(Equal1_a2_combout),
+	.dataout(v_count_reg_a3_a_SCLR_driver));
+
+cyclonev_routing_wire v_count_reg_a3_a_ENA_routing_wire_inst (
+	.datain(v_count_reg_a10_a_a0_combout),
+	.dataout(v_count_reg_a3_a_ENA_driver));
+
+// Location: FF_X6_Y80_N10
+dffeas v_count_reg_a3_a(
+	.clk(v_count_reg_a3_a_CLK_driver),
+	.d(v_count_reg_a3_a_D_driver),
+	.asdata(vcc),
+	.clrn(v_count_reg_a3_a_CLRN_driver),
+	.aload(gnd),
+	.sclr(v_count_reg_a3_a_SCLR_driver),
+	.sload(gnd),
+	.ena(v_count_reg_a3_a_ENA_driver),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(v_count_reg[3]),
+	.prn(vcc));
+// synopsys translate_off
+defparam v_count_reg_a3_a.is_wysiwyg = "true";
+defparam v_count_reg_a3_a.power_up = "low";
+// synopsys translate_on
+
+cyclonev_routing_wire v_sync_next_a0_DATAA_routing_wire_inst (
+	.datain(!v_count_reg[1]),
+	.dataout(v_sync_next_a0_DATAA_driver));
+
+cyclonev_routing_wire v_sync_next_a0_DATAB_routing_wire_inst (
+	.datain(!v_count_reg[5]),
+	.dataout(v_sync_next_a0_DATAB_driver));
+
+cyclonev_routing_wire v_sync_next_a0_DATAC_routing_wire_inst (
+	.datain(!v_count_reg[0]),
+	.dataout(v_sync_next_a0_DATAC_driver));
+
+cyclonev_routing_wire v_sync_next_a0_DATAD_routing_wire_inst (
+	.datain(!Equal1_a0_combout),
+	.dataout(v_sync_next_a0_DATAD_driver));
+
+cyclonev_routing_wire v_sync_next_a0_DATAE_routing_wire_inst (
+	.datain(!v_count_reg[3]),
+	.dataout(v_sync_next_a0_DATAE_driver));
+
+cyclonev_routing_wire v_sync_next_a0_DATAF_routing_wire_inst (
+	.datain(!v_count_reg[2]),
+	.dataout(v_sync_next_a0_DATAF_driver));
+
+// Location: MLABCELL_X6_Y80_N36
+cyclonev_lcell_comb v_sync_next_a0(
+// Equation(s):
+// v_sync_next_a0_combout = ( !v_count_reg[3] & ( v_count_reg[2] & ( (!v_count_reg[5] & Equal1_a0_combout) ) ) ) # ( v_count_reg[3] & ( !v_count_reg[2] & ( (!v_count_reg[1] & (!v_count_reg[5] & (!v_count_reg[0] & Equal1_a0_combout))) ) ) ) # ( 
+// !v_count_reg[3] & ( !v_count_reg[2] & ( (v_count_reg[1] & (!v_count_reg[5] & (v_count_reg[0] & Equal1_a0_combout))) ) ) )
+
+	.dataa(v_sync_next_a0_DATAA_driver),
+	.datab(v_sync_next_a0_DATAB_driver),
+	.datac(v_sync_next_a0_DATAC_driver),
+	.datad(v_sync_next_a0_DATAD_driver),
+	.datae(v_sync_next_a0_DATAE_driver),
+	.dataf(v_sync_next_a0_DATAF_driver),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(v_sync_next_a0_combout),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam v_sync_next_a0.extended_lut = "off";
+defparam v_sync_next_a0.lut_mask = 64'h0004008000CC0000;
+defparam v_sync_next_a0.shared_arith = "off";
+// synopsys translate_on
+
+endmodule
