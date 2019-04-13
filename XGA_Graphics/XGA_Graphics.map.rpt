@@ -1,5 +1,5 @@
 Analysis & Synthesis report for XGA_Graphics
-Fri Apr 05 05:33:34 2019
+Mon Apr 15 02:31:02 2019
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -14,11 +14,11 @@ Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis IP Cores Summary
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for User Entity Instance: altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i
- 13. Parameter Settings for User Entity Instance: vga_driver:xga
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Parameter Settings for User Entity Instance: altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i
+ 12. Parameter Settings for User Entity Instance: vga_driver:xga
+ 13. Parameter Settings for User Entity Instance: ball_render:render
  14. Parameter Settings for User Entity Instance: ball_gen:ball
  15. Port Connectivity Checks: "vga_driver:xga"
  16. Port Connectivity Checks: "altpll_75:pll"
@@ -51,13 +51,13 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Fri Apr 05 05:33:34 2019       ;
+; Analysis & Synthesis Status     ; Successful - Mon Apr 15 02:31:02 2019       ;
 ; Quartus Prime Version           ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; XGA_Graphics                                ;
 ; Top-level Entity Name           ; XGA_Graphics                                ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 44                                          ;
+; Total registers                 ; 21                                          ;
 ; Total pins                      ; 44                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -176,19 +176,20 @@ agreement for further details.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                          ;
-+----------------------------------+-----------------+-----------------------------+----------------------------------------------------------------------------------+-----------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                   ; File Name with Absolute Path                                                     ; Library   ;
-+----------------------------------+-----------------+-----------------------------+----------------------------------------------------------------------------------+-----------+
-; XGA_Graphics.v                   ; yes             ; User Verilog HDL File       ; Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v             ;           ;
-; vga_driver.v                     ; yes             ; User Verilog HDL File       ; Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/vga_driver.v               ;           ;
-; ball_gen.v                       ; yes             ; User Verilog HDL File       ; Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/ball_gen.v                 ;           ;
-; altpll_75.v                      ; yes             ; User Wizard-Generated File  ; Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/altpll_75.v                ; altpll_75 ;
-; altpll_75/altpll_75_0002.v       ; yes             ; User Verilog HDL File       ; Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/altpll_75/altpll_75_0002.v ; altpll_75 ;
-; const_funcs.h                    ; yes             ; Auto-Found File             ; Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/const_funcs.h              ;           ;
-; altera_pll.v                     ; yes             ; Megafunction                ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altera_pll.v              ;           ;
-+----------------------------------+-----------------+-----------------------------+----------------------------------------------------------------------------------+-----------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                    ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+-----------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                              ; Library   ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+-----------+
+; XGA_Graphics.v                   ; yes             ; User Verilog HDL File        ; Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v             ;           ;
+; vga_driver.v                     ; yes             ; User Verilog HDL File        ; Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/vga_driver.v               ;           ;
+; ball_gen.v                       ; yes             ; User Verilog HDL File        ; Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_gen.v                 ;           ;
+; altpll_75.v                      ; yes             ; User Wizard-Generated File   ; Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/altpll_75.v                ; altpll_75 ;
+; altpll_75/altpll_75_0002.v       ; yes             ; User Verilog HDL File        ; Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/altpll_75/altpll_75_0002.v ; altpll_75 ;
+; const_funcs.h                    ; yes             ; Auto-Found File              ; Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/const_funcs.h              ;           ;
+; altera_pll.v                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altera_pll.v       ;           ;
+; ball_render.v                    ; yes             ; Auto-Found Verilog HDL File  ; Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_render.v              ;           ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+-----------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------+
@@ -196,16 +197,16 @@ agreement for further details.
 +---------------------------------------------+------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                              ;
 +---------------------------------------------+------------------------------------------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 107                                                                                ;
+; Estimate of Logic utilization (ALMs needed) ; 21                                                                                 ;
 ;                                             ;                                                                                    ;
-; Combinational ALUT usage for logic          ; 171                                                                                ;
+; Combinational ALUT usage for logic          ; 36                                                                                 ;
 ;     -- 7 input functions                    ; 0                                                                                  ;
-;     -- 6 input functions                    ; 42                                                                                 ;
-;     -- 5 input functions                    ; 13                                                                                 ;
-;     -- 4 input functions                    ; 3                                                                                  ;
-;     -- <=3 input functions                  ; 113                                                                                ;
+;     -- 6 input functions                    ; 5                                                                                  ;
+;     -- 5 input functions                    ; 1                                                                                  ;
+;     -- 4 input functions                    ; 5                                                                                  ;
+;     -- <=3 input functions                  ; 25                                                                                 ;
 ;                                             ;                                                                                    ;
-; Dedicated logic registers                   ; 44                                                                                 ;
+; Dedicated logic registers                   ; 21                                                                                 ;
 ;                                             ;                                                                                    ;
 ; I/O pins                                    ; 44                                                                                 ;
 ;                                             ;                                                                                    ;
@@ -215,9 +216,9 @@ agreement for further details.
 ;     -- PLLs                                 ; 1                                                                                  ;
 ;                                             ;                                                                                    ;
 ; Maximum fan-out node                        ; altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i|outclk_wire[0] ;
-; Maximum fan-out                             ; 47                                                                                 ;
-; Total fan-out                               ; 798                                                                                ;
-; Average fan-out                             ; 2.63                                                                               ;
+; Maximum fan-out                             ; 24                                                                                 ;
+; Total fan-out                               ; 245                                                                                ;
+; Average fan-out                             ; 1.68                                                                               ;
 +---------------------------------------------+------------------------------------------------------------------------------------+
 
 
@@ -226,12 +227,12 @@ agreement for further details.
 +---------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------+----------------+--------------+
 ; Compilation Hierarchy Node            ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                               ; Entity Name    ; Library Name ;
 +---------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------+----------------+--------------+
-; |XGA_Graphics                         ; 171 (30)            ; 44 (0)                    ; 0                 ; 0          ; 44   ; 0            ; |XGA_Graphics                                                                     ; XGA_Graphics   ; work         ;
+; |XGA_Graphics                         ; 36 (0)              ; 21 (0)                    ; 0                 ; 0          ; 44   ; 0            ; |XGA_Graphics                                                                     ; XGA_Graphics   ; work         ;
 ;    |altpll_75:pll|                    ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Graphics|altpll_75:pll                                                       ; altpll_75      ; altpll_75    ;
 ;       |altpll_75_0002:altpll_75_inst| ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Graphics|altpll_75:pll|altpll_75_0002:altpll_75_inst                         ; altpll_75_0002 ; altpll_75    ;
 ;          |altera_pll:altera_pll_i|    ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Graphics|altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i ; altera_pll     ; work         ;
-;    |ball_gen:ball|                    ; 102 (102)           ; 22 (22)                   ; 0                 ; 0          ; 0    ; 0            ; |XGA_Graphics|ball_gen:ball                                                       ; ball_gen       ; work         ;
-;    |vga_driver:xga|                   ; 39 (39)             ; 22 (22)                   ; 0                 ; 0          ; 0    ; 0            ; |XGA_Graphics|vga_driver:xga                                                      ; vga_driver     ; work         ;
+;    |ball_render:render|               ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Graphics|ball_render:render                                                  ; ball_render    ; work         ;
+;    |vga_driver:xga|                   ; 35 (35)             ; 21 (21)                   ; 0                 ; 0          ; 0    ; 0            ; |XGA_Graphics|vga_driver:xga                                                      ; vga_driver     ; work         ;
 +---------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------+----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -245,43 +246,29 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+--------------+---------+--------------+--------------+-----------------------------+-----------------+
 
 
-+--------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                             ;
-+---------------------------------------+----------------------------------------+
-; Register name                         ; Reason for Removal                     ;
-+---------------------------------------+----------------------------------------+
-; ball_gen:ball|h_vec[0]                ; Stuck at VCC due to stuck port data_in ;
-; ball_gen:ball|v_vec[0]                ; Stuck at VCC due to stuck port data_in ;
-; Total Number of Removed Registers = 2 ;                                        ;
-+---------------------------------------+----------------------------------------+
-
-
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 44    ;
-; Number of registers using Synchronous Clear  ; 38    ;
+; Total registers                              ; 21    ;
+; Number of registers using Synchronous Clear  ; 21    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 29    ;
+; Number of registers using Clock Enable       ; 10    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
-; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |XGA_Graphics|vga_driver:xga|ctr_h[5] ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |XGA_Graphics|vga_driver:xga|ctr_v[2] ;
-; 5:1                ; 9 bits    ; 27 LEs        ; 9 LEs                ; 18 LEs                 ; Yes        ; |XGA_Graphics|ball_gen:ball|h_pos[1]  ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |XGA_Graphics|ball_gen:ball|v_pos[4]  ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |XGA_Graphics|ball_gen:ball|v_pos[8]  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |XGA_Graphics|vga_driver:xga|ctr_h[10] ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |XGA_Graphics|vga_driver:xga|ctr_v[4]  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------+
@@ -563,6 +550,21 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ball_render:render ;
++----------------+--------------------------+---------------------+
+; Parameter Name ; Value                    ; Type                ;
++----------------+--------------------------+---------------------+
+; width          ; 1024                     ; Signed Integer      ;
+; height         ; 768                      ; Signed Integer      ;
+; color_depth    ; 8                        ; Signed Integer      ;
+; ball_radius    ; 16                       ; Signed Integer      ;
+; bkg_color      ; 000000000000000011111111 ; Unsigned Binary     ;
+; ball_color     ; 111111110000000000000000 ; Unsigned Binary     ;
++----------------+--------------------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: ball_gen:ball ;
 +----------------+-------+-----------------------------------+
@@ -579,13 +581,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-------------------------------------------------+
-; Port Connectivity Checks: "vga_driver:xga"      ;
-+---------------+-------+----------+--------------+
-; Port          ; Type  ; Severity ; Details      ;
-+---------------+-------+----------+--------------+
-; rgb_in[15..8] ; Input ; Info     ; Stuck at GND ;
-+---------------+-------+----------+--------------+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "vga_driver:xga"                                                                        ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; x_pixel ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-------------------------------------------+
@@ -602,33 +604,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 44                          ;
-;     ENA               ; 2                           ;
-;     ENA SCLR          ; 27                          ;
+; arriav_ff             ; 21                          ;
+;     ENA SCLR          ; 10                          ;
 ;     SCLR              ; 11                          ;
-;     plain             ; 4                           ;
-; arriav_lcell_comb     ; 176                         ;
-;     arith             ; 86                          ;
+; arriav_lcell_comb     ; 41                          ;
+;     arith             ; 22                          ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 79                          ;
-;         2 data inputs ; 6                           ;
-;     normal            ; 74                          ;
+;         1 data inputs ; 21                          ;
+;     normal            ; 19                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 4                           ;
-;         2 data inputs ; 5                           ;
-;         3 data inputs ; 6                           ;
-;         4 data inputs ; 3                           ;
-;         5 data inputs ; 13                          ;
-;         6 data inputs ; 42                          ;
-;     shared            ; 16                          ;
-;         0 data inputs ; 1                           ;
-;         2 data inputs ; 10                          ;
-;         3 data inputs ; 5                           ;
+;         2 data inputs ; 1                           ;
+;         3 data inputs ; 2                           ;
+;         4 data inputs ; 5                           ;
+;         5 data inputs ; 1                           ;
+;         6 data inputs ; 5                           ;
 ; boundary_port         ; 44                          ;
 ; generic_pll           ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 7.50                        ;
-; Average LUT depth     ; 4.30                        ;
+; Max LUT depth         ; 3.60                        ;
+; Average LUT depth     ; 2.83                        ;
 +-----------------------+-----------------------------+
 
 
@@ -647,28 +642,28 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Fri Apr 05 05:33:19 2019
+    Info: Processing started: Mon Apr 15 02:30:47 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off XGA_Graphics -c XGA_Graphics
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file xga_graphics.v
-    Info (12023): Found entity 1: XGA_Graphics File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 10
+    Info (12023): Found entity 1: XGA_Graphics File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 10
 Info (12021): Found 1 design units, including 1 entities, in source file vga_driver.v
-    Info (12023): Found entity 1: vga_driver File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/vga_driver.v Line: 12
+    Info (12023): Found entity 1: vga_driver File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/vga_driver.v Line: 12
 Info (12021): Found 1 design units, including 1 entities, in source file ball_gen.v
-    Info (12023): Found entity 1: ball_gen File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/ball_gen.v Line: 10
+    Info (12023): Found entity 1: ball_gen File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_gen.v Line: 10
 Info (12021): Found 1 design units, including 1 entities, in source file altpll_75.v
-    Info (12023): Found entity 1: altpll_75 File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/altpll_75.v Line: 8
+    Info (12023): Found entity 1: altpll_75 File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/altpll_75.v Line: 8
 Info (12021): Found 1 design units, including 1 entities, in source file altpll_75/altpll_75_0002.v
-    Info (12023): Found entity 1: altpll_75_0002 File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/altpll_75/altpll_75_0002.v Line: 2
+    Info (12023): Found entity 1: altpll_75_0002 File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/altpll_75/altpll_75_0002.v Line: 2
 Info (12127): Elaborating entity "XGA_Graphics" for the top level hierarchy
-Warning (10034): Output port "LEDR[9..1]" at XGA_Graphics.v(16) has no driver File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 16
-Info (12128): Elaborating entity "altpll_75" for hierarchy "altpll_75:pll" File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 137
-Info (12128): Elaborating entity "altpll_75_0002" for hierarchy "altpll_75:pll|altpll_75_0002:altpll_75_inst" File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/altpll_75.v Line: 20
-Info (12128): Elaborating entity "altera_pll" for hierarchy "altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i" File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/altpll_75/altpll_75_0002.v Line: 85
+Warning (10034): Output port "LEDR[9..1]" at XGA_Graphics.v(16) has no driver File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 16
+Info (12128): Elaborating entity "altpll_75" for hierarchy "altpll_75:pll" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 62
+Info (12128): Elaborating entity "altpll_75_0002" for hierarchy "altpll_75:pll|altpll_75_0002:altpll_75_inst" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/altpll_75.v Line: 20
+Info (12128): Elaborating entity "altera_pll" for hierarchy "altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/altpll_75/altpll_75_0002.v Line: 85
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "wire_to_nowhere_64" into its bus
-Info (12130): Elaborated megafunction instantiation "altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i" File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/altpll_75/altpll_75_0002.v Line: 85
-Info (12133): Instantiated megafunction "altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i" with the following parameter: File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/altpll_75/altpll_75_0002.v Line: 85
+Info (12130): Elaborated megafunction instantiation "altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/altpll_75/altpll_75_0002.v Line: 85
+Info (12133): Instantiated megafunction "altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i" with the following parameter: File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/altpll_75/altpll_75_0002.v Line: 85
     Info (12134): Parameter "fractional_vco_multiplier" = "false"
     Info (12134): Parameter "reference_clock_frequency" = "50.0 MHz"
     Info (12134): Parameter "operation_mode" = "direct"
@@ -729,56 +724,59 @@ Info (12133): Instantiated megafunction "altpll_75:pll|altpll_75_0002:altpll_75_
     Info (12134): Parameter "duty_cycle17" = "50"
     Info (12134): Parameter "pll_type" = "General"
     Info (12134): Parameter "pll_subtype" = "General"
-Info (12128): Elaborating entity "vga_driver" for hierarchy "vga_driver:xga" File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 168
-Warning (10230): Verilog HDL assignment warning at vga_driver.v(114): truncated value with size 32 to match size of target (11) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/vga_driver.v Line: 114
-Warning (10230): Verilog HDL assignment warning at vga_driver.v(117): truncated value with size 32 to match size of target (24) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/vga_driver.v Line: 117
-Warning (10230): Verilog HDL assignment warning at vga_driver.v(128): truncated value with size 32 to match size of target (11) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/vga_driver.v Line: 128
-Warning (10230): Verilog HDL assignment warning at vga_driver.v(130): truncated value with size 32 to match size of target (10) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/vga_driver.v Line: 130
-Info (12128): Elaborating entity "ball_gen" for hierarchy "ball_gen:ball" File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 184
-Warning (10230): Verilog HDL assignment warning at ball_gen.v(62): truncated value with size 32 to match size of target (12) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/ball_gen.v Line: 62
-Warning (10230): Verilog HDL assignment warning at ball_gen.v(63): truncated value with size 32 to match size of target (12) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/ball_gen.v Line: 63
-Warning (10230): Verilog HDL assignment warning at ball_gen.v(64): truncated value with size 32 to match size of target (12) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/ball_gen.v Line: 64
-Warning (10230): Verilog HDL assignment warning at ball_gen.v(65): truncated value with size 32 to match size of target (12) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/ball_gen.v Line: 65
-Warning (10230): Verilog HDL assignment warning at ball_gen.v(71): truncated value with size 32 to match size of target (10) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/ball_gen.v Line: 71
-Warning (10230): Verilog HDL assignment warning at ball_gen.v(74): truncated value with size 32 to match size of target (10) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/ball_gen.v Line: 74
-Warning (10230): Verilog HDL assignment warning at ball_gen.v(85): truncated value with size 32 to match size of target (10) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/ball_gen.v Line: 85
-Warning (10230): Verilog HDL assignment warning at ball_gen.v(88): truncated value with size 32 to match size of target (10) File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/ball_gen.v Line: 88
+Info (12128): Elaborating entity "vga_driver" for hierarchy "vga_driver:xga" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 93
+Warning (10230): Verilog HDL assignment warning at vga_driver.v(114): truncated value with size 32 to match size of target (11) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/vga_driver.v Line: 114
+Warning (10230): Verilog HDL assignment warning at vga_driver.v(117): truncated value with size 32 to match size of target (24) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/vga_driver.v Line: 117
+Warning (10230): Verilog HDL assignment warning at vga_driver.v(128): truncated value with size 32 to match size of target (11) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/vga_driver.v Line: 128
+Warning (10230): Verilog HDL assignment warning at vga_driver.v(130): truncated value with size 32 to match size of target (10) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/vga_driver.v Line: 130
+Warning (12125): Using design file ball_render.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: ball_render File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_render.v Line: 10
+Info (12128): Elaborating entity "ball_render" for hierarchy "ball_render:render" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 111
+Warning (10230): Verilog HDL assignment warning at ball_render.v(55): truncated value with size 32 to match size of target (12) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_render.v Line: 55
+Warning (10230): Verilog HDL assignment warning at ball_render.v(56): truncated value with size 32 to match size of target (12) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_render.v Line: 56
+Warning (10230): Verilog HDL assignment warning at ball_render.v(57): truncated value with size 32 to match size of target (12) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_render.v Line: 57
+Warning (10230): Verilog HDL assignment warning at ball_render.v(58): truncated value with size 32 to match size of target (12) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_render.v Line: 58
+Warning (10230): Verilog HDL assignment warning at ball_render.v(63): truncated value with size 12 to match size of target (5) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_render.v Line: 63
+Warning (10230): Verilog HDL assignment warning at ball_render.v(64): truncated value with size 12 to match size of target (5) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_render.v Line: 64
+Info (12128): Elaborating entity "ball_gen" for hierarchy "ball_gen:ball" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 127
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "ball_render:render|Ram0" is uninferred due to inappropriate RAM size File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/ball_render.v Line: 69
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LEDR[1]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 16
-    Warning (13410): Pin "LEDR[2]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 16
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 16
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 16
-    Warning (13410): Pin "LEDR[5]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 16
-    Warning (13410): Pin "LEDR[6]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 16
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 16
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 16
-    Warning (13410): Pin "LEDR[9]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 16
-    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 18
-    Warning (13410): Pin "VGA_G[1]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 18
-    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 18
-    Warning (13410): Pin "VGA_G[3]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 18
-    Warning (13410): Pin "VGA_G[4]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 18
-    Warning (13410): Pin "VGA_G[5]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 18
-    Warning (13410): Pin "VGA_G[6]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 18
-    Warning (13410): Pin "VGA_G[7]" is stuck at GND File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 18
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 16
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 16
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 16
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 16
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 16
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 16
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 16
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 16
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 16
+    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 18
+    Warning (13410): Pin "VGA_G[1]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 18
+    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 18
+    Warning (13410): Pin "VGA_G[3]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 18
+    Warning (13410): Pin "VGA_G[4]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 18
+    Warning (13410): Pin "VGA_G[5]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 18
+    Warning (13410): Pin "VGA_G[6]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 18
+    Warning (13410): Pin "VGA_G[7]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 18
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 7 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning: RST port on the PLL is not properly connected on instance altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i|general[0].gpll. The reset port on the PLL should be connected. If the PLL loses lock for any reason, you might need to manually reset the PLL in order to re-establish lock to the reference clock. File: c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altera_pll.v Line: 749
     Info: Must be connected
 Warning (21074): Design contains 3 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "KEY[1]" File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 15
-    Warning (15610): No output dependent on input pin "KEY[2]" File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 15
-    Warning (15610): No output dependent on input pin "KEY[3]" File: Z:/GitHub/ECE4514/homework-7-jacoblambda/XGA_Graphics/XGA_Graphics.v Line: 15
-Info (21057): Implemented 232 device resources after synthesis - the final resource count might be different
+    Warning (15610): No output dependent on input pin "KEY[1]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 15
+    Warning (15610): No output dependent on input pin "KEY[2]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 15
+    Warning (15610): No output dependent on input pin "KEY[3]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/xga_7/XGA_Graphics.v Line: 15
+Info (21057): Implemented 97 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 39 output pins
-    Info (21061): Implemented 187 logic cells
+    Info (21061): Implemented 52 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 37 warnings
-    Info: Peak virtual memory: 4855 megabytes
-    Info: Processing ended: Fri Apr 05 05:33:34 2019
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 36 warnings
+    Info: Peak virtual memory: 4848 megabytes
+    Info: Processing ended: Mon Apr 15 02:31:02 2019
     Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:31
+    Info: Total CPU time (on all processors): 00:00:29
 
 

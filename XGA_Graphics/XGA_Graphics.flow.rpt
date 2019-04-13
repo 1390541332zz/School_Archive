@@ -1,5 +1,5 @@
 Flow report for XGA_Graphics
-Fri Apr 05 05:34:50 2019
+Mon Apr 15 02:32:10 2019
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -41,15 +41,15 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Fri Apr 05 05:34:39 2019       ;
+; Flow Status                     ; Successful - Mon Apr 15 02:31:59 2019       ;
 ; Quartus Prime Version           ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; XGA_Graphics                                ;
 ; Top-level Entity Name           ; XGA_Graphics                                ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 99 / 32,070 ( < 1 % )                       ;
-; Total registers                 ; 44                                          ;
+; Logic utilization (in ALMs)     ; 21 / 32,070 ( < 1 % )                       ;
+; Total registers                 ; 21                                          ;
 ; Total pins                      ; 44 / 457 ( 10 % )                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,065,280 ( 0 % )                       ;
@@ -68,7 +68,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/05/2019 05:33:20 ;
+; Start date & time ; 04/15/2019 02:30:48 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; XGA_Graphics        ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 88491860220832.155445680004984         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 10995770589194.155530984816704         ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; MISC_FILE                           ; altpll_75.cmp                          ; --            ; --          ; --         ;
@@ -101,11 +101,11 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:14     ; 1.0                     ; 4851 MB             ; 00:00:31                           ;
-; Fitter                    ; 00:00:49     ; 1.0                     ; 6670 MB             ; 00:01:36                           ;
-; Assembler                 ; 00:00:10     ; 1.0                     ; 4852 MB             ; 00:00:08                           ;
-; TimeQuest Timing Analyzer ; 00:00:09     ; 1.1                     ; 5178 MB             ; 00:00:08                           ;
-; Total                     ; 00:01:22     ; --                      ; --                  ; 00:02:23                           ;
+; Analysis & Synthesis      ; 00:00:14     ; 1.0                     ; 4848 MB             ; 00:00:29                           ;
+; Fitter                    ; 00:00:44     ; 1.0                     ; 6666 MB             ; 00:01:17                           ;
+; Assembler                 ; 00:00:08     ; 1.0                     ; 4850 MB             ; 00:00:08                           ;
+; TimeQuest Timing Analyzer ; 00:00:09     ; 1.0                     ; 5175 MB             ; 00:00:07                           ;
+; Total                     ; 00:01:15     ; --                      ; --                  ; 00:02:01                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
