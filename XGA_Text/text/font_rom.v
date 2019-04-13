@@ -1107,7 +1107,7 @@ always @(*) case (addr_reg)
     11'h3fd: data = 8'b00000000; // 
     11'h3fe: data = 8'b00000000; // 
     11'h3ff: data = 8'b00000000; // 
-    /code x40 
+    //code x40 
     11'h400: data = 8'b00000000; // 
     11'h401: data = 8'b00000000; // 
     11'h402: data = 8'b01111100; //  *****

@@ -7,7 +7,7 @@
 
 `include "const_funcs.h"
 
-module character_gen(
+module character_gen #(
 /*---------------------------------------------------------------------------*/
 /*                            Module Templating                              */
 /*---------------------------------------------------------------------------*/
@@ -28,19 +28,19 @@ localparam
     x3 = (2 << 32) - 1;
 
 wire [31:0] 
-    rand_next;
+    rand_r_next;
 reg [31:0]
-    rand;
+    rand_r;
 
 /*---------------------------------------------------------------------------*/
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
-assign rand_next = (x1 * rand + x2) & x3;
-assign c_out     = rand[char_width - 1:0] & (2 << log2(num_of_chars));
+assign rand_r_next = (x1 * rand_r + x2) & x3;
+assign c_out       = rand_r[char_width - 1:0] & (2 << log2(num_of_chars));
 
 always @(posedge clk) begin
-    rand = (reset) ? 0 : rand_next;
+    rand_r = (reset) ? 0 : rand_r_next;
 end
 
 endmodule

@@ -8,7 +8,7 @@
 
 `include "const_funcs.h"
 
-module screen_buf(
+module screen_buf #(
 /*---------------------------------------------------------------------------*/
 /*                            Module Templating                              */
 /*---------------------------------------------------------------------------*/
@@ -40,17 +40,20 @@ module screen_buf(
 /*---------------------------------------------------------------------------*/
 /*                                Submodules                                 */
 /*---------------------------------------------------------------------------*/
-
 dual_port_ram_sync #(
-    .ADDR_WIDTH(height * width),
+    .ADDR_WIDTH(log2(height * width)),
     .DATA_WIDTH(char_width)
 ) buf_a (
     .clk(clk),
     .we(write_en),
+    /* verilator lint_off WIDTH */
     .addr_a(`POS(x_w, y_w)),
     .addr_b(`POS(x_r, y_r)),
+    /* verilator lint_on WIDTH */
     .din_a(c_in),
+    /* verilator lint_off PINCONNECTEMPTY */
     .dout_a(),
+    /* verilator lint_on PINCONNECTEMPTY */
     .dout_b(c_out)
 );
 

@@ -7,7 +7,7 @@
 
 `include "const_funcs.h"
 
-module fill_buf(
+module fill_buf #(
 /*---------------------------------------------------------------------------*/
 /*                            Module Templating                              */
 /*---------------------------------------------------------------------------*/
@@ -30,12 +30,14 @@ module fill_buf(
 );
 
 localparam
-    nummeric_offset    = 48,
+    numeric_offset     = 48,
     uppercase_a_offset = 65,
     lowercase_a_offset = 97, 
     lowercase_a        = lowercase_a_offset - numeric_offset,
     uppercase_a        = uppercase_a_offset - numeric_offset;
 
+wire [char_width - 1:0]
+    c; 
 wire [log2(width ) - 1:0] 
     x_next;
 wire [log2(height) - 1:0] 
@@ -52,9 +54,11 @@ assign c_out         = (zero_buf)         ? blank_char
                      : (c >= uppercase_a) ? c + uppercase_a_offset
                                           : c + numeric_offset;
 
-assign x_next        = (write_en && (x < (width  - 1)) ? x + 1 : 0;
-assign y_next        = (write_en && (y < (height - 1)) ? y + 1 : 0;
+/* verilator lint_off WIDTH */
+assign x_next        = (write_en && (x < (width  - 1))) ? x + 1 : 0;
+assign y_next        = (write_en && (y < (height - 1))) ? y + 1 : 0;
 assign write_en_next = write_en_next ^ ((x == (width - 1)) && (y == (height - 1)));
+/* verilator lint_on WIDTH */
 
 always @(posedge clk) begin
     x        <= (reset || refresh) ?    0 : x_next;

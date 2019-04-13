@@ -1,6 +1,6 @@
 
 ball_files :=                                                                 \
-    ./ball/ball_gen.v                                                         \
+    ./ball/ball_driver.v                                                      \
     ./ball/ball_render.v                                                       
 
 text_files :=                                                                 \
@@ -15,7 +15,7 @@ io_files   :=                                                                 \
     ./io/altpll_75.v                                                          \
     ./io/keypressed.v                                                         \
     ./io/vga_driver.v                                                         \
-    ./io/compositer.v                                                          
+    ./io/compositor.v                                                          
 
 
 files      := $(strip ./XGA_Text.v ./const_funcs.h                            \

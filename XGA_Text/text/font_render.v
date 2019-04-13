@@ -7,7 +7,7 @@
 
 `include "const_funcs.h"
 
-module font_render(
+module font_render #(
 /*---------------------------------------------------------------------------*/
 /*                            Module Templating                              */
 /*---------------------------------------------------------------------------*/
@@ -32,21 +32,23 @@ module font_render(
 );
 
 wire [log2(text_th_w) - 1:0]
-    x_font_pos,
+    x_font_pos;
 wire [text_th_w - 1:0]
     font_slice;
 wire [log2(text_th_h) - 1:0]
     y_font_pos;
-wire [(char_width + log2(text_th_h)) - 1:0]
+wire [(char_width + log2(text_th_h)) - 2:0]
     font_addr;
 
 /*---------------------------------------------------------------------------*/
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
+/* verilator lint_off WIDTH */
 assign x_font_pos = x_pixel >> log2(text_th_w);
 assign y_font_pos = y_pixel >> log2(text_th_h);
-assign font_addr  = {cur_char, y_font_pos};
+/* verilator lint_on WIDTH */
+assign font_addr  = {cur_char[char_width - 2:0], y_font_pos};
 assign rgba_out   = (font_slice[x_font_pos]) ? text_color : bkg_color;
 
 /*---------------------------------------------------------------------------*/
@@ -55,7 +57,7 @@ assign rgba_out   = (font_slice[x_font_pos]) ? text_color : bkg_color;
 
 font_rom font (
     .clk(clk),
-    .addr(y_font_pos),
+    .addr(font_addr),
     .data(font_slice)
 );
 

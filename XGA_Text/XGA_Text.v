@@ -22,10 +22,12 @@ module XGA_Text(
     output wire       VGA_SYNC_N,
     output wire       VGA_HS,
     output wire       VGA_VS,
-    input  wire [9:0] SW                                      
+    input  wire [9:0] SW,                                   
+    output wire [9:0] LEDR 
 );
 
 localparam
+    text_en_default = 1'b0,
     ball_en_default = 1'b0,
     ball_radius     = 16,
     width           = 1024, 
@@ -55,6 +57,7 @@ wire
     toggle_ball,
     refresh,
     clk_75,
+    ball_en_next,
     text_en_next,
     text_refresh,
     buf_write;
@@ -83,9 +86,12 @@ wire [log2(height) - 1:0]
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
+/* verilator lint_off WIDTH */
 assign x_text_r     = x_pixel >> log2(text_th_w);
 assign y_text_r     = y_pixel >> log2(text_th_h);
-assign text_refresh = fill_buff || clear_buf;
+/* verilator lint_on WIDTH */
+
+assign text_refresh = fill_buf || clear_buf;
 
 assign ball_en_next = ball_en ^ toggle_ball;
 assign text_en_next = (text_refresh) ? (fill_buf && ~clear_buf) : text_en;
@@ -166,9 +172,9 @@ vga_driver #(
 );
 
 //Top Layer is last in the array / first in the concatenation.
-compositer #(
+compositor #(
     .color_depth(color_depth),
-    .num_of_layers(3),
+    .num_of_layers(3)
 ) comp (
     .clk(clk_75),
     .rgba_in('{
@@ -186,13 +192,13 @@ compositer #(
 font_render #(
     .width(width),
     .height(height),
-    .text_width(text_th_w),
-    .text_height(text_th_h),
+    .text_th_w(text_th_w),
+    .text_th_h(text_th_h),
     .char_width(char_width),
     .bkg_color(CLEAR),
     .text_color(GREEN)
 ) text_mask (
-    .clk(clk),
+    .clk(clk_75),
     .reset(reset),
     .refresh(refresh),
     .x_pixel(x_pixel),
@@ -206,7 +212,7 @@ screen_buf #(
     .height(text_height),
     .char_width(char_width)
 ) buffer (
-    .clk(clk),
+    .clk(clk_75),
     .reset(reset),
     .refresh(refresh),
     .write_en(buf_write),
@@ -224,7 +230,7 @@ fill_buf #(
     .char_width(char_width),
     .blank_char(blank_char)
 ) text_gen (
-    .clk(clk),
+    .clk(clk_75),
     .reset(reset),   
     .refresh(text_refresh),
     .zero_buf(~text_en),
@@ -248,13 +254,13 @@ ball_render #(
 ) ball_mask (
     .clk(clk_75),
     .reset(reset),
-    .visible(ball_en),
+    .ball_en(ball_en),
     .move(refresh),
     .h_pos(h_ball),
     .x_pixel(y_pixel),
     .v_pos(v_ball),
     .y_pixel(y_pixel),
-    .rgb(ball_rgba)
+    .rgba_out(ball_rgba)
 );
 
 ball_driver #(

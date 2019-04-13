@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------*
- * Module: Compositer                                                        *
+ * Module: Compositor                                                        *
  * Purpose: Compositor to merge multiple RGBA layers into a single RGB layer *
  * Last Edit: 2019-04-12                                                     *
  * Maintainer: Jacob Abel                                                    *
@@ -28,7 +28,7 @@ genvar i;
 
 always @(*) for (i = 0; i < num_of_layers; i = i + 1) begin:layer_select
     if (rgba_in[i][color_depth-1:0] == { color_depth {1'b1} }) begin
-        rgb_out = rgba_in[i][(color_depth * 4) - 1 : color_depth - 1];
+        rgb_out = rgba_in[i][(color_depth * 4) - 1 : color_depth];
     end
 end
 

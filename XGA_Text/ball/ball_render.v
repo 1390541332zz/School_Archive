@@ -15,18 +15,19 @@ module ball_render #(
     parameter                             height,
     parameter                             color_depth,
     parameter                             ball_radius,
-    parameter [(color_depth * 3) - 1 : 0] bkg_color,
-    parameter [(color_depth * 3) - 1 : 0] ball_color
+    parameter [(color_depth * 4) - 1 : 0] bkg_color,
+    parameter [(color_depth * 4) - 1 : 0] ball_color
 )(
 /*---------------------------------------------------------------------------*/
 /*                                Variables                                  */
 /*---------------------------------------------------------------------------*/
-    input  wire                      clk,
-    input  wire                      reset,        
-    input  wire                      move,
-    input  wire [log2(width ) - 1:0] h_pos, x_pixel,
-    input  wire [log2(height) - 1:0] v_pos, y_pixel,
-    output wire [23:0] rgb 
+    input  wire                             clk,
+    input  wire                             reset,        
+    input  wire                             ball_en,        
+    input  wire                             move,
+    input  wire [log2(width ) - 1:0]        h_pos, x_pixel,
+    input  wire [log2(height) - 1:0]        v_pos, y_pixel,
+    output wire [(color_depth * 4) - 1 : 0] rgba_out
 );
 
 localparam 
@@ -64,7 +65,8 @@ assign mask_x = (in_bounds) ? (x_pixel - x_min) : { log2(mask_width) {1'b0} };
 assign mask_y = (in_bounds) ? (y_pixel - y_min) : { log2(mask_width) {1'b0} };
 /* verilator lint_on  WIDTH */
 
-assign rgb = (mask[mask_x] && in_bounds) ? ball_color : bkg_color;
+assign rgba_out = (mask[mask_x] && in_bounds && ball_en) ? ball_color 
+                                                         : bkg_color;
 
 always @(*) case (mask_y)
     5'h00: mask = 32'b00000000000011111111000000000000;

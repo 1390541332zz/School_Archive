@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------*
- * Module: Ball Generator                                                    *
+ * Module: Ball Driver                                                       *
  * Purpose: Object Controller for the Bouncing Ball Animation                *
  * Last Edit: 2019-04-12                                                     *
  * Maintainer: Jacob Abel                                                    *
@@ -7,7 +7,7 @@
 
 `include "const_funcs.h"
 
-module ball_gen #(
+module ball_driver #(
 /*---------------------------------------------------------------------------*/
 /*                            Module Templating                              */
 /*---------------------------------------------------------------------------*/
