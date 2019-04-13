@@ -1,27 +1,28 @@
 
-ball_files  =                                                                 \
-    ball_gen.v                                                                \
-    ball_render.v
+ball_files :=                                                                 \
+    ./ball/ball_gen.v                                                         \
+    ./ball/ball_render.v                                                       
 
-text_files  =                                                                 \
-    character_gen.v                                                           \
-    dual_port_ram_sync.v                                                      \
-    font_rom.v                                                                \
-    font_render.v                                                             \
-    fill_buf.v                                                                \
-    screen_buf.v   
+text_files :=                                                                 \
+    ./text/character_gen.v                                                    \
+    ./text/dual_port_ram_sync.v                                               \
+    ./text/font_rom.v                                                         \
+    ./text/font_render.v                                                      \
+    ./text/fill_buf.v                                                         \
+    ./text/screen_buf.v                                                         
 
-io_files    =                                                                 \
-    altpll_75.v                                                               \
-    keypressed.v                                                              \
-    vga_driver.v                                                              \
-    compositer.v
+io_files   :=                                                                 \
+    ./io/altpll_75.v                                                          \
+    ./io/keypressed.v                                                         \
+    ./io/vga_driver.v                                                         \
+    ./io/compositer.v                                                          
 
 
-files = ./XGA_Text.v ./const_funcs.h                                          \
-        ./io/$(io_files) ./ball/$(ball_files) ./text/$(text_files)
+files      := $(strip ./XGA_Text.v ./const_funcs.h                            \
+                      $(io_files) $(ball_files) $(text_files)                 \
+               )
 
 all: verilator
 
 verilator: verilator.vlt $(files) 
-    verilator -Iverilog --lint-only -Wall verilator.vlt $(files)
+	verilator -Iverilog --lint-only -Wall verilator.vlt $(files)

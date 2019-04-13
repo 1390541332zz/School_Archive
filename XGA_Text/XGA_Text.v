@@ -40,10 +40,10 @@ localparam
     mask_width      = ball_radius * 2;
 
 localparam [(color_depth * 4) - 1:0]
-    RED   = 24'hFF0000FF,
-    GREEN = 24'h00FF00FF,
-    BLACK = 24'h000000FF,
-    CLEAR = 24'h00000000;
+    RED   = 32'hFF0000FF,
+    GREEN = 32'h00FF00FF,
+    BLACK = 32'h000000FF,
+    CLEAR = 32'h00000000;
 
 reg
     ball_en,
@@ -175,8 +175,8 @@ compositer #(
         ball_rgba, 
         text_rgba,
         BLACK
-    })
-    .rgb_out(composite_rgb),
+    }),
+    .rgb_out(composite_rgb)
 );
 
 /*---------------------------------------------------------------------------*/

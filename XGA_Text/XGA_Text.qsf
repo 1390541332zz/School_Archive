@@ -6,12 +6,11 @@ set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY "XGA_Text"
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "15.1.0"
-set_global_assignment -name LAST_QUARTUS_VERSION "15.1.0"
+set_global_assignment -name LAST_QUARTUS_VERSION "17.0.0 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:10:17 APRIL 05,2019"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 896
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 6
-set_global_assignment -name SDC_FILE XGA_Text.SDC
 
 #============================================================
 # CLOCK
@@ -227,3 +226,25 @@ set_location_assignment PIN_AJ21 -to GPIO[35]
 # End of pin assignments by Terasic System Builder
 #============================================================
 
+
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
+set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
+set_global_assignment -name VERILOG_FILE ball/ball_render.v
+set_global_assignment -name VERILOG_FILE ball/ball_gen.v
+set_global_assignment -name VERILOG_FILE io/vga_driver.v
+set_global_assignment -name VERILOG_FILE io/keypressed.v
+set_global_assignment -name VERILOG_FILE io/compositer.v
+set_global_assignment -name VERILOG_FILE text/screen_buf.v
+set_global_assignment -name VERILOG_FILE text/font_rom.v
+set_global_assignment -name VERILOG_FILE text/font_render.v
+set_global_assignment -name VERILOG_FILE text/fill_buf.v
+set_global_assignment -name VERILOG_FILE text/dual_port_ram_sync.v
+set_global_assignment -name VERILOG_FILE text/character_gen.v
+set_global_assignment -name VERILOG_FILE XGA_Text.v
+set_global_assignment -name SDC_FILE XGA_Text.SDC
+set_global_assignment -name QIP_FILE io/altpll_75.qip
+set_global_assignment -name SIP_FILE io/altpll_75.sip
