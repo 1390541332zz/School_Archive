@@ -25,46 +25,74 @@ module XGA_Text(
     input  wire [9:0] SW                                      
 );
 
-localparam 
+localparam
     ball_en_default = 1'b0,
-    num_of_layers   = 2,
     ball_radius     = 16,
     width           = 1024, 
     height          = 768,
     color_depth     = 8,
+    char_width      = 8,
+    text_th_w       = 8,
+    text_th_h       = 16,
+    text_width      = width / text_th_w,
+    text_height     = height / text_th_h,
+    blank_char      = 0,
     mask_width      = ball_radius * 2;
 
 localparam [(color_depth * 4) - 1:0]
     RED   = 24'hFF0000FF,
     GREEN = 24'h00FF00FF,
-    BLACK = 24'h000000FF;
+    BLACK = 24'h000000FF,
+    CLEAR = 24'h00000000;
 
-wire
+reg
+    ball_en,
+    text_en;
+wire 
     reset,
-    fill_buffer,
-    clear_buffer,
+    fill_buf,
+    clear_buf,
     toggle_ball,
     refresh,
-    clk_75;
+    clk_75,
+    text_en_next,
+    text_refresh,
+    buf_write;
+wire [(color_depth * 3) - 1:0]
+    composite_rgb;
+wire [(color_depth * 4) - 1:0]
+    text_rgba,
+    ball_rgba;
+wire [log2(text_width) - 1:0]
+    x_text_w,
+    x_text_r;
+wire [log2(text_height) - 1:0]
+    y_text_w,
+    y_text_r;
+wire [char_width - 1:0]
+    c_w,
+    c_r;
 wire [log2(width) - 1:0]
     x_pixel,
     h_ball;
 wire [log2(height) - 1:0]
     y_pixel,
     v_ball;
-wire [(color_depth * 4) - 1:0]
-    composite_rgb,
-    text_rgb,
-    ball_rgb;
 
 /*---------------------------------------------------------------------------*/
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
+assign x_text_r     = x_pixel >> log2(text_th_w);
+assign y_text_r     = y_pixel >> log2(text_th_h);
+assign text_refresh = fill_buff || clear_buf;
+
 assign ball_en_next = ball_en ^ toggle_ball;
+assign text_en_next = (text_refresh) ? (fill_buf && ~clear_buf) : text_en;
 
 always @(posedge clk_75) begin
     ball_en <= (reset) ? ball_en_default : ball_en_next;
+    text_en <= (reset) ? text_en_default : text_en_next;
 end
 
 /*---------------------------------------------------------------------------*/
@@ -88,13 +116,13 @@ keypressed key1(
     .clock(clk_75), 
     .reset(KEY[0]), 
     .enable_in(KEY[1]), 
-    .enable_out(fill_buffer)
+    .enable_out(fill_buf)
 );
 keypressed key2(
     .clock(clk_75), 
     .reset(KEY[0]), 
     .enable_in(KEY[2]), 
-    .enable_out(clear_buffer)
+    .enable_out(clear_buf)
 );
 keypressed key3(
     .clock(clk_75), 
@@ -140,12 +168,13 @@ vga_driver #(
 //Top Layer is last in the array / first in the concatenation.
 compositer #(
     .color_depth(color_depth),
-    .num_of_layers(num_of_layers),
+    .num_of_layers(3),
 ) comp (
     .clk(clk_75),
     .rgba_in('{
-        ball_rgb, 
-        text_rgb
+        ball_rgba, 
+        text_rgba,
+        BLACK
     })
     .rgb_out(composite_rgb),
 );
@@ -155,21 +184,54 @@ compositer #(
 /*---------------------------------------------------------------------------*/
 
 font_render #(
-
+    .width(width),
+    .height(height),
+    .text_width(text_th_w),
+    .text_height(text_th_h),
+    .char_width(char_width),
+    .bkg_color(CLEAR),
+    .text_color(GREEN)
 ) text_mask (
-
+    .clk(clk),
+    .reset(reset),
+    .refresh(refresh),
+    .x_pixel(x_pixel),
+    .y_pixel(y_pixel),
+    .cur_char(c_r),
+    .rgba_out(text_rgba)
 );
 
-screen_buffer #(
-
+screen_buf #(
+    .width(text_width),
+    .height(text_height),
+    .char_width(char_width)
 ) buffer (
-
+    .clk(clk),
+    .reset(reset),
+    .refresh(refresh),
+    .write_en(buf_write),
+    .x_w(x_text_w),
+    .y_w(y_text_w),
+    .x_r(x_text_r),
+    .y_r(y_text_r),
+    .c_in(c_w),
+    .c_out(c_r)
 );
 
-character_gen #(
-
-) char_gen (
-
+fill_buf #(
+    .width(text_width),
+    .height(text_height),
+    .char_width(char_width),
+    .blank_char(blank_char)
+) text_gen (
+    .clk(clk),
+    .reset(reset),   
+    .refresh(text_refresh),
+    .zero_buf(~text_en),
+    .write_en(buf_write),
+    .x(x_text_w),
+    .y(y_text_w),
+    .c_out(c_w)
 );
 
 /*---------------------------------------------------------------------------*/
@@ -181,7 +243,7 @@ ball_render #(
     .height(height),
     .color_depth(color_depth),
     .ball_radius(ball_radius),
-    .bkg_color(BLUE),
+    .bkg_color(CLEAR),
     .ball_color(RED)
 ) ball_mask (
     .clk(clk_75),
@@ -192,7 +254,7 @@ ball_render #(
     .x_pixel(y_pixel),
     .v_pos(v_ball),
     .y_pixel(y_pixel),
-    .rgb(ball_rgb)
+    .rgb(ball_rgba)
 );
 
 ball_driver #(
