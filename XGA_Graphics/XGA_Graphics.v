@@ -47,8 +47,22 @@ wire [log2(height) - 1:0]
     v_pos;
 wire [23:0]
     rgb;
+reg 
+    initial_reset;
 
-assign reset = ~KEY[0];
+/*---------------------------------------------------------------------------*/
+/*                                Computation                                */
+/*---------------------------------------------------------------------------*/
+
+assign reset = ~KEY[0] || initial_reset;
+
+initial begin
+    initial_reset <= 1'b1;
+end
+
+always @(posedge clk_75) begin
+    initial_reset <= 1'b0;
+end
 
 /*---------------------------------------------------------------------------*/
 /*                                 Submodules                                */
@@ -92,6 +106,8 @@ vga_driver #(
     .refresh(refresh)
 );
 
+//assign refresh = (y_pixel == 760) && (x_pixel == 1020);
+
 ball_render #(
     .width(width),
     .height(height),
@@ -104,13 +120,13 @@ ball_render #(
     .reset(reset),        
     .move(refresh),
     .h_pos(h_pos),
-    .x_pixel(y_pixel),
+    .x_pixel(x_pixel),
     .v_pos(v_pos),
     .y_pixel(y_pixel),
     .rgb(rgb)
 );
 
-ball_gen #(
+ball_driver #(
     .width(width),
     .height(height),
     .init_x(width  / 2),

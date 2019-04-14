@@ -67,8 +67,6 @@ module vga_driver #(
 );
 
 
-reg 
-    back_last;
 reg [log2(h_cnt) - 1:0]
     ctr_h;
 reg [log2(v_cnt) - 1:0]
@@ -82,13 +80,13 @@ wire
     h_addr,
 //  h_front,
     h_sync,
-    h_back,
+//  h_back,
 
     /* Vertical Ticks */
     v_addr,
 //  v_front,
-    v_sync,
-    v_back;
+    v_sync;
+//  v_back;
 
 /*---------------------------------------------------------------------------*/
 /*                                 Compute                                   */
@@ -100,8 +98,8 @@ assign v_addr      = (ctr_v >= v_addr_start ) && (ctr_v < v_front_start);
 //assign v_front   = (ctr_v >= v_front_start) && (ctr_v < v_sync_start );
 assign h_sync      = (ctr_h >= h_sync_start ) && (ctr_h < h_back_start );
 assign v_sync      = (ctr_v >= v_sync_start ) && (ctr_v < v_back_start );
-assign h_back      = (ctr_h >= h_back_start ) && (ctr_h < h_cnt        );
-assign v_back      = (ctr_v >= v_back_start ) && (ctr_v < v_cnt        );
+//assign h_back    = (ctr_h >= h_back_start ) && (ctr_h < h_cnt        );
+//assign v_back    = (ctr_v >= v_back_start ) && (ctr_v < v_cnt        );
 assign vga_clk     = clk;
 assign vga_blank_n = v_addr & h_addr;
 assign vga_hs      = h_sync;
@@ -118,19 +116,17 @@ assign {vga_r_out,
         vga_g_out, 
         vga_b_out} = vga_blank_n ? rgb_in : 0;
 
-assign refresh     = ~back_last & h_back & v_back;
+assign refresh     = (ctr_h == (vga_width - 1)) && (ctr_v == (vga_height - 1));
 
 always @(posedge clk) if (reset) begin
-    ctr_h     <= 0;
-    ctr_v     <= 0;
-    back_last <= 0;
+    ctr_h <= 0;
+    ctr_v <= 0;
 end else begin
-    ctr_h     <= (ctr_h_next < h_cnt)     ? ctr_h_next 
-                                          : 0;
-    ctr_v     <= (ctr_h_next < h_cnt)     ? ctr_v_next
-               : (ctr_v_next + 1 < v_cnt) ? ctr_v_next + 1
-                                          : 0;
-    back_last <= h_back & v_back;
+    ctr_h <= (ctr_h_next < h_cnt)     ? ctr_h_next 
+                                      : 0;
+    ctr_v <= (ctr_h_next < h_cnt)     ? ctr_v_next
+           : (ctr_v_next + 1 < v_cnt) ? ctr_v_next + 1
+                                      : 0;
 end
 
 endmodule
