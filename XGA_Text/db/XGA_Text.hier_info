@@ -588,28 +588,18 @@ rgba_out[31] <= <GND>
 
 
 |XGA_Text|font_render:text_mask|font_rom:font
-clk => addr_reg[0].CLK
-clk => addr_reg[1].CLK
-clk => addr_reg[2].CLK
-clk => addr_reg[3].CLK
-clk => addr_reg[4].CLK
-clk => addr_reg[5].CLK
-clk => addr_reg[6].CLK
-clk => addr_reg[7].CLK
-clk => addr_reg[8].CLK
-clk => addr_reg[9].CLK
-clk => addr_reg[10].CLK
-addr[0] => addr_reg[0].DATAIN
-addr[1] => addr_reg[1].DATAIN
-addr[2] => addr_reg[2].DATAIN
-addr[3] => addr_reg[3].DATAIN
-addr[4] => addr_reg[4].DATAIN
-addr[5] => addr_reg[5].DATAIN
-addr[6] => addr_reg[6].DATAIN
-addr[7] => addr_reg[7].DATAIN
-addr[8] => addr_reg[8].DATAIN
-addr[9] => addr_reg[9].DATAIN
-addr[10] => addr_reg[10].DATAIN
+clk => ~NO_FANOUT~
+addr[0] => Ram0.RADDR
+addr[1] => Ram0.RADDR1
+addr[2] => Ram0.RADDR2
+addr[3] => Ram0.RADDR3
+addr[4] => Ram0.RADDR4
+addr[5] => Ram0.RADDR5
+addr[6] => Ram0.RADDR6
+addr[7] => Ram0.RADDR7
+addr[8] => Ram0.RADDR8
+addr[9] => Ram0.RADDR9
+addr[10] => Ram0.RADDR10
 data[0] <= Ram0.DATAOUT
 data[1] <= Ram0.DATAOUT1
 data[2] <= Ram0.DATAOUT2
@@ -946,7 +936,7 @@ c_out[2] <= rand_r[2].DB_MAX_OUTPUT_PORT_TYPE
 c_out[3] <= rand_r[3].DB_MAX_OUTPUT_PORT_TYPE
 c_out[4] <= rand_r[4].DB_MAX_OUTPUT_PORT_TYPE
 c_out[5] <= rand_r[5].DB_MAX_OUTPUT_PORT_TYPE
-c_out[6] <= <GND>
+c_out[6] <= rand_r[6].DB_MAX_OUTPUT_PORT_TYPE
 c_out[7] <= <GND>
 
 

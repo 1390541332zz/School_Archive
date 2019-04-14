@@ -30,11 +30,11 @@ module fill_buf #(
 );
 
 localparam
+    uppercase_a        = 10,
+    lowercase_a        = uppercase_a + 26,
     numeric_offset     = 48,
-    uppercase_a_offset = 65 - 10,
-    lowercase_a_offset = 97 - 26 - 10, 
-    lowercase_a        = 10 - 1,
-    uppercase_a        = 10 + 26 - 1;
+    uppercase_a_offset = 65 - uppercase_a,
+    lowercase_a_offset = 97 - lowercase_a; 
 
 wire [char_width - 1:0]
     c; 

@@ -24,7 +24,7 @@ module character_gen #(
 
 localparam [63:0]
     x1        = 64'd1664525,
-    x2        = 64'd1013904223,
+    x2        = 64'd10139041,
     xmod      = (64'd1 << 64'd32) - 64'd1,
     rand_seed = 64'd0;
 
@@ -38,7 +38,7 @@ reg [63:0]
 /*---------------------------------------------------------------------------*/
 
 assign rand_r_next = (x1 * rand_r + x2) & xmod;
-assign c_out       = rand_r[char_width - 1:0] & ((1 << log2(num_of_chars)) - 1);
+assign c_out       = {1'b0, rand_r[char_width - 2:0]};
 
 initial begin
     rand_r = rand_seed;

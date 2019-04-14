@@ -10,15 +10,8 @@ module font_rom (
     input wire [10:0] addr,
     output reg [7:0] data
 );
-   
-// signal declaration
-reg [10:0] addr_reg; 
-
-// body
-always @(posedge clk) 
-  addr_reg <= addr;
   
-always @(*) case (addr_reg)
+always @(*) case (addr)
     //code x00
     11'h000: data = 8'b00000000; // 
     11'h001: data = 8'b00000000; // 

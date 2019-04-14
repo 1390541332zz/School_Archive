@@ -31,11 +31,11 @@ module font_render #(
     output wire [(char_width * 4) - 1:0] rgba_out
 );
 
-wire [log2(text_th_w) - 1:0]
+wire [2:0]
     x_font_pos;
 wire [text_th_w - 1:0]
     font_slice;
-wire [log2(text_th_h) - 1:0]
+wire [3:0]
     y_font_pos;
 wire [(char_width + log2(text_th_h)) - 2:0]
     font_addr;
@@ -44,10 +44,10 @@ wire [(char_width + log2(text_th_h)) - 2:0]
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
-assign x_font_pos = x_pixel[log2(text_th_w) - 1:0];
-assign y_font_pos = y_pixel[log2(text_th_h) - 1:0];
+assign x_font_pos = 3'h7 - x_pixel[2:0];
+assign y_font_pos = y_pixel[3:0];
 
-assign font_addr  = {cur_char[char_width - 2:0], y_font_pos};
+assign font_addr  = {cur_char[6:0], y_font_pos};
 assign rgba_out   = (font_slice[x_font_pos]) ? text_color : bkg_color;
 
 /*---------------------------------------------------------------------------*/

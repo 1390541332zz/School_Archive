@@ -1,16 +1,16 @@
-Fitter Status : Successful - Wed Apr 17 20:38:38 2019
+Fitter Status : Successful - Wed Apr 17 23:53:48 2019
 Quartus Prime Version : 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 Revision Name : XGA_Text
 Top-level Entity Name : XGA_Text
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 770 / 32,070 ( 2 % )
-Total registers : 1393
+Logic utilization (in ALMs) : 761 / 32,070 ( 2 % )
+Total registers : 890
 Total pins : 54 / 457 ( 12 % )
 Total virtual pins : 0
-Total block memory bits : 533,504 / 4,065,280 ( 13 % )
-Total RAM Blocks : 66 / 397 ( 17 % )
+Total block memory bits : 721,792 / 4,065,280 ( 18 % )
+Total RAM Blocks : 89 / 397 ( 22 % )
 Total DSP Blocks : 1 / 87 ( 1 % )
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
