@@ -23,9 +23,9 @@ module character_gen #(
 );
 
 localparam
-    x1 = 1664525,
-    x2 = 1013904223,
-    x3 = (2 << 32) - 1;
+    x1        = 1664525,
+    x2        = 1013904223,
+    rand_seed = 1;
 
 wire [31:0] 
     rand_r_next;
@@ -36,11 +36,15 @@ reg [31:0]
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
-assign rand_r_next = (x1 * rand_r + x2) & x3;
+assign rand_r_next = x1 * rand_r + x2;
 assign c_out       = rand_r[char_width - 1:0] & (2 << log2(num_of_chars));
 
+initial begin
+    rand_r = rand_seed;
+end
+
 always @(posedge clk) begin
-    rand_r = (reset) ? 0 : rand_r_next;
+    rand_r = (reset) ? rand_seed : rand_r_next;
 end
 
 endmodule
