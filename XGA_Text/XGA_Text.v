@@ -185,8 +185,8 @@ compositor #(
 ) comp (
     .clk(clk_75),
     .rgba_in('{
-        ball_rgba, 
-        ball_rgba, 
+        ball_rgba,
+        text_rgba,
         bkg_rgba
      }),
     .rgb_out(composite_rgb)

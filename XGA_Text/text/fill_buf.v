@@ -57,7 +57,7 @@ assign c_out         = (zero_buf)         ? blank_char
 /* verilator lint_off WIDTH */
 assign x_next        = (write_en && (x < (width  - 1))) ? x + 1 : 0;
 assign y_next        = (write_en && (y < (height - 1))) ? y + 1 : 0;
-assign write_en_next = write_en_next ^ ((x == (width - 1)) && (y == (height - 1)));
+assign write_en_next = write_en ^ ((x == (width - 1)) && (y == (height - 1)));
 /* verilator lint_on WIDTH */
 
 always @(posedge clk) begin

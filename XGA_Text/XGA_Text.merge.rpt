@@ -1,5 +1,5 @@
 Partition Merge report for XGA_Text
-Wed Apr 17 17:05:47 2019
+Wed Apr 17 18:41:36 2019
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -41,16 +41,16 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Partition Merge Summary                                                       ;
 +---------------------------------+---------------------------------------------+
-; Partition Merge Status          ; Successful - Wed Apr 17 17:05:47 2019       ;
+; Partition Merge Status          ; Successful - Wed Apr 17 18:41:36 2019       ;
 ; Quartus Prime Version           ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; XGA_Text                                    ;
 ; Top-level Entity Name           ; XGA_Text                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 3170                                        ;
+; Total registers                 ; 3194                                        ;
 ; Total pins                      ; 54                                          ;
 ; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 1,770,496                                   ;
+; Total block memory bits         ; 1,786,880                                   ;
 ; Total DSP Blocks                ; 0                                           ;
 ; Total HSSI RX PCSs              ; 0                                           ;
 ; Total HSSI PMA RX Deserializers ; 0                                           ;
@@ -80,18 +80,18 @@ agreement for further details.
 +--------------------------------------------------------------------------------------------+---------------+-----------+--------------------------------+-------------------+------------------------------------------------------------------------------------+---------+
 ; compositor:comp|rgb_out[0]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgb_out[0]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[10]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[10]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[11]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[11]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[12]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[12]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[13]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[13]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[14]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[14]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[15]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[15]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgb_out[10]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[10]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[11]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[11]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[12]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[12]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[13]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[13]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[14]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[14]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[15]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[15]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
 ; compositor:comp|rgb_out[16]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
 ; compositor:comp|rgb_out[16]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
 ; compositor:comp|rgb_out[17]                                                                ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
@@ -122,10 +122,10 @@ agreement for further details.
 ; compositor:comp|rgb_out[6]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgb_out[7]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgb_out[7]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[8]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[8]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[9]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgb_out[9]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgb_out[8]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[8]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[9]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
+; compositor:comp|rgb_out[9]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; compositor:comp|rgb_out[8]~0                                                       ; N/A     ;
 ; compositor:comp|rgba_in[0][0]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; VCC                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[0][0]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; VCC                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[0][10]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
@@ -190,8 +190,8 @@ agreement for further details.
 ; compositor:comp|rgba_in[0][8]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[0][9]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[0][9]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][0]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][0]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
+; compositor:comp|rgba_in[1][0]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][0]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
 ; compositor:comp|rgba_in[1][10]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[1][10]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[1][11]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
@@ -204,52 +204,52 @@ agreement for further details.
 ; compositor:comp|rgba_in[1][14]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[1][15]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[1][15]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][16]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][16]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][17]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][17]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][18]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][18]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][19]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][19]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][1]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][1]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][20]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][20]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][21]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][21]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][22]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][22]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][23]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][23]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; compositor:comp|rgba_in[1][24]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][24]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][25]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][25]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][26]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][26]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][27]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][27]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][28]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][28]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][29]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][29]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][2]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][2]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][30]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][30]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][31]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][31]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][3]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][3]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][4]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][4]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][5]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][5]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][6]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][6]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][7]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
-; compositor:comp|rgba_in[1][7]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; ball_render:ball_mask|rgba_out[0]                                                  ; N/A     ;
+; compositor:comp|rgba_in[1][16]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][16]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][17]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][17]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][18]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][18]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][19]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][19]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][1]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][1]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][20]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][20]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][21]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][21]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][22]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][22]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][23]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][23]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][24]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][24]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][25]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][25]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][26]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][26]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][27]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][27]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][28]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][28]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][29]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][29]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][2]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][2]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][30]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][30]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][31]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][31]                                                             ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; compositor:comp|rgba_in[1][3]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][3]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][4]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][4]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][5]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][5]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][6]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][6]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][7]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; compositor:comp|rgba_in[1][7]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
 ; compositor:comp|rgba_in[1][8]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[1][8]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[1][9]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
@@ -318,8 +318,10 @@ agreement for further details.
 ; compositor:comp|rgba_in[2][8]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[2][9]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; compositor:comp|rgba_in[2][9]                                                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; font_render:text_mask|rgba_out[0]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[0]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
+; fill_buf:text_gen|zero_buf                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; text_en~_wirecell                                                                  ; N/A     ;
+; fill_buf:text_gen|zero_buf                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; text_en~_wirecell                                                                  ; N/A     ;
+; font_render:text_mask|rgba_out[0]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[0]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
 ; font_render:text_mask|rgba_out[10]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[10]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[11]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
@@ -332,24 +334,24 @@ agreement for further details.
 ; font_render:text_mask|rgba_out[14]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[15]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[15]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; font_render:text_mask|rgba_out[16]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[16]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[17]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[17]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[18]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[18]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[19]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[19]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[1]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[1]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[20]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[20]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[21]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[21]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[22]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[22]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[23]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[23]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[16]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[16]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[17]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[17]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[18]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[18]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[19]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[19]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[1]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[1]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[20]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[20]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[21]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[21]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[22]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[22]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[23]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[23]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
 ; font_render:text_mask|rgba_out[24]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[24]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[25]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
@@ -362,22 +364,22 @@ agreement for further details.
 ; font_render:text_mask|rgba_out[28]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[29]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[29]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; font_render:text_mask|rgba_out[2]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[2]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[2]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[2]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
 ; font_render:text_mask|rgba_out[30]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[30]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[31]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[31]                                                         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; font_render:text_mask|rgba_out[3]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[3]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[4]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[4]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[5]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[5]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[6]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[6]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[7]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
-; font_render:text_mask|rgba_out[7]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~45                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[3]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[3]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[4]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[4]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[5]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[5]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[6]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[6]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[7]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
+; font_render:text_mask|rgba_out[7]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; font_render:text_mask|Mux0~46                                                      ; N/A     ;
 ; font_render:text_mask|rgba_out[8]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[8]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; font_render:text_mask|rgba_out[9]                                                          ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
@@ -510,6 +512,8 @@ agreement for further details.
 ; screen_buf:buffer|y_w[4]                                                                   ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|y[4]                                                             ; N/A     ;
 ; screen_buf:buffer|y_w[5]                                                                   ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|y[5]                                                             ; N/A     ;
 ; screen_buf:buffer|y_w[5]                                                                   ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|y[5]                                                             ; N/A     ;
+; text_refresh                                                                               ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; text_refresh                                                                       ; N/A     ;
+; text_refresh                                                                               ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; text_refresh                                                                       ; N/A     ;
 ; altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i|outclk_wire[0]~CLKENA0 ; post-fitting  ; connected ; Top                            ; post-synthesis    ; altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i|outclk_wire[0] ; N/A     ;
 ; auto_signaltap_0|gnd                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                ; N/A     ;
 ; auto_signaltap_0|gnd                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                ; N/A     ;
@@ -524,10 +528,10 @@ agreement for further details.
 ; auto_signaltap_0|gnd                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                ; N/A     ;
 ; auto_signaltap_0|gnd                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                ; N/A     ;
 ; auto_signaltap_0|gnd                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                ; N/A     ;
-; auto_signaltap_0|gnd                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                ; N/A     ;
-; auto_signaltap_0|gnd                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                ; N/A     ;
-; auto_signaltap_0|gnd                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                ; N/A     ;
-; auto_signaltap_0|gnd                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                ; N/A     ;
+; auto_signaltap_0|vcc                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                ; N/A     ;
+; auto_signaltap_0|vcc                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                ; N/A     ;
+; auto_signaltap_0|vcc                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                ; N/A     ;
+; auto_signaltap_0|vcc                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                ; N/A     ;
 ; auto_signaltap_0|vcc                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                ; N/A     ;
 ; auto_signaltap_0|vcc                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                ; N/A     ;
 ; auto_signaltap_0|vcc                                                                       ; post-fitting  ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                ; N/A     ;
@@ -551,61 +555,61 @@ agreement for further details.
 +---------------------------------------------+------+------------------+--------------------------------+--------------------------------+
 ; Statistic                                   ; Top  ; sld_hub:auto_hub ; sld_signaltap:auto_signaltap_0 ; hard_block:auto_generated_inst ;
 +---------------------------------------------+------+------------------+--------------------------------+--------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 254  ; 63               ; 1518                           ; 0                              ;
+; Estimate of Logic utilization (ALMs needed) ; 256  ; 63               ; 1530                           ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
-; Combinational ALUT usage for logic          ; 487  ; 91               ; 510                            ; 0                              ;
-;     -- 7 input functions                    ; 49   ; 0                ; 0                              ; 0                              ;
-;     -- 6 input functions                    ; 251  ; 12               ; 86                             ; 0                              ;
-;     -- 5 input functions                    ; 37   ; 25               ; 268                            ; 0                              ;
-;     -- 4 input functions                    ; 48   ; 17               ; 23                             ; 0                              ;
-;     -- <=3 input functions                  ; 102  ; 37               ; 133                            ; 0                              ;
+; Combinational ALUT usage for logic          ; 494  ; 92               ; 513                            ; 0                              ;
+;     -- 7 input functions                    ; 48   ; 0                ; 0                              ; 0                              ;
+;     -- 6 input functions                    ; 260  ; 11               ; 86                             ; 0                              ;
+;     -- 5 input functions                    ; 37   ; 24               ; 270                            ; 0                              ;
+;     -- 4 input functions                    ; 46   ; 18               ; 23                             ; 0                              ;
+;     -- <=3 input functions                  ; 103  ; 39               ; 134                            ; 0                              ;
 ; Memory ALUT usage                           ; 0    ; 0                ; 0                              ; 0                              ;
 ;     -- 64-address deep                      ; 0    ; 0                ; 0                              ; 0                              ;
 ;     -- 32-address deep                      ; 0    ; 0                ; 0                              ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
-; Dedicated logic registers                   ; 97   ; 91               ; 2982                           ; 0                              ;
+; Dedicated logic registers                   ; 97   ; 91               ; 3006                           ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; I/O pins                                    ; 50   ; 0                ; 0                              ; 4                              ;
 ; I/O registers                               ; 0    ; 0                ; 0                              ; 0                              ;
-; Total block memory bits                     ; 1024 ; 0                ; 1769472                        ; 0                              ;
+; Total block memory bits                     ; 1024 ; 0                ; 1785856                        ; 0                              ;
 ; Total block memory implementation bits      ; 0    ; 0                ; 0                              ; 0                              ;
 ; JTAG                                        ; 0    ; 0                ; 0                              ; 1                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; Connections                                 ;      ;                  ;                                ;                                ;
-;     -- Input Connections                    ; 126  ; 134              ; 4326                           ; 1                              ;
-;     -- Registered Input Connections         ; 106  ; 110              ; 3445                           ; 0                              ;
-;     -- Output Connections                   ; 432  ; 453              ; 34                             ; 3668                           ;
-;     -- Registered Output Connections        ; 98   ; 453              ; 0                              ; 0                              ;
+;     -- Input Connections                    ; 131  ; 134              ; 4360                           ; 1                              ;
+;     -- Registered Input Connections         ; 106  ; 110              ; 3473                           ; 0                              ;
+;     -- Output Connections                   ; 436  ; 455              ; 34                             ; 3701                           ;
+;     -- Registered Output Connections        ; 98   ; 455              ; 0                              ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; Internal Connections                        ;      ;                  ;                                ;                                ;
-;     -- Total Connections                    ; 3392 ; 1101             ; 17842                          ; 3686                           ;
-;     -- Registered Connections               ; 2157 ; 924              ; 14706                          ; 0                              ;
+;     -- Total Connections                    ; 3444 ; 1103             ; 17985                          ; 3719                           ;
+;     -- Registered Connections               ; 2185 ; 925              ; 14830                          ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; External Connections                        ;      ;                  ;                                ;                                ;
-;     -- Top                                  ; 0    ; 0                ; 432                            ; 126                            ;
-;     -- sld_hub:auto_hub                     ; 0    ; 20               ; 444                            ; 123                            ;
-;     -- sld_signaltap:auto_signaltap_0       ; 432  ; 444              ; 64                             ; 3420                           ;
-;     -- hard_block:auto_generated_inst       ; 126  ; 123              ; 3420                           ; 0                              ;
+;     -- Top                                  ; 0    ; 0                ; 436                            ; 131                            ;
+;     -- sld_hub:auto_hub                     ; 0    ; 20               ; 446                            ; 123                            ;
+;     -- sld_signaltap:auto_signaltap_0       ; 436  ; 446              ; 64                             ; 3448                           ;
+;     -- hard_block:auto_generated_inst       ; 131  ; 123              ; 3448                           ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; Partition Interface                         ;      ;                  ;                                ;                                ;
-;     -- Input Ports                          ; 18   ; 45               ; 717                            ; 6                              ;
-;     -- Output Ports                         ; 256  ; 62               ; 447                            ; 13                             ;
+;     -- Input Ports                          ; 18   ; 45               ; 723                            ; 6                              ;
+;     -- Output Ports                         ; 258  ; 62               ; 451                            ; 13                             ;
 ;     -- Bidir Ports                          ; 0    ; 0                ; 0                              ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; Registered Ports                            ;      ;                  ;                                ;                                ;
-;     -- Registered Input Ports               ; 0    ; 13               ; 437                            ; 0                              ;
-;     -- Registered Output Ports              ; 0    ; 29               ; 433                            ; 0                              ;
+;     -- Registered Input Ports               ; 0    ; 13               ; 441                            ; 0                              ;
+;     -- Registered Output Ports              ; 0    ; 29               ; 437                            ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; Port Connectivity                           ;      ;                  ;                                ;                                ;
-;     -- Input Ports driven by GND            ; 0    ; 0                ; 205                            ; 0                              ;
+;     -- Input Ports driven by GND            ; 0    ; 0                ; 185                            ; 0                              ;
 ;     -- Output Ports driven by GND           ; 0    ; 28               ; 2                              ; 0                              ;
-;     -- Input Ports driven by VCC            ; 0    ; 0                ; 31                             ; 0                              ;
+;     -- Input Ports driven by VCC            ; 0    ; 0                ; 35                             ; 0                              ;
 ;     -- Output Ports driven by VCC           ; 0    ; 0                ; 1                              ; 0                              ;
-;     -- Input Ports with no Source           ; 0    ; 25               ; 220                            ; 0                              ;
+;     -- Input Ports with no Source           ; 0    ; 25               ; 222                            ; 0                              ;
 ;     -- Output Ports with no Source          ; 0    ; 0                ; 0                              ; 0                              ;
-;     -- Input Ports with no Fanout           ; 0    ; 30               ; 234                            ; 0                              ;
-;     -- Output Ports with no Fanout          ; 0    ; 29               ; 435                            ; 0                              ;
+;     -- Input Ports with no Fanout           ; 0    ; 30               ; 236                            ; 0                              ;
+;     -- Output Ports with no Fanout          ; 0    ; 29               ; 439                            ; 0                              ;
 +---------------------------------------------+------+------------------+--------------------------------+--------------------------------+
 Note: Resource usage numbers presented for Partitions containing post-synthesis logic are estimates.  For Partitions containing post-fit logic, resource usage numbers are accurate based on previous placement information.  Actual Fitter results may vary depending on current Fitter Preservation Level assignments.
 
@@ -1175,6 +1179,8 @@ Note: Resource usage numbers presented for Partitions containing post-synthesis 
 ;                                   ;           ;               ;          ;             ;
 ; pre_syn.bp.comp_rgba_in_2__9_     ; Top       ; Output Port   ; n/a      ;             ;
 ;                                   ;           ;               ;          ;             ;
+; pre_syn.bp.text_gen_zero_buf      ; Top       ; Output Port   ; n/a      ;             ;
+;                                   ;           ;               ;          ;             ;
 ; pre_syn.bp.text_mask_rgba_out_0_  ; Top       ; Output Port   ; n/a      ;             ;
 ;                                   ;           ;               ;          ;             ;
 ; pre_syn.bp.text_mask_rgba_out_10_ ; Top       ; Output Port   ; n/a      ;             ;
@@ -1279,6 +1285,8 @@ Note: Resource usage numbers presented for Partitions containing post-synthesis 
 ;                                   ;           ;               ;          ;             ;
 ; pre_syn.bp.text_mask_y_pixel_9_   ; Top       ; Output Port   ; n/a      ;             ;
 ;                                   ;           ;               ;          ;             ;
+; pre_syn.bp.text_refresh           ; Top       ; Output Port   ; n/a      ;             ;
+;                                   ;           ;               ;          ;             ;
 +-----------------------------------+-----------+---------------+----------+-------------+
 
 
@@ -1287,20 +1295,20 @@ Note: Resource usage numbers presented for Partitions containing post-synthesis 
 +---------------------------------------------+------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                              ;
 +---------------------------------------------+------------------------------------------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 1855                                                                               ;
+; Estimate of Logic utilization (ALMs needed) ; 1869                                                                               ;
 ;                                             ;                                                                                    ;
-; Combinational ALUT usage for logic          ; 1088                                                                               ;
-;     -- 7 input functions                    ; 49                                                                                 ;
-;     -- 6 input functions                    ; 349                                                                                ;
-;     -- 5 input functions                    ; 330                                                                                ;
-;     -- 4 input functions                    ; 88                                                                                 ;
-;     -- <=3 input functions                  ; 272                                                                                ;
+; Combinational ALUT usage for logic          ; 1099                                                                               ;
+;     -- 7 input functions                    ; 48                                                                                 ;
+;     -- 6 input functions                    ; 357                                                                                ;
+;     -- 5 input functions                    ; 331                                                                                ;
+;     -- 4 input functions                    ; 87                                                                                 ;
+;     -- <=3 input functions                  ; 276                                                                                ;
 ;                                             ;                                                                                    ;
-; Dedicated logic registers                   ; 3170                                                                               ;
+; Dedicated logic registers                   ; 3194                                                                               ;
 ;                                             ;                                                                                    ;
 ; I/O pins                                    ; 54                                                                                 ;
 ; Total MLAB memory bits                      ; 0                                                                                  ;
-; Total block memory bits                     ; 1770496                                                                            ;
+; Total block memory bits                     ; 1786880                                                                            ;
 ;                                             ;                                                                                    ;
 ; Total DSP Blocks                            ; 0                                                                                  ;
 ;                                             ;                                                                                    ;
@@ -1308,9 +1316,9 @@ Note: Resource usage numbers presented for Partitions containing post-synthesis 
 ;     -- PLLs                                 ; 1                                                                                  ;
 ;                                             ;                                                                                    ;
 ; Maximum fan-out node                        ; altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i|outclk_wire[0] ;
-; Maximum fan-out                             ; 2218                                                                               ;
-; Total fan-out                               ; 21217                                                                              ;
-; Average fan-out                             ; 4.61                                                                               ;
+; Maximum fan-out                             ; 2236                                                                               ;
+; Total fan-out                               ; 21406                                                                              ;
+; Average fan-out                             ; 4.62                                                                               ;
 +---------------------------------------------+------------------------------------------------------------------------------------+
 
 
@@ -1320,7 +1328,7 @@ Note: Resource usage numbers presented for Partitions containing post-synthesis 
 ; Name                                                                                                                                                                                                  ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size    ; MIF  ;
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+---------+------+
 ; screen_buf:buffer|dual_port_ram_sync:buf_a|altsyncram:ram_rtl_0|altsyncram_c1s1:auto_generated|ALTSYNCRAM                                                                                             ; AUTO ; True Dual Port   ; 8192         ; 8            ; 8192         ; 8            ; 65536   ; None ;
-; sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram|altsyncram_4l84:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 8192         ; 216          ; 8192         ; 216          ; 1769472 ; None ;
+; sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram|altsyncram_8l84:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 8192         ; 218          ; 8192         ; 218          ; 1785856 ; None ;
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+---------+------+
 
 
@@ -1330,13 +1338,13 @@ Note: Resource usage numbers presented for Partitions containing post-synthesis 
 Info: *******************************************************************
 Info: Running Quartus Prime Partition Merge
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Wed Apr 17 17:05:44 2019
+    Info: Processing started: Wed Apr 17 18:41:34 2019
 Info: Command: quartus_cdb --read_settings_files=off --write_settings_files=off XGA_Text -c XGA_Text --merge=on
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (35007): Using synthesis netlist for partition "Top"
 Info (35007): Using synthesis netlist for partition "sld_hub:auto_hub"
 Info (35007): Using synthesis netlist for partition "sld_signaltap:auto_signaltap_0"
-Info (35024): Successfully connected in-system debug instance "auto_signaltap_0" to all 465 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
+Info (35024): Successfully connected in-system debug instance "auto_signaltap_0" to all 469 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
 Info (35002): Resolved and merged 3 partition(s)
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 18 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
@@ -1352,16 +1360,16 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[7]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 25
     Warning (15610): No output dependent on input pin "SW[8]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 25
     Warning (15610): No output dependent on input pin "SW[9]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 25
-Info (21057): Implemented 4110 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 4145 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 18 input pins
     Info (21059): Implemented 40 output pins
-    Info (21061): Implemented 3826 logic cells
-    Info (21064): Implemented 224 RAM segments
+    Info (21061): Implemented 3859 logic cells
+    Info (21064): Implemented 226 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus Prime Partition Merge was successful. 0 errors, 13 warnings
-    Info: Peak virtual memory: 4812 megabytes
-    Info: Processing ended: Wed Apr 17 17:05:47 2019
+    Info: Peak virtual memory: 4811 megabytes
+    Info: Processing ended: Wed Apr 17 18:41:37 2019
     Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02
 
 

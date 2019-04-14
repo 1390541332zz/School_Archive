@@ -1,13 +1,13 @@
-Partition Merge Status : Successful - Wed Apr 17 17:05:47 2019
+Partition Merge Status : Successful - Wed Apr 17 18:41:36 2019
 Quartus Prime Version : 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 Revision Name : XGA_Text
 Top-level Entity Name : XGA_Text
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 3170
+Total registers : 3194
 Total pins : 54
 Total virtual pins : 0
-Total block memory bits : 1,770,496
+Total block memory bits : 1,786,880
 Total DSP Blocks : 0
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
