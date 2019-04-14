@@ -31,10 +31,10 @@ module fill_buf #(
 
 localparam
     numeric_offset     = 48,
-    uppercase_a_offset = 65,
-    lowercase_a_offset = 97, 
-    lowercase_a        = lowercase_a_offset - numeric_offset,
-    uppercase_a        = uppercase_a_offset - numeric_offset;
+    uppercase_a_offset = 65 - 10,
+    lowercase_a_offset = 97 - 26 - 10, 
+    lowercase_a        = 10 - 1,
+    uppercase_a        = 10 + 26 - 1;
 
 wire [char_width - 1:0]
     c; 
@@ -49,14 +49,25 @@ wire
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
-assign c_out         = (zero_buf)         ? blank_char
-                     : (c >= lowercase_a) ? c + lowercase_a_offset
-                     : (c >= uppercase_a) ? c + uppercase_a_offset
-                                          : c + numeric_offset;
+assign c_out  = (zero_buf)         ? blank_char
+              : (c >= lowercase_a) ? c + lowercase_a_offset
+              : (c >= uppercase_a) ? c + uppercase_a_offset
+                                   : c + numeric_offset;
 
 /* verilator lint_off WIDTH */
-assign x_next        = (write_en && (x < (width  - 1))) ? x + 1 : 0;
-assign y_next        = (write_en && (y < (height - 1))) ? y + 1 : 0;
+always @(*) if (write_en) begin
+    if (x >= (width - 1)) begin
+        x_next = 0;
+        y_next = (y >= (width - 1)) ? 0 : y + 1;
+    end else begin
+        x_next = x + 1;
+        y_next = y;
+    end
+end else begin
+    x_next = x;
+    y_next = y;
+end
+
 assign write_en_next = write_en ^ ((x == (width - 1)) && (y == (height - 1)));
 /* verilator lint_on WIDTH */
 

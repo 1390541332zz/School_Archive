@@ -213,7 +213,7 @@
       </signal_vec>
       <presentation>
         <unified_setup_data_view>
-          <node is_selected="false" level-0="alt_or" name="screen_buf:buffer|c_in[7..0]" order="msb_to_lsb" radix="ascii" type="combinatorial">
+          <node is_selected="false" level-0="alt_or" name="screen_buf:buffer|c_in[7..0]" order="msb_to_lsb" radix="unsigned_dec" type="combinatorial">
             <node data_index="28" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="screen_buf:buffer|c_in[7]" storage_index="28" tap_mode="classic" trigger_index="28" type="unknown"/>
             <node data_index="27" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="screen_buf:buffer|c_in[6]" storage_index="27" tap_mode="classic" trigger_index="27" type="unknown"/>
             <node data_index="26" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="screen_buf:buffer|c_in[5]" storage_index="26" tap_mode="classic" trigger_index="26" type="unknown"/>
@@ -296,7 +296,7 @@
           <node data_index="64" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="rising edge" name="text_refresh" storage_index="64" tap_mode="classic" trigger_index="64" type="unknown"/>
         </unified_setup_data_view>
         <data_view>
-          <bus is_selected="false" level-0="alt_or" name="screen_buf:buffer|c_in[7..0]" order="msb_to_lsb" radix="ascii" type="combinatorial">
+          <bus is_selected="false" level-0="alt_or" name="screen_buf:buffer|c_in[7..0]" order="msb_to_lsb" radix="unsigned_dec" type="combinatorial">
             <net data_index="28" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="screen_buf:buffer|c_in[7]" storage_index="28" tap_mode="classic" trigger_index="28" type="unknown"/>
             <net data_index="27" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="screen_buf:buffer|c_in[6]" storage_index="27" tap_mode="classic" trigger_index="27" type="unknown"/>
             <net data_index="26" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="screen_buf:buffer|c_in[5]" storage_index="26" tap_mode="classic" trigger_index="26" type="unknown"/>
@@ -379,7 +379,7 @@
           <net data_index="64" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="rising edge" name="text_refresh" storage_index="64" tap_mode="classic" trigger_index="64" type="unknown"/>
         </data_view>
         <setup_view>
-          <bus is_selected="false" level-0="alt_or" name="screen_buf:buffer|c_in[7..0]" order="msb_to_lsb" radix="ascii" type="combinatorial">
+          <bus is_selected="false" level-0="alt_or" name="screen_buf:buffer|c_in[7..0]" order="msb_to_lsb" radix="unsigned_dec" type="combinatorial">
             <net data_index="28" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="screen_buf:buffer|c_in[7]" storage_index="28" tap_mode="classic" trigger_index="28" type="unknown"/>
             <net data_index="27" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="screen_buf:buffer|c_in[6]" storage_index="27" tap_mode="classic" trigger_index="27" type="unknown"/>
             <net data_index="26" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="screen_buf:buffer|c_in[5]" storage_index="26" tap_mode="classic" trigger_index="26" type="unknown"/>
@@ -496,7 +496,7 @@
     </signal_set>
     <position_info>
       <single attribute="active tab" value="0"/>
-      <single attribute="data horizontal scroll position" value="1031"/>
+      <single attribute="data horizontal scroll position" value="0"/>
       <single attribute="data vertical scroll position" value="0"/>
       <single attribute="setup horizontal scroll position" value="88"/>
       <single attribute="setup vertical scroll position" value="0"/>

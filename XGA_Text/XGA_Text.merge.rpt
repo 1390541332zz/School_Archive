@@ -1,5 +1,5 @@
 Partition Merge report for XGA_Text
-Wed Apr 17 19:08:22 2019
+Wed Apr 17 20:37:15 2019
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -42,13 +42,13 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Partition Merge Summary                                                       ;
 +---------------------------------+---------------------------------------------+
-; Partition Merge Status          ; Successful - Wed Apr 17 19:08:22 2019       ;
+; Partition Merge Status          ; Successful - Wed Apr 17 20:37:15 2019       ;
 ; Quartus Prime Version           ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; XGA_Text                                    ;
 ; Top-level Entity Name           ; XGA_Text                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 1378                                        ;
+; Total registers                 ; 1389                                        ;
 ; Total pins                      ; 54                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 533,504                                     ;
@@ -121,22 +121,22 @@ agreement for further details.
 ; font_render:text_mask|y_pixel[8]                                                           ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; vga_driver:xga|ctr_v[8]                                                            ; N/A     ;
 ; font_render:text_mask|y_pixel[9]                                                           ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; vga_driver:xga|ctr_v[9]                                                            ; N/A     ;
 ; font_render:text_mask|y_pixel[9]                                                           ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; vga_driver:xga|ctr_v[9]                                                            ; N/A     ;
-; screen_buf:buffer|c_in[0]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
-; screen_buf:buffer|c_in[0]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
-; screen_buf:buffer|c_in[1]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[1]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[2]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[2]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[3]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[3]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[4]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[4]~1                                                       ; N/A     ;
-; screen_buf:buffer|c_in[4]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[4]~1                                                       ; N/A     ;
-; screen_buf:buffer|c_in[5]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; text_en                                                                            ; N/A     ;
-; screen_buf:buffer|c_in[5]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; text_en                                                                            ; N/A     ;
-; screen_buf:buffer|c_in[6]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
-; screen_buf:buffer|c_in[6]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
-; screen_buf:buffer|c_in[7]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
-; screen_buf:buffer|c_in[7]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
+; screen_buf:buffer|c_in[0]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~2                                                       ; N/A     ;
+; screen_buf:buffer|c_in[0]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~2                                                       ; N/A     ;
+; screen_buf:buffer|c_in[1]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[1]~3                                                       ; N/A     ;
+; screen_buf:buffer|c_in[1]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[1]~3                                                       ; N/A     ;
+; screen_buf:buffer|c_in[2]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[2]~4                                                       ; N/A     ;
+; screen_buf:buffer|c_in[2]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[2]~4                                                       ; N/A     ;
+; screen_buf:buffer|c_in[3]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[3]~5                                                       ; N/A     ;
+; screen_buf:buffer|c_in[3]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[3]~5                                                       ; N/A     ;
+; screen_buf:buffer|c_in[4]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[4]~6                                                       ; N/A     ;
+; screen_buf:buffer|c_in[4]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[4]~6                                                       ; N/A     ;
+; screen_buf:buffer|c_in[5]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[5]~7                                                       ; N/A     ;
+; screen_buf:buffer|c_in[5]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[5]~7                                                       ; N/A     ;
+; screen_buf:buffer|c_in[6]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[6]~8                                                       ; N/A     ;
+; screen_buf:buffer|c_in[6]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[6]~8                                                       ; N/A     ;
+; screen_buf:buffer|c_in[7]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; screen_buf:buffer|c_in[7]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; screen_buf:buffer|c_out[0]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; screen_buf:buffer|dual_port_ram_sync:buf_a|ram~3                                   ; N/A     ;
 ; screen_buf:buffer|c_out[0]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; screen_buf:buffer|dual_port_ram_sync:buf_a|ram~3                                   ; N/A     ;
 ; screen_buf:buffer|c_out[1]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; screen_buf:buffer|dual_port_ram_sync:buf_a|ram~4                                   ; N/A     ;
@@ -250,19 +250,19 @@ agreement for further details.
 +---------------------------------------------+------+------------------+--------------------------------+--------------------------------+
 ; Statistic                                   ; Top  ; sld_hub:auto_hub ; sld_signaltap:auto_signaltap_0 ; hard_block:auto_generated_inst ;
 +---------------------------------------------+------+------------------+--------------------------------+--------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 264  ; 62               ; 600                            ; 0                              ;
+; Estimate of Logic utilization (ALMs needed) ; 273  ; 62               ; 601                            ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
-; Combinational ALUT usage for logic          ; 513  ; 91               ; 326                            ; 0                              ;
+; Combinational ALUT usage for logic          ; 532  ; 91               ; 326                            ; 0                              ;
 ;     -- 7 input functions                    ; 48   ; 0                ; 0                              ; 0                              ;
-;     -- 6 input functions                    ; 259  ; 12               ; 63                             ; 0                              ;
-;     -- 5 input functions                    ; 42   ; 25               ; 107                            ; 0                              ;
-;     -- 4 input functions                    ; 42   ; 17               ; 23                             ; 0                              ;
-;     -- <=3 input functions                  ; 122  ; 37               ; 133                            ; 0                              ;
+;     -- 6 input functions                    ; 270  ; 12               ; 63                             ; 0                              ;
+;     -- 5 input functions                    ; 50   ; 25               ; 107                            ; 0                              ;
+;     -- 4 input functions                    ; 39   ; 17               ; 23                             ; 0                              ;
+;     -- <=3 input functions                  ; 125  ; 37               ; 133                            ; 0                              ;
 ; Memory ALUT usage                           ; 0    ; 0                ; 0                              ; 0                              ;
 ;     -- 64-address deep                      ; 0    ; 0                ; 0                              ; 0                              ;
 ;     -- 32-address deep                      ; 0    ; 0                ; 0                              ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
-; Dedicated logic registers                   ; 118  ; 91               ; 1169                           ; 0                              ;
+; Dedicated logic registers                   ; 129  ; 91               ; 1169                           ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; I/O pins                                    ; 50   ; 0                ; 0                              ; 4                              ;
@@ -273,20 +273,20 @@ agreement for further details.
 ; DSP block                                   ; 1    ; 0                ; 0                              ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; Connections                                 ;      ;                  ;                                ;                                ;
-;     -- Input Connections                    ; 152  ; 134              ; 1758                           ; 1                              ;
-;     -- Registered Input Connections         ; 127  ; 110              ; 1330                           ; 0                              ;
-;     -- Output Connections                   ; 130  ; 302              ; 34                             ; 1579                           ;
-;     -- Registered Output Connections        ; 96   ; 302              ; 0                              ; 0                              ;
+;     -- Input Connections                    ; 164  ; 134              ; 1758                           ; 1                              ;
+;     -- Registered Input Connections         ; 138  ; 110              ; 1330                           ; 0                              ;
+;     -- Output Connections                   ; 130  ; 302              ; 34                             ; 1591                           ;
+;     -- Registered Output Connections        ; 94   ; 302              ; 0                              ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; Internal Connections                        ;      ;                  ;                                ;                                ;
-;     -- Total Connections                    ; 3276 ; 950              ; 7080                           ; 1597                           ;
-;     -- Registered Connections               ; 2231 ; 773              ; 5341                           ; 0                              ;
+;     -- Total Connections                    ; 3413 ; 950              ; 7080                           ; 1609                           ;
+;     -- Registered Connections               ; 2304 ; 773              ; 5341                           ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; External Connections                        ;      ;                  ;                                ;                                ;
-;     -- Top                                  ; 0    ; 0                ; 130                            ; 152                            ;
+;     -- Top                                  ; 0    ; 0                ; 130                            ; 164                            ;
 ;     -- sld_hub:auto_hub                     ; 0    ; 20               ; 293                            ; 123                            ;
 ;     -- sld_signaltap:auto_signaltap_0       ; 130  ; 293              ; 64                             ; 1305                           ;
-;     -- hard_block:auto_generated_inst       ; 152  ; 123              ; 1305                           ; 0                              ;
+;     -- hard_block:auto_generated_inst       ; 164  ; 123              ; 1305                           ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; Partition Interface                         ;      ;                  ;                                ;                                ;
 ;     -- Input Ports                          ; 18   ; 45               ; 264                            ; 6                              ;
@@ -298,7 +298,7 @@ agreement for further details.
 ;     -- Registered Output Ports              ; 0    ; 29               ; 131                            ; 0                              ;
 ;                                             ;      ;                  ;                                ;                                ;
 ; Port Connectivity                           ;      ;                  ;                                ;                                ;
-;     -- Input Ports driven by GND            ; 0    ; 0                ; 21                             ; 0                              ;
+;     -- Input Ports driven by GND            ; 0    ; 0                ; 17                             ; 0                              ;
 ;     -- Output Ports driven by GND           ; 0    ; 28               ; 2                              ; 0                              ;
 ;     -- Input Ports driven by VCC            ; 0    ; 0                ; 17                             ; 0                              ;
 ;     -- Output Ports driven by VCC           ; 0    ; 0                ; 1                              ; 0                              ;
@@ -685,16 +685,16 @@ Note: Resource usage numbers presented for Partitions containing post-synthesis 
 +---------------------------------------------+------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                              ;
 +---------------------------------------------+------------------------------------------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 946                                                                                ;
+; Estimate of Logic utilization (ALMs needed) ; 956                                                                                ;
 ;                                             ;                                                                                    ;
-; Combinational ALUT usage for logic          ; 930                                                                                ;
+; Combinational ALUT usage for logic          ; 949                                                                                ;
 ;     -- 7 input functions                    ; 48                                                                                 ;
-;     -- 6 input functions                    ; 334                                                                                ;
-;     -- 5 input functions                    ; 174                                                                                ;
-;     -- 4 input functions                    ; 82                                                                                 ;
-;     -- <=3 input functions                  ; 292                                                                                ;
+;     -- 6 input functions                    ; 345                                                                                ;
+;     -- 5 input functions                    ; 182                                                                                ;
+;     -- 4 input functions                    ; 79                                                                                 ;
+;     -- <=3 input functions                  ; 295                                                                                ;
 ;                                             ;                                                                                    ;
-; Dedicated logic registers                   ; 1378                                                                               ;
+; Dedicated logic registers                   ; 1389                                                                               ;
 ;                                             ;                                                                                    ;
 ; I/O pins                                    ; 54                                                                                 ;
 ; Total MLAB memory bits                      ; 0                                                                                  ;
@@ -706,9 +706,9 @@ Note: Resource usage numbers presented for Partitions containing post-synthesis 
 ;     -- PLLs                                 ; 1                                                                                  ;
 ;                                             ;                                                                                    ;
 ; Maximum fan-out node                        ; altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i|outclk_wire[0] ;
-; Maximum fan-out                             ; 880                                                                                ;
-; Total fan-out                               ; 10778                                                                              ;
-; Average fan-out                             ; 4.31                                                                               ;
+; Maximum fan-out                             ; 891                                                                                ;
+; Total fan-out                               ; 10934                                                                              ;
+; Average fan-out                             ; 4.32                                                                               ;
 +---------------------------------------------+------------------------------------------------------------------------------------+
 
 
@@ -727,7 +727,7 @@ Note: Resource usage numbers presented for Partitions containing post-synthesis 
 +---------------------------------+-------------+
 ; Statistic                       ; Number Used ;
 +---------------------------------+-------------+
-; Two Independent 18x18           ; 1           ;
+; Independent 27x27               ; 1           ;
 ; Total number of DSP blocks      ; 1           ;
 ;                                 ;             ;
 ; Fixed Point Unsigned Multiplier ; 1           ;
@@ -740,7 +740,7 @@ Note: Resource usage numbers presented for Partitions containing post-synthesis 
 Info: *******************************************************************
 Info: Running Quartus Prime Partition Merge
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Wed Apr 17 19:08:20 2019
+    Info: Processing started: Wed Apr 17 20:37:13 2019
 Info: Command: quartus_cdb --read_settings_files=off --write_settings_files=off XGA_Text -c XGA_Text --merge=on
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (35007): Using synthesis netlist for partition "Top"
@@ -762,17 +762,17 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[7]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 25
     Warning (15610): No output dependent on input pin "SW[8]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 25
     Warning (15610): No output dependent on input pin "SW[9]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 25
-Info (21057): Implemented 2144 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2165 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 18 input pins
     Info (21059): Implemented 40 output pins
-    Info (21061): Implemented 2010 logic cells
+    Info (21061): Implemented 2031 logic cells
     Info (21064): Implemented 73 RAM segments
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 1 DSP elements
 Info: Quartus Prime Partition Merge was successful. 0 errors, 13 warnings
     Info: Peak virtual memory: 4795 megabytes
-    Info: Processing ended: Wed Apr 17 19:08:23 2019
-    Info: Elapsed time: 00:00:03
+    Info: Processing ended: Wed Apr 17 20:37:15 2019
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
 

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for XGA_Text
-Wed Apr 17 19:08:18 2019
+Wed Apr 17 20:37:12 2019
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -76,13 +76,13 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Apr 17 19:08:18 2019       ;
+; Analysis & Synthesis Status     ; Successful - Wed Apr 17 20:37:12 2019       ;
 ; Quartus Prime Version           ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; XGA_Text                                    ;
 ; Top-level Entity Name           ; XGA_Text                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 1378                                        ;
+; Total registers                 ; 1389                                        ;
 ; Total pins                      ; 54                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 533,504                                     ;
@@ -289,16 +289,16 @@ agreement for further details.
 +---------------------------------------------+------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                              ;
 +---------------------------------------------+------------------------------------------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 946                                                                                ;
+; Estimate of Logic utilization (ALMs needed) ; 956                                                                                ;
 ;                                             ;                                                                                    ;
-; Combinational ALUT usage for logic          ; 930                                                                                ;
+; Combinational ALUT usage for logic          ; 949                                                                                ;
 ;     -- 7 input functions                    ; 48                                                                                 ;
-;     -- 6 input functions                    ; 334                                                                                ;
-;     -- 5 input functions                    ; 174                                                                                ;
-;     -- 4 input functions                    ; 82                                                                                 ;
-;     -- <=3 input functions                  ; 292                                                                                ;
+;     -- 6 input functions                    ; 345                                                                                ;
+;     -- 5 input functions                    ; 182                                                                                ;
+;     -- 4 input functions                    ; 79                                                                                 ;
+;     -- <=3 input functions                  ; 295                                                                                ;
 ;                                             ;                                                                                    ;
-; Dedicated logic registers                   ; 1378                                                                               ;
+; Dedicated logic registers                   ; 1389                                                                               ;
 ;                                             ;                                                                                    ;
 ; I/O pins                                    ; 54                                                                                 ;
 ; Total MLAB memory bits                      ; 0                                                                                  ;
@@ -310,9 +310,9 @@ agreement for further details.
 ;     -- PLLs                                 ; 1                                                                                  ;
 ;                                             ;                                                                                    ;
 ; Maximum fan-out node                        ; altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i|outclk_wire[0] ;
-; Maximum fan-out                             ; 880                                                                                ;
-; Total fan-out                               ; 10778                                                                              ;
-; Average fan-out                             ; 4.31                                                                               ;
+; Maximum fan-out                             ; 891                                                                                ;
+; Total fan-out                               ; 10934                                                                              ;
+; Average fan-out                             ; 4.32                                                                               ;
 +---------------------------------------------+------------------------------------------------------------------------------------+
 
 
@@ -321,21 +321,21 @@ agreement for further details.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                  ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |XGA_Text                                                                                                                               ; 930 (6)             ; 1378 (3)                  ; 533504            ; 1          ; 54   ; 0            ; |XGA_Text                                                                                                                                                                                                                                                                                                                                            ; XGA_Text                          ; work         ;
+; |XGA_Text                                                                                                                               ; 949 (6)             ; 1389 (3)                  ; 533504            ; 1          ; 54   ; 0            ; |XGA_Text                                                                                                                                                                                                                                                                                                                                            ; XGA_Text                          ; work         ;
 ;    |altpll_75:pll|                                                                                                                      ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|altpll_75:pll                                                                                                                                                                                                                                                                                                                              ; altpll_75                         ; altpll_75    ;
 ;       |altpll_75_0002:altpll_75_inst|                                                                                                   ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|altpll_75:pll|altpll_75_0002:altpll_75_inst                                                                                                                                                                                                                                                                                                ; altpll_75_0002                    ; altpll_75    ;
 ;          |altera_pll:altera_pll_i|                                                                                                      ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|altpll_75:pll|altpll_75_0002:altpll_75_inst|altera_pll:altera_pll_i                                                                                                                                                                                                                                                                        ; altera_pll                        ; work         ;
 ;    |ball_driver:ball|                                                                                                                   ; 32 (32)             ; 22 (22)                   ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|ball_driver:ball                                                                                                                                                                                                                                                                                                                           ; ball_driver                       ; work         ;
-;    |ball_render:ball_mask|                                                                                                              ; 76 (76)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|ball_render:ball_mask                                                                                                                                                                                                                                                                                                                      ; ball_render                       ; work         ;
-;    |fill_buf:text_gen|                                                                                                                  ; 45 (26)             ; 32 (14)                   ; 0                 ; 1          ; 0    ; 0            ; |XGA_Text|fill_buf:text_gen                                                                                                                                                                                                                                                                                                                          ; fill_buf                          ; work         ;
-;       |character_gen:char_gen|                                                                                                          ; 19 (19)             ; 18 (18)                   ; 0                 ; 1          ; 0    ; 0            ; |XGA_Text|fill_buf:text_gen|character_gen:char_gen                                                                                                                                                                                                                                                                                                   ; character_gen                     ; work         ;
+;    |ball_render:ball_mask|                                                                                                              ; 81 (81)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|ball_render:ball_mask                                                                                                                                                                                                                                                                                                                      ; ball_render                       ; work         ;
+;    |fill_buf:text_gen|                                                                                                                  ; 59 (32)             ; 41 (14)                   ; 0                 ; 1          ; 0    ; 0            ; |XGA_Text|fill_buf:text_gen                                                                                                                                                                                                                                                                                                                          ; fill_buf                          ; work         ;
+;       |character_gen:char_gen|                                                                                                          ; 27 (27)             ; 27 (27)                   ; 0                 ; 1          ; 0    ; 0            ; |XGA_Text|fill_buf:text_gen|character_gen:char_gen                                                                                                                                                                                                                                                                                                   ; character_gen                     ; work         ;
 ;    |font_render:text_mask|                                                                                                              ; 294 (294)           ; 11 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|font_render:text_mask                                                                                                                                                                                                                                                                                                                      ; font_render                       ; work         ;
 ;       |font_rom:font|                                                                                                                   ; 0 (0)               ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|font_render:text_mask|font_rom:font                                                                                                                                                                                                                                                                                                        ; font_rom                          ; work         ;
 ;    |keypressed:key1|                                                                                                                    ; 3 (3)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|keypressed:key1                                                                                                                                                                                                                                                                                                                            ; keypressed                        ; work         ;
 ;    |keypressed:key2|                                                                                                                    ; 3 (3)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|keypressed:key2                                                                                                                                                                                                                                                                                                                            ; keypressed                        ; work         ;
 ;    |keypressed:key3|                                                                                                                    ; 3 (3)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|keypressed:key3                                                                                                                                                                                                                                                                                                                            ; keypressed                        ; work         ;
-;    |screen_buf:buffer|                                                                                                                  ; 11 (0)              ; 20 (0)                    ; 1024              ; 0          ; 0    ; 0            ; |XGA_Text|screen_buf:buffer                                                                                                                                                                                                                                                                                                                          ; screen_buf                        ; work         ;
-;       |dual_port_ram_sync:buf_a|                                                                                                        ; 11 (11)             ; 20 (20)                   ; 1024              ; 0          ; 0    ; 0            ; |XGA_Text|screen_buf:buffer|dual_port_ram_sync:buf_a                                                                                                                                                                                                                                                                                                 ; dual_port_ram_sync                ; work         ;
+;    |screen_buf:buffer|                                                                                                                  ; 11 (0)              ; 22 (0)                    ; 1024              ; 0          ; 0    ; 0            ; |XGA_Text|screen_buf:buffer                                                                                                                                                                                                                                                                                                                          ; screen_buf                        ; work         ;
+;       |dual_port_ram_sync:buf_a|                                                                                                        ; 11 (11)             ; 22 (22)                   ; 1024              ; 0          ; 0    ; 0            ; |XGA_Text|screen_buf:buffer|dual_port_ram_sync:buf_a                                                                                                                                                                                                                                                                                                 ; dual_port_ram_sync                ; work         ;
 ;          |altsyncram:ram_rtl_0|                                                                                                         ; 0 (0)               ; 0 (0)                     ; 1024              ; 0          ; 0    ; 0            ; |XGA_Text|screen_buf:buffer|dual_port_ram_sync:buf_a|altsyncram:ram_rtl_0                                                                                                                                                                                                                                                                            ; altsyncram                        ; work         ;
 ;             |altsyncram_c1s1:auto_generated|                                                                                            ; 0 (0)               ; 0 (0)                     ; 1024              ; 0          ; 0    ; 0            ; |XGA_Text|screen_buf:buffer|dual_port_ram_sync:buf_a|altsyncram:ram_rtl_0|altsyncram_c1s1:auto_generated                                                                                                                                                                                                                                             ; altsyncram_c1s1                   ; work         ;
 ;    |sld_hub:auto_hub|                                                                                                                   ; 91 (1)              ; 91 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |XGA_Text|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
@@ -463,7 +463,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------+-------------+
 ; Statistic                       ; Number Used ;
 +---------------------------------+-------------+
-; Two Independent 18x18           ; 1           ;
+; Independent 27x27               ; 1           ;
 ; Total number of DSP blocks      ; 1           ;
 ;                                 ;             ;
 ; Fixed Point Unsigned Multiplier ; 1           ;
@@ -520,17 +520,18 @@ Encoding Type:  One-Hot
 +------------------------+--------------------+------------------------+-----------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                  ;
-+----------------------------------------------------------------------------+----------------------------------------+
-; Register name                                                              ; Reason for Removal                     ;
-+----------------------------------------------------------------------------+----------------------------------------+
-; screen_buf:buffer|dual_port_ram_sync:buf_a|addr_b_reg[7..12]               ; Stuck at GND due to stuck port data_in ;
-; screen_buf:buffer|dual_port_ram_sync:buf_a|addr_a_reg[7..12]               ; Stuck at GND due to stuck port data_in ;
-; screen_buf:buffer|dual_port_ram_sync:buf_a|ram_rtl_0_bypass[15..26,28..30] ; Stuck at GND due to stuck port data_in ;
-; fill_buf:text_gen|character_gen:char_gen|rand_r[18..31]                    ; Lost fanout                            ;
-; Total Number of Removed Registers = 41                                     ;                                        ;
-+----------------------------------------------------------------------------+----------------------------------------+
++-----------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                              ;
++------------------------------------------------------------------------+----------------------------------------+
+; Register name                                                          ; Reason for Removal                     ;
++------------------------------------------------------------------------+----------------------------------------+
+; fill_buf:text_gen|character_gen:char_gen|rand_r[32..63]                ; Stuck at GND due to stuck port data_in ;
+; screen_buf:buffer|dual_port_ram_sync:buf_a|addr_b_reg[7..12]           ; Stuck at GND due to stuck port data_in ;
+; screen_buf:buffer|dual_port_ram_sync:buf_a|addr_a_reg[7..12]           ; Stuck at GND due to stuck port data_in ;
+; screen_buf:buffer|dual_port_ram_sync:buf_a|ram_rtl_0_bypass[15..26,34] ; Stuck at GND due to stuck port data_in ;
+; fill_buf:text_gen|character_gen:char_gen|rand_r[27..31]                ; Lost fanout                            ;
+; Total Number of Removed Registers = 62                                 ;                                        ;
++------------------------------------------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -538,12 +539,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 1378  ;
-; Number of registers using Synchronous Clear  ; 194   ;
+; Total registers                              ; 1389  ;
+; Number of registers using Synchronous Clear  ; 204   ;
 ; Number of registers using Synchronous Load   ; 212   ;
 ; Number of registers using Asynchronous Clear ; 452   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 571   ;
+; Number of registers using Clock Enable       ; 584   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -553,8 +554,7 @@ Encoding Type:  One-Hot
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 ; Inverted Register                                                                                                                                                                                                                                                                                                               ; Fan out ;
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; initial_reset                                                                                                                                                                                                                                                                                                                   ; 17      ;
-; fill_buf:text_gen|character_gen:char_gen|rand_r[0]                                                                                                                                                                                                                                                                              ; 1       ;
+; initial_reset                                                                                                                                                                                                                                                                                                                   ; 18      ;
 ; sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|jtag_ir_reg[1] ; 3       ;
 ; sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|jtag_ir_reg[2] ; 3       ;
 ; sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|modified_post_count[12]                                                                                                                                                  ; 1       ;
@@ -571,7 +571,7 @@ Encoding Type:  One-Hot
 ; sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|modified_post_count[3]                                                                                                                                                   ; 1       ;
 ; sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|modified_post_count[4]                                                                                                                                                   ; 1       ;
 ; sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|modified_post_count[5]                                                                                                                                                   ; 1       ;
-; Total number of inverted registers = 18                                                                                                                                                                                                                                                                                         ;         ;
+; Total number of inverted registers = 17                                                                                                                                                                                                                                                                                         ;         ;
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
@@ -628,18 +628,19 @@ Encoding Type:  One-Hot
 +-------------------------------------------------------------+------------------------------------------------------+------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |XGA_Text|ball_driver:ball|v_pos[8] ;
-; 3:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |XGA_Text|ball_driver:ball|v_pos[9] ;
-; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |XGA_Text|vga_driver:xga|ctr_h[7]   ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |XGA_Text|fill_buf:text_gen|x[6]    ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |XGA_Text|fill_buf:text_gen|y[3]    ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |XGA_Text|vga_driver:xga|ctr_v[3]   ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |XGA_Text|ball_driver:ball|h_pos[9]  ;
+; 3:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |XGA_Text|ball_driver:ball|h_pos[6]  ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |XGA_Text|vga_driver:xga|ctr_h[10]   ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |XGA_Text|fill_buf:text_gen|y[0]     ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |XGA_Text|vga_driver:xga|ctr_v[1]    ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |XGA_Text|fill_buf:text_gen|x[5]     ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |XGA_Text|fill_buf:text_gen|c_out[1] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
 
 
 +-------------------------------------------------------+
@@ -1262,37 +1263,36 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 118                         ;
+; arriav_ff             ; 129                         ;
 ;     CLR               ; 9                           ;
-;     ENA               ; 3                           ;
-;     ENA SCLR          ; 27                          ;
-;     SCLR              ; 36                          ;
-;     plain             ; 43                          ;
-; arriav_lcell_comb     ; 516                         ;
-;     arith             ; 49                          ;
+;     ENA               ; 9                           ;
+;     ENA SCLR          ; 34                          ;
+;     SCLR              ; 39                          ;
+;     plain             ; 38                          ;
+; arriav_lcell_comb     ; 535                         ;
+;     arith             ; 76                          ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 30                          ;
+;         1 data inputs ; 57                          ;
 ;         2 data inputs ; 18                          ;
 ;     extend            ; 48                          ;
 ;         7 data inputs ; 48                          ;
-;     normal            ; 391                         ;
+;     normal            ; 401                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 4                           ;
-;         2 data inputs ; 19                          ;
+;         2 data inputs ; 13                          ;
 ;         3 data inputs ; 24                          ;
-;         4 data inputs ; 42                          ;
-;         5 data inputs ; 42                          ;
-;         6 data inputs ; 259                         ;
-;     shared            ; 28                          ;
-;         1 data inputs ; 18                          ;
+;         4 data inputs ; 39                          ;
+;         5 data inputs ; 50                          ;
+;         6 data inputs ; 270                         ;
+;     shared            ; 10                          ;
 ;         2 data inputs ; 10                          ;
 ; arriav_mac            ; 1                           ;
 ; boundary_port         ; 119                         ;
 ; generic_pll           ; 1                           ;
 ; stratixv_ram_block    ; 8                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 10.00                       ;
-; Average LUT depth     ; 5.00                        ;
+; Max LUT depth         ; 9.00                        ;
+; Average LUT depth     ; 4.90                        ;
 +-----------------------+-----------------------------+
 
 
@@ -1352,22 +1352,22 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; font_render:text_mask|y_pixel[8]                                                           ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; vga_driver:xga|ctr_v[8]                                                            ; N/A     ;
 ; font_render:text_mask|y_pixel[9]                                                           ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; vga_driver:xga|ctr_v[9]                                                            ; N/A     ;
 ; font_render:text_mask|y_pixel[9]                                                           ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; vga_driver:xga|ctr_v[9]                                                            ; N/A     ;
-; screen_buf:buffer|c_in[0]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
-; screen_buf:buffer|c_in[0]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
-; screen_buf:buffer|c_in[1]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[1]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[2]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[2]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[3]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[3]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
-; screen_buf:buffer|c_in[4]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[4]~1                                                       ; N/A     ;
-; screen_buf:buffer|c_in[4]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[4]~1                                                       ; N/A     ;
-; screen_buf:buffer|c_in[5]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; text_en                                                                            ; N/A     ;
-; screen_buf:buffer|c_in[5]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; text_en                                                                            ; N/A     ;
-; screen_buf:buffer|c_in[6]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
-; screen_buf:buffer|c_in[6]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
-; screen_buf:buffer|c_in[7]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
-; screen_buf:buffer|c_in[7]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~0                                                       ; N/A     ;
+; screen_buf:buffer|c_in[0]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~2                                                       ; N/A     ;
+; screen_buf:buffer|c_in[0]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[0]~2                                                       ; N/A     ;
+; screen_buf:buffer|c_in[1]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[1]~3                                                       ; N/A     ;
+; screen_buf:buffer|c_in[1]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[1]~3                                                       ; N/A     ;
+; screen_buf:buffer|c_in[2]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[2]~4                                                       ; N/A     ;
+; screen_buf:buffer|c_in[2]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[2]~4                                                       ; N/A     ;
+; screen_buf:buffer|c_in[3]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[3]~5                                                       ; N/A     ;
+; screen_buf:buffer|c_in[3]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[3]~5                                                       ; N/A     ;
+; screen_buf:buffer|c_in[4]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[4]~6                                                       ; N/A     ;
+; screen_buf:buffer|c_in[4]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[4]~6                                                       ; N/A     ;
+; screen_buf:buffer|c_in[5]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[5]~7                                                       ; N/A     ;
+; screen_buf:buffer|c_in[5]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[5]~7                                                       ; N/A     ;
+; screen_buf:buffer|c_in[6]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[6]~8                                                       ; N/A     ;
+; screen_buf:buffer|c_in[6]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; fill_buf:text_gen|c_out[6]~8                                                       ; N/A     ;
+; screen_buf:buffer|c_in[7]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
+; screen_buf:buffer|c_in[7]                                                                  ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                                                ; N/A     ;
 ; screen_buf:buffer|c_out[0]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; screen_buf:buffer|dual_port_ram_sync:buf_a|ram~3                                   ; N/A     ;
 ; screen_buf:buffer|c_out[0]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; screen_buf:buffer|dual_port_ram_sync:buf_a|ram~3                                   ; N/A     ;
 ; screen_buf:buffer|c_out[1]                                                                 ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; screen_buf:buffer|dual_port_ram_sync:buf_a|ram~4                                   ; N/A     ;
@@ -1482,7 +1482,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Wed Apr 17 19:07:30 2019
+    Info: Processing started: Wed Apr 17 20:36:26 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off XGA_Text -c XGA_Text
 Critical Warning (138067): Current license file does not support incremental compilation. The Quartus Prime software removes all the user-specified design partitions in the design automatically.
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -1598,12 +1598,12 @@ Info (12128): Elaborating entity "screen_buf" for hierarchy "screen_buf:buffer" 
 Info (12128): Elaborating entity "dual_port_ram_sync" for hierarchy "screen_buf:buffer|dual_port_ram_sync:buf_a" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/screen_buf.v Line: 58
 Info (12128): Elaborating entity "fill_buf" for hierarchy "fill_buf:text_gen" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 248
 Warning (10230): Verilog HDL assignment warning at fill_buf.v(52): truncated value with size 32 to match size of target (8) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 52
-Warning (10230): Verilog HDL assignment warning at fill_buf.v(58): truncated value with size 32 to match size of target (7) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 58
-Warning (10230): Verilog HDL assignment warning at fill_buf.v(59): truncated value with size 32 to match size of target (6) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 59
-Warning (10230): Verilog HDL assignment warning at fill_buf.v(64): truncated value with size 32 to match size of target (7) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 64
-Warning (10230): Verilog HDL assignment warning at fill_buf.v(65): truncated value with size 32 to match size of target (6) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 65
-Info (12128): Elaborating entity "character_gen" for hierarchy "fill_buf:text_gen|character_gen:char_gen" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 80
-Warning (10230): Verilog HDL assignment warning at character_gen.v(40): truncated value with size 32 to match size of target (8) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/character_gen.v Line: 40
+Warning (10230): Verilog HDL assignment warning at fill_buf.v(61): truncated value with size 32 to match size of target (6) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 61
+Warning (10230): Verilog HDL assignment warning at fill_buf.v(63): truncated value with size 32 to match size of target (7) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 63
+Warning (10230): Verilog HDL assignment warning at fill_buf.v(75): truncated value with size 32 to match size of target (7) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 75
+Warning (10230): Verilog HDL assignment warning at fill_buf.v(76): truncated value with size 32 to match size of target (6) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 76
+Info (12128): Elaborating entity "character_gen" for hierarchy "fill_buf:text_gen|character_gen:char_gen" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/fill_buf.v Line: 91
+Warning (10230): Verilog HDL assignment warning at character_gen.v(41): truncated value with size 32 to match size of target (8) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/text/character_gen.v Line: 41
 Info (12128): Elaborating entity "ball_render" for hierarchy "ball_render:ball_mask" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 271
 Warning (10230): Verilog HDL assignment warning at ball_render.v(56): truncated value with size 32 to match size of target (10) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/ball/ball_render.v Line: 56
 Warning (10230): Verilog HDL assignment warning at ball_render.v(57): truncated value with size 32 to match size of target (10) File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/ball/ball_render.v Line: 57
@@ -1637,7 +1637,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr
     Info (12023): Found entity 1: cmpr_99c File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/db/cmpr_99c.tdf Line: 23
 Info (12033): Analysis and Synthesis generated SignalTap II or debug node instance "auto_signaltap_0"
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2019.04.17.19:07:58 Progress: Loading sld91bb67e4/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2019.04.17.20:36:53 Progress: Loading sld91bb67e4/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -1723,7 +1723,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[8]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 27
     Warning (13410): Pin "LEDR[9]" is stuck at GND File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 27
 Info (286031): Timing-Driven Synthesis is running on partition "Top"
-Info (17049): 14 registers lost all their fanouts during netlist optimizations.
+Info (17049): 5 registers lost all their fanouts during netlist optimizations.
 Info (17036): Removed 6 MSB VCC or GND address nodes from RAM block "screen_buf:buffer|dual_port_ram_sync:buf_a|altsyncram:ram_rtl_0|altsyncram_c1s1:auto_generated|ALTSYNCRAM" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/db/altsyncram_c1s1.tdf Line: 40
 Info (35024): Successfully connected in-system debug instance "auto_signaltap_0" to all 163 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
@@ -1739,17 +1739,17 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[7]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 25
     Warning (15610): No output dependent on input pin "SW[8]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 25
     Warning (15610): No output dependent on input pin "SW[9]" File: Z:/GitHub/ECE4514/homework-8-jacoblambda/XGA_Text/XGA_Text.v Line: 25
-Info (21057): Implemented 2144 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2165 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 18 input pins
     Info (21059): Implemented 40 output pins
-    Info (21061): Implemented 2010 logic cells
+    Info (21061): Implemented 2031 logic cells
     Info (21064): Implemented 73 RAM segments
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 1 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 55 warnings
     Info: Peak virtual memory: 4955 megabytes
-    Info: Processing ended: Wed Apr 17 19:08:18 2019
-    Info: Elapsed time: 00:00:48
-    Info: Total CPU time (on all processors): 00:01:16
+    Info: Processing ended: Wed Apr 17 20:37:12 2019
+    Info: Elapsed time: 00:00:46
+    Info: Total CPU time (on all processors): 00:01:11
 
 

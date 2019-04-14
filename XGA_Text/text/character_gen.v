@@ -22,22 +22,23 @@ module character_gen #(
     output wire [char_width - 1:0]   c_out
 );
 
-localparam
-    x1        = 1664525,
-    x2        = 1013904223,
-    rand_seed = 1;
+localparam [63:0]
+    x1        = 64'd1664525,
+    x2        = 64'd1013904223,
+    xmod      = (64'd1 << 64'd32) - 64'd1,
+    rand_seed = 64'd0;
 
-wire [31:0] 
+wire [63:0] 
     rand_r_next;
-reg [31:0]
+reg [63:0]
     rand_r;
 
 /*---------------------------------------------------------------------------*/
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
-assign rand_r_next = x1 * rand_r + x2;
-assign c_out       = rand_r[char_width - 1:0] & (2 << log2(num_of_chars));
+assign rand_r_next = (x1 * rand_r + x2) & xmod;
+assign c_out       = rand_r[char_width - 1:0] & ((1 << log2(num_of_chars)) - 1);
 
 initial begin
     rand_r = rand_seed;
