@@ -33,10 +33,10 @@ module ball_render #(
 localparam 
     mask_width = ball_radius * 2;
 
-wire signed [log2(width) + 1 : 0]
+wire [log2(width) - 1 : 0]
     x_min,
     x_max;
-wire signed [log2(height) + 1 : 0]
+wire [log2(height) - 1 : 0]
     y_min,
     y_max;
 wire [log2(mask_width) - 1 : 0] 
@@ -53,10 +53,10 @@ wire
 /*---------------------------------------------------------------------------*/
 
 /* verilator lint_off WIDTH */
-assign x_min = x_pixel - ball_radius;
-assign x_max = x_pixel + ball_radius;
-assign y_min = y_pixel - ball_radius;
-assign y_max = y_pixel + ball_radius;
+assign x_min = h_pos - ball_radius;
+assign x_max = h_pos + ball_radius;
+assign y_min = v_pos - ball_radius;
+assign y_max = v_pos + ball_radius;
 
 assign in_bounds = (  (x_pixel >= x_min) && (x_pixel <= x_max)  
                    && (y_pixel >= y_min) && (y_pixel <= y_max));

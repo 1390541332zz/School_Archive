@@ -52,6 +52,8 @@ reg
     text_en;
 wire 
     reset,
+    initial_reset,
+    key_reset,
     fill_buf,
     clear_buf,
     toggle_ball,
@@ -64,6 +66,7 @@ wire
 wire [(color_depth * 3) - 1:0]
     composite_rgb;
 wire [(color_depth * 4) - 1:0]
+    bkg_rgba,
     text_rgba,
     ball_rgba;
 wire [log2(text_width) - 1:0]
@@ -86,10 +89,19 @@ wire [log2(height) - 1:0]
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
+initial begin
+    initial_reset <= 1'b1;
+end
+
+assign key_reset    = ~KEY[0];
+assign reset        = key_reset || initial_reset;
+
 /* verilator lint_off WIDTH */
 assign x_text_r     = x_pixel >> log2(text_th_w);
 assign y_text_r     = y_pixel >> log2(text_th_h);
 /* verilator lint_on WIDTH */
+
+assign bkg_rgba     = BLACK;
 
 assign text_refresh = fill_buf || clear_buf;
 
@@ -97,8 +109,9 @@ assign ball_en_next = ball_en ^ toggle_ball;
 assign text_en_next = (text_refresh) ? (fill_buf && ~clear_buf) : text_en;
 
 always @(posedge clk_75) begin
-    ball_en <= (reset) ? ball_en_default : ball_en_next;
-    text_en <= (reset) ? text_en_default : text_en_next;
+    initial_reset <= 1'b0;
+    ball_en       <= (reset) ? ball_en_default : ball_en_next;
+    text_en       <= (reset) ? text_en_default : text_en_next;
 end
 
 /*---------------------------------------------------------------------------*/
@@ -107,17 +120,11 @@ end
 
 altpll_75 pll(
     .refclk(CLOCK_50),
-    .rst(1'b0),
+    .rst(key_reset),
     .outclk_0(clk_75),
     .locked(LEDR[0])
 );
 
-keypressed key0(
-    .clock(clk_75), 
-    .reset(KEY[0]), 
-    .enable_in(KEY[0]), 
-    .enable_out(reset)
-);
 keypressed key1(
     .clock(clk_75), 
     .reset(KEY[0]), 
@@ -171,7 +178,7 @@ vga_driver #(
     .refresh(refresh)
 );
 
-//Top Layer is last in the array / first in the concatenation.
+//Top Layer is last in the array / last in the concatenation.
 compositor #(
     .color_depth(color_depth),
     .num_of_layers(3)
@@ -179,9 +186,9 @@ compositor #(
     .clk(clk_75),
     .rgba_in('{
         ball_rgba, 
-        text_rgba,
-        BLACK
-    }),
+        ball_rgba, 
+        bkg_rgba
+     }),
     .rgb_out(composite_rgb)
 );
 
@@ -257,7 +264,7 @@ ball_render #(
     .ball_en(ball_en),
     .move(refresh),
     .h_pos(h_ball),
-    .x_pixel(y_pixel),
+    .x_pixel(x_pixel),
     .v_pos(v_ball),
     .y_pixel(y_pixel),
     .rgba_out(ball_rgba)

@@ -44,10 +44,9 @@ wire [(char_width + log2(text_th_h)) - 2:0]
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
-/* verilator lint_off WIDTH */
-assign x_font_pos = x_pixel >> log2(text_th_w);
-assign y_font_pos = y_pixel >> log2(text_th_h);
-/* verilator lint_on WIDTH */
+assign x_font_pos = x_pixel[log2(text_th_w) - 1:0];
+assign y_font_pos = y_pixel[log2(text_th_h) - 1:0];
+
 assign font_addr  = {cur_char[char_width - 2:0], y_font_pos};
 assign rgba_out   = (font_slice[x_font_pos]) ? text_color : bkg_color;
 

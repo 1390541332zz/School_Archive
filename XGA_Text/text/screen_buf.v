@@ -41,7 +41,7 @@ module screen_buf #(
 /*                                Submodules                                 */
 /*---------------------------------------------------------------------------*/
 dual_port_ram_sync #(
-    .ADDR_WIDTH(log2(height * width)),
+    .ADDR_WIDTH(log2(height * (2 ** log2(width)))),
     .DATA_WIDTH(char_width)
 ) buf_a (
     .clk(clk),

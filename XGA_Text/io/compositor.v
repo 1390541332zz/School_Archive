@@ -19,16 +19,18 @@ module compositor #(
     output reg [(color_depth * 3) - 1:0] rgb_out
 );
 
+integer i;
 
 /*---------------------------------------------------------------------------*/
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
-genvar i;
-
-always @(*) for (i = 0; i < num_of_layers; i = i + 1) begin:layer_select
-    if (rgba_in[i][color_depth-1:0] == { color_depth {1'b1} }) begin
-        rgb_out = rgba_in[i][(color_depth * 4) - 1 : color_depth];
+always @(*) begin
+    rgb_out = 0;
+    for (i = 0; i < num_of_layers; i = i + 1) begin:layer_select
+        if (rgba_in[i][color_depth-1:0] == { color_depth {1'b1} }) begin
+            rgb_out = rgba_in[i][(color_depth * 4) - 1 : color_depth];
+        end
     end
 end
 

@@ -34,16 +34,15 @@ localparam
     v_width = log2(height);
 
 wire [h_width - 1:0]
-    h_pos_next;
-wire [v_width - 1:0]
-    v_pos_next;
-wire signed [h_width + 1:0]
+    h_pos_next,
     x_next;
-wire signed [v_width + 1:0]
+wire [v_width - 1:0]
+    v_pos_next,
     y_next;
-reg [1:0]
+reg 
     h_vec,
-    v_vec,
+    v_vec;
+wire
     h_vec_next,
     v_vec_next;
 wire
@@ -54,27 +53,27 @@ wire
 /*                                 Compute                                   */
 /*---------------------------------------------------------------------------*/
 
-assign x_next     = $signed({2'b0, h_pos}) + $signed({10'b0, h_vec});
-assign y_next     = $signed({2'b0, v_pos}) + $signed({10'b0, v_vec});
+assign x_next     = (h_vec) ? h_pos + 1 : h_pos - 1;
+assign y_next     = (v_vec) ? v_pos + 1 : v_pos - 1;
 
-assign h_pos_next = (move) ? x_next[h_width - 1 : 0] : h_pos;
-assign v_pos_next = (move) ? y_next[v_width - 1 : 0] : v_pos;
+assign h_pos_next = (move) ? x_next : h_pos;
+assign v_pos_next = (move) ? y_next : v_pos;
 
 /* verilator lint_off WIDTH */
-assign bounce_x   = (  (x_next[h_width - 1 : 0] <= ball_radius)
-                    && (x_next[h_width - 1 : 0] >= (width - ball_radius)));
-assign bounce_y   = (  (y_next[v_width - 1 : 0] <= ball_radius)
-                    && (y_next[v_width - 1 : 0] >= (height - ball_radius)));
+assign bounce_x   = (  (x_next <= ball_radius)
+                    || (x_next >= (width - ball_radius)));
+assign bounce_y   = (  (y_next <= ball_radius)
+                    || (y_next >= (height - ball_radius)));
 /* verilator lint_on WIDTH */
 
-assign h_vec_next = (move && bounce_x) ? (-h_vec) : h_vec; 
-assign v_vec_next = (move && bounce_y) ? (-v_vec) : v_vec; 
+assign h_vec_next = (move && bounce_x) ? (~h_vec) : h_vec; 
+assign v_vec_next = (move && bounce_y) ? (~v_vec) : v_vec; 
 
 always @(posedge clk) begin
     h_pos <= (reset) ? init_x[h_width - 1 : 0] : h_pos_next;
     v_pos <= (reset) ? init_y[v_width - 1 : 0] : v_pos_next;
-    h_vec <= (reset) ? init_vec_x[1:0]         : h_vec_next;
-    v_vec <= (reset) ? init_vec_y[1:0]         : v_vec_next;
+    h_vec <= (reset) ? init_vec_x[0]           : h_vec_next;
+    v_vec <= (reset) ? init_vec_y[0]           : v_vec_next;
 end
 
 endmodule
