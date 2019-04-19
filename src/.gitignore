@@ -32,3 +32,6 @@ obj
 nios_workspace
 *.qmesg
 *.rdr
+*.done
+*.qws
+c5_pin_model_dump.txt
