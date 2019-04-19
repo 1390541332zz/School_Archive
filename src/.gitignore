@@ -30,3 +30,5 @@ obj
 *.swp
 *.a
 nios_workspace
+*.qmesg
+*.rdr
