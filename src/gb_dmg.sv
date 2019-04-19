@@ -23,7 +23,7 @@ module gb_dmg(
     output uwire       VGA_VS,
 
     /* PS/2 */
-    input  uwire       PS2_DAT,
+    inout  uwire       PS2_DAT,
     output uwire       PS2_CLK,
 
     /* ONBOARD IO */

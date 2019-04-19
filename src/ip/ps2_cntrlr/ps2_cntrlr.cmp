@@ -1,0 +1,16 @@
+	component ps2_cntrlr is
+		port (
+			clk_clk             : in    std_logic                    := 'X';             -- clk
+			ps2_0_command       : in    std_logic_vector(7 downto 0) := (others => 'X'); -- data
+			ps2_0_command_valid : in    std_logic                    := 'X';             -- valid
+			ps2_0_command_ready : out   std_logic;                                       -- ready
+			ps2_0_data_ready    : in    std_logic                    := 'X';             -- ready
+			ps2_0_data          : out   std_logic_vector(7 downto 0);                    -- data
+			ps2_0_data_valid    : out   std_logic;                                       -- valid
+			ps2_0_PS2_CLK       : inout std_logic                    := 'X';             -- CLK
+			ps2_0_PS2_DAT       : inout std_logic                    := 'X';             -- DAT
+			ps2_0_reset         : in    std_logic                    := 'X';             -- reset
+			reset_reset_n       : in    std_logic                    := 'X'              -- reset_n
+		);
+	end component ps2_cntrlr;
+

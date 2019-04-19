@@ -1,0 +1,21 @@
+# system info ps2_cntrlr on 2019.04.25.06:19:46
+system_info:
+name,value
+DEVICE,5CSEMA5F31C6
+DEVICE_FAMILY,Cyclone V
+GENERATION_ID,1556187584
+#
+#
+# Files generated for ps2_cntrlr on 2019.04.25.06:19:46
+files:
+filepath,kind,attributes,module,is_top
+simulation/ps2_cntrlr.v,VERILOG,,ps2_cntrlr,true
+simulation/submodules/altera_up_ps2.v,VERILOG,,ps2_cntrlr_ps2_0,false
+simulation/submodules/altera_up_ps2_command_out.v,VERILOG,,ps2_cntrlr_ps2_0,false
+simulation/submodules/altera_up_ps2_data_in.v,VERILOG,,ps2_cntrlr_ps2_0,false
+simulation/submodules/ps2_cntrlr_ps2_0.v,VERILOG,,ps2_cntrlr_ps2_0,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+ps2_cntrlr.ps2_0,ps2_cntrlr_ps2_0

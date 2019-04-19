@@ -5,7 +5,7 @@
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY "gb_dmg"
-set_global_assignment -name ORIGINAL_QUARTUS_VERSION "17.0.0"
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.0.0
 set_global_assignment -name LAST_QUARTUS_VERSION "17.0.0 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:48:33 MARCH 19,2019"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
@@ -170,7 +170,14 @@ set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name ENABLE_SIGNALTAP ON
 
 set_global_assignment -name USE_SIGNALTAP_FILE gb_dmg.stp
+set_global_assignment -name SLD_FILE db/gb_dmg_auto_stripped.stp
+
 set_global_assignment -name SIGNALTAP_FILE gb_dmg.stp
 set_global_assignment -name SDC_FILE gb_dmg.SDC
 set_global_assignment -name VERILOG_FILE gb_dmg.sv
-set_global_assignment -name SLD_FILE db/gb_dmg_auto_stripped.stp
+set_global_assignment -name QIP_FILE ip/clk_src.qip
+set_global_assignment -name SIP_FILE ip/clk_src.sip
+set_global_assignment -name SIP_FILE ip/audio_cntrlr/simulation/audio_cntrlr.sip
+set_global_assignment -name QIP_FILE ip/audio_cntrlr/synthesis/audio_cntrlr.qip
+set_global_assignment -name SIP_FILE ip/ps2_cntrlr/simulation/ps2_cntrlr.sip
+set_global_assignment -name QIP_FILE ip/ps2_cntrlr/synthesis/ps2_cntrlr.qip
