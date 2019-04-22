@@ -1,0 +1,8 @@
+#/bin/bash
+
+echo "Generating header include file"
+sopc-create-header-files ../hardware/baseline_qsys.sopcinfo --single hps_0.h --module hps_0
+
+echo "Generating downloadable bitstream"
+echo 'bitstream_compression=on' >cpf_option.txt
+quartus_cpf -c -o cpf_option.txt ../hardware/baseline.sof baseline.rbf
