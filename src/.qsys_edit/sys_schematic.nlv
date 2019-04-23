@@ -1,0 +1,40 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst sys.clk_50 -pg 1 -lvl 1 -y 190
+preplace inst sys.ps2_cntrlr -pg 1 -lvl 3 -y 310
+preplace inst sys.pll_0 -pg 1 -lvl 3 -y 430
+preplace inst sys.audio_cntrlr -pg 1 -lvl 3 -y 30
+preplace inst sys -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst sys.dmg_clk_bridge -pg 1 -lvl 3 -y 510
+preplace inst sys.sd_cntrlr -pg 1 -lvl 4 -y 370
+preplace inst sys.audio_cfg -pg 1 -lvl 4 -y 110
+preplace inst sys.hard_reset -pg 1 -lvl 2 -y 230
+preplace inst sys.vga_cntrlr -pg 1 -lvl 3 -y 630
+preplace inst sys.vga_clk_bridge -pg 1 -lvl 3 -y 590
+preplace inst sys.fpga_master -pg 1 -lvl 3 -y 190
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)sys.audio_right_in,(SLAVE)audio_cntrlr.avalon_right_channel_sink) 1 0 3 NJ 60 NJ 60 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)sys.audio_left_in,(SLAVE)audio_cntrlr.avalon_left_channel_sink) 1 0 3 NJ 40 NJ 40 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(MASTER)audio_cntrlr.avalon_left_channel_source,(MASTER)sys.audio_left_out) 1 3 2 NJ 60 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)audio_cntrlr.external_interface,(SLAVE)sys.audio_cntrlr_out) 1 0 3 NJ 100 NJ 100 NJ
+preplace netloc FAN_OUT<net_container>sys</net_container>(SLAVE)fpga_master.reset,(SLAVE)sd_cntrlr.reset,(SLAVE)audio_cfg.reset,(SLAVE)ps2_cntrlr.reset,(MASTER)hard_reset.out_reset,(SLAVE)audio_cntrlr.reset,(SLAVE)vga_cntrlr.reset,(SLAVE)pll_0.reset) 1 2 2 510 280 970
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)sys.pll_0_locked,(SLAVE)pll_0.locked) 1 0 3 NJ 440 NJ 440 NJ
+preplace netloc FAN_OUT<net_container>sys</net_container>(SLAVE)sd_cntrlr.avalon_sdcard_slave,(MASTER)fpga_master.avalon_master,(SLAVE)audio_cfg.avalon_av_config_slave) 1 3 1 910
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)sys.vga_in,(SLAVE)vga_cntrlr.avalon_vga_sink) 1 0 3 NJ 640 NJ 640 NJ
+preplace netloc FAN_OUT<net_container>sys</net_container>(MASTER)pll_0.outclk0,(SLAVE)vga_clk_bridge.in_clk,(SLAVE)vga_cntrlr.clk) 1 2 2 530 580 950
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)sys.ps2_cmd_in,(SLAVE)ps2_cntrlr.avalon_ps2_command_sink) 1 0 3 NJ 320 NJ 320 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(MASTER)sys.dmg_double_clk,(MASTER)dmg_clk_bridge.out_clk) 1 3 2 NJ 520 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)audio_cfg.external_interface,(SLAVE)sys.audio_cfg_out) 1 0 4 NJ 160 NJ 160 NJ 160 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(MASTER)ps2_cntrlr.avalon_ps2_data_source,(MASTER)sys.ps2_data_out) 1 3 2 NJ 340 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)hard_reset.in_reset,(SLAVE)sys.hard_reset) 1 0 2 NJ 260 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)clk_50.clk_in,(SLAVE)sys.clk) 1 0 1 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)vga_cntrlr.external_interface,(SLAVE)sys.vga_out) 1 0 3 NJ 680 NJ 680 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)ps2_cntrlr.external_interface,(SLAVE)sys.ps2_out) 1 0 3 NJ 360 NJ 360 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)fpga_master.external_interface,(SLAVE)sys.avalon_mm_in) 1 0 3 NJ 180 NJ 180 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)clk_50.clk_in_reset,(SLAVE)sys.global_reset) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>sys</net_container>(SLAVE)fpga_master.clk,(SLAVE)sd_cntrlr.clk,(SLAVE)pll_0.refclk,(SLAVE)ps2_cntrlr.clk,(MASTER)clk_50.clk,(SLAVE)audio_cntrlr.clk,(SLAVE)audio_cfg.clk,(SLAVE)hard_reset.clk) 1 1 3 320 200 490 300 950
+preplace netloc EXPORT<net_container>sys</net_container>(MASTER)sys.audio_right_out,(MASTER)audio_cntrlr.avalon_right_channel_source) 1 3 2 NJ 220 NJ
+preplace netloc POINT_TO_POINT<net_container>sys</net_container>(SLAVE)dmg_clk_bridge.in_clk,(MASTER)pll_0.outclk1) 1 2 2 530 560 910
+preplace netloc EXPORT<net_container>sys</net_container>(MASTER)sys.vga_clk,(MASTER)vga_clk_bridge.out_clk) 1 3 2 NJ 600 NJ
+preplace netloc EXPORT<net_container>sys</net_container>(SLAVE)sys.sd_out,(SLAVE)sd_cntrlr.conduit_end) 1 0 4 NJ 420 NJ 420 NJ 420 NJ
+levelinfo -pg 1 0 110 1300
+levelinfo -hier sys 120 150 350 560 1000 1170

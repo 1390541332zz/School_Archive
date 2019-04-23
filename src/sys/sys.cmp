@@ -1,0 +1,70 @@
+	component sys is
+		port (
+			audio_cfg_out_SDAT       : inout std_logic                     := 'X';             -- SDAT
+			audio_cfg_out_SCLK       : out   std_logic;                                        -- SCLK
+			audio_cntrlr_out_BCLK    : in    std_logic                     := 'X';             -- BCLK
+			audio_cntrlr_out_DACDAT  : out   std_logic;                                        -- DACDAT
+			audio_cntrlr_out_DACLRCK : in    std_logic                     := 'X';             -- DACLRCK
+			audio_left_in_data       : in    std_logic_vector(15 downto 0) := (others => 'X'); -- data
+			audio_left_in_valid      : in    std_logic                     := 'X';             -- valid
+			audio_left_in_ready      : out   std_logic;                                        -- ready
+			audio_left_out_ready     : in    std_logic                     := 'X';             -- ready
+			audio_left_out_data      : out   std_logic_vector(15 downto 0);                    -- data
+			audio_left_out_valid     : out   std_logic;                                        -- valid
+			audio_right_in_data      : in    std_logic_vector(15 downto 0) := (others => 'X'); -- data
+			audio_right_in_valid     : in    std_logic                     := 'X';             -- valid
+			audio_right_in_ready     : out   std_logic;                                        -- ready
+			audio_right_out_ready    : in    std_logic                     := 'X';             -- ready
+			audio_right_out_data     : out   std_logic_vector(15 downto 0);                    -- data
+			audio_right_out_valid    : out   std_logic;                                        -- valid
+			avalon_mm_in_address     : in    std_logic_vector(26 downto 0) := (others => 'X'); -- address
+			avalon_mm_in_byte_enable : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- byte_enable
+			avalon_mm_in_read        : in    std_logic                     := 'X';             -- read
+			avalon_mm_in_write       : in    std_logic                     := 'X';             -- write
+			avalon_mm_in_write_data  : in    std_logic_vector(15 downto 0) := (others => 'X'); -- write_data
+			avalon_mm_in_acknowledge : out   std_logic;                                        -- acknowledge
+			avalon_mm_in_read_data   : out   std_logic_vector(15 downto 0);                    -- read_data
+			clk_in_clk               : in    std_logic                     := 'X';             -- clk
+			dmg_double_clk_clk       : out   std_logic;                                        -- clk
+			hard_reset_reset         : in    std_logic                     := 'X';             -- reset
+			pll_0_locked_export      : out   std_logic;                                        -- export
+			ps2_cmd_in_data          : in    std_logic_vector(7 downto 0)  := (others => 'X'); -- data
+			ps2_cmd_in_valid         : in    std_logic                     := 'X';             -- valid
+			ps2_cmd_in_ready         : out   std_logic;                                        -- ready
+			ps2_data_out_ready       : in    std_logic                     := 'X';             -- ready
+			ps2_data_out_data        : out   std_logic_vector(7 downto 0);                     -- data
+			ps2_data_out_valid       : out   std_logic;                                        -- valid
+			ps2_out_CLK              : inout std_logic                     := 'X';             -- CLK
+			ps2_out_DAT              : inout std_logic                     := 'X';             -- DAT
+			sd_out_b_SD_cmd          : inout std_logic                     := 'X';             -- b_SD_cmd
+			sd_out_b_SD_dat          : inout std_logic                     := 'X';             -- b_SD_dat
+			sd_out_b_SD_dat3         : inout std_logic                     := 'X';             -- b_SD_dat3
+			sd_out_o_SD_clock        : out   std_logic;                                        -- o_SD_clock
+			sdram_clk_clk            : out   std_logic;                                        -- clk
+			sdram_out_addr           : out   std_logic_vector(12 downto 0);                    -- addr
+			sdram_out_ba             : out   std_logic_vector(1 downto 0);                     -- ba
+			sdram_out_cas_n          : out   std_logic;                                        -- cas_n
+			sdram_out_cke            : out   std_logic;                                        -- cke
+			sdram_out_cs_n           : out   std_logic;                                        -- cs_n
+			sdram_out_dq             : inout std_logic_vector(15 downto 0) := (others => 'X'); -- dq
+			sdram_out_dqm            : out   std_logic_vector(1 downto 0);                     -- dqm
+			sdram_out_ras_n          : out   std_logic;                                        -- ras_n
+			sdram_out_we_n           : out   std_logic;                                        -- we_n
+			sys_clk_clk              : out   std_logic;                                        -- clk
+			vga_clk_clk              : out   std_logic;                                        -- clk
+			vga_in_data              : in    std_logic_vector(29 downto 0) := (others => 'X'); -- data
+			vga_in_startofpacket     : in    std_logic                     := 'X';             -- startofpacket
+			vga_in_endofpacket       : in    std_logic                     := 'X';             -- endofpacket
+			vga_in_valid             : in    std_logic                     := 'X';             -- valid
+			vga_in_ready             : out   std_logic;                                        -- ready
+			vga_out_CLK              : out   std_logic;                                        -- CLK
+			vga_out_HS               : out   std_logic;                                        -- HS
+			vga_out_VS               : out   std_logic;                                        -- VS
+			vga_out_BLANK            : out   std_logic;                                        -- BLANK
+			vga_out_SYNC             : out   std_logic;                                        -- SYNC
+			vga_out_R                : out   std_logic_vector(7 downto 0);                     -- R
+			vga_out_G                : out   std_logic_vector(7 downto 0);                     -- G
+			vga_out_B                : out   std_logic_vector(7 downto 0)                      -- B
+		);
+	end component sys;
+

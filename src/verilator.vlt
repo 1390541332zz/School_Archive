@@ -1,2 +1,2 @@
 `verilator_config
-lint_off -file "./io/altpll.v"
+lint_off -file "./ip/*"
