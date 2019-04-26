@@ -6,7 +6,7 @@
  * Maintainer: Jacob Abel                                                    *
  *---------------------------------------------------------------------------*/
 
-import avalon_interface::*;
+import gb_intf::cntrlr_data;
 
 module gb_dmg(
 /*---------------------------------------------------------------------------*/
@@ -57,116 +57,231 @@ module gb_dmg(
 
     /* ONBOARD IO */
     input  bit  [1:0]  KEY,
-    input  bit  [9:0]  SW,
     output bit  [1:0]  LEDR
 );
 
-
 logic
-    hard_reset,
+    pll_lock,
+    hard_reset_n,
+    sys_reset,
+    sys_reset_n,
+    dmg_reset,
+    dmg_reset_n,
+    audio_reset,
+    audio_reset_n,
+    vga_reset,
+    vga_reset_n,
     hw_clk,
     sys_clk,
     vga_clk,
+    audio_clk,
     dmg_double_clk,
-    dmg_clk_,
-    dmg_clk;
+    dmg_clk, dmg_clk_;
+cntrlr_data
+    cntrlr_input;
 
 /*---------------------------------------------------------------------------*/
 /*                                Interfaces                                 */
 /*---------------------------------------------------------------------------*/
 
-st_data   ps2_cmd    (sys_clk, hard_reset);
-st_data   ps2_data   (sys_clk, hard_reset);
-st_data   audio_left (sys_clk, hard_reset);
-st_data   audio_right(sys_clk, hard_reset);
-st_packet vga        (vga_clk, hard_reset);
-mm_ebab   mm         ( mm_clk, hard_reset);
+/* PS/2 */
+st_data #(
+    .data_width(8)
+) ps2_cmd (
+    .clk(dmg_clk),
+    .reset(dmg_reset)
+);
+st_data #(
+    .data_width(8)
+) ps2_data (
+    .clk(dmg_clk),
+    .reset(dmg_reset)
+);
+
+/* Audio */
+st_data #(
+    .data_width(8)
+) audio_l_dac (
+    .clk(dmg_clk),
+    .reset(dmg_reset_n)
+);
+st_data #(
+    .data_width(8)
+) audio_r_dac (
+    .clk(dmg_clk),
+    .reset(dmg_reset_n)
+);
+
+/* Audio In (Unused) */
+//st_data #(
+//    .data_width(8)
+//) audio_l_adc (
+//    .clk(audio_clk),
+//    .reset(audio_reset)
+//);
+//st_data #(
+//    .data_width(8)
+//) audio_r_adc (
+//    .clk(audio_clk),
+//    .reset(audio_reset)
+//);
+
+/* Display */
+st_data #(
+    .data_width(320)
+) display_in (
+    .clk(dmg_clk),
+    .reset(dmg_reset_n)
+);
+st_data #(
+    .data_width(320)
+) display_o (
+    .clk(vga_clk),
+    .reset(vga_reset_n)
+);
+st_packet #(
+    .data_width(24)
+) vga (
+    .clk(vga_clk),
+    .reset(vga_reset)
+);
+
+/* Memory Mapped Bus */
+mm_ebab #(
+    .data_width(16),
+    .addr_width(27)
+) mm (
+    .clk(sys_clk),
+    .reset(sys_reset)
+);
 
 /*---------------------------------------------------------------------------*/
 /*                               Computation                                 */
 /*---------------------------------------------------------------------------*/
 
-always_comb dmg_clk_ = ~dmg_clk;
+assign hw_clk   = CLOCK_50;
+assign dmg_clk_ = ~dmg_clk;
 
 always_ff @(posedge dmg_double_clk) begin
-    dmg_clk <= (hard_reset) 1'b0 : dmg_clk_;
+    dmg_clk <= (!hard_reset_n) ? 1'b0 : dmg_clk_;
 end
+
+//always_ff @(posedge audio_clk) begin
+//    audio_l_adc.ready <= 1'b1;
+//    audio_r_adc.ready <= 1'b1;
+//end
 
 /*---------------------------------------------------------------------------*/
 /*                                Submodules                                 */
 /*---------------------------------------------------------------------------*/
 
-sys hardware_system (                                     /*=== QSys Hardware Interface =====*/
-                                                          /*------- Clocks & Resets ---------*/
-    .hard_reset_reset         ( hard_reset             ), /*       hard_reset.reset          */
-    .clk_in_clk               ( hw_clk                 ), /*           clk_in.clk            */
-    .sys_clk_clk              ( sys_clk                ), /*          sys_clk.clk            */
-    .vga_clk_clk              ( vga_clk                ), /*          vga_clk.clk            */
-    .dmg_double_clk_clk       ( dmg_double_clk         ), /*   dmg_double_clk.clk            */
-    .pll_0_locked_export      ( /*--- Not In Use ---*/ ), /*     pll_0_locked.export         */
-                                                          /*------ Hardware Interface -------*/
-    .audio_cntrlr_out_BCLK    ( AUD_BCLK               ), /* audio_cntrlr_out.BCLK           */
-    .audio_cntrlr_out_DACDAT  ( AUD_DACDAT             ), /*                 .DACDAT         */
-    .audio_cntrlr_out_DACLRCK ( AUD_DACLRCK            ), /*                 .DACLRCK        */
-    .audio_cfg_out_SDAT       ( I2C_SDAT               ), /*    audio_cfg_out.SDAT           */
-    .audio_cfg_out_SCLK       ( I2C_SCLK               ), /*                 .SCLK           */
-    .vga_out_CLK              ( VGA_CLK                ), /*          vga_out.CLK            */
-    .vga_out_HS               ( VGA_HS                 ), /*                 .HS             */
-    .vga_out_VS               ( VGA_VS                 ), /*                 .VS             */
-    .vga_out_BLANK            ( VGA_BLANK              ), /*                 .BLANK          */
-    .vga_out_SYNC             ( VGA_SYNC               ), /*                 .SYNC           */
-    .vga_out_R                ( VGA_R                  ), /*                 .R              */
-    .vga_out_G                ( VGA_G                  ), /*                 .G              */
-    .vga_out_B                ( VGA_B                  ), /*                 .B              */
-    .ps2_out_CLK              ( PS2_CLK                ), /*          ps2_out.CLK            */
-    .ps2_out_DAT              ( PS2_DAT                ), /*                 .DAT            */
-    .sd_out_b_SD_cmd          ( HPS_SD_CMD             ), /*           sd_out.b_SD_cmd       */
-    .sd_out_b_SD_dat          ( HPS_SD_DAT0            ), /*                 .b_SD_dat       */
-    .sd_out_b_SD_dat3         ( HPS_SD_DAT3            ), /*                 .b_SD_dat3      */
-    .sd_out_o_SD_clock        ( HPS_SD_CLK             ), /*                 .o_SD_clock     */
-    .sdram_out_addr           ( DRAM_ADDR              ), /*        sdram_out.addr           */
-    .sdram_out_ba             ( DRAM_BA                ), /*                 .ba             */
-    .sdram_out_cas_n          ( DRAM_CAS_N             ), /*                 .cas_n          */
-    .sdram_out_cke            ( DRAM_CKE               ), /*                 .cke            */
-    .sdram_out_cs_n           ( DRAM_CS_N              ), /*                 .cs_n           */
-    .sdram_out_dq             ( DRAM_DQ                ), /*                 .dq             */
-    .sdram_out_dqm            ( DRAM_DQM               ), /*                 .dqm            */
-    .sdram_out_ras_n          ( DRAM_RAS_N             ), /*                 .ras_n          */
-    .sdram_out_we_n           ( DRAM_WE_N              ), /*                 .we_n           */
-    .sdram_clk_clk            ( DRAM_CLK               ), /*        sdram_clk.clk            */
-                                                          /*---- Memory Mapped Interface ----*/
-    .avalon_mm_in_address     ( mm.addr                ), /*     avalon_mm_in.address        */
-    .avalon_mm_in_byte_enable ( mm.byte_en             ), /*                 .byte_enable    */
-    .avalon_mm_in_read        ( mm.read_en             ), /*                 .read           */
-    .avalon_mm_in_write       ( mm.write_en            ), /*                 .write          */
-    .avalon_mm_in_write_data  ( mm.write_data          ), /*                 .write_data     */
-    .avalon_mm_in_acknowledge ( mm.ack                 ), /*                 .acknowledge    */
-    .avalon_mm_in_read_data   ( mm.read_data           ), /*                 .read_data      */
-                                                          /*------- Stream Interface --------*/
-    .ps2_cmd_in_data          ( ps2_cmd.data           ), /*       ps2_cmd_in.data           */
-    .ps2_cmd_in_valid         ( ps2_cmd.valid          ), /*                 .valid          */
-    .ps2_cmd_in_ready         ( ps2_cmd.ready          ), /*                 .ready          */
-    .ps2_data_out_ready       ( ps2_data.ready         ), /*     ps2_data_out.ready          */
-    .ps2_data_out_data        ( ps2_data.data          ), /*                 .data           */
-    .ps2_data_out_valid       ( ps2_data.valid         ), /*                 .valid          */
-    .audio_left_in_data       ( audio_left.data        ), /*    audio_left_in.data           */
-    .audio_left_in_valid      ( audio_left.valid       ), /*                 .valid          */
-    .audio_left_in_ready      ( audio_left.ready       ), /*                 .ready          */
-    .audio_right_in_data      ( audio_right.data       ), /*   audio_right_in.data           */
-    .audio_right_in_valid     ( audio_right.valid      ), /*                 .valid          */
-    .audio_right_in_ready     ( audio_right.ready      ), /*                 .ready          */
-    .audio_left_out_ready     ( /*--- Not In Use ---*/ ), /*   audio_left_out.ready          */
-    .audio_left_out_data      ( /*--- Not In Use ---*/ ), /*                 .data           */
-    .audio_left_out_valid     ( /*--- Not In Use ---*/ ), /*                 .valid          */
-    .audio_right_out_ready    ( /*--- Not In Use ---*/ ), /*  audio_right_out.ready          */
-    .audio_right_out_data     ( /*--- Not In Use ---*/ ), /*                 .data           */
-    .audio_right_out_valid    ( /*--- Not In Use ---*/ ), /*                 .valid          */
-    .vga_in_data              ( vga.data               ), /*           vga_in.data           */
-    .vga_in_startofpacket     ( vga.startpacket        ), /*                 .startofpacket  */
-    .vga_in_endofpacket       ( vga.endpacket          ), /*                 .endofpacket    */
-    .vga_in_valid             ( vga.valid              ), /*                 .valid          */
-    .vga_in_ready             ( vga.ready              ), /*                 .ready          */
-);                                                        /*=================================*/
+display dmg_to_vga (
+    .vga(vga.source),
+    .dmg(display_o.sink)
+);
+
+controller ps2_cntrlr (
+    .cmd(ps2_cmd.source),
+    .data(ps2_data.sink),
+    .cntrlr(cntrlr_input)
+);
+
+mm_cntrlr mm_master (
+    .mm(mm.master)
+);
+
+gb dmg(
+    .display_out(display_in.source),
+    .cntrlr_in(cntrlr_input)
+);
+
+sys hardware_system (                                       /*=== QSys Hardware Interface ====*/
+                                                            /*------- Clocks & Resets --------*/
+    .reset_in_reset_n         ( hard_reset_n             ), /*         reset_in.reset_n       */
+    .sys_reset_reset          ( sys_reset                ), /*        sys_reset.reset         */
+    .sys_reset_n_reset_n      ( sys_reset_n              ), /*      sys_reset_n.reset_n       */
+    .vga_reset_reset          ( vga_reset                ), /*        vga_reset.reset         */
+    .vga_reset_n_reset_n      ( vga_reset_n              ), /*      vga_reset_n.reset_n       */
+    .dmg_reset_reset          ( dmg_reset                ), /*        dmg_reset.reset         */
+    .dmg_reset_n_reset_n      ( dmg_reset_n              ), /*      dmg_reset_n.reset_n       */
+    .audio_reset_reset        ( audio_reset              ), /*      audio_reset.reset         */
+    .audio_reset_n_reset_n    ( audio_reset_n            ), /*    audio_reset_n.reset_n       */
+    .clk_in_clk               ( hw_clk                   ), /*           clk_in.clk           */
+    .sys_clk_clk              ( sys_clk                  ), /*          sys_clk.clk           */
+    .vga_clk_clk              ( vga_clk                  ), /*          vga_clk.clk           */
+    .dmg_clk_clk              ( dmg_clk                  ), /*          dmg_clk.clk           */
+    .dmg_double_clk_clk       ( dmg_double_clk           ), /*   dmg_double_clk.clk           */
+    .audio_clk_clk            ( audio_clk                ), /*        audio_clk.clk           */
+    .pll_0_locked_export      ( pll_lock                 ), /*     pll_0_locked.export        */
+                                                            /*------ Hardware Interface ------*/
+    .audio_cntrlr_out_BCLK    ( AUD_BCLK                 ), /* audio_cntrlr_out.BCLK          */
+    .audio_cntrlr_out_DACDAT  ( AUD_DACDAT               ), /*                 .DACDAT        */
+    .audio_cntrlr_out_DACLRCK ( AUD_DACLRCK              ), /*                 .DACLRCK       */
+    .audio_cfg_out_SDAT       ( I2C_SDAT                 ), /*    audio_cfg_out.SDAT          */
+    .audio_cfg_out_SCLK       ( I2C_SCLK                 ), /*                 .SCLK          */
+    .vga_out_CLK              ( VGA_CLK                  ), /*          vga_out.CLK           */
+    .vga_out_HS               ( VGA_HS                   ), /*                 .HS            */
+    .vga_out_VS               ( VGA_VS                   ), /*                 .VS            */
+    .vga_out_BLANK            ( VGA_BLANK_N              ), /*                 .BLANK         */
+    .vga_out_SYNC             ( VGA_SYNC_N               ), /*                 .SYNC          */
+    .vga_out_R                ( VGA_R                    ), /*                 .R             */
+    .vga_out_G                ( VGA_G                    ), /*                 .G             */
+    .vga_out_B                ( VGA_B                    ), /*                 .B             */
+    .ps2_out_CLK              ( PS2_CLK                  ), /*          ps2_out.CLK           */
+    .ps2_out_DAT              ( PS2_DAT                  ), /*                 .DAT           */
+//  .sd_out_b_SD_cmd          ( HPS_SD_CMD               ), /*           sd_out.b_SD_cmd      */
+//  .sd_out_b_SD_dat          ( HPS_SD_DAT0              ), /*                 .b_SD_dat      */
+//  .sd_out_b_SD_dat3         ( HPS_SD_DAT3              ), /*                 .b_SD_dat3     */
+//  .sd_out_o_SD_clock        ( HPS_SD_CLK               ), /*                 .o_SD_clock    */
+    .sdram_out_addr           ( DRAM_ADDR                ), /*        sdram_out.addr          */
+    .sdram_out_ba             ( DRAM_BA                  ), /*                 .ba            */
+    .sdram_out_cas_n          ( DRAM_CAS_N               ), /*                 .cas_n         */
+    .sdram_out_cke            ( DRAM_CKE                 ), /*                 .cke           */
+    .sdram_out_cs_n           ( DRAM_CS_N                ), /*                 .cs_n          */
+    .sdram_out_dq             ( DRAM_DQ                  ), /*                 .dq            */
+    .sdram_out_dqm            ( DRAM_DQM                 ), /*                 .dqm           */
+    .sdram_out_ras_n          ( DRAM_RAS_N               ), /*                 .ras_n         */
+    .sdram_out_we_n           ( DRAM_WE_N                ), /*                 .we_n          */
+    .sdram_clk_clk            ( DRAM_CLK                 ), /*        sdram_clk.clk           */
+                                                            /*--- Memory Mapped Interface ----*/
+    .avalon_mm_in_address     ( mm.slave.addr            ), /*     avalon_mm_in.address       */
+    .avalon_mm_in_byte_enable ( mm.slave.byte_en         ), /*                 .byte_enable   */
+    .avalon_mm_in_read        ( mm.slave.read_en         ), /*                 .read          */
+    .avalon_mm_in_write       ( mm.slave.write_en        ), /*                 .write         */
+    .avalon_mm_in_write_data  ( mm.slave.write_data      ), /*                 .write_data    */
+    .avalon_mm_in_acknowledge ( mm.slave.ack             ), /*                 .acknowledge   */
+    .avalon_mm_in_read_data   ( mm.slave.read_data       ), /*                 .read_data     */
+                                                            /*------- Stream Interface -------*/
+    .ps2_cmd_in_data          ( ps2_cmd.sink.data        ), /*       ps2_cmd_in.data          */
+    .ps2_cmd_in_valid         ( ps2_cmd.sink.valid       ), /*                 .valid         */
+    .ps2_cmd_in_ready         ( ps2_cmd.sink.ready       ), /*                 .ready         */
+    .ps2_data_out_ready       ( ps2_data.source.ready    ), /*     ps2_data_out.ready         */
+    .ps2_data_out_data        ( ps2_data.source.data     ), /*                 .data          */
+    .ps2_data_out_valid       ( ps2_data.source.valid    ), /*                 .valid         */
+    .audio_l_in_data          ( audio_l_dac.sink.data    ), /*       audio_l_in.data          */
+    .audio_l_in_valid         ( audio_l_dac.sink.valid   ), /*                 .valid         */
+    .audio_l_in_ready         ( audio_l_dac.sink.ready   ), /*                 .ready         */
+    .audio_r_in_data          ( audio_r_dac.sink.data    ), /*       audio_r_in.data          */
+    .audio_r_in_valid         ( audio_r_dac.sink.valid   ), /*                 .valid         */
+    .audio_r_in_ready         ( audio_r_dac.sink.ready   ), /*                 .ready         */
+//  .audio_l_o_ready          ( audio_l_adc.source.ready ), /*        audio_l_o.ready         */
+//  .audio_l_o_data           ( audio_l_adc.source.data  ), /*                 .data          */
+//  .audio_l_o_valid          ( audio_l_adc.source.valid ), /*                 .valid         */
+//  .audio_r_o_ready          ( audio_r_adc.source.ready ), /*        audio_r_o.ready         */
+//  .audio_r_o_data           ( audio_r_adc.source.data  ), /*                 .data          */
+//  .audio_r_o_valid          ( audio_r_adc.source.valid ), /*                 .valid         */
+    .display_fifo_in_data     ( display_in.sink.data     ), /*  display_fifo_in.data          */
+    .display_fifo_in_valid    ( display_in.sink.valid    ), /*                 .valid         */
+    .display_fifo_in_ready    ( display_in.sink.ready    ), /*                 .ready         */
+    .display_fifo_out_data    ( display_o.source.data    ), /* display_fifo_out.data          */
+    .display_fifo_out_valid   ( display_o.source.valid   ), /*                 .valid         */
+    .display_fifo_out_ready   ( display_o.source.ready   ), /*                 .ready         */
+    .vga_in_data              ( vga.sink.data            ), /*           vga_in.data          */
+    .vga_in_startofpacket     ( vga.sink.start_packet    ), /*                 .startofpacket */
+    .vga_in_endofpacket       ( vga.sink.end_packet      ), /*                 .endofpacket   */
+    .vga_in_valid             ( vga.sink.valid           ), /*                 .valid         */
+    .vga_in_ready             ( vga.sink.ready           ), /*                 .ready         */
+);                                                          /*================================*/
 
 
 endmodule : gb_dmg

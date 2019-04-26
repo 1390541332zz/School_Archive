@@ -35,31 +35,7 @@ set_location_assignment PIN_V16 -to LEDR[0]
 set_location_assignment PIN_W16 -to LEDR[1]
 
 #============================================================
-# SW
-#============================================================
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[5]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[7]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[8]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[9]
-set_location_assignment PIN_AB12 -to SW[0]
-set_location_assignment PIN_AC12 -to SW[1]
-set_location_assignment PIN_AF9 -to SW[2]
-set_location_assignment PIN_AF10 -to SW[3]
-set_location_assignment PIN_AD11 -to SW[4]
-set_location_assignment PIN_AD12 -to SW[5]
-set_location_assignment PIN_AE11 -to SW[6]
-set_location_assignment PIN_AC9 -to SW[7]
-set_location_assignment PIN_AD10 -to SW[8]
-set_location_assignment PIN_AE12 -to SW[9]
-
-#============================================================
-# PS2  
+# PS2
 #============================================================
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_CLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT
@@ -67,7 +43,7 @@ set_location_assignment PIN_AD7 -to PS2_CLK
 set_location_assignment PIN_AE7 -to PS2_DAT
 
 #============================================================
-# SDRAM                   
+# SDRAM
 #============================================================
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[1]
@@ -81,7 +57,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[8]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[9]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[10]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[11]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[12]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[12]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[1]
@@ -105,10 +80,10 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQM[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQM[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_RAS_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CAS_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CKE 
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CLK 
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CKE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_WE_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CS_N   
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CS_N
 set_location_assignment PIN_AK14 -to DRAM_ADDR[0]
 set_location_assignment PIN_AH14 -to DRAM_ADDR[1]
 set_location_assignment PIN_AG15 -to DRAM_ADDR[2]
@@ -122,44 +97,44 @@ set_location_assignment PIN_AG13 -to DRAM_ADDR[9]
 set_location_assignment PIN_AG12 -to DRAM_ADDR[10]
 set_location_assignment PIN_AH13 -to DRAM_ADDR[11]
 set_location_assignment PIN_AJ14 -to DRAM_ADDR[12]
-set_location_assignment PIN_AK6  -to DRAM_DQ[0]
-set_location_assignment PIN_AJ7  -to DRAM_DQ[1]
-set_location_assignment PIN_AK7  -to DRAM_DQ[2]
-set_location_assignment PIN_AK8  -to DRAM_DQ[3]
-set_location_assignment PIN_AK9  -to DRAM_DQ[4]
+set_location_assignment PIN_AK6 -to DRAM_DQ[0]
+set_location_assignment PIN_AJ7 -to DRAM_DQ[1]
+set_location_assignment PIN_AK7 -to DRAM_DQ[2]
+set_location_assignment PIN_AK8 -to DRAM_DQ[3]
+set_location_assignment PIN_AK9 -to DRAM_DQ[4]
 set_location_assignment PIN_AG10 -to DRAM_DQ[5]
 set_location_assignment PIN_AK11 -to DRAM_DQ[6]
 set_location_assignment PIN_AJ11 -to DRAM_DQ[7]
 set_location_assignment PIN_AH10 -to DRAM_DQ[8]
 set_location_assignment PIN_AJ10 -to DRAM_DQ[9]
-set_location_assignment PIN_AJ9  -to DRAM_DQ[10]
-set_location_assignment PIN_AH9  -to DRAM_DQ[11]
-set_location_assignment PIN_AH8  -to DRAM_DQ[12]
-set_location_assignment PIN_AH7  -to DRAM_DQ[13]
-set_location_assignment PIN_AJ6  -to DRAM_DQ[14]
-set_location_assignment PIN_AJ5  -to DRAM_DQ[15]
+set_location_assignment PIN_AJ9 -to DRAM_DQ[10]
+set_location_assignment PIN_AH9 -to DRAM_DQ[11]
+set_location_assignment PIN_AH8 -to DRAM_DQ[12]
+set_location_assignment PIN_AH7 -to DRAM_DQ[13]
+set_location_assignment PIN_AJ6 -to DRAM_DQ[14]
+set_location_assignment PIN_AJ5 -to DRAM_DQ[15]
 set_location_assignment PIN_AF13 -to DRAM_BA[0]
 set_location_assignment PIN_AJ12 -to DRAM_BA[1]
 set_location_assignment PIN_AB13 -to DRAM_DQM[0]
 set_location_assignment PIN_AK12 -to DRAM_DQM[1]
 set_location_assignment PIN_AE13 -to DRAM_RAS_N
 set_location_assignment PIN_AF11 -to DRAM_CAS_N
-set_location_assignment PIN_AK13 -to DRAM_CKE 
-set_location_assignment PIN_AH12 -to DRAM_CLK 
+set_location_assignment PIN_AK13 -to DRAM_CKE
+set_location_assignment PIN_AH12 -to DRAM_CLK
 set_location_assignment PIN_AA13 -to DRAM_WE_N
-set_location_assignment PIN_AG11 -to DRAM_CS_N   
+set_location_assignment PIN_AG11 -to DRAM_CS_N
 
 #============================================================
-# Micro SD Card                   
+# Micro SD Card
 #============================================================
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_CLK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_CMD
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_DAT0
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_DAT3
-set_location_assignment PIN_A16 -to HPS_SD_CLK
-set_location_assignment PIN_F18 -to HPS_SD_CMD
-set_location_assignment PIN_G18 -to HPS_SD_DAT0
-set_location_assignment PIN_B16 -to HPS_SD_DAT3
+#set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_CLK
+#set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_CMD
+#set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_DAT0
+#set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_DAT3
+#set_location_assignment PIN_A16 -to HPS_SD_CLK
+#set_location_assignment PIN_F18 -to HPS_SD_CMD
+#set_location_assignment PIN_G18 -to HPS_SD_DAT0
+#set_location_assignment PIN_B16 -to HPS_SD_DAT3
 
 #============================================================
 # I2C for Audio and Video-In
@@ -264,14 +239,27 @@ set_global_assignment -name ENABLE_SIGNALTAP ON
 
 set_global_assignment -name USE_SIGNALTAP_FILE gb_dmg.stp
 
-set_global_assignment -name VERILOG_FILE io/vga_driver.v
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name SMART_RECOMPILE ON
+
+
+
+set_global_assignment -name SYSTEMVERILOG_FILE dmg/io/gb_intf.sv
+set_global_assignment -name SYSTEMVERILOG_FILE dmg/io/display.sv
+set_global_assignment -name SYSTEMVERILOG_FILE dmg/io/audio.sv
+set_global_assignment -name SYSTEMVERILOG_FILE dmg/mlab_ram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE dmg/gb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE io/mm_cntrlr.sv
+set_global_assignment -name SYSTEMVERILOG_FILE io/display.sv
+set_global_assignment -name SYSTEMVERILOG_FILE io/controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE io/avalon_intf.sv
+set_global_assignment -name HEX_FILE roms/sml_rom.hex
+set_global_assignment -name HEX_FILE roms/dmg_bootrom.hex
 set_global_assignment -name SIGNALTAP_FILE gb_dmg.stp
 set_global_assignment -name SDC_FILE gb_dmg.SDC
 set_global_assignment -name VERILOG_FILE gb_dmg.sv
 set_global_assignment -name SIP_FILE sys/simulation/sys.sip
 set_global_assignment -name QIP_FILE sys/synthesis/sys.qip
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
-set_global_assignment -name SMART_RECOMPILE ON
 
 set_global_assignment -name SLD_FILE db/gb_dmg_auto_stripped.stp
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

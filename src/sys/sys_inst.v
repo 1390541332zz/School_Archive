@@ -1,21 +1,18 @@
 	sys u0 (
 		.audio_cfg_out_SDAT       (<connected-to-audio_cfg_out_SDAT>),       //    audio_cfg_out.SDAT
 		.audio_cfg_out_SCLK       (<connected-to-audio_cfg_out_SCLK>),       //                 .SCLK
+		.audio_clk_clk            (<connected-to-audio_clk_clk>),            //        audio_clk.clk
 		.audio_cntrlr_out_BCLK    (<connected-to-audio_cntrlr_out_BCLK>),    // audio_cntrlr_out.BCLK
 		.audio_cntrlr_out_DACDAT  (<connected-to-audio_cntrlr_out_DACDAT>),  //                 .DACDAT
 		.audio_cntrlr_out_DACLRCK (<connected-to-audio_cntrlr_out_DACLRCK>), //                 .DACLRCK
-		.audio_left_in_data       (<connected-to-audio_left_in_data>),       //    audio_left_in.data
-		.audio_left_in_valid      (<connected-to-audio_left_in_valid>),      //                 .valid
-		.audio_left_in_ready      (<connected-to-audio_left_in_ready>),      //                 .ready
-		.audio_left_out_ready     (<connected-to-audio_left_out_ready>),     //   audio_left_out.ready
-		.audio_left_out_data      (<connected-to-audio_left_out_data>),      //                 .data
-		.audio_left_out_valid     (<connected-to-audio_left_out_valid>),     //                 .valid
-		.audio_right_in_data      (<connected-to-audio_right_in_data>),      //   audio_right_in.data
-		.audio_right_in_valid     (<connected-to-audio_right_in_valid>),     //                 .valid
-		.audio_right_in_ready     (<connected-to-audio_right_in_ready>),     //                 .ready
-		.audio_right_out_ready    (<connected-to-audio_right_out_ready>),    //  audio_right_out.ready
-		.audio_right_out_data     (<connected-to-audio_right_out_data>),     //                 .data
-		.audio_right_out_valid    (<connected-to-audio_right_out_valid>),    //                 .valid
+		.audio_l_in_data          (<connected-to-audio_l_in_data>),          //       audio_l_in.data
+		.audio_l_in_valid         (<connected-to-audio_l_in_valid>),         //                 .valid
+		.audio_l_in_ready         (<connected-to-audio_l_in_ready>),         //                 .ready
+		.audio_r_in_data          (<connected-to-audio_r_in_data>),          //       audio_r_in.data
+		.audio_r_in_valid         (<connected-to-audio_r_in_valid>),         //                 .valid
+		.audio_r_in_ready         (<connected-to-audio_r_in_ready>),         //                 .ready
+		.audio_reset_reset        (<connected-to-audio_reset_reset>),        //      audio_reset.reset
+		.audio_reset_n_reset_n    (<connected-to-audio_reset_n_reset_n>),    //    audio_reset_n.reset_n
 		.avalon_mm_in_address     (<connected-to-avalon_mm_in_address>),     //     avalon_mm_in.address
 		.avalon_mm_in_byte_enable (<connected-to-avalon_mm_in_byte_enable>), //                 .byte_enable
 		.avalon_mm_in_read        (<connected-to-avalon_mm_in_read>),        //                 .read
@@ -24,35 +21,26 @@
 		.avalon_mm_in_acknowledge (<connected-to-avalon_mm_in_acknowledge>), //                 .acknowledge
 		.avalon_mm_in_read_data   (<connected-to-avalon_mm_in_read_data>),   //                 .read_data
 		.clk_in_clk               (<connected-to-clk_in_clk>),               //           clk_in.clk
+		.display_fifo_in_data     (<connected-to-display_fifo_in_data>),     //  display_fifo_in.data
+		.display_fifo_in_valid    (<connected-to-display_fifo_in_valid>),    //                 .valid
+		.display_fifo_in_ready    (<connected-to-display_fifo_in_ready>),    //                 .ready
+		.display_fifo_out_data    (<connected-to-display_fifo_out_data>),    // display_fifo_out.data
+		.display_fifo_out_valid   (<connected-to-display_fifo_out_valid>),   //                 .valid
+		.display_fifo_out_ready   (<connected-to-display_fifo_out_ready>),   //                 .ready
+		.dmg_clk_clk              (<connected-to-dmg_clk_clk>),              //          dmg_clk.clk
 		.dmg_double_clk_clk       (<connected-to-dmg_double_clk_clk>),       //   dmg_double_clk.clk
+		.dmg_reset_reset          (<connected-to-dmg_reset_reset>),          //        dmg_reset.reset
+		.dmg_reset_n_reset_n      (<connected-to-dmg_reset_n_reset_n>),      //      dmg_reset_n.reset_n
 		.pll_0_locked_export      (<connected-to-pll_0_locked_export>),      //     pll_0_locked.export
 		.ps2_cmd_in_data          (<connected-to-ps2_cmd_in_data>),          //       ps2_cmd_in.data
 		.ps2_cmd_in_valid         (<connected-to-ps2_cmd_in_valid>),         //                 .valid
 		.ps2_cmd_in_ready         (<connected-to-ps2_cmd_in_ready>),         //                 .ready
-		.ps2_data_out_ready       (<connected-to-ps2_data_out_ready>),       //     ps2_data_out.ready
-		.ps2_data_out_data        (<connected-to-ps2_data_out_data>),        //                 .data
+		.ps2_data_out_data        (<connected-to-ps2_data_out_data>),        //     ps2_data_out.data
 		.ps2_data_out_valid       (<connected-to-ps2_data_out_valid>),       //                 .valid
+		.ps2_data_out_ready       (<connected-to-ps2_data_out_ready>),       //                 .ready
 		.ps2_out_CLK              (<connected-to-ps2_out_CLK>),              //          ps2_out.CLK
 		.ps2_out_DAT              (<connected-to-ps2_out_DAT>),              //                 .DAT
-		.sd_out_b_SD_cmd          (<connected-to-sd_out_b_SD_cmd>),          //           sd_out.b_SD_cmd
-		.sd_out_b_SD_dat          (<connected-to-sd_out_b_SD_dat>),          //                 .b_SD_dat
-		.sd_out_b_SD_dat3         (<connected-to-sd_out_b_SD_dat3>),         //                 .b_SD_dat3
-		.sd_out_o_SD_clock        (<connected-to-sd_out_o_SD_clock>),        //                 .o_SD_clock
-		.vga_clk_clk              (<connected-to-vga_clk_clk>),              //          vga_clk.clk
-		.vga_in_data              (<connected-to-vga_in_data>),              //           vga_in.data
-		.vga_in_startofpacket     (<connected-to-vga_in_startofpacket>),     //                 .startofpacket
-		.vga_in_endofpacket       (<connected-to-vga_in_endofpacket>),       //                 .endofpacket
-		.vga_in_valid             (<connected-to-vga_in_valid>),             //                 .valid
-		.vga_in_ready             (<connected-to-vga_in_ready>),             //                 .ready
-		.vga_out_CLK              (<connected-to-vga_out_CLK>),              //          vga_out.CLK
-		.vga_out_HS               (<connected-to-vga_out_HS>),               //                 .HS
-		.vga_out_VS               (<connected-to-vga_out_VS>),               //                 .VS
-		.vga_out_BLANK            (<connected-to-vga_out_BLANK>),            //                 .BLANK
-		.vga_out_SYNC             (<connected-to-vga_out_SYNC>),             //                 .SYNC
-		.vga_out_R                (<connected-to-vga_out_R>),                //                 .R
-		.vga_out_G                (<connected-to-vga_out_G>),                //                 .G
-		.vga_out_B                (<connected-to-vga_out_B>),                //                 .B
-		.sys_clk_clk              (<connected-to-sys_clk_clk>),              //          sys_clk.clk
+		.reset_in_reset_n         (<connected-to-reset_in_reset_n>),         //         reset_in.reset_n
 		.sdram_clk_clk            (<connected-to-sdram_clk_clk>),            //        sdram_clk.clk
 		.sdram_out_addr           (<connected-to-sdram_out_addr>),           //        sdram_out.addr
 		.sdram_out_ba             (<connected-to-sdram_out_ba>),             //                 .ba
@@ -63,6 +51,24 @@
 		.sdram_out_dqm            (<connected-to-sdram_out_dqm>),            //                 .dqm
 		.sdram_out_ras_n          (<connected-to-sdram_out_ras_n>),          //                 .ras_n
 		.sdram_out_we_n           (<connected-to-sdram_out_we_n>),           //                 .we_n
-		.hard_reset_reset         (<connected-to-hard_reset_reset>)          //       hard_reset.reset
+		.sys_clk_clk              (<connected-to-sys_clk_clk>),              //          sys_clk.clk
+		.sys_reset_reset          (<connected-to-sys_reset_reset>),          //        sys_reset.reset
+		.sys_reset_n_reset_n      (<connected-to-sys_reset_n_reset_n>),      //      sys_reset_n.reset_n
+		.vga_clk_clk              (<connected-to-vga_clk_clk>),              //          vga_clk.clk
+		.vga_in_startofpacket     (<connected-to-vga_in_startofpacket>),     //           vga_in.startofpacket
+		.vga_in_endofpacket       (<connected-to-vga_in_endofpacket>),       //                 .endofpacket
+		.vga_in_valid             (<connected-to-vga_in_valid>),             //                 .valid
+		.vga_in_ready             (<connected-to-vga_in_ready>),             //                 .ready
+		.vga_in_data              (<connected-to-vga_in_data>),              //                 .data
+		.vga_out_CLK              (<connected-to-vga_out_CLK>),              //          vga_out.CLK
+		.vga_out_HS               (<connected-to-vga_out_HS>),               //                 .HS
+		.vga_out_VS               (<connected-to-vga_out_VS>),               //                 .VS
+		.vga_out_BLANK            (<connected-to-vga_out_BLANK>),            //                 .BLANK
+		.vga_out_SYNC             (<connected-to-vga_out_SYNC>),             //                 .SYNC
+		.vga_out_R                (<connected-to-vga_out_R>),                //                 .R
+		.vga_out_G                (<connected-to-vga_out_G>),                //                 .G
+		.vga_out_B                (<connected-to-vga_out_B>),                //                 .B
+		.vga_reset_reset          (<connected-to-vga_reset_reset>),          //        vga_reset.reset
+		.vga_reset_n_reset_n      (<connected-to-vga_reset_n_reset_n>)       //      vga_reset_n.reset_n
 	);
 

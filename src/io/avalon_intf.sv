@@ -5,25 +5,37 @@
  * Maintainer: Jacob Abel                                                    *
  *---------------------------------------------------------------------------*/
 
-package avalon_interface;
+package avalon_intf;
+
+typedef enum {
+    STANDBY,
+    TRANSMIT
+} st_state_source;
+
+typedef enum {
+    WAITING,
+    PROCESSING
+} st_state_sink;
+
+endpackage : avalon_intf
 
 /* Data Based Streaming Interface */
 interface st_data #(
-    parameter DATA_WIDTH
+    parameter data_width
 ) (
-    input wire clk
+    input logic clk, reset
 );
 
-logic [DATA_WIDTH-1:0] 
+logic [data_width-1:0] 
     data;
 logic
-    clk,
-    reset,
     valid,    
     ready;
 
 /* Bus Sink Access */
 modport sink (
+   input  clk,
+   input  reset,
    input  data,
    input  valid,
    output ready
@@ -31,6 +43,8 @@ modport sink (
 
 /* Bus Source Access */
 modport source (
+   input  clk,
+   input  reset,
    output data,
    output valid,
    input  ready
@@ -40,16 +54,14 @@ endinterface : st_data
 
 /* Packet Based Streaming Interface */
 interface st_packet #(
-    parameter DATA_WIDTH
+    parameter data_width
 ) (
     input logic clk, reset
 );
 
-logic [DATA_WIDTH-1:0] 
+logic [data_width-1:0] 
     data;
 logic
-    clk,
-    reset,
     start_packet,
     end_packet,
     valid,    
@@ -57,6 +69,8 @@ logic
 
 /* Bus Sink Access */
 modport sink (
+   input  clk,
+   input  reset,
    input  data,
    input  start_packet,
    input  end_packet,
@@ -66,6 +80,8 @@ modport sink (
 
 /* Bus Source Access */
 modport source (
+   input  clk,
+   input  reset,
    output data,
    output start_packet,
    output end_packet,
@@ -73,31 +89,31 @@ modport source (
    input  ready
 );
 
-endinterface : st_package
+endinterface : st_packet
 
 /* External Bus to Avalon Bridge Interface */
 interface mm_ebab #(
-    parameter DATA_WIDTH,
-    parameter ADDR_WIDTH
+    parameter data_width,
+    parameter addr_width
 ) (
     input logic clk, reset
 );
 
-logic [ADDR_WIDTH-1:0] 
+logic [addr_width-1:0] 
     addr;
-logic [DATA_WIDTH-1:0] 
+logic [data_width-1:0] 
     read_data,
     write_data;
 logic
-    clk,
-    reset,
     ack,    
     read_en,
     write_en,
     byte_en;
 
 /* Bus Sink Access */
-modport sink (
+modport master (
+   input  clk,
+   input  reset,
    input  addr,
    input  write_data,
    input  read_en,
@@ -108,7 +124,9 @@ modport sink (
 );
 
 /* Bus Source Access */
-modport source (
+modport slave (
+   input  clk,
+   input  reset,
    output addr,
    output write_data,
    output read_en,
@@ -119,5 +137,3 @@ modport source (
 );
 
 endinterface : mm_ebab
-
-endpackage
