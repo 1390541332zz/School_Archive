@@ -1,0 +1,16 @@
+# vsim -t 1ps -L cycloneive_ver -L altera_ver -sdfnoerror timingtb 
+# Start time: 09:48:54 on Mar 28,2019
+# Loading work.timingtb
+# Loading work.timing
+# Loading cycloneive_ver.cycloneive_io_obuf
+# Loading cycloneive_ver.cycloneive_io_ibuf
+# Loading cycloneive_ver.cycloneive_clkctrl
+# Loading cycloneive_ver.cycloneive_mux41
+# Loading cycloneive_ver.cycloneive_ena_reg
+# Loading cycloneive_ver.cycloneive_lcell_comb
+# Loading altera_ver.dffeas
+# ** Warning: (vsim-3015) ./timingtb.v(9): [PCDPC] - Port size (9) does not match connection size (1) for port 'LEDG'. The port definition is at: ./simulation/modelsim/timing.vo(34).
+#    Time: 0 ps  Iteration: 0  Instance: /timingtb/dut File: ./simulation/modelsim/timing.vo
+# Loading altera_ver.PRIM_GDFF_LOW
+# End time: 09:49:14 on Mar 28,2019, Elapsed time: 0:00:20
+# Errors: 0, Warnings: 1
