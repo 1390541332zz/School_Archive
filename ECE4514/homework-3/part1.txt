@@ -1,0 +1,20 @@
+# Wolfson CODEC Datasheet Questions
+
+- How do you set the chip into 'bypass' mode using I2C programming?
++ Send the command: { Addr: 0x04, Data: 0x0A }
+
+- How do you power-down and power-up the chip using I2C programming?
++ Send a command to Register 0x06 with bit 7=1.
+
+- What is the meaning of each of the following audio interface signals?
++ DACDAT: DAC Digital Audio Data Input
++ DACLRC: DAC Sample Rate Left/Right Clock, Pull Down
++ BCLK: DAC Digital Audio Bit Clock, Pull Down
++ ADCLRC: ADC Sample Rate Left/Right Clock, Pull Down
++ ADCDAT: ADC Digital Audio Data Output
+
+- How do you select the following audio settings using I2C programming?
++ master-mode (Figure 31) { Addr:0x07, Bit[6]: 1 }
++ left-justified audio data (Figure 26) { Addr:0x07, Bit[1:0]: 2'b01 }
++ 48 KHz sample rate (Table 18) { Addr:0x08, Bit[5:2]: 4'b0000 }
++ 16-bit sample precision { Addr:0x07, Bit[3:2]: 2'b00 }
