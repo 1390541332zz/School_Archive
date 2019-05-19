@@ -1,0 +1,3 @@
+Info (10281): Verilog HDL Declaration information at XGA.v(5): object "VGA_R" differs only in case from object "vga_r" in the same scope File: Z:/GitHub/ECE4514/homework-6-jacoblambda/colors/XGA.v Line: 5
+Info (10281): Verilog HDL Declaration information at XGA.v(6): object "VGA_G" differs only in case from object "vga_g" in the same scope File: Z:/GitHub/ECE4514/homework-6-jacoblambda/colors/XGA.v Line: 6
+Info (10281): Verilog HDL Declaration information at XGA.v(7): object "VGA_B" differs only in case from object "vga_b" in the same scope File: Z:/GitHub/ECE4514/homework-6-jacoblambda/colors/XGA.v Line: 7
