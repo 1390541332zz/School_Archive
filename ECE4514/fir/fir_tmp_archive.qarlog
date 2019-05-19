@@ -1,0 +1,24 @@
+Quartus Prime Archive log --	C:/cygwin/home/ece4514s19/fir/fir_tmp_archive.qarlog
+
+Archive:	C:/cygwin/home/ece4514s19/fir/fir_tmp_archive.qar
+Date:		Tue Apr 02 10:06:37 2019
+Quartus Prime		17.0.2 Build 602 07/19/2017 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/cygwin/home/ece4514s19/fir/fir.SDC
+C:/cygwin/home/ece4514s19/fir/fir.out.sdc
+C:/cygwin/home/ece4514s19/fir/fir.qpf
+C:/cygwin/home/ece4514s19/fir/fir.qsf
+C:/cygwin/home/ece4514s19/fir/fir.sdc
+C:/cygwin/home/ece4514s19/fir/fir.v
+C:/cygwin/home/ece4514s19/fir/fir_assignment_defaults.qdf
+	======= Total: 7 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
+
+
+******* Archived project restoration attempt on Tue Apr 02 10:06:38 2019
+Source archive file:	C:/cygwin/home/ece4514s19/fir/fir_tmp_archive.qar
+Archive was extracted into	C:/cygwin/home/ece4514s19/fir2/
+		 - successfully.
