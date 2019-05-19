@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="simulation/submodules/altera_up_ps2.v"
+   type="VERILOG"
+   library="ps2_cntrlr" />
+ <file
+   path="simulation/submodules/altera_up_ps2_command_out.v"
+   type="VERILOG"
+   library="ps2_cntrlr" />
+ <file
+   path="simulation/submodules/altera_up_ps2_data_in.v"
+   type="VERILOG"
+   library="ps2_cntrlr" />
+ <file
+   path="simulation/submodules/sys_ps2_cntrlr.v"
+   type="VERILOG"
+   library="ps2_cntrlr" />
+ <file
+   path="simulation/submodules/sys_pll_0.vo"
+   type="VERILOG"
+   library="pll_0" />
+ <file
+   path="simulation/submodules/sys_fpga_master.v"
+   type="VERILOG"
+   library="fpga_master" />
+ <file
+   path="simulation/submodules/altera_up_audio_bit_counter.v"
+   type="VERILOG"
+   library="audio_cntrlr" />
+ <file
+   path="simulation/submodules/altera_up_audio_in_deserializer.v"
+   type="VERILOG"
+   library="audio_cntrlr" />
+ <file
+   path="simulation/submodules/altera_up_audio_out_serializer.v"
+   type="VERILOG"
+   library="audio_cntrlr" />
+ <file
+   path="simulation/submodules/altera_up_clock_edge.v"
+   type="VERILOG"
+   library="audio_cntrlr" />
+ <file
+   path="simulation/submodules/altera_up_sync_fifo.v"
+   type="VERILOG"
+   library="audio_cntrlr" />
+ <file
+   path="simulation/submodules/sys_audio_cntrlr.v"
+   type="VERILOG"
+   library="audio_cntrlr" />
+ <file
+   path="simulation/submodules/altera_up_av_config_serial_bus_controller.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_slow_clock_generator.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_dc2.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_d5m.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_lcm.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_ltm.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_ob_de1_soc.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_ob_de2_115.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_ob_de2i_150.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_ob_de10_standard.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_ob_audio.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_ob_adv7180.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/altera_up_av_config_auto_init_ob_adv7181.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file
+   path="simulation/submodules/sys_audio_cfg.v"
+   type="VERILOG"
+   library="audio_cfg" />
+ <file path="simulation/sys.v" type="VERILOG" />
+ <topLevel name="sys" />
+ <deviceFamily name="cyclonev" />
+</simPackage>

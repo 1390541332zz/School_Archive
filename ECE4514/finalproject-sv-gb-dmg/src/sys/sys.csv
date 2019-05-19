@@ -1,0 +1,52 @@
+# system info sys on 2019.04.29.00:44:39
+system_info:
+name,value
+DEVICE,5CSEMA5F31C6
+DEVICE_FAMILY,Cyclone V
+GENERATION_ID,1556513060
+#
+#
+# Files generated for sys on 2019.04.29.00:44:39
+files:
+filepath,kind,attributes,module,is_top
+simulation/sys.v,VERILOG,,sys,true
+simulation/submodules/altera_up_av_config_serial_bus_controller.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_slow_clock_generator.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_dc2.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_d5m.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_lcm.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_ltm.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_ob_de1_soc.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_ob_de2_115.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_ob_de2i_150.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_ob_de10_standard.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_ob_audio.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_ob_adv7180.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_av_config_auto_init_ob_adv7181.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/sys_audio_cfg.v,VERILOG,,sys_audio_cfg,false
+simulation/submodules/altera_up_audio_bit_counter.v,VERILOG,,sys_audio_cntrlr,false
+simulation/submodules/altera_up_audio_in_deserializer.v,VERILOG,,sys_audio_cntrlr,false
+simulation/submodules/altera_up_audio_out_serializer.v,VERILOG,,sys_audio_cntrlr,false
+simulation/submodules/altera_up_clock_edge.v,VERILOG,,sys_audio_cntrlr,false
+simulation/submodules/altera_up_sync_fifo.v,VERILOG,,sys_audio_cntrlr,false
+simulation/submodules/sys_audio_cntrlr.v,VERILOG,,sys_audio_cntrlr,false
+simulation/submodules/sys_fpga_master.v,VERILOG,,sys_fpga_master,false
+simulation/submodules/sys_pll_0.vo,VERILOG,,sys_pll_0,false
+simulation/submodules/altera_up_ps2.v,VERILOG,,sys_ps2_cntrlr,false
+simulation/submodules/altera_up_ps2_command_out.v,VERILOG,,sys_ps2_cntrlr,false
+simulation/submodules/altera_up_ps2_data_in.v,VERILOG,,sys_ps2_cntrlr,false
+simulation/submodules/sys_ps2_cntrlr.v,VERILOG,,sys_ps2_cntrlr,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+sys.audio_cfg,sys_audio_cfg
+sys.audio_cntrlr,sys_audio_cntrlr
+sys.fpga_master,sys_fpga_master
+sys.pll_0,sys_pll_0
+sys.ps2_cntrlr,sys_ps2_cntrlr
+sys.sd_cntrlr,Altera_UP_SD_Card_Avalon_Interface
+sys.vga_cntrlr,sys_vga_cntrlr
+sys.mm_interconnect_0,sys_mm_interconnect_0
+sys.rst_controller,altera_reset_controller
