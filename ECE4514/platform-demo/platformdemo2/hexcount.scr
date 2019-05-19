@@ -1,0 +1,21 @@
+# open connection to JTAG master
+
+set jtag_master [lindex [get_service_paths master] 0]
+open_service master $jtag_master
+
+# write 0xADECAF into hex displays
+master_write_32  $jtag_master 0x20  0xADECAF
+
+# enable counting
+master_write_32  $jtag_master 0x24  0x1
+
+# wait 10 seconds
+after 10000
+
+# disable counting
+master_write_32  $jtag_master 0x24  0x0
+
+# read switches and copy to hex displays
+set m [master_read_8 $jtag_master 0x0 1]
+master_write_32  $jtag_master 0x20  $m
+
