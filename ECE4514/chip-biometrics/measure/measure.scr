@@ -1,0 +1,46 @@
+set jtag_master [lindex [get_service_paths master] 0]
+open_service master $jtag_master
+
+proc measure {jtag_master osc len} {
+
+  # enable oscillator - keep counter clear
+  master_write_32 $jtag_master 0x10 [expr (1 << $osc)]
+
+  after 100
+
+  # start measuring
+  master_write_32 $jtag_master 0x10 [expr 0x30000 + (1 << $osc)]
+
+  # wait
+  after $len
+
+  # stop measuring
+  master_write_32 $jtag_master 0x10 0x20000
+
+  # extract result and return it
+  set r [master_read_32 $jtag_master 0x10 2]
+  scan $r "%lx %lx" dec1 dec2
+  return [list $dec1 $dec2]
+}
+
+for {set i 0} {$i<5} {incr i} {
+  for {set j 0} {$j<16} {incr j} {
+    master_write_32  $jtag_master 0x0  [expr $j + $i * 16]
+    set m [measure $jtag_master $j 1000]
+     lappend t [expr [lindex $m 1] * 50000000 / [lindex $m 0]]
+}}
+
+# write CSV file
+
+set freq [open "freq.csv" w]
+for {set j 0} {$j<16} {incr j} {
+  puts -nonewline $freq "OSC "
+  puts -nonewline $freq [format "%2d" $j]
+  for {set i 0} {$i<5} {incr i} {
+	puts -nonewline $freq [format ", %11d" [lindex $t [expr $i * 16 + $j]]]
+  }
+  puts $freq " "
+}
+close $freq
+
+
