@@ -1,0 +1,50 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/cygwin/home/ece4514s19/heartbeatde1soc
+vheartbeatde1soc
+!s110 1548106569
+!i10b 1
+!s100 43kSHKB6W8zKe[lL;:PEb1
+IFLZg:VnA1^@<9FV:NRVZf2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1548094413
+8.\heartbeatde1soc.v
+F.\heartbeatde1soc.v
+L0 1
+Z2 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1548106569.000000
+!s107 .\heartbeatde1soc.v|
+!s90 .\heartbeatde1soc.v|
+!i113 1
+Z3 tCvgOpt 0
+vheartbeatde1soctb
+!s110 1548106797
+!i10b 1
+!s100 dH6OE1DRg>k18m0_hP@Ih1
+Ifn=Rg?;g;9cH[V[z[>`732
+R1
+R0
+w1548106789
+8.\heartbeatde1soctb.v
+F.\heartbeatde1soctb.v
+L0 3
+R2
+r1
+!s85 0
+31
+!s108 1548106797.000000
+!s107 .\heartbeatde1soctb.v|
+!s90 .\heartbeatde1soctb.v|
+!i113 1
+R3
